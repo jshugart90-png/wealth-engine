@@ -30,7 +30,9 @@
     { "name": "PipeKit API", "sku": "pipekit-starter", "priceUsd": 9, "type": "subscription", "landing": "/go/pipekit.html" },
     { "name": "Invoice PDF", "sku": "invoice-pdf", "priceUsd": 3, "type": "oneTime", "landing": "/go/invoice.html" },
     { "name": "Lease Check", "sku": "lease-report", "priceUsd": 7, "type": "oneTime", "landing": "/go/lease.html" },
-    { "name": "NDA Generator", "sku": "nda-pdf", "priceUsd": 4, "type": "oneTime", "landing": "/go/nda.html" }
+    { "name": "NDA Generator", "sku": "nda-pdf", "priceUsd": 4, "type": "oneTime", "landing": "/go/nda.html" },
+    { "name": "NDAGen Team", "sku": "ndagen-team-monthly", "priceUsd": 29, "type": "subscription", "landing": "/go/nda-team.html" },
+    { "name": "StatusPing Agency", "sku": "agency-monthly", "priceUsd": 49, "type": "subscription", "landing": "/go/statusping-agency.html" }
   ],
   "starterLinks": [
     { "label": "Invoice PDF $3", "path": "/go/invoice.html", "pitch": "One-click PDF invoices for freelancers — no subscription." },

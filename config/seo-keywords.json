@@ -701,6 +701,36 @@
       "title": "Freelancer Compliance by State — 1099 LLC Guides",
       "venture": "pdf-factory",
       "sku": "smb-compliance-pack"
+    },
+    {
+      "slug": "nda-generator-for-agencies",
+      "title": "NDA Generator for Agencies — Team Templates",
+      "venture": "ndagen",
+      "sku": "ndagen-team-monthly"
+    },
+    {
+      "slug": "mutual-nda-template-small-business",
+      "title": "Mutual NDA Template for Small Business",
+      "venture": "ndagen",
+      "sku": "nda-pdf"
+    },
+    {
+      "slug": "white-label-uptime-monitoring-agency",
+      "title": "White Label Uptime Monitoring for Agencies",
+      "venture": "statusping",
+      "sku": "agency-monthly"
+    },
+    {
+      "slug": "agency-status-page-reseller",
+      "title": "Agency Status Page Reseller Platform",
+      "venture": "statusping",
+      "sku": "agency-monthly"
+    },
+    {
+      "slug": "nda-template-freelancer-team",
+      "title": "NDA Template for Freelancer Teams",
+      "venture": "ndagen",
+      "sku": "ndagen-team-monthly"
     }
   ],
   "pagesPerCycle": 10

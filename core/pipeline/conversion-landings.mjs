@@ -179,6 +179,30 @@ const PAGES = [
     altSku: "basic-monthly",
     altLabel: "Uptime only — $5/mo",
   },
+  {
+    slug: "nda-team",
+    headline: "NDAGen Team — 50 NDAs/mo for agencies",
+    sub: "3 seats, shared templates, governing-law selector. $29/mo beats Quoqo at $30.",
+    sku: "ndagen-team-monthly",
+    tool: "/ndagen/index.html",
+    bullets: ["50 PDF exports per month", "3 team seats + audit log", "Mutual & one-way NDAs"],
+    urgency: "Agencies outgrow $4 one-off exports fast — Team tier ships today.",
+    socialProof: "CompareStack NDA traffic + Freelancer Stack cross-sell",
+    altSku: "nda-pdf",
+    altLabel: "Single PDF — $4 one-time",
+  },
+  {
+    slug: "statusping-agency",
+    headline: "StatusPing Agency — white-label monitoring",
+    sub: "10 client workspaces, 100 monitors, branded status pages. $49/mo wholesale for agencies.",
+    sku: "agency-monthly",
+    tool: "/statusping/index.html",
+    bullets: ["Resell at $20–30/client", "White-label status pages", "Reseller kit included"],
+    urgency: "PerkyDash charges €49 for 2 clients — we give 10 workspaces.",
+    socialProof: "Built for web dev shops on Render, Fly, and Vercel",
+    altSku: "devwatch-monthly",
+    altLabel: "DevWatch bundle — $39/mo",
+  },
 ];
 
 export function buildHighConversionLandings() {

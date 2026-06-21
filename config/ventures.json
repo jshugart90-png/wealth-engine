@@ -63,7 +63,7 @@
       "name": "StatusPing",
       "type": "micro-saas",
       "model": "subscription",
-      "prices": { "basic": 5, "team": 19 },
+      "prices": { "basic": 5, "team": 19, "agency": 49 },
       "path": "ventures/statusping",
       "deployPath": "dist/statusping",
       "channels": ["seo", "indie-hackers", "dev-tools"],
@@ -85,7 +85,7 @@
       "name": "NDAGen",
       "type": "utility",
       "model": "one-time",
-      "prices": { "pdf": 4 },
+      "prices": { "pdf": 4, "teamMonth": 29 },
       "path": "ventures/ndagen",
       "deployPath": "dist/ndagen",
       "channels": ["seo", "freelancer-forums", "comparison-pages"],
@@ -217,6 +217,14 @@
       "metadata": { "monitors": "25", "ssl_certs": "10", "cron_jobs": "20", "bundle": "devwatch" }
     },
     {
+      "ventureId": "statusping",
+      "sku": "agency-monthly",
+      "name": "StatusPing Agency",
+      "priceUsd": 49,
+      "interval": "month",
+      "metadata": { "workspaces": "10", "monitors": "100", "tier": "agency", "white_label": "true" }
+    },
+    {
       "ventureId": "meetingcost",
       "sku": "meeting-pro",
       "name": "MeetingCost Pro Report",
@@ -231,6 +239,14 @@
       "priceUsd": 4,
       "interval": "one_time",
       "metadata": { "exports": "1" }
+    },
+    {
+      "ventureId": "ndagen",
+      "sku": "ndagen-team-monthly",
+      "name": "NDAGen Team",
+      "priceUsd": 29,
+      "interval": "month",
+      "metadata": { "exports_per_month": "50", "seats": "3", "tier": "team" }
     },
     {
       "ventureId": "hookrelay",
