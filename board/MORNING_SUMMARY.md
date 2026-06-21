@@ -1,10 +1,10 @@
 # Overnight Build Summary — 2026-06-21
 
-**Prepared:** 2026-06-21T04:31:25.117Z (review at 8 AM US Central)
+**Prepared:** 2026-06-21T05:31:18.211Z (review at 8 AM US Central)
 **Production:** https://wealth-engine-0qlj.onrender.com
 **Health:** `/api/health` OK
 **Revenue:** $0 / $500 target (0%)
-**Commits pushed tonight (after bff97dc):** 20
+**Commits pushed tonight (after bff97dc):** 63
 
 ---
 
@@ -13,16 +13,59 @@
 - **Render deploy API** — `scripts/trigger-render-deploy.mjs` via ~/.render/cli.yaml (verified 201)
 - **8 /go ad landings:** invoice, lease, uptime, nda, webhook, pipekit, templates, meeting
 - **12+ free ad tools:** tip, meeting cost, percentage, bill splitter, hourly rate, markup, late fee, break-even, discount, unit price, profit margin, invoice number generator + `/tools/index.html` hub
-- **72 SEO keywords** → full `/p/*.html` set (all keywords generated each build)
+- **134 SEO keywords** → full `/p/*.html` set (all keywords generated each build)
 - **Conversion CTAs** improved on BillSnap, StatusPing, PipeKit, HookRelay (sticky footers + sharper copy)
 - **/join redirect** → `/join.html` in server.mjs
-- **Google Ads CSV** — 7 campaigns, **$10/day cap**
+- **Google Ads CSV** — 6 campaigns, **$10/day cap**
 - **Outreach pack** — Reddit, Indie Hackers, HN Show HN drafts in `D:\wealth-engine-data\marketing\outreach\`
 - **Agent chain** executed (`npm run agent:chain`)
 - **MM daemon** running (PID verified)
 
 Recent commits:
 ```
+215c92a Log cycles 6-8 deploy verification and pipeline handoff.
+aff1268 game: Word Scramble Business Terms
+119fb6a game: Color Switch Snake
+310a3c2 game: Memory Match Freelancer Tools
+3435535 game: Uptime Defender
+282a111 game: Invoice Stack
+a0156c8 game: Horseshoe Toss
+bd34662 feat: game creator agent rule and pipeline tracker
+1231940 Add lastmod to all sitemap URLs at build time.
+01145d5 Add lastmod to sitemap URLs for organic freshness signals.
+34a07a2 Cycle 8: PipeKit pSEO + /go/pipekit-pro landing.
+068776e Cycle 7: expand compliance to 20 states, 3 tools, CompareStack SEO.
+598f533 Cycle 7: 1099 Deadline Suite + compliance build fix.
+89c0041 Log cycle 6 affiliate portal deploy verification.
+6c3daf9 Use relative links and location.origin on partner pages so prod URLs are always correct.
+dc79d67 DEPLOY_LOG: Cycle 6 affiliate portal PASS (5/5 prod).
+0e261af Set PUBLIC_BASE_URL in Render blueprint so affiliate pages build with prod links.
+e96fc78 Fix PUBLIC_BASE_URL fallback on Render so partner pages use prod URLs at build time.
+572b0d4 Cycle 6: NDAGen Team + StatusPing Agency SKUs and landings.
+3099c35 Cycle 6: NDAGen Team + StatusPing Agency SKUs and landings.
+6223621 Ship affiliate partner portal MVP at /partners/.
+2c3b9a3 DEPLOY_LOG: Cycle 2 extensionless redirect QC PASS (5/5 prod).
+83b903d Log cycle 5 deploy verification for compliance pSEO.
+42f42d7 Ship state compliance pSEO pilot (41 pages).
+841619f Log cycle 4 deploy PASS for BillSnap Pro pivot.
+8ac16f6 Log BillSnap Pro deploy verification (b7ab298).
+9761524 Ship BillSnap Pro $29/mo reprice and industry pSEO pivot.
+b7ab298 Ship BillSnap Pro $29/mo reprice and industry pSEO.
+8edf2d3 Update board: deploy log cycles 2-3, IDEAS status, pipeline B3
+d7a3add Fix extensionless static paths with generic .html redirects.
+eb001be Fix extensionless redirects for /go, /bundles, /hookrelay paths.
+10b207d Overnight cycle 1: SEO keywords, build refresh
+71abe9b Build/QC Cycle 3: CompareStack + DevWatch bundle + 2 tools
+02f4e9a DEPLOY_LOG: Cycle 2 QC expanded to 9/9 prod URLs including SEO pages.
+d3e3226 Update DEPLOY_LOG: Cycle 2 prod verification PASS 7/7
+18b40b5 Fix Marketing Director loop script PowerShell syntax
+19c006e Add Marketing Director agent rule and campaign command center.
+8594aae Ship Cycle 2 MVPs: Freelancer Stack + HookRelay DLQ Pro
+022c187 Build/QC Cycle 2: Freelancer Stack + HookRelay DLQ Pro SKUs
+da77fcd Build/QC Cycle 1: invoice conversion, 3 go landings, 2 tools, 5 SEO pages
+8f845ee Overnight cycle 1: SEO keywords, build refresh
+dae69ee Overnight cycle 1: SEO keywords, build refresh
+24de5d7 Fix overnight sprint review time for cross-midnight runs
 a3a3e93 Cycle 4: hiring landing, ROI tool, 5 SEO keywords, outreach batch 6
 672edfa Update 8 AM morning summary for 2026-06-21 overnight build
 81dbee7 Cycle 3: compare landing, 5 SEO keywords, 2 tools, overnight sprint
@@ -73,12 +116,12 @@ d4e947f Add 3 SEO keywords and mark Render deploy verified.
 ## Ready to ship
 
 - Render production live with 9 ventures + Stripe (14 products, coupon LAUNCH25)
-- Google Ads CSV: `D:\wealth-engine-data\marketing\ads\google-ads-import.csv` — 7 campaigns, **$10/day**
+- Google Ads CSV: `D:\wealth-engine-data\marketing\ads\google-ads-import.csv` — 6 campaigns, **$10/day**
 - High-conversion landings under `/go/*`
 - Bundle pages: `/bundles/freelancer-stack`, `/bundles/dev-ops-stack`, `/bundles/landlord-tenant-stack`
 - Free tools hub: `/tools/index.html`
 - CompareStack: 7 comparison pages
-- SEO programmatic pages: `/p/*` (72+ pages)
+- SEO programmatic pages: `/p/*` (134+ pages)
 - RSS/product feeds: `/feed.xml`, `/products.json`
 - Outreach: `D:\wealth-engine-data\marketing\outreach\POST_TODAY.md`
 
@@ -155,7 +198,7 @@ Status: `todo` | `in_progress` | `blocked` | `done`
 | T-001 | Deploy wealth-engine to Render; verify `/api/health` | Deploy Guy | todo | Prod live; `/go/nda.html` + ad tools verified 200 (2026-06-21) |
 | T-002 | Point custom domain + update `PUBLIC_BASE_URL` + Stripe webhook | Deploy Guy | blocked | Human: CNAME `tools.horseshoeroundme.com` → Render (see deploy/GODADDY_DNS.md) |
 | T-003 | Import `google-ads-import.csv` from `D:\wealth-engine-data\marketing\ads\` | Marketing Guy | blocked | Human: 5-min import — see ADS_IMPORT_CHECKLIST.md |
-| T-004 | Optimize BillSnap `/go/invoice` landing + LAUNCH25 coupon in ads copy | Marketing Guy + Code Cracker Guy | in_progress | 6 /go/* landings + expanded ads CSV |
+| T-004 | Optimize BillSnap `/go/invoice` landing + LAUNCH25 coupon in ads copy | Marketing Guy + Code Cracker Guy | in_progress | 15 /go/* landings, $16/day ads budget, stack SKU live |
 | T-005 | Run orchestrator on 180m interval; confirm ramp-report.json updates | Final Boss | in_progress | Render daemon + local MM daemon running |
 | T-006 | Deploy horseshoeroundme.com cross-promo bar | Marketing Guy | in_progress | Promo bar in Website/index.html — upload to GoDaddy (NOT Netlify) |
 | T-007 | AdSense free tools + privacy page | Code Cracker Guy | done | 4 free tools + /privacy.html |
