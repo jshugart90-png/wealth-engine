@@ -10,6 +10,8 @@ services:
     envVars:
       - key: NODE_VERSION
         value: "20"
+      - key: PUBLIC_BASE_URL
+        value: "https://wealth-engine-0qlj.onrender.com"
       - key: RUN_INTERVAL_MINUTES
         value: "180"
       - key: AUTO_STRIPE_SYNC

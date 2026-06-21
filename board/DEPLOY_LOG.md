@@ -17,3 +17,4 @@ Append-only log of production deploys and URL verification.
 | 2026-06-21T05:20:00Z | 4 | b7ab298 | /go/billsnap-pro, /go/invoice, /billsnap/index, /p/general-contractor-invoice-template, /p/independent-consultant-invoice-template | PASS 5/5 prod (attempt 4) |
 | 2026-06-21T14:00:00Z | 4 | 9761524 | /go/billsnap-pro, /go/invoice, /p/general-contractor-invoice-template, /p/independent-consultant-invoice-template | PASS 5/5 prod |
 | 2026-06-21T16:30:00Z | 6 | pending | /partners/index.html, /join.html, /refer.html, /join, /refer | QC local PASS |
+| 2026-06-21T17:05:00Z | 6 | e96fc78 | /partners/index.html, /partners/, /join.html, /refer.html, /join, /refer | PASS 6/6 prod (attempt 1) |
