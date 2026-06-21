@@ -1,6 +1,6 @@
 import { readFileSync, writeFileSync, mkdirSync, cpSync, existsSync, readdirSync } from "fs";
 import { join } from "path";
-import { getRoot, getPublicBaseUrl } from "./env.mjs";
+import { getRoot, getPublicBaseUrl, loadEnv } from "./env.mjs";
 import { getAllPaymentLinks } from "./commerce.mjs";
 import { buildHighConversionLandings } from "./pipeline/conversion-landings.mjs";
 import { buildThanksPage } from "./marketing/thanks-page.mjs";
@@ -17,6 +17,7 @@ import { buildIndexNowKey } from "./marketing/indexnow.mjs";
 import {
   admobPlaceholderScript,
   buildPwaManifest,
+  buildGamesPwaManifest,
   buildServiceWorker,
   injectCheckoutTracking,
   pwaHeadTags,
@@ -127,6 +128,18 @@ export function buildAll() {
   };
 }
 
+function getAdmobOpts() {
+  const env = loadEnv();
+  const appId = env.ADMOB_APP_ID;
+  const testDefault = !appId || appId.includes("3940256099942544");
+  return {
+    appId: appId || undefined,
+    bannerId: env.ADMOB_BANNER_ID || undefined,
+    rewardedId: env.ADMOB_REWARDED_ID || undefined,
+    testMode: testDefault,
+  };
+}
+
 function buildPwaAssets() {
   const base = getPublicBaseUrl();
   const assetsDir = join(root, "dist", "assets", "pwa");
@@ -158,7 +171,7 @@ function buildGames() {
     .filter((d) => d.isDirectory())
     .map((d) => d.name);
 
-  const admobScript = admobPlaceholderScript();
+  const admobScript = admobPlaceholderScript(getAdmobOpts());
 
   for (const slug of slugs) {
     const src = join(gamesSrc, slug);
@@ -201,7 +214,11 @@ function buildGames() {
 <html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Free Games — Wealth Engine</title>
 <meta name="description" content="Simple free browser games for all ages. Play Horseshoe Toss, Invoice Stack, and more.">
-${pwaHeadTags()}
+<link rel="manifest" href="/games/manifest.json">
+<meta name="theme-color" content="#6366f1">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<link rel="apple-touch-icon" href="/assets/pwa/icon-192.png">
+<script>if('serviceWorker' in navigator){navigator.serviceWorker.register('/sw.js').catch(function(){})}</script>
 <style>
   body{font-family:system-ui,sans-serif;background:#0a0a0f;color:#e8e8ef;margin:0;padding:0 20px 40px}
   .promo{background:#0f172a;color:#e2e8f0;padding:12px 16px;text-align:center;font-size:13px;border-bottom:1px solid #1e293b}
@@ -231,7 +248,11 @@ ${pwaHeadTags()}
 </body></html>`;
 
   writeFileSync(join(gamesDest, "index.html"), hubHtml);
-  return { copied: slugs, hub: join(gamesDest, "index.html"), count: meta.length };
+
+  const gamesManifest = buildGamesPwaManifest(getPublicBaseUrl());
+  writeFileSync(join(gamesDest, "manifest.json"), JSON.stringify(gamesManifest, null, 2));
+
+  return { copied: slugs, hub: join(gamesDest, "index.html"), count: meta.length, manifest: join(gamesDest, "manifest.json") };
 }
 
 function buildPortfolioHub(ventureIds) {

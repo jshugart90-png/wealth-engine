@@ -40,30 +40,58 @@ AdSense on free tools: **$1–15/mo** at low traffic. Primary revenue remains St
 
 ---
 
-## AdMob — mobile apps only
+## AdMob — games + mobile apps
 
-AdMob requires a **published mobile app** (Android APK/AAB or iOS). Wealth Engine is web-first.
+AdMob test IDs are **injected at build time** into all `/games/*` pages and the games hub via `core/marketing/monetization.mjs`.
 
-### Fastest AdMob path (if you want mobile ads)
+### Test IDs (default — safe for dev/store review)
 
-1. Wrap `dist/tools/tip-calculator.html` as a **Trusted Web Activity (TWA)** or **Capacitor** Android shell
-2. Create app in [Google Play Console](https://play.google.com/console) ($25 one-time)
-3. Register app in [AdMob](https://admob.google.com/) → link to Play app
-4. Add banner/interstitial units to the WebView shell
+| Unit | ID |
+|------|-----|
+| App | `ca-app-pub-3940256099942544~3347511713` |
+| Banner | `ca-app-pub-3940256099942544/6300978111` |
+| Rewarded | `ca-app-pub-3940256099942544/5224354917` |
 
-**Estimated timeline:** 3–7 days (Play review). Not required for $500/mo goal — Google Search Ads + Stripe is faster.
+Built pages expose `window.WE_ADMOB` with `testMode:true`. Preflight warns until production IDs are set.
+
+### Production swap (before monetizing ads)
+
+1. Create app + ad units in [AdMob](https://admob.google.com/)
+2. Add to `.env` (see `mobile/.env.example`):
+
+```
+ADMOB_APP_ID=ca-app-pub-XXXXXXXXXXXXXXXX~YYYYYYYYYY
+ADMOB_BANNER_ID=ca-app-pub-XXXXXXXXXXXXXXXX/ZZZZZZZZZZ
+ADMOB_REWARDED_ID=ca-app-pub-XXXXXXXXXXXXXXXX/WWWWWWWWWW
+```
+
+3. Rebuild and redeploy:
+
+```bash
+npm run build
+npm run deploy:render   # or push to main
+```
+
+4. Verify: `node scripts/app-store-preflight.mjs` — check #8 should PASS (no test IDs in dist)
+
+5. For native Capacitor builds, wire `@capacitor-community/admob` after Play Console setup (see `mobile/APP_STORE_MANUAL_STEPS.md`)
+
+**Estimated timeline:** 3–7 days after Play/App publish. Not required for $500/mo goal — Stripe + Search Ads first.
 
 ---
 
-## PWA option (documented, not built)
+## PWA (live on Render)
 
-MeetingCost and Tip Calculator work as installable PWAs:
+Installable web app is **built and deployed**:
 
-1. Add `manifest.json` + service worker to tool pages
-2. Users "Add to Home Screen" on Android
-3. Still uses **AdSense** in the WebView/browser — not AdMob unless wrapped as native app
+- `dist/manifest.json` — shortcuts to games, BillSnap, tools
+- `dist/games/manifest.json` — Games Hub standalone install
+- `dist/sw.js` — offline shell cache
+- Injected on hub + games via `pwaHeadTags()` in `core/build-all.mjs`
 
-See `ventures/ad-tools/` for source pages.
+**Install:** Open https://wealth-engine-0qlj.onrender.com/games/ → Chrome menu → Add to Home Screen.
+
+PWA uses **AdSense/AdMob placeholders in browser** — native AdMob requires Capacitor wrapper + store publish.
 
 ---
 

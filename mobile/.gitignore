@@ -1,0 +1,11 @@
+node_modules/
+.env
+*.keystore
+play-service-account.json
+AuthKey.p8
+games/www/
+games/android/
+games/ios/
+tools/www/
+tools/android/
+tools/ios/

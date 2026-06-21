@@ -1,0 +1,175 @@
+#!/usr/bin/env node
+/**
+ * App Store preflight QC — 15-item checklist before mobile submission.
+ * Run: node scripts/app-store-preflight.mjs [--app games|tools]
+ */
+import { readFileSync, existsSync, readdirSync } from "fs";
+import { join } from "path";
+import { getRoot } from "../core/env.mjs";
+
+const root = getRoot();
+const app = process.argv.includes("--app")
+  ? process.argv[process.argv.indexOf("--app") + 1]
+  : "games";
+const mobileRoot = join(root, "mobile");
+const dist = join(root, "dist");
+const baseUrl = "https://wealth-engine-0qlj.onrender.com";
+
+const checks = [];
+
+function pass(id, name, detail = "OK") {
+  checks.push({ id, name, status: "PASS", detail });
+}
+
+function fail(id, name, detail) {
+  checks.push({ id, name, status: "FAIL", detail });
+}
+
+function warn(id, name, detail) {
+  checks.push({ id, name, status: "WARN", detail });
+}
+
+// 1. Privacy policy URL reachable in metadata
+const privacyMeta = join(mobileRoot, "store-metadata", app, "metadata.json");
+if (existsSync(privacyMeta)) {
+  const meta = JSON.parse(readFileSync(privacyMeta, "utf8"));
+  if (meta.privacyPolicyUrl?.includes("privacy.html")) pass(1, "Privacy policy URL in metadata");
+  else fail(1, "Privacy policy URL in metadata", "Missing privacy.html URL");
+} else {
+  fail(1, "Privacy policy URL in metadata", `Missing ${privacyMeta}`);
+}
+
+// 2. Privacy page exists in dist
+if (existsSync(join(dist, "privacy.html"))) pass(2, "Privacy page built");
+else fail(2, "Privacy page built", "Run npm run build");
+
+// 3. App icons present
+const iconSvg = join(dist, "assets", "pwa", "icon.svg");
+if (existsSync(iconSvg)) pass(3, "App icons present");
+else fail(3, "App icons present", "Missing dist/assets/pwa/icon.svg");
+
+// 4. Splash screen config
+const capConfig = join(mobileRoot, app, "capacitor.config.ts");
+if (existsSync(capConfig) && readFileSync(capConfig, "utf8").includes("SplashScreen")) pass(4, "Splash screen configured");
+else warn(4, "Splash screen configured", "Add SplashScreen plugin config");
+
+// 5. No broken internal links in games hub
+const gamesHub = join(dist, "games", "index.html");
+if (existsSync(gamesHub)) {
+  const hub = readFileSync(gamesHub, "utf8");
+  const slugs = ["horseshoe-toss", "invoice-stack", "uptime-defender", "freelancer-memory", "color-switch-snake", "word-scramble-biz"];
+  const missing = slugs.filter((s) => !hub.includes(`/games/${s}/`));
+  if (!missing.length) pass(5, "Games hub links intact");
+  else fail(5, "Games hub links intact", `Missing: ${missing.join(", ")}`);
+} else {
+  fail(5, "Games hub links intact", "No dist/games/index.html");
+}
+
+// 6. All 6 games copied to dist
+const gameSlugs = readdirSync(join(root, "games"), { withFileTypes: true })
+  .filter((d) => d.isDirectory())
+  .map((d) => d.name);
+const missingGames = gameSlugs.filter((s) => !existsSync(join(dist, "games", s, "index.html")));
+if (!missingGames.length) pass(6, "All games in dist");
+else fail(6, "All games in dist", `Missing: ${missingGames.join(", ")}`);
+
+// 7. AdMob test mode documented (should be ON until production IDs)
+const admobDoc = join(root, "docs", "ADSENSE_ADMOB_SETUP.md");
+if (existsSync(admobDoc)) pass(7, "AdMob setup documented");
+else fail(7, "AdMob setup documented", "Missing docs/ADSENSE_ADMOB_SETUP.md");
+
+// 8. AdMob production check — warn if test IDs still in built games
+const sampleGame = join(dist, "games", "horseshoe-toss", "index.html");
+if (existsSync(sampleGame)) {
+  const g = readFileSync(sampleGame, "utf8");
+  if (g.includes("testMode:true") || g.includes("3940256099942544")) {
+    warn(8, "AdMob production mode", "Test IDs active — swap ADMOB_* env vars before store release");
+  } else {
+    pass(8, "AdMob production mode", "Production IDs detected");
+  }
+} else {
+  warn(8, "AdMob production mode", "No built game to inspect");
+}
+
+// 9. Version bump in mobile package
+const mobilePkg = join(mobileRoot, "package.json");
+if (existsSync(mobilePkg)) {
+  const pkg = JSON.parse(readFileSync(mobilePkg, "utf8"));
+  if (pkg.version && pkg.version !== "0.0.0") pass(9, "Mobile version set", pkg.version);
+  else warn(9, "Mobile version set", "Bump mobile/package.json version before release");
+} else {
+  fail(9, "Mobile version set", "Missing mobile/package.json");
+}
+
+// 10. Capacitor config appId
+if (existsSync(capConfig)) {
+  const cfg = readFileSync(capConfig, "utf8");
+  if (cfg.includes("appId:") && !cfg.includes("com.example")) pass(10, "Capacitor appId configured");
+  else fail(10, "Capacitor appId configured", "Set real appId in capacitor.config.ts");
+} else {
+  fail(10, "Capacitor appId configured", `Missing ${capConfig}`);
+}
+
+// 11. Fastlane lanes present
+const fastfile = join(mobileRoot, "fastlane", "Fastfile");
+if (existsSync(fastfile) && readFileSync(fastfile, "utf8").includes("lane :beta")) pass(11, "Fastlane beta lane");
+else fail(11, "Fastlane beta lane", "Missing mobile/fastlane/Fastfile");
+
+// 12. Store metadata complete
+const requiredMeta = ["metadata.json", "description.txt", "keywords.txt"];
+const metaMissing = requiredMeta.filter((f) => !existsSync(join(mobileRoot, "store-metadata", app, f)));
+if (!metaMissing.length) pass(12, "Store metadata complete");
+else fail(12, "Store metadata complete", `Missing: ${metaMissing.join(", ")}`);
+
+// 13. PWA manifest live path
+if (existsSync(join(dist, "manifest.json"))) {
+  const m = JSON.parse(readFileSync(join(dist, "manifest.json"), "utf8"));
+  if (m.start_url) pass(13, "PWA manifest valid", `${baseUrl}/manifest.json`);
+  else fail(13, "PWA manifest valid", "No start_url");
+} else {
+  fail(13, "PWA manifest valid", "Run npm run build");
+}
+
+// 13b. Games hub PWA manifest
+const gamesManifest = join(dist, "games", "manifest.json");
+if (existsSync(gamesManifest)) {
+  const gm = JSON.parse(readFileSync(gamesManifest, "utf8"));
+  if (gm.start_url === "/games/") pass("13b", "Games PWA manifest", `${baseUrl}/games/manifest.json`);
+  else warn("13b", "Games PWA manifest", "Unexpected start_url");
+} else {
+  fail("13b", "Games PWA manifest", "Missing dist/games/manifest.json");
+}
+
+// 14. Service worker registered
+if (existsSync(join(dist, "sw.js"))) pass(14, "Service worker built", `${baseUrl}/sw.js`);
+else fail(14, "Service worker built", "Missing dist/sw.js");
+
+// 15. Support URL in metadata
+if (existsSync(privacyMeta)) {
+  const meta = JSON.parse(readFileSync(privacyMeta, "utf8"));
+  if (meta.supportUrl) pass(15, "Support URL configured", meta.supportUrl);
+  else fail(15, "Support URL configured", "Add supportUrl to metadata.json");
+}
+
+const passed = checks.filter((c) => c.status === "PASS").length;
+const failed = checks.filter((c) => c.status === "FAIL").length;
+const warned = checks.filter((c) => c.status === "WARN").length;
+
+const result = {
+  app,
+  timestamp: new Date().toISOString(),
+  passed,
+  failed,
+  warned,
+  total: checks.length,
+  readyForStore: failed === 0,
+  blockers: [
+    "$0 budget: Apple Developer $99/yr required for App Store",
+    "$0 budget: Google Play $25 one-time required for Play Store production",
+    "iOS builds require macOS runner + Xcode",
+  ],
+  checks,
+};
+
+console.log(JSON.stringify(result, null, 2));
+process.exit(failed > 0 ? 1 : 0);

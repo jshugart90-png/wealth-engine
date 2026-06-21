@@ -1,0 +1,91 @@
+name: Mobile Build (Android AAB)
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "mobile/**"
+      - "games/**"
+      - "core/marketing/monetization.mjs"
+      - "core/build-all.mjs"
+      - ".github/workflows/mobile-build.yml"
+  workflow_dispatch:
+    inputs:
+      app:
+        description: "Capacitor app to build"
+        required: true
+        default: games
+        type: choice
+        options:
+          - games
+          - tools
+
+jobs:
+  build-aab:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: mobile
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: npm
+
+      - name: Setup Java 17
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "17"
+
+      - name: Install root dependencies and build dist
+        working-directory: .
+        run: |
+          npm ci
+          npm run build
+
+      - name: Install mobile dependencies
+        run: npm ci
+
+      - name: Install app dependencies
+        run: npm ci
+        working-directory: mobile/${{ github.event.inputs.app || 'games' }}
+
+      - name: Sync Capacitor www
+        run: node sync-www.mjs ${{ github.event.inputs.app || 'games' }}
+
+      - name: Add Android platform (if missing)
+        working-directory: mobile/${{ github.event.inputs.app || 'games' }}
+        run: |
+          if [ ! -d android ]; then
+            npx cap add android
+          fi
+          npx cap sync android
+
+      - name: Build release AAB
+        working-directory: mobile/${{ github.event.inputs.app || 'games' }}/android
+        run: |
+          chmod +x gradlew
+          ./gradlew bundleRelease --no-daemon
+
+      - name: Upload AAB artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ github.event.inputs.app || 'games' }}-release-aab
+          path: mobile/${{ github.event.inputs.app || 'games' }}/android/app/build/outputs/bundle/release/app-release.aab
+          retention-days: 30
+
+      - name: Run app store preflight
+        working-directory: .
+        run: node scripts/app-store-preflight.mjs --app ${{ github.event.inputs.app || 'games' }}
+        continue-on-error: true
+
+      - name: Build summary
+        run: |
+          echo "### Android AAB built" >> $GITHUB_STEP_SUMMARY
+          echo "- App: ${{ github.event.inputs.app || 'games' }}" >> $GITHUB_STEP_SUMMARY
+          echo "- Upload to Play Console after \$25 enrollment" >> $GITHUB_STEP_SUMMARY
+          echo "- See mobile/APP_STORE_MANUAL_STEPS.md" >> $GITHUB_STEP_SUMMARY

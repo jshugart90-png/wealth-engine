@@ -1,0 +1,56 @@
+default_platform(:android)
+
+platform :android do
+  desc "Upload to Google Play internal testing track"
+  lane :beta do
+    UI.message("Requires: Google Play Console ($25), service account JSON, signed AAB")
+    UI.message("Build AAB locally: cd mobile/games/android && ./gradlew bundleRelease")
+    gradle(
+      project_dir: "games/android",
+      task: "bundle",
+      build_type: "Release"
+    )
+    upload_to_play_store(
+      track: "internal",
+      aab: "games/android/app/build/outputs/bundle/release/app-release.aab",
+      json_key: ENV["GOOGLE_PLAY_SERVICE_ACCOUNT_JSON"],
+      package_name: ENV.fetch("GOOGLE_PLAY_PACKAGE_NAME", "com.wealthengine.gameshub")
+    )
+  end
+
+  desc "Production release to Google Play"
+  lane :release do
+    beta
+    upload_to_play_store(
+      track: "production",
+      aab: "games/android/app/build/outputs/bundle/release/app-release.aab",
+      json_key: ENV["GOOGLE_PLAY_SERVICE_ACCOUNT_JSON"],
+      package_name: ENV.fetch("GOOGLE_PLAY_PACKAGE_NAME", "com.wealthengine.gameshub")
+    )
+  end
+end
+
+platform :ios do
+  desc "Upload to TestFlight"
+  lane :beta do
+    UI.message("Requires: Apple Developer ($99/yr), macOS, Xcode, API key")
+    UI.user_error!("Run on macOS with Xcode — see mobile/APP_STORE_MANUAL_STEPS.md") unless UI.mac?
+    build_app(
+      workspace: "games/ios/App/App.xcworkspace",
+      scheme: "App"
+    )
+    upload_to_testflight(
+      api_key_path: ENV["APP_STORE_CONNECT_API_KEY_PATH"],
+      skip_waiting_for_build_processing: true
+    )
+  end
+
+  desc "Production App Store release"
+  lane :release do
+    beta
+    upload_to_app_store(
+      api_key_path: ENV["APP_STORE_CONNECT_API_KEY_PATH"],
+      submit_for_review: false
+    )
+  end
+end

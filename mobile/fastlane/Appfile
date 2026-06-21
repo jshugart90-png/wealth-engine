@@ -1,0 +1,8 @@
+# Fastlane Appfile — fill after Apple Developer enrollment
+# app_identifier("com.wealthengine.gameshub")
+# apple_id("your@email.com")
+# team_id("XXXXXXXXXX")
+
+for_platform :android do
+  package_name("com.wealthengine.gameshub")
+end

@@ -1,0 +1,22 @@
+{
+  "appName": "Horseshoe Games Hub",
+  "subtitle": "Free fun games for all ages",
+  "bundleId": "com.wealthengine.gameshub",
+  "version": "1.0.0",
+  "privacyPolicyUrl": "https://wealth-engine-0qlj.onrender.com/privacy.html",
+  "supportUrl": "https://wealth-engine-0qlj.onrender.com/",
+  "marketingUrl": "https://wealth-engine-0qlj.onrender.com/games/",
+  "category": {
+    "apple": "Games",
+    "appleSub": "Casual",
+    "google": "GAME_CASUAL"
+  },
+  "contentRating": {
+    "ageRating": "4+",
+    "googleQuestionnaire": "Everyone — no violence, no user-generated content, no location, no ads targeting children under COPPA without consent",
+    "adsPresent": true,
+    "inAppPurchases": false,
+    "dataCollected": ["analytics optional", "no account required"]
+  },
+  "keywords": ["games", "casual", "family", "free", "offline", "horseshoe", "puzzle", "arcade"]
+}

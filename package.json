@@ -21,10 +21,16 @@
     "agent:notify": "node scripts/notify-approval.mjs",
     "daemon:mm": "node scripts/money-machine-daemon.mjs",
     "deploy:render": "node scripts/trigger-render-deploy.mjs",
+    "mobile:sync": "npm run build && cd mobile && npm install && node sync-www.mjs all",
+    "mobile:android": "npm run mobile:sync && cd mobile && npm run android:games",
+    "mobile:ios": "npm run mobile:sync && cd mobile && npm run ios:games",
+    "mobile:preflight": "node scripts/app-store-preflight.mjs --app games",
+    "mobile:itch": "npm run build && node scripts/package-games-itch.mjs",
     "summary:overnight": "node scripts/write-overnight-summary.mjs",
     "summary:status": "node scripts/write-wealth-status.mjs",
     "sprint:overnight": "node scripts/overnight-build-sprint.mjs",
-    "install:8am-summary": "powershell -ExecutionPolicy Bypass -File deploy/install-8am-summary-task.ps1"
+    "install:8am-summary": "powershell -ExecutionPolicy Bypass -File deploy/install-8am-summary-task.ps1",
+    "verify:payments": "npm run build && node scripts/verify-payment-links.mjs"
   },
   "engines": { "node": ">=20" },
   "dependencies": {

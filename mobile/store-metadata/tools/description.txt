@@ -1,0 +1,14 @@
+Freelancer Tools puts BillSnap invoicing and top free business calculators in one app.
+
+Create invoice PDFs in 30 seconds. Use tip, meeting cost, Net 30, hourly rate, and 1099 tax calculators — all free to preview. Pro exports via secure Stripe checkout.
+
+Features:
+• BillSnap — invoice & receipt PDF export
+• Meeting cost calculator — viral team tool
+• Payment terms & hourly rate calculators
+• 1099 tax estimator for contractors
+• No subscription required for previews
+
+Built for freelancers, contractors, and solo business owners. Part of the Wealth Engine portfolio.
+
+Privacy policy and support available on our website.

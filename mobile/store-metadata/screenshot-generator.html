@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Store Screenshot Generator — Wealth Engine</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:system-ui,sans-serif;background:#111;color:#fff;padding:20px}
+h1{text-align:center;margin-bottom:8px;font-size:20px}
+.sub{text-align:center;color:#888;margin-bottom:24px;font-size:13px}
+.tabs{display:flex;gap:8px;justify-content:center;margin-bottom:24px}
+.tabs button{background:#333;border:none;color:#fff;padding:10px 20px;border-radius:8px;cursor:pointer}
+.tabs button.active{background:#6366f1}
+.frame{width:390px;height:844px;margin:0 auto 24px;border-radius:40px;overflow:hidden;border:4px solid #333;background:#0a0a0f;position:relative}
+.frame.wide{width:412px;height:732px}
+.screen{padding:48px 20px 20px;height:100%;display:flex;flex-direction:column}
+.screen.games{background:linear-gradient(180deg,#6366f1 0%,#0a0a0f 40%)}
+.screen.tools{background:linear-gradient(180deg,#22c55e 0%,#0a0a0f 40%)}
+.badge{font-size:11px;color:#94a3b8;text-transform:uppercase;letter-spacing:.1em}
+.title{font-size:28px;font-weight:800;margin:8px 0}
+.desc{font-size:14px;color:#94a3b8;line-height:1.5;margin-bottom:20px}
+.mock{flex:1;background:#14141c;border-radius:16px;border:1px solid #2a2a38;padding:16px;display:flex;flex-direction:column;gap:12px}
+.mock .game{flex:1;background:#1e1e2e;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:48px}
+.mock .row{display:flex;gap:8px}
+.mock .tile{flex:1;background:#1e1e2e;border-radius:8px;padding:12px;font-size:12px;color:#888}
+.caption{text-align:center;font-size:12px;color:#666;margin-top:12px}
+nav{display:flex;gap:8px;justify-content:center;margin-bottom:16px}
+nav button{background:#222;border:1px solid #444;color:#fff;padding:6px 12px;border-radius:6px;cursor:pointer;font-size:12px}
+</style>
+</head>
+<body>
+<h1>App Store Screenshot Frames</h1>
+<p class="sub">Use Chrome DevTools → iPhone 14 Pro (390×844) → Capture screenshot</p>
+<div class="tabs">
+  <button class="active" onclick="show('games',0)">Games Hub</button>
+  <button onclick="show('tools',0)">Freelancer Tools</button>
+</div>
+<nav id="nav"></nav>
+<div id="frames"></div>
+
+<script>
+const DATA={
+  games:[
+    {title:'6 Free Games',desc:'Family-friendly mini-games. No download, no account.',emoji:'🎮',tiles:['Horseshoe Toss','Invoice Stack','Uptime Defender']},
+    {title:'Horseshoe Toss',desc:'Tap when the power bar is green — ring the stake!',emoji:'🐴',tiles:['Simple timing','All ages','Best score saved']},
+    {title:'Memory Match',desc:'Match freelancer tool icons — fun & educational.',emoji:'🧠',tiles:['16 cards','Touch friendly','Quick rounds']},
+    {title:'Play Anywhere',desc:'Offline after first load. Perfect for quick breaks.',emoji:'📱',tiles:['Touch controls','No signup','Free forever']}
+  ],
+  tools:[
+    {title:'Freelancer Tools',desc:'Invoices + calculators in one app.',emoji:'🧾',tiles:['BillSnap PDF','Tip calc','Meeting cost']},
+    {title:'BillSnap Invoice',desc:'Pro PDF in 30 seconds — $3 one-time.',emoji:'💵',tiles:['No signup','Print ready','Stripe checkout']},
+    {title:'Free Calculators',desc:'Net 30, hourly rate, 1099 tax estimator.',emoji:'🔢',tiles:['Ad-supported','Always free','Pro upsells']},
+    {title:'Built for Contractors',desc:'1099-friendly invoicing and tax helpers.',emoji:'⚡',tiles:['LAUNCH25 deals','Privacy first','Wealth Engine']}
+  ]
+};
+let app='games',idx=0;
+function render(){
+  const d=DATA[app][idx];
+  document.getElementById('frames').innerHTML=`<div class="frame"><div class="screen ${app}">
+    <span class="badge">Wealth Engine</span>
+    <div class="title">${d.title}</div>
+    <div class="desc">${d.desc}</div>
+    <div class="mock"><div class="game">${d.emoji}</div><div class="row">${d.tiles.map(t=>`<div class="tile">${t}</div>`).join('')}</div></div>
+  </div></div><p class="caption">Screenshot ${idx+1}/${DATA[app].length} — ${app === 'games' ? 'Horseshoe Games Hub' : 'Freelancer Tools'}</p>`;
+  document.getElementById('nav').innerHTML=DATA[app].map((_,i)=>`<button onclick="show('${app}',${i})"${i===idx?' style="background:#6366f1"':''}>${i+1}</button>`).join('');
+  document.querySelectorAll('.tabs button').forEach((b,i)=>b.classList.toggle('active',(i===0&&app==='games')||(i===1&&app==='tools')));
+}
+function show(a,i){app=a;idx=i;render()}
+render();
+</script>
+</body>
+</html>
