@@ -5,6 +5,7 @@
  */
 import fs from "node:fs";
 import path from "node:path";
+import { execSync } from "node:child_process";
 
 const ROOT = path.resolve(import.meta.dirname, "../..");
 const DATA = process.env.WEALTH_DATA_ROOT || "D:\\wealth-engine-data";
@@ -78,6 +79,15 @@ fs.writeFileSync(statePath, JSON.stringify(state, null, 2));
 
 appendDeployLog(cycle, `${publishReady} posts queued`);
 appendPipeline(cycle, publishReady, 5);
+
+try {
+  const dailyScript = path.join(ROOT, "scripts", "reddit-draft-daily.mjs");
+  if (fs.existsSync(dailyScript)) {
+    execSync(`node "${dailyScript}"`, { cwd: ROOT, encoding: "utf8", stdio: "pipe" });
+  }
+} catch (e) {
+  console.warn(`Reddit draft daily skipped: ${e.message}`);
+}
 
 console.log(JSON.stringify({
   ok: true,

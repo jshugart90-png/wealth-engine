@@ -1,7 +1,14 @@
 node_modules/
 .env
+mobile/.env
+mobile/fastlane/.env
+mobile/**/*.p8
+mobile/play-service-account.json
+mobile/**/*.keystore
 data/*.db
 data/logs/*
 !data/logs/.gitkeep
 dist/
 *.local
+.env.reddit.local
+reddit-credentials.json

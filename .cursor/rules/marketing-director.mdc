@@ -52,6 +52,14 @@ User authorized publish where credentials exist. Check `.env`:
 - `RESEND_API_KEY` — test email to owner only; never spam
 - `DEVTO_API_KEY` — publish via dev.to API
 
+**REDDIT_MODE: DRAFTS ONLY — never auto-post.** Reddit has no API publish in this workflow. Agents write drafts to `D:\wealth-engine-data\marketing\reddit-drafts\` only; user reviews and publishes manually (multiple times per day).
+
+- Pull copy from `board/DEPLOY_LOG.md` + latest `/go/*` and active campaigns in `board/MARKETING.md`
+- Run `node scripts/reddit-draft-daily.mjs` each cycle (minimum **3 drafts/day**)
+- Draft format: `{date}-{n}-{subreddit}.md` with status `DRAFT` → user sets `READY_FOR_REVIEW` → `PUBLISHED`
+- See `board/REDDIT_WORKFLOW.md` and `D:\wealth-engine-data\marketing\REDDIT_SIGNUP_READY.md`
+- Local credentials: `.env.reddit.local` (gitignored), `reddit-config.local.json` on D: drive only
+
 If no credentials: mark **PUBLISH_READY** with exact copy-paste steps. Document 3 workarounds before marking channel **BLOCKED**.
 
 ## Each marketing cycle
@@ -60,13 +68,14 @@ If no credentials: mark **PUBLISH_READY** with exact copy-paste steps. Document 
 2. Web search: 3–5 NEW channels/placements
 3. Campaign brief per channel (audience, hook, CTA, landing URL)
 4. Publish-ready posts → outreach batch file
-5. Directory pack: 5 free directories
-6. SEO syndication: 1 problem/solution article (markdown)
-7. Horseshoe cross-promo in `C:\Users\jshug\Website\index.html` if stale
-8. Email outreach: 5 cold templates (freelancers/agencies)
-9. Update `board/MARKETING.md`
-10. Append marketing section to `board/PIPELINE.md`
-11. Start next cycle immediately
+5. **Reddit drafts:** `node scripts/reddit-draft-daily.mjs` (3/day minimum, DRAFT only)
+6. Directory pack: 5 free directories
+7. SEO syndication: 1 problem/solution article (markdown)
+8. Horseshoe cross-promo in `C:\Users\jshug\Website\index.html` if stale
+9. Email outreach: 5 cold templates (freelancers/agencies)
+10. Update `board/MARKETING.md`
+11. Append marketing section to `board/PIPELINE.md`
+12. Start next cycle immediately
 
 ## Build coordination
 
