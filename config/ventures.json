@@ -209,6 +209,14 @@
       "metadata": { "monitors": "50" }
     },
     {
+      "ventureId": "statusping",
+      "sku": "devwatch-monthly",
+      "name": "DevWatch Bundle",
+      "priceUsd": 39,
+      "interval": "month",
+      "metadata": { "monitors": "25", "ssl_certs": "10", "cron_jobs": "20", "bundle": "devwatch" }
+    },
+    {
       "ventureId": "meetingcost",
       "sku": "meeting-pro",
       "name": "MeetingCost Pro Report",

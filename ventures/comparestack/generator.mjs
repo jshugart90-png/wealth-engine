@@ -60,11 +60,66 @@ const COMPARISONS = [
     title: "Webhook Relay & Testing Tools Compared",
     intro: "Forward, replay, and debug webhooks for indie SaaS.",
     items: [
-      { name: "HookRelay", best: true, price: "$7/mo", pros: ["Retry with backoff", "Dead-letter alerts", "Self-serve"] },
+      { name: "HookRelay DLQ Pro", best: true, price: "$29/mo", pros: ["25K events/mo", "Dead-letter queue", "One-click replay"] },
+      { name: "Hookdeck", price: "From $39/mo", pros: ["Enterprise features", "Team collaboration"] },
       { name: "webhook.site", price: "Free", pros: ["Instant test URL", "No signup"] },
-      { name: "Svix", price: "From $25/mo", pros: ["Enterprise scale", "Full platform"] },
     ],
-    cta: { text: "Try HookRelay", sku: "relay-monthly", landing: "/go/webhook.html" },
+    cta: { text: "Try HookRelay DLQ Pro", sku: "hookrelay-pro", landing: "/go/webhook.html" },
+  },
+  {
+    slug: "freelancer-business-stacks",
+    title: "Freelancer Business Tool Stacks Compared",
+    intro: "Invoice + contract + NDA bundles vs separate subscriptions.",
+    items: [
+      { name: "Freelancer Revenue Stack", best: true, price: "$29/mo or $49 bundle", pros: ["BillSnap unlimited", "14 templates", "NDA generator"] },
+      { name: "FreshBooks", price: "From $19/mo", pros: ["Full accounting", "Time tracking"] },
+      { name: "FreelancePro Toolkit", price: "$79 one-time", pros: ["Static PDF pack", "No live generators"] },
+    ],
+    cta: { text: "Get Freelancer Stack", sku: "stack-unlimited", landing: "/go/stack.html" },
+  },
+  {
+    slug: "ssl-monitoring-tools",
+    title: "SSL Certificate Monitoring Tools Compared",
+    intro: "Get email alerts before your SSL cert expires and takes your site offline.",
+    items: [
+      { name: "DevWatch Bundle", best: true, price: "$39/mo", pros: ["SSL + uptime + cron", "25 monitors", "Unified alerts"] },
+      { name: "SSLNudge", price: "From $17/mo", pros: ["SSL-only focus", "Multi-domain"] },
+      { name: "UptimeRobot", price: "Free tier", pros: ["Basic SSL check", "50 monitors free"] },
+    ],
+    cta: { text: "Try DevWatch", sku: "devwatch-monthly", landing: "/go/devwatch.html" },
+  },
+  {
+    slug: "cron-job-monitoring-tools",
+    title: "Cron Job Monitoring Tools Compared",
+    intro: "Heartbeat monitoring for scheduled tasks, backups, and batch jobs.",
+    items: [
+      { name: "DevWatch Bundle", best: true, price: "$39/mo", pros: ["20 cron jobs", "Email + Slack alerts", "Uptime included"] },
+      { name: "Healthchecks.io", price: "From $20/mo", pros: ["Cron-focused", "Grace periods"] },
+      { name: "Cronitor", price: "From $24/mo", pros: ["Cron + uptime", "Team features"] },
+    ],
+    cta: { text: "Monitor cron jobs", sku: "devwatch-monthly", landing: "/go/devwatch.html" },
+  },
+  {
+    slug: "business-template-bundles",
+    title: "Business Template Bundles Compared",
+    intro: "Freelancer and SMB document packs — instant download vs subscriptions.",
+    items: [
+      { name: "TemplateForge", best: true, price: "From $12", pros: ["Instant PDF download", "Freelancer + compliance kits", "LAUNCH25 discount"] },
+      { name: "Canva Pro", price: "$15/mo", pros: ["Design templates", "Brand kit"] },
+      { name: "LegalZoom", price: "Subscription", pros: ["Attorney network", "Legal review"] },
+    ],
+    cta: { text: "Browse templates", sku: "freelancer-kit", landing: "/go/freelancer.html" },
+  },
+  {
+    slug: "cheap-invoice-apps",
+    title: "Cheapest Invoice Apps for Freelancers (2026)",
+    intro: "One-time PDF vs monthly subscriptions — total cost comparison.",
+    items: [
+      { name: "BillSnap", best: true, price: "$3/PDF or $29/mo stack", pros: ["No signup", "Pay per use", "Stack includes templates"] },
+      { name: "Invoice Ninja", price: "Free tier", pros: ["Self-hosted option", "Client portal"] },
+      { name: "QuickBooks", price: "From $30/mo", pros: ["Full accounting", "Tax prep integration"] },
+    ],
+    cta: { text: "Create invoice free", sku: "pro-pdf", landing: "/go/invoice.html" },
   },
 ];
 

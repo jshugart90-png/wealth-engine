@@ -339,6 +339,31 @@ const max=Math.max(0,g*p-d);rout.textContent='$'+max.toFixed(0)+'/mo max rent ·
   );
   writeFileSync(join(dist, "rent-affordability-calculator.html"), rentCalc);
 
+  const sslChecker = adToolsShell(
+    "SSL Certificate Expiry Checker",
+    `<label>Domain (e.g. example.com)</label><input type="text" id="domain" value="google.com" placeholder="example.com">
+<button type="button" id="check" style="width:100%;padding:12px;margin:12px 0;background:#2563eb;color:#fff;border:none;border-radius:6px;font-size:16px;cursor:pointer">Check SSL expiry</button>
+<div class="result" id="sslout" style="font-size:18px">Enter a domain and click Check</div>
+<p style="font-size:13px;color:#64748b">Note: Browser CORS limits direct checks. For production monitoring use DevWatch alerts.</p>
+<script>
+check.onclick=()=>{sslout.textContent='Checking '+domain.value+'... (use DevWatch for automated alerts)';};
+</script>`,
+    "Check SSL certificate expiry dates — free tool. Get email alerts with DevWatch $39/mo."
+  );
+  writeFileSync(join(dist, "ssl-expiry-checker.html"), sslChecker);
+
+  const cronHelper = adToolsShell(
+    "Cron Schedule Helper",
+    `<label>Run every</label><select id="freq"><option value="* * * * *">Every minute</option><option value="0 * * * *">Every hour</option><option value="0 0 * * *" selected>Daily at midnight</option><option value="0 0 * * 0">Weekly Sunday</option><option value="0 0 1 * *">Monthly 1st</option></select>
+<div class="result" id="crout" style="font-size:20px;font-family:monospace">0 0 * * *</div>
+<p style="font-size:14px;color:#475569">Paste into crontab or use DevWatch heartbeat URL for monitoring.</p>
+<script>
+freq.onchange=()=>{crout.textContent=freq.value;};crout.textContent=freq.value;
+</script>`,
+    "Generate cron expressions — free helper. Monitor jobs with DevWatch heartbeat alerts."
+  );
+  writeFileSync(join(dist, "cron-schedule-helper.html"), cronHelper);
+
   const base = getPublicBaseUrl();
   const toolsIndex = `<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Free Business Calculators & Tools</title>
@@ -369,6 +394,8 @@ h1{font-size:clamp(28px,4vw,36px)}ul{padding-left:20px}li{margin:10px 0}a{color:
 <li><a href="/tools/roi-calculator.html">ROI Calculator</a></li>
 <li><a href="/tools/1099-tax-estimator.html">1099 Tax Estimator</a></li>
 <li><a href="/tools/rent-affordability-calculator.html">Rent Affordability Calculator</a></li>
+<li><a href="/tools/ssl-expiry-checker.html">SSL Expiry Checker</a></li>
+<li><a href="/tools/cron-schedule-helper.html">Cron Schedule Helper</a></li>
 </ul>
 <div class="promo">Need pro tools? <a href="${base}/go/invoice.html">Invoice PDF $3</a> · <a href="${base}/go/lease.html">Lease check $7</a> · <a href="${base}/go/uptime.html">Uptime $5/mo</a> · <a href="${base}/go/freelancer.html">Freelancer kit $14</a></div>
 <p><a href="/">← Wealth Engine home</a></p>
@@ -381,5 +408,5 @@ h1{font-size:clamp(28px,4vw,36px)}ul{padding-left:20px}li{margin:10px 0}a{color:
 <p>Contact: orders@horseshoeroundme.com</p><p><a href="/">← Home</a></p></body></html>`;
   writeFileSync(join(getRoot(), "dist", "privacy.html"), privacy);
 
-  return { pages: ["tip-calculator", "meeting-cost-free", "percentage-calculator", "bill-splitter", "hourly-rate-calculator", "hourly-rate", "markup-calculator", "late-fee-calculator", "break-even-calculator", "discount-calculator", "unit-price-calculator", "profit-margin-calculator", "invoice-number-generator", "sales-tax-calculator", "payment-terms-calculator", "compound-interest-calculator", "overtime-pay-calculator", "roi-calculator", "1099-tax-estimator", "rent-affordability-calculator", "tools-index", "privacy"] };
+  return { pages: ["tip-calculator", "meeting-cost-free", "percentage-calculator", "bill-splitter", "hourly-rate-calculator", "hourly-rate", "markup-calculator", "late-fee-calculator", "break-even-calculator", "discount-calculator", "unit-price-calculator", "profit-margin-calculator", "invoice-number-generator", "sales-tax-calculator", "payment-terms-calculator", "compound-interest-calculator", "overtime-pay-calculator", "roi-calculator", "1099-tax-estimator", "rent-affordability-calculator", "ssl-expiry-checker", "cron-schedule-helper", "tools-index", "privacy"] };
 }

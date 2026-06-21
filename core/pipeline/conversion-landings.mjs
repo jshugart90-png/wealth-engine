@@ -150,6 +150,16 @@ const PAGES = [
     altLabel: "One-time bundle — $49",
     urgency: "Replace 3 subscriptions with one stack.",
   },
+  {
+    slug: "devwatch",
+    headline: "DevWatch — uptime + SSL + cron in one",
+    sub: "Stop paying for 3 monitoring tools. 25 monitors, 10 SSL certs, 20 cron jobs — $39/mo.",
+    sku: "devwatch-monthly",
+    tool: "/statusping/index.html",
+    bullets: ["Unified Slack + email alerts", "SSL expiry warnings", "Cron heartbeat monitoring"],
+    altSku: "basic-monthly",
+    altLabel: "Uptime only — $5/mo",
+  },
 ];
 
 export function buildHighConversionLandings() {

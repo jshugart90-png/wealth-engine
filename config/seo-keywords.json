@@ -599,6 +599,42 @@
       "title": "Freelancer Revenue Stack — Invoice + Contract + NDA",
       "venture": "billsnap",
       "sku": "stack-unlimited"
+    },
+    {
+      "slug": "contractor-invoice-template-free",
+      "title": "Contractor Invoice Template Free",
+      "venture": "billsnap",
+      "sku": "pro-pdf"
+    },
+    {
+      "slug": "freelancer-tax-deduction-checklist",
+      "title": "Freelancer Tax Deduction Checklist",
+      "venture": "pdf-factory",
+      "sku": "freelancer-kit"
+    },
+    {
+      "slug": "webhook-dead-letter-queue",
+      "title": "Webhook Dead Letter Queue Tool",
+      "venture": "hookrelay",
+      "sku": "hookrelay-pro"
+    },
+    {
+      "slug": "rent-vs-buy-calculator-small-business",
+      "title": "Rent vs Buy Calculator Small Business",
+      "venture": "leaselens",
+      "sku": "single-report"
+    },
+    {
+      "slug": "meeting-roi-calculator",
+      "title": "Meeting ROI Calculator",
+      "venture": "meetingcost",
+      "sku": "meeting-pro"
+    },
+    {
+      "slug": "devwatch-monitoring-bundle",
+      "title": "DevWatch Monitoring Bundle — Uptime SSL Cron",
+      "venture": "statusping",
+      "sku": "devwatch-monthly"
     }
   ],
   "pagesPerCycle": 10

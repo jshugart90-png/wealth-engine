@@ -126,7 +126,17 @@ const CAMPAIGNS = [
       { kw: "stripe webhook retry service", h1: "Stripe Webhook Retry", h2: "25K Events/mo", desc: "Production-grade relay. LAUNCH25 at checkout." },
     ],
     sku: "hookrelay-pro",
-    finalUrlPath: "/go/hookrelay-dlq.html?utm_source=google&utm_campaign=hookrelay-dlq",
+    finalUrlPath: "/go/webhook.html?utm_source=google&utm_campaign=hookrelay-dlq",
+  },
+  {
+    name: "WE - DevWatch Bundle",
+    budgetDailyUsd: 1,
+    keywords: [
+      { kw: "uptime ssl cron monitoring bundle", h1: "DevWatch $39/mo", h2: "3-in-1 Monitoring", desc: "Uptime + SSL + cron in one dashboard. LAUNCH25 saves 25%." },
+      { kw: "ssl certificate expiry alert", h1: "SSL Expiry Alerts", h2: "DevWatch Bundle", desc: "Never miss cert renewal. Unified alerts with uptime + cron." },
+    ],
+    sku: "devwatch-monthly",
+    finalUrlPath: "/go/devwatch.html?utm_source=google&utm_campaign=devwatch",
   },
 ];
 
