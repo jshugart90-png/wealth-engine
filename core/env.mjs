@@ -38,7 +38,11 @@ export function loadEnv() {
 
 export function getPublicBaseUrl() {
   const env = loadEnv();
-  return (env.PUBLIC_BASE_URL ?? "http://localhost:8787").replace(/\/$/, "");
+  const fallback =
+    env.RENDER || env.NODE_ENV === "production"
+      ? "https://wealth-engine-0qlj.onrender.com"
+      : "http://localhost:8787";
+  return (env.PUBLIC_BASE_URL ?? fallback).replace(/\/$/, "");
 }
 
 export function requireEnv(key) {
