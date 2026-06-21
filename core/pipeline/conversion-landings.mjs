@@ -84,6 +84,14 @@ const PAGES = [
     tool: "/comparestack/index.html",
     bullets: ["Honest feature tables", "Direct checkout links", "Updated 2026"],
   },
+  {
+    slug: "hiring",
+    headline: "Hire without HR software",
+    sub: "Interview scorecards, offer letters, onboarding checklists — instant PDF download.",
+    sku: "hiring-pack",
+    tool: "/templateforge/index.html",
+    bullets: ["Print-ready templates", "Small team focus", "From $12 with LAUNCH25"],
+  },
 ];
 
 export function buildHighConversionLandings() {

@@ -291,6 +291,22 @@ const gross=h*r+h*o*1.5+h*d*2;otout.textContent='$'+gross.toFixed(2)+' gross · 
   );
   writeFileSync(join(dist, "overtime-pay-calculator.html"), overtimeCalc);
 
+  const roiCalc = adToolsShell(
+    "ROI Calculator",
+    `<label>Initial investment ($)</label><input type="number" id="invest" value="500" step="0.01">
+<label>Return / revenue ($)</label><input type="number" id="ret" value="750" step="0.01">
+<label>Time period (months)</label><input type="number" id="months" value="3" min="1">
+<div class="result" id="rout">50% ROI · 16.7%/mo</div>
+<script>
+function rc(){const i=+invest.value||0,r=+ret.value||0,m=Math.max(1,+months.value||1);
+const roi=i>0?((r-i)/i*100).toFixed(1):0;const monthly=(roi/m).toFixed(1);
+rout.textContent=roi+'% ROI · '+monthly+'%/mo over '+m+' months';}
+[invest,ret,months].forEach(el=>el.oninput=rc);rc();
+</script>`,
+    "Calculate return on investment for freelance projects, ads, and business spend."
+  );
+  writeFileSync(join(dist, "roi-calculator.html"), roiCalc);
+
   const base = getPublicBaseUrl();
   const toolsIndex = `<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Free Business Calculators & Tools</title>
@@ -318,6 +334,7 @@ h1{font-size:clamp(28px,4vw,36px)}ul{padding-left:20px}li{margin:10px 0}a{color:
 <li><a href="/tools/payment-terms-calculator.html">Payment Terms Calculator</a></li>
 <li><a href="/tools/compound-interest-calculator.html">Compound Interest Calculator</a></li>
 <li><a href="/tools/overtime-pay-calculator.html">Overtime Pay Calculator</a></li>
+<li><a href="/tools/roi-calculator.html">ROI Calculator</a></li>
 </ul>
 <div class="promo">Need pro tools? <a href="${base}/go/invoice.html">Invoice PDF $3</a> · <a href="${base}/go/lease.html">Lease check $7</a> · <a href="${base}/go/uptime.html">Uptime $5/mo</a></div>
 <p><a href="/">← Wealth Engine home</a></p>
@@ -330,5 +347,5 @@ h1{font-size:clamp(28px,4vw,36px)}ul{padding-left:20px}li{margin:10px 0}a{color:
 <p>Contact: orders@horseshoeroundme.com</p><p><a href="/">← Home</a></p></body></html>`;
   writeFileSync(join(getRoot(), "dist", "privacy.html"), privacy);
 
-  return { pages: ["tip-calculator", "meeting-cost-free", "percentage-calculator", "bill-splitter", "hourly-rate-calculator", "hourly-rate", "markup-calculator", "late-fee-calculator", "break-even-calculator", "discount-calculator", "unit-price-calculator", "profit-margin-calculator", "invoice-number-generator", "sales-tax-calculator", "payment-terms-calculator", "compound-interest-calculator", "overtime-pay-calculator", "tools-index", "privacy"] };
+  return { pages: ["tip-calculator", "meeting-cost-free", "percentage-calculator", "bill-splitter", "hourly-rate-calculator", "hourly-rate", "markup-calculator", "late-fee-calculator", "break-even-calculator", "discount-calculator", "unit-price-calculator", "profit-margin-calculator", "invoice-number-generator", "sales-tax-calculator", "payment-terms-calculator", "compound-interest-calculator", "overtime-pay-calculator", "roi-calculator", "tools-index", "privacy"] };
 }

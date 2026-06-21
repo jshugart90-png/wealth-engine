@@ -401,6 +401,36 @@
       "title": "Incident Response Checklist PDF",
       "venture": "pdf-factory",
       "sku": "smb-compliance-pack"
+    },
+    {
+      "slug": "freelance-proposal-generator-free",
+      "title": "Freelance Proposal Generator Free",
+      "venture": "pdf-factory",
+      "sku": "freelancer-kit"
+    },
+    {
+      "slug": "backup-monitor-small-business",
+      "title": "Backup Monitor for Small Business",
+      "venture": "statusping",
+      "sku": "basic-monthly"
+    },
+    {
+      "slug": "contractor-subcontractor-agreement-template",
+      "title": "Contractor Subcontractor Agreement Template",
+      "venture": "ndagen",
+      "sku": "nda-pdf"
+    },
+    {
+      "slug": "saas-pricing-calculator-free",
+      "title": "SaaS Pricing Calculator Free",
+      "venture": "meetingcost",
+      "sku": "meeting-pro"
+    },
+    {
+      "slug": "invoice-follow-up-email-template",
+      "title": "Invoice Follow Up Email Template",
+      "venture": "billsnap",
+      "sku": "pro-pdf"
     }
   ],
   "pagesPerCycle": 10

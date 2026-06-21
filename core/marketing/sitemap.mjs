@@ -30,6 +30,8 @@ const STATIC_PATHS = [
   "/go/templates.html",
   "/go/meeting.html",
   "/go/receipt.html",
+  "/go/hiring.html",
+  "/tools/roi-calculator.html",
   "/go/compare.html",
   "/tools/index.html",
   "/tools/sales-tax-calculator.html",
