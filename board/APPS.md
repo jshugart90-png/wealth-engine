@@ -8,7 +8,7 @@
 
 | App | Bundle ID | Channel | Status | Live URL / artifact | Blocker |
 |-----|-----------|---------|--------|---------------------|---------|
-| **Wealth Engine PWA** | — (web) | PWA | **LIVE** | [manifest](https://wealth-engine-0qlj.onrender.com/manifest.json) · [sw.js](https://wealth-engine-0qlj.onrender.com/sw.js) | None |
+| **Wealth Engine PWA** | — (web) | PWA | **LIVE verified** | [manifest](https://wealth-engine-0qlj.onrender.com/manifest.json) · [sw.js](https://wealth-engine-0qlj.onrender.com/sw.js) · prod **200** (2026-06-21) | None |
 | **Games Hub PWA** | — (web) | PWA shortcut | **LIVE** | https://wealth-engine-0qlj.onrender.com/games/ | None |
 | **Horseshoe Games Hub** | `com.wealthengine.gameshub` | Capacitor → Play/App | **READY (preflight)** | `mobile/games/` · CI AAB artifact | Apple $99 · Play $25 |
 | **Freelancer Tools** | `com.wealthengine.freelancertools` | Capacitor → Play/App | **SCaffold** | `mobile/tools/` | Same store fees |
@@ -33,7 +33,7 @@ Hub bundle: `horseshoe-games-hub.zip` (all 6 + index)
 |------|---------------|--------|
 | Monetization matrix | `docs/MONETIZATION_MATRIX.md` | ✅ |
 | Capacitor project | `mobile/` | ✅ |
-| PWA manifest + SW | `dist/manifest.json`, `dist/sw.js` | ✅ (deploy) |
+| PWA manifest + SW | `dist/manifest.json`, `dist/sw.js` | ✅ LIVE verified prod 200 |
 | itch packaging | `scripts/package-games-itch.mjs` | ✅ |
 | Store metadata | `mobile/store-metadata/games/` | ✅ |
 | Fastlane skeleton | `mobile/fastlane/` | ✅ |
