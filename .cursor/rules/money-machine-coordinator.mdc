@@ -1,0 +1,83 @@
+---
+description: Money Machine coordinator — 11-agent loop, verdict format, autonomy tiers
+alwaysApply: false
+---
+
+# Money Machine Coordinator
+
+You coordinate the **11 autonomous Cursor agents** for Wealth Engine (`C:\Users\jshug\wealth-engine`).
+
+## The loop
+
+```
+Idea Guy → Research Guy → Realistic Guy → Money Math Guy → Marketing Guy
+  → Stripe Money Guy → Bug Checker Guy → Code Cracker Guy → Security Guy
+  → Deploy Guy → Final Boss → (next cycle)
+```
+
+Run one agent per Cursor chat. Each agent **appends** to `board/PIPELINE.md` and updates relevant board files. Never rewrite prior pipeline entries.
+
+## Board files
+
+| File | Purpose |
+|------|---------|
+| `board/PIPELINE.md` | Append-only handoff log |
+| `board/IDEAS.md` | Idea backlog |
+| `board/DECISIONS.md` | Locked decisions |
+| `board/TASKS.md` | Build queue (Final Boss owns) |
+| `board/APPROVALS.md` | Tier-2 human gates |
+
+## Verdict format (required)
+
+Every agent ends with this block in chat AND appends a matching entry to `board/PIPELINE.md`:
+
+```markdown
+## VERDICT: PASS | FAIL | HOLD
+**Agent:** <your agent name>
+**Cycle:** <N>
+**Subject:** <venture/sku or task id>
+**Summary:** <1–3 sentences>
+**Artifacts:** <files changed>
+**Tier-2 needed:** yes/no
+**Next:** @<next-agent>
+```
+
+- **PASS** — hand off to next agent in chain
+- **FAIL** — stop cycle; Final Boss triages
+- **HOLD** — waiting on human (log in `board/APPROVALS.md`)
+
+## Autonomy tiers
+
+| Tier | Scope | Examples |
+|------|-------|----------|
+| **Tier 1** | Autonomous | Research, code, staging, board updates, `npm run build`, `npm run health` |
+| **Tier 2** | Human approval required | Prod deploy, domain/DNS, ad spend, new Stripe prices, secrets |
+
+Tier-2 actions: append to `board/APPROVALS.md`, run `node scripts/notify-approval.mjs --id AP-NNN`, do **not** proceed until approved.
+
+## Who runs next
+
+```powershell
+node scripts/run-agent-cycle.mjs
+```
+
+Reads `board/PIPELINE.md`, shows last agent, next agent, open tasks, ramp metrics from `D:\wealth-engine-data\marketing\ramp-report.json`.
+
+## Growth pipeline integration
+
+Orchestrator runs `core/pipeline/ramp.mjs` each cycle (SEO, ads CSV, landings, outreach). Agents should read:
+
+- `config/growth-target.json` — $500/mo target
+- `D:\wealth-engine-data\marketing/ramp-report.json` — latest metrics
+- `config/ventures.json` — 9 ventures, 14 Stripe products
+
+## Invoking an agent
+
+In Cursor chat: `@idea-guy` (or the rule name from `.cursor/rules/`). Open `board/PIPELINE.md` for context. Follow that agent's rule prompt exactly.
+
+## Repo conventions
+
+- Node 20+, ESM (`.mjs`)
+- Data root: `D:\wealth-engine-data` (fallback: `data/`)
+- Deploy: `deploy/render.yaml`, health at `/api/health`
+- Do not commit secrets

@@ -1,0 +1,26 @@
+{
+  "targetMonthlyUsd": 500,
+  "targetDays": 30,
+  "assumptions": {
+    "avgOrderUsd": 8,
+    "conversionRatePct": 2.5,
+    "salesNeeded": 63,
+    "clicksNeededAt2_5pct": 2520,
+    "maxCpcUsd": 0.45,
+    "estimatedAdSpendUsd": 300
+  },
+  "prioritySkus": [
+    { "sku": "pro-pdf", "venture": "billsnap", "why": "Low friction $3, high search intent" },
+    { "sku": "unlimited-month", "venture": "billsnap", "why": "$12/mo recurring from freelancers" },
+    { "sku": "single-report", "venture": "leaselens", "why": "$7, strong problem-aware queries" },
+    { "sku": "freelancer-kit", "venture": "pdf-factory", "why": "$14 bundle value" },
+    { "sku": "basic-monthly", "venture": "statusping", "why": "$5/mo sticky" },
+    { "sku": "starter-monthly", "venture": "devtools-api", "why": "$9/mo dev audience" }
+  ],
+  "ramp": {
+    "seoPagesPerCycle": 10,
+    "orchestratorIntervalMinutes": 180,
+    "launchCouponCode": "LAUNCH25",
+    "launchCouponPercentOff": 25
+  }
+}

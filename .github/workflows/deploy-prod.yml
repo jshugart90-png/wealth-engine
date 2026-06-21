@@ -1,0 +1,62 @@
+name: Deploy Production
+
+# TIER 2 GATE — manual approval only. Do not auto-deploy prod.
+
+on:
+  workflow_dispatch:
+    inputs:
+      confirm:
+        description: 'Type "deploy-prod" to confirm production deploy'
+        required: true
+        type: string
+      approval_id:
+        description: "Approved AP- ID from board/APPROVALS.md (e.g. AP-003)"
+        required: true
+        type: string
+
+jobs:
+  gate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Validate confirmation
+        run: |
+          if [ "${{ github.event.inputs.confirm }}" != "deploy-prod" ]; then
+            echo "Confirmation failed — type exactly: deploy-prod"
+            exit 1
+          fi
+          echo "Tier-2 gate passed for ${{ github.event.inputs.approval_id }}"
+
+  deploy-prod:
+    needs: gate
+    runs-on: ubuntu-latest
+    environment: production
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: npm
+
+      - name: Install and build
+        run: |
+          npm ci
+          npm run build
+          npm run health
+
+      - name: Trigger Render production deploy
+        env:
+          RENDER_PROD_DEPLOY_HOOK_URL: ${{ secrets.RENDER_PROD_DEPLOY_HOOK_URL }}
+        run: |
+          if [ -z "$RENDER_PROD_DEPLOY_HOOK_URL" ]; then
+            echo "::error::Set RENDER_PROD_DEPLOY_HOOK_URL in GitHub secrets"
+            exit 1
+          fi
+          curl -fsS -X POST "$RENDER_PROD_DEPLOY_HOOK_URL"
+          echo "Production deploy triggered for approval ${{ github.event.inputs.approval_id }}"
+
+      - name: Post-deploy reminder
+        run: |
+          echo "Update Stripe webhook to https://YOUR_PROD_DOMAIN/webhooks/stripe"
+          echo "Verify PUBLIC_BASE_URL in Render env vars"
+          echo "Log completion in board/APPROVALS.md and board/PIPELINE.md"

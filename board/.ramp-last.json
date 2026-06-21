@@ -1,0 +1,12 @@
+{
+  "at": "2026-06-21T03:17:14.187Z",
+  "targetUsd": 500,
+  "revenueUsd": 0,
+  "pctOfTarget": 0,
+  "nextActions": [
+    "Import google-ads-import.csv into Google Ads (~$26/day suggested)",
+    "Post POST_TODAY.md content to listed platform",
+    "Deploy to custom domain (see docs/ACCESS_NEEDED.md)",
+    "Share /go/invoice, /go/lease, /go/uptime links"
+  ]
+}

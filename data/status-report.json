@@ -1,0 +1,113 @@
+{
+  "generatedAt": "2026-06-21T02:52:16.511Z",
+  "ventures": [
+    {
+      "id": "devtools-api",
+      "name": "PipeKit API",
+      "model": "subscription",
+      "paymentLinks": 2,
+      "channels": [
+        "seo",
+        "product-hunt",
+        "dev-communities",
+        "api-directories"
+      ]
+    },
+    {
+      "id": "billsnap",
+      "name": "BillSnap",
+      "model": "freemium-one-time",
+      "paymentLinks": 2,
+      "channels": [
+        "seo",
+        "google-ads",
+        "freelancer-forums"
+      ]
+    },
+    {
+      "id": "leaselens",
+      "name": "LeaseLens",
+      "model": "one-time",
+      "paymentLinks": 2,
+      "channels": [
+        "seo",
+        "reddit-value",
+        "tenant-forums"
+      ]
+    },
+    {
+      "id": "pdf-factory",
+      "name": "TemplateForge",
+      "model": "catalog",
+      "paymentLinks": 3,
+      "channels": [
+        "seo",
+        "etsy-alternative",
+        "marketplace-listings"
+      ]
+    },
+    {
+      "id": "comparestack",
+      "name": "CompareStack",
+      "model": "affiliate",
+      "paymentLinks": 0,
+      "channels": [
+        "programmatic-seo",
+        "organic-search"
+      ]
+    },
+    {
+      "id": "statusping",
+      "name": "StatusPing",
+      "model": "subscription",
+      "paymentLinks": 2,
+      "channels": [
+        "seo",
+        "indie-hackers",
+        "dev-tools"
+      ]
+    }
+  ],
+  "lastCycle": {
+    "steps": [
+      {
+        "stripe": {
+          "ok": true,
+          "created": 0,
+          "total": 11
+        }
+      },
+      {
+        "pdf": {
+          "products": 3,
+          "path": "C:\\Users\\jshug\\wealth-engine\\ventures\\pdf-factory\\catalog"
+        }
+      },
+      {
+        "compare": {
+          "pages": 3
+        }
+      },
+      {
+        "build": {
+          "built": [
+            "devtools-api",
+            "billsnap",
+            "leaselens",
+            "pdf-factory",
+            "comparestack",
+            "statusping"
+          ],
+          "hub": "C:\\Users\\jshug\\wealth-engine\\dist\\index.html"
+        }
+      },
+      {
+        "uptime": {
+          "checked": 0,
+          "down": 0,
+          "total": 0
+        }
+      }
+    ]
+  }
+}

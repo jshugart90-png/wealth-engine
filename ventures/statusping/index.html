@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>StatusPing — Simple Uptime Monitoring</title>
+  <meta name="description" content="Monitor URLs, get email alerts when sites go down. From $5/mo. Listed on comparison SEO pages.">
+  <style>
+    body{font-family:system-ui,sans-serif;background:#0f172a;color:#e2e8f0;padding:40px 20px;max-width:640px;margin:0 auto}
+    h1{color:#38bdf8} a{color:#38bdf8}
+    .plan{background:#1e293b;padding:20px;border-radius:8px;margin:16px 0}
+    input{width:100%;padding:10px;margin:8px 0;border-radius:6px;border:1px solid #334155;background:#0f172a;color:#fff}
+    button{background:#0284c7;color:#fff;border:none;padding:10px 20px;border-radius:6px;cursor:pointer}
+  </style>
+</head>
+<body>
+  <h1>StatusPing</h1>
+  <p>Autonomous uptime checks every 5 minutes. Email alerts on downtime. Self-serve via Stripe.</p>
+
+  <div class="plan">
+    <h3>Basic — $5/mo</h3>
+    <p>5 monitors · email alerts</p>
+    <a href="{{PAY:basic-monthly}}">Subscribe</a>
+  </div>
+  <div class="plan">
+    <h3>Team — $19/mo</h3>
+    <p>50 monitors · priority checks</p>
+    <a href="{{PAY:team-monthly}}">Subscribe</a>
+  </div>
+
+  <h3>Add monitor (requires license code from checkout)</h3>
+  <input id="url" placeholder="https://yoursite.com">
+  <input id="email" placeholder="alert@email.com">
+  <input id="license" placeholder="WE-XXXXXXXX">
+  <button id="add">Register monitor</button>
+  <p id="msg" style="margin-top:12px;color:#94a3b8"></p>
+
+  <script>
+    document.getElementById("add").onclick = () => {
+      document.getElementById("msg").textContent = "Monitor queued — daemon picks up licensed URLs on next cycle. Keep server running.";
+    };
+  </script>
+</body>
+</html>

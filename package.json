@@ -1,0 +1,28 @@
+{
+  "name": "wealth-engine",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Autonomous multi-venture wealth machine — independent of social media",
+  "scripts": {
+    "start": "node core/server.mjs",
+    "run": "node core/orchestrator.mjs",
+    "run:daemon": "node core/daemon.mjs",
+    "stripe:sync": "node core/stripe-sync.mjs",
+    "build": "node core/build-all.mjs",
+    "install:task": "powershell -ExecutionPolicy Bypass -File deploy/install-scheduled-task.ps1",
+    "health": "node core/health-check.mjs",
+    "launch": "node scripts/launch.mjs",
+    "webhook": "node scripts/setup-webhook.mjs",
+    "daily": "node core/daily-wealth.mjs",
+    "agent:next": "node scripts/run-agent-cycle.mjs",
+    "agent:step": "node scripts/agent-auto-runner.mjs",
+    "agent:chain": "node scripts/run-full-agent-chain.mjs",
+    "agent:notify": "node scripts/notify-approval.mjs",
+    "daemon:mm": "node scripts/money-machine-daemon.mjs"
+  },
+  "engines": { "node": ">=20" },
+  "dependencies": {
+    "better-sqlite3": "^11.9.1"
+  }
+}

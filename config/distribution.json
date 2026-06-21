@@ -1,0 +1,19 @@
+{
+  "directories": [
+    { "name": "AlternativeTo", "url": "https://alternativeto.net/contribute/", "ventures": ["billsnap", "statusping"] },
+    { "name": "Product Hunt", "url": "https://www.producthunt.com/posts/new", "ventures": ["devtools-api", "billsnap"] },
+    { "name": "API List", "url": "https://apilist.fun/submit", "ventures": ["devtools-api"] },
+    { "name": "SaaSHub", "url": "https://www.saashub.com/submit", "ventures": ["statusping", "billsnap", "leaselens"] },
+    { "name": "Indie Hackers", "url": "https://www.indiehackers.com/post/new", "ventures": ["devtools-api", "comparestack"] },
+    { "name": "BetaList", "url": "https://betalist.com/submit", "ventures": ["pipekit", "statusping"] },
+    { "name": "Slant", "url": "https://www.slant.co/", "ventures": ["comparestack"] }
+  ],
+  "seoPages": [
+    "invoice generator free pdf",
+    "lease analyzer tool",
+    "uuid api",
+    "uptime monitor cheap",
+    "freelancer invoice template"
+  ],
+  "note": "Orchestrator regenerates CompareStack pages targeting these terms. Submit directories manually once deployed — one-time per venture."
+}

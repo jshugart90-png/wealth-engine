@@ -1,0 +1,10 @@
+{
+  "liveAt": "https://large-weeks-kick.loca.lt",
+  "localAt": "http://localhost:8787",
+  "stripeWebhook": "https://large-weeks-kick.loca.lt/webhooks/stripe",
+  "paymentLinks": 11,
+  "daemonRunning": true,
+  "orchestratorIntervalHours": 6,
+  "startupScript": "%APPDATA%\\Microsoft\\Windows\\Start Menu\\Programs\\Startup\\WealthEngine.ps1",
+  "generatedAt": "2026-06-21T02:53:00Z"
+}

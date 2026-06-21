@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Meeting Cost Calculator — How much does this meeting cost?</title>
+  <meta name="description" content="Calculate the true cost of meetings. Shareable viral tool. Free — pro exports $5.">
+  <style>
+    body{font-family:system-ui,sans-serif;max-width:520px;margin:40px auto;padding:20px}
+    input{width:100%;padding:10px;margin:6px 0 14px;border:1px solid #ccc;border-radius:6px}
+    .result{font-size:48px;font-weight:bold;color:#dc2626;margin:20px 0}
+    a.btn{display:inline-block;background:#2563eb;color:#fff;padding:12px 20px;text-decoration:none;border-radius:6px}
+  </style>
+</head>
+<body>
+  <h1>Meeting Cost Calculator</h1>
+  <p>How much does this meeting <em>actually</em> cost the company?</p>
+  <label>Attendees</label><input type="number" id="attendees" value="8">
+  <label>Average hourly rate ($)</label><input type="number" id="rate" value="75">
+  <label>Duration (minutes)</label><input type="number" id="minutes" value="60">
+  <div class="result" id="out">$600</div>
+  <p>Share this number with your team. <a href="{{PAY:meeting-pro}}">Pro report — $5</a></p>
+  <a class="btn" href="/statusping/index.html">Monitor uptime instead →</a>
+  <script>
+    function calc(){out.textContent='$'+Math.round((+attendees.value||0)*(+rate.value||0)*(+minutes.value||0)/60).toLocaleString();}
+    [attendees,rate,minutes].forEach(el=>el.oninput=calc);calc();
+    if(location.search.includes('share=1')) document.title='This meeting costs '+out.textContent;
+  </script>
+</body>
+</html>

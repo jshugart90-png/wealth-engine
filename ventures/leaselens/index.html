@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>LeaseLens — Rental Lease Red Flag Analyzer</title>
+  <meta name="description" content="Paste your lease, get an instant risk score and clause flags. Full report $7. Organic search + tenant forums — no social required.">
+  <style>
+    body{font-family:system-ui,sans-serif;background:#fff;margin:0;padding:32px 16px;color:#111;max-width:720px;margin-inline:auto}
+    h1{font-size:28px} .sub{color:#666;margin-bottom:20px}
+    textarea{width:100%;min-height:200px;padding:12px;border:1px solid #ccc;border-radius:8px;font-size:13px}
+    button{background:#059669;color:#fff;border:none;padding:12px 24px;border-radius:8px;cursor:pointer;margin-top:12px}
+    #out{margin-top:24px;padding:20px;background:#f0fdf4;border-radius:8px;display:none}
+    .score{font-size:48px;font-weight:bold;color:#059669}
+    .flag{margin:8px 0;padding:8px;background:#fff;border-left:4px solid #f59e0b}
+    .flag.high{border-color:#dc2626}
+    a{color:#059669}
+  </style>
+</head>
+<body>
+  <h1>LeaseLens</h1>
+  <p class="sub">Rule-based lease analysis — not legal advice. Free preview, full report with license.</p>
+  <textarea id="lease" placeholder="Paste lease text here..."></textarea>
+  <label>License (after purchase): <input id="lic" placeholder="WE-XXXXXXXX"></label><br>
+  <button id="go">Analyze</button>
+  <div id="out"></div>
+  <p style="margin-top:24px"><a href="{{PAY:single-report}}">Full report — $7</a> · <a href="{{PAY:report-bundle}}">3 reports — $15</a></p>
+  <script>
+    document.getElementById("go").onclick = async () => {
+      const r = await fetch("/api/leaselens/analyze", {
+        method:"POST", headers:{"Content-Type":"application/json"},
+        body: JSON.stringify({ text: document.getElementById("lease").value, license: document.getElementById("lic").value || undefined })
+      });
+      const d = await r.json();
+      const data = d.report || d.preview;
+      const o = document.getElementById("out");
+      o.style.display = "block";
+      o.innerHTML = `<div class="score">${data.score}/100</div><p>${data.summary}</p>` +
+        data.flags.map(f => `<div class="flag ${f.severity}"><strong>${f.title}</strong><br>${f.tip}</div>`).join("") +
+        (d.preview ? `<p><a href="{{PAY:single-report}}">Unlock all ${data.flagCount || "?"} flags →</a></p>` : "");
+    };
+  </script>
+</body>
+</html>

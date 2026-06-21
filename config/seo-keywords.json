@@ -1,0 +1,125 @@
+{
+  "keywords": [
+    {
+      "slug": "free-invoice-generator-pdf",
+      "title": "Free Invoice Generator PDF",
+      "venture": "billsnap",
+      "sku": "pro-pdf"
+    },
+    {
+      "slug": "freelancer-invoice-template",
+      "title": "Freelancer Invoice Template",
+      "venture": "billsnap",
+      "sku": "pro-pdf"
+    },
+    {
+      "slug": "lease-red-flag-checker",
+      "title": "Lease Red Flag Checker",
+      "venture": "leaselens",
+      "sku": "single-report"
+    },
+    {
+      "slug": "rental-lease-analyzer",
+      "title": "Rental Lease Analyzer Online",
+      "venture": "leaselens",
+      "sku": "single-report"
+    },
+    {
+      "slug": "uuid-api-generator",
+      "title": "UUID API Generator",
+      "venture": "devtools-api",
+      "sku": "starter-monthly"
+    },
+    {
+      "slug": "json-formatter-api",
+      "title": "JSON Formatter API",
+      "venture": "devtools-api",
+      "sku": "starter-monthly"
+    },
+    {
+      "slug": "cheap-uptime-monitor",
+      "title": "Cheap Uptime Monitor",
+      "venture": "statusping",
+      "sku": "basic-monthly"
+    },
+    {
+      "slug": "website-down-alert-email",
+      "title": "Website Down Alert Email",
+      "venture": "statusping",
+      "sku": "basic-monthly"
+    },
+    {
+      "slug": "small-business-compliance-templates",
+      "title": "Small Business Compliance Templates",
+      "venture": "pdf-factory",
+      "sku": "smb-compliance-pack"
+    },
+    {
+      "slug": "freelancer-contract-template-pack",
+      "title": "Freelancer Contract Template Pack",
+      "venture": "pdf-factory",
+      "sku": "freelancer-kit"
+    },
+    {
+      "slug": "hiring-interview-scorecard-template",
+      "title": "Hiring Interview Scorecard Template",
+      "venture": "pdf-factory",
+      "sku": "hiring-pack"
+    },
+    {
+      "slug": "meeting-cost-calculator",
+      "title": "Meeting Cost Calculator",
+      "venture": "meetingcost",
+      "sku": "meeting-pro"
+    },
+    {
+      "slug": "nda-generator-free",
+      "title": "NDA Generator Free",
+      "venture": "ndagen",
+      "sku": "nda-pdf"
+    },
+    {
+      "slug": "webhook-relay-service",
+      "title": "Webhook Relay Service",
+      "venture": "hookrelay",
+      "sku": "relay-monthly"
+    },
+    {
+      "slug": "hash-api-sha256",
+      "title": "SHA256 Hash API",
+      "venture": "devtools-api",
+      "sku": "pro-monthly"
+    },
+    {
+      "slug": "base64-encode-api",
+      "title": "Base64 Encode API",
+      "venture": "devtools-api",
+      "sku": "starter-monthly"
+    },
+    {
+      "slug": "invoice-generator-no-signup",
+      "title": "Invoice Generator No Signup",
+      "venture": "billsnap",
+      "sku": "unlimited-month"
+    },
+    {
+      "slug": "tenant-rights-lease-review",
+      "title": "Tenant Rights Lease Review Tool",
+      "venture": "leaselens",
+      "sku": "report-bundle"
+    },
+    {
+      "slug": "startup-hiring-checklist",
+      "title": "Startup Hiring Checklist PDF",
+      "venture": "pdf-factory",
+      "sku": "hiring-pack"
+    },
+    {
+      "slug": "best-free-dev-api-tools",
+      "title": "Best Free Dev API Tools 2026",
+      "venture": "comparestack",
+      "sku": "starter-monthly"
+    }
+  ],
+  "pagesPerCycle": 10
+}

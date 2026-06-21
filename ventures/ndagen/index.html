@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>NDAGen — Free NDA Generator</title>
+  <meta name="description" content="Generate a mutual NDA in seconds. Free preview. Pro PDF $4.">
+  <style>body{font-family:system-ui;max-width:640px;margin:32px auto;padding:20px}textarea{width:100%;min-height:200px;padding:12px;font-size:13px}
+  input{width:100%;padding:8px;margin:6px 0 12px}button{background:#059669;color:#fff;border:none;padding:12px 20px;border-radius:6px;cursor:pointer}</style>
+</head>
+<body>
+  <h1>NDAGen</h1>
+  <p>Not legal advice. Template for discussion purposes.</p>
+  <label>Party A</label><input id="a" value="Your Company LLC">
+  <label>Party B</label><input id="b" value="Counterparty Inc">
+  <button id="gen">Generate preview</button>
+  <textarea id="doc" readonly></textarea>
+  <p><a href="{{PAY:nda-pdf}}">Download signed-ready PDF — $4</a></p>
+  <script>
+    gen.onclick=()=>{doc.value=`MUTUAL NON-DISCLOSURE AGREEMENT\n\nBetween ${a.value} and ${b.value}\n\n1. Confidential Information...\n2. Term: 2 years\n3. Governing law: [State]\n\nSign below.`;};
+    gen.click();
+  </script>
+</body>
+</html>

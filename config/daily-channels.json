@@ -1,0 +1,109 @@
+{
+  "channels": [
+    {
+      "id": "programmatic-seo",
+      "name": "Programmatic SEO landing pages",
+      "automation": "Generates 3 new long-tail pages per cycle from keyword rotation",
+      "revenue": "Organic search → free preview → Stripe checkout",
+      "legal": "Original content, no scraping"
+    },
+    {
+      "id": "sitemap-ping",
+      "name": "Sitemap + search engine ping",
+      "automation": "Rebuilds sitemap.xml, pings Google/Bing notify endpoints",
+      "revenue": "Faster indexing → more traffic → conversions",
+      "legal": "Standard SEO practice"
+    },
+    {
+      "id": "indexnow",
+      "name": "IndexNow URL submission",
+      "automation": "Submits new/changed URLs to Bing/Yandex IndexNow API",
+      "revenue": "Same-day indexing for new landing pages",
+      "legal": "Microsoft IndexNow open protocol"
+    },
+    {
+      "id": "product-rss",
+      "name": "Product RSS/JSON feeds",
+      "automation": "Syndication feeds for aggregators and feed readers",
+      "revenue": "Discovery via RSS directories",
+      "legal": "Self-published feeds"
+    },
+    {
+      "id": "structured-data",
+      "name": "JSON-LD rich snippets",
+      "automation": "Product/Offer schema on all venture pages",
+      "revenue": "Higher CTR in Google results",
+      "legal": "Google structured data guidelines"
+    },
+    {
+      "id": "embed-widgets",
+      "name": "Embeddable free tools",
+      "automation": "iframe widgets for BillSnap preview + MeetingCost calc",
+      "revenue": "Viral embeds → backlink + upsell traffic",
+      "legal": "Opt-in embed code, attributed"
+    },
+    {
+      "id": "referral-tracking",
+      "name": "Referral link system",
+      "automation": "Auto /ref/CODE URLs track conversions in DB",
+      "revenue": "Word-of-mouth + affiliate-style sharing",
+      "legal": "Transparent tracking, no cookie stuffing"
+    },
+    {
+      "id": "directory-pack",
+      "name": "SaaS directory submission pack",
+      "automation": "Auto-generates listing copy + URLs for 12 directories",
+      "revenue": "Backlinks + referral traffic from listings",
+      "legal": "Manual/API submit per each site's TOS"
+    },
+    {
+      "id": "comparison-expansion",
+      "name": "CompareStack daily expansion",
+      "automation": "Adds 1 new comparison page per cycle",
+      "revenue": "Long-tail comparison SEO",
+      "legal": "Disclosed owned products"
+    },
+    {
+      "id": "bundle-landings",
+      "name": "Dynamic bundle landing pages",
+      "automation": "Cross-sell pages combining 2–3 ventures",
+      "revenue": "Higher AOV bundle checkouts",
+      "legal": "Clear pricing"
+    },
+    {
+      "id": "post-checkout-upsell",
+      "name": "Post-checkout email upsell",
+      "automation": "Resend email 24h after purchase with related product",
+      "revenue": "Repeat purchases from existing buyers",
+      "legal": "CAN-SPAM compliant, prior transaction relationship"
+    },
+    {
+      "id": "free-api-funnel",
+      "name": "Free API tier funnel",
+      "automation": "Rate-limited free PipeKit calls → upgrade prompts",
+      "revenue": "Freemium conversion to $9/mo",
+      "legal": "Self-serve SaaS"
+    },
+    {
+      "id": "meeting-cost-viral",
+      "name": "Meeting Cost Calculator (viral tool)",
+      "automation": "Shareable URL with team size + salary → shocking cost",
+      "revenue": "Upsell to StatusPing + TemplateForge",
+      "legal": "Utility calculator"
+    },
+    {
+      "id": "nda-generator",
+      "name": "NDA Generator free preview",
+      "automation": "Generate NDA text free, $4 PDF export via Stripe",
+      "revenue": "One-time digital sale",
+      "legal": "Template not legal advice disclaimer"
+    },
+    {
+      "id": "webhook-relay",
+      "name": "Webhook Relay micro-SaaS",
+      "automation": "Forward webhooks with retry — $7/mo Stripe",
+      "revenue": "Dev tool subscription",
+      "legal": "Infrastructure SaaS"
+    }
+  ]
+}

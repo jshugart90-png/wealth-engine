@@ -1,0 +1,220 @@
+{
+  "engine": {
+    "name": "Wealth Engine",
+    "version": 1,
+    "description": "Autonomous portfolio of independent revenue ventures"
+  },
+  "ventures": [
+    {
+      "id": "devtools-api",
+      "name": "PipeKit API",
+      "type": "api-saas",
+      "model": "subscription",
+      "prices": { "starter": 9, "pro": 29, "enterprise": 99 },
+      "path": "ventures/devtools-api",
+      "deployPath": "dist/devtools-api",
+      "channels": ["seo", "product-hunt", "dev-communities", "api-directories"],
+      "autonomous": ["api-keys", "usage-metering", "self-serve-checkout"]
+    },
+    {
+      "id": "billsnap",
+      "name": "BillSnap",
+      "type": "micro-saas",
+      "model": "freemium-one-time",
+      "prices": { "proPdf": 3, "unlimitedMonth": 12 },
+      "path": "ventures/billsnap",
+      "deployPath": "dist/billsnap",
+      "channels": ["seo", "google-ads", "freelancer-forums"],
+      "autonomous": ["pdf-generation", "stripe-checkout", "email-delivery"]
+    },
+    {
+      "id": "leaselens",
+      "name": "LeaseLens",
+      "type": "utility",
+      "model": "one-time",
+      "prices": { "report": 7, "bundle3": 15 },
+      "path": "ventures/leaselens",
+      "deployPath": "dist/leaselens",
+      "channels": ["seo", "reddit-value", "tenant-forums"],
+      "autonomous": ["rule-engine-analysis", "stripe-checkout", "instant-report"]
+    },
+    {
+      "id": "pdf-factory",
+      "name": "TemplateForge",
+      "type": "digital-products",
+      "model": "catalog",
+      "path": "ventures/pdf-factory",
+      "deployPath": "dist/templateforge",
+      "channels": ["seo", "etsy-alternative", "marketplace-listings"],
+      "autonomous": ["catalog-generation", "stripe-sync", "download-fulfillment"]
+    },
+    {
+      "id": "comparestack",
+      "name": "CompareStack",
+      "type": "affiliate-seo",
+      "model": "affiliate",
+      "path": "ventures/comparestack",
+      "deployPath": "dist/comparestack",
+      "channels": ["programmatic-seo", "organic-search"],
+      "autonomous": ["page-generation", "affiliate-links", "content-refresh"]
+    },
+    {
+      "id": "statusping",
+      "name": "StatusPing",
+      "type": "micro-saas",
+      "model": "subscription",
+      "prices": { "basic": 5, "team": 19 },
+      "path": "ventures/statusping",
+      "deployPath": "dist/statusping",
+      "channels": ["seo", "indie-hackers", "dev-tools"],
+      "autonomous": ["uptime-checks", "email-alerts", "stripe-billing"]
+    },
+    {
+      "id": "meetingcost",
+      "name": "MeetingCost",
+      "type": "viral-tool",
+      "model": "one-time",
+      "prices": { "pro": 5 },
+      "path": "ventures/meetingcost",
+      "deployPath": "dist/meetingcost",
+      "channels": ["viral-share", "seo", "embed-widgets"],
+      "autonomous": ["shareable-urls", "stripe-upsell"]
+    },
+    {
+      "id": "ndagen",
+      "name": "NDAGen",
+      "type": "utility",
+      "model": "one-time",
+      "prices": { "pdf": 4 },
+      "path": "ventures/ndagen",
+      "deployPath": "dist/ndagen",
+      "channels": ["seo", "freelancer-forums", "comparison-pages"],
+      "autonomous": ["free-preview", "pdf-checkout"]
+    },
+    {
+      "id": "hookrelay",
+      "name": "HookRelay",
+      "type": "api-saas",
+      "model": "subscription",
+      "prices": { "monthly": 7 },
+      "path": "ventures/hookrelay",
+      "deployPath": "dist/hookrelay",
+      "channels": ["dev-communities", "seo", "api-directories"],
+      "autonomous": ["stripe-billing", "webhook-forward"]
+    }
+  ],
+  "stripeProducts": [
+    {
+      "ventureId": "devtools-api",
+      "sku": "starter-monthly",
+      "name": "PipeKit API Starter",
+      "priceUsd": 9,
+      "interval": "month",
+      "metadata": { "tier": "starter", "requests_per_day": "1000" }
+    },
+    {
+      "ventureId": "devtools-api",
+      "sku": "pro-monthly",
+      "name": "PipeKit API Pro",
+      "priceUsd": 29,
+      "interval": "month",
+      "metadata": { "tier": "pro", "requests_per_day": "50000" }
+    },
+    {
+      "ventureId": "billsnap",
+      "sku": "pro-pdf",
+      "name": "BillSnap Pro PDF",
+      "priceUsd": 3,
+      "interval": "one_time",
+      "metadata": { "credits": "1" }
+    },
+    {
+      "ventureId": "billsnap",
+      "sku": "unlimited-month",
+      "name": "BillSnap Unlimited (30 days)",
+      "priceUsd": 12,
+      "interval": "month",
+      "metadata": { "unlimited": "true" }
+    },
+    {
+      "ventureId": "leaselens",
+      "sku": "single-report",
+      "name": "LeaseLens Full Report",
+      "priceUsd": 7,
+      "interval": "one_time",
+      "metadata": { "reports": "1" }
+    },
+    {
+      "ventureId": "leaselens",
+      "sku": "report-bundle",
+      "name": "LeaseLens 3-Report Bundle",
+      "priceUsd": 15,
+      "interval": "one_time",
+      "metadata": { "reports": "3" }
+    },
+    {
+      "ventureId": "pdf-factory",
+      "sku": "smb-compliance-pack",
+      "name": "SMB Compliance Starter Pack",
+      "priceUsd": 19,
+      "interval": "one_time",
+      "metadata": { "product_id": "smb-compliance-pack" }
+    },
+    {
+      "ventureId": "pdf-factory",
+      "sku": "freelancer-kit",
+      "name": "Freelancer Business Kit",
+      "priceUsd": 14,
+      "interval": "one_time",
+      "metadata": { "product_id": "freelancer-kit" }
+    },
+    {
+      "ventureId": "pdf-factory",
+      "sku": "hiring-pack",
+      "name": "Small Team Hiring Pack",
+      "priceUsd": 12,
+      "interval": "one_time",
+      "metadata": { "product_id": "hiring-pack" }
+    },
+    {
+      "ventureId": "statusping",
+      "sku": "basic-monthly",
+      "name": "StatusPing Basic",
+      "priceUsd": 5,
+      "interval": "month",
+      "metadata": { "monitors": "5" }
+    },
+    {
+      "ventureId": "statusping",
+      "sku": "team-monthly",
+      "name": "StatusPing Team",
+      "priceUsd": 19,
+      "interval": "month",
+      "metadata": { "monitors": "50" }
+    },
+    {
+      "ventureId": "meetingcost",
+      "sku": "meeting-pro",
+      "name": "MeetingCost Pro Report",
+      "priceUsd": 5,
+      "interval": "one_time",
+      "metadata": { "reports": "1" }
+    },
+    {
+      "ventureId": "ndagen",
+      "sku": "nda-pdf",
+      "name": "NDAGen PDF Export",
+      "priceUsd": 4,
+      "interval": "one_time",
+      "metadata": { "exports": "1" }
+    },
+    {
+      "ventureId": "hookrelay",
+      "sku": "relay-monthly",
+      "name": "HookRelay Pro",
+      "priceUsd": 7,
+      "interval": "month",
+      "metadata": { "endpoints": "3" }
+    }
+  ]
+}

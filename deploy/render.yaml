@@ -1,0 +1,22 @@
+services:
+  - type: web
+    name: wealth-engine
+    env: node
+    plan: free
+    region: oregon
+    buildCommand: npm install && npm run build
+    startCommand: npm run run:daemon
+    healthCheckPath: /api/health
+    envVars:
+      - key: NODE_VERSION
+        value: "20"
+      - key: RUN_INTERVAL_MINUTES
+        value: "180"
+      - key: AUTO_STRIPE_SYNC
+        value: "true"
+      - key: AUTO_BUILD
+        value: "true"
+      # Set in Render dashboard (never commit):
+      # STRIPE_SECRET_KEY, STRIPE_WEBHOOK_SECRET, PUBLIC_BASE_URL
+      # Optional: RESEND_API_KEY, WEALTH_DATA_ROOT (/var/data on Render disk)
+      # Notifications: TELEGRAM_BOT_TOKEN, TELEGRAM_CHAT_ID, or SLACK_WEBHOOK_URL
