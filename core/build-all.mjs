@@ -90,6 +90,7 @@ export function buildAll() {
   const feeds = buildProductFeeds();
   const referral = buildReferralPages();
   const indexNow = buildIndexNowKey();
+  const games = buildGames();
 
   return {
     built,
@@ -107,7 +108,81 @@ export function buildAll() {
     feeds,
     referral,
     indexNow,
+    games,
   };
+}
+
+function buildGames() {
+  const gamesSrc = join(root, "games");
+  const gamesDest = join(root, "dist", "games");
+  if (!existsSync(gamesSrc)) return { copied: [], hub: null };
+
+  mkdirSync(gamesDest, { recursive: true });
+  const slugs = readdirSync(gamesSrc, { withFileTypes: true })
+    .filter((d) => d.isDirectory())
+    .map((d) => d.name);
+
+  for (const slug of slugs) {
+    const src = join(gamesSrc, slug);
+    const dest = join(gamesDest, slug);
+    mkdirSync(dest, { recursive: true });
+    cpSync(src, dest, { recursive: true });
+  }
+
+  const meta = slugs
+    .map((slug) => {
+      const idx = join(gamesSrc, slug, "index.html");
+      if (!existsSync(idx)) return null;
+      const html = readFileSync(idx, "utf8");
+      const title = html.match(/<title>([^<]+)<\/title>/i)?.[1] ?? slug;
+      const desc = html.match(/<meta name="description" content="([^"]+)"/i)?.[1] ?? "Free browser game";
+      return { slug, title, desc };
+    })
+    .filter(Boolean);
+
+  const cards = meta
+    .map(
+      (g) => `
+    <a class="card" href="/games/${g.slug}/">
+      <h2>${g.title.replace(/&/g, "&amp;").replace(/</g, "&lt;")}</h2>
+      <p>${g.desc.replace(/&/g, "&amp;").replace(/</g, "&lt;")}</p>
+      <span class="play">Play →</span>
+    </a>`
+    )
+    .join("");
+
+  const hubHtml = `<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Free Games — Wealth Engine</title>
+<meta name="description" content="Simple free browser games for all ages. Play Horseshoe Toss, Invoice Stack, and more.">
+<style>
+  body{font-family:system-ui,sans-serif;background:#0a0a0f;color:#e8e8ef;margin:0;padding:0 20px 40px}
+  .promo{background:#0f172a;color:#e2e8f0;padding:12px 16px;text-align:center;font-size:13px;border-bottom:1px solid #1e293b}
+  .promo a{color:#22c55e;font-weight:700;margin:0 10px;text-decoration:none}
+  h1{text-align:center;margin:32px 0 8px}
+  .sub{text-align:center;color:#888;margin-bottom:32px}
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:20px;max-width:1000px;margin:0 auto}
+  .card{background:#14141c;border:1px solid #2a2a38;border-radius:12px;padding:24px;text-decoration:none;color:inherit;transition:.2s;display:block}
+  .card:hover{border-color:#6366f1;transform:translateY(-2px)}
+  h2{margin:0 0 8px;font-size:20px}
+  p{color:#888;font-size:14px;margin:0 0 12px}
+  .play{color:#6366f1;font-size:13px;font-weight:600}
+  .ad{max-width:728px;margin:24px auto;background:#1a1a24;border:1px dashed #444;border-radius:8px;padding:16px;text-align:center;color:#666;font-size:12px}
+</style></head><body>
+<div class="promo"><a href="/">← Wealth Engine</a>
+  <a href="/go/invoice.html">BillSnap Invoices</a>
+  <a href="/go/uptime.html">StatusPing Uptime</a>
+  <a href="/tools/index.html">Free Tools</a>
+</div>
+<h1>🎮 Free Games</h1>
+<p class="sub">Simple, fun, all ages — no download required</p>
+<div class="ad">AdSense placeholder — 728×90 leaderboard</div>
+<div class="grid">${cards || "<p style='text-align:center;color:#888'>Games coming soon…</p>"}</div>
+<div class="ad" style="margin-top:32px">AdSense placeholder — 300×250 rectangle</div>
+</body></html>`;
+
+  writeFileSync(join(gamesDest, "index.html"), hubHtml);
+  return { copied: slugs, hub: join(gamesDest, "index.html"), count: meta.length };
 }
 
 function buildPortfolioHub(ventureIds) {

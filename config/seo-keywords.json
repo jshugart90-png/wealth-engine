@@ -777,6 +777,36 @@
       "metaDescription": "Webhook DLQ + uptime + SSL monitoring bundle for dev agencies. DevWatch $39/mo.",
       "venture": "statusping",
       "sku": "devwatch-monthly"
+    },
+    {
+      "slug": "python-json-validator-api",
+      "title": "Python JSON Validator API",
+      "venture": "devtools-api",
+      "sku": "pro-monthly"
+    },
+    {
+      "slug": "dns-lookup-api-nodejs",
+      "title": "DNS Lookup API for Node.js",
+      "venture": "devtools-api",
+      "sku": "pro-monthly"
+    },
+    {
+      "slug": "uuid-generator-api-rest",
+      "title": "UUID Generator REST API",
+      "venture": "devtools-api",
+      "sku": "pro-monthly"
+    },
+    {
+      "slug": "sha256-hash-api-endpoint",
+      "title": "SHA256 Hash API Endpoint",
+      "venture": "devtools-api",
+      "sku": "pro-monthly"
+    },
+    {
+      "slug": "base64-encode-decode-api",
+      "title": "Base64 Encode Decode API",
+      "venture": "devtools-api",
+      "sku": "pro-monthly"
     }
   ],
   "pagesPerCycle": 10

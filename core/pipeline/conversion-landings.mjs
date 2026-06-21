@@ -215,6 +215,18 @@ const PAGES = [
     altSku: "smb-compliance-pack",
     altLabel: "Compliance pack — $19",
   },
+  {
+    slug: "pipekit-pro",
+    headline: "PipeKit API — 50K requests/mo included",
+    sub: "JSON validate, hash, DNS, UUID — one API key. $29/mo metered dev utilities.",
+    sku: "pro-monthly",
+    tool: "/devtools-api/index.html",
+    bullets: ["50K requests included", "Overage $0.50/10K", "Free tier 1K/day for testing"],
+    urgency: "74% of SaaS uses usage-based pricing in 2026.",
+    socialProof: "Bundled dev utilities — one key vs 5 separate tools",
+    altSku: "starter-monthly",
+    altLabel: "Starter — $9/mo",
+  },
 ];
 
 export function buildHighConversionLandings() {

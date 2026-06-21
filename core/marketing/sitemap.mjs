@@ -60,6 +60,8 @@ const STATIC_PATHS = [
   "/go/devwatch.html",
   "/go/nda-team.html",
   "/go/statusping-agency.html",
+  "/go/1099-deadline.html",
+  "/go/pipekit-pro.html",
   "/privacy.html",
   "/join.html",
   "/refer.html",

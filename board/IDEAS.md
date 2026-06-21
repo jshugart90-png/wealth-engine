@@ -10,7 +10,7 @@ Ideas are ranked by Idea Guy each cycle. Research Guy validates; Realistic Guy k
 | WE-20260621-hookrelay-dlq | HookRelay DLQ Pro — webhook retry + dead letter at $29/mo | hookrelay | 10k→50k | 23/25 | **SHIPPED** | `/hookrelay/pricing`, `/go/hookrelay-dlq`, `/go/webhook` |
 | WE-20260621-devwatch-bundle | DevWatch — uptime + SSL + cron bundle at $39/mo | statusping | 8k→25k | 21/25 | **SHIPPED** | devwatch-monthly SKU, /go/devwatch, SSL+cron tools |
 | WE-20260621-billsnap-sub-pivot | BillSnap reprice unlimited $12→$29/mo + industry pSEO | billsnap | 5k→20k | 23/25 | **SHIPPED** | `/go/billsnap-pro`, `/go/invoice`, 5 industry pSEO keywords |
-| WE-20260621-pipekit-pseo | PipeKit integration pages ("{lang} json validator api") | devtools-api | 5k→30k | 21/25 | Candidate | Brief: `board/briefs/WE-20260621-pipekit-metered.md` |
+| WE-20260621-pipekit-pseo | PipeKit integration pages ("{lang} json validator api") | devtools-api | 5k→30k | 21/25 | **SHIPPED** | `/go/pipekit-pro`, 5 API pSEO keywords, pro-monthly landing |
 | WE-20260621-comparestack-scale | CompareStack 500+ affiliate VS/alternatives pages | comparestack | 3k→15k | 19/25 | Candidate | Brief: `board/briefs/WE-20260621-comparestack-scale.md` |
 | WE-20260621-meetingcost-team | MeetingCost Team dashboard + embed at $29/mo | meetingcost | 3k→15k | 20/25 | Candidate | Brief: `board/briefs/WE-20260621-meetingcost-team.md` |
 | WE-20260621-compliance-state-seo | State-specific freelancer compliance pSEO (200 pages) | pdf-factory | 3k→50k | 23/25 | **SHIPPED** | 81 pages (20-state batch), hub `/p/freelancer-compliance-by-state.html`, `/go/compliance` enhanced |
