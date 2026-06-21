@@ -1,4 +1,4 @@
-import { readFileSync, writeFileSync, mkdirSync, cpSync, existsSync } from "fs";
+import { readFileSync, writeFileSync, mkdirSync, cpSync, existsSync, readdirSync } from "fs";
 import { join } from "path";
 import { getRoot } from "./env.mjs";
 import { getAllPaymentLinks } from "./commerce.mjs";
@@ -26,9 +26,21 @@ function injectPaymentLinks(html, ventureId) {
   return out;
 }
 
+function injectAllPaymentLinks(html) {
+  let out = html;
+  for (const l of getAllPaymentLinks()) {
+    out = out.replaceAll(`{{PAY:${l.sku}}}`, l.payment_link ?? "#");
+  }
+  out = out.replace(/\{\{PAY:[^}]+\}\}/g, "#checkout-pending");
+  return out;
+}
+
 export function buildAll() {
   const dist = join(root, "dist");
   mkdirSync(dist, { recursive: true });
+
+  // Regenerate CompareStack pages before copying ventures → dist
+  const compare = expandCompareStack();
 
   const built = [];
   for (const v of config.ventures) {
@@ -45,6 +57,17 @@ export function buildAll() {
         writeFileSync(fp, injectPaymentLinks(html, v.id));
       }
     }
+
+    // CompareStack pages reference SKUs across ventures
+    if (v.id === "comparestack") {
+      const pagesDir = join(dest, "pages");
+      if (existsSync(pagesDir)) {
+        for (const f of readdirSync(pagesDir).filter((x) => x.endsWith(".html"))) {
+          const fp = join(pagesDir, f);
+          writeFileSync(fp, injectAllPaymentLinks(readFileSync(fp, "utf8")));
+        }
+      }
+    }
     built.push(v.id);
   }
 
@@ -53,7 +76,6 @@ export function buildAll() {
   writeFileSync(join(dist, "index.html"), hub);
 
   // Marketing static pages (must exist after `npm run build` for Render deploy)
-  const compare = expandCompareStack();
   const landings = buildHighConversionLandings();
   const thanks = buildThanksPage();
   const adTools = buildAdToolPages();

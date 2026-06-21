@@ -12,7 +12,7 @@ const COMPARISONS = [
       { name: "UptimeRobot", price: "Free tier", pros: ["50 monitors free", "Public status pages"] },
       { name: "Pingdom", price: "From $10/mo", pros: ["Enterprise features", "Detailed reports"] },
     ],
-    cta: { text: "Try StatusPing", sku: "basic-monthly" },
+    cta: { text: "Try StatusPing", sku: "basic-monthly", landing: "/go/uptime.html" },
   },
   {
     slug: "invoice-generators-freelancers",
@@ -23,7 +23,7 @@ const COMPARISONS = [
       { name: "Wave", price: "Free", pros: ["Full accounting", "US/Canada focus"] },
       { name: "FreshBooks", price: "From $19/mo", pros: ["Time tracking", "Client portal"] },
     ],
-    cta: { text: "Create invoice — BillSnap", sku: "pro-pdf" },
+    cta: { text: "Create invoice — BillSnap", sku: "pro-pdf", landing: "/go/invoice.html" },
   },
   {
     slug: "developer-api-toolkits",
@@ -33,11 +33,8 @@ const COMPARISONS = [
       { name: "PipeKit API", best: true, price: "From $9/mo", pros: ["UUID, hash, base64", "Generous free tier", "API key in minutes"] },
       { name: "Postman", price: "Free tier", pros: ["Full API platform", "Team collaboration"] },
     ],
-    cta: { text: "Get PipeKit API key", sku: "starter-monthly" },
+    cta: { text: "Get PipeKit API key", sku: "starter-monthly", landing: "/go/pipekit.html" },
   },
-];
-
-const EXTRA_COMPARISONS = [
   {
     slug: "lease-analyzer-tools",
     title: "Best Lease Analyzer Tools (2026)",
@@ -46,7 +43,7 @@ const EXTRA_COMPARISONS = [
       { name: "LeaseLens", best: true, price: "$7/report", pros: ["Instant red flags", "Rule-based", "No signup preview"] },
       { name: "LegalZoom", price: "Varies", pros: ["Attorney network", "Full legal services"] },
     ],
-    cta: { text: "Try LeaseLens", sku: "single-report" },
+    cta: { text: "Try LeaseLens", sku: "single-report", landing: "/go/lease.html" },
   },
   {
     slug: "nda-template-generators",
@@ -56,7 +53,31 @@ const EXTRA_COMPARISONS = [
       { name: "NDAGen", best: true, price: "$4 PDF", pros: ["Free preview", "Instant PDF", "Simple fields"] },
       { name: "Rocket Lawyer", price: "Subscription", pros: ["Attorney review", "Full library"] },
     ],
-    cta: { text: "Generate NDA", sku: "nda-pdf" },
+    cta: { text: "Generate NDA", sku: "nda-pdf", landing: "/go/nda.html" },
+  },
+  {
+    slug: "webhook-relay-tools",
+    title: "Webhook Relay & Testing Tools Compared",
+    intro: "Forward, replay, and debug webhooks for indie SaaS.",
+    items: [
+      { name: "HookRelay", best: true, price: "$7/mo", pros: ["Retry with backoff", "Dead-letter alerts", "Self-serve"] },
+      { name: "webhook.site", price: "Free", pros: ["Instant test URL", "No signup"] },
+      { name: "Svix", price: "From $25/mo", pros: ["Enterprise scale", "Full platform"] },
+    ],
+    cta: { text: "Try HookRelay", sku: "relay-monthly", landing: "/go/webhook.html" },
+  },
+];
+
+const EXTRA_COMPARISONS = [
+  {
+    slug: "meeting-cost-calculators",
+    title: "Meeting Cost Calculators Compared",
+    intro: "Show your team the true price of meetings.",
+    items: [
+      { name: "MeetingCost", best: true, price: "$5 report", pros: ["Shareable URL", "Free calculator", "Viral embed"] },
+      { name: "Spreadsheets", price: "Free", pros: ["Manual", "Flexible"] },
+    ],
+    cta: { text: "Calculate meeting cost", sku: "meeting-pro", landing: "/tools/meeting-cost-free.html" },
   },
 ];
 
@@ -113,7 +134,8 @@ th{background:#f5f5f5}.best{background:#eff6ff}
 </style></head><body>
 <h1>${c.title}</h1><p>${c.intro}</p>
 <table><tr><th>Tool</th><th>Pricing</th><th>Highlights</th></tr>${rows}</table>
-<a class="cta" href="{{PAY:${c.cta.sku}}}">${c.cta.text}</a>
+<a class="cta" href="${c.cta.landing ?? `{{PAY:${c.cta.sku}}}`}">${c.cta.text}</a>
+<a class="cta" href="{{PAY:${c.cta.sku}}}" style="background:#fff;color:#2563eb;border:2px solid #2563eb;margin-left:8px">Buy now →</a>
 <p class="disclaimer">Affiliate disclosure: We operate ${c.items.find((i) => i.best)?.name ?? "listed products"}. Comparisons updated automatically.</p>
 </body></html>`;
 }

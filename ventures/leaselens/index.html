@@ -26,6 +26,10 @@
   <button id="go">Analyze</button>
   <div id="out"></div>
   <p style="margin-top:24px"><a href="{{PAY:single-report}}">Full report — $7</a> · <a href="{{PAY:report-bundle}}">3 reports — $15</a></p>
+  <div style="position:fixed;bottom:0;left:0;right:0;background:#059669;color:#fff;padding:12px;text-align:center;font-size:14px">
+    Unlock full report · <a href="{{PAY:single-report}}" style="color:#fff;font-weight:700" onclick="fetch('/api/funnel/checkout_click',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({sku:'single-report',path:'/leaselens'})})">$7 →</a>
+    · <a href="/go/lease.html" style="color:#fff">Ad landing</a>
+  </div>
   <script>
     document.getElementById("go").onclick = async () => {
       const r = await fetch("/api/leaselens/analyze", {
