@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
+<title>Freelancer Memory Match — Wealth Engine Games</title>
+<meta name="description" content="Match freelancer tool pairs! Memory game for all ages featuring BillSnap, NDAGen, and more.">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#111827;color:#f3f4f6;font-family:system-ui,sans-serif;min-height:100vh;padding:12px;touch-action:manipulation;user-select:none}
+h1{font-size:1.15rem;text-align:center;margin-bottom:4px}
+.sub{font-size:.72rem;color:#9ca3af;text-align:center;margin-bottom:10px}
+#hud{display:flex;justify-content:center;gap:20px;font-size:.85rem;margin-bottom:10px}
+#hud span{color:#a78bfa;font-weight:700}
+#grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;max-width:360px;margin:0 auto}
+.card{aspect-ratio:1;background:#1f2937;border:2px solid #374151;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1.6rem;cursor:pointer;transition:.2s}
+.card:hover:not(.matched){border-color:#6366f1}
+.card.flipped,.card.matched{background:#312e81;border-color:#6366f1}
+.card.matched{opacity:.6;cursor:default}
+.card .back{color:#4b5563;font-size:.7rem;font-weight:700}
+#msg{text-align:center;font-size:.85rem;color:#9ca3af;margin:10px 0;min-height:1.2em}
+.btn{background:#6366f1;color:#fff;border:none;padding:10px 20px;border-radius:8px;font-weight:600;cursor:pointer;display:block;margin:8px auto}
+.ad{max-width:320px;margin:8px auto;background:#1f2937;border:1px dashed #374151;border-radius:6px;padding:8px;text-align:center;font-size:10px;color:#6b7280}
+.cta{font-size:11px;color:#9ca3af;text-align:center;margin-top:6px}
+.cta a{color:#818cf8;text-decoration:none}
+</style>
+</head>
+<body>
+<h1>🧠 Freelancer Memory Match</h1>
+<p class="sub">Find matching tool pairs — tap two cards</p>
+<div id="hud">Moves: <span id="moves">0</span> · Pairs: <span id="pairs">0</span>/8</div>
+<div id="grid"></div>
+<p id="msg">Find all 8 pairs!</p>
+<button class="btn" id="restart" style="display:none">Play Again</button>
+<div class="ad">AdSense placeholder — 320×50</div>
+<p class="cta">Tools for real work: <a href="/go/freelancer.html">Freelancer Stack</a> · <a href="/tools/index.html">Free calculators</a></p>
+<script>
+(function(){
+const icons=[
+  ['🧾','BillSnap'],['📄','NDAGen'],['📡','StatusPing'],['🔗','HookRelay'],
+  ['🔧','PipeKit'],['📊','MeetingCost'],['📋','LeaseLens'],['📦','Templates']
+];
+let cards=[],flipped=[],moves=0,matched=0,lock=false;
+
+function shuffle(a){for(let i=a.length-1;i>0;i--){const j=Math.random()*(i+1)|0;[a[i],a[j]]=[a[j],a[i]];}return a;}
+
+function build(){
+  const pairs=icons.flatMap((p,i)=>[{id:i,icon:p[0],name:p[1]},{id:i,icon:p[0],name:p[1]}]);
+  cards=shuffle(pairs);flipped=[];moves=0;matched=0;lock=false;
+  document.getElementById('moves').textContent=0;
+  document.getElementById('pairs').textContent=0;
+  document.getElementById('msg').textContent='Find all 8 pairs!';
+  document.getElementById('restart').style.display='none';
+  render();
+}
+
+function render(){
+  const g=document.getElementById('grid');g.innerHTML='';
+  cards.forEach((card,i)=>{
+    const el=document.createElement('div');
+    el.className='card'+(flipped.includes(i)||card.done?' flipped':'')+(card.done?' matched':'');
+    el.innerHTML=flipped.includes(i)||card.done?card.icon:'<span class="back">?</span>';
+    el.onclick=()=>tap(i);
+    g.appendChild(el);
+  });
+}
+
+function tap(i){
+  if(lock||flipped.includes(i)||cards[i].done)return;
+  flipped.push(i);render();
+  if(flipped.length===2){
+    lock=true;moves++;
+    document.getElementById('moves').textContent=moves;
+    const[a,b]=flipped;
+    if(cards[a].id===cards[b].id){
+      cards[a].done=cards[b].done=true;matched++;
+      document.getElementById('pairs').textContent=matched;
+      document.getElementById('msg').textContent='Match! '+cards[a].name;
+      flipped=[];lock=false;render();
+      if(matched===8){
+        document.getElementById('msg').textContent='🏆 You win in '+moves+' moves!';
+        document.getElementById('restart').style.display='block';
+      }
+    }else{
+      document.getElementById('msg').textContent='No match — try again';
+      setTimeout(()=>{flipped=[];lock=false;render();},700);
+    }
+  }
+}
+
+document.getElementById('restart').onclick=build;
+build();
+})();
+</script>
+</body>
+</html>
