@@ -126,7 +126,7 @@ const CAMPAIGNS = [
       { kw: "stripe webhook retry service", h1: "Stripe Webhook Retry", h2: "25K Events/mo", desc: "Production-grade relay. LAUNCH25 at checkout." },
     ],
     sku: "hookrelay-pro",
-    finalUrlPath: "/go/webhook.html?utm_source=google&utm_campaign=hookrelay-dlq",
+    finalUrlPath: "/go/hookrelay-dlq.html?utm_source=google&utm_campaign=hookrelay-dlq",
   },
 ];
 

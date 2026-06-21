@@ -6,8 +6,8 @@ Ideas are ranked by Idea Guy each cycle. Research Guy validates; Realistic Guy k
 
 | ID | Idea | Venture | Est. $/mo | Score | Status | Notes |
 |----|------|---------|-----------|-------|--------|-------|
-| WE-20260621-freelancer-stack | Freelancer Revenue Stack ($29/mo sub + $49 bundle) | billsnap + pdf-factory + ndagen | 15k→50k | 24/25 | **IN_PROGRESS** | Cycle 2: stack-unlimited SKU, /go/stack, 10 industry pSEO, bundle page |
-| WE-20260621-hookrelay-dlq | HookRelay DLQ Pro — webhook retry + dead letter at $29/mo | hookrelay | 10k→50k | 23/25 | **IN_PROGRESS** | Cycle 2: hookrelay-pro SKU, landing upgrade, 2 webhook SEO pages |
+| WE-20260621-freelancer-stack | Freelancer Revenue Stack ($29/mo sub + $49 bundle) | billsnap + pdf-factory + ndagen | 15k→50k | 24/25 | **SHIPPED** | `/bundles/freelancer-stack`, `/go/stack`, `/go/freelancer` |
+| WE-20260621-hookrelay-dlq | HookRelay DLQ Pro — webhook retry + dead letter at $29/mo | hookrelay | 10k→50k | 23/25 | **SHIPPED** | `/hookrelay/pricing`, `/go/hookrelay-dlq`, `/go/webhook` |
 | WE-20260621-devwatch-bundle | DevWatch — uptime + SSL + cron bundle at $39/mo | statusping | 8k→25k | 21/25 | Candidate | Brief: `board/briefs/WE-20260621-devwatch-bundle.md` |
 | WE-20260621-billsnap-sub-pivot | BillSnap reprice unlimited $12→$29/mo + industry pSEO | billsnap | 5k→20k | 23/25 | Candidate | 320K/mo invoice search volume; MicroGaps validated |
 | WE-20260621-pipekit-pseo | PipeKit integration pages ("{lang} json validator api") | devtools-api | 5k→30k | 21/25 | Candidate | Brief: `board/briefs/WE-20260621-pipekit-metered.md` |
