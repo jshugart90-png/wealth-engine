@@ -2,15 +2,20 @@
 <title>TemplateForge — Business Document Kits</title>
 <meta name="description" content="Print-ready business templates for freelancers and small teams. Instant download.">
 <style>
-body{font-family:system-ui,sans-serif;background:#fafafa;margin:0;padding:40px 20px;color:#111}
+body{font-family:system-ui,sans-serif;background:#fafafa;margin:0;padding:40px 20px 80px;color:#111}
 h1{text-align:center} .sub{text-align:center;color:#666;margin-bottom:32px}
 .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:20px;max-width:900px;margin:0 auto}
-.card{background:#fff;border:1px solid #ddd;border-radius:8px;padding:24px;text-decoration:none;color:inherit}
-.card:hover{border-color:#2563eb}.price{color:#2563eb;font-weight:bold;margin-top:12px;display:block}
+.card{background:#fff;border:1px solid #ddd;border-radius:8px;padding:24px;text-decoration:none;color:inherit;display:block}
+.card:hover{border-color:#2563eb;transform:translateY(-2px)}.price{color:#2563eb;font-weight:bold;margin-top:12px;display:block}
+.badge{background:#eab308;color:#000;font-size:11px;padding:4px 10px;border-radius:20px;display:inline-block;margin-bottom:12px;font-weight:700}
+.promo{text-align:center;margin-bottom:24px}
 </style></head><body>
+<div style="background:#0f172a;color:#e2e8f0;padding:10px;text-align:center;font-size:13px"><strong style="color:#eab308">LAUNCH25</strong> · <a href="/go/templates.html" style="color:#22c55e">Templates landing →</a> · <a href="/go/invoice.html" style="color:#22c55e">Invoice $3</a></div>
 <h1>TemplateForge</h1><p class="sub">Business document kits — no subscription, instant delivery</p>
-<div class="grid"><a class="card" href="{{PAY:smb-compliance-pack}}">
-      <h2>SMB Compliance Starter Pack</h2><p>3 print-ready templates</p><span class="price">$19</span></a><a class="card" href="{{PAY:freelancer-kit}}">
-      <h2>Freelancer Business Kit</h2><p>3 print-ready templates</p><span class="price">$14</span></a><a class="card" href="{{PAY:hiring-pack}}">
-      <h2>Small Team Hiring Pack</h2><p>3 print-ready templates</p><span class="price">$12</span></a></div>
+<p class="promo"><span class="badge">LAUNCH25 — 25% off at checkout</span></p>
+<div class="grid"><a class="card" href="{{PAY:smb-compliance-pack}}" onclick="fetch('/api/funnel/checkout_click',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({sku:'smb-compliance-pack',path:'/templateforge'})})">
+      <h2>SMB Compliance Starter Pack</h2><p>3 print-ready templates for small business compliance</p><span class="price">$19</span></a><a class="card" href="{{PAY:freelancer-kit}}" onclick="fetch('/api/funnel/checkout_click',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({sku:'freelancer-kit',path:'/templateforge'})})">
+      <h2>Freelancer Business Kit</h2><p>Contracts, invoices, and client onboarding templates</p><span class="price">$14</span></a><a class="card" href="{{PAY:hiring-pack}}" onclick="fetch('/api/funnel/checkout_click',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({sku:'hiring-pack',path:'/templateforge'})})">
+      <h2>Small Team Hiring Pack</h2><p>Scorecards, offer letters, onboarding checklists</p><span class="price">$12</span></a></div>
+<p style="text-align:center;margin-top:32px"><a href="/bundles/freelancer-stack.html">Freelancer bundle (templates + BillSnap) →</a></p>
 </body></html>

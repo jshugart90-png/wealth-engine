@@ -34,15 +34,18 @@ const body = `# Overnight Build Summary — ${dateStr}
 ## Completed & ready to ship
 
 - Render production live with 9 ventures + Stripe (14 products, coupon LAUNCH25)
-- Google Ads CSV + Microsoft mirror updated with Render URLs and improved ad copy
-- High-conversion landings: \`/go/invoice\`, \`/go/lease\`, \`/go/uptime\`
+- Google Ads CSV + Microsoft mirror — 6 campaigns, $13/day cap (invoice, lease, uptime, nda, webhook, pipekit)
+- High-conversion landings: \`/go/invoice\`, \`/go/lease\`, \`/go/uptime\`, \`/go/nda\`, \`/go/webhook\`, \`/go/pipekit\`, \`/go/templates\`
 - Bundle pages: \`/bundles/freelancer-stack\`, \`/bundles/dev-ops-stack\`, \`/bundles/landlord-tenant-stack\`
-- Ad-supported free tools: \`/tools/tip-calculator\`, \`/tools/meeting-cost-free\`
+- Ad-supported free tools: tip calculator, meeting cost, percentage calc, bill splitter, hourly rate
+- Referral + email capture: \`/refer.html\`, \`/join.html\` (funnel API)
+- CompareStack: 6 comparison pages with Stripe + /go landing CTAs
+- SEO programmatic pages: \`/p/*\` (30 keywords, 10/cycle in build)
+- RSS/product feeds: \`/feed.xml\`, \`/products.json\`
 - Privacy page for AdSense: \`/privacy.html\`
 - Thanks page with gtag conversion hook: \`/thanks.html\`
 - GoDaddy DNS guide: \`deploy/GODADDY_DNS.md\`
-- Ads import checklist: \`D:\\wealth-engine-data\\marketing\\ADS_IMPORT_CHECKLIST.md\`
-- Horseshoe promo bar in \`C:\\Users\\jshug\\Website\\index.html\` (needs GoDaddy upload)
+- Horseshoe promo bar updated in \`C:\\Users\\jshug\\Website\\index.html\` (needs GoDaddy upload)
 
 ---
 

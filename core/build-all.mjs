@@ -153,6 +153,7 @@ function buildPortfolioHub(ventureIds) {
   <a href="/bundles/freelancer-stack.html">📦 Freelancer bundle</a>
   <a href="/tools/bill-splitter.html">🔢 Bill splitter</a>
   <a href="/tools/tip-calculator.html">Tip calculator</a>
+  <a href="/join.html">📬 LAUNCH25 list</a>
   <a href="/comparestack/index.html">Compare tools</a>
 </div>
 <div class="grid">${cards}</div>
