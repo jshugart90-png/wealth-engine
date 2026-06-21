@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
+<title>Receipt Rush — Wealth Engine Games</title>
+<meta name="description" content="Catch falling receipts before they hit the ground! Arcade game for all ages.">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#fef3c7;color:#1c1917;font-family:system-ui,sans-serif;overflow:hidden;touch-action:none;user-select:none}
+#wrap{display:flex;flex-direction:column;align-items:center;min-height:100vh;padding:8px}
+h1{font-size:1.15rem;margin:4px 0}
+.sub{font-size:.72rem;color:#78716c;text-align:center;margin-bottom:4px}
+#hud{font-size:.85rem;margin-bottom:4px}
+#hud span{color:#b45309;font-weight:700}
+canvas{border-radius:10px;background:#fffbeb;max-width:100%;touch-action:none;border:2px solid #fcd34d}
+#msg{font-size:.82rem;color:#78716c;margin:4px;min-height:1.2em}
+.btn{background:#d97706;color:#fff;border:none;padding:9px 18px;border-radius:8px;font-weight:600;cursor:pointer;margin:4px}
+.ad{width:100%;max-width:320px;background:#fff;border:1px dashed #fcd34d;border-radius:6px;padding:8px;text-align:center;font-size:10px;color:#a8a29e;margin:6px 0}
+.cta{font-size:11px;color:#78716c;text-align:center;margin-top:4px}
+.cta a{color:#b45309;text-decoration:none}
+</style>
+</head>
+<body>
+<div id="wrap">
+<h1>🧾 Receipt Rush</h1>
+<p class="sub">Move the basket — catch receipts, dodge crumpled ones!</p>
+<div id="hud">Score: <span id="score">0</span> · Missed: <span id="missed">0</span>/5</div>
+<canvas id="c" width="360" height="480"></canvas>
+<p id="msg">Drag or tap to move the basket</p>
+<button class="btn" id="restart" style="display:none">Play Again</button>
+<div class="ad">AdSense placeholder — 320×50</div>
+<p class="cta">Real receipts? <a href="/go/receipt.html">PDF Receipt Generator</a> · <a href="/go/invoice.html">BillSnap</a></p>
+</div>
+<script>
+(function(){
+const c=document.getElementById('c'),ctx=c.getContext('2d');
+const W=360,H=480;
+let basket=180,items=[],spawnT=0,score=0,missed=0,gameOver=false;
+
+function reset(){
+  basket=W/2-30;items=[];spawnT=0;score=0;missed=0;gameOver=false;
+  document.getElementById('score').textContent=0;
+  document.getElementById('missed').textContent=0;
+  document.getElementById('restart').style.display='none';
+  document.getElementById('msg').textContent='Drag or tap to move the basket';
+}
+
+function spawn(){
+  const bad=Math.random()<0.25;
+  items.push({x:20+Math.random()*(W-40),y:-20,vy:2+Math.random()*2,bad,rot:0});
+}
+
+function endGame(){
+  gameOver=true;
+  document.getElementById('msg').textContent='Game Over! Score: '+score;
+  document.getElementById('restart').style.display='inline-block';
+}
+
+function update(){
+  if(gameOver)return;
+  spawnT++;
+  if(spawnT>35){spawnT=0;spawn();}
+  items.forEach((it,i)=>{
+    it.y+=it.vy;it.rot+=0.05;
+    if(it.y>H-50&&it.y<H-30&&it.x>basket&&it.x<basket+60){
+      items.splice(i,1);
+      if(it.bad){score=Math.max(0,score-10);document.getElementById('msg').textContent='Crumpled! -10';}
+      else{score+=15;document.getElementById('msg').textContent='Caught! +15';}
+      document.getElementById('score').textContent=score;
+    }else if(it.y>H){
+      items.splice(i,1);
+      if(!it.bad){missed++;document.getElementById('missed').textContent=missed;if(missed>=5)endGame();}
+    }
+  });
+}
+
+function draw(){
+  ctx.fillStyle='#fffbeb';ctx.fillRect(0,0,W,H);
+  ctx.fillStyle='#fcd34d';ctx.fillRect(0,H-20,W,20);
+  items.forEach(it=>{
+    ctx.save();ctx.translate(it.x,it.y);ctx.rotate(it.rot);
+    if(it.bad){ctx.fillStyle='#78716c';ctx.font='20px system-ui';ctx.fillText('🗑️',-10,5);}
+    else{ctx.fillStyle='#fff';ctx.fillRect(-14,-18,28,36);ctx.strokeStyle='#d6d3d1';ctx.strokeRect(-14,-18,28,36);ctx.fillStyle='#b45309';ctx.font='9px system-ui';ctx.fillText('$',-3,2);}
+    ctx.restore();
+  });
+  ctx.fillStyle='#d97706';ctx.beginPath();ctx.moveTo(basket,H-45);ctx.lineTo(basket+60,H-45);ctx.lineTo(basket+50,H-25);ctx.lineTo(basket+10,H-25);ctx.closePath();ctx.fill();
+}
+
+function loop(){update();draw();requestAnimationFrame(loop);}
+reset();loop();
+
+function move(x){basket=Math.max(0,Math.min(W-60,x-30));}
+c.addEventListener('mousemove',e=>{if(gameOver)return;const r=c.getBoundingClientRect();move((e.clientX-r.left)/r.width*W);});
+c.addEventListener('touchmove',e=>{e.preventDefault();if(gameOver)return;const r=c.getBoundingClientRect();move((e.touches[0].clientX-r.left)/r.width*W);},{passive:false});
+c.addEventListener('click',e=>{if(gameOver)return;const r=c.getBoundingClientRect();move((e.clientX-r.left)/r.width*W);});
+document.getElementById('restart').onclick=reset;
+})();
+</script>
+</body>
+</html>
