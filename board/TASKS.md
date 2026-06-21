@@ -9,7 +9,7 @@ Status: `todo` | `in_progress` | `blocked` | `done`
 | T-001 | Deploy wealth-engine to Render; verify `/api/health` | Deploy Guy | todo | Live: https://wealth-engine-0qlj.onrender.com |
 | T-002 | Point custom domain + update `PUBLIC_BASE_URL` + Stripe webhook | Deploy Guy | blocked | Human: CNAME `tools.horseshoeroundme.com` → Render (see deploy/GODADDY_DNS.md) |
 | T-003 | Import `google-ads-import.csv` from `D:\wealth-engine-data\marketing\ads\` | Marketing Guy | blocked | Human: 5-min import — see ADS_IMPORT_CHECKLIST.md |
-| T-004 | Optimize BillSnap `/go/invoice` landing + LAUNCH25 coupon in ads copy | Marketing Guy + Code Cracker Guy | done | 6 /go/* landings + expanded ads CSV |
+| T-004 | Optimize BillSnap `/go/invoice` landing + LAUNCH25 coupon in ads copy | Marketing Guy + Code Cracker Guy | in_progress | 6 /go/* landings + expanded ads CSV |
 | T-005 | Run orchestrator on 180m interval; confirm ramp-report.json updates | Final Boss | in_progress | Render daemon + local MM daemon running |
 | T-006 | Deploy horseshoeroundme.com cross-promo bar | Marketing Guy | in_progress | Promo bar in Website/index.html — upload to GoDaddy (NOT Netlify) |
 | T-007 | AdSense free tools + privacy page | Code Cracker Guy | done | 4 free tools + /privacy.html |
