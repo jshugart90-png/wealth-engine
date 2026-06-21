@@ -5,6 +5,7 @@ import { getRoot, getDataRoot, loadEnv } from "./env.mjs";
 import { getDb, logEvent } from "./db.mjs";
 import { handleStripeWebhook, validateApiKey, redeemLicense, getPaymentLink } from "./commerce.mjs";
 import { trackReferralClick } from "./marketing/referrals.mjs";
+import { trackFunnel } from "./pipeline/funnel.mjs";
 import { runUptimeChecks } from "../ventures/statusping/checker.mjs";
 import { handleApiRequest } from "../ventures/devtools-api/handlers.mjs";
 import { handleBillSnap } from "../ventures/billsnap/handlers.mjs";
@@ -73,6 +74,23 @@ export function createAppServer() {
         const result = await handleLeaseLens(url.pathname, req, url);
         res.writeHead(result.status ?? 200, { "Content-Type": "application/json" });
         res.end(JSON.stringify(result.body));
+        return;
+      }
+
+      if (url.pathname.startsWith("/api/funnel/") && req.method === "POST") {
+        const chunks = [];
+        for await (const c of req) chunks.push(c);
+        const body = Buffer.concat(chunks).toString();
+        let data = {};
+        try {
+          data = JSON.parse(body || "{}");
+        } catch {
+          /* ignore malformed body */
+        }
+        const type = url.pathname.replace("/api/funnel/", "");
+        trackFunnel(type, data);
+        res.writeHead(200, { "Content-Type": "application/json" });
+        res.end('{"ok":true}');
         return;
       }
 

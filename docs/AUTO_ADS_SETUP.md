@@ -4,6 +4,8 @@
 
 Campaign CSV: `D:\wealth-engine-data\marketing\ads\google-ads-import.csv`
 
+**Quick checklist:** `D:\wealth-engine-data\marketing\ADS_IMPORT_CHECKLIST.md` (~5 min)
+
 Microsoft Ads mirror: `D:\wealth-engine-data\marketing\ads\microsoft-ads-import.csv`
 
 ---
@@ -27,10 +29,10 @@ Microsoft Ads mirror: `D:\wealth-engine-data\marketing\ads\microsoft-ads-import.
 3. Click **+** → **Upload a file**.
 4. Choose **Add** (new campaigns) or **Edit** if updating.
 5. Select `D:\wealth-engine-data\marketing\ads\google-ads-import.csv`.
-6. Review preview — expect **3 campaigns**:
-   - WE - Invoice Generator (~$12/day suggested)
-   - WE - Lease Analyzer (~$8/day)
-   - WE - Uptime Monitor (~$6/day)
+6. Review preview — expect **3 campaigns** (Final URLs use `/go/invoice`, `/go/lease`, `/go/uptime`):
+   - WE - Invoice Generator (~$5/day suggested)
+   - WE - Lease Analyzer (~$3/day)
+   - WE - Uptime Monitor (~$2/day)
 7. Fix any URL errors (must be `https://` and match live domain).
 8. **Apply** → set account-level daily budget cap so total ≤ **$10/day** (~$300/mo).
 9. Enable campaigns when ready.

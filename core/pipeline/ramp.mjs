@@ -6,6 +6,8 @@ import { buildGoogleAdsCsv } from "./ads-export.mjs";
 import { buildOutreachPack } from "./outreach.mjs";
 import { ensureLaunchCoupon } from "./coupons.mjs";
 import { buildHighConversionLandings } from "./conversion-landings.mjs";
+import { buildThanksPage } from "../marketing/thanks-page.mjs";
+import { buildAdToolPages } from "../marketing/ad-tools.mjs";
 import { getFunnelMetrics } from "./funnel.mjs";
 import { logEvent } from "../db.mjs";
 
@@ -21,6 +23,8 @@ export async function runGrowthRamp() {
 
   results.coupon = await ensureLaunchCoupon();
   results.landings = buildHighConversionLandings();
+  results.thanks = buildThanksPage();
+  results.adTools = buildAdToolPages();
   results.ads = buildGoogleAdsCsv();
   results.outreach = buildOutreachPack();
   results.daily = await runDailyWealthCycle();
@@ -31,9 +35,9 @@ export async function runGrowthRamp() {
     targetUsd: growth.targetMonthlyUsd,
     metrics: results.metrics,
     nextActions: [
-      "Import google-ads-import.csv into Google Ads (~$26/day suggested)",
+      "Import google-ads-import.csv into Google Ads (~$10/day cap — see ADS_IMPORT_CHECKLIST.md)",
       "Post POST_TODAY.md content to listed platform",
-      "Deploy to custom domain (see docs/ACCESS_NEEDED.md)",
+      "Deploy custom domain: deploy/GODADDY_DNS.md (tools.horseshoeroundme.com)",
       "Share /go/invoice, /go/lease, /go/uptime links",
     ],
     results,

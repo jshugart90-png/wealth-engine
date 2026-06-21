@@ -19,7 +19,9 @@
     "agent:step": "node scripts/agent-auto-runner.mjs",
     "agent:chain": "node scripts/run-full-agent-chain.mjs",
     "agent:notify": "node scripts/notify-approval.mjs",
-    "daemon:mm": "node scripts/money-machine-daemon.mjs"
+    "daemon:mm": "node scripts/money-machine-daemon.mjs",
+    "summary:overnight": "node scripts/write-overnight-summary.mjs",
+    "install:8am-summary": "powershell -ExecutionPolicy Bypass -File deploy/install-8am-summary-task.ps1"
   },
   "engines": { "node": ">=20" },
   "dependencies": {

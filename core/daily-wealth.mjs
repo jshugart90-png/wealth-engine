@@ -10,6 +10,8 @@ import { buildDirectoryPack } from "./marketing/directory-pack.mjs";
 import { expandCompareStack } from "../ventures/comparestack/generator.mjs";
 import { buildBundleLandings } from "./marketing/bundles.mjs";
 import { buildEmbedWidgets } from "./marketing/embeds.mjs";
+import { buildAdToolPages } from "./marketing/ad-tools.mjs";
+import { buildThanksPage } from "./marketing/thanks-page.mjs";
 import { runPostCheckoutUpsell } from "./marketing/upsell-email.mjs";
 import { logEvent } from "./db.mjs";
 
@@ -32,6 +34,8 @@ export async function runDailyWealthCycle() {
   results.directories = buildDirectoryPack();
   results.compareExpand = expandCompareStack();
   results.bundles = buildBundleLandings();
+  results.adTools = buildAdToolPages();
+  results.thanks = buildThanksPage();
   results.embeds = buildEmbedWidgets();
 
   try {

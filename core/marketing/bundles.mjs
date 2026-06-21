@@ -36,12 +36,17 @@ export function buildBundleLandings() {
     const links = b.skus.map((s) => getPaymentLink(s)).filter(Boolean);
     const html = `<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>${b.title} — Bundle</title>
+<meta name="description" content="${b.desc}. Use code LAUNCH25 at checkout.">
 <style>body{font-family:system-ui;max-width:640px;margin:40px auto;padding:20px}h1{color:#2563eb}
-.btn{display:block;background:#2563eb;color:#fff;text-align:center;padding:14px;margin:10px 0;text-decoration:none;border-radius:8px}</style></head><body>
+.badge{background:#eab308;color:#000;font-size:11px;padding:4px 10px;border-radius:20px;display:inline-block;margin-bottom:12px;font-weight:700}
+.btn{display:block;background:#2563eb;color:#fff;text-align:center;padding:14px;margin:10px 0;text-decoration:none;border-radius:8px;font-weight:600}
+.btn.secondary{background:#fff;color:#2563eb;border:2px solid #2563eb}</style></head><body>
+<span class="badge">LAUNCH25 — 25% off at checkout</span>
 <h1>${b.title}</h1><p>${b.desc}</p>
 <p>Buy each product — instant access:</p>
 ${links.map((l, i) => `<a class="btn" href="${l}">Get part ${i + 1} →</a>`).join("")}
-<p><a href="/">← All products</a></p></body></html>`;
+<a class="btn secondary" href="${base}/go/invoice.html">Or start with Invoice PDF $3 →</a>
+<p style="margin-top:24px"><a href="${base}/">← All products</a></p></body></html>`;
     writeFileSync(join(dist, `${b.slug}.html`), html);
   }
   return { bundles: BUNDLES.length };

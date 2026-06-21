@@ -1,10 +1,11 @@
 {
-  "liveAt": "https://large-weeks-kick.loca.lt",
+  "liveAt": "https://wealth-engine-0qlj.onrender.com",
   "localAt": "http://localhost:8787",
-  "stripeWebhook": "https://large-weeks-kick.loca.lt/webhooks/stripe",
-  "paymentLinks": 11,
+  "stripeWebhook": "https://wealth-engine-0qlj.onrender.com/webhooks/stripe",
+  "customDomainTarget": "tools.horseshoeroundme.com",
+  "paymentLinks": 14,
   "daemonRunning": true,
-  "orchestratorIntervalHours": 6,
+  "orchestratorIntervalHours": 3,
   "startupScript": "%APPDATA%\\Microsoft\\Windows\\Start Menu\\Programs\\Startup\\WealthEngine.ps1",
-  "generatedAt": "2026-06-21T02:53:00Z"
+  "generatedAt": "2026-06-21T03:45:00Z"
 }

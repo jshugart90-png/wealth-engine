@@ -119,6 +119,24 @@
       "title": "Best Free Dev API Tools 2026",
       "venture": "comparestack",
       "sku": "starter-monthly"
+    },
+    {
+      "slug": "stripe-invoice-generator",
+      "title": "Stripe Invoice Generator Alternative",
+      "venture": "billsnap",
+      "sku": "pro-pdf"
+    },
+    {
+      "slug": "webhook-testing-tool-free",
+      "title": "Free Webhook Testing Tool",
+      "venture": "hookrelay",
+      "sku": "relay-monthly"
+    },
+    {
+      "slug": "pipekit-api-pricing",
+      "title": "PipeKit API Pricing vs Postman",
+      "venture": "devtools-api",
+      "sku": "starter-monthly"
     }
   ],
   "pagesPerCycle": 10

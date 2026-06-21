@@ -55,6 +55,20 @@ curl https://your-service.onrender.com/api/health
 
 Expect `{"ok":true,...}`.
 
+## Custom domain (GoDaddy + Render)
+
+**Full guide:** [`deploy/GODADDY_DNS.md`](GODADDY_DNS.md)
+
+Quick steps:
+
+1. Render → Settings → Custom Domains → add `tools.horseshoeroundme.com`
+2. GoDaddy DNS → CNAME `tools` → `wealth-engine-0qlj.onrender.com`
+3. Update env: `PUBLIC_BASE_URL`, `STRIPE_SUCCESS_URL`, `STRIPE_CANCEL_URL`
+4. Stripe webhook → new domain URL
+5. Re-run orchestrator to refresh ads CSV
+
+**Skip Netlify** — Horseshoe site uploads via GoDaddy file manager.
+
 ## Local equivalent
 
 ```powershell
