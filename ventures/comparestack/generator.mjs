@@ -121,6 +121,50 @@ const COMPARISONS = [
     ],
     cta: { text: "Create invoice free", sku: "pro-pdf", landing: "/go/invoice.html" },
   },
+  {
+    slug: "status-page-tools",
+    title: "Best Status Page Tools for SaaS (2026)",
+    intro: "Public incident pages vs white-label agency reseller platforms.",
+    items: [
+      { name: "StatusPing Agency", best: true, price: "$49/mo", pros: ["10 client workspaces", "White-label pages", "Reseller kit"] },
+      { name: "Atlassian Statuspage", price: "From $29/mo", pros: ["Enterprise integrations", "Component subscriptions"] },
+      { name: "Cachet", price: "Free (self-hosted)", pros: ["Open source", "Requires DevOps"] },
+    ],
+    cta: { text: "Try StatusPing Agency", sku: "agency-monthly", landing: "/go/statusping-agency.html" },
+  },
+  {
+    slug: "freelancer-tax-software",
+    title: "Freelancer Tax Software Compared (2026)",
+    intro: "1099 tracking, quarterly estimates, and state compliance — free tools vs paid.",
+    items: [
+      { name: "Wealth Engine Tools", best: true, price: "Free", pros: ["1099 tax estimator", "Quarterly deadline calendar", "State compliance guides"] },
+      { name: "TurboTax Self-Employed", price: "From $119/yr", pros: ["Full filing", "Mileage tracking"] },
+      { name: "QuickBooks Self-Employed", price: "From $15/mo", pros: ["Expense sync", "Mileage auto-track"] },
+    ],
+    cta: { text: "Free 1099 tax estimator", sku: "freelancer-kit", landing: "/tools/1099-tax-estimator.html" },
+  },
+  {
+    slug: "white-label-monitoring-agency",
+    title: "White Label Monitoring for Agencies Compared",
+    intro: "Resell uptime, SSL, and cron monitoring under your brand.",
+    items: [
+      { name: "StatusPing Agency", best: true, price: "$49/mo", pros: ["10 workspaces", "100 monitors", "Branded status pages"] },
+      { name: "PerkyDash", price: "€49/mo", pros: ["2 clients included", "EU hosting"] },
+      { name: "UptimeRobot", price: "From $7/mo", pros: ["Cheap monitors", "No white-label"] },
+    ],
+    cta: { text: "Start agency tier", sku: "agency-monthly", landing: "/go/statusping-agency.html" },
+  },
+  {
+    slug: "1099-filing-tools",
+    title: "1099 Filing Tools for Small Business Compared",
+    intro: "Track contractor payments, generate 1099-NEC forms, and stay compliant.",
+    items: [
+      { name: "BillSnap + Compliance Pack", best: true, price: "$19 pack", pros: ["Invoice tracking", "W-9 templates", "State guides"] },
+      { name: "Track1099", price: "From $5/form", pros: ["E-file to IRS", "State filing add-on"] },
+      { name: "QuickBooks", price: "From $30/mo", pros: ["Full bookkeeping", "1099 e-file"] },
+    ],
+    cta: { text: "Get compliance pack", sku: "smb-compliance-pack", landing: "/go/compliance.html" },
+  },
 ];
 
 const EXTRA_COMPARISONS = [
@@ -177,9 +221,17 @@ function pageHtml(c) {
       (i) => `<tr${i.best ? ' class="best"' : ""}><td>${i.name}${i.best ? " ★" : ""}</td><td>${i.price}</td><td><ul>${i.pros.map((p) => `<li>${p}</li>`).join("")}</ul></td></tr>`
     )
     .join("");
+  const jsonLd = JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: c.title,
+    description: c.intro,
+    about: c.items.map((i) => i.name),
+  });
   return `<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>${c.title}</title>
-<meta name="description" content="${c.intro}">
+<title>${c.title} — CompareStack</title>
+<meta name="description" content="${c.intro} Updated 2026. Free comparison + checkout links.">
+<script type="application/ld+json">${jsonLd}</script>
 <style>
 body{font-family:system-ui,sans-serif;max-width:800px;margin:40px auto;padding:0 20px;color:#222}
 table{width:100%;border-collapse:collapse;margin:24px 0}td,th{border:1px solid #ddd;padding:12px;text-align:left;vertical-align:top}
@@ -191,6 +243,7 @@ th{background:#f5f5f5}.best{background:#eff6ff}
 <table><tr><th>Tool</th><th>Pricing</th><th>Highlights</th></tr>${rows}</table>
 <a class="cta" href="${c.cta.landing ?? `{{PAY:${c.cta.sku}}}`}">${c.cta.text}</a>
 <a class="cta" href="{{PAY:${c.cta.sku}}}" style="background:#fff;color:#2563eb;border:2px solid #2563eb;margin-left:8px">Buy now →</a>
+<p style="margin-top:20px;font-size:14px"><a href="/join.html?utm_source=compare-${c.slug}">Get deal alerts</a> · <a href="/tools/">Free tools</a> · <a href="/p/freelancer-compliance-by-state.html">State compliance</a></p>
 <p class="disclaimer">Affiliate disclosure: We operate ${c.items.find((i) => i.best)?.name ?? "listed products"}. Comparisons updated automatically.</p>
 </body></html>`;
 }

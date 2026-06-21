@@ -749,6 +749,34 @@
       "title": "1099 Late Filing Penalty Calculator",
       "venture": "pdf-factory",
       "sku": "1099-suite-pro"
+    },
+    {
+      "slug": "freelancer-quarterly-tax-dates",
+      "title": "Freelancer Quarterly Tax Due Dates 2026",
+      "metaDescription": "2026 estimated tax due dates: Apr 15, Jun 15, Sep 15, Jan 15. Free calculator + state guides.",
+      "venture": "billsnap",
+      "sku": "pro-pdf"
+    },
+    {
+      "slug": "dead-letter-queue-webhook-tool",
+      "title": "Dead Letter Queue Webhook Tool",
+      "metaDescription": "Webhook DLQ with retry, replay, and email alerts. HookRelay Pro $29/mo for indie SaaS.",
+      "venture": "hookrelay",
+      "sku": "hookrelay-pro"
+    },
+    {
+      "slug": "freelancer-day-rate-calculator",
+      "title": "Freelancer Day Rate Calculator",
+      "metaDescription": "Convert day rate to hourly and monthly income. Free tool for project pricing.",
+      "venture": "billsnap",
+      "sku": "pro-pdf"
+    },
+    {
+      "slug": "agency-webhook-monitoring-stack",
+      "title": "Agency Webhook Monitoring Stack",
+      "metaDescription": "Webhook DLQ + uptime + SSL monitoring bundle for dev agencies. DevWatch $39/mo.",
+      "venture": "statusping",
+      "sku": "devwatch-monthly"
     }
   ],
   "pagesPerCycle": 10

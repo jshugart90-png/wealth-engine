@@ -227,9 +227,10 @@ export function buildHighConversionLandings() {
     const pay = getPaymentLink(p.sku) ?? "#";
     const altPay = p.altSku ? getPaymentLink(p.altSku) ?? "#" : null;
     const html = `<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>${p.headline}</title>
+<title>${p.headline} — LAUNCH25 Deal</title>
 <meta property="og:title" content="${p.headline}">
-<meta name="description" content="${p.sub}">
+<meta name="description" content="${p.sub} Use code LAUNCH25. No signup for free preview.">
+<script type="application/ld+json">${JSON.stringify({ "@context": "https://schema.org", "@type": "SoftwareApplication", name: p.headline, description: p.sub, offers: { "@type": "Offer", price: "0", priceCurrency: "USD" } })}</script>
 <style>
 *{box-sizing:border-box;margin:0;padding:0}body{font-family:system-ui,sans-serif;background:linear-gradient(135deg,#0f172a,#1e3a5f);color:#fff;min-height:100vh;display:flex;align-items:center;justify-content:center;padding:20px}
 .card{max-width:480px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.15);border-radius:16px;padding:36px;text-align:center}

@@ -5,18 +5,47 @@ import { getRoot, loadEnv, getPublicBaseUrl } from "../env.mjs";
 const AD_SLOT = (label) =>
   `<div class="ad-slot" data-adsense-placeholder="${label}" style="min-height:90px;background:#1e293b;border:1px dashed #475569;border-radius:8px;display:flex;align-items:center;justify-content:center;color:#64748b;font-size:12px;margin:20px 0">Ad slot — replace after AdSense approval</div>`;
 
-function adToolsShell(title, body, desc) {
+const EMAIL_CAPTURE = (source) => `<div class="email-cap" style="background:#eff6ff;border:1px solid #bfdbfe;border-radius:8px;padding:16px;margin:24px 0">
+<strong style="display:block;margin-bottom:8px">Get freelancer tax reminders + LAUNCH25 deals</strong>
+<form onsubmit="event.preventDefault();fetch('/api/funnel/email_capture',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({email:this.email.value,path:'${source}'})}).then(()=>{this.querySelector('.ok').style.display='block';this.reset()});">
+<input type="email" name="email" placeholder="you@email.com" required style="width:100%;padding:10px;border:1px solid #cbd5e1;border-radius:6px;margin-bottom:8px;font-size:16px">
+<button type="submit" style="width:100%;padding:10px;background:#2563eb;color:#fff;border:none;border-radius:6px;font-weight:600;cursor:pointer">Join free list</button>
+<p class="ok" style="display:none;color:#059669;margin-top:8px;font-size:14px">✓ You're on the list — check inbox for LAUNCH25.</p>
+</form></div>`;
+
+const INTERNAL_LINKS = `<div style="font-size:14px;margin-top:24px;padding-top:16px;border-top:1px solid #e2e8f0">
+<strong>Related tools:</strong>
+<a href="/tools/1099-tax-estimator.html">1099 tax</a> ·
+<a href="/tools/hourly-rate-calculator.html">Hourly rate</a> ·
+<a href="/tools/payment-terms-calculator.html">Payment terms</a> ·
+<a href="/go/invoice.html">Invoice PDF</a> ·
+<a href="/p/freelancer-compliance-by-state.html">State compliance</a> ·
+<a href="/comparestack/">Compare tools</a>
+</div>`;
+
+function adToolsShell(title, body, desc, slug) {
   const base = getPublicBaseUrl();
+  const fileSlug = slug ?? title.toLowerCase().replace(/\s+/g, "-");
   const env = loadEnv();
   const adsense = env.GOOGLE_ADSENSE_CLIENT
     ? `<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${env.GOOGLE_ADSENSE_CLIENT}" crossorigin="anonymous"></script>`
     : "<!-- Set GOOGLE_ADSENSE_CLIENT in .env after AdSense approval -->";
+  const jsonLd = JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    name: title,
+    description: desc,
+    applicationCategory: "BusinessApplication",
+    offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
+    url: `${base}/tools/${fileSlug}.html`,
+  });
 
   return `<!DOCTYPE html>
 <html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>${title}</title>
+<title>${title} — Free Online Tool (2026)</title>
 <meta name="description" content="${desc}">
-<link rel="canonical" href="${base}/tools/${title.toLowerCase().replace(/\s+/g, "-")}.html">
+<link rel="canonical" href="${base}/tools/${fileSlug}.html">
+<script type="application/ld+json">${jsonLd}</script>
 ${adsense}
 <style>
 body{font-family:system-ui,sans-serif;max-width:640px;margin:0 auto;padding:24px 16px;line-height:1.5;color:#0f172a}
@@ -30,8 +59,10 @@ h1{font-size:clamp(24px,4vw,32px)}input,select{width:100%;padding:10px;margin:8p
 ${AD_SLOT("728x90")}
 ${body}
 ${AD_SLOT("300x250")}
-<div class="promo">Need a pro tool? <a href="${base}/go/invoice.html">Invoice PDF $3</a> · <a href="${base}/go/uptime.html">Uptime alerts $5/mo</a></div>
-<p style="margin-top:24px;font-size:13px"><a href="${base}/">← All Wealth Engine tools</a></p>
+${EMAIL_CAPTURE(`/tools/${fileSlug}`)}
+<div class="promo">Need a pro tool? <a href="${base}/go/invoice.html">Invoice PDF $3</a> · <a href="${base}/go/uptime.html">Uptime alerts $5/mo</a> · <a href="${base}/go/compliance.html">Compliance pack $19</a></div>
+${INTERNAL_LINKS}
+<p style="margin-top:24px;font-size:13px"><a href="${base}/tools/">← All free tools</a> · <a href="${base}/join.html?utm_source=tools-${fileSlug}">Email list</a></p>
 </body></html>`;
 }
 
@@ -370,6 +401,62 @@ freq.onchange=()=>{crout.textContent=freq.value;};crout.textContent=freq.value;
   );
   writeFileSync(join(dist, "cron-schedule-helper.html"), cronHelper);
 
+  const quarterlyDeadlines = adToolsShell(
+    "Quarterly Tax Deadline Calendar",
+    `<p style="font-size:14px;color:#475569">Federal estimated tax due dates for self-employed freelancers and 1099 contractors.</p>
+<ul id="dates" style="line-height:2;font-size:15px"></ul>
+<label>Days until next deadline</label>
+<div class="result" id="qout">—</div>
+<script>
+const deadlines=[
+  {label:'Q1 2026 (Jan–Mar income)',due:new Date('2026-04-15')},
+  {label:'Q2 2026 (Apr–Jun income)',due:new Date('2026-06-15')},
+  {label:'Q3 2026 (Jul–Sep income)',due:new Date('2026-09-15')},
+  {label:'Q4 2026 (Oct–Dec income)',due:new Date('2027-01-15')}
+];
+const now=new Date();let next=deadlines.find(d=>d.due>=now)||deadlines[deadlines.length-1];
+dates.innerHTML=deadlines.map(d=>'<li'+(d===next?' style="font-weight:700;color:#2563eb"':'')+'>'+d.label+': <strong>'+d.due.toLocaleDateString()+'</strong></li>').join('');
+const days=Math.ceil((next.due-now)/86400000);
+qout.textContent=days+' days until '+next.label.split('(')[0].trim();
+</script>`,
+    "2026 quarterly estimated tax due dates for freelancers — Q1 Apr 15, Q2 Jun 15, Q3 Sep 15, Q4 Jan 15.",
+    "quarterly-tax-deadline-calendar"
+  );
+  writeFileSync(join(dist, "quarterly-tax-deadline-calendar.html"), quarterlyDeadlines);
+
+  const paymentTracker = adToolsShell(
+    "1099 Payment Threshold Tracker",
+    `<label>Contractor name</label><input type="text" id="name" placeholder="Jane Doe LLC">
+<label>Payments YTD ($)</label><input type="number" id="paid" value="450" step="0.01">
+<label>Federal 1099 threshold</label><input type="number" id="threshold" value="600" step="0.01">
+<div class="result" id="p1099">$150 below threshold — no 1099 yet</div>
+<script>
+function track(){const p=+paid.value||0,t=+threshold.value||600,d=t-p;
+if(p>=t)p1099.textContent='⚠ 1099-NEC required — $'+p.toFixed(2)+' paid (over $'+t+')';
+else p1099.textContent='$'+d.toFixed(2)+' until $'+t+' threshold · track W-9 on file';}
+[paid,threshold].forEach(el=>el.oninput=track);track();
+</script>`,
+    "Track contractor payments toward the $600 1099-NEC threshold — free W-9 compliance helper.",
+    "1099-payment-threshold-tracker"
+  );
+  writeFileSync(join(dist, "1099-payment-threshold-tracker.html"), paymentTracker);
+
+  const dayRateCalc = adToolsShell(
+    "Day Rate to Hourly Calculator",
+    `<label>Day rate ($)</label><input type="number" id="dayrate" value="800" step="0.01">
+<label>Billable hours per day</label><input type="number" id="hours" value="8" step="0.5">
+<label>Working days per month</label><input type="number" id="days" value="18" min="1">
+<div class="result" id="drout">$100/hr · $14,400/mo</div>
+<script>
+function dr(){const d=+dayrate.value||0,h=Math.max(0.5,+hours.value||8),days=Math.max(1,+days.value||18);
+const hr=d/h;drout.textContent='$'+hr.toFixed(2)+'/hr · $'+(d*days).toFixed(0)+'/mo at '+days+' days';}
+[dayrate,hours,days].forEach(el=>el.oninput=dr);dr();
+</script>`,
+    "Convert freelance day rate to hourly and monthly income — compare project vs retainer pricing.",
+    "day-rate-to-hourly-calculator"
+  );
+  writeFileSync(join(dist, "day-rate-to-hourly-calculator.html"), dayRateCalc);
+
   const base = getPublicBaseUrl();
   const toolsIndex = `<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Free Business Calculators & Tools</title>
@@ -402,8 +489,11 @@ h1{font-size:clamp(28px,4vw,36px)}ul{padding-left:20px}li{margin:10px 0}a{color:
 <li><a href="/tools/rent-affordability-calculator.html">Rent Affordability Calculator</a></li>
 <li><a href="/tools/ssl-expiry-checker.html">SSL Expiry Checker</a></li>
 <li><a href="/tools/cron-schedule-helper.html">Cron Schedule Helper</a></li>
+<li><a href="/tools/quarterly-tax-deadline-calendar.html">Quarterly Tax Deadlines</a></li>
+<li><a href="/tools/1099-payment-threshold-tracker.html">1099 Threshold Tracker</a></li>
+<li><a href="/tools/day-rate-to-hourly-calculator.html">Day Rate to Hourly</a></li>
 </ul>
-<div class="promo">Need pro tools? <a href="${base}/go/invoice.html">Invoice PDF $3</a> · <a href="${base}/go/lease.html">Lease check $7</a> · <a href="${base}/go/uptime.html">Uptime $5/mo</a> · <a href="${base}/go/freelancer.html">Freelancer kit $14</a></div>
+<div class="promo">Need pro tools? <a href="${base}/go/invoice.html">Invoice PDF $3</a> · <a href="${base}/go/lease.html">Lease check $7</a> · <a href="${base}/go/uptime.html">Uptime $5/mo</a> · <a href="${base}/go/freelancer.html">Freelancer kit $14</a> · <a href="${base}/p/freelancer-compliance-by-state.html">State compliance guides</a></div>
 <p><a href="/">← Wealth Engine home</a></p>
 </body></html>`;
   writeFileSync(join(dist, "index.html"), toolsIndex);
@@ -414,5 +504,5 @@ h1{font-size:clamp(28px,4vw,36px)}ul{padding-left:20px}li{margin:10px 0}a{color:
 <p>Contact: orders@horseshoeroundme.com</p><p><a href="/">← Home</a></p></body></html>`;
   writeFileSync(join(getRoot(), "dist", "privacy.html"), privacy);
 
-  return { pages: ["tip-calculator", "meeting-cost-free", "percentage-calculator", "bill-splitter", "hourly-rate-calculator", "hourly-rate", "markup-calculator", "late-fee-calculator", "break-even-calculator", "discount-calculator", "unit-price-calculator", "profit-margin-calculator", "invoice-number-generator", "sales-tax-calculator", "payment-terms-calculator", "compound-interest-calculator", "overtime-pay-calculator", "roi-calculator", "1099-tax-estimator", "rent-affordability-calculator", "ssl-expiry-checker", "cron-schedule-helper", "tools-index", "privacy"] };
+  return { pages: ["tip-calculator", "meeting-cost-free", "percentage-calculator", "bill-splitter", "hourly-rate-calculator", "hourly-rate", "markup-calculator", "late-fee-calculator", "break-even-calculator", "discount-calculator", "unit-price-calculator", "profit-margin-calculator", "invoice-number-generator", "sales-tax-calculator", "payment-terms-calculator", "compound-interest-calculator", "overtime-pay-calculator", "roi-calculator", "1099-tax-estimator", "rent-affordability-calculator", "ssl-expiry-checker", "cron-schedule-helper", "quarterly-tax-deadline-calendar", "1099-payment-threshold-tracker", "day-rate-to-hourly-calculator", "tools-index", "privacy"] };
 }

@@ -1,4 +1,4 @@
-import { writeFileSync, mkdirSync, existsSync, readFileSync } from "fs";
+import { writeFileSync, mkdirSync, existsSync, readFileSync, readdirSync } from "fs";
 import { join } from "path";
 import { getRoot, getDataRoot, getPublicBaseUrl } from "../env.mjs";
 import { listAllSeoUrls } from "./seo-pages.mjs";
@@ -50,27 +50,39 @@ const STATIC_PATHS = [
   "/tools/discount-calculator.html",
   "/tools/break-even-calculator.html",
   "/tools/unit-price-calculator.html",
-  "/tools/index.html",
-  "/tools/hourly-rate.html",
+  "/tools/ssl-expiry-checker.html",
+  "/tools/cron-schedule-helper.html",
+  "/tools/quarterly-tax-deadline-calendar.html",
+  "/tools/1099-payment-threshold-tracker.html",
+  "/tools/day-rate-to-hourly-calculator.html",
+  "/tools/1099-tax-estimator.html",
+  "/tools/rent-affordability-calculator.html",
+  "/go/devwatch.html",
+  "/go/nda-team.html",
+  "/go/statusping-agency.html",
   "/privacy.html",
   "/join.html",
   "/refer.html",
   "/partners/index.html",
-  "/go/nda-team.html",
-  "/go/statusping-agency.html",
+  "/tools/hourly-rate.html",
   "/feed.xml",
   "/comparestack/index.html",
   "/meetingcost/index.html",
   "/ndagen/index.html",
   "/hookrelay/index.html",
-  "/comparestack/pages/uptime-monitoring-tools.html",
-  "/comparestack/pages/invoice-generators-freelancers.html",
-  "/comparestack/pages/developer-api-toolkits.html",
 ];
+
+function listCompareStackUrls() {
+  const pagesDir = join(getRoot(), "ventures", "comparestack", "pages");
+  if (!existsSync(pagesDir)) return [];
+  return readdirSync(pagesDir)
+    .filter((f) => f.endsWith(".html"))
+    .map((f) => `/comparestack/pages/${f}`);
+}
 
 export function buildSitemap() {
   const base = getPublicBaseUrl();
-  const urls = [...STATIC_PATHS, ...listAllSeoUrls()];
+  const urls = [...STATIC_PATHS, ...listCompareStackUrls(), ...listAllSeoUrls()];
   const xml = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 ${urls.map((u) => `  <url><loc>${base}${u.replace(/\/index\.html$/, "/").replace(/([^/])$/, "$1")}</loc><changefreq>daily</changefreq></url>`).join("\n")}

@@ -147,7 +147,8 @@ ${pageType.body(state)}
 <div class="tools">
 <strong>Free tools</strong>
 <ul>
-<li><a href="/tools/1099-tax-estimator.html">1099 tax estimator</a> — estimate quarterly payments</li>
+<li><a href="/tools/quarterly-tax-deadline-calendar.html">Quarterly tax deadline calendar</a> — never miss estimated payments</li>
+<li><a href="/tools/1099-payment-threshold-tracker.html">1099 threshold tracker</a> — know when to file</li>
 <li><a href="/billsnap/index.html">BillSnap</a> — invoice contractors and track payments</li>
 <li><a href="/go/compliance.html">SMB Compliance Pack landing</a></li>
 </ul>
@@ -190,7 +191,7 @@ th,td{border:1px solid #e2e8f0;padding:10px;text-align:left}th{background:#f8faf
 .disclaimer{font-size:12px;color:#64748b;margin-top:32px}
 </style></head><body>
 <h1>Freelancer Compliance by State</h1>
-<p>State-specific guides for 1099-NEC filing, LLC formation, contractor compliance, and quarterly tax deadlines. Pilot batch: 10 high-population states (${states.length * 4} pages).</p>
+<p>State-specific guides for 1099-NEC filing, LLC formation, contractor compliance, and quarterly tax deadlines. ${states.length} high-population states (${states.length * 4} pages).</p>
 <a class="cta" href="${compliancePay}">SMB Compliance Pack — $19</a>
 <a class="cta outline" href="${freelancerPay}">Freelancer Kit — $14</a>
 <a class="cta outline" href="/tools/1099-tax-estimator.html">1099 tax estimator</a>
