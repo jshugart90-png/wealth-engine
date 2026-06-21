@@ -25,10 +25,24 @@ const POSTS = [
     urlPath: "/?utm_source=indiehackers",
   },
   {
-    platform: "producthunt",
-    title: "BillSnap — Invoice PDF in 30 seconds",
-    tagline: "No signup wall on preview",
-    urlPath: "/billsnap/index.html?utm_source=producthunt",
+    platform: "reddit",
+    subreddit: "webdev",
+    title: "Simple webhook relay for indie SaaS — $7/mo, no enterprise sales call",
+    body: "Built HookRelay for my own stack — forward webhooks, replay failed events, dead-letter alerts. Self-serve Stripe.",
+    urlPath: "/go/webhook.html?utm_source=reddit&utm_campaign=webdev",
+  },
+  {
+    platform: "reddit",
+    subreddit: "startups",
+    title: "Free NDA generator with $4 PDF export — no Rocket Lawyer subscription",
+    body: "Quick mutual or one-way NDAs for freelancers. Preview free, clean PDF for a few bucks.",
+    urlPath: "/go/nda.html?utm_source=reddit&utm_campaign=startups",
+  },
+  {
+    platform: "hackernews",
+    title: "Show HN: PipeKit — micro-APIs (UUID, hash, base64) with self-serve keys",
+    body: "100 free requests/day unauthenticated. Paid from $9/mo. Built for developers who don't need a full API platform.",
+    urlPath: "/go/pipekit.html?utm_source=hn&utm_campaign=pipekit",
   },
 ];
 

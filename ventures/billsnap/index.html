@@ -42,8 +42,12 @@
     <button type="button" class="secondary" id="pro">Export Pro PDF</button>
 
     <div class="pricing">
-      <strong>Pricing:</strong> $3 per PDF · <a href="{{PAY:pro-pdf}}">Buy 1 export</a> ·
+      <strong>Pricing:</strong> $3 per PDF · <a href="{{PAY:pro-pdf}}" id="buy-pro">Buy 1 export</a> ·
       <a href="{{PAY:unlimited-month}}">$12/mo unlimited</a>
+      <p style="margin-top:12px;font-size:13px;color:#64748b">Use code <strong style="color:#eab308">LAUNCH25</strong> at checkout for 25% off</p>
+    </div>
+    <div style="position:fixed;bottom:0;left:0;right:0;background:#0f172a;color:#fff;padding:12px;text-align:center;font-size:14px;z-index:99">
+      Ready to export? <a href="{{PAY:pro-pdf}}" style="color:#22c55e;font-weight:700" onclick="fetch('/api/funnel/checkout_click',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({sku:'pro-pdf',path:'/billsnap'})})">Pro PDF $3 →</a>
     </div>
   </div>
   <script>

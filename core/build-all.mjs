@@ -5,6 +5,10 @@ import { getAllPaymentLinks } from "./commerce.mjs";
 import { buildHighConversionLandings } from "./pipeline/conversion-landings.mjs";
 import { buildThanksPage } from "./marketing/thanks-page.mjs";
 import { buildAdToolPages } from "./marketing/ad-tools.mjs";
+import { buildBundleLandings } from "./marketing/bundles.mjs";
+import { generateSeoPages } from "./marketing/seo-pages.mjs";
+import { buildSitemap, buildRobotsTxt } from "./marketing/sitemap.mjs";
+import { expandCompareStack } from "../ventures/comparestack/generator.mjs";
 
 const root = getRoot();
 const config = JSON.parse(readFileSync(join(root, "config", "ventures.json"), "utf8"));
@@ -46,16 +50,26 @@ export function buildAll() {
   writeFileSync(join(dist, "index.html"), hub);
 
   // Marketing static pages (must exist after `npm run build` for Render deploy)
+  const compare = expandCompareStack();
   const landings = buildHighConversionLandings();
   const thanks = buildThanksPage();
   const adTools = buildAdToolPages();
+  const bundles = buildBundleLandings();
+  const seo = generateSeoPages();
+  const sitemap = buildSitemap();
+  const robots = buildRobotsTxt();
 
   return {
     built,
     hub: join(dist, "index.html"),
+    compare,
     landings,
     thanks,
     adTools,
+    bundles,
+    seo,
+    sitemap,
+    robots,
   };
 }
 
@@ -96,14 +110,18 @@ function buildPortfolioHub(ventureIds) {
   <a href="/go/invoice.html">Invoice $3</a>
   <a href="/go/lease.html">Lease check</a>
   <a href="/go/uptime.html">Uptime $5/mo</a>
+  <a href="/go/nda.html">NDA $4</a>
+  <a href="/go/pipekit.html">PipeKit $9/mo</a>
   <a href="https://horseshoeroundme.com" target="_blank" rel="noopener">← Horseshoe Round Me</a>
 </div>
 <h1>Wealth Engine</h1>
 <p class="sub">Autonomous venture portfolio — independent revenue channels</p>
 <div class="quick">
   <a href="/go/invoice.html">🧾 Invoice landing</a>
+  <a href="/go/nda.html">📄 NDA landing</a>
   <a href="/bundles/freelancer-stack.html">📦 Freelancer bundle</a>
-  <a href="/tools/tip-calculator.html">🔢 Tip calculator</a>
+  <a href="/tools/bill-splitter.html">🔢 Bill splitter</a>
+  <a href="/tools/tip-calculator.html">Tip calculator</a>
   <a href="/comparestack/index.html">Compare tools</a>
 </div>
 <div class="grid">${cards}</div>

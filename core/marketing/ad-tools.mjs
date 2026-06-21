@@ -68,11 +68,43 @@ function mc(){mcout.textContent='$'+Math.round((+attendees.value||0)*(+rate.valu
   writeFileSync(join(dist, "tip-calculator.html"), tipCalc);
   writeFileSync(join(dist, "meeting-cost-free.html"), meetingFree);
 
+  const pctCalc = adToolsShell(
+    "Percentage Calculator",
+    `<label>Value</label><input type="number" id="val" value="100" step="0.01">
+<label>What is % of?</label><input type="number" id="pctof" value="250" step="0.01">
+<label>Increase/decrease by %</label><input type="number" id="delta" value="15" step="0.01">
+<div class="result" id="pout">40% · +15 = 115</div>
+<script>
+function pc(){const v=+val.value||0,p=+pctof.value||1,d=+delta.value||0;
+const pct=(v/p*100).toFixed(1);const inc=(v*(1+d/100)).toFixed(2);
+pout.textContent=pct+'% of '+p+' · '+d+'% change = '+inc;}
+[val,pctof,delta].forEach(el=>el.oninput=pc);pc();
+</script>`,
+    "Free percentage calculator — find % of a number, calculate increases instantly."
+  );
+
+  const billSplit = adToolsShell(
+    "Bill Splitter",
+    `<label>Total bill ($)</label><input type="number" id="total" value="120" step="0.01">
+<label>Tip %</label><select id="tip"><option value="0">0</option><option value="18" selected>18</option><option value="20">20</option><option value="25">25</option></select>
+<label>People</label><input type="number" id="people" value="4" min="1">
+<div class="result" id="sout">$35.40/person</div>
+<script>
+function sp(){const t=+total.value||0,p=Math.max(1,+people.value||1),tip=+tip.value||0;
+const grand=t*(1+tip/100);sout.textContent='$'+grand.toFixed(2)+' total · $'+(grand/p).toFixed(2)+'/person';}
+[total,tip,people].forEach(el=>el.oninput=sp);sp();
+</script>`,
+    "Split restaurant bills with tip — free calculator, no app download."
+  );
+
+  writeFileSync(join(dist, "percentage-calculator.html"), pctCalc);
+  writeFileSync(join(dist, "bill-splitter.html"), billSplit);
+
   const privacy = `<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Privacy Policy</title><style>body{font-family:system-ui;max-width:720px;margin:40px auto;padding:20px;line-height:1.6}</style></head><body>
 <h1>Privacy Policy</h1><p>Wealth Engine tools process data locally in your browser. Payment checkout is handled by Stripe. We do not sell personal data.</p>
 <p>Contact: orders@horseshoeroundme.com</p><p><a href="/">← Home</a></p></body></html>`;
   writeFileSync(join(getRoot(), "dist", "privacy.html"), privacy);
 
-  return { pages: ["tip-calculator", "meeting-cost-free", "privacy"] };
+  return { pages: ["tip-calculator", "meeting-cost-free", "percentage-calculator", "bill-splitter", "privacy"] };
 }

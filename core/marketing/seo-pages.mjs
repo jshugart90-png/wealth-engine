@@ -8,7 +8,7 @@ const VENTURE_PATHS = {
   leaselens: "/leaselens/index.html",
   "devtools-api": "/devtools-api/index.html",
   statusping: "/statusping/index.html",
-  "pdf-factory": "/pdf-factory/index.html",
+  "pdf-factory": "/templateforge/index.html",
   comparestack: "/comparestack/index.html",
   meetingcost: "/meetingcost/index.html",
   ndagen: "/ndagen/index.html",

@@ -137,6 +137,48 @@
       "title": "PipeKit API Pricing vs Postman",
       "venture": "devtools-api",
       "sku": "starter-monthly"
+    },
+    {
+      "slug": "simple-invoice-maker-online",
+      "title": "Simple Invoice Maker Online",
+      "venture": "billsnap",
+      "sku": "pro-pdf"
+    },
+    {
+      "slug": "contract-template-freelancer",
+      "title": "Contract Template for Freelancers",
+      "venture": "pdf-factory",
+      "sku": "freelancer-kit"
+    },
+    {
+      "slug": "website-uptime-checker-free",
+      "title": "Website Uptime Checker Free",
+      "venture": "statusping",
+      "sku": "basic-monthly"
+    },
+    {
+      "slug": "mutual-nda-template-generator",
+      "title": "Mutual NDA Template Generator",
+      "venture": "ndagen",
+      "sku": "nda-pdf"
+    },
+    {
+      "slug": "webhook-debugger-online",
+      "title": "Webhook Debugger Online",
+      "venture": "hookrelay",
+      "sku": "relay-monthly"
+    },
+    {
+      "slug": "how-much-do-meetings-cost",
+      "title": "How Much Do Meetings Cost Calculator",
+      "venture": "meetingcost",
+      "sku": "meeting-pro"
+    },
+    {
+      "slug": "rent-increase-clause-checker",
+      "title": "Rent Increase Clause Checker",
+      "venture": "leaselens",
+      "sku": "single-report"
     }
   ],
   "pagesPerCycle": 10

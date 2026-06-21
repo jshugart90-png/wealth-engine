@@ -21,7 +21,8 @@
   <div class="plan">
     <h3>Basic — $5/mo</h3>
     <p>5 monitors · email alerts</p>
-    <a href="{{PAY:basic-monthly}}">Subscribe</a>
+    <a href="{{PAY:basic-monthly}}" onclick="fetch('/api/funnel/checkout_click',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({sku:'basic-monthly',path:'/statusping'})})">Subscribe</a>
+    · <a href="/go/uptime.html">See landing →</a>
   </div>
   <div class="plan">
     <h3>Team — $19/mo</h3>

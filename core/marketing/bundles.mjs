@@ -9,7 +9,7 @@ const BUNDLES = [
     title: "Freelancer Stack",
     desc: "BillSnap unlimited + Freelancer template kit",
     skus: ["unlimited-month", "freelancer-kit"],
-    ventures: ["/billsnap/index.html", "/pdf-factory/index.html"],
+    ventures: ["/billsnap/index.html", "/templateforge/index.html"],
   },
   {
     slug: "dev-ops-stack",
@@ -23,7 +23,7 @@ const BUNDLES = [
     title: "Renter Toolkit",
     desc: "LeaseLens 3-pack + compliance templates",
     skus: ["report-bundle", "smb-compliance-pack"],
-    ventures: ["/leaselens/index.html", "/pdf-factory/index.html"],
+    ventures: ["/leaselens/index.html", "/templateforge/index.html"],
   },
 ];
 

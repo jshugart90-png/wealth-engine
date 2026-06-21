@@ -5,7 +5,7 @@ param(
 )
 
 $ownerId = (Get-Content "$env:USERPROFILE\.render\cli.yaml" | Select-String 'workspace: (.+)' | ForEach-Object { $_.Matches.Groups[1].Value })
-$envFile = Join-Path $PSScriptRoot "..\.env"
+$envFile = Join-Path (Split-Path $PSScriptRoot -Parent) ".env"
 $envVars = @{}
 if (Test-Path $envFile) {
   Get-Content $envFile | ForEach-Object {

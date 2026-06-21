@@ -28,6 +28,30 @@ const PAGES = [
     tool: "/statusping/index.html",
     bullets: ["5 monitors", "5-min checks", "Cancel anytime"],
   },
+  {
+    slug: "nda",
+    headline: "NDA in 2 minutes — not 2 hours",
+    sub: "Free preview. Clean PDF export for $4. No lawyer subscription.",
+    sku: "nda-pdf",
+    tool: "/ndagen/index.html",
+    bullets: ["Freelancers & startups", "Mutual or one-way", "Instant download"],
+  },
+  {
+    slug: "webhook",
+    headline: "Never miss a webhook again",
+    sub: "Forward, replay, and debug webhooks. From $7/mo.",
+    sku: "relay-monthly",
+    tool: "/hookrelay/index.html",
+    bullets: ["3 endpoints included", "Dead-letter alerts", "Dev-friendly setup"],
+  },
+  {
+    slug: "pipekit",
+    headline: "Dev APIs without the bloat",
+    sub: "UUID, hash, base64, JSON — self-serve keys from $9/mo.",
+    sku: "starter-monthly",
+    tool: "/devtools-api/index.html",
+    bullets: ["100 free req/day", "API key in minutes", "No Postman required"],
+  },
 ];
 
 export function buildHighConversionLandings() {
