@@ -26,6 +26,32 @@ function log(msg) {
   appendFileSync(join(dir, "server.log"), line);
 }
 
+const EXTENSIONLESS_PREFIXES = ["/go/", "/bundles/", "/hookrelay/"];
+
+function normalizePath(pathname) {
+  if (!pathname || pathname === "/") return pathname;
+  return pathname.endsWith("/") ? pathname.slice(0, -1) : pathname;
+}
+
+function tryExtensionlessRedirect(pathname, res, root) {
+  const path = normalizePath(pathname);
+  if (extname(path)) return false;
+
+  const shouldTry =
+    path === "/join" ||
+    EXTENSIONLESS_PREFIXES.some((prefix) => path.startsWith(prefix));
+
+  if (!shouldTry) return false;
+
+  const htmlPath = join(root, "dist", `${path.slice(1)}.html`);
+  if (existsSync(htmlPath)) {
+    res.writeHead(301, { Location: `${path}.html` });
+    res.end();
+    return true;
+  }
+  return false;
+}
+
 export function createAppServer() {
   getDb();
   const env = loadEnv();
@@ -94,17 +120,7 @@ export function createAppServer() {
         return;
       }
 
-      if (url.pathname === "/join" || url.pathname === "/join/") {
-        res.writeHead(301, { Location: "/join.html" });
-        res.end();
-        return;
-      }
-
-      if (url.pathname === "/join" || url.pathname === "/join/") {
-        res.writeHead(302, { Location: "/join.html" });
-        res.end();
-        return;
-      }
+      if (tryExtensionlessRedirect(url.pathname, res, root)) return;
 
       if (url.pathname === "/api/health") {
         res.writeHead(200, { "Content-Type": "application/json" });
