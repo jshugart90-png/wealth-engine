@@ -1,6 +1,36 @@
 {
   "keywords": [
     {
+      "slug": "ssl-certificate-expiry-monitor",
+      "title": "SSL Certificate Expiry Monitor",
+      "venture": "statusping",
+      "sku": "basic-monthly"
+    },
+    {
+      "slug": "simple-receipt-generator-free",
+      "title": "Simple Receipt Generator Free",
+      "venture": "billsnap",
+      "sku": "pro-pdf"
+    },
+    {
+      "slug": "scope-of-work-template-freelancer",
+      "title": "Scope of Work Template for Freelancers",
+      "venture": "pdf-factory",
+      "sku": "freelancer-kit"
+    },
+    {
+      "slug": "cron-job-monitor-alerts",
+      "title": "Cron Job Monitor with Email Alerts",
+      "venture": "statusping",
+      "sku": "basic-monthly"
+    },
+    {
+      "slug": "api-rate-limit-checker",
+      "title": "API Rate Limit Checker Tool",
+      "venture": "devtools-api",
+      "sku": "starter-monthly"
+    },
+    {
       "slug": "contractor-invoice-app-free",
       "title": "Contractor Invoice App Free",
       "venture": "billsnap",
@@ -209,6 +239,36 @@
       "title": "Rent Increase Clause Checker",
       "venture": "leaselens",
       "sku": "single-report"
+    },
+    {
+      "slug": "late-fee-invoice-calculator",
+      "title": "Late Fee Invoice Calculator",
+      "venture": "billsnap",
+      "sku": "pro-pdf"
+    },
+    {
+      "slug": "api-uptime-sla-monitor",
+      "title": "API Uptime SLA Monitor",
+      "venture": "statusping",
+      "sku": "basic-monthly"
+    },
+    {
+      "slug": "developer-webhook-replay-tool",
+      "title": "Developer Webhook Replay Tool",
+      "venture": "hookrelay",
+      "sku": "relay-monthly"
+    },
+    {
+      "slug": "freelance-hourly-rate-calculator",
+      "title": "Freelance Hourly Rate Calculator",
+      "venture": "billsnap",
+      "sku": "pro-pdf"
+    },
+    {
+      "slug": "json-api-validator-online",
+      "title": "JSON API Validator Online",
+      "venture": "devtools-api",
+      "sku": "starter-monthly"
     }
   ],
   "pagesPerCycle": 10

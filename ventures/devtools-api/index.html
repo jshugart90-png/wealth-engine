@@ -25,7 +25,9 @@
   <div style="background:#0f172a;color:#e2e8f0;padding:10px 16px;text-align:center;font-size:13px"><strong style="color:#58a6ff">PipeKit</strong> · <a href="/go/pipekit.html" style="color:#3fb950;font-weight:700">Get API key $9/mo →</a> · <a href="/go/invoice.html" style="color:#58a6ff">Invoice tool</a></div>
   <div class="wrap">
     <h1>PipeKit API</h1>
-    <p class="lead">Micro-utility APIs for developers. Self-serve keys, usage limits, Stripe billing. Built for SEO and API directory listings — not social media.</p>
+    <p class="lead">Ship faster with UUID, hash, base64, and JSON APIs — no Postman bloat, no enterprise sales call. 100 free requests/day unauthenticated; Pro keys from $9/mo with instant Stripe checkout.</p>
+
+    <p style="font-family:system-ui,sans-serif;color:#8b949e;font-size:14px;margin-bottom:24px">Used by indie devs who need one endpoint, not a platform. <strong style="color:#3fb950">LAUNCH25</strong> = 25% off first month.</p>
 
     <pre>GET /api/pipekit/uuid?n=5
 GET /api/pipekit/hash?text=hello&algo=SHA-256
@@ -55,6 +57,9 @@ GET /api/pipekit/timestamp</pre>
     </div>
 
     <p>After checkout you receive an API key via webhook fulfillment. Header: <code>X-Api-Key: pk_...</code></p>
+    <div style="position:fixed;bottom:0;left:0;right:0;background:#238636;color:#fff;padding:12px;text-align:center;font-size:14px;z-index:99;font-family:system-ui,sans-serif">
+      Need UUID/hash/base64 in production? <a href="{{PAY:starter-monthly}}" style="color:#fff;font-weight:700">Get API key $9/mo →</a>
+    </div>
     <footer>PipeKit · Wealth Engine venture · <a href="../comparestack/pages/developer-api-toolkits.html" style="color:#58a6ff">Compare tools</a></footer>
   </div>
 </body>

@@ -115,11 +115,85 @@ hout.textContent='$'+(i/(h*w)).toFixed(2)+'/hr';}
   );
   writeFileSync(join(dist, "hourly-rate-calculator.html"), hourlyCalc);
 
+  const markupCalc = adToolsShell(
+    "Markup Calculator",
+    `<label>Cost ($)</label><input type="number" id="cost" value="50" step="0.01">
+<label>Desired markup %</label><input type="number" id="markup" value="40" step="0.01">
+<label>Tax % (optional)</label><input type="number" id="tax" value="0" step="0.01">
+<div class="result" id="mout">$70.00 price · $20 profit</div>
+<script>
+function mk(){const c=+cost.value||0,m=+markup.value||0,t=+tax.value||0;
+const price=c*(1+m/100)*(1+t/100);const profit=price-c*(1+t/100);
+mout.textContent='$'+price.toFixed(2)+' price · $'+profit.toFixed(2)+' profit';}
+[cost,markup,tax].forEach(el=>el.oninput=mk);mk();
+</script>`,
+    "Calculate selling price from cost and markup — free for freelancers and retailers."
+  );
+  writeFileSync(join(dist, "markup-calculator.html"), markupCalc);
+
+  const lateFeeCalc = adToolsShell(
+    "Late Fee Calculator",
+    `<label>Invoice amount ($)</label><input type="number" id="inv" value="500" step="0.01">
+<label>Days late</label><input type="number" id="days" value="15" min="0">
+<label>Monthly late fee %</label><input type="number" id="fee" value="1.5" step="0.01">
+<div class="result" id="lout">$37.50 late fee · $537.50 total</div>
+<script>
+function lf(){const i=+inv.value||0,d=+days.value||0,f=+fee.value||0;
+const late=i*(f/100)*(d/30);lout.textContent='$'+late.toFixed(2)+' late fee · $'+(i+late).toFixed(2)+' total';}
+[inv,days,fee].forEach(el=>el.oninput=lf);lf();
+</script>`,
+    "Calculate invoice late fees by day — free tool for freelancers and small business."
+  );
+  writeFileSync(join(dist, "late-fee-calculator.html"), lateFeeCalc);
+
+  const breakEvenCalc = adToolsShell(
+    "Break-Even Calculator",
+    `<label>Fixed costs/month ($)</label><input type="number" id="fixed" value="2000">
+<label>Price per unit ($)</label><input type="number" id="price" value="25" step="0.01">
+<label>Variable cost per unit ($)</label><input type="number" id="var" value="8" step="0.01">
+<div class="result" id="beout">118 units to break even</div>
+<script>
+function be(){const f=+fixed.value||0,p=+price.value||0,v=+var.value||0;
+const margin=p-v;beout.textContent=margin<=0?'Need price > cost':Math.ceil(f/margin)+' units to break even';}
+[fixed,price,var].forEach(el=>el.oninput=be);be();
+</script>`,
+    "Free break-even calculator — find how many sales you need to cover costs."
+  );
+  writeFileSync(join(dist, "break-even-calculator.html"), breakEvenCalc);
+
+  const discountCalc = adToolsShell(
+    "Discount Calculator",
+    `<label>Original price ($)</label><input type="number" id="orig" value="100" step="0.01">
+<label>Discount %</label><input type="number" id="disc" value="25" step="0.01">
+<div class="result" id="dout">$75.00 · save $25.00</div>
+<script>
+function dc(){const o=+orig.value||0,d=+disc.value||0,s=o*d/100;dout.textContent='$'+(o-s).toFixed(2)+' · save $'+s.toFixed(2)+' ('+d+'% off)';}
+[orig,disc].forEach(el=>el.oninput=dc);dc();
+</script>`,
+    "Calculate sale price and savings — free discount calculator."
+  );
+  writeFileSync(join(dist, "discount-calculator.html"), discountCalc);
+
+  const unitPriceCalc = adToolsShell(
+    "Unit Price Calculator",
+    `<label>Total price ($)</label><input type="number" id="price" value="12.99" step="0.01">
+<label>Quantity / weight</label><input type="number" id="qty" value="16" step="0.01">
+<label>Unit label</label><input type="text" id="unit" value="oz">
+<div class="result" id="uout">$0.81/oz</div>
+<script>
+function uc(){const p=+price.value||0,q=Math.max(0.001,+qty.value||1),u=unit.value||'unit';
+uout.textContent='$'+(p/q).toFixed(3)+'/'+u;}
+[price,qty,unit].forEach(el=>el.oninput=uc);uc();
+</script>`,
+    "Compare grocery prices — cost per ounce, pound, or item."
+  );
+  writeFileSync(join(dist, "unit-price-calculator.html"), unitPriceCalc);
+
   const privacy = `<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Privacy Policy</title><style>body{font-family:system-ui;max-width:720px;margin:40px auto;padding:20px;line-height:1.6}</style></head><body>
 <h1>Privacy Policy</h1><p>Wealth Engine tools process data locally in your browser. Payment checkout is handled by Stripe. We do not sell personal data.</p>
 <p>Contact: orders@horseshoeroundme.com</p><p><a href="/">← Home</a></p></body></html>`;
   writeFileSync(join(getRoot(), "dist", "privacy.html"), privacy);
 
-  return { pages: ["tip-calculator", "meeting-cost-free", "percentage-calculator", "bill-splitter", "hourly-rate-calculator", "privacy"] };
+  return { pages: ["tip-calculator", "meeting-cost-free", "percentage-calculator", "bill-splitter", "hourly-rate-calculator", "markup-calculator", "late-fee-calculator", "break-even-calculator", "discount-calculator", "unit-price-calculator", "privacy"] };
 }

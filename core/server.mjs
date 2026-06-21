@@ -94,6 +94,18 @@ export function createAppServer() {
         return;
       }
 
+      if (url.pathname === "/join" || url.pathname === "/join/") {
+        res.writeHead(301, { Location: "/join.html" });
+        res.end();
+        return;
+      }
+
+      if (url.pathname === "/join" || url.pathname === "/join/") {
+        res.writeHead(302, { Location: "/join.html" });
+        res.end();
+        return;
+      }
+
       if (url.pathname === "/api/health") {
         res.writeHead(200, { "Content-Type": "application/json" });
         res.end(JSON.stringify({ ok: true, ts: new Date().toISOString() }));

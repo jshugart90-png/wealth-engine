@@ -5,7 +5,7 @@ import { getRoot, getDataRoot, loadEnv } from "../env.mjs";
 const CAMPAIGNS = [
   {
     name: "WE - Invoice Generator",
-    budgetDailyUsd: 5,
+    budgetDailyUsd: 4,
     keywords: [
       { kw: "free invoice generator pdf", h1: "Free Invoice PDF", h2: "No Signup · $3 Pro", desc: "Preview free. Pro PDF $3. Code LAUNCH25 saves 25%." },
       { kw: "invoice generator no signup", h1: "Invoice — No Signup", h2: "PDF in 30 Seconds", desc: "Instant preview. Watermark-free export $3. Secure Stripe." },
@@ -17,7 +17,7 @@ const CAMPAIGNS = [
   },
   {
     name: "WE - Lease Analyzer",
-    budgetDailyUsd: 3,
+    budgetDailyUsd: 2,
     keywords: [
       { kw: "lease red flags checklist", h1: "Lease Red Flags", h2: "Free Risk Score", desc: "Paste lease, get instant flags. Full report $7. Not legal advice." },
       { kw: "rental lease analyzer", h1: "Rental Lease Analyzer", h2: "Instant Preview", desc: "Rule-based lease scan. Unlock full report for $7." },
@@ -46,6 +46,26 @@ const CAMPAIGNS = [
     ],
     sku: "nda-pdf",
     finalUrlPath: "/go/nda.html?utm_source=google&utm_campaign=nda",
+  },
+  {
+    name: "WE - PipeKit API",
+    budgetDailyUsd: 1,
+    keywords: [
+      { kw: "uuid api generator", h1: "UUID API Generator", h2: "Free Tier + $9/mo", desc: "Self-serve API keys. Hash, base64, JSON tools included." },
+      { kw: "developer api utilities", h1: "Dev API Utilities", h2: "No Postman Bloat", desc: "100 free req/day. Pro from $9/mo. Instant Stripe checkout." },
+    ],
+    sku: "starter-monthly",
+    finalUrlPath: "/go/pipekit.html?utm_source=google&utm_campaign=pipekit",
+  },
+  {
+    name: "WE - Webhook Relay",
+    budgetDailyUsd: 1,
+    keywords: [
+      { kw: "webhook relay service", h1: "Webhook Relay", h2: "$7/mo Self-Serve", desc: "Retry failed Stripe webhooks. Dead-letter alerts. No enterprise sales." },
+      { kw: "stripe webhook retry", h1: "Stripe Webhook Retry", h2: "HookRelay $7/mo", desc: "Forward and replay webhooks. Setup in 60 seconds." },
+    ],
+    sku: "relay-monthly",
+    finalUrlPath: "/go/webhook.html?utm_source=google&utm_campaign=webhook",
   },
 ];
 
