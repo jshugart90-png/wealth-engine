@@ -1,6 +1,6 @@
 ﻿# Marketing Command Center
 
-**Director:** Marketing Director agent · **Updated:** 2026-06-21T15:00 CT (MC-011 State Compliance pSEO — PUBLISH_READY) · **Cycles complete:** 5  
+**Director:** Marketing Director agent · **Updated:** 2026-06-21T16:00 CT (MC-012 Affiliate Partner Program — NEEDS_CAMPAIGN) · **Cycles complete:** 6  
 **Prod:** https://wealth-engine-0qlj.onrender.com Â· **Goal:** $500/mo Â· **Budget:** $0 ads until revenue  
 **Coupon:** LAUNCH25 (25% off)
 
@@ -19,8 +19,10 @@
 | MC-007 | StatusPing $5 uptime wedge | StatusPing | `/go/uptime.html` | r/SaaS, BetaList | PUBLISH_READY | 2 |
 | MC-008 | Freelancer Stack $29/mo + $49 bundle | BillSnap+NDAGen+Templates | [bundles/freelancer-stack.html](https://wealth-engine-0qlj.onrender.com/bundles/freelancer-stack.html) · [go/freelancer.html](https://wealth-engine-0qlj.onrender.com/go/freelancer.html) · [go/stack.html](https://wealth-engine-0qlj.onrender.com/go/stack.html) | r/freelance, IH, Peerlist, PH | **ACTIVE** | 3 |
 | MC-009 | HookRelay DLQ Pro $29/mo | HookRelay | [go/hookrelay-dlq.html](https://wealth-engine-0qlj.onrender.com/go/hookrelay-dlq.html) · [hookrelay/pricing.html](https://wealth-engine-0qlj.onrender.com/hookrelay/pricing.html) | r/webdev, Show HN, Slack | **ACTIVE** | 3 |
-| MC-010 | BillSnap Pro Unlimited $29/mo | BillSnap | [go/billsnap-pro.html](https://wealth-engine-0qlj.onrender.com/go/billsnap-pro.html) · [go/invoice.html](https://wealth-engine-0qlj.onrender.com/go/invoice.html) | r/freelance, r/smallbusiness, Google Ads | **NEEDS_CAMPAIGN** | 4 |
+| MC-010 | BillSnap Pro Unlimited $29/mo | BillSnap | [go/billsnap-pro.html](https://wealth-engine-0qlj.onrender.com/go/billsnap-pro.html) · [go/invoice.html](https://wealth-engine-0qlj.onrender.com/go/invoice.html) | r/freelance, r/smallbusiness, r/Entrepreneur, Google Ads | **ACTIVE** | 4 |
 | MC-011 | State Compliance pSEO | TemplateForge | [p/freelancer-compliance-by-state.html](https://wealth-engine-0qlj.onrender.com/p/freelancer-compliance-by-state.html) · [go/compliance.html](https://wealth-engine-0qlj.onrender.com/go/compliance.html) | r/smallbusiness, r/freelance, dev.to, IH | **PUBLISH_READY** | 5 |
+| MC-012 | Portfolio Affiliate Partner Program | All portfolio | [partners/index.html](https://wealth-engine-0qlj.onrender.com/partners/index.html) · [refer.html](https://wealth-engine-0qlj.onrender.com/refer.html) · [join.html#partner](https://wealth-engine-0qlj.onrender.com/join.html#partner) | IH, r/SideProject, dev.to, affiliate directories, cold outreach to content sites | **NEEDS_CAMPAIGN** | 6 |
+| MC-012 | Affiliate Partner Program launch | Portfolio | [partners/index.html](https://wealth-engine-0qlj.onrender.com/partners/index.html) · [join.html](https://wealth-engine-0qlj.onrender.com/join.html) · [refer.html](https://wealth-engine-0qlj.onrender.com/refer.html) | IH, r/SideProject, dev.to, affiliate directories | **NEEDS_CAMPAIGN** | 6 |
 
 ---
 
@@ -74,7 +76,7 @@
 
 | Priority | File | Posts | Action |
 |----------|------|-------|--------|
-| 1 | `outreach/POST_2026-06-21_batch10.md` | 6 posts | MC-011 state compliance pSEO — r/smallbusiness, r/freelance, IH, dev.to |
+| 1 | `outreach/POST_2026-06-21_batch10.md` | 3 posts | MC-010 BillSnap Pro $29/mo — r/freelance, r/smallbusiness, r/Entrepreneur + Google Ads CSV |
 | 2 | `outreach/POST_2026-06-21_batch9.md` | 8 posts | MC-008 + MC-009 live URLs — r/freelance, r/webdev, IH, HN |
 | 2 | `outreach/POST_2026-06-21_batch8.md` | 6 posts | r/SaaS, PH prep, Slack template |
 | 3 | `outreach/POST_2026-06-21_batch7.md` | 8 posts | Copy-paste to Reddit/IH/HN |
@@ -114,11 +116,12 @@
 
 ## Next cycle actions
 
+- [ ] **MC-012:** Recruit 10 indie-hacker affiliates — IH post, r/SideProject, dev.to partner program article; target 5 attributed conversions in 30 days
 - [ ] User posts batch7 Reddit r/smallbusiness + r/freelance (highest intent)
 - [ ] Submit Peerlist + Uneed + MicroLaunch (15 min total)
 - [ ] Publish dev.to article from batch7
-- [ ] User posts batch10 r/smallbusiness (MC-011) + r/freelance state guides — compliance hub URLs
+- [ ] User posts batch10 r/freelance + r/smallbusiness + r/Entrepreneur (MC-010 Pro — LAUNCH25 + Stripe checkout)
 - [ ] User posts batch9 r/freelance (MC-008) + r/SaaS DLQ (MC-009) — new $29 URLs
-- [ ] **MC-010:** Launch BillSnap Pro $29/mo campaign — `/go/billsnap-pro`, contractor/consultant pSEO pages, ads CSV row WE-BillSnap-Pro
+- [x] **MC-010:** BillSnap Pro $29/mo campaign — batch10 + WE - BillSnap Pro ads CSV ($17/day cap)
 - [ ] Monitor DEPLOY_LOG for extensionless URL redirects (cycle 2 pending QC)
 - [ ] Cycle 2 channel research: Facebook groups, Slack communities, newsletter submits

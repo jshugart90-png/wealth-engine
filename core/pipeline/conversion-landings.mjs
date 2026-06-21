@@ -2,6 +2,7 @@ import { readFileSync, writeFileSync, mkdirSync } from "fs";
 import { join } from "path";
 import { getRoot, getDataRoot, getPublicBaseUrl } from "../env.mjs";
 import { getPaymentLink } from "../commerce.mjs";
+import { AFFILIATE_REF_SCRIPT } from "../marketing/affiliates.mjs";
 
 const PAGES = [
   {
@@ -211,11 +212,11 @@ ${p.socialProof ? `<p class="proof">${p.socialProof}</p>` : ""}
 <h1>${p.headline}</h1><p>${p.sub}</p>
 ${p.urgency ? `<p class="urgency">${p.urgency}</p>` : ""}
 <ul>${p.bullets.map((b) => `<li>✓ ${b}</li>`).join("")}</ul>
-<a class="btn" href="${pay}" onclick="fetch('/api/funnel/checkout_click',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({sku:'${p.sku}',path:'/go/${p.slug}'})})">Get pro access →</a>
-${altPay ? `<a class="btn secondary" href="${altPay}" onclick="fetch('/api/funnel/checkout_click',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({sku:'${p.altSku}',path:'/go/${p.slug}'})})">${p.altLabel ?? "Upgrade plan"} →</a>` : ""}
+<a class="btn" href="${pay}" onclick="(function(){var r=localStorage.getItem('we_ref')||new URLSearchParams(location.search).get('ref');fetch('/api/funnel/checkout_click',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({sku:'${p.sku}',path:'/go/${p.slug}',refCode:r})})})()">Get pro access →</a>
+${altPay ? `<a class="btn secondary" href="${altPay}" onclick="(function(){var r=localStorage.getItem('we_ref')||new URLSearchParams(location.search).get('ref');fetch('/api/funnel/checkout_click',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({sku:'${p.altSku}',path:'/go/${p.slug}',refCode:r})})})()">${p.altLabel ?? "Upgrade plan"} →</a>` : ""}
 <a class="btn secondary" href="${p.tool}?utm_source=landing&utm_campaign=${p.slug}">Try free first</a>
-<p class="email">Get launch deals: <a href="/join.html?utm_source=go-${p.slug}">Join LAUNCH25 list</a></p>
-</div></body></html>`;
+<p class="email">Get launch deals: <a href="/join.html?utm_source=go-${p.slug}">Join LAUNCH25 list</a> · <a href="/partners/index.html?utm_source=go-${p.slug}">Partner program</a></p>
+</div><script>${AFFILIATE_REF_SCRIPT}</script></body></html>`;
     writeFileSync(join(dist, `${p.slug}.html`), html);
   }
   return { pages: PAGES.length, base };

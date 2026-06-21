@@ -1,0 +1,42 @@
+{
+  "program": {
+    "name": "Wealth Engine Partner Program",
+    "cookieDays": 90,
+    "payoutHoldDays": 30,
+    "payoutMethod": "stripe_connect",
+    "minPayoutUsd": 50,
+    "taxFormThresholdUsd": 600,
+    "ftcDisclosure": "Disclosure: I earn a commission if you purchase through my partner link. Prices and features are unchanged."
+  },
+  "commissions": {
+    "subscription": {
+      "rate": 0.25,
+      "months": 12,
+      "description": "25% recurring for 12 months on all subscription SKUs"
+    },
+    "oneTime": {
+      "flatUsd": 1,
+      "priceMinUsd": 3,
+      "priceMaxUsd": 7,
+      "description": "$1 flat commission on $3–$7 one-time purchases"
+    }
+  },
+  "products": [
+    { "name": "BillSnap Pro", "sku": "unlimited-month", "priceUsd": 29, "type": "subscription", "landing": "/go/billsnap-pro.html" },
+    { "name": "HookRelay DLQ Pro", "sku": "hookrelay-dlq-month", "priceUsd": 29, "type": "subscription", "landing": "/go/hookrelay-dlq.html" },
+    { "name": "DevWatch Bundle", "sku": "devwatch-month", "priceUsd": 39, "type": "subscription", "landing": "/go/devwatch.html" },
+    { "name": "Freelancer Stack", "sku": "freelancer-stack-month", "priceUsd": 29, "type": "subscription", "landing": "/go/stack.html" },
+    { "name": "StatusPing Basic", "sku": "uptime-basic", "priceUsd": 5, "type": "subscription", "landing": "/go/uptime.html" },
+    { "name": "PipeKit API", "sku": "pipekit-starter", "priceUsd": 9, "type": "subscription", "landing": "/go/pipekit.html" },
+    { "name": "Invoice PDF", "sku": "invoice-pdf", "priceUsd": 3, "type": "oneTime", "landing": "/go/invoice.html" },
+    { "name": "Lease Check", "sku": "lease-report", "priceUsd": 7, "type": "oneTime", "landing": "/go/lease.html" },
+    { "name": "NDA Generator", "sku": "nda-pdf", "priceUsd": 4, "type": "oneTime", "landing": "/go/nda.html" }
+  ],
+  "starterLinks": [
+    { "label": "Invoice PDF $3", "path": "/go/invoice.html", "pitch": "One-click PDF invoices for freelancers — no subscription." },
+    { "label": "BillSnap Pro $29/mo", "path": "/go/billsnap-pro.html", "pitch": "Unlimited invoices + client portal for growing freelancers." },
+    { "label": "HookRelay DLQ $29/mo", "path": "/go/hookrelay-dlq.html", "pitch": "Webhook retry + dead-letter queue for indie SaaS." },
+    { "label": "Freelancer Stack $29/mo", "path": "/go/stack.html", "pitch": "Invoice + NDA + templates in one subscription." },
+    { "label": "CompareStack hub", "path": "/comparestack/index.html", "pitch": "Honest tool comparisons — great for SEO content sites." }
+  ]
+}

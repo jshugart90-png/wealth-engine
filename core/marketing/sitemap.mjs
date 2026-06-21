@@ -55,6 +55,8 @@ const STATIC_PATHS = [
   "/privacy.html",
   "/join.html",
   "/refer.html",
+  "/partners/index.html",
+  "/partners/index.html",
   "/feed.xml",
   "/comparestack/index.html",
   "/meetingcost/index.html",

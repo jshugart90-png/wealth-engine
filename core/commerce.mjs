@@ -1,5 +1,6 @@
 import { randomBytes } from "crypto";
 import { getDb, logEvent } from "./db.mjs";
+import { creditAffiliateConversion, clawbackCommission } from "./marketing/affiliates.mjs";
 
 export function getPaymentLink(sku) {
   const row = getDb().prepare("SELECT payment_link FROM stripe_catalog WHERE sku = ?").get(sku);
@@ -76,17 +77,36 @@ export function redeemLicense(code, ventureId) {
   return { ok: true, sku: row.sku, remaining: row.uses_remaining - 1 };
 }
 
+function parseAffiliateRef(session) {
+  return (
+    session.metadata?.affiliate_ref ??
+    session.metadata?.ref_code ??
+    session.client_reference_id?.replace(/^ref:/, "") ??
+    null
+  );
+}
+
+function parseAmountUsd(session) {
+  const cents = session.amount_total ?? session.amount_subtotal;
+  return cents != null ? cents / 100 : null;
+}
+
 export async function handleStripeWebhook(body, signature, secret) {
   const event = typeof body === "string" ? JSON.parse(body) : body;
 
-  const db = getDb();
   if (event.type === "checkout.session.completed") {
     const session = event.data.object;
     const ventureId = session.metadata?.venture_id;
     const sku = session.metadata?.sku;
     const email = session.customer_details?.email;
+    const affiliateRef = parseAffiliateRef(session);
+    const amountUsd = parseAmountUsd(session);
 
-    logEvent(ventureId, "stripe_checkout", { sku, email, sessionId: session.id });
+    logEvent(ventureId, "stripe_checkout", { sku, email, sessionId: session.id, affiliateRef, amountUsd });
+
+    if (affiliateRef) {
+      creditAffiliateConversion({ code: affiliateRef, sku, amountUsd, sessionId: session.id });
+    }
 
     const { sendLicenseEmail, sendApiKeyEmail } = await import("./email.mjs");
 
@@ -107,5 +127,28 @@ export async function handleStripeWebhook(body, signature, secret) {
       await sendLicenseEmail({ to: email, ventureId, sku, code });
     }
   }
+
+  if (event.type === "charge.refunded") {
+    const charge = event.data.object;
+    const sessionId = charge.metadata?.checkout_session_id ?? charge.payment_intent;
+    if (sessionId) {
+      clawbackCommission(sessionId);
+    }
+  }
+
+  if (event.type === "invoice.paid") {
+    const invoice = event.data.object;
+    const affiliateRef = invoice.metadata?.affiliate_ref ?? invoice.subscription_details?.metadata?.affiliate_ref;
+    if (affiliateRef) {
+      const sku = invoice.lines?.data?.[0]?.price?.lookup_key ?? invoice.metadata?.sku;
+      creditAffiliateConversion({
+        code: affiliateRef,
+        sku,
+        amountUsd: (invoice.amount_paid ?? 0) / 100,
+        sessionId: invoice.id,
+      });
+    }
+  }
+
   return { received: true };
 }

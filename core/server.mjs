@@ -4,7 +4,7 @@ import { join, extname } from "path";
 import { getRoot, getDataRoot, loadEnv } from "./env.mjs";
 import { getDb, logEvent } from "./db.mjs";
 import { handleStripeWebhook, validateApiKey, redeemLicense, getPaymentLink } from "./commerce.mjs";
-import { trackReferralClick } from "./marketing/referrals.mjs";
+import { trackAffiliateClick, signupPartner, getPartnerStats } from "./marketing/affiliates.mjs";
 import { trackFunnel } from "./pipeline/funnel.mjs";
 import { runUptimeChecks } from "../ventures/statusping/checker.mjs";
 import { handleApiRequest } from "../ventures/devtools-api/handlers.mjs";
@@ -39,9 +39,20 @@ function tryExtensionlessRedirect(pathname, res, root) {
 
   const shouldTry =
     path === "/join" ||
+    path === "/refer" ||
+    path.startsWith("/partners") ||
     EXTENSIONLESS_PREFIXES.some((prefix) => path.startsWith(prefix));
 
   if (!shouldTry) return false;
+
+  if (path.startsWith("/partners")) {
+    const partnersIndex = join(root, "dist", "partners", "index.html");
+    if (existsSync(partnersIndex)) {
+      res.writeHead(301, { Location: "/partners/index.html" });
+      res.end();
+      return true;
+    }
+  }
 
   const htmlPath = join(root, "dist", `${path.slice(1)}.html`);
   if (existsSync(htmlPath)) {
@@ -61,7 +72,45 @@ export function createAppServer() {
     const url = new URL(req.url, `http://${req.headers.host}`);
     try {
       const ref = url.searchParams.get("ref");
-      if (ref) trackReferralClick(ref);
+      if (ref) {
+        trackAffiliateClick(ref);
+        res.setHeader(
+          "Set-Cookie",
+          `we_ref=${encodeURIComponent(ref)}; Path=/; Max-Age=${90 * 86400}; SameSite=Lax`
+        );
+      }
+
+      if (req.method === "POST" && url.pathname === "/api/affiliate/signup") {
+        const chunks = [];
+        for await (const c of req) chunks.push(c);
+        const body = Buffer.concat(chunks).toString();
+        let data = {};
+        try {
+          data = JSON.parse(body || "{}");
+        } catch {
+          /* ignore */
+        }
+        const result = signupPartner({ email: data.email, name: data.name });
+        if (data.email) {
+          trackFunnel("affiliate_signup", { path: data.path ?? "/join", meta: { email: data.email } });
+        }
+        res.writeHead(result.ok ? 200 : 400, { "Content-Type": "application/json" });
+        res.end(JSON.stringify(result));
+        return;
+      }
+
+      if (req.method === "GET" && url.pathname === "/api/affiliate/stats") {
+        const code = url.searchParams.get("code");
+        const stats = code ? getPartnerStats(code) : null;
+        if (!stats) {
+          res.writeHead(404, { "Content-Type": "application/json" });
+          res.end(JSON.stringify({ ok: false, error: "not_found" }));
+          return;
+        }
+        res.writeHead(200, { "Content-Type": "application/json" });
+        res.end(JSON.stringify({ ok: true, ...stats }));
+        return;
+      }
 
       if (req.method === "POST" && url.pathname === "/webhooks/stripe") {
         const chunks = [];

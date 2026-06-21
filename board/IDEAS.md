@@ -14,7 +14,7 @@ Ideas are ranked by Idea Guy each cycle. Research Guy validates; Realistic Guy k
 | WE-20260621-comparestack-scale | CompareStack 500+ affiliate VS/alternatives pages | comparestack | 3k→15k | 19/25 | Candidate | Brief: `board/briefs/WE-20260621-comparestack-scale.md` |
 | WE-20260621-meetingcost-team | MeetingCost Team dashboard + embed at $29/mo | meetingcost | 3k→15k | 20/25 | Candidate | Brief: `board/briefs/WE-20260621-meetingcost-team.md` |
 | WE-20260621-compliance-state-seo | State-specific freelancer compliance pSEO (200 pages) | pdf-factory | 3k→50k | 23/25 | **SHIPPED** | 41 pages (10-state pilot), hub `/p/freelancer-compliance-by-state.html`, `/go/compliance` enhanced |
-| WE-20260621-affiliate-portal | Portfolio self-serve affiliate portal at /partners/ | comparestack + portfolio | 5k→30k | 22/25 | **READY_FOR_BUILD** | Brief: `board/briefs/WE-20260621-affiliate-portal.md` |
+| WE-20260621-affiliate-portal | Portfolio self-serve affiliate portal at /partners/ | comparestack + portfolio | 5k→30k | 22/25 | **SHIPPED** | `/partners/`, `/join` affiliate tab, `/refer` dashboard, `config/affiliates.json` |
 | WE-20260621-ndagen-team | NDAGen Team B2B tier $29/mo (50 NDAs, 3 seats) | ndagen | 3k→15k | 22/25 | **READY_FOR_BUILD** | Brief: `board/briefs/WE-20260621-ndagen-team.md` |
 | WE-20260621-statusping-agency | StatusPing Agency white-label $49/mo (10 workspaces) | statusping | 2k→10k | 20/25 | **READY_FOR_BUILD** | Brief: `board/briefs/WE-20260621-statusping-agency.md` |
 | WE-20260621-1099-deadline-suite | 1099-NEC deadline tracker + PDF generator (seasonal) | billsnap + pdf-factory | 2k→8k | 20/25 | Candidate | Brief: `board/briefs/WE-20260621-1099-deadline-suite.md`; state JSON now shipped — ready to unblock |

@@ -166,6 +166,7 @@ function buildPortfolioHub(ventureIds) {
   <a href="/tools/payment-terms-calculator.html">Net 30 calc</a>
   <a href="/tools/1099-tax-estimator.html">1099 tax calc</a>
   <a href="/join.html">📬 LAUNCH25 list</a>
+  <a href="/partners/index.html">🤝 Partner program</a>
   <a href="/comparestack/index.html">Compare tools</a>
 </div>
 <div class="grid">${cards}</div>
