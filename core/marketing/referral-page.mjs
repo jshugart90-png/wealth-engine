@@ -1,6 +1,6 @@
 import { writeFileSync, mkdirSync, readFileSync } from "fs";
 import { join } from "path";
-import { getRoot, getPublicBaseUrl } from "../env.mjs";
+import { getRoot } from "../env.mjs";
 
 function loadAffiliateConfig() {
   return JSON.parse(readFileSync(join(getRoot(), "config", "affiliates.json"), "utf8"));
@@ -54,7 +54,6 @@ export function buildReferralPages() {
   const distDir = join(getRoot(), "dist");
   const partnersDir = join(distDir, "partners");
   mkdirSync(partnersDir, { recursive: true });
-  const base = getPublicBaseUrl();
   const cfg = loadAffiliateConfig();
 
   const starterLinks = cfg.starterLinks
@@ -63,8 +62,8 @@ export function buildReferralPages() {
 <div class="card">
 <strong>${l.label}</strong>
 <p style="font-size:14px;color:#64748b;margin:8px 0">${l.pitch}</p>
-<div class="code link-preview" data-path="${l.path}">${base}${l.path}?ref=YOURCODE</div>
-<a class="btn secondary" href="${base}${l.path}">Preview landing →</a>
+<div class="code link-preview" data-path="${l.path}">/?ref=YOURCODE on ${l.path}</div>
+<a class="btn secondary" href="${l.path}">Preview landing →</a>
 </div>`
     )
     .join("");
@@ -81,7 +80,7 @@ export function buildReferralPages() {
 .step{counter-increment:step;padding-left:36px;position:relative;margin:12px 0}
 .step::before{content:counter(step);position:absolute;left:0;top:0;width:24px;height:24px;background:#2563eb;color:#fff;border-radius:50%;font-size:13px;font-weight:700;display:flex;align-items:center;justify-content:center}
 </style></head><body>
-<div class="nav"><a href="${base}/">← Portfolio</a><a href="${base}/refer.html">Your links</a><a href="${base}/join.html">LAUNCH25 list</a></div>
+<div class="nav"><a href="/">← Portfolio</a><a href="/refer.html">Your links</a><a href="/join.html">LAUNCH25 list</a></div>
 
 <div class="hero">
 <span class="tag">Partner program</span>
@@ -136,11 +135,11 @@ document.getElementById('signup').onclick=async()=>{
   document.getElementById('ok').innerHTML='Your code: <strong>'+d.code+'</strong> — <a href="/refer.html?code='+d.code+'">Open your dashboard →</a>';
   document.querySelectorAll('.link-preview').forEach(el=>{
     const path=el.dataset.path;
-    el.textContent='${base}'+path+'?ref='+d.code;
+    el.textContent=location.origin+path+'?ref='+d.code;
   });
 };
 </script>
-<p style="margin-top:32px;font-size:13px"><a href="${base}/privacy.html">Privacy</a></p>
+<p style="margin-top:32px;font-size:13px"><a href="/privacy.html">Privacy</a></p>
 </body></html>`;
 
   const refer = `<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
@@ -150,7 +149,7 @@ document.getElementById('signup').onclick=async()=>{
 .stat strong{display:block;font-size:22px;color:#1e40af}
 .stat span{font-size:12px;color:#64748b;text-transform:uppercase}
 </style></head><body>
-<div class="nav"><a href="${base}/partners/">Partner program</a><a href="${base}/">← Portfolio</a></div>
+<div class="nav"><a href="/partners/">Partner program</a><a href="/">← Portfolio</a></div>
 <h1>Your referral dashboard</h1>
 <p class="lead">Share any link below. We track clicks for 90 days via first-click cookie.</p>
 
@@ -166,7 +165,7 @@ document.getElementById('signup').onclick=async()=>{
 
 <div id="panel" style="display:none">
 <h2>Primary link</h2>
-<div class="code" id="primary">${base}/?ref=</div>
+<div class="code" id="primary">/?ref=</div>
 <button class="btn secondary" id="copy">Copy link</button>
 
 <h2>Top converters</h2>
@@ -177,10 +176,10 @@ document.getElementById('signup').onclick=async()=>{
 <button class="btn secondary" id="copyFtc">Copy disclosure</button>
 </div>
 
-<p style="margin-top:24px">New partner? <a href="${base}/partners/">Join the program →</a></p>
+<p style="margin-top:24px">New partner? <a href="/partners/">Join the program →</a></p>
 
 <script>
-const base='${base}';
+const base=location.origin;
 const products=${JSON.stringify(cfg.starterLinks)};
 
 function buildLinks(code){
@@ -237,7 +236,7 @@ if(fromUrl){
 .tab.active{border-color:#2563eb;background:#eff6ff;color:#1e40af}
 .panel{display:none}.panel.active{display:block}
 </style></head><body>
-<div class="nav"><a href="${base}/">← Portfolio</a><a href="${base}/partners/">Partner program</a><a href="${base}/refer.html">Your links</a></div>
+<div class="nav"><a href="/">← Portfolio</a><a href="/partners/">Partner program</a><a href="/refer.html">Your links</a></div>
 
 <h1>Join Wealth Engine</h1>
 <p class="lead">Get launch deals or earn 25% recurring as a portfolio partner.</p>
@@ -269,7 +268,7 @@ if(fromUrl){
 <input type="email" id="pemail" placeholder="you@site.com">
 <button class="btn" id="partnerGo" style="width:100%">Get my partner link →</button>
 <p class="ok" id="pok"></p>
-<p style="font-size:13px;margin-top:12px"><a href="${base}/partners/">Full commission table & starter kit →</a></p>
+<p style="font-size:13px;margin-top:12px"><a href="/partners/">Full commission table & starter kit →</a></p>
 </div>
 <div class="disclosure">${cfg.program.ftcDisclosure}</div>
 </div>
@@ -302,7 +301,7 @@ document.getElementById('partnerGo').onclick=async()=>{
   document.getElementById('pok').innerHTML='Code <strong>'+d.code+'</strong> — <a href="/refer.html?code='+d.code+'">Open dashboard →</a>';
 };
 </script>
-<p style="margin-top:24px;font-size:13px"><a href="${base}/privacy.html">Privacy</a></p>
+<p style="margin-top:24px;font-size:13px"><a href="/privacy.html">Privacy</a></p>
 </body></html>`;
 
   writeFileSync(join(distDir, "refer.html"), refer);
