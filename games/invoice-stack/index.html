@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
+<title>Invoice Stack — Wealth Engine Games</title>
+<meta name="description" content="Stack falling invoice blocks! Don't let them topple. Free arcade game tied to BillSnap.">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#0f172a;color:#e2e8f0;font-family:system-ui,sans-serif;overflow:hidden;touch-action:none;user-select:none}
+#wrap{display:flex;flex-direction:column;align-items:center;min-height:100vh;padding:8px}
+h1{font-size:1.2rem;text-align:center;margin:4px 0}
+.sub{font-size:.72rem;color:#94a3b8;text-align:center;margin-bottom:6px}
+#hud{display:flex;gap:16px;font-size:.85rem;margin-bottom:4px}
+#hud span{color:#38bdf8;font-weight:700}
+canvas{border-radius:10px;background:#1e293b;max-width:100%;touch-action:none}
+#msg{font-size:.85rem;margin:6px;color:#94a3b8;min-height:1.2em}
+.btn{background:#2563eb;color:#fff;border:none;padding:10px 20px;border-radius:8px;font-weight:600;cursor:pointer;margin:4px}
+.ad{width:100%;max-width:320px;background:#1e293b;border:1px dashed #334155;border-radius:6px;padding:8px;text-align:center;font-size:10px;color:#64748b;margin:6px 0}
+.cta{font-size:11px;color:#94a3b8;text-align:center;margin-top:4px}
+.cta a{color:#38bdf8;text-decoration:none}
+</style>
+</head>
+<body>
+<div id="wrap">
+<h1>🧾 Invoice Stack</h1>
+<p class="sub">Tap left/right to move — stack invoices before they fall!</p>
+<div id="hud">Score: <span id="score">0</span> · Level: <span id="level">1</span> · Lives: <span id="lives">3</span></div>
+<canvas id="c" width="360" height="520"></canvas>
+<p id="msg">Tap sides to move the falling invoice</p>
+<button class="btn" id="restart" style="display:none">Stack Again</button>
+<div class="ad">AdSense placeholder — 320×50</div>
+<p class="cta">Real invoices? <a href="/go/invoice.html">BillSnap</a> — PDF invoices in seconds · Code <strong>LAUNCH25</strong></p>
+</div>
+<script>
+(function(){
+const c=document.getElementById('c'),ctx=c.getContext('2d');
+const W=360,H=520,BW=80,BH=28;
+let score=0,level=1,lives=3,blocks=[],falling=null,dir=0,speed=2,gameOver=false;
+const colors=['#3b82f6','#6366f1','#8b5cf6','#0ea5e9','#14b8a6'];
+const labels=['INV-001','NET30','PAID','$500','1099','W-9','DUE','SENT'];
+
+function newBlock(x,y,w,h,fixed){
+  return{x,y,w:w||BW+(Math.random()*20|0),h:h||BH,color:colors[Math.random()*colors.length|0],label:labels[Math.random()*labels.length|0],fixed:!!fixed,vx:0,vy:0};
+}
+
+function spawn(){
+  const w=BW+(level*2);falling=newBlock(W/2-w/2,0,w,BH,false);
+  speed=1.5+level*0.3;
+}
+
+function init(){
+  blocks=[newBlock(W/2-BW/2,H-BH-10,BW,BH,true)];
+  spawn();score=0;level=1;lives=3;gameOver=false;
+  document.getElementById('score').textContent=0;
+  document.getElementById('level').textContent=1;
+  document.getElementById('lives').textContent=3;
+  document.getElementById('restart').style.display='none';
+  document.getElementById('msg').textContent='Tap sides to move the falling invoice';
+}
+
+function land(){
+  const top=blocks[blocks.length-1];
+  const overlap=Math.min(falling.x+falling.w,top.x+top.w)-Math.max(falling.x,top.x);
+  const minOverlap=falling.w*0.35;
+  if(overlap<minOverlap){
+    lives--;document.getElementById('lives').textContent=lives;
+    document.getElementById('msg').textContent='💥 Toppled! '+(lives>0?lives+' lives left':'Game Over');
+    if(lives<=0){endGame();return;}
+    falling.y=top.y-falling.h;falling.fixed=true;blocks.push(falling);spawn();return;
+  }
+  const trimL=Math.max(falling.x,top.x),trimR=Math.min(falling.x+falling.w,top.x+top.w);
+  falling.x=trimL;falling.w=trimR-trimL;falling.y=top.y-falling.h;falling.fixed=true;
+  blocks.push(falling);
+  const pts=Math.round(10+overlap);score+=pts;document.getElementById('score').textContent=score;
+  if(blocks.length%5===0){level++;document.getElementById('level').textContent=level;document.getElementById('msg').textContent='Level '+level+'! Faster drops.';}
+  else document.getElementById('msg').textContent='Stacked! +'+pts;
+  if(blocks.length>18){endGame(true);return;}
+  spawn();
+}
+
+function endGame(win){
+  gameOver=true;
+  document.getElementById('msg').textContent=win?'🏆 Tower complete! Score: '+score:'Game Over — Score: '+score;
+  document.getElementById('restart').style.display='inline-block';
+}
+
+function update(){
+  if(gameOver||!falling)return;
+  falling.x+=dir*5;
+  falling.x=Math.max(0,Math.min(W-falling.w,falling.x));
+  falling.y+=speed;
+  const top=blocks[blocks.length-1];
+  if(falling.y+falling.h>=top.y)land();
+}
+
+function drawBlock(b){
+  ctx.fillStyle=b.color;ctx.fillRect(b.x,b.y,b.w,b.h);
+  ctx.strokeStyle='rgba(255,255,255,.3)';ctx.strokeRect(b.x,b.y,b.w,b.h);
+  ctx.fillStyle='#fff';ctx.font='bold 11px system-ui';ctx.fillText(b.label,b.x+6,b.y+b.h/2+4);
+  ctx.fillStyle='rgba(255,255,255,.15)';ctx.fillRect(b.x,b.y,b.w,4);
+}
+
+function draw(){
+  ctx.fillStyle='#1e293b';ctx.fillRect(0,0,W,H);
+  ctx.fillStyle='#334155';ctx.fillRect(0,H-10,W,10);
+  blocks.forEach(drawBlock);
+  if(falling)drawBlock(falling);
+  // touch zones hint
+  ctx.fillStyle='rgba(56,189,248,.08)';ctx.fillRect(0,0,W/2,H);ctx.fillRect(W/2,0,W/2,H);
+}
+
+function loop(){update();draw();requestAnimationFrame(loop);}
+init();loop();
+
+function setDir(d){dir=d;}
+c.addEventListener('mousedown',e=>{const r=c.getBoundingClientRect();setDir((e.clientX-r.left)<r.width/2?-1:1);});
+c.addEventListener('mouseup',()=>setDir(0));
+c.addEventListener('mouseleave',()=>setDir(0));
+c.addEventListener('touchstart',e=>{e.preventDefault();const t=e.touches[0],r=c.getBoundingClientRect();setDir((t.clientX-r.left)<r.width/2?-1:1);},{passive:false});
+c.addEventListener('touchend',()=>setDir(0));
+document.getElementById('restart').onclick=init;
+})();
+</script>
+</body>
+</html>
