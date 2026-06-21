@@ -431,6 +431,36 @@
       "title": "Invoice Follow Up Email Template",
       "venture": "billsnap",
       "sku": "pro-pdf"
+    },
+    {
+      "slug": "quarterly-tax-estimator-freelancer",
+      "title": "Quarterly Tax Estimator for Freelancers",
+      "venture": "billsnap",
+      "sku": "pro-pdf"
+    },
+    {
+      "slug": "invoice-dispute-letter-template",
+      "title": "Invoice Dispute Letter Template",
+      "venture": "pdf-factory",
+      "sku": "freelancer-kit"
+    },
+    {
+      "slug": "vendor-agreement-template-free",
+      "title": "Vendor Agreement Template Free",
+      "venture": "pdf-factory",
+      "sku": "smb-compliance-pack"
+    },
+    {
+      "slug": "dns-lookup-api-tool",
+      "title": "DNS Lookup API Tool",
+      "venture": "devtools-api",
+      "sku": "starter-monthly"
+    },
+    {
+      "slug": "ping-monitor-api-endpoint",
+      "title": "Ping Monitor API Endpoint",
+      "venture": "statusping",
+      "sku": "basic-monthly"
     }
   ],
   "pagesPerCycle": 10
