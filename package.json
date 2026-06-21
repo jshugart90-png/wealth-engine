@@ -31,6 +31,9 @@
     "summary:overnight": "node scripts/write-overnight-summary.mjs",
     "summary:status": "node scripts/write-wealth-status.mjs",
     "sprint:overnight": "node scripts/overnight-build-sprint.mjs",
+    "production:cycle": "node scripts/production-orchestrator.mjs --once",
+    "production:loop": "powershell -ExecutionPolicy Bypass -File deploy/production-orchestrator-loop.ps1",
+    "production:report": "node scripts/production-orchestrator.mjs --final-report",
     "install:8am-summary": "powershell -ExecutionPolicy Bypass -File deploy/install-8am-summary-task.ps1",
     "verify:payments": "npm run build && node scripts/verify-payment-links.mjs"
   },

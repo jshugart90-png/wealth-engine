@@ -16,10 +16,10 @@
 
 **Games hub:** https://wealth-engine-0qlj.onrender.com/games/
 
+| net-30-ninja | Net-30 Ninja | **Shipped** | 5/5 PASS | https://wealth-engine-0qlj.onrender.com/games/net-30-ninja/ | **PROMO_READY** |
 ## Queue (future ideas)
 
 - Receipt Rush — catch falling receipts (BillSnap)
-- Net-30 Ninja — dodge late-payment obstacles
 - Webhook Whack-a-Mole — tap failed webhooks (HookRelay)
 - SSL Shield — block expiry bombs (StatusPing)
 - NDA Speed Sign — match clause pairs (NDAGen)
@@ -107,11 +107,33 @@
 
 ---
 
-## Marketing Director � PROMO_READY
+## Marketing Director � PROMO_READY
 
 8 shipped games; receipt-rush + webhook-whack itch zips in `GAMES_PROMO_2026-06-21.md` (**PROMO_READY**):
 
-- **Batch:** `D:\wealth-engine-data\marketing\outreach\GAMES_PROMO_2026-06-21.md` � itch.io, r/WebGames, r/indiegames, Facebook groups, Poki/CrazyGames/GameMonetize prep
+- **Batch:** `D:\wealth-engine-data\marketing\outreach\GAMES_PROMO_2026-06-21.md` � itch.io, r/WebGames, r/indiegames, Facebook groups, Poki/CrazyGames/GameMonetize prep
 - **Reddit signup (user):** `D:\wealth-engine-data\marketing\REDDIT_SIGNUP_READY.md`
 - **Playbook:** `D:\wealth-engine-data\marketing\ZERO_BUDGET_PLAYBOOK.md`
 - Cross-link: portfolio README games hub, horseshoeroundme.com (ZB-008)
+
+---
+## QC Log — net-30-ninja
+### QC Pass 5/5 — 6/21/2026, 12:57:24 AM CT
+- **Result:** PASS
+- **Notes:** Local build includes game in dist/games/
+
+### QC Pass 4/5 — 6/21/2026, 12:57:24 AM CT
+- **Result:** PASS
+- **Notes:** CTAs to BillSnap + late fee tool
+
+### QC Pass 3/5 — 6/21/2026, 12:57:24 AM CT
+- **Result:** PASS
+- **Notes:** touch-action:none, touchstart + click handlers
+
+### QC Pass 2/5 — 6/21/2026, 12:57:24 AM CT
+- **Result:** PASS
+- **Notes:** Jump mechanic, obstacle collision, lives/score
+
+### QC Pass 1/5 — 6/21/2026, 12:57:24 AM CT
+- **Result:** PASS
+- **Notes:** Loads single-file HTML, canvas renders
