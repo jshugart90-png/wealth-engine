@@ -461,6 +461,36 @@
       "title": "Ping Monitor API Endpoint",
       "venture": "statusping",
       "sku": "basic-monthly"
+    },
+    {
+      "slug": "contractor-1099-tracker",
+      "title": "Contractor 1099 Tracker Template",
+      "venture": "billsnap",
+      "sku": "pro-pdf"
+    },
+    {
+      "slug": "lease-renewal-checklist",
+      "title": "Lease Renewal Checklist",
+      "venture": "leaselens",
+      "sku": "single-report"
+    },
+    {
+      "slug": "webhook-log-viewer",
+      "title": "Webhook Log Viewer Online",
+      "venture": "hookrelay",
+      "sku": "relay-monthly"
+    },
+    {
+      "slug": "meeting-agenda-cost-template",
+      "title": "Meeting Agenda Cost Template",
+      "venture": "meetingcost",
+      "sku": "meeting-pro"
+    },
+    {
+      "slug": "nda-expiration-tracker",
+      "title": "NDA Expiration Tracker",
+      "venture": "ndagen",
+      "sku": "nda-pdf"
     }
   ],
   "pagesPerCycle": 10
