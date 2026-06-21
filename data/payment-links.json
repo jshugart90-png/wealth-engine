@@ -27,9 +27,9 @@
     "sku": "unlimited-month",
     "venture_id": "billsnap",
     "stripe_product_id": "prod_Uk5fTQ6hV6OeFk",
-    "stripe_price_id": "price_1TkbTvCA8XeKRzqbhNGBy2el",
-    "payment_link": "https://buy.stripe.com/28EfZgcFUdSpfUpfFD1Nu03",
-    "updated_at": "2026-06-21T02:51:36.019Z"
+    "stripe_price_id": "price_1TkdleCA8XeKRzqb4mBmY613",
+    "payment_link": "https://buy.stripe.com/7sY9ASaxM01z6jPeBz1Nu0j",
+    "updated_at": "2026-06-21T05:18:03.307Z"
   },
   {
     "sku": "single-report",

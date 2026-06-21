@@ -1389,3 +1389,18 @@ Append-only handoff log. Each agent adds one entry at the bottom. Never edit pri
 **Summary:** Freelancer Stack + HookRelay DLQ live (DEPLOY_LOG PASS 7/7). batch9 PUBLISH_READY with live URLs. Google Ads CSV regenerated: 7 campaigns, $10/day cap. MC-008 + MC-009 marked ACTIVE. **Next build priority:** WE-20260621-billsnap-sub-pivot (23/25, top 5 research — brief may need creating from IDEAS.md).
 **Artifacts:** D:\\wealth-engine-data\\marketing\\outreach\\POST_2026-06-21_batch9.md, D:\\wealth-engine-data\\marketing\\ads\\google-ads-import.csv, board/MARKETING.md, board/PIPELINE.md
 **Tier-2 needed:** no
+
+### 2026-06-21T14:00:00Z Build Agent → Deploy Guy
+**Cycle:** 4
+**Verdict:** PASS
+**Subject:** WE-20260621-billsnap-sub-pivot
+**Summary:** BillSnap unlimited repriced $12→$29/mo (unlimited-month SKU). Added /go/billsnap-pro landing, enhanced /go/invoice + contractor landings. 5 industry pSEO keywords. Stripe price synced. MC-010 flagged NEEDS_CAMPAIGN.
+**Artifacts:** board/briefs/WE-20260621-billsnap-sub-pivot.md, config/ventures.json, config/seo-keywords.json, core/pipeline/conversion-landings.mjs, scripts/stripe-reprice-sku.mjs
+**Next build priority:** WE-20260621-pipekit-pseo (21/25)
+**Tier-2 needed:** yes (unlimited-month Stripe reprice)
+**Cycle:** MD-4
+**Verdict:** PASS
+**Subject:** zero-budget-marketing-cycle-4
+**Summary:** Marketing Director cycle 4. 30 PUBLISH_READY posts queued. 5 new channels tracked. Revenue $0 — organic distribution only.
+**Artifacts:** D:\\wealth-engine-data\\marketing\\outreach\\, board/MARKETING.md
+**Tier-2 needed:** no

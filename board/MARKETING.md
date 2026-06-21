@@ -1,6 +1,6 @@
 ﻿# Marketing Command Center
 
-**Director:** Marketing Director agent Â· **Updated:** 2026-06-21T12:00 CT (batch9 sync) Â· **Cycles complete:** 2  
+**Director:** Marketing Director agent · **Updated:** 2026-06-21T14:00 CT (MC-010 BillSnap Pro $29 — NEEDS_CAMPAIGN) · **Cycles complete:** 4  
 **Prod:** https://wealth-engine-0qlj.onrender.com Â· **Goal:** $500/mo Â· **Budget:** $0 ads until revenue  
 **Coupon:** LAUNCH25 (25% off)
 
@@ -17,8 +17,9 @@
 | MC-005 | MeetingCost viral embed | MeetingCost | `/go/meeting.html` | Horseshoe cross-promo, r/startups | LIVE (Horseshoe bar) | 1 |
 | MC-006 | Free tools lead magnet | All | `/tools/index.html` | dev.to article, Quora | PUBLISH_READY | 1 |
 | MC-007 | StatusPing $5 uptime wedge | StatusPing | `/go/uptime.html` | r/SaaS, BetaList | PUBLISH_READY | 2 |
-| MC-008 | Freelancer Stack $29/mo + $49 bundle | BillSnap+NDAGen+Templates | `/bundles/freelancer-stack.html`, `/go/stack.html` | r/freelance, IH | PUBLISH_READY | 2 |
-| MC-009 | HookRelay DLQ Pro $29/mo | HookRelay | `/go/hookrelay-dlq.html`, `/hookrelay/pricing.html` | r/SaaS, r/webdev, Show HN | PUBLISH_READY | 2 |
+| MC-008 | Freelancer Stack $29/mo + $49 bundle | BillSnap+NDAGen+Templates | [bundles/freelancer-stack.html](https://wealth-engine-0qlj.onrender.com/bundles/freelancer-stack.html) · [go/freelancer.html](https://wealth-engine-0qlj.onrender.com/go/freelancer.html) · [go/stack.html](https://wealth-engine-0qlj.onrender.com/go/stack.html) | r/freelance, IH, Peerlist, PH | **ACTIVE** | 3 |
+| MC-009 | HookRelay DLQ Pro $29/mo | HookRelay | [go/hookrelay-dlq.html](https://wealth-engine-0qlj.onrender.com/go/hookrelay-dlq.html) · [hookrelay/pricing.html](https://wealth-engine-0qlj.onrender.com/hookrelay/pricing.html) | r/webdev, Show HN, Slack | **ACTIVE** | 3 |
+| MC-010 | BillSnap Pro Unlimited $29/mo | BillSnap | [go/billsnap-pro.html](https://wealth-engine-0qlj.onrender.com/go/billsnap-pro.html) · [go/invoice.html](https://wealth-engine-0qlj.onrender.com/go/invoice.html) | r/freelance, r/smallbusiness, Google Ads | **NEEDS_CAMPAIGN** | 4 |
 
 ---
 
@@ -72,7 +73,7 @@
 
 | Priority | File | Posts | Action |
 |----------|------|-------|--------|
-| 1 | `outreach/POST_2026-06-21_batch9.md` | 5 posts | $29 stack + DLQ Pro (NEW URLs) |
+| 1 | `outreach/POST_2026-06-21_batch9.md` | 8 posts | MC-008 + MC-009 live URLs — r/freelance, r/webdev, IH, HN |
 | 2 | `outreach/POST_2026-06-21_batch8.md` | 6 posts | r/SaaS, PH prep, Slack template |
 | 3 | `outreach/POST_2026-06-21_batch7.md` | 8 posts | Copy-paste to Reddit/IH/HN |
 | 4 | `outreach/posts.json` | 6 posts | Legacy queue |
@@ -81,7 +82,7 @@
 | 7 | `outreach/articles/invoice-without-subscription-2026-06-21.md` | 1 article | dev.to publish |
 | 8 | `directory-submissions/DIRECTORY_PACK_2026-06-21.md` | 5 dirs | Manual submit |
 
-**Total PUBLISH_READY posts:** 24+ (across batches 1â€“8)
+**Total PUBLISH_READY posts:** 32+ (across batches 1-9)
 
 ---
 
@@ -115,5 +116,6 @@
 - [ ] Submit Peerlist + Uneed + MicroLaunch (15 min total)
 - [ ] Publish dev.to article from batch7
 - [ ] User posts batch9 r/freelance (MC-008) + r/SaaS DLQ (MC-009) — new $29 URLs
+- [ ] **MC-010:** Launch BillSnap Pro $29/mo campaign — `/go/billsnap-pro`, contractor/consultant pSEO pages, ads CSV row WE-BillSnap-Pro
 - [ ] Monitor DEPLOY_LOG for extensionless URL redirects (cycle 2 pending QC)
 - [ ] Cycle 2 channel research: Facebook groups, Slack communities, newsletter submits

@@ -665,6 +665,36 @@
       "title": "Invoice Payment Reminder Template",
       "venture": "billsnap",
       "sku": "pro-pdf"
+    },
+    {
+      "slug": "general-contractor-invoice-template",
+      "title": "General Contractor Invoice Template PDF",
+      "venture": "billsnap",
+      "sku": "unlimited-month"
+    },
+    {
+      "slug": "independent-consultant-invoice-template",
+      "title": "Independent Consultant Invoice Template",
+      "venture": "billsnap",
+      "sku": "unlimited-month"
+    },
+    {
+      "slug": "freelance-consultant-invoice-format",
+      "title": "Freelance Consultant Invoice Format",
+      "venture": "billsnap",
+      "sku": "unlimited-month"
+    },
+    {
+      "slug": "subcontractor-invoice-template-free",
+      "title": "Subcontractor Invoice Template Free",
+      "venture": "billsnap",
+      "sku": "unlimited-month"
+    },
+    {
+      "slug": "handyman-invoice-template-pdf",
+      "title": "Handyman Invoice Template PDF",
+      "venture": "billsnap",
+      "sku": "unlimited-month"
     }
   ],
   "pagesPerCycle": 10

@@ -9,7 +9,7 @@ const CAMPAIGNS = [
     keywords: [
       { kw: "free invoice generator pdf", h1: "Free Invoice PDF", h2: "No Signup · $3 Pro", desc: "Preview free. Pro PDF $3. Code LAUNCH25 saves 25%." },
       { kw: "invoice generator no signup", h1: "Invoice — No Signup", h2: "PDF in 30 Seconds", desc: "Instant preview. Watermark-free export $3. Secure Stripe." },
-      { kw: "freelancer invoice template", h1: "Freelancer Invoice", h2: "Print-Ready PDF $3", desc: "Made for contractors. One-time $3 or $12/mo unlimited." },
+      { kw: "freelancer invoice template", h1: "Freelancer Invoice", h2: "Print-Ready PDF $3", desc: "Made for contractors. One-time $3 or $29/mo unlimited." },
       { kw: "make invoice pdf online", h1: "Make Invoice PDF", h2: "Try Free First", desc: "Online invoice maker. Pro export from $3. LAUNCH25 at checkout." },
     ],
     sku: "pro-pdf",
@@ -17,7 +17,7 @@ const CAMPAIGNS = [
   },
   {
     name: "WE - Lease Analyzer",
-    budgetDailyUsd: 2,
+    budgetDailyUsd: 1,
     keywords: [
       { kw: "lease red flags checklist", h1: "Lease Red Flags", h2: "Free Risk Score", desc: "Paste lease, get instant flags. Full report $7. Not legal advice." },
       { kw: "rental lease analyzer", h1: "Rental Lease Analyzer", h2: "Instant Preview", desc: "Rule-based lease scan. Unlock full report for $7." },
@@ -28,7 +28,7 @@ const CAMPAIGNS = [
   },
   {
     name: "WE - Uptime Monitor",
-    budgetDailyUsd: 2,
+    budgetDailyUsd: 1,
     keywords: [
       { kw: "cheap uptime monitor", h1: "Cheap Uptime Monitor", h2: "From $5/mo", desc: "Email alerts when site goes down. 5 monitors included." },
       { kw: "website down alert email", h1: "Site Down Alerts", h2: "Email in 5 Min", desc: "Simple monitoring. No complex setup. Cancel anytime." },
@@ -59,7 +59,7 @@ const CAMPAIGNS = [
   },
   {
     name: "WE - Webhook Relay",
-    budgetDailyUsd: 1,
+    budgetDailyUsd: 0,
     keywords: [
       { kw: "webhook relay service", h1: "Webhook Relay", h2: "$7/mo Self-Serve", desc: "Retry failed Stripe webhooks. Dead-letter alerts. No enterprise sales." },
       { kw: "stripe webhook retry", h1: "Stripe Webhook Retry", h2: "HookRelay $7/mo", desc: "Forward and replay webhooks. Setup in 60 seconds." },
@@ -69,7 +69,7 @@ const CAMPAIGNS = [
   },
   {
     name: "WE - Business Templates",
-    budgetDailyUsd: 1,
+    budgetDailyUsd: 0,
     keywords: [
       { kw: "freelancer contract template pdf", h1: "Freelancer Templates", h2: "Instant Download $14", desc: "Contracts, invoices, onboarding kits. LAUNCH25 saves 25%." },
       { kw: "small business compliance templates", h1: "SMB Compliance Pack", h2: "Print-Ready PDFs", desc: "Hiring, compliance, and ops templates. Checkout in 60 seconds." },
@@ -80,7 +80,7 @@ const CAMPAIGNS = [
   },
   {
     name: "WE - Freelancer Kit",
-    budgetDailyUsd: 1,
+    budgetDailyUsd: 0,
     keywords: [
       { kw: "freelancer business kit pdf", h1: "Freelancer Kit $14", h2: "14 Templates", desc: "Contracts, proposals, invoices. LAUNCH25 saves 25% at checkout." },
       { kw: "freelancer document template pack", h1: "Freelancer Docs", h2: "Instant Download", desc: "Print-ready PDFs. No subscription. Secure Stripe checkout." },
@@ -90,7 +90,7 @@ const CAMPAIGNS = [
   },
   {
     name: "WE - Contractor Invoice",
-    budgetDailyUsd: 1,
+    budgetDailyUsd: 0,
     keywords: [
       { kw: "contractor invoice template pdf", h1: "Contractor Invoice", h2: "PDF in 30 Sec", desc: "1099-friendly invoice. Preview free. Pro export $3." },
       { kw: "1099 contractor invoice maker", h1: "1099 Invoice Maker", h2: "No Signup", desc: "Send invoices same day. LAUNCH25 saves 25%." },
@@ -100,7 +100,7 @@ const CAMPAIGNS = [
   },
   {
     name: "WE - SMB Compliance",
-    budgetDailyUsd: 1,
+    budgetDailyUsd: 0,
     keywords: [
       { kw: "smb compliance checklist pdf", h1: "SMB Compliance Pack", h2: "$19 Instant", desc: "Incident response, vendor agreements. Download in 60 seconds." },
       { kw: "small business compliance documents", h1: "Compliance Docs", h2: "No Lawyer Sub", desc: "Print-ready templates. LAUNCH25 at checkout." },
@@ -116,21 +116,32 @@ const CAMPAIGNS = [
       { kw: "freelancer business tools bundle", h1: "Revenue Stack $49", h2: "One-Time Bundle", desc: "Replace 3 subscriptions. Instant Stripe checkout." },
     ],
     sku: "stack-unlimited",
-    finalUrlPath: "/go/stack.html?utm_source=google&utm_campaign=stack",
+    finalUrlPath: "/go/freelancer.html?utm_source=google&utm_campaign=stack",
   },
   {
     name: "WE - HookRelay DLQ",
-    budgetDailyUsd: 1,
+    budgetDailyUsd: 2,
     keywords: [
       { kw: "webhook dead letter queue", h1: "Webhook DLQ Pro", h2: "$29/mo", desc: "Retry, dead-letter alerts, replay. Indie SaaS pricing." },
       { kw: "stripe webhook retry service", h1: "Stripe Webhook Retry", h2: "25K Events/mo", desc: "Production-grade relay. LAUNCH25 at checkout." },
     ],
     sku: "hookrelay-pro",
-    finalUrlPath: "/go/webhook.html?utm_source=google&utm_campaign=hookrelay-dlq",
+    finalUrlPath: "/go/hookrelay-dlq.html?utm_source=google&utm_campaign=hookrelay-dlq",
+  },
+  {
+    name: "WE - BillSnap Pro Unlimited",
+    budgetDailyUsd: 1,
+    keywords: [
+      { kw: "contractor invoice template pdf", h1: "Contractor Invoice PDF", h2: "$29/mo Unlimited", desc: "1099-friendly invoices. No signup. LAUNCH25 saves 25%." },
+      { kw: "consultant invoice template free", h1: "Consultant Invoice", h2: "BillSnap Pro $29/mo", desc: "Unlimited exports for weekly billers. Preview free." },
+      { kw: "freelancer invoice app unlimited", h1: "Freelancer Invoice App", h2: "Unlimited $29/mo", desc: "Beat QuickBooks pricing. Instant PDF, no account." },
+    ],
+    sku: "unlimited-month",
+    finalUrlPath: "/go/billsnap-pro.html?utm_source=google&utm_campaign=billsnap-pro",
   },
   {
     name: "WE - DevWatch Bundle",
-    budgetDailyUsd: 1,
+    budgetDailyUsd: 0,
     keywords: [
       { kw: "uptime ssl cron monitoring bundle", h1: "DevWatch $39/mo", h2: "3-in-1 Monitoring", desc: "Uptime + SSL + cron in one dashboard. LAUNCH25 saves 25%." },
       { kw: "ssl certificate expiry alert", h1: "SSL Expiry Alerts", h2: "DevWatch Bundle", desc: "Never miss cert renewal. Unified alerts with uptime + cron." },
@@ -151,6 +162,7 @@ export function buildGoogleAdsCsv() {
   ];
 
   for (const c of CAMPAIGNS) {
+    if (c.budgetDailyUsd <= 0) continue;
     for (const entry of c.keywords) {
       const kw = typeof entry === "string" ? entry : entry.kw;
       const h1 = typeof entry === "string" ? kw.split(" ").slice(0, 3).join(" ") : entry.h1;
@@ -177,10 +189,10 @@ export function buildGoogleAdsCsv() {
   writeFileSync(join(outDir, "microsoft-ads-import.csv"), csv);
   writeFileSync(
     join(outDir, "campaign-notes.json"),
-    JSON.stringify({ campaigns: CAMPAIGNS, baseUrl: base, dailyBudgetTotal: CAMPAIGNS.reduce((s, c) => s + c.budgetDailyUsd, 0) }, null, 2)
+    JSON.stringify({ campaigns: CAMPAIGNS.filter((c) => c.budgetDailyUsd > 0), baseUrl: base, dailyBudgetTotal: CAMPAIGNS.reduce((s, c) => s + c.budgetDailyUsd, 0) }, null, 2)
   );
   const dailyBudgetUsd = CAMPAIGNS.reduce((s, c) => s + c.budgetDailyUsd, 0);
-  return { path: join(outDir, "google-ads-import.csv"), dailyBudgetUsd, campaigns: CAMPAIGNS.length };
+  return { path: join(outDir, "google-ads-import.csv"), dailyBudgetUsd, campaigns: CAMPAIGNS.filter((c) => c.budgetDailyUsd > 0).length };
 }
 
 function esc(s) {

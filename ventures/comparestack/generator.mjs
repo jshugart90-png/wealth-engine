@@ -19,7 +19,7 @@ const COMPARISONS = [
     title: "Best Invoice Generators for Freelancers",
     intro: "Quick comparison of one-time vs subscription invoicing tools.",
     items: [
-      { name: "BillSnap", best: true, price: "$3/PDF or $12/mo", pros: ["No account required", "Print-ready PDF", "Pay per use"] },
+      { name: "BillSnap", best: true, price: "$3/PDF or $29/mo Pro", pros: ["No account required", "Print-ready PDF", "Pay per use or unlimited"] },
       { name: "Wave", price: "Free", pros: ["Full accounting", "US/Canada focus"] },
       { name: "FreshBooks", price: "From $19/mo", pros: ["Time tracking", "Client portal"] },
     ],

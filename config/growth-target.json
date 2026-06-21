@@ -11,7 +11,7 @@
   },
   "prioritySkus": [
     { "sku": "pro-pdf", "venture": "billsnap", "why": "Low friction $3, high search intent" },
-    { "sku": "unlimited-month", "venture": "billsnap", "why": "$12/mo recurring from freelancers" },
+    { "sku": "unlimited-month", "venture": "billsnap", "why": "$29/mo recurring from weekly invoicers" },
     { "sku": "single-report", "venture": "leaselens", "why": "$7, strong problem-aware queries" },
     { "sku": "freelancer-kit", "venture": "pdf-factory", "why": "$14 bundle value" },
     { "sku": "basic-monthly", "venture": "statusping", "why": "$5/mo sticky" },

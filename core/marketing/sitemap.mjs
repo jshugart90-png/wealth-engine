@@ -11,6 +11,7 @@ const STATIC_PATHS = [
   "/statusping/index.html",
   "/templateforge/index.html",
   "/go/invoice.html",
+  "/go/billsnap-pro.html",
   "/go/lease.html",
   "/go/uptime.html",
   "/go/nda.html",

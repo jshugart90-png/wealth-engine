@@ -21,7 +21,7 @@
       "name": "BillSnap",
       "type": "micro-saas",
       "model": "freemium-one-time",
-      "prices": { "proPdf": 3, "unlimitedMonth": 12 },
+      "prices": { "proPdf": 3, "unlimitedMonth": 29 },
       "path": "ventures/billsnap",
       "deployPath": "dist/billsnap",
       "channels": ["seo", "google-ads", "freelancer-forums"],
@@ -131,8 +131,8 @@
     {
       "ventureId": "billsnap",
       "sku": "unlimited-month",
-      "name": "BillSnap Unlimited (30 days)",
-      "priceUsd": 12,
+      "name": "BillSnap Pro Unlimited",
+      "priceUsd": 29,
       "interval": "month",
       "metadata": { "unlimited": "true" }
     },
