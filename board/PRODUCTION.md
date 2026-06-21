@@ -2,7 +2,7 @@
 
 **Orchestrator:** Production Orchestrator · **Deadline:** 2026-06-21 08:00 CT  
 **Prod:** https://wealth-engine-0qlj.onrender.com  
-**Last cycle:** 6/21/2026, 4:43:35 AM CT (cycle #13)
+**Last cycle:** 6/21/2026, 5:03:38 AM CT (cycle #14)
 
 | Agent | Status | Last action | Next action | Blockers |
 |-------|--------|-------------|-------------|----------|
@@ -10,7 +10,7 @@
 | Build/QC Factory | active | 0 keywords, build OK | Next READY_FOR_BUILD | — |
 | Marketing Director | running | +3 reddit drafts | Free channel posts | IndexNow 403 |
 | Game Creator | queued | Queue monitored | SSL Shield next | — |
-| GitHub Pro | skipped | <30min throttle | Next if stale | — |
+| GitHub Pro | cycled | audit PASS | Next if stale | — |
 | Reddit drafts | active | 10 READY_FOR_REVIEW | +3 next cycle | Manual publish |
 | Money Machine | running | MM daemon | Pipeline chain | T-012 dup PIDs |
 | Deploy | healthy | ## main...origin/main | Push each cycle | T-002 domain |
@@ -23,7 +23,7 @@
 | Games | 9 |
 | Stripe products | 21 |
 | Reddit drafts READY_FOR_REVIEW | 10 |
-| Commits tonight | 94 |
+| Commits tonight | 95 |
 | Prod health | 200 OK |
 | READY_FOR_BUILD briefs | 3 |
 
@@ -37,4 +37,4 @@
 | T-012 | @github-pro | Consolidate MM daemon PIDs |
 
 ---
-_Updated by `scripts/production-orchestrator.mjs` cycle #13 at 6/21/2026, 4:43:35 AM CT._
+_Updated by `scripts/production-orchestrator.mjs` cycle #14 at 6/21/2026, 5:03:38 AM CT._
