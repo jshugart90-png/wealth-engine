@@ -1,12 +1,15 @@
-# Manual App Store Steps — Payment Blockers Only
+# Manual App Store Steps — Remaining Human Gates
 
-Everything else is automated (Capacitor project, metadata, Fastlane skeleton, CI AAB build, preflight QC, itch zips).
+Everything else is automated (Capacitor project, metadata, Fastlane lanes, CI AAB build, preflight QC, itch zips).
 
-**Do not pay these fees until ready to publish.** Current budget: $0.
+**Apple Developer Program:** ✅ **DONE** — account active (fee already paid).  
+**Next iOS milestone:** App Store Connect app record → signing → **TestFlight upload** (requires macOS + Xcode).
+
+**Do not pay Google Play $25 until ready to publish on Android.** Current budget: $0 for new fees.
 
 ---
 
-## Google Play — $25 one-time
+## Google Play — $25 one-time (still blocked)
 
 ### 1. Create developer account
 
@@ -40,7 +43,7 @@ Everything else is automated (Capacitor project, metadata, Fastlane skeleton, CI
    cd android && ./gradlew bundleRelease
    ```
 3. Upload `app-release.aab` to **Internal testing** track first
-4. Add yourself as tester → install → verify all 6 games load
+4. Add yourself as tester → install → verify all 8 games load
 
 ### 5. AdMob link (after app created)
 
@@ -48,7 +51,7 @@ Everything else is automated (Capacitor project, metadata, Fastlane skeleton, CI
 2. Create banner + rewarded ad units
 3. Copy IDs to `mobile/.env` (see `mobile/.env.example`)
 4. Rebuild: `npm run build && node mobile/sync-www.mjs games`
-5. Run `node scripts/app-store-preflight.mjs` — check #8 should PASS
+5. Run `npm run mobile:preflight` — check #8 should PASS
 
 ### 6. Fastlane upload (optional, after service account)
 
@@ -60,23 +63,33 @@ Everything else is automated (Capacitor project, metadata, Fastlane skeleton, CI
 
 ---
 
-## Apple App Store — $99/year
+## Apple App Store — TestFlight (account ✅ DONE)
 
-### 1. Enroll in Apple Developer Program
+> **This Windows machine cannot build or upload iOS.** Use a Mac with Xcode (local or cloud Mac). Steps below are exact; no additional Apple fees required.
 
-1. Go to [Apple Developer](https://developer.apple.com/programs/enroll/)
-2. Pay **$99 USD/year**
-3. Wait for approval (usually 24–48h)
+### ✅ 1. Apple Developer Program — DONE
 
-### 2. App Store Connect setup
+- Account is active. Skip enrollment / $99 payment.
 
-1. [App Store Connect](https://appstoreconnect.apple.com/) → **My Apps** → **+**
-2. Name: **Horseshoe Games Hub**
-3. Bundle ID: `com.wealthengine.gameshub` (register in Certificates, Identifiers & Profiles first)
-4. SKU: `gameshub-001`
-5. Category: **Games → Casual**
+### 2. Register App ID & certificates (Mac or developer.apple.com)
 
-### 3. Store listing
+1. [Certificates, Identifiers & Profiles](https://developer.apple.com/account/resources/identifiers/list)
+2. **Identifiers → + → App IDs** → Bundle ID: `com.wealthengine.gameshub`
+3. Enable **App Groups** / capabilities only if needed (games hub uses WebView — usually none)
+4. **Certificates → + → Apple Distribution** (for App Store / TestFlight)
+5. **Profiles → + → App Store** → select App ID + distribution cert → download `.mobileprovision`
+
+### 3. App Store Connect app record
+
+1. [App Store Connect](https://appstoreconnect.apple.com/) → **My Apps** → **+** → **New App**
+2. Platform: **iOS**
+3. Name: **Horseshoe Games Hub**
+4. Primary language: **English (U.S.)**
+5. Bundle ID: `com.wealthengine.gameshub` (must match step 2)
+6. SKU: `gameshub-001`
+7. User access: **Full Access**
+
+### 4. Store listing (can finish while build processes)
 
 Copy from `mobile/store-metadata/games/`:
 
@@ -90,34 +103,76 @@ Copy from `mobile/store-metadata/games/`:
 | Privacy URL | `metadata.json` → `privacyPolicyUrl` |
 | Screenshots | `mobile/store-metadata/games/screenshots/` (capture per SCREENSHOT_SPEC.md) |
 
-### 4. Age rating
+Category: **Games → Casual**  
+Age rating: use `mobile/store-metadata/AGE_RATING.md` → Apple section. Expected: **4+**.
 
-Use `mobile/store-metadata/AGE_RATING.md` → Apple section. Expected: **4+**.
+### 5. App Store Connect API key (for Fastlane — recommended)
 
-### 5. Build & upload (requires macOS)
-
-iOS builds **cannot run on Windows or Linux CI** without a Mac runner.
-
-1. On a Mac with Xcode installed:
-   ```bash
-   cd mobile && npm run sync:games
-   cd games && npx cap sync ios
-   npx cap open ios
+1. App Store Connect → **Users and Access → Integrations → App Store Connect API**
+2. **+** → name: `wealth-engine-fastlane` → access: **App Manager** (or Admin)
+3. Download **`.p8` key once** — store outside git (e.g. `~/secrets/AuthKey_XXXXXX.p8`)
+4. Note **Key ID** and **Issuer ID**
+5. Copy `mobile/fastlane/.env.example` → `mobile/fastlane/.env` (gitignored) and fill:
+   ```env
+   APP_STORE_CONNECT_API_KEY_ID=XXXXXXXXXX
+   APP_STORE_CONNECT_ISSUER_ID=xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
+   APP_STORE_CONNECT_API_KEY_PATH=/absolute/path/to/AuthKey_XXXXXX.p8
    ```
-2. Xcode → select team → **Product → Archive**
-3. **Distribute App** → App Store Connect → Upload
+6. Uncomment and fill `mobile/fastlane/Appfile` (`apple_id`, `team_id`)
 
-**Or** with Fastlane (after API key):
+### 6. Build & upload to TestFlight
 
-1. App Store Connect → **Users and Access → Keys** → generate API key (.p8)
-2. Set in `mobile/.env`: `APP_STORE_CONNECT_API_KEY_ID`, `ISSUER_ID`, `API_KEY_PATH`
-3. `cd mobile && bundle exec fastlane ios beta`
+**Preflight on any OS (already run before Mac work):**
+```bash
+npm run mobile:preflight
+```
+Expected: **15 PASS**, **0 FAIL**, **1 WARN** (AdMob test IDs until production).
 
-### 6. TestFlight → production
+#### Option A — Fastlane (recommended on Mac)
 
-1. Wait for processing in App Store Connect
-2. Add internal testers → verify games on device
-3. Submit for review when AdMob production IDs are set (if showing ads)
+```bash
+# On Mac — clone/sync repo, then:
+cd mobile
+npm install
+npm run sync:games
+cd games && npx cap sync ios
+cd ..
+bundle install
+# Load API key env (from mobile/fastlane/.env — never commit)
+export $(grep -v '^#' fastlane/.env | xargs)
+bundle exec fastlane ios beta
+```
+
+Lane `ios beta` in `mobile/fastlane/Fastfile`:
+1. Builds archive from `games/ios/App/App.xcworkspace`
+2. Uploads to TestFlight via App Store Connect API
+3. Skips waiting for processing (`skip_waiting_for_build_processing: true`)
+
+#### Option B — Xcode GUI (no Fastlane)
+
+```bash
+cd mobile && npm run sync:games
+cd games && npx cap sync ios
+npx cap open ios
+```
+
+In Xcode:
+1. Select project **App** → **Signing & Capabilities** → Team = your Apple Developer team
+2. Bundle Identifier = `com.wealthengine.gameshub`
+3. Destination: **Any iOS Device (arm64)** (not simulator)
+4. **Product → Archive**
+5. Organizer opens → **Distribute App**
+6. **App Store Connect** → **Upload**
+7. Leave defaults (bitcode/symbols) → **Upload**
+8. Wait for email: “App Store Connect: Your build has completed processing”
+
+### 7. TestFlight → internal test → App Store
+
+1. App Store Connect → **TestFlight** tab → select build (processing ~5–30 min)
+2. **Internal Testing** → add yourself → install **TestFlight** app on iPhone/iPad
+3. Verify all **8 games** load in the hub WebView
+4. When ready for public beta: **External Testing** (optional Apple review of beta info)
+5. **App Store release:** swap AdMob test IDs → production (see `docs/MONETIZATION_MATRIX.md`) → Submit for Review
 
 ---
 
@@ -126,10 +181,11 @@ iOS builds **cannot run on Windows or Linux CI** without a Mac runner.
 - Capacitor project setup (`mobile/`)
 - Store copy / keywords (`mobile/store-metadata/`)
 - Age rating reference answers (`AGE_RATING.md`)
-- Preflight QC (`scripts/app-store-preflight.mjs`)
-- itch.io zips (`scripts/package-games-itch.mjs` → `D:\wealth-engine-data\mobile\itch\`)
+- Preflight QC (`npm run mobile:preflight`)
+- itch.io zips (`npm run mobile:itch` → `D:\wealth-engine-data\mobile\itch\` — 8 games + hub)
 - PWA manifest + service worker (live on Render after deploy)
 - Android AAB CI build (`.github/workflows/mobile-build.yml`)
+- Apple Developer $99 fee (already paid)
 
 ---
 

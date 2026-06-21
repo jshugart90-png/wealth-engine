@@ -182,6 +182,17 @@ Upload `C:\Users\jshug\Website\index.html` to GoDaddy (NOT Netlify).
 
 ## Agent / daemon status
 
+### GitHub Pro (repo guardian)
+
+- **Rule:** `.cursor/rules/github-pro.mdc`
+- **Audit log:** `board/GITHUB_PRO.md`
+- **Report:** `board/GITHUB_PRO_REPORT_2026-06-21.md`
+- **Initial audit:** PASS — build, health, mobile preflight, prod 6/6 URLs
+- **Render deploy:** 201 via API trigger
+- **Fixes:** encoding in itch packager; T-001 marked done; T-010–T-012 assigned
+- **Open:** 5 duplicate MM daemons (documented, not killed); IndexNow 403 → @research-guy
+- **Cycle script:** `node scripts/github-pro-cycle.mjs`
+
 Last ramp: 2026-06-21T04:30:44.312Z
 MM daemon: `npm run daemon:mm` (360 min interval)
 Deploy trigger: `node scripts/trigger-render-deploy.mjs`

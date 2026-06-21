@@ -1,8 +1,8 @@
-﻿#!/usr/bin/env node
+#!/usr/bin/env node
 /**
  * Package games as HTML zips for itch.io upload (free distribution).
  * Run: node scripts/package-games-itch.mjs
- * Output: D:/wealth-engine-data/mobile/itch/{slug}.zip (6 games + hub bundle)
+ * Output: D:/wealth-engine-data/mobile/itch/{slug}.zip (8 games + hub bundle)
  */
 import { readFileSync, writeFileSync, mkdirSync, cpSync, existsSync, readdirSync, rmSync } from "fs";
 import { join } from "path";
@@ -21,6 +21,8 @@ const SHIPPED_GAMES = [
   { slug: "freelancer-memory", title: "Memory Match: Freelancer Tools" },
   { slug: "color-switch-snake", title: "Color Switch Snake" },
   { slug: "word-scramble-biz", title: "Word Scramble: Business Terms" },
+  { slug: "receipt-rush", title: "Receipt Rush" },
+  { slug: "webhook-whack", title: "Webhook Whack-a-Mole" },
 ];
 
 const BASE_URL = "https://wealth-engine-0qlj.onrender.com";
@@ -65,7 +67,7 @@ const results = [];
 for (const game of SHIPPED_GAMES) {
   const src = join(gamesDist, game.slug);
   if (!existsSync(join(src, "index.html"))) {
-    console.warn(`Skip ${game.slug} — not in dist`);
+    console.warn(`Skip ${game.slug} - not in dist`);
     continue;
   }
   const outDir = join(outRoot, game.slug);
@@ -76,13 +78,13 @@ for (const game of SHIPPED_GAMES) {
   relativizeHtml(outDir);
   writeFileSync(
     join(outDir, "README.txt"),
-    `${game.title} — Wealth Engine\nFree HTML5 game. Set index to index.html on itch.io.\nMore: ${BASE_URL}/games/\n`
+    `${game.title} - Wealth Engine\nFree HTML5 game. Set index to index.html on itch.io.\nMore: ${BASE_URL}/games/\n`
   );
   zipFolder(outDir, zipPath);
   results.push({ slug: game.slug, title: game.title, zip: zipPath, folder: outDir });
 }
 
-// Hub bundle (all 6 + index)
+// Hub bundle (all 8 + index)
 const hubDir = join(outRoot, "horseshoe-games-hub");
 const hubZip = join(outRoot, "horseshoe-games-hub.zip");
 rmSync(hubDir, { recursive: true, force: true });
@@ -91,7 +93,7 @@ cpSync(gamesDist, hubDir, { recursive: true });
 relativizeHtml(hubDir);
 writeFileSync(
   join(hubDir, "README.txt"),
-  `Horseshoe Games Hub — Wealth Engine
+  `Horseshoe Games Hub - Wealth Engine
 Free HTML5 games for all ages.
 
 Games included:
@@ -111,7 +113,7 @@ console.log(
       count: results.length,
       outputDir: outRoot,
       zips: results.map((r) => r.zip),
-      upload: "https://itch.io/game/new — HTML project, upload zip, index = index.html",
+      upload: "https://itch.io/game/new - HTML project, upload zip, index = index.html",
     },
     null,
     2

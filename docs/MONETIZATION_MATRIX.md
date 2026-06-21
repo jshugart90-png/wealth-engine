@@ -1,6 +1,6 @@
 # Monetization Matrix — Wealth Engine
 
-**Prod:** https://wealth-engine-0qlj.onrender.com · **Budget:** $0 until store fees approved  
+**Prod:** https://wealth-engine-0qlj.onrender.com · **Budget:** $0 for new fees (Apple Dev ✅ active)  
 **Updated:** 2026-06-21
 
 ## Channel overview
@@ -10,14 +10,14 @@
 | **Stripe checkout** | 21 SKUs (BillSnap, PipeKit, stacks, etc.) | $0 | One-time + subscription | **LIVE** | Webhook → license/API key |
 | **Google Search Ads** | 7 campaigns → `/go/*` | AP-001 ($300/mo cap) | Paid traffic → Stripe | CSV ready, import blocked | `core/pipeline/ads-export.mjs` |
 | **AdSense (web)** | Free tools + games hub | $0 | Display CPM | Placeholders live | Apply after privacy page |
-| **AdMob (mobile/web games)** | Games hub + 6 games | $0 (test IDs) | Banner + rewarded | **TEST MODE** | Swap env → rebuild |
+| **AdMob (mobile/web games)** | Games hub + 8 games | $0 (test IDs) | Banner + rewarded | **TEST MODE** | Swap env → rebuild |
 | **PWA install** | Full site + games hub | $0 | AdSense in browser shell | **LIVE** | `manifest.json` + `sw.js` on Render |
-| **itch.io** | 6 games + hub zip | $0 | Free / pay-what-you-want | **PACKAGED** | `scripts/package-games-itch.mjs` |
-| **Google Play** | Horseshoe Games Hub (Capacitor) | **$25 one-time** | AdMob + cross-sell | **BLOCKED** | CI AAB → manual upload |
-| **Apple App Store** | Horseshoe Games Hub (Capacitor) | **$99/yr** | AdMob + cross-sell | **BLOCKED** | macOS + Xcode required |
+| **itch.io** | 8 games + hub zip | $0 | Free / pay-what-you-want | **PACKAGED** | `npm run mobile:itch` |
+| **Google Play** | Horseshoe Games Hub (Capacitor) | **$25 one-time** | AdMob + cross-sell | **BLOCKED (fee)** | CI AAB → manual upload |
+| **Apple App Store** | Horseshoe Games Hub (Capacitor) | **$0** (Dev account ✅) | AdMob + cross-sell | **READY → TestFlight** | macOS + Xcode + Fastlane on Mac |
 | **Affiliate** | `/partners/` portal | $0 | 25% recurring commission | **LIVE** | Stripe webhook commissions |
 | **Organic SEO** | 298 URLs (pSEO, tools, compare) | $0 | Stripe + affiliate | **LIVE** | Orchestrator rebuild 6h |
-| **Freelancer Tools app** | Capacitor shell (BillSnap + tools) | $25 + $99 | Stripe IAP via browser | **SCaffold** | Same store blockers |
+| **Freelancer Tools app** | Capacitor shell (BillSnap + tools) | Play $25 | Stripe IAP via browser | **SCaffold** | Play fee; iOS after games ship |
 
 ## Stripe SKU map (primary revenue)
 
@@ -73,10 +73,12 @@ QC: `node scripts/app-store-preflight.mjs`
 
 | Blocker | Cost | Doc |
 |---------|------|-----|
-| Apple Developer Program | $99/yr | `mobile/APP_STORE_MANUAL_STEPS.md` |
 | Google Play Console | $25 one-time | `mobile/APP_STORE_MANUAL_STEPS.md` |
+| iOS TestFlight upload | $0 (needs Mac) | `mobile/fastlane/README.md` |
 | Google Ads import | $300/mo cap | `board/APPROVALS.md` AP-001 |
 | AdSense approval | $0 | Apply at google.com/adsense |
+
+**Apple Developer Program:** ✅ active — not a blocker.
 
 ## Revenue priority (Money Math)
 

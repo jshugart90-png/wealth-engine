@@ -6,7 +6,7 @@ Status: `todo` | `in_progress` | `blocked` | `done`
 
 | # | Task | Owner agent | Status | Blocker |
 |---|------|-------------|--------|---------|
-| T-001 | Deploy wealth-engine to Render; verify `/api/health` | Deploy Guy | todo | Prod live; `/go/nda.html` + ad tools verified 200 (2026-06-21) |
+| T-001 | Deploy wealth-engine to Render; verify `/api/health` | Deploy Guy | done | Prod healthy; GitHub Pro verified 6/6 URLs 2026-06-21 |
 | T-002 | Point custom domain + update `PUBLIC_BASE_URL` + Stripe webhook | Deploy Guy | blocked | Human: CNAME `tools.horseshoeroundme.com` → Render (see deploy/GODADDY_DNS.md) |
 | T-003 | Import `google-ads-import.csv` from `D:\wealth-engine-data\marketing\ads\` | Marketing Guy | blocked | Human: 5-min import — see ADS_IMPORT_CHECKLIST.md |
 | T-004 | Optimize BillSnap `/go/invoice` landing + LAUNCH25 coupon in ads copy | Marketing Guy + Code Cracker Guy | in_progress | 15 /go/* landings, $16/day ads budget, stack SKU live |
@@ -15,6 +15,9 @@ Status: `todo` | `in_progress` | `blocked` | `done`
 | T-007 | AdSense free tools + privacy page | Code Cracker Guy | done | 4 free tools + /privacy.html |
 | T-009 | Build pipeline ships SEO/bundles/sitemap on `npm run build` | Code Cracker Guy | done | dist/p/*, bundles, sitemap in build |
 | T-008 | 8 AM summary scheduled task | Final Boss | done | `npm run install:8am-summary` + summary written overnight |
+| T-010 | Bing Webmaster verify + IndexNow resubmit | @research-guy | todo | IndexNow 403 — see deploy/SEARCH_CONSOLE_BING_FREE_SETUP.md |
+| T-011 | Set GitHub secret RENDER_DEPLOY_HOOK_URL | @deploy-guy | todo | Render API deploy works via trigger script as fallback |
+| T-012 | Consolidate duplicate MM daemon processes | @github-pro | todo | 5 PIDs documented in GITHUB_PRO.md — review after 8 AM |
 
 ## Completed
 

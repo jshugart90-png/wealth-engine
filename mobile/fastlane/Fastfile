@@ -1,4 +1,20 @@
+# Fastlane lanes — see mobile/fastlane/README.md for TestFlight steps
+# Env: copy mobile/fastlane/.env.example → mobile/fastlane/.env (gitignored)
+
 default_platform(:android)
+
+def load_app_store_connect_api_key
+  api_key_path = ENV["APP_STORE_CONNECT_API_KEY_PATH"]
+  UI.user_error!("Set APP_STORE_CONNECT_API_KEY_PATH in fastlane/.env — see .env.example") if api_key_path.to_s.empty?
+
+  app_store_connect_api_key(
+    key_id: ENV.fetch("APP_STORE_CONNECT_API_KEY_ID"),
+    issuer_id: ENV.fetch("APP_STORE_CONNECT_ISSUER_ID"),
+    key_filepath: api_key_path,
+    duration: 1200,
+    in_house: false
+  )
+end
 
 platform :android do
   desc "Upload to Google Play internal testing track"
@@ -31,26 +47,37 @@ platform :android do
 end
 
 platform :ios do
-  desc "Upload to TestFlight"
+  desc "Build archive and upload to TestFlight (macOS + Xcode required)"
   lane :beta do
-    UI.message("Requires: Apple Developer ($99/yr), macOS, Xcode, API key")
+    UI.message("Apple Developer: account active — no fee step")
+    UI.message("Requires: macOS, Xcode, App Store Connect API key in fastlane/.env")
     UI.user_error!("Run on macOS with Xcode — see mobile/APP_STORE_MANUAL_STEPS.md") unless UI.mac?
+
+    api_key = load_app_store_connect_api_key
+
     build_app(
       workspace: "games/ios/App/App.xcworkspace",
-      scheme: "App"
+      scheme: "App",
+      export_method: "app-store",
+      clean: true
     )
+
     upload_to_testflight(
-      api_key_path: ENV["APP_STORE_CONNECT_API_KEY_PATH"],
-      skip_waiting_for_build_processing: true
+      api_key: api_key,
+      skip_waiting_for_build_processing: true,
+      distribute_external: false
     )
+
+    UI.success("Uploaded to TestFlight — check App Store Connect → TestFlight tab")
   end
 
-  desc "Production App Store release"
+  desc "TestFlight upload + App Store metadata (does not auto-submit for review)"
   lane :release do
     beta
     upload_to_app_store(
-      api_key_path: ENV["APP_STORE_CONNECT_API_KEY_PATH"],
-      submit_for_review: false
+      api_key: load_app_store_connect_api_key,
+      submit_for_review: false,
+      automatic_release: false
     )
   end
 end

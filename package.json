@@ -21,6 +21,8 @@
     "agent:notify": "node scripts/notify-approval.mjs",
     "daemon:mm": "node scripts/money-machine-daemon.mjs",
     "deploy:render": "node scripts/trigger-render-deploy.mjs",
+    "github-pro:cycle": "node scripts/github-pro-cycle.mjs",
+    "github-pro:once": "node scripts/github-pro-cycle.mjs --once",
     "mobile:sync": "npm run build && cd mobile && npm install && node sync-www.mjs all",
     "mobile:android": "npm run mobile:sync && cd mobile && npm run android:games",
     "mobile:ios": "npm run mobile:sync && cd mobile && npm run ios:games",

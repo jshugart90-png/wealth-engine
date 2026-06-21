@@ -164,9 +164,8 @@ const result = {
   total: checks.length,
   readyForStore: failed === 0,
   blockers: [
-    "$0 budget: Apple Developer $99/yr required for App Store",
-    "$0 budget: Google Play $25 one-time required for Play Store production",
-    "iOS builds require macOS runner + Xcode",
+    "Google Play $25 one-time required for Play Store",
+    "iOS TestFlight upload requires macOS + Xcode (Apple Dev account active)",
   ],
   checks,
 };

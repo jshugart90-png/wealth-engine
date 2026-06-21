@@ -25,4 +25,4 @@ Append-only log of production deploys and URL verification.
 | 2026-06-21T05:45:00Z | 7 | 598f533 | /go/1099-deadline, /tools/1099-tax-estimator, /p/1099-nec-deadline-2026, /api/health | PASS 4/4 prod (attempt 2) |
 | 2026-06-21T05:30:00Z | 7 | 598f533 | /go/1099-deadline.html, /p/1099-nec-deadline-2026.html, /go/nda-team.html, /go/statusping-agency.html, /partners/index.html | PASS 5/5 prod |
 | 2026-06-21T05:38:00Z | 8 | 34a07a2 | /go/pipekit-pro.html, /p/python-json-validator-api.html, /p/dns-lookup-api-nodejs.html, /go/1099-deadline.html | PASS 4/4 prod |
-| 2026-06-21T05:30:53.146Z | MD-999 | marketing-director | outreach batch | 34 posts queued |
+| 2026-06-21T05:52Z | GP-0 | github-pro | /api/health, /games/manifest.json, /manifest.json, /go/invoice, /go/nda, /go/stack | PASS 6/6 prod |
