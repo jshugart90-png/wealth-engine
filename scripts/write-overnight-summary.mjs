@@ -34,7 +34,7 @@ const body = `# Overnight Build Summary — ${dateStr}
 ## Completed & ready to ship
 
 - Render production live with 9 ventures + Stripe (14 products, coupon LAUNCH25)
-- Google Ads CSV + Microsoft mirror — 6 campaigns, $13/day cap (invoice, lease, uptime, nda, webhook, pipekit)
+- Google Ads CSV + Microsoft mirror — 4 campaigns, **$10/day cap** (invoice $5, lease $3, uptime $2, nda $1)
 - High-conversion landings: \`/go/invoice\`, \`/go/lease\`, \`/go/uptime\`, \`/go/nda\`, \`/go/webhook\`, \`/go/pipekit\`, \`/go/templates\`
 - Bundle pages: \`/bundles/freelancer-stack\`, \`/bundles/dev-ops-stack\`, \`/bundles/landlord-tenant-stack\`
 - Ad-supported free tools: tip calculator, meeting cost, percentage calc, bill splitter, hourly rate
@@ -126,6 +126,7 @@ ${tasks.split("\n").slice(0, 16).join("\n")}
 const paths = [
   join(dataRoot, "reports", `OVERNIGHT_SUMMARY_${dateStr}.md`),
   join(root, "board", "OVERNIGHT_SUMMARY.md"),
+  join(root, "board", "MORNING_SUMMARY.md"),
 ];
 
 for (const p of paths) {

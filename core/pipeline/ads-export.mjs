@@ -39,34 +39,13 @@ const CAMPAIGNS = [
   },
   {
     name: "WE - NDA Generator",
-    budgetDailyUsd: 2,
+    budgetDailyUsd: 1,
     keywords: [
       { kw: "free nda generator", h1: "Free NDA Generator", h2: "PDF $4", desc: "Preview free. Clean PDF export. No subscription." },
       { kw: "mutual nda template", h1: "Mutual NDA Template", h2: "Instant PDF", desc: "Freelancers & startups. Code LAUNCH25 saves 25%." },
-      { kw: "nda template online", h1: "NDA Template Online", h2: "2-Minute Setup", desc: "Simple fields. Secure Stripe checkout." },
     ],
     sku: "nda-pdf",
     finalUrlPath: "/go/nda.html?utm_source=google&utm_campaign=nda",
-  },
-  {
-    name: "WE - Webhook Relay",
-    budgetDailyUsd: 2,
-    keywords: [
-      { kw: "webhook testing tool", h1: "Webhook Testing Tool", h2: "From $7/mo", desc: "Forward, replay, debug webhooks. Dev-friendly." },
-      { kw: "webhook relay service", h1: "Webhook Relay", h2: "Never Miss Events", desc: "Dead-letter alerts. 3 endpoints included." },
-    ],
-    sku: "relay-monthly",
-    finalUrlPath: "/go/webhook.html?utm_source=google&utm_campaign=webhook",
-  },
-  {
-    name: "WE - PipeKit API",
-    budgetDailyUsd: 2,
-    keywords: [
-      { kw: "uuid api generator", h1: "UUID API Generator", h2: "From $9/mo", desc: "Self-serve API keys. 100 free req/day." },
-      { kw: "json formatter api", h1: "JSON Formatter API", h2: "Dev Micro-APIs", desc: "Hash, base64, timestamp. Simple pricing." },
-    ],
-    sku: "starter-monthly",
-    finalUrlPath: "/go/pipekit.html?utm_source=google&utm_campaign=pipekit",
   },
 ];
 
