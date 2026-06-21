@@ -15,3 +15,4 @@ Append-only log of production deploys and URL verification.
 | 2026-06-21T05:18:08.303Z | MD-4 | marketing-director | outreach batch | 30 posts queued |
 | 2026-06-21T05:20:00Z | 4 | b7ab298 | /go/billsnap-pro, /go/invoice, /billsnap/index, /p/general-contractor-invoice-template, /p/independent-consultant-invoice-template | PASS 5/5 prod (attempt 4) |
 | 2026-06-21T14:00:00Z | 4 | 9761524 | /go/billsnap-pro, /go/invoice, /p/general-contractor-invoice-template, /p/independent-consultant-invoice-template | PASS 5/5 prod |
+| 2026-06-21T15:05:00Z | 5 | 42f42d7 | /p/freelancer-compliance-by-state, /p/california-1099-filing-requirements, /p/new-york-contractor-compliance-checklist, /p/texas-freelancer-llc-guide, /go/compliance | PASS 5/5 prod (attempt 4) |
