@@ -1,4 +1,4 @@
-# Production Orchestrator Loop — runs until 08:00 US Central
+# Production Orchestrator Loop - runs until 08:00 US Central
 # Usage: powershell -File deploy/production-orchestrator-loop.ps1
 
 $ErrorActionPreference = "Continue"
@@ -17,18 +17,19 @@ function Write-Log($msg) {
     Write-Host $line
 }
 
-Write-Log "Production Orchestrator loop starting — deadline 08:00 CT"
+Write-Log "Production Orchestrator loop starting - deadline 08:00 CT"
 
 while ((Get-Date) -lt $Deadline) {
-    Write-Log "── Cycle start ──"
+    Write-Log "Cycle start"
     node scripts/production-orchestrator.mjs --once 2>&1 | ForEach-Object { Write-Log $_ }
-    Write-Log "── Cycle end ──"
+    Write-Log "Cycle end"
 
     $remaining = ($Deadline - (Get-Date)).TotalMinutes
     if ($remaining -le 0) { break }
 
     $sleepMin = [Math]::Min($IntervalMinutes, [Math]::Max(1, [int]$remaining))
-    Write-Log ("Sleeping {0}m ({1} min until 08:00 CT)" -f $sleepMin, [int]$remaining)
+    $remainInt = [int]$remaining
+    Write-Log "Sleeping $sleepMin min, $remainInt min until 08:00 CT"
     Start-Sleep -Seconds ($sleepMin * 60)
 }
 
