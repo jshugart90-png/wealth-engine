@@ -311,6 +311,36 @@
       "title": "NDA Template for Contractors",
       "venture": "ndagen",
       "sku": "nda-pdf"
+    },
+    {
+      "slug": "cron-job-monitor-free",
+      "title": "Cron Job Monitor Free",
+      "venture": "statusping",
+      "sku": "basic-monthly"
+    },
+    {
+      "slug": "one-way-nda-template-free",
+      "title": "One Way NDA Template Free",
+      "venture": "ndagen",
+      "sku": "nda-pdf"
+    },
+    {
+      "slug": "meeting-waste-calculator",
+      "title": "Meeting Waste Cost Calculator",
+      "venture": "meetingcost",
+      "sku": "meeting-pro"
+    },
+    {
+      "slug": "webhook-retry-service",
+      "title": "Webhook Retry Service",
+      "venture": "hookrelay",
+      "sku": "relay-monthly"
+    },
+    {
+      "slug": "small-business-invoice-app",
+      "title": "Small Business Invoice App",
+      "venture": "billsnap",
+      "sku": "pro-pdf"
     }
   ],
   "pagesPerCycle": 10
