@@ -1,6 +1,6 @@
 ﻿# Marketing Command Center
 
-**Director:** Zero-Budget Marketing Director Â· **Updated:** 2026-06-21T20:00 CT (MC-012 + MC-GAMES-001 PUBLISH_READY) Â· **Mode:** ZERO_BUDGET  
+**Director:** Zero-Budget Marketing Director Â· **Updated:** 2026-06-21 (MC-IOS-TESTFLIGHT + Apple Dev ACTIVE)
 **Prod:** https://wealth-engine-0qlj.onrender.com Â· **Goal:** $500/mo Â· **Budget:** **$0** (BLOCKED_NO_BUDGET)  
 **Coupon:** LAUNCH25 (25% off)
 
@@ -32,6 +32,7 @@
 | ZB-008 | Horseshoe cross-promo | GoDaddy free upload | PUBLISH_READY | Meta block in FREE_POSTS_batch1 |
 | ZB-009 | Backlink outreach | Gmail manual | PUBLISH_READY | RESEND placeholder â€” manual only |
 | ZB-010 | Quora answers | Q&A | PUBLISH_READY | 2 drafts in FREE_POSTS_batch1 |
+| ZB-012 | iOS TestFlight launch (Games Hub) | X, LinkedIn, IH, Mastodon, Facebook groups | **PUBLISH_READY** | TESTFLIGHT_LAUNCH_2026-06-21.md after build on TestFlight; **no Reddit auto** |
 | ZB-011 | HTML5 games hub promo | itch.io, r/WebGames, r/indiegames, FB groups, Poki/CrazyGames/GameMonetize prep | **PUBLISH_READY** | GAMES_PROMO_2026-06-21.md; Reddit via REDDIT_SIGNUP_READY |
 
 ### BLOCKED_NO_BUDGET (parked)
@@ -62,6 +63,7 @@
 | MC-010 | BillSnap Pro Unlimited $29/mo | BillSnap | [go/billsnap-pro.html](https://wealth-engine-0qlj.onrender.com/go/billsnap-pro.html) Â· [go/invoice.html](https://wealth-engine-0qlj.onrender.com/go/invoice.html) | r/freelance, r/smallbusiness, r/Entrepreneur, ~~Google Ads~~ | **ACTIVE (organic)** | 4 |
 | MC-011 | State Compliance pSEO | TemplateForge | [p/freelancer-compliance-by-state.html](https://wealth-engine-0qlj.onrender.com/p/freelancer-compliance-by-state.html) Â· [go/compliance.html](https://wealth-engine-0qlj.onrender.com/go/compliance.html) | r/smallbusiness, r/freelance, dev.to, IH | **PUBLISH_READY** | 5 |
 | MC-012 | Portfolio Affiliate Partner Program | All portfolio | [partners/index.html](https://wealth-engine-0qlj.onrender.com/partners/index.html) Â· [refer.html](https://wealth-engine-0qlj.onrender.com/refer.html) Â· [join.html](https://wealth-engine-0qlj.onrender.com/join.html) | IH, dev.to, HN (Ask/Show), X DMs, finance blogger email (Gmail), Product Hunt Ship, GitHub README | **ACTIVE** (zero-budget only) | 6 |
+| MC-IOS-TESTFLIGHT | Horseshoe Games Hub TestFlight (8 games) | Games Hub iOS | App Store TestFlight link (post-upload) | X, LinkedIn, Indie Hackers, Mastodon, FB groups; manual Reddit copy optional | **PUBLISH_READY** (zero cost; Mac upload) | 7 |
 | MC-GAMES-001 | Free HTML5 games hub (6 shipped) | Games portfolio | [games/index.html](https://wealth-engine-0qlj.onrender.com/games/index.html) | itch.io (free), r/WebGames, r/indiegames, Facebook groups, Poki/CrazyGames/GameMonetize apply | **PUBLISH_READY** (zero-budget) | 6 |
 
 ---
@@ -117,6 +119,7 @@
 | Priority | File | Posts | Action |
 |----------|------|-------|--------|
 
+| 0a | outreach/TESTFLIGHT_LAUNCH_2026-06-21.md | social drafts | MC-IOS-TESTFLIGHT — post after TestFlight live (manual; not Reddit auto) |
 | 0 | outreach/GAMES_PROMO_2026-06-21.md | 6 games + hub | MC-GAMES-001 — itch.io, Reddit (signup first), FB template, directory prep |
 | 0b | outreach/AFFILIATE_LAUNCH_2026-06-21.md | 6 channels | MC-012 partner recruitment (IH, dev.to, HN, X, email, PH Ship) |
 | 1 | `outreach/POST_2026-06-21_batch10.md` | 3 posts | MC-010 BillSnap Pro $29/mo â€” r/freelance, r/smallbusiness, r/Entrepreneur + Google Ads CSV |
@@ -168,6 +171,7 @@
 - [ ] Submit Peerlist + Uneed + AlternativeTo (FREE_POSTS_batch1 #6â€“9)
 - [ ] Publish dev.to article (FREE_POSTS_batch1 #15)
 - [ ] Show HN post (FREE_POSTS_batch1 #14) â€” 2-min HN signup
+- [ ] **MC-IOS-TESTFLIGHT:** Upload Games Hub on Mac (`mobile/fastlane/README.md`); then paste from `D:\wealth-engine-data\marketing\outreach\TESTFLIGHT_LAUNCH_2026-06-21.md`
 - [ ] **MC-GAMES-001:** Execute `D:\wealth-engine-data\marketing\outreach\GAMES_PROMO_2026-06-21.md` (itch.io + directories; Reddit after REDDIT_SIGNUP_READY)
 - [ ] **MC-012:** Execute `D:\wealth-engine-data\marketing\outreach\AFFILIATE_LAUNCH_2026-06-21.md` (6 zero-budget channels; **no Reddit**) — 10 partner signups, 5 attributed conversions in 30 days
 - [ ] Verify Bing Webmaster ? re-run IndexNow (298 URLs ready)
