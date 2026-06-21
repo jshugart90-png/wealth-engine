@@ -100,11 +100,26 @@ const grand=t*(1+tip/100);sout.textContent='$'+grand.toFixed(2)+' total · $'+(g
   writeFileSync(join(dist, "percentage-calculator.html"), pctCalc);
   writeFileSync(join(dist, "bill-splitter.html"), billSplit);
 
+  const hourlyCalc = adToolsShell(
+    "Freelance Hourly Rate Calculator",
+    `<label>Target monthly income ($)</label><input type="number" id="income" value="6000">
+<label>Billable hours/week</label><input type="number" id="hours" value="30">
+<label>Weeks/year</label><input type="number" id="weeks" value="48">
+<div class="result" id="hout">$41.67/hr</div>
+<script>
+function hc(){const i=+income.value||0,h=Math.max(1,+hours.value||1),w=Math.max(1,+weeks.value||1);
+hout.textContent='$'+(i/(h*w)).toFixed(2)+'/hr';}
+[income,hours,weeks].forEach(el=>el.oninput=hc);hc();
+</script>`,
+    "Calculate your freelance hourly rate from income goals."
+  );
+  writeFileSync(join(dist, "hourly-rate-calculator.html"), hourlyCalc);
+
   const privacy = `<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Privacy Policy</title><style>body{font-family:system-ui;max-width:720px;margin:40px auto;padding:20px;line-height:1.6}</style></head><body>
 <h1>Privacy Policy</h1><p>Wealth Engine tools process data locally in your browser. Payment checkout is handled by Stripe. We do not sell personal data.</p>
 <p>Contact: orders@horseshoeroundme.com</p><p><a href="/">← Home</a></p></body></html>`;
   writeFileSync(join(getRoot(), "dist", "privacy.html"), privacy);
 
-  return { pages: ["tip-calculator", "meeting-cost-free", "percentage-calculator", "bill-splitter", "privacy"] };
+  return { pages: ["tip-calculator", "meeting-cost-free", "percentage-calculator", "bill-splitter", "hourly-rate-calculator", "privacy"] };
 }

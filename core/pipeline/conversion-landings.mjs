@@ -52,6 +52,14 @@ const PAGES = [
     tool: "/devtools-api/index.html",
     bullets: ["100 free req/day", "API key in minutes", "No Postman required"],
   },
+  {
+    slug: "templates",
+    headline: "Business templates that ship today",
+    sub: "Compliance, hiring, and freelancer kits. Instant download after checkout.",
+    sku: "freelancer-kit",
+    tool: "/templateforge/index.html",
+    bullets: ["Print-ready PDFs", "SMB & freelancer focus", "From $12"],
+  },
 ];
 
 export function buildHighConversionLandings() {
