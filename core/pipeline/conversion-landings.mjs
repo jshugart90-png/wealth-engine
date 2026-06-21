@@ -76,6 +76,14 @@ const PAGES = [
     tool: "/billsnap/index.html",
     bullets: ["No signup required", "Print-ready PDF", "Same $3 pro export as invoices"],
   },
+  {
+    slug: "compare",
+    headline: "Pick the right tool in 60 seconds",
+    sub: "Side-by-side comparisons for uptime, invoices, webhooks, and dev APIs.",
+    sku: "starter-monthly",
+    tool: "/comparestack/index.html",
+    bullets: ["Honest feature tables", "Direct checkout links", "Updated 2026"],
+  },
 ];
 
 export function buildHighConversionLandings() {

@@ -258,6 +258,39 @@ ptout.textContent='Due '+due.toLocaleDateString()+(daysLate>0?' · '+daysLate+' 
   );
   writeFileSync(join(dist, "payment-terms-calculator.html"), paymentTermsCalc);
 
+  const compoundCalc = adToolsShell(
+    "Compound Interest Calculator",
+    `<label>Initial deposit ($)</label><input type="number" id="principal" value="1000" step="0.01">
+<label>Monthly contribution ($)</label><input type="number" id="monthly" value="100" step="0.01">
+<label>Annual interest rate %</label><input type="number" id="rate" value="7" step="0.01">
+<label>Years</label><input type="number" id="years" value="10" min="1">
+<div class="result" id="ciout">$18,765 future value</div>
+<script>
+function ci(){const p=+principal.value||0,m=+monthly.value||0,r=(+rate.value||0)/100/12,n=(+years.value||0)*12;
+let bal=p;for(let i=0;i<n;i++)bal=bal*(1+r)+m;
+ciout.textContent='$'+Math.round(bal).toLocaleString()+' future value · $'+Math.round(bal-p-m*n).toLocaleString()+' interest';}
+[principal,monthly,rate,years].forEach(el=>el.oninput=ci);ci();
+</script>`,
+    "Free compound interest calculator — plan savings and investment growth."
+  );
+  writeFileSync(join(dist, "compound-interest-calculator.html"), compoundCalc);
+
+  const overtimeCalc = adToolsShell(
+    "Overtime Pay Calculator",
+    `<label>Hourly rate ($)</label><input type="number" id="hr" value="25" step="0.01">
+<label>Regular hours</label><input type="number" id="reg" value="40" step="0.5">
+<label>Overtime hours (1.5×)</label><input type="number" id="othrs" value="5" step="0.5">
+<label>Double-time hours (2×)</label><input type="number" id="dthrs" value="0" step="0.5">
+<div class="result" id="otout">$1,187.50 gross pay</div>
+<script>
+function calcOt(){const h=+hr.value||0,r=+reg.value||0,o=+othrs.value||0,d=+dthrs.value||0;
+const gross=h*r+h*o*1.5+h*d*2;otout.textContent='$'+gross.toFixed(2)+' gross · $'+(h*o*0.5+h*d).toFixed(2)+' OT premium';}
+[hr,reg,othrs,dthrs].forEach(el=>el.oninput=calcOt);calcOt();
+</script>`,
+    "Calculate overtime and double-time pay — free for hourly workers and payroll."
+  );
+  writeFileSync(join(dist, "overtime-pay-calculator.html"), overtimeCalc);
+
   const base = getPublicBaseUrl();
   const toolsIndex = `<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Free Business Calculators & Tools</title>
@@ -283,6 +316,8 @@ h1{font-size:clamp(28px,4vw,36px)}ul{padding-left:20px}li{margin:10px 0}a{color:
 <li><a href="/tools/meeting-cost-free.html">Meeting Cost Calculator</a></li>
 <li><a href="/tools/sales-tax-calculator.html">Sales Tax Calculator</a></li>
 <li><a href="/tools/payment-terms-calculator.html">Payment Terms Calculator</a></li>
+<li><a href="/tools/compound-interest-calculator.html">Compound Interest Calculator</a></li>
+<li><a href="/tools/overtime-pay-calculator.html">Overtime Pay Calculator</a></li>
 </ul>
 <div class="promo">Need pro tools? <a href="${base}/go/invoice.html">Invoice PDF $3</a> · <a href="${base}/go/lease.html">Lease check $7</a> · <a href="${base}/go/uptime.html">Uptime $5/mo</a></div>
 <p><a href="/">← Wealth Engine home</a></p>
@@ -295,5 +330,5 @@ h1{font-size:clamp(28px,4vw,36px)}ul{padding-left:20px}li{margin:10px 0}a{color:
 <p>Contact: orders@horseshoeroundme.com</p><p><a href="/">← Home</a></p></body></html>`;
   writeFileSync(join(getRoot(), "dist", "privacy.html"), privacy);
 
-  return { pages: ["tip-calculator", "meeting-cost-free", "percentage-calculator", "bill-splitter", "hourly-rate-calculator", "hourly-rate", "markup-calculator", "late-fee-calculator", "break-even-calculator", "discount-calculator", "unit-price-calculator", "profit-margin-calculator", "invoice-number-generator", "sales-tax-calculator", "payment-terms-calculator", "tools-index", "privacy"] };
+  return { pages: ["tip-calculator", "meeting-cost-free", "percentage-calculator", "bill-splitter", "hourly-rate-calculator", "hourly-rate", "markup-calculator", "late-fee-calculator", "break-even-calculator", "discount-calculator", "unit-price-calculator", "profit-margin-calculator", "invoice-number-generator", "sales-tax-calculator", "payment-terms-calculator", "compound-interest-calculator", "overtime-pay-calculator", "tools-index", "privacy"] };
 }

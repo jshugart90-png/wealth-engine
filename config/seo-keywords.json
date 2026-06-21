@@ -371,6 +371,36 @@
       "title": "Status Page Generator Free",
       "venture": "statusping",
       "sku": "basic-monthly"
+    },
+    {
+      "slug": "payment-reminder-email-template",
+      "title": "Payment Reminder Email Template",
+      "venture": "billsnap",
+      "sku": "pro-pdf"
+    },
+    {
+      "slug": "retainer-invoice-template",
+      "title": "Retainer Invoice Template PDF",
+      "venture": "billsnap",
+      "sku": "pro-pdf"
+    },
+    {
+      "slug": "employment-contract-template-pdf",
+      "title": "Employment Contract Template PDF",
+      "venture": "pdf-factory",
+      "sku": "hiring-pack"
+    },
+    {
+      "slug": "background-check-policy-template",
+      "title": "Background Check Policy Template",
+      "venture": "pdf-factory",
+      "sku": "smb-compliance-pack"
+    },
+    {
+      "slug": "incident-response-checklist-pdf",
+      "title": "Incident Response Checklist PDF",
+      "venture": "pdf-factory",
+      "sku": "smb-compliance-pack"
     }
   ],
   "pagesPerCycle": 10

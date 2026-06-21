@@ -22,6 +22,8 @@
     "daemon:mm": "node scripts/money-machine-daemon.mjs",
     "deploy:render": "node scripts/trigger-render-deploy.mjs",
     "summary:overnight": "node scripts/write-overnight-summary.mjs",
+    "summary:status": "node scripts/write-wealth-status.mjs",
+    "sprint:overnight": "node scripts/overnight-build-sprint.mjs",
     "install:8am-summary": "powershell -ExecutionPolicy Bypass -File deploy/install-8am-summary-task.ps1"
   },
   "engines": { "node": ">=20" },
