@@ -184,7 +184,8 @@ export function createAppServer() {
       }
 
       // Static files from dist/
-      let filePath = join(root, "dist", url.pathname === "/" ? "index.html" : url.pathname);
+      const relPath = url.pathname === "/" ? "index.html" : url.pathname.replace(/^\//, "");
+      let filePath = join(root, "dist", relPath);
       if (existsSync(filePath) && !extname(filePath)) filePath += "/index.html";
       if (existsSync(filePath)) {
         const ext = extname(filePath);
