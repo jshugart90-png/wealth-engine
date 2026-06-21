@@ -36,3 +36,4 @@ Ideas are ranked by Idea Guy each cycle. Research Guy validates; Realistic Guy k
 | WE-20260621-inbound-nda-ai | NDAGen AI inbound NDA review | Score 15/25 — legal liability without counsel |
 | WE-20260621-lease-enterprise-ai | LeaseLens enterprise AI abstraction | Score 15/25 — $1.8B market but enterprise sales cycle; Kira $2500/mo |
 | — | PipeKit enterprise tier ($99) | Realistic Guy: sales cycle too long for 30-day sprint |
+| I-008 | PipeKit API free tier → paid via devtools comparison SEO | devtools-api | 40–90 | backlog | Longer cycle; queue after BillSnap |
