@@ -8,15 +8,15 @@ Ideas are ranked by Idea Guy each cycle. Research Guy validates; Realistic Guy k
 |----|------|---------|-----------|-------|--------|-------|
 | WE-20260621-freelancer-stack | Freelancer Revenue Stack ($29/mo sub + $49 bundle) | billsnap + pdf-factory + ndagen | 15k→50k | 24/25 | **SHIPPED** | `/bundles/freelancer-stack`, `/go/stack`, `/go/freelancer` |
 | WE-20260621-hookrelay-dlq | HookRelay DLQ Pro — webhook retry + dead letter at $29/mo | hookrelay | 10k→50k | 23/25 | **SHIPPED** | `/hookrelay/pricing`, `/go/hookrelay-dlq`, `/go/webhook` |
-| WE-20260621-devwatch-bundle | DevWatch — uptime + SSL + cron bundle at $39/mo | statusping | 8k→25k | 21/25 | **IN_PROGRESS** | Cycle 3: devwatch-monthly SKU, /go/devwatch landing, 2 tools |
+| WE-20260621-devwatch-bundle | DevWatch — uptime + SSL + cron bundle at $39/mo | statusping | 8k→25k | 21/25 | **SHIPPED** | devwatch-monthly SKU, /go/devwatch, SSL+cron tools |
 | WE-20260621-billsnap-sub-pivot | BillSnap reprice unlimited $12→$29/mo + industry pSEO | billsnap | 5k→20k | 23/25 | **SHIPPED** | `/go/billsnap-pro`, `/go/invoice`, 5 industry pSEO keywords |
 | WE-20260621-pipekit-pseo | PipeKit integration pages ("{lang} json validator api") | devtools-api | 5k→30k | 21/25 | Candidate | Brief: `board/briefs/WE-20260621-pipekit-metered.md` |
 | WE-20260621-comparestack-scale | CompareStack 500+ affiliate VS/alternatives pages | comparestack | 3k→15k | 19/25 | Candidate | Brief: `board/briefs/WE-20260621-comparestack-scale.md` |
 | WE-20260621-meetingcost-team | MeetingCost Team dashboard + embed at $29/mo | meetingcost | 3k→15k | 20/25 | Candidate | Brief: `board/briefs/WE-20260621-meetingcost-team.md` |
 | WE-20260621-compliance-state-seo | State-specific freelancer compliance pSEO (200 pages) | pdf-factory | 3k→50k | 23/25 | **SHIPPED** | 41 pages (10-state pilot), hub `/p/freelancer-compliance-by-state.html`, `/go/compliance` enhanced |
 | WE-20260621-affiliate-portal | Portfolio self-serve affiliate portal at /partners/ | comparestack + portfolio | 5k→30k | 22/25 | **SHIPPED** | `/partners/`, `/join` affiliate tab, `/refer` dashboard, `config/affiliates.json` |
-| WE-20260621-ndagen-team | NDAGen Team B2B tier $29/mo (50 NDAs, 3 seats) | ndagen | 3k→15k | 22/25 | **IN_PROGRESS** | Cycle 6: ndagen-team-monthly SKU, /go/nda-team, 3 SEO keywords |
-| WE-20260621-statusping-agency | StatusPing Agency white-label $49/mo (10 workspaces) | statusping | 2k→10k | 20/25 | **IN_PROGRESS** | Cycle 6: agency-monthly SKU, /go/statusping-agency, 2 SEO keywords |
+| WE-20260621-ndagen-team | NDAGen Team B2B tier $29/mo (50 NDAs, 3 seats) | ndagen | 3k→15k | 22/25 | **SHIPPED** | `/go/nda-team`, ndagen-team-monthly SKU, Team usage gate in NDAGen |
+| WE-20260621-statusping-agency | StatusPing Agency white-label $49/mo (10 workspaces) | statusping | 2k→10k | 20/25 | **SHIPPED** | `/go/statusping-agency`, agency-monthly SKU, 2 SEO keywords |
 | WE-20260621-1099-deadline-suite | 1099-NEC deadline tracker + PDF generator (seasonal) | billsnap + pdf-factory | 2k→8k | 20/25 | Candidate | Brief: `board/briefs/WE-20260621-1099-deadline-suite.md`; state JSON now shipped — ready to unblock |
 | I-001 | BillSnap Google Ads scale + /go/invoice landing optimization | billsnap | 200–350 | — | **IN_PROGRESS** | Cycle 1: invoice landing enhanced, contractor landing, ads CSV +3 campaigns |
 | I-002 | LeaseLens tenant-rights SEO via CompareStack cross-links | leaselens + comparestack | 80–150 | — | queued | Problem-aware queries, $7 AOV |

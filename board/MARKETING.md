@@ -22,7 +22,6 @@
 | MC-010 | BillSnap Pro Unlimited $29/mo | BillSnap | [go/billsnap-pro.html](https://wealth-engine-0qlj.onrender.com/go/billsnap-pro.html) · [go/invoice.html](https://wealth-engine-0qlj.onrender.com/go/invoice.html) | r/freelance, r/smallbusiness, r/Entrepreneur, Google Ads | **ACTIVE** | 4 |
 | MC-011 | State Compliance pSEO | TemplateForge | [p/freelancer-compliance-by-state.html](https://wealth-engine-0qlj.onrender.com/p/freelancer-compliance-by-state.html) · [go/compliance.html](https://wealth-engine-0qlj.onrender.com/go/compliance.html) | r/smallbusiness, r/freelance, dev.to, IH | **PUBLISH_READY** | 5 |
 | MC-012 | Portfolio Affiliate Partner Program | All portfolio | [partners/index.html](https://wealth-engine-0qlj.onrender.com/partners/index.html) · [refer.html](https://wealth-engine-0qlj.onrender.com/refer.html) · [join.html#partner](https://wealth-engine-0qlj.onrender.com/join.html#partner) | IH, r/SideProject, dev.to, affiliate directories, cold outreach to content sites | **NEEDS_CAMPAIGN** | 6 |
-| MC-012 | Affiliate Partner Program launch | Portfolio | [partners/index.html](https://wealth-engine-0qlj.onrender.com/partners/index.html) · [join.html](https://wealth-engine-0qlj.onrender.com/join.html) · [refer.html](https://wealth-engine-0qlj.onrender.com/refer.html) | IH, r/SideProject, dev.to, affiliate directories | **NEEDS_CAMPAIGN** | 6 |
 
 ---
 
