@@ -179,6 +179,24 @@
       "title": "Rent Increase Clause Checker",
       "venture": "leaselens",
       "sku": "single-report"
+    },
+    {
+      "slug": "contractor-invoice-app-free",
+      "title": "Contractor Invoice App Free",
+      "venture": "billsnap",
+      "sku": "pro-pdf"
+    },
+    {
+      "slug": "startup-nda-generator-online",
+      "title": "Startup NDA Generator Online",
+      "venture": "ndagen",
+      "sku": "nda-pdf"
+    },
+    {
+      "slug": "freelancer-compliance-pdf-pack",
+      "title": "Freelancer Compliance PDF Pack",
+      "venture": "pdf-factory",
+      "sku": "freelancer-kit"
     }
   ],
   "pagesPerCycle": 10
