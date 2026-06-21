@@ -307,6 +307,38 @@ rout.textContent=roi+'% ROI · '+monthly+'%/mo over '+m+' months';}
   );
   writeFileSync(join(dist, "roi-calculator.html"), roiCalc);
 
+  const tax1099Calc = adToolsShell(
+    "1099 Tax Estimator",
+    `<label>1099 income YTD ($)</label><input type="number" id="income" value="45000" step="0.01">
+<label>Business expenses ($)</label><input type="number" id="expenses" value="8000" step="0.01">
+<label>Other W-2 income ($)</label><input type="number" id="w2" value="0" step="0.01">
+<label>Estimated tax rate %</label><input type="number" id="rate" value="25" step="0.01">
+<div class="result" id="tout">$9,250 estimated tax</div>
+<script>
+function tc(){const i=+income.value||0,e=+expenses.value||0,w=+w2.value||0,r=(+rate.value||0)/100;
+const se=(i-e)*0.153;const fed=Math.max(0,i-e)*r;const total=se+fed;
+tout.textContent='$'+total.toFixed(0)+' estimated tax · $'+(total/4).toFixed(0)+'/quarter';}
+[income,expenses,w2,rate].forEach(el=>el.oninput=tc);tc();
+</script>`,
+    "Estimate quarterly 1099 taxes for freelancers — self-employment + income tax."
+  );
+  writeFileSync(join(dist, "1099-tax-estimator.html"), tax1099Calc);
+
+  const rentCalc = adToolsShell(
+    "Rent Affordability Calculator",
+    `<label>Monthly gross income ($)</label><input type="number" id="gross" value="5000">
+<label>Monthly debts ($)</label><input type="number" id="debts" value="400">
+<label>Max rent % of income</label><select id="pct"><option value="25">25%</option><option value="30" selected>30%</option><option value="35">35%</option></select>
+<div class="result" id="rout">$1,500/mo max rent</div>
+<script>
+function rc(){const g=+gross.value||0,d=+debts.value||0,p=(+pct.value||30)/100;
+const max=Math.max(0,g*p-d);rout.textContent='$'+max.toFixed(0)+'/mo max rent · 30% rule';}
+[gross,debts,pct].forEach(el=>el.oninput=rc);rc();
+</script>`,
+    "Calculate max affordable rent using the 30% rule — free before signing a lease."
+  );
+  writeFileSync(join(dist, "rent-affordability-calculator.html"), rentCalc);
+
   const base = getPublicBaseUrl();
   const toolsIndex = `<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Free Business Calculators & Tools</title>
@@ -335,8 +367,10 @@ h1{font-size:clamp(28px,4vw,36px)}ul{padding-left:20px}li{margin:10px 0}a{color:
 <li><a href="/tools/compound-interest-calculator.html">Compound Interest Calculator</a></li>
 <li><a href="/tools/overtime-pay-calculator.html">Overtime Pay Calculator</a></li>
 <li><a href="/tools/roi-calculator.html">ROI Calculator</a></li>
+<li><a href="/tools/1099-tax-estimator.html">1099 Tax Estimator</a></li>
+<li><a href="/tools/rent-affordability-calculator.html">Rent Affordability Calculator</a></li>
 </ul>
-<div class="promo">Need pro tools? <a href="${base}/go/invoice.html">Invoice PDF $3</a> · <a href="${base}/go/lease.html">Lease check $7</a> · <a href="${base}/go/uptime.html">Uptime $5/mo</a></div>
+<div class="promo">Need pro tools? <a href="${base}/go/invoice.html">Invoice PDF $3</a> · <a href="${base}/go/lease.html">Lease check $7</a> · <a href="${base}/go/uptime.html">Uptime $5/mo</a> · <a href="${base}/go/freelancer.html">Freelancer kit $14</a></div>
 <p><a href="/">← Wealth Engine home</a></p>
 </body></html>`;
   writeFileSync(join(dist, "index.html"), toolsIndex);
@@ -347,5 +381,5 @@ h1{font-size:clamp(28px,4vw,36px)}ul{padding-left:20px}li{margin:10px 0}a{color:
 <p>Contact: orders@horseshoeroundme.com</p><p><a href="/">← Home</a></p></body></html>`;
   writeFileSync(join(getRoot(), "dist", "privacy.html"), privacy);
 
-  return { pages: ["tip-calculator", "meeting-cost-free", "percentage-calculator", "bill-splitter", "hourly-rate-calculator", "hourly-rate", "markup-calculator", "late-fee-calculator", "break-even-calculator", "discount-calculator", "unit-price-calculator", "profit-margin-calculator", "invoice-number-generator", "sales-tax-calculator", "payment-terms-calculator", "compound-interest-calculator", "overtime-pay-calculator", "roi-calculator", "tools-index", "privacy"] };
+  return { pages: ["tip-calculator", "meeting-cost-free", "percentage-calculator", "bill-splitter", "hourly-rate-calculator", "hourly-rate", "markup-calculator", "late-fee-calculator", "break-even-calculator", "discount-calculator", "unit-price-calculator", "profit-margin-calculator", "invoice-number-generator", "sales-tax-calculator", "payment-terms-calculator", "compound-interest-calculator", "overtime-pay-calculator", "roi-calculator", "1099-tax-estimator", "rent-affordability-calculator", "tools-index", "privacy"] };
 }

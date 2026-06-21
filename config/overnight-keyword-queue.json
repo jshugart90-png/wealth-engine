@@ -1,34 +1,64 @@
 {
   "queue": [
     {
-      "slug": "invoice-vs-receipt-difference",
-      "title": "Invoice vs Receipt Difference Guide",
-      "venture": "comparestack",
+      "slug": "contractor-invoice-template-free",
+      "title": "Contractor Invoice Template Free",
+      "venture": "billsnap",
       "sku": "pro-pdf"
     },
     {
-      "slug": "best-cheap-uptime-monitor-2026",
-      "title": "Best Cheap Uptime Monitor 2026",
-      "venture": "comparestack",
-      "sku": "basic-monthly"
-    },
-    {
-      "slug": "freelancer-rate-card-template",
-      "title": "Freelancer Rate Card Template",
+      "slug": "freelancer-tax-deduction-checklist",
+      "title": "Freelancer Tax Deduction Checklist",
       "venture": "pdf-factory",
       "sku": "freelancer-kit"
     },
     {
-      "slug": "api-health-check-endpoint",
-      "title": "API Health Check Endpoint Tool",
+      "slug": "webhook-dead-letter-queue",
+      "title": "Webhook Dead Letter Queue Tool",
+      "venture": "hookrelay",
+      "sku": "relay-monthly"
+    },
+    {
+      "slug": "rent-vs-buy-calculator-small-business",
+      "title": "Rent vs Buy Calculator Small Business",
+      "venture": "leaselens",
+      "sku": "single-report"
+    },
+    {
+      "slug": "meeting-roi-calculator",
+      "title": "Meeting ROI Calculator",
+      "venture": "meetingcost",
+      "sku": "meeting-pro"
+    },
+    {
+      "slug": "nda-vs-non-compete-difference",
+      "title": "NDA vs Non-Compete Difference",
+      "venture": "comparestack",
+      "sku": "nda-pdf"
+    },
+    {
+      "slug": "ssl-expiry-email-alert",
+      "title": "SSL Expiry Email Alert Service",
       "venture": "statusping",
       "sku": "basic-monthly"
     },
     {
-      "slug": "stripe-webhook-test-tool",
-      "title": "Stripe Webhook Test Tool",
+      "slug": "json-webhook-payload-validator",
+      "title": "JSON Webhook Payload Validator",
       "venture": "hookrelay",
       "sku": "relay-monthly"
+    },
+    {
+      "slug": "freelance-proposal-template-word",
+      "title": "Freelance Proposal Template Word",
+      "venture": "pdf-factory",
+      "sku": "freelancer-kit"
+    },
+    {
+      "slug": "invoice-payment-reminder-template",
+      "title": "Invoice Payment Reminder Template",
+      "venture": "billsnap",
+      "sku": "pro-pdf"
     }
   ],
   "keywordsPerCycle": 5

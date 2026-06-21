@@ -78,6 +78,36 @@ const CAMPAIGNS = [
     sku: "freelancer-kit",
     finalUrlPath: "/go/templates.html?utm_source=google&utm_campaign=templates",
   },
+  {
+    name: "WE - Freelancer Kit",
+    budgetDailyUsd: 1,
+    keywords: [
+      { kw: "freelancer business kit pdf", h1: "Freelancer Kit $14", h2: "14 Templates", desc: "Contracts, proposals, invoices. LAUNCH25 saves 25% at checkout." },
+      { kw: "freelancer document template pack", h1: "Freelancer Docs", h2: "Instant Download", desc: "Print-ready PDFs. No subscription. Secure Stripe checkout." },
+    ],
+    sku: "freelancer-kit",
+    finalUrlPath: "/go/freelancer.html?utm_source=google&utm_campaign=freelancer",
+  },
+  {
+    name: "WE - Contractor Invoice",
+    budgetDailyUsd: 1,
+    keywords: [
+      { kw: "contractor invoice template pdf", h1: "Contractor Invoice", h2: "PDF in 30 Sec", desc: "1099-friendly invoice. Preview free. Pro export $3." },
+      { kw: "1099 contractor invoice maker", h1: "1099 Invoice Maker", h2: "No Signup", desc: "Send invoices same day. LAUNCH25 saves 25%." },
+    ],
+    sku: "pro-pdf",
+    finalUrlPath: "/go/contractor.html?utm_source=google&utm_campaign=contractor",
+  },
+  {
+    name: "WE - SMB Compliance",
+    budgetDailyUsd: 1,
+    keywords: [
+      { kw: "smb compliance checklist pdf", h1: "SMB Compliance Pack", h2: "$19 Instant", desc: "Incident response, vendor agreements. Download in 60 seconds." },
+      { kw: "small business compliance documents", h1: "Compliance Docs", h2: "No Lawyer Sub", desc: "Print-ready templates. LAUNCH25 at checkout." },
+    ],
+    sku: "smb-compliance-pack",
+    finalUrlPath: "/go/compliance.html?utm_source=google&utm_campaign=compliance",
+  },
 ];
 
 export function buildGoogleAdsCsv() {

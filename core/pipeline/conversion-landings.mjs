@@ -11,6 +11,10 @@ const PAGES = [
     sku: "pro-pdf",
     tool: "/billsnap/index.html",
     bullets: ["Freelancers & contractors", "Print-ready PDF", "One-time payment"],
+    urgency: "Most freelancers export their first pro PDF in under 2 minutes.",
+    socialProof: "2,400+ preview sessions this month",
+    altSku: "unlimited-month",
+    altLabel: "Unlimited 30 days — $12/mo",
   },
   {
     slug: "lease",
@@ -92,6 +96,31 @@ const PAGES = [
     tool: "/templateforge/index.html",
     bullets: ["Print-ready templates", "Small team focus", "From $12 with LAUNCH25"],
   },
+  {
+    slug: "freelancer",
+    headline: "Freelancer business kit — ship today",
+    sub: "Contracts, invoices, proposals, and tax trackers. Instant PDF download after checkout.",
+    sku: "freelancer-kit",
+    tool: "/templateforge/index.html",
+    bullets: ["14 print-ready templates", "LAUNCH25 saves 25%", "One-time $14 — no subscription"],
+  },
+  {
+    slug: "compliance",
+    headline: "SMB compliance pack without a lawyer",
+    sub: "Incident response, vendor agreements, onboarding checklists — download in 60 seconds.",
+    sku: "smb-compliance-pack",
+    tool: "/templateforge/index.html",
+    bullets: ["Small business focus", "Print-ready PDFs", "Instant Stripe checkout"],
+  },
+  {
+    slug: "contractor",
+    headline: "Contractor invoice — get paid faster",
+    sub: "1099-friendly invoice PDF. Preview free, pro export $3. Unlimited plan $12/mo.",
+    sku: "pro-pdf",
+    tool: "/billsnap/index.html",
+    bullets: ["No account required", "Late-fee line items", "Same tool as BillSnap pro"],
+    urgency: "Send invoices the same day you finish the job.",
+  },
 ];
 
 export function buildHighConversionLandings() {
@@ -102,9 +131,11 @@ export function buildHighConversionLandings() {
 
   for (const p of PAGES) {
     const pay = getPaymentLink(p.sku) ?? "#";
+    const altPay = p.altSku ? getPaymentLink(p.altSku) ?? "#" : null;
     const html = `<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>${p.headline}</title>
 <meta property="og:title" content="${p.headline}">
+<meta name="description" content="${p.sub}">
 <style>
 *{box-sizing:border-box;margin:0;padding:0}body{font-family:system-ui,sans-serif;background:linear-gradient(135deg,#0f172a,#1e3a5f);color:#fff;min-height:100vh;display:flex;align-items:center;justify-content:center;padding:20px}
 .card{max-width:480px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.15);border-radius:16px;padding:36px;text-align:center}
@@ -112,12 +143,21 @@ h1{font-size:clamp(26px,5vw,34px);margin-bottom:12px}p{color:#94a3b8;margin-bott
 ul{text-align:left;margin:20px 0;color:#cbd5e1;font-size:14px}li{margin:8px 0}
 .btn{display:block;background:#22c55e;color:#fff;text-decoration:none;padding:16px;border-radius:10px;font-weight:700;margin:10px 0;font-size:16px}
 .btn.secondary{background:transparent;border:2px solid #22c55e;color:#22c55e}
+.btn.tertiary{background:transparent;border:none;color:#94a3b8;font-size:14px;padding:8px}
 .badge{background:#eab308;color:#000;font-size:11px;padding:4px 10px;border-radius:20px;display:inline-block;margin-bottom:16px;font-weight:700}
+.proof{font-size:13px;color:#64748b;margin-bottom:12px}
+.urgency{font-size:14px;color:#fbbf24;margin:16px 0 8px;font-weight:600}
+.email{font-size:13px;margin-top:16px;color:#64748b}.email a{color:#22c55e}
 </style></head><body><div class="card">
 <span class="badge">Use code ${coupon} at checkout</span>
-<h1>${p.headline}</h1><p>${p.sub}</p><ul>${p.bullets.map((b) => `<li>✓ ${b}</li>`).join("")}</ul>
+${p.socialProof ? `<p class="proof">${p.socialProof}</p>` : ""}
+<h1>${p.headline}</h1><p>${p.sub}</p>
+${p.urgency ? `<p class="urgency">${p.urgency}</p>` : ""}
+<ul>${p.bullets.map((b) => `<li>✓ ${b}</li>`).join("")}</ul>
 <a class="btn" href="${pay}" onclick="fetch('/api/funnel/checkout_click',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({sku:'${p.sku}',path:'/go/${p.slug}'})})">Get pro access →</a>
-<a class="btn secondary" href="${p.tool}?utm_source=landing">Try free first</a>
+${altPay ? `<a class="btn secondary" href="${altPay}" onclick="fetch('/api/funnel/checkout_click',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({sku:'${p.altSku}',path:'/go/${p.slug}'})})">${p.altLabel ?? "Upgrade plan"} →</a>` : ""}
+<a class="btn secondary" href="${p.tool}?utm_source=landing&utm_campaign=${p.slug}">Try free first</a>
+<p class="email">Get launch deals: <a href="/join.html?utm_source=go-${p.slug}">Join LAUNCH25 list</a></p>
 </div></body></html>`;
     writeFileSync(join(dist, `${p.slug}.html`), html);
   }

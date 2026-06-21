@@ -491,6 +491,36 @@
       "title": "NDA Expiration Tracker",
       "venture": "ndagen",
       "sku": "nda-pdf"
+    },
+    {
+      "slug": "invoice-vs-receipt-difference",
+      "title": "Invoice vs Receipt Difference Guide",
+      "venture": "comparestack",
+      "sku": "pro-pdf"
+    },
+    {
+      "slug": "best-cheap-uptime-monitor-2026",
+      "title": "Best Cheap Uptime Monitor 2026",
+      "venture": "comparestack",
+      "sku": "basic-monthly"
+    },
+    {
+      "slug": "freelancer-rate-card-template",
+      "title": "Freelancer Rate Card Template",
+      "venture": "pdf-factory",
+      "sku": "freelancer-kit"
+    },
+    {
+      "slug": "api-health-check-endpoint",
+      "title": "API Health Check Endpoint Tool",
+      "venture": "statusping",
+      "sku": "basic-monthly"
+    },
+    {
+      "slug": "stripe-webhook-test-tool",
+      "title": "Stripe Webhook Test Tool",
+      "venture": "hookrelay",
+      "sku": "relay-monthly"
     }
   ],
   "pagesPerCycle": 10
