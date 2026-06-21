@@ -9,44 +9,19 @@
 
 ## Today's briefing — path to first dollar ($0)
 
-Overnight work shipped **298 sitemap URLs**, **14 Stripe products**, **8 games**, affiliate portal, and **13 Reddit drafts** (10 `READY_FOR_REVIEW`). Reddit account **u/WealthEngineDev** is live. Apple Developer is **ACTIVE** — TestFlight waits on Mac access. IndexNow is blocked until Bing verifies.
+Overnight work shipped **298 sitemap URLs**, **14 Stripe products**, **8 games**, affiliate portal, and **13 Reddit drafts** (10 `READY_FOR_REVIEW`). Reddit account **u/WealthEngineDev** is live. Apple Developer is **ACTIVE** — TestFlight waits on Mac access. GSC is **verified** with sitemap submitted. IndexNow is blocked until Bing verifies.
 
-**Best 30-minute path today (no Mac):** GSC verify (5 min) → Bing import (5 min) → IndexNow (1 min) → one Reddit post (10 min). That unlocks search discovery for 298 URLs plus direct traffic to Stripe checkout.
+**Best 30-minute path today (no Mac):** Bing import from GSC (5 min) → IndexNow (1 min) → one Reddit post (10 min). Optional: itch.io upload (15 min). That unlocks search discovery for 298 URLs plus direct traffic to Stripe checkout.
 
 **If you have a Mac today:** swap step 3 for TestFlight upload first (`mobile/fastlane/README.md`, 30–45 min) — iOS distribution at $0 marginal cost.
 
 ---
 
-## Do right now
+﻿## Do right now
 
-Top 3 actions (~15 min each, $0 budget). Do in order.
+Top 3 actions (~15 min each, $0 budget). Do in order. (GSC verify + sitemap: **done** 2026-06-21.)
 
-### 1. Verify Google Search Console + submit sitemap
-
-| | |
-|---|---|
-| **Time** | ~5 min |
-| **Cost** | $0 |
-| **Guide** | `C:\Users\jshug\wealth-engine\deploy\SEARCH_CONSOLE_BING_FREE_SETUP.md` |
-
-**HTML tag:** Deployed 2026-06-21 — meta tag live on prod homepage. **Your turn:**
-
-**Steps:**
-
-1. Open https://search.google.com/search-console
-2. Click **Add property** → choose **URL prefix**
-3. Enter: `https://wealth-engine-0qlj.onrender.com/`
-4. Choose **HTML tag** verification → click **Verify** (tag already on site)
-5. Go to **Sitemaps** → submit: `sitemap.xml` (full URL: `https://wealth-engine-0qlj.onrender.com/sitemap.xml`)
-6. Wait for "Success" status on the sitemap
-
-**Expected outcome:** GSC shows property verified; sitemap with **298 URLs** submitted.
-
-**Unlocks:** Bing import (step 2), organic discovery for all `/p/*`, `/go/*`, `/tools/*`, `/games/*` pages. Organic lag: 2–4 weeks, but indexing starts immediately.
-
----
-
-### 2. Import site into Bing Webmaster Tools
+### 1. Import site into Bing Webmaster Tools
 
 | | |
 |---|---|
@@ -64,11 +39,11 @@ Top 3 actions (~15 min each, $0 budget). Do in order.
 
 **Expected outcome:** Bing Webmaster shows verified site with sitemap submitted.
 
-**Unlocks:** IndexNow re-run (step 3) — currently returns **403** until this step completes. Pings ~291 URLs to Bing/Yandex instantly.
+**Unlocks:** IndexNow re-run (Do today #4) — currently returns **403** until this step completes. Pings ~291 URLs to Bing/Yandex instantly.
 
 ---
 
-### 3. Post first Reddit thread (BillSnap Pro — r/freelance)
+### 2. Post first Reddit thread (BillSnap Pro — r/freelance)
 
 | | |
 |---|---|
@@ -98,6 +73,28 @@ Top 3 actions (~15 min each, $0 budget). Do in order.
 
 ---
 
+### 3. Optional: Upload one game to itch.io (Horseshoe Toss)
+
+| | |
+|---|---|
+| **Time** | ~15 min |
+| **Cost** | $0 |
+| **Zip** | `D:\wealth-engine-data\mobile\itch\horseshoe-toss.zip` |
+| **URL** | https://itch.io/game/new |
+
+**Steps:**
+
+1. Open https://itch.io/game/new
+2. Upload `horseshoe-toss.zip` (HTML project → set main file to `index.html` inside zip)
+3. Add title, short description, and link to https://wealth-engine-0qlj.onrender.com/games/
+4. Publish (free)
+
+**Expected outcome:** One game live on itch.io for discovery; 7 more zips ready in same folder.
+
+**Unlocks:** MC-GAMES-001 game distribution channel at $0.
+
+---
+
 ## Do today
 
 30–60 min total beyond the top 3.
@@ -108,7 +105,7 @@ Top 3 actions (~15 min each, $0 budget). Do in order.
 |---|---|
 | **Time** | ~1 min |
 | **Cost** | $0 |
-| **Prerequisite** | Steps 1–2 complete |
+| **Prerequisite** | GSC done; Bing import (Do right now #1) complete |
 
 **Steps:**
 
@@ -217,6 +214,7 @@ node -e "import('./core/marketing/indexnow.mjs').then(m => m.submitIndexNow().th
 - [x] Affiliate portal live (`/join.html`, `/refer.html`) — 2026-06-21
 - [x] Horseshoe promo bar coded in `C:\Users\jshug\Website\index.html` — pending GoDaddy upload
 - [x] GSC HTML verification meta tag deployed to Render prod — 2026-06-21
+- [x] Google Search Console verify + sitemap submit (298 URLs) — 2026-06-21
 
 ---
 
@@ -228,7 +226,6 @@ Small actions if you have 5–15 spare minutes.
 |-----|-----:|-----|--------|
 | **itch.io — one game** | 15 min | Upload `D:\wealth-engine-data\mobile\itch\horseshoe-toss.zip` at https://itch.io/game/new → HTML → index `index.html` | Free game distribution; 8 more zips ready |
 | **One Reddit post** | 10 min | Pick any `READY_FOR_REVIEW` draft in `D:\wealth-engine-data\marketing\reddit-drafts\` | Direct traffic → Stripe |
-| **GSC verify** | 5 min | Step 1 above — click **Verify** in GSC, then submit sitemap | Unlocks Bing + IndexNow chain |
 | **Join subreddits** | 2 min | r/freelance, r/smallbusiness, r/webdev, r/SaaS, r/startups | Required before posting |
 | **Share PWA link** | 1 min | Send https://wealth-engine-0qlj.onrender.com/games/ → "Add to Home Screen" | Free mobile install |
 | **Stripe dashboard check** | 2 min | https://dashboard.stripe.com — watch for LAUNCH25 checkouts | Confirms post → sale funnel |
