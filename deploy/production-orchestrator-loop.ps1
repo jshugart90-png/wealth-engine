@@ -28,7 +28,7 @@ while ((Get-Date) -lt $Deadline) {
     if ($remaining -le 0) { break }
 
     $sleepMin = [Math]::Min($IntervalMinutes, [Math]::Max(1, [int]$remaining))
-    Write-Log "Sleeping ${sleepMin}m ($([int]$remaining)m until 08:00 CT)"
+    Write-Log ("Sleeping {0}m ({1} min until 08:00 CT)" -f $sleepMin, [int]$remaining)
     Start-Sleep -Seconds ($sleepMin * 60)
 }
 
