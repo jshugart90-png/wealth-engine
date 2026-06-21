@@ -7,6 +7,7 @@ import { buildThanksPage } from "./marketing/thanks-page.mjs";
 import { buildAdToolPages } from "./marketing/ad-tools.mjs";
 import { buildBundleLandings } from "./marketing/bundles.mjs";
 import { generateSeoPages } from "./marketing/seo-pages.mjs";
+import { generateCompliancePseo } from "./pipeline/compliance-pseo.mjs";
 import { buildSitemap, buildRobotsTxt } from "./marketing/sitemap.mjs";
 import { expandCompareStack } from "../ventures/comparestack/generator.mjs";
 import { buildEmbedWidgets } from "./marketing/embeds.mjs";
@@ -81,6 +82,7 @@ export function buildAll() {
   const adTools = buildAdToolPages();
   const bundles = buildBundleLandings();
   const seo = generateSeoPages();
+  const compliancePseo = generateCompliancePseo();
   const sitemap = buildSitemap();
   const robots = buildRobotsTxt();
   const embeds = buildEmbedWidgets();
@@ -96,6 +98,7 @@ export function buildAll() {
     adTools,
     bundles,
     seo,
+    compliancePseo,
     sitemap,
     robots,
     embeds,

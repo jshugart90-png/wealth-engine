@@ -125,10 +125,14 @@ const PAGES = [
   {
     slug: "compliance",
     headline: "SMB compliance pack without a lawyer",
-    sub: "Incident response, vendor agreements, onboarding checklists — download in 60 seconds.",
+    sub: "Incident response, vendor agreements, W-9 checklists — plus state-specific 1099 guides. Download in 60 seconds.",
     sku: "smb-compliance-pack",
-    tool: "/templateforge/index.html",
-    bullets: ["Small business focus", "Print-ready PDFs", "Instant Stripe checkout"],
+    tool: "/p/freelancer-compliance-by-state.html",
+    bullets: ["40 state compliance guides live", "Print-ready PDF templates", "1099 + contractor checklists"],
+    urgency: "Jan 31 1099-NEC deadline — get templates and state filing guides now.",
+    socialProof: "Pilot: CA, TX, FL, NY, IL, PA, OH, GA, NC, MI compliance pages",
+    altSku: "freelancer-kit",
+    altLabel: "Freelancer Kit — $14",
   },
   {
     slug: "contractor",

@@ -695,6 +695,12 @@
       "title": "Handyman Invoice Template PDF",
       "venture": "billsnap",
       "sku": "unlimited-month"
+    },
+    {
+      "slug": "freelancer-compliance-by-state",
+      "title": "Freelancer Compliance by State — 1099 LLC Guides",
+      "venture": "pdf-factory",
+      "sku": "smb-compliance-pack"
     }
   ],
   "pagesPerCycle": 10

@@ -1,6 +1,6 @@
 ﻿# Marketing Command Center
 
-**Director:** Marketing Director agent · **Updated:** 2026-06-21T14:00 CT (MC-010 BillSnap Pro $29 — NEEDS_CAMPAIGN) · **Cycles complete:** 4  
+**Director:** Marketing Director agent · **Updated:** 2026-06-21T15:00 CT (MC-011 State Compliance pSEO — PUBLISH_READY) · **Cycles complete:** 5  
 **Prod:** https://wealth-engine-0qlj.onrender.com Â· **Goal:** $500/mo Â· **Budget:** $0 ads until revenue  
 **Coupon:** LAUNCH25 (25% off)
 
@@ -20,6 +20,7 @@
 | MC-008 | Freelancer Stack $29/mo + $49 bundle | BillSnap+NDAGen+Templates | [bundles/freelancer-stack.html](https://wealth-engine-0qlj.onrender.com/bundles/freelancer-stack.html) · [go/freelancer.html](https://wealth-engine-0qlj.onrender.com/go/freelancer.html) · [go/stack.html](https://wealth-engine-0qlj.onrender.com/go/stack.html) | r/freelance, IH, Peerlist, PH | **ACTIVE** | 3 |
 | MC-009 | HookRelay DLQ Pro $29/mo | HookRelay | [go/hookrelay-dlq.html](https://wealth-engine-0qlj.onrender.com/go/hookrelay-dlq.html) · [hookrelay/pricing.html](https://wealth-engine-0qlj.onrender.com/hookrelay/pricing.html) | r/webdev, Show HN, Slack | **ACTIVE** | 3 |
 | MC-010 | BillSnap Pro Unlimited $29/mo | BillSnap | [go/billsnap-pro.html](https://wealth-engine-0qlj.onrender.com/go/billsnap-pro.html) · [go/invoice.html](https://wealth-engine-0qlj.onrender.com/go/invoice.html) | r/freelance, r/smallbusiness, Google Ads | **NEEDS_CAMPAIGN** | 4 |
+| MC-011 | State Compliance pSEO | TemplateForge | [p/freelancer-compliance-by-state.html](https://wealth-engine-0qlj.onrender.com/p/freelancer-compliance-by-state.html) · [go/compliance.html](https://wealth-engine-0qlj.onrender.com/go/compliance.html) | r/smallbusiness, r/freelance, dev.to, IH | **PUBLISH_READY** | 5 |
 
 ---
 
@@ -73,7 +74,8 @@
 
 | Priority | File | Posts | Action |
 |----------|------|-------|--------|
-| 1 | `outreach/POST_2026-06-21_batch9.md` | 8 posts | MC-008 + MC-009 live URLs — r/freelance, r/webdev, IH, HN |
+| 1 | `outreach/POST_2026-06-21_batch10.md` | 6 posts | MC-011 state compliance pSEO — r/smallbusiness, r/freelance, IH, dev.to |
+| 2 | `outreach/POST_2026-06-21_batch9.md` | 8 posts | MC-008 + MC-009 live URLs — r/freelance, r/webdev, IH, HN |
 | 2 | `outreach/POST_2026-06-21_batch8.md` | 6 posts | r/SaaS, PH prep, Slack template |
 | 3 | `outreach/POST_2026-06-21_batch7.md` | 8 posts | Copy-paste to Reddit/IH/HN |
 | 4 | `outreach/posts.json` | 6 posts | Legacy queue |
@@ -82,7 +84,7 @@
 | 7 | `outreach/articles/invoice-without-subscription-2026-06-21.md` | 1 article | dev.to publish |
 | 8 | `directory-submissions/DIRECTORY_PACK_2026-06-21.md` | 5 dirs | Manual submit |
 
-**Total PUBLISH_READY posts:** 32+ (across batches 1-9)
+**Total PUBLISH_READY posts:** 38+ (across batches 1-10)
 
 ---
 
@@ -93,8 +95,8 @@
 | Revenue | $0 | $500/mo |
 | Published posts | 0 (community) | 10+ week 1 |
 | Directory submissions | 0 | 30 |
-| Outreach batches | 9 | â€” |
-| SEO pages live | 90+ | â€” |
+| Outreach batches | 10 | â€” |
+| SEO pages live | 150+ | â€” |
 | Horseshoe cross-promo | Live | â€” |
 
 ---
@@ -115,6 +117,7 @@
 - [ ] User posts batch7 Reddit r/smallbusiness + r/freelance (highest intent)
 - [ ] Submit Peerlist + Uneed + MicroLaunch (15 min total)
 - [ ] Publish dev.to article from batch7
+- [ ] User posts batch10 r/smallbusiness (MC-011) + r/freelance state guides — compliance hub URLs
 - [ ] User posts batch9 r/freelance (MC-008) + r/SaaS DLQ (MC-009) — new $29 URLs
 - [ ] **MC-010:** Launch BillSnap Pro $29/mo campaign — `/go/billsnap-pro`, contractor/consultant pSEO pages, ads CSV row WE-BillSnap-Pro
 - [ ] Monitor DEPLOY_LOG for extensionless URL redirects (cycle 2 pending QC)
