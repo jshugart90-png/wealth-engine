@@ -9,9 +9,9 @@
 
 ## Today's briefing — path to first dollar ($0)
 
-Overnight work shipped **298 sitemap URLs**, **14 Stripe products**, **8 games**, affiliate portal, and **13 Reddit drafts** (10 `READY_FOR_REVIEW`). Reddit account **u/WealthEngineDev** is live. Apple Developer is **ACTIVE** — TestFlight waits on Mac access. GSC is **verified** with sitemap submitted. IndexNow is blocked until Bing verifies.
+Overnight work shipped **298 sitemap URLs**, **14 Stripe products**, **8 games**, affiliate portal, and **13 Reddit drafts** (10 `READY_FOR_REVIEW`). Reddit account **u/WealthEngineDev** is live. Apple Developer is **ACTIVE** — TestFlight waits on Mac access. GSC is **verified** with sitemap submitted. **BingSiteAuth.xml** is deployed on prod — finish Bing verify in Webmaster, then IndexNow.
 
-**Best 30-minute path today (no Mac):** Bing import from GSC (5 min) → IndexNow (1 min) → one Reddit post (10 min). Optional: itch.io upload (15 min). That unlocks search discovery for 298 URLs plus direct traffic to Stripe checkout.
+**Best 30-minute path today (no Mac):** Bing Webmaster **Verify** (2 min) → submit sitemap (2 min) → IndexNow (1 min) → one Reddit post (10 min). Optional: itch.io upload (15 min). That unlocks search discovery for 298 URLs plus direct traffic to Stripe checkout.
 
 **If you have a Mac today:** swap step 3 for TestFlight upload first (`mobile/fastlane/README.md`, 30–45 min) — iOS distribution at $0 marginal cost.
 
@@ -21,25 +21,27 @@ Overnight work shipped **298 sitemap URLs**, **14 Stripe products**, **8 games**
 
 Top 3 actions (~15 min each, $0 budget). Do in order. (GSC verify + sitemap: **done** 2026-06-21.)
 
-### 1. Import site into Bing Webmaster Tools
+### 1. Verify site in Bing Webmaster Tools
 
 | | |
 |---|---|
 | **Time** | ~5 min |
 | **Cost** | $0 |
 | **Guide** | `C:\Users\jshug\wealth-engine\deploy\SEARCH_CONSOLE_BING_FREE_SETUP.md` § step 2 |
+| **Verify file (LIVE)** | https://wealth-engine-0qlj.onrender.com/BingSiteAuth.xml |
 
 **Steps:**
 
 1. Open https://www.bing.com/webmasters
-2. Click **Add a site** → **Import from Google Search Console** (fastest — no second DNS step)
-3. Select `wealth-engine-0qlj.onrender.com` from the GSC import list
-4. Go to **Sitemaps** → submit same URL: `https://wealth-engine-0qlj.onrender.com/sitemap.xml`
-5. Confirm site shows as **Verified**
+2. Add or open site `wealth-engine-0qlj.onrender.com` (or **Import from Google Search Console** if not added yet)
+3. Choose **XML file** verification → confirm file is live at `/BingSiteAuth.xml` (deployed via `core/build-all.mjs`)
+4. Click **Verify** in Bing Webmaster
+5. Go to **Sitemaps** → submit: `https://wealth-engine-0qlj.onrender.com/sitemap.xml`
+6. Confirm site shows as **Verified**
 
 **Expected outcome:** Bing Webmaster shows verified site with sitemap submitted.
 
-**Unlocks:** IndexNow re-run (Do today #4) — currently returns **403** until this step completes. Pings ~291 URLs to Bing/Yandex instantly.
+**Unlocks:** IndexNow re-run (Do today #4) — currently returns **403** until verify completes. Pings ~291 URLs to Bing/Yandex instantly.
 
 ---
 
@@ -105,7 +107,10 @@ Top 3 actions (~15 min each, $0 budget). Do in order. (GSC verify + sitemap: **d
 |---|---|
 | **Time** | ~1 min |
 | **Cost** | $0 |
-| **Prerequisite** | GSC done; Bing import (Do right now #1) complete |
+| **Prerequisite** | GSC done; Bing verify (Do right now #1) complete |
+| **Key file (already LIVE)** | https://wealth-engine-0qlj.onrender.com/wealth-engine-0qlj-onrender-com-indexnow.txt |
+
+IndexNow key file is built on every `npm run build` (`core/marketing/indexnow.mjs`). No redeploy needed for the key — only re-run submit after Bing shows **Verified**.
 
 **Steps:**
 
@@ -215,6 +220,7 @@ node -e "import('./core/marketing/indexnow.mjs').then(m => m.submitIndexNow().th
 - [x] Horseshoe promo bar coded in `C:\Users\jshug\Website\index.html` — pending GoDaddy upload
 - [x] GSC HTML verification meta tag deployed to Render prod — 2026-06-21
 - [x] Google Search Console verify + sitemap submit (298 URLs) — 2026-06-21
+- [x] BingSiteAuth.xml deployed to prod (`/BingSiteAuth.xml`) — pending user **Verify** click in Bing Webmaster — 2026-06-21
 
 ---
 

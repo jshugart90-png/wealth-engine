@@ -107,6 +107,7 @@ export function buildAll() {
   const feeds = buildProductFeeds();
   const referral = buildReferralPages();
   const indexNow = buildIndexNowKey();
+  const bingSiteAuth = buildBingSiteAuth();
   const games = buildGames();
   const pwa = buildPwaAssets();
 
@@ -126,9 +127,21 @@ export function buildAll() {
     feeds,
     referral,
     indexNow,
+    bingSiteAuth,
     games,
     pwa,
   };
+}
+
+function buildBingSiteAuth() {
+  const content = `<?xml version="1.0"?>
+<users>
+	<user>BFFC299D3E2BDBFCB92C641272C2C2DB</user>
+</users>
+`;
+  const path = join(root, "dist", "BingSiteAuth.xml");
+  writeFileSync(path, content);
+  return path;
 }
 
 function getAdmobOpts() {

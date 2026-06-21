@@ -17,6 +17,8 @@ const MIME = {
   ".css": "text/css",
   ".json": "application/json",
   ".svg": "image/svg+xml",
+  ".xml": "application/xml",
+  ".txt": "text/plain",
 };
 
 function log(msg) {
