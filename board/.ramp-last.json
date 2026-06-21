@@ -1,12 +1,12 @@
 {
-  "at": "2026-06-21T05:49:23.367Z",
+  "at": "2026-06-21T09:17:17.237Z",
   "targetUsd": 500,
   "revenueUsd": 0,
   "pctOfTarget": 0,
   "nextActions": [
-    "Import google-ads-import.csv into Google Ads (~$10/day cap — see ADS_IMPORT_CHECKLIST.md)",
+    "Import google-ads-import.csv into Google Ads (~$26/day suggested)",
     "Post POST_TODAY.md content to listed platform",
-    "Deploy custom domain: deploy/GODADDY_DNS.md (tools.horseshoeroundme.com)",
+    "Deploy to custom domain (see docs/ACCESS_NEEDED.md)",
     "Share /go/invoice, /go/lease, /go/uptime links"
   ]
 }
