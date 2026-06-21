@@ -731,6 +731,24 @@
       "title": "NDA Template for Freelancer Teams",
       "venture": "ndagen",
       "sku": "ndagen-team-monthly"
+    },
+    {
+      "slug": "1099-nec-deadline-2026",
+      "title": "1099-NEC Deadline 2026 — Jan 31 Filing Guide",
+      "venture": "pdf-factory",
+      "sku": "1099-suite-pro"
+    },
+    {
+      "slug": "w9-request-template-freelancer",
+      "title": "W-9 Request Template for Freelancers",
+      "venture": "pdf-factory",
+      "sku": "1099-suite-pro"
+    },
+    {
+      "slug": "1099-penalty-calculator",
+      "title": "1099 Late Filing Penalty Calculator",
+      "venture": "pdf-factory",
+      "sku": "1099-suite-pro"
     }
   ],
   "pagesPerCycle": 10

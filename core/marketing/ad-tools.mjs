@@ -309,12 +309,18 @@ rout.textContent=roi+'% ROI · '+monthly+'%/mo over '+m+' months';}
 
   const tax1099Calc = adToolsShell(
     "1099 Tax Estimator",
-    `<label>1099 income YTD ($)</label><input type="number" id="income" value="45000" step="0.01">
+    `<div style="background:#fef3c7;border:1px solid #f59e0b;border-radius:8px;padding:12px;margin-bottom:16px;font-size:14px">
+<strong>1099-NEC deadline:</strong> <span id="deadline"></span> · <a href="/go/1099-deadline.html">Get 1099 PDF suite $19 →</a>
+</div>
+<label>1099 income YTD ($)</label><input type="number" id="income" value="45000" step="0.01">
 <label>Business expenses ($)</label><input type="number" id="expenses" value="8000" step="0.01">
 <label>Other W-2 income ($)</label><input type="number" id="w2" value="0" step="0.01">
 <label>Estimated tax rate %</label><input type="number" id="rate" value="25" step="0.01">
 <div class="result" id="tout">$9,250 estimated tax</div>
+<p style="font-size:13px;margin-top:12px"><a href="/p/freelancer-compliance-by-state.html">State 1099 filing guides</a> · <a href="/go/compliance.html">Compliance pack</a></p>
 <script>
+const dl=new Date(new Date().getFullYear(),0,31);const now=new Date();const days=Math.ceil((dl-now)/86400000);
+deadline.textContent=days>0?days+' days until Jan 31 filing deadline':'Jan 31 deadline passed — file ASAP';
 function tc(){const i=+income.value||0,e=+expenses.value||0,w=+w2.value||0,r=(+rate.value||0)/100;
 const se=(i-e)*0.153;const fed=Math.max(0,i-e)*r;const total=se+fed;
 tout.textContent='$'+total.toFixed(0)+' estimated tax · $'+(total/4).toFixed(0)+'/quarter';}

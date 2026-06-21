@@ -1,7 +1,7 @@
 {
   "lastUpdated": "2026-06-21",
   "disclaimer": "Informational only — not legal or tax advice. Verify requirements with official state and IRS sources before filing.",
-  "pilotStates": ["california", "texas", "florida", "new-york", "illinois", "pennsylvania", "ohio", "georgia", "north-carolina", "michigan"],
+  "pilotStates": ["california", "texas", "florida", "new-york", "illinois", "pennsylvania", "ohio", "georgia", "north-carolina", "michigan", "new-jersey", "virginia", "washington", "arizona", "massachusetts", "tennessee", "indiana", "missouri", "maryland", "wisconsin"],
   "states": {
     "california": {
       "name": "California",

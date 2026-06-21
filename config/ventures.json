@@ -193,6 +193,14 @@
       "metadata": { "product_id": "hiring-pack" }
     },
     {
+      "ventureId": "pdf-factory",
+      "sku": "1099-suite-pro",
+      "name": "1099 Deadline Suite Pro",
+      "priceUsd": 19,
+      "interval": "one_time",
+      "metadata": { "forms": "10", "seasonal": "1099-nec" }
+    },
+    {
       "ventureId": "statusping",
       "sku": "basic-monthly",
       "name": "StatusPing Basic",

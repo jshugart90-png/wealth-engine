@@ -203,6 +203,18 @@ const PAGES = [
     altSku: "devwatch-monthly",
     altLabel: "DevWatch bundle — $39/mo",
   },
+  {
+    slug: "1099-deadline",
+    headline: "1099-NEC deadline — don't pay $60/form penalties",
+    sub: "Track contractor payments, generate 1099-NEC PDFs, state filing checklists. Pro suite $19.",
+    sku: "1099-suite-pro",
+    tool: "/tools/1099-tax-estimator.html",
+    bullets: ["Jan 31 federal deadline tracker", "Up to 10 contractor 1099 PDFs", "State filing guides from compliance hub"],
+    urgency: "Late 1099-NEC penalties start at $60 per form.",
+    socialProof: "Built on 10-state compliance data + BillSnap contractor invoicing",
+    altSku: "smb-compliance-pack",
+    altLabel: "Compliance pack — $19",
+  },
 ];
 
 export function buildHighConversionLandings() {

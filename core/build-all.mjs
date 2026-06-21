@@ -13,6 +13,7 @@ import { expandCompareStack } from "../ventures/comparestack/generator.mjs";
 import { buildEmbedWidgets } from "./marketing/embeds.mjs";
 import { buildProductFeeds } from "./marketing/feeds.mjs";
 import { buildReferralPages } from "./marketing/referral-page.mjs";
+import { buildIndexNowKey } from "./marketing/indexnow.mjs";
 
 const root = getRoot();
 const config = JSON.parse(readFileSync(join(root, "config", "ventures.json"), "utf8"));
@@ -88,6 +89,7 @@ export function buildAll() {
   const embeds = buildEmbedWidgets();
   const feeds = buildProductFeeds();
   const referral = buildReferralPages();
+  const indexNow = buildIndexNowKey();
 
   return {
     built,
@@ -104,6 +106,7 @@ export function buildAll() {
     embeds,
     feeds,
     referral,
+    indexNow,
   };
 }
 

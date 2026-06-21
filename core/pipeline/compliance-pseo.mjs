@@ -89,7 +89,7 @@ const PAGE_TYPES = [
     body: (s) => `
 <h2>2026 quarterly estimated tax due dates</h2>
 <ul>
-${s.quarterlyDueDates.map((d) => `<li>${d}</li>`).join("\n")}
+${(s.quarterlyDueDates ?? ["April 15", "June 15", "September 15", "January 15 (prior year Q4)"]).map((d) => `<li>${d}</li>`).join("\n")}
 </ul>
 <h2>1099-NEC key dates</h2>
 <ul>
@@ -217,7 +217,9 @@ export function generateCompliancePseo() {
   const base = getPublicBaseUrl();
   const created = [];
 
-  const states = config.pilotStates.map((slug) => ({ slug, ...config.states[slug] }));
+  const states = config.pilotStates
+    .filter((slug) => config.states[slug])
+    .map((slug) => ({ slug, ...config.states[slug] }));
 
   for (const state of states) {
     for (const pageType of PAGE_TYPES) {

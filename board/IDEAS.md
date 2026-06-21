@@ -17,7 +17,7 @@ Ideas are ranked by Idea Guy each cycle. Research Guy validates; Realistic Guy k
 | WE-20260621-affiliate-portal | Portfolio self-serve affiliate portal at /partners/ | comparestack + portfolio | 5k→30k | 22/25 | **SHIPPED** | `/partners/`, `/join` affiliate tab, `/refer` dashboard, `config/affiliates.json` |
 | WE-20260621-ndagen-team | NDAGen Team B2B tier $29/mo (50 NDAs, 3 seats) | ndagen | 3k→15k | 22/25 | **SHIPPED** | `/go/nda-team`, ndagen-team-monthly SKU, Team usage gate in NDAGen |
 | WE-20260621-statusping-agency | StatusPing Agency white-label $49/mo (10 workspaces) | statusping | 2k→10k | 20/25 | **SHIPPED** | `/go/statusping-agency`, agency-monthly SKU, 2 SEO keywords |
-| WE-20260621-1099-deadline-suite | 1099-NEC deadline tracker + PDF generator (seasonal) | billsnap + pdf-factory | 2k→8k | 20/25 | Candidate | Brief: `board/briefs/WE-20260621-1099-deadline-suite.md`; state JSON now shipped — ready to unblock |
+| WE-20260621-1099-deadline-suite | 1099-NEC deadline tracker + PDF generator (seasonal) | billsnap + pdf-factory | 2k→8k | 20/25 | **IN_PROGRESS** | Cycle 7: 1099-suite-pro SKU, /go/1099-deadline, enhanced estimator |
 | I-001 | BillSnap Google Ads scale + /go/invoice landing optimization | billsnap | 200–350 | — | **IN_PROGRESS** | Cycle 1: invoice landing enhanced, contractor landing, ads CSV +3 campaigns |
 | I-002 | LeaseLens tenant-rights SEO via CompareStack cross-links | leaselens + comparestack | 80–150 | — | queued | Problem-aware queries, $7 AOV |
 | I-003 | MeetingCost embed widget on horseshoeroundme.com | meetingcost | 50–120 | — | queued | Viral share loop; needs Tier-2 domain approval |
