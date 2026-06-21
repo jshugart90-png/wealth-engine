@@ -1,6 +1,6 @@
 ﻿# Marketing Command Center
 
-**Director:** Zero-Budget Marketing Director Â· **Updated:** 2026-06-21 (MC-IOS-TESTFLIGHT + Apple Dev ACTIVE)
+**Director:** Zero-Budget Marketing Director Â· **Updated:** 2026-06-21 (MC-IOS-TESTFLIGHT + Apple Dev ACTIVE) | **Reddit:** **ACTIVE** [u/WealthEngineDev](https://reddit.com/user/WealthEngineDev) (draft-only; no auto-post)
 **Prod:** https://wealth-engine-0qlj.onrender.com Â· **Goal:** $500/mo Â· **Budget:** **$0** (BLOCKED_NO_BUDGET)  
 **Coupon:** LAUNCH25 (25% off)
 
@@ -14,6 +14,7 @@
 |----------|------|
 | Ranked free channels | `D:\wealth-engine-data\marketing\ZERO_BUDGET_PLAYBOOK.md` |
 | Copy-paste posts (24) | `D:\wealth-engine-data\marketing\outreach\FREE_POSTS_batch1.md` |
+| Reddit drafts (review queue) | `D:\wealth-engine-data\marketing\reddit-drafts\` · workflow: `board/REDDIT_WORKFLOW.md` |
 | Reddit signup steps | `D:\wealth-engine-data\marketing\REDDIT_SIGNUP_READY.md` |
 | Games promo batch (6 titles) | `D:\wealth-engine-data\marketing\outreach\GAMES_PROMO_2026-06-21.md` |
 | Ads import (blocked) | `D:\wealth-engine-data\marketing\ADS_IMPORT_CHECKLIST.md` |
@@ -26,7 +27,7 @@
 | ZB-002 | GSC + Bing Webmaster | Search engines | DOCUMENTED | GoDaddy DNS TXT steps in playbook |
 | ZB-003 | Directory blitz | Peerlist, Uneed, AltTo, SaaSHub, PH Ship | PUBLISH_READY | Copy in FREE_POSTS_batch1 |
 | ZB-004 | Content syndication | dev.to, Hashnode, Medium | PUBLISH_READY | Article ready; manual paste |
-| ZB-005 | Community posts | Reddit, IH, HN | BLOCKED_LOGIN | Reddit: REDDIT_SIGNUP_READY.md |
+| ZB-005 | Community posts | Reddit, IH, HN | **ACTIVE (Reddit draft-only)** | u/WealthEngineDev · 13 drafts in reddit-drafts/ · IH/HN still manual |
 | ZB-006 | GitHub landing page | README optimization | DONE | Topics listed in README |
 | ZB-007 | Programmatic SEO | 222+ /p/* pages | LIVE | Daemon generates daily |
 | ZB-008 | Horseshoe cross-promo | GoDaddy free upload | PUBLISH_READY | Meta block in FREE_POSTS_batch1 |
@@ -110,7 +111,7 @@
 |------|---------|------|-----|-------|
 | Ã¢â‚¬â€ | Horseshoe promo bar | Cross-promo links | horseshoeroundme.com | Live in index.html |
 
-*No community posts published yet Ã¢â‚¬â€ credentials/login required for all platforms.*
+*Reddit account live (2026-06-21); posts stay draft-only until user publishes.*
 
 ---
 
@@ -156,7 +157,7 @@
 | **$0 budget** | All paid ads parked BLOCKED_NO_BUDGET | ACTIVE constraint |
 | RESEND_API_KEY placeholder | 1) Manual Gmail 2) Templates in FREE_POSTS_batch1 | BLOCKED for auto-email |
 | DEVTO_API_KEY missing | 1) Manual dev.to paste 2) Hashnode cross-post | PUBLISH_READY manual |
-| Reddit login | 1) Browser MCP signup attempt 2) REDDIT_SIGNUP_READY.md | BLOCKED â€” needs user email/phone |
+| Reddit login | 1) Account live u/WealthEngineDev 2) board/REDDIT_WORKFLOW.md draft→review→publish | **ACTIVE** (manual publish only) |
 | IndexNow 403 | Key file LIVE on prod (200); POST/GET 403 until Bing Webmaster verified | BLOCKED - verify Bing/GSC first |
 | Google Ads AP-001 | Zero-budget policy | **BLOCKED_NO_BUDGET** |
 | Microsoft Ads | Zero-budget policy | **BLOCKED_NO_BUDGET** |
@@ -165,7 +166,7 @@
 
 ## Next cycle actions (zero budget)
 
-- [ ] User: Reddit signup (2 min) â†’ post FREE_POSTS_batch1 #1â€“2
+- [x] User: Reddit signup — **DONE** u/WealthEngineDev · review D:\wealth-engine-data\marketing\reddit-drafts\
 - [ ] User: GSC verify via GoDaddy DNS TXT â†’ submit sitemap
 - [ ] User: Bing Webmaster import from GSC
 - [ ] Submit Peerlist + Uneed + AlternativeTo (FREE_POSTS_batch1 #6â€“9)

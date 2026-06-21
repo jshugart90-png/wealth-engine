@@ -2,6 +2,8 @@
 
 **Mode:** `DRAFT_ONLY` — agents never auto-post. User reviews and publishes manually (multiple times per day).
 
+**Account:** [u/WealthEngineDev](https://reddit.com/user/WealthEngineDev) · **Account live:** 2026-06-21 · **Posting:** manual only (never auto-post)
+
 **Drafts:** `D:\wealth-engine-data\marketing\reddit-drafts\`  
 **Config (local, not in git):** `D:\wealth-engine-data\marketing\reddit-config.local.json`  
 **Signup status:** `D:\wealth-engine-data\marketing\REDDIT_SIGNUP_STATUS.md`
