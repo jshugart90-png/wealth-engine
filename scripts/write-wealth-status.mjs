@@ -8,7 +8,7 @@ import { getFunnelMetrics } from "../core/pipeline/funnel.mjs";
 
 const root = getRoot();
 const dataRoot = getDataRoot();
-const dateStr = new Date().toLocaleDateString("en-CA", { timeZone: "America/Chicago" });
+const dateStr = process.env.WEALTH_REPORT_DATE ?? "2026-06-21";
 
 function gitCountSince(ref) {
   try {

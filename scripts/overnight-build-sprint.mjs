@@ -30,9 +30,12 @@ function ctNow() {
 
 function msUntilReview() {
   const now = ctNow();
-  const target = new Date(now);
+  let target = new Date(now);
   target.setHours(REVIEW_HOUR_CT, REVIEW_MINUTE_CT, 0, 0);
-  if (now >= target) return 0;
+  // If review time already passed today, target tomorrow (overnight sprint)
+  if (now >= target) {
+    target.setDate(target.getDate() + 1);
+  }
   return target - now;
 }
 
