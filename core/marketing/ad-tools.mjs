@@ -221,6 +221,43 @@ iout.innerHTML=Array.from({length:n},(_,i)=>p+'-'+(s+i)).join('<br>');}
   );
   writeFileSync(join(dist, "invoice-number-generator.html"), invoiceNumGen);
 
+  const salesTaxCalc = adToolsShell(
+    "Sales Tax Calculator",
+    `<label>Pre-tax amount ($)</label><input type="number" id="subtotal" value="100" step="0.01">
+<label>Tax rate %</label><input type="number" id="taxrate" value="8.25" step="0.01">
+<label>Tax-inclusive? (reverse calc)</label><select id="mode"><option value="add">Add tax to subtotal</option><option value="extract">Extract from total</option></select>
+<div class="result" id="stout">$8.25 tax · $108.25 total</div>
+<script>
+function st(){const s=+subtotal.value||0,r=+taxrate.value||0;
+if(mode.value==='extract'){const base=s/(1+r/100);const tax=s-base;stout.textContent='$'+tax.toFixed(2)+' tax · $'+base.toFixed(2)+' pre-tax';}
+else{const tax=s*r/100;stout.textContent='$'+tax.toFixed(2)+' tax · $'+(s+tax).toFixed(2)+' total';}}
+[subtotal,taxrate,mode].forEach(el=>el.onchange=st);[subtotal,taxrate,mode].forEach(el=>el.oninput=st);st();
+</script>`,
+    "Calculate sales tax on invoices and receipts — free tool for freelancers and retailers."
+  );
+  writeFileSync(join(dist, "sales-tax-calculator.html"), salesTaxCalc);
+
+  const paymentTermsCalc = adToolsShell(
+    "Payment Terms Calculator",
+    `<label>Invoice date</label><input type="date" id="invdate">
+<label>Net terms (days)</label><select id="terms"><option value="0">Due on receipt</option><option value="15">Net 15</option><option value="30" selected>Net 30</option><option value="45">Net 45</option><option value="60">Net 60</option></select>
+<label>Invoice amount ($)</label><input type="number" id="invamt" value="1500" step="0.01">
+<label>Late fee %/month</label><input type="number" id="late" value="1.5" step="0.01">
+<div class="result" id="ptout">Due date · $0 late fee today</div>
+<script>
+const today=new Date().toISOString().slice(0,10);invdate.value=today;
+function pt(){const d=new Date(invdate.value||today),n=+terms.value||0;
+const due=new Date(d);due.setDate(due.getDate()+n);
+const now=new Date();const daysLate=Math.max(0,Math.floor((now-due)/86400000));
+const amount=+invamt.value||0,latePct=+late.value||0;
+const fee=daysLate>0?amount*(latePct/100)*(daysLate/30):0;
+ptout.textContent='Due '+due.toLocaleDateString()+(daysLate>0?' · '+daysLate+' days late · $'+fee.toFixed(2)+' fee':' · on time');}
+[invdate,terms,invamt,late].forEach(el=>el.oninput=pt);pt();
+</script>`,
+    "Calculate invoice due dates and late fees from Net 15/30/45/60 terms."
+  );
+  writeFileSync(join(dist, "payment-terms-calculator.html"), paymentTermsCalc);
+
   const base = getPublicBaseUrl();
   const toolsIndex = `<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Free Business Calculators & Tools</title>
@@ -244,6 +281,8 @@ h1{font-size:clamp(28px,4vw,36px)}ul{padding-left:20px}li{margin:10px 0}a{color:
 <li><a href="/tools/profit-margin-calculator.html">Profit Margin Calculator</a></li>
 <li><a href="/tools/invoice-number-generator.html">Invoice Number Generator</a></li>
 <li><a href="/tools/meeting-cost-free.html">Meeting Cost Calculator</a></li>
+<li><a href="/tools/sales-tax-calculator.html">Sales Tax Calculator</a></li>
+<li><a href="/tools/payment-terms-calculator.html">Payment Terms Calculator</a></li>
 </ul>
 <div class="promo">Need pro tools? <a href="${base}/go/invoice.html">Invoice PDF $3</a> · <a href="${base}/go/lease.html">Lease check $7</a> · <a href="${base}/go/uptime.html">Uptime $5/mo</a></div>
 <p><a href="/">← Wealth Engine home</a></p>
@@ -256,5 +295,5 @@ h1{font-size:clamp(28px,4vw,36px)}ul{padding-left:20px}li{margin:10px 0}a{color:
 <p>Contact: orders@horseshoeroundme.com</p><p><a href="/">← Home</a></p></body></html>`;
   writeFileSync(join(getRoot(), "dist", "privacy.html"), privacy);
 
-  return { pages: ["tip-calculator", "meeting-cost-free", "percentage-calculator", "bill-splitter", "hourly-rate-calculator", "hourly-rate", "markup-calculator", "late-fee-calculator", "break-even-calculator", "discount-calculator", "unit-price-calculator", "profit-margin-calculator", "invoice-number-generator", "tools-index", "privacy"] };
+  return { pages: ["tip-calculator", "meeting-cost-free", "percentage-calculator", "bill-splitter", "hourly-rate-calculator", "hourly-rate", "markup-calculator", "late-fee-calculator", "break-even-calculator", "discount-calculator", "unit-price-calculator", "profit-margin-calculator", "invoice-number-generator", "sales-tax-calculator", "payment-terms-calculator", "tools-index", "privacy"] };
 }

@@ -341,6 +341,36 @@
       "title": "Small Business Invoice App",
       "venture": "billsnap",
       "sku": "pro-pdf"
+    },
+    {
+      "slug": "freelance-tax-estimator-1099",
+      "title": "Freelance Tax Estimator for 1099 Contractors",
+      "venture": "billsnap",
+      "sku": "pro-pdf"
+    },
+    {
+      "slug": "payment-terms-calculator-invoice",
+      "title": "Payment Terms Calculator for Invoices",
+      "venture": "billsnap",
+      "sku": "pro-pdf"
+    },
+    {
+      "slug": "webhook-signature-verifier-online",
+      "title": "Webhook Signature Verifier Online",
+      "venture": "hookrelay",
+      "sku": "relay-monthly"
+    },
+    {
+      "slug": "employee-onboarding-checklist-pdf",
+      "title": "Employee Onboarding Checklist PDF",
+      "venture": "pdf-factory",
+      "sku": "hiring-pack"
+    },
+    {
+      "slug": "status-page-generator-free",
+      "title": "Status Page Generator Free",
+      "venture": "statusping",
+      "sku": "basic-monthly"
     }
   ],
   "pagesPerCycle": 10

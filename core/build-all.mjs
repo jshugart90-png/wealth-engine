@@ -155,6 +155,8 @@ function buildPortfolioHub(ventureIds) {
   <a href="/tools/tip-calculator.html">Tip calculator</a>
   <a href="/tools/index.html">All free tools</a>
   <a href="/go/meeting.html">Meeting cost</a>
+  <a href="/go/receipt.html">Receipt $3</a>
+  <a href="/tools/payment-terms-calculator.html">Net 30 calc</a>
   <a href="/join.html">📬 LAUNCH25 list</a>
   <a href="/comparestack/index.html">Compare tools</a>
 </div>

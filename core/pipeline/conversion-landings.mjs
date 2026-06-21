@@ -68,6 +68,14 @@ const PAGES = [
     tool: "/meetingcost/index.html",
     bullets: ["Viral share link", "Free calculator", "Pro PDF export $5"],
   },
+  {
+    slug: "receipt",
+    headline: "Receipt PDF in one click",
+    sub: "Free preview. Clean receipt export for $3. Perfect for cash sales and reimbursements.",
+    sku: "pro-pdf",
+    tool: "/billsnap/index.html",
+    bullets: ["No signup required", "Print-ready PDF", "Same $3 pro export as invoices"],
+  },
 ];
 
 export function buildHighConversionLandings() {
