@@ -269,6 +269,48 @@
       "title": "JSON API Validator Online",
       "venture": "devtools-api",
       "sku": "starter-monthly"
+    },
+    {
+      "slug": "profit-margin-calculator-free",
+      "title": "Profit Margin Calculator Free",
+      "venture": "billsnap",
+      "sku": "pro-pdf"
+    },
+    {
+      "slug": "invoice-number-generator-free",
+      "title": "Invoice Number Generator Free",
+      "venture": "billsnap",
+      "sku": "pro-pdf"
+    },
+    {
+      "slug": "ssl-expiry-alert-tool",
+      "title": "SSL Expiry Alert Tool",
+      "venture": "statusping",
+      "sku": "basic-monthly"
+    },
+    {
+      "slug": "freelancer-proposal-template-pdf",
+      "title": "Freelancer Proposal Template PDF",
+      "venture": "pdf-factory",
+      "sku": "freelancer-kit"
+    },
+    {
+      "slug": "stripe-webhook-forwarding-tool",
+      "title": "Stripe Webhook Forwarding Tool",
+      "venture": "hookrelay",
+      "sku": "relay-monthly"
+    },
+    {
+      "slug": "1099-contractor-invoice-template",
+      "title": "1099 Contractor Invoice Template PDF",
+      "venture": "billsnap",
+      "sku": "pro-pdf"
+    },
+    {
+      "slug": "nda-template-for-contractors",
+      "title": "NDA Template for Contractors",
+      "venture": "ndagen",
+      "sku": "nda-pdf"
     }
   ],
   "pagesPerCycle": 10

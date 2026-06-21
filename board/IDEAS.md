@@ -17,3 +17,4 @@ Ideas are ranked by Idea Guy each cycle. Research Guy validates; Realistic Guy k
 | ID | Idea | Reason |
 |----|------|--------|
 | — | PipeKit enterprise tier ($99) | Realistic Guy: sales cycle too long for 30-day sprint |
+| I-008 | PipeKit API free tier → paid via devtools comparison SEO | devtools-api | 40–90 | backlog | Longer cycle; queue after BillSnap |

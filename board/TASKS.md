@@ -6,7 +6,7 @@ Status: `todo` | `in_progress` | `blocked` | `done`
 
 | # | Task | Owner agent | Status | Blocker |
 |---|------|-------------|--------|---------|
-| T-001 | Deploy wealth-engine to Render; verify `/api/health` | Deploy Guy | done | Prod live; `/go/nda.html` + ad tools verified 200 (2026-06-21) |
+| T-001 | Deploy wealth-engine to Render; verify `/api/health` | Deploy Guy | todo | Prod live; `/go/nda.html` + ad tools verified 200 (2026-06-21) |
 | T-002 | Point custom domain + update `PUBLIC_BASE_URL` + Stripe webhook | Deploy Guy | blocked | Human: CNAME `tools.horseshoeroundme.com` → Render (see deploy/GODADDY_DNS.md) |
 | T-003 | Import `google-ads-import.csv` from `D:\wealth-engine-data\marketing\ads\` | Marketing Guy | blocked | Human: 5-min import — see ADS_IMPORT_CHECKLIST.md |
 | T-004 | Optimize BillSnap `/go/invoice` landing + LAUNCH25 coupon in ads copy | Marketing Guy + Code Cracker Guy | in_progress | 6 /go/* landings + expanded ads CSV |

@@ -27,8 +27,11 @@ export function generateSeoPages() {
   const base = getPublicBaseUrl();
   const created = [];
 
-  for (let i = 0; i < perCycle; i++) {
-    const kw = config.keywords[(start + i) % config.keywords.length];
+  // Generate all keywords so prod sitemap stays complete (rotation still logged)
+  const toGenerate = config.keywords;
+
+  for (let i = 0; i < toGenerate.length; i++) {
+    const kw = toGenerate[i];
     const payLink = getPaymentLink(kw.sku) ?? "#";
     const venturePath = VENTURE_PATHS[kw.venture] ?? "/";
     const html = `<!DOCTYPE html>
@@ -50,8 +53,12 @@ h1{font-size:clamp(24px,4vw,36px)}.cta{display:inline-block;background:#2563eb;c
   }
 
   syncToDist(outDir);
-  writeFileSync(join(getDataRoot(), "marketing", "seo-batch.json"), JSON.stringify({ created, at: new Date().toISOString() }, null, 2));
-  return { created: created.length, slugs: created.map((c) => c.slug) };
+  const cycleSlugs = [];
+  for (let i = 0; i < perCycle; i++) {
+    cycleSlugs.push(config.keywords[(start + i) % config.keywords.length].slug);
+  }
+  writeFileSync(join(getDataRoot(), "marketing", "seo-batch.json"), JSON.stringify({ created, cycleSlugs, at: new Date().toISOString() }, null, 2));
+  return { created: created.length, slugs: created.map((c) => c.slug), cycleSlugs };
 }
 
 function syncToDist(seoDir) {

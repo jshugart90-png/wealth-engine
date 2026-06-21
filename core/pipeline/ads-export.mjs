@@ -5,7 +5,7 @@ import { getRoot, getDataRoot, loadEnv } from "../env.mjs";
 const CAMPAIGNS = [
   {
     name: "WE - Invoice Generator",
-    budgetDailyUsd: 3,
+    budgetDailyUsd: 2,
     keywords: [
       { kw: "free invoice generator pdf", h1: "Free Invoice PDF", h2: "No Signup · $3 Pro", desc: "Preview free. Pro PDF $3. Code LAUNCH25 saves 25%." },
       { kw: "invoice generator no signup", h1: "Invoice — No Signup", h2: "PDF in 30 Seconds", desc: "Instant preview. Watermark-free export $3. Secure Stripe." },
@@ -66,6 +66,17 @@ const CAMPAIGNS = [
     ],
     sku: "relay-monthly",
     finalUrlPath: "/go/webhook.html?utm_source=google&utm_campaign=webhook",
+  },
+  {
+    name: "WE - Business Templates",
+    budgetDailyUsd: 1,
+    keywords: [
+      { kw: "freelancer contract template pdf", h1: "Freelancer Templates", h2: "Instant Download $14", desc: "Contracts, invoices, onboarding kits. LAUNCH25 saves 25%." },
+      { kw: "small business compliance templates", h1: "SMB Compliance Pack", h2: "Print-Ready PDFs", desc: "Hiring, compliance, and ops templates. Checkout in 60 seconds." },
+      { kw: "business document template pack", h1: "Business Doc Pack", h2: "From $12", desc: "TemplateForge — instant PDF download after Stripe checkout." },
+    ],
+    sku: "freelancer-kit",
+    finalUrlPath: "/go/templates.html?utm_source=google&utm_campaign=templates",
   },
 ];
 

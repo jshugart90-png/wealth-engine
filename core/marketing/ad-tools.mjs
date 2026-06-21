@@ -114,6 +114,7 @@ hout.textContent='$'+(i/(h*w)).toFixed(2)+'/hr';}
     "Calculate your freelance hourly rate from income goals."
   );
   writeFileSync(join(dist, "hourly-rate-calculator.html"), hourlyCalc);
+  writeFileSync(join(dist, "hourly-rate.html"), hourlyCalc);
 
   const markupCalc = adToolsShell(
     "Markup Calculator",
@@ -189,11 +190,71 @@ uout.textContent='$'+(p/q).toFixed(3)+'/'+u;}
   );
   writeFileSync(join(dist, "unit-price-calculator.html"), unitPriceCalc);
 
+  const profitMarginCalc = adToolsShell(
+    "Profit Margin Calculator",
+    `<label>Revenue ($)</label><input type="number" id="rev" value="1000" step="0.01">
+<label>Cost of goods ($)</label><input type="number" id="cogs" value="400" step="0.01">
+<label>Operating expenses ($)</label><input type="number" id="opex" value="200" step="0.01">
+<div class="result" id="pmout">60% gross · 40% net</div>
+<script>
+function pm(){const r=+rev.value||0,c=+cogs.value||0,o=+opex.value||0;
+const gross=r>0?((r-c)/r*100).toFixed(1):0;const net=r>0?((r-c-o)/r*100).toFixed(1):0;
+pmout.textContent=gross+'% gross · '+net+'% net margin';}
+[rev,cogs,opex].forEach(el=>el.oninput=pm);pm();
+</script>`,
+    "Calculate gross and net profit margins — free for freelancers and small business."
+  );
+  writeFileSync(join(dist, "profit-margin-calculator.html"), profitMarginCalc);
+
+  const invoiceNumGen = adToolsShell(
+    "Invoice Number Generator",
+    `<label>Prefix</label><input type="text" id="prefix" value="INV">
+<label>Starting number</label><input type="number" id="start" value="1001">
+<label>Count to generate</label><input type="number" id="count" value="5" min="1" max="20">
+<div class="result" id="iout" style="font-size:18px;line-height:1.8">INV-1001<br>INV-1002<br>INV-1003</div>
+<script>
+function ig(){const p=prefix.value||'INV',s=+start.value||1,n=Math.min(20,Math.max(1,+count.value||1));
+iout.innerHTML=Array.from({length:n},(_,i)=>p+'-'+(s+i)).join('<br>');}
+[prefix,start,count].forEach(el=>el.oninput=ig);ig();
+</script>`,
+    "Generate sequential invoice numbers — free tool for freelancers. Export pro PDFs with BillSnap."
+  );
+  writeFileSync(join(dist, "invoice-number-generator.html"), invoiceNumGen);
+
+  const base = getPublicBaseUrl();
+  const toolsIndex = `<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Free Business Calculators & Tools</title>
+<meta name="description" content="Free calculators for freelancers and small business — tip, invoice, meeting cost, markup, and more.">
+<style>body{font-family:system-ui,sans-serif;max-width:720px;margin:0 auto;padding:32px 16px;line-height:1.6;color:#0f172a}
+h1{font-size:clamp(28px,4vw,36px)}ul{padding-left:20px}li{margin:10px 0}a{color:#2563eb;font-weight:600}
+.promo{background:#f0fdf4;border:1px solid #bbf7d0;padding:16px;border-radius:8px;margin:24px 0;font-size:14px}
+</style></head><body>
+<h1>Free Tools</h1>
+<p>Ad-supported calculators that funnel to pro products. Use code <strong>LAUNCH25</strong> at checkout.</p>
+<ul>
+<li><a href="/tools/tip-calculator.html">Tip Calculator</a></li>
+<li><a href="/tools/bill-splitter.html">Bill Splitter</a></li>
+<li><a href="/tools/percentage-calculator.html">Percentage Calculator</a></li>
+<li><a href="/tools/hourly-rate-calculator.html">Freelance Hourly Rate</a></li>
+<li><a href="/tools/markup-calculator.html">Markup Calculator</a></li>
+<li><a href="/tools/late-fee-calculator.html">Late Fee Calculator</a></li>
+<li><a href="/tools/break-even-calculator.html">Break-Even Calculator</a></li>
+<li><a href="/tools/discount-calculator.html">Discount Calculator</a></li>
+<li><a href="/tools/unit-price-calculator.html">Unit Price Calculator</a></li>
+<li><a href="/tools/profit-margin-calculator.html">Profit Margin Calculator</a></li>
+<li><a href="/tools/invoice-number-generator.html">Invoice Number Generator</a></li>
+<li><a href="/tools/meeting-cost-free.html">Meeting Cost Calculator</a></li>
+</ul>
+<div class="promo">Need pro tools? <a href="${base}/go/invoice.html">Invoice PDF $3</a> · <a href="${base}/go/lease.html">Lease check $7</a> · <a href="${base}/go/uptime.html">Uptime $5/mo</a></div>
+<p><a href="/">← Wealth Engine home</a></p>
+</body></html>`;
+  writeFileSync(join(dist, "index.html"), toolsIndex);
+
   const privacy = `<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Privacy Policy</title><style>body{font-family:system-ui;max-width:720px;margin:40px auto;padding:20px;line-height:1.6}</style></head><body>
 <h1>Privacy Policy</h1><p>Wealth Engine tools process data locally in your browser. Payment checkout is handled by Stripe. We do not sell personal data.</p>
 <p>Contact: orders@horseshoeroundme.com</p><p><a href="/">← Home</a></p></body></html>`;
   writeFileSync(join(getRoot(), "dist", "privacy.html"), privacy);
 
-  return { pages: ["tip-calculator", "meeting-cost-free", "percentage-calculator", "bill-splitter", "hourly-rate-calculator", "markup-calculator", "late-fee-calculator", "break-even-calculator", "discount-calculator", "unit-price-calculator", "privacy"] };
+  return { pages: ["tip-calculator", "meeting-cost-free", "percentage-calculator", "bill-splitter", "hourly-rate-calculator", "hourly-rate", "markup-calculator", "late-fee-calculator", "break-even-calculator", "discount-calculator", "unit-price-calculator", "profit-margin-calculator", "invoice-number-generator", "tools-index", "privacy"] };
 }
