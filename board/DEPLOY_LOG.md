@@ -20,5 +20,8 @@ Append-only log of production deploys and URL verification.
 | 2026-06-21T17:05:00Z | 6 | e96fc78 | /partners/index.html, /partners/, /join.html, /refer.html, /join, /refer | PASS 6/6 prod (attempt 1) |
 | 2026-06-21T17:15:00Z | 6 | 6c3daf9 | /partners/index.html, /partners/, /join.html, /refer.html, /join, /refer | PASS 6/6 prod + prod URL fix |
 | 2026-06-21T05:35:00Z | 6 | 3099c35 | /go/nda-team, /go/statusping-agency, /ndagen/index, /p/nda-generator-for-agencies, /p/white-label-uptime-monitoring-agency | PASS 5/5 prod (attempt 1) |
+| 2026-06-21T13:00:00Z | 7 | 068776e | /tools/quarterly-tax-deadline-calendar, /tools/1099-payment-threshold-tracker, /p/new-jersey-1099-filing-requirements, /p/massachusetts-freelancer-tax-deadlines, /comparestack/pages/status-page-tools, /comparestack/pages/freelancer-tax-software | PASS 6/6 prod (attempt 2) |
 | 2026-06-21T05:45:00Z | 7 | 598f533 | /go/1099-deadline, /tools/1099-tax-estimator, /p/1099-nec-deadline-2026, /api/health | PASS 4/4 prod (attempt 2) |
 | 2026-06-21T05:30:00Z | 7 | 598f533 | /go/1099-deadline.html, /p/1099-nec-deadline-2026.html, /go/nda-team.html, /go/statusping-agency.html, /partners/index.html | PASS 5/5 prod |
+| 2026-06-21T05:38:00Z | 8 | 34a07a2 | /go/pipekit-pro.html, /p/python-json-validator-api.html, /p/dns-lookup-api-nodejs.html, /go/1099-deadline.html | PASS 4/4 prod |
+| 2026-06-21T05:30:53.146Z | MD-999 | marketing-director | outreach batch | 34 posts queued |

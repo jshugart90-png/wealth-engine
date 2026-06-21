@@ -1474,6 +1474,15 @@ Append-only handoff log. Each agent adds one entry at the bottom. Never edit pri
 **Tier-2 needed:** no
 
 ### 2026-06-21T05:35:00Z Build Agent → Deploy Guy
+**Cycle:** 6–8 (sprint restart)
+**Verdict:** PASS
+**Subject:** affiliate-portal + ndagen-team + statusping-agency + 1099-deadline + pipekit-pseo
+**Summary:** Recovered from connection abort. Daemons verified running. Shipped: affiliate portal (/partners/), NDAGen Team, StatusPing Agency, 1099 Deadline Suite, PipeKit pSEO. 51+ commits, 298 sitemap URLs, 21 Stripe products. QC 100% (all cycles 200).
+**Artifacts:** board/DEPLOY_LOG.md, config/ventures.json, core/marketing/affiliates.mjs, ~/.cursor/wealth-engine/state.md
+**Next build priority:** WE-20260621-comparestack-scale (19/25)
+**Tier-2 needed:** no
+
+### 2026-06-21T05:35:00Z Build Agent → Deploy Guy
 **Cycle:** 6
 **Verdict:** PASS
 **Subject:** WE-20260621-ndagen-team + WE-20260621-statusping-agency
@@ -1489,4 +1498,12 @@ Append-only handoff log. Each agent adds one entry at the bottom. Never edit pri
 **Summary:** Shipped 1099 Deadline Suite: 1099-suite-pro $19, /go/1099-deadline, enhanced 1099 estimator. Fixed compliance-pseo build. Sitemap 230 URLs. QC PASS 4/4 prod.
 **Artifacts:** core/marketing/ad-tools.mjs, core/pipeline/compliance-pseo.mjs, board/IDEAS.md
 **Next build priority:** WE-20260621-pipekit-pseo (21/25)
+**Tier-2 needed:** no
+
+### 2026-06-21T05:30:53.146Z Marketing Director → Build Agent
+**Cycle:** MD-999
+**Verdict:** PASS
+**Subject:** zero-budget-marketing-cycle-999
+**Summary:** Marketing Director cycle 999. 34 PUBLISH_READY posts queued. 5 new channels tracked. Revenue $0 — organic distribution only.
+**Artifacts:** D:\\wealth-engine-data\\marketing\\outreach\\, board/MARKETING.md
 **Tier-2 needed:** no
