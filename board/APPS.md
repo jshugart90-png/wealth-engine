@@ -8,8 +8,8 @@
 
 | App | Bundle ID | Channel | Status | Live URL / artifact | Blocker |
 |-----|-----------|---------|--------|---------------------|---------|
-| **Wealth Engine PWA** | — (web) | PWA | **LIVE verified** | [manifest](https://wealth-engine-0qlj.onrender.com/manifest.json) · [sw.js](https://wealth-engine-0qlj.onrender.com/sw.js) · prod **200** (2026-06-21) | None |
-| **Games Hub PWA** | — (web) | PWA shortcut | **LIVE** | https://wealth-engine-0qlj.onrender.com/games/ | None |
+| **Wealth Engine PWA** | — (web) | PWA | **LIVE verified** | [manifest](https://wealth-engine-0qlj.onrender.com/manifest.json) · [sw.js](https://wealth-engine-0qlj.onrender.com/sw.js) · prod **200/200** (2026-06-21) | None |
+| **Games Hub PWA** | — (web) | PWA shortcut | **LIVE verified** | https://wealth-engine-0qlj.onrender.com/games/ · prod **200** (2026-06-21) | None |
 | **Horseshoe Games Hub** | `com.wealthengine.gameshub` | Capacitor → Play/App | **READY (preflight)** | `mobile/games/` · CI AAB artifact | Apple $99 · Play $25 |
 | **Freelancer Tools** | `com.wealthengine.freelancertools` | Capacitor → Play/App | **SCaffold** | `mobile/tools/` | Same store fees |
 | **itch.io packs** | — | HTML zip | **PACKAGED** | `D:\wealth-engine-data\mobile\itch\*.zip` | Manual upload (free) |
