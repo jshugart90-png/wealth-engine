@@ -20,6 +20,8 @@ import {
   buildGamesPwaManifest,
   buildServiceWorker,
   injectCheckoutTracking,
+  googleSiteVerificationMeta,
+  injectGoogleSiteVerification,
   pwaHeadTags,
   visitTrackerScript,
 } from "./marketing/monetization.mjs";
@@ -66,6 +68,7 @@ export function buildAll() {
       if (existsSync(fp)) {
         let html = readFileSync(fp, "utf8");
         html = injectPaymentLinks(html, v.id);
+        html = injectGoogleSiteVerification(html);
         html = injectCheckoutTracking(html, `/${v.deployPath.replace("dist/", "")}`);
         if (html.includes("</head>") && !html.includes("we_ref")) {
           html = html.replace("</head>", `<script>${visitTrackerScript(`/${v.deployPath.replace("dist/", "")}`)}</script></head>`);
@@ -181,6 +184,7 @@ function buildGames() {
     const idx = join(dest, "index.html");
     if (existsSync(idx)) {
       let html = readFileSync(idx, "utf8");
+      html = injectGoogleSiteVerification(html);
       if (!html.includes("WE_ADMOB")) {
         html = html.replace("</body>", `<script>${admobScript}</script><script>${visitTrackerScript(`/games/${slug}/`)}</script></body>`);
       }
@@ -212,6 +216,7 @@ function buildGames() {
 
   const hubHtml = `<!DOCTYPE html>
 <html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+${googleSiteVerificationMeta()}
 <title>Free Games — Wealth Engine</title>
 <meta name="description" content="Simple free browser games for all ages. Play Horseshoe Toss, Invoice Stack, and more.">
 <link rel="manifest" href="/games/manifest.json">

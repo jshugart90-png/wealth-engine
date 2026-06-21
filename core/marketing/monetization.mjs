@@ -114,8 +114,24 @@ self.addEventListener('fetch',e=>{
 });`;
 }
 
+export const GOOGLE_SITE_VERIFICATION = "X8W5bw-fSJ0pTZiA0LesNi2vZ_-bUdLqVokR5uJZlI4";
+
+export function googleSiteVerificationMeta() {
+  return `<meta name="google-site-verification" content="${GOOGLE_SITE_VERIFICATION}" />`;
+}
+
+/** Inject GSC verification meta into static HTML if missing. */
+export function injectGoogleSiteVerification(html) {
+  if (html.includes("google-site-verification")) return html;
+  if (html.includes("</head>")) {
+    return html.replace("</head>", `${googleSiteVerificationMeta()}\n</head>`);
+  }
+  return html;
+}
+
 export function pwaHeadTags() {
-  return `<link rel="manifest" href="/manifest.json">
+  return `${googleSiteVerificationMeta()}
+<link rel="manifest" href="/manifest.json">
 <meta name="theme-color" content="#6366f1">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">

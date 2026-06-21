@@ -29,12 +29,14 @@ Top 3 actions (~15 min each, $0 budget). Do in order.
 | **Cost** | $0 |
 | **Guide** | `C:\Users\jshug\wealth-engine\deploy\SEARCH_CONSOLE_BING_FREE_SETUP.md` |
 
+**HTML tag:** Deployed 2026-06-21 — meta tag live on prod homepage. **Your turn:**
+
 **Steps:**
 
 1. Open https://search.google.com/search-console
 2. Click **Add property** → choose **URL prefix**
 3. Enter: `https://wealth-engine-0qlj.onrender.com/`
-4. Verify using **HTML tag** method (add meta tag to site on next deploy) **or** HTML file upload — skip GoDaddy DNS if you only need the Render hostname
+4. Choose **HTML tag** verification → click **Verify** (tag already on site)
 5. Go to **Sitemaps** → submit: `sitemap.xml` (full URL: `https://wealth-engine-0qlj.onrender.com/sitemap.xml`)
 6. Wait for "Success" status on the sitemap
 
@@ -214,6 +216,7 @@ node -e "import('./core/marketing/indexnow.mjs').then(m => m.submitIndexNow().th
 - [x] 298 sitemap URLs on prod — 2026-06-21
 - [x] Affiliate portal live (`/join.html`, `/refer.html`) — 2026-06-21
 - [x] Horseshoe promo bar coded in `C:\Users\jshug\Website\index.html` — pending GoDaddy upload
+- [x] GSC HTML verification meta tag deployed to Render prod — 2026-06-21
 
 ---
 
@@ -225,7 +228,7 @@ Small actions if you have 5–15 spare minutes.
 |-----|-----:|-----|--------|
 | **itch.io — one game** | 15 min | Upload `D:\wealth-engine-data\mobile\itch\horseshoe-toss.zip` at https://itch.io/game/new → HTML → index `index.html` | Free game distribution; 8 more zips ready |
 | **One Reddit post** | 10 min | Pick any `READY_FOR_REVIEW` draft in `D:\wealth-engine-data\marketing\reddit-drafts\` | Direct traffic → Stripe |
-| **GSC verify** | 5 min | Step 1 above | Unlocks Bing + IndexNow chain |
+| **GSC verify** | 5 min | Step 1 above — click **Verify** in GSC, then submit sitemap | Unlocks Bing + IndexNow chain |
 | **Join subreddits** | 2 min | r/freelance, r/smallbusiness, r/webdev, r/SaaS, r/startups | Required before posting |
 | **Share PWA link** | 1 min | Send https://wealth-engine-0qlj.onrender.com/games/ → "Add to Home Screen" | Free mobile install |
 | **Stripe dashboard check** | 2 min | https://dashboard.stripe.com — watch for LAUNCH25 checkouts | Confirms post → sale funnel |
