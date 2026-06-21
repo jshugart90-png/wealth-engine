@@ -5,7 +5,7 @@ import { getRoot, getDataRoot, loadEnv } from "../env.mjs";
 const CAMPAIGNS = [
   {
     name: "WE - Invoice Generator",
-    budgetDailyUsd: 4,
+    budgetDailyUsd: 3,
     keywords: [
       { kw: "free invoice generator pdf", h1: "Free Invoice PDF", h2: "No Signup · $3 Pro", desc: "Preview free. Pro PDF $3. Code LAUNCH25 saves 25%." },
       { kw: "invoice generator no signup", h1: "Invoice — No Signup", h2: "PDF in 30 Seconds", desc: "Instant preview. Watermark-free export $3. Secure Stripe." },

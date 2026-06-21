@@ -15,14 +15,17 @@
 <body>
   <div style="background:#161b22;padding:10px 16px;text-align:center;font-family:system-ui,sans-serif;font-size:13px;margin:-40px -20px 24px;border-bottom:1px solid #30363d"><strong style="color:#3fb950">LAUNCH25</strong> · <a href="/go/webhook.html" style="color:#58a6ff">See landing →</a></div>
   <h1>HookRelay</h1>
-  <p>Stripe webhook died? HookRelay retries with backoff. Self-serve setup.</p>
+  <p>Stripe webhook died at 2 AM? HookRelay retries with exponential backoff, dead-letter alerts, and one-click replay — no Zapier bill, no enterprise sales call.</p>
   <ul>
-    <li>Forward Stripe, GitHub, Shopify webhooks</li>
-    <li>Dead-letter alerts when delivery fails</li>
-    <li>Replay events from dashboard</li>
+    <li>Forward Stripe, GitHub, Shopify, Paddle webhooks in 60 seconds</li>
+    <li>Dead-letter email when delivery fails 3× — fix before customers notice</li>
+    <li>Replay events from dashboard — no digging through logs</li>
+    <li>Cheaper than Hookdeck for indie SaaS ($7/mo vs $49+)</li>
   </ul>
-  <div class="plan"><strong>$7/mo</strong> — 3 endpoints, 10k events<br>
-  <a class="btn" href="{{PAY:relay-monthly}}" onclick="fetch('/api/funnel/checkout_click',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({sku:'relay-monthly',path:'/hookrelay'})})">Subscribe →</a></div>
+  <div class="plan"><strong>$7/mo</strong> — 3 endpoints, 10k events/mo<br>
+  <span style="color:#8b949e;font-size:13px">LAUNCH25 saves 25% first month</span><br>
+  <a class="btn" href="{{PAY:relay-monthly}}" onclick="fetch('/api/funnel/checkout_click',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({sku:'relay-monthly',path:'/hookrelay'})})">Start relaying →</a>
+  <a class="btn" style="background:#21262d;margin-left:8px" href="/go/webhook.html">See landing</a></div>
   <p>After checkout you receive a relay URL: <code>https://your-app/webhooks/in</code></p>
   <p style="font-family:system-ui,sans-serif"><a href="/comparestack/pages/developer-api-toolkits.html">Compare dev tools →</a></p>
 </body>
