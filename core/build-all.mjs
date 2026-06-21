@@ -2,6 +2,9 @@ import { readFileSync, writeFileSync, mkdirSync, cpSync, existsSync } from "fs";
 import { join } from "path";
 import { getRoot } from "./env.mjs";
 import { getAllPaymentLinks } from "./commerce.mjs";
+import { buildHighConversionLandings } from "./pipeline/conversion-landings.mjs";
+import { buildThanksPage } from "./marketing/thanks-page.mjs";
+import { buildAdToolPages } from "./marketing/ad-tools.mjs";
 
 const root = getRoot();
 const config = JSON.parse(readFileSync(join(root, "config", "ventures.json"), "utf8"));
@@ -41,7 +44,19 @@ export function buildAll() {
   // Portfolio hub
   const hub = buildPortfolioHub(built);
   writeFileSync(join(dist, "index.html"), hub);
-  return { built, hub: join(dist, "index.html") };
+
+  // Marketing static pages (must exist after `npm run build` for Render deploy)
+  const landings = buildHighConversionLandings();
+  const thanks = buildThanksPage();
+  const adTools = buildAdToolPages();
+
+  return {
+    built,
+    hub: join(dist, "index.html"),
+    landings,
+    thanks,
+    adTools,
+  };
 }
 
 function buildPortfolioHub(ventureIds) {
