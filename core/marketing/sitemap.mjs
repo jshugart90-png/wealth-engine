@@ -30,6 +30,8 @@ const STATIC_PATHS = [
   "/go/templates.html",
   "/go/meeting.html",
   "/tools/index.html",
+  "/go/meeting.html",
+  "/tools/index.html",
   "/tools/hourly-rate.html",
   "/privacy.html",
   "/join.html",

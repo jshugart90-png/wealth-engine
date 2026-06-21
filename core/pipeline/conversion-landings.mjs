@@ -60,6 +60,14 @@ const PAGES = [
     tool: "/templateforge/index.html",
     bullets: ["Print-ready PDFs", "SMB & freelancer focus", "From $12"],
   },
+  {
+    slug: "meeting",
+    headline: "This meeting costs how much?",
+    sub: "Show your team the real dollar cost. Pro shareable report for $5.",
+    sku: "meeting-pro",
+    tool: "/meetingcost/index.html",
+    bullets: ["Viral share link", "Free calculator", "Pro PDF export $5"],
+  },
 ];
 
 export function buildHighConversionLandings() {
