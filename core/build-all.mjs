@@ -1,6 +1,6 @@
 import { readFileSync, writeFileSync, mkdirSync, cpSync, existsSync, readdirSync } from "fs";
 import { join } from "path";
-import { getRoot } from "./env.mjs";
+import { getRoot, getPublicBaseUrl } from "./env.mjs";
 import { getAllPaymentLinks } from "./commerce.mjs";
 import { buildHighConversionLandings } from "./pipeline/conversion-landings.mjs";
 import { buildThanksPage } from "./marketing/thanks-page.mjs";
@@ -14,6 +14,14 @@ import { buildEmbedWidgets } from "./marketing/embeds.mjs";
 import { buildProductFeeds } from "./marketing/feeds.mjs";
 import { buildReferralPages } from "./marketing/referral-page.mjs";
 import { buildIndexNowKey } from "./marketing/indexnow.mjs";
+import {
+  admobPlaceholderScript,
+  buildPwaManifest,
+  buildServiceWorker,
+  injectCheckoutTracking,
+  pwaHeadTags,
+  visitTrackerScript,
+} from "./marketing/monetization.mjs";
 
 const root = getRoot();
 const config = JSON.parse(readFileSync(join(root, "config", "ventures.json"), "utf8"));
@@ -55,8 +63,13 @@ export function buildAll() {
     for (const file of ["index.html", "app.html", "pricing.html"]) {
       const fp = join(dest, file);
       if (existsSync(fp)) {
-        const html = readFileSync(fp, "utf8");
-        writeFileSync(fp, injectPaymentLinks(html, v.id));
+        let html = readFileSync(fp, "utf8");
+        html = injectPaymentLinks(html, v.id);
+        html = injectCheckoutTracking(html, `/${v.deployPath.replace("dist/", "")}`);
+        if (html.includes("</head>") && !html.includes("we_ref")) {
+          html = html.replace("</head>", `<script>${visitTrackerScript(`/${v.deployPath.replace("dist/", "")}`)}</script></head>`);
+        }
+        writeFileSync(fp, html);
       }
     }
 
@@ -91,6 +104,7 @@ export function buildAll() {
   const referral = buildReferralPages();
   const indexNow = buildIndexNowKey();
   const games = buildGames();
+  const pwa = buildPwaAssets();
 
   return {
     built,
@@ -109,7 +123,29 @@ export function buildAll() {
     referral,
     indexNow,
     games,
+    pwa,
   };
+}
+
+function buildPwaAssets() {
+  const base = getPublicBaseUrl();
+  const assetsDir = join(root, "dist", "assets", "pwa");
+  mkdirSync(assetsDir, { recursive: true });
+
+  const svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><rect width="512" height="512" rx="96" fill="#6366f1"/><text x="256" y="300" font-size="220" text-anchor="middle" fill="#fff" font-family="system-ui,sans-serif">W</text></svg>`;
+  writeFileSync(join(assetsDir, "icon.svg"), svg);
+  writeFileSync(join(assetsDir, "icon-192.png"), svg);
+  writeFileSync(join(assetsDir, "icon-512.png"), svg);
+
+  const manifest = buildPwaManifest(base);
+  manifest.icons = [
+    { src: "/assets/pwa/icon.svg", sizes: "any", type: "image/svg+xml", purpose: "any maskable" },
+    { src: "/assets/pwa/icon-192.png", sizes: "192x192", type: "image/png", purpose: "any" },
+    { src: "/assets/pwa/icon-512.png", sizes: "512x512", type: "image/png", purpose: "any maskable" },
+  ];
+  writeFileSync(join(root, "dist", "manifest.json"), JSON.stringify(manifest, null, 2));
+  writeFileSync(join(root, "dist", "sw.js"), buildServiceWorker());
+  return { manifest: join(root, "dist", "manifest.json"), sw: join(root, "dist", "sw.js") };
 }
 
 function buildGames() {
@@ -122,11 +158,21 @@ function buildGames() {
     .filter((d) => d.isDirectory())
     .map((d) => d.name);
 
+  const admobScript = admobPlaceholderScript();
+
   for (const slug of slugs) {
     const src = join(gamesSrc, slug);
     const dest = join(gamesDest, slug);
     mkdirSync(dest, { recursive: true });
     cpSync(src, dest, { recursive: true });
+    const idx = join(dest, "index.html");
+    if (existsSync(idx)) {
+      let html = readFileSync(idx, "utf8");
+      if (!html.includes("WE_ADMOB")) {
+        html = html.replace("</body>", `<script>${admobScript}</script><script>${visitTrackerScript(`/games/${slug}/`)}</script></body>`);
+      }
+      writeFileSync(idx, html);
+    }
   }
 
   const meta = slugs
@@ -155,6 +201,7 @@ function buildGames() {
 <html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Free Games — Wealth Engine</title>
 <meta name="description" content="Simple free browser games for all ages. Play Horseshoe Toss, Invoice Stack, and more.">
+${pwaHeadTags()}
 <style>
   body{font-family:system-ui,sans-serif;background:#0a0a0f;color:#e8e8ef;margin:0;padding:0 20px 40px}
   .promo{background:#0f172a;color:#e2e8f0;padding:12px 16px;text-align:center;font-size:13px;border-bottom:1px solid #1e293b}
@@ -179,6 +226,8 @@ function buildGames() {
 <div class="ad">AdSense placeholder — 728×90 leaderboard</div>
 <div class="grid">${cards || "<p style='text-align:center;color:#888'>Games coming soon…</p>"}</div>
 <div class="ad" style="margin-top:32px">AdSense placeholder — 300×250 rectangle</div>
+<script>${admobScript}</script>
+<script>${visitTrackerScript("/games/")}</script>
 </body></html>`;
 
   writeFileSync(join(gamesDest, "index.html"), hubHtml);
@@ -201,6 +250,7 @@ function buildPortfolioHub(ventureIds) {
   return `<!DOCTYPE html>
 <html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Wealth Engine Portfolio</title>
+${pwaHeadTags()}
 <style>
   body{font-family:system-ui,sans-serif;background:#0a0a0f;color:#e8e8ef;margin:0;padding:0 20px 40px}
   .promo{background:#0f172a;color:#e2e8f0;padding:12px 16px;text-align:center;font-size:13px;border-bottom:1px solid #1e293b}
@@ -246,8 +296,10 @@ function buildPortfolioHub(ventureIds) {
   <a href="/join.html">📬 LAUNCH25 list</a>
   <a href="/partners/index.html">🤝 Partner program</a>
   <a href="/comparestack/index.html">Compare tools</a>
+  <a href="/games/">🎮 Free games</a>
 </div>
 <div class="grid">${cards}</div>
+<script>${visitTrackerScript("/")}</script>
 </body></html>`;
 }
 
