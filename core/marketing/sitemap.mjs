@@ -84,10 +84,11 @@ function listCompareStackUrls() {
 
 export function buildSitemap() {
   const base = getPublicBaseUrl();
+  const lastmod = new Date().toISOString().slice(0, 10);
   const urls = [...STATIC_PATHS, ...listCompareStackUrls(), ...listAllSeoUrls()];
   const xml = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-${urls.map((u) => `  <url><loc>${base}${u.replace(/\/index\.html$/, "/").replace(/([^/])$/, "$1")}</loc><changefreq>daily</changefreq></url>`).join("\n")}
+${urls.map((u) => `  <url><loc>${base}${u.replace(/\/index\.html$/, "/").replace(/([^/])$/, "$1")}</loc><lastmod>${lastmod}</lastmod><changefreq>daily</changefreq></url>`).join("\n")}
 </urlset>`;
   const distPath = join(getRoot(), "dist", "sitemap.xml");
   writeFileSync(distPath, xml);
