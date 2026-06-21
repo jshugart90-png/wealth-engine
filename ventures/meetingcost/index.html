@@ -13,6 +13,7 @@
   </style>
 </head>
 <body>
+  <div style="background:#dc2626;color:#fff;padding:10px 16px;text-align:center;font-size:13px;margin:-40px -20px 24px"><a href="/tools/meeting-cost-free.html" style="color:#fff">Free embed widget →</a> · <a href="/go/invoice.html" style="color:#fff;font-weight:700">Invoice tool $3</a></div>
   <h1>Meeting Cost Calculator</h1>
   <p>How much does this meeting <em>actually</em> cost the company?</p>
   <label>Attendees</label><input type="number" id="attendees" value="8">
@@ -20,11 +21,16 @@
   <label>Duration (minutes)</label><input type="number" id="minutes" value="60">
   <div class="result" id="out">$600</div>
   <p>Share this number with your team. <a href="{{PAY:meeting-pro}}">Pro report — $5</a></p>
+  <button type="button" class="btn" id="share" style="border:none;cursor:pointer;margin-right:8px">Copy share link</button>
   <a class="btn" href="/statusping/index.html">Monitor uptime instead →</a>
   <script>
     function calc(){out.textContent='$'+Math.round((+attendees.value||0)*(+rate.value||0)*(+minutes.value||0)/60).toLocaleString();}
     [attendees,rate,minutes].forEach(el=>el.oninput=calc);calc();
     if(location.search.includes('share=1')) document.title='This meeting costs '+out.textContent;
+    document.getElementById('share').onclick=()=>{
+      const u=location.origin+location.pathname+'?share=1&a='+attendees.value+'&r='+rate.value+'&m='+minutes.value;
+      navigator.clipboard.writeText(u);alert('Share link copied!');
+    };
   </script>
 </body>
 </html>

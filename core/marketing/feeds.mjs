@@ -16,7 +16,7 @@ export function buildProductFeeds() {
       name: l.sku,
       venture: venture?.name ?? l.venture_id,
       url: l.payment_link,
-      landing: `${base}/${l.venture_id === "pdf-factory" ? "pdf-factory" : l.venture_id}/index.html`,
+      landing: `${base}/${l.venture_id === "pdf-factory" ? "templateforge" : l.venture_id}/index.html`,
     };
   });
 

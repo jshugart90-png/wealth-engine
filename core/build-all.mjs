@@ -9,6 +9,9 @@ import { buildBundleLandings } from "./marketing/bundles.mjs";
 import { generateSeoPages } from "./marketing/seo-pages.mjs";
 import { buildSitemap, buildRobotsTxt } from "./marketing/sitemap.mjs";
 import { expandCompareStack } from "../ventures/comparestack/generator.mjs";
+import { buildEmbedWidgets } from "./marketing/embeds.mjs";
+import { buildProductFeeds } from "./marketing/feeds.mjs";
+import { buildReferralPages } from "./marketing/referral-page.mjs";
 
 const root = getRoot();
 const config = JSON.parse(readFileSync(join(root, "config", "ventures.json"), "utf8"));
@@ -58,6 +61,9 @@ export function buildAll() {
   const seo = generateSeoPages();
   const sitemap = buildSitemap();
   const robots = buildRobotsTxt();
+  const embeds = buildEmbedWidgets();
+  const feeds = buildProductFeeds();
+  const referral = buildReferralPages();
 
   return {
     built,
@@ -70,6 +76,9 @@ export function buildAll() {
     seo,
     sitemap,
     robots,
+    embeds,
+    feeds,
+    referral,
   };
 }
 

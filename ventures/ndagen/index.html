@@ -5,17 +5,25 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>NDAGen — Free NDA Generator</title>
   <meta name="description" content="Generate a mutual NDA in seconds. Free preview. Pro PDF $4.">
-  <style>body{font-family:system-ui;max-width:640px;margin:32px auto;padding:20px}textarea{width:100%;min-height:200px;padding:12px;font-size:13px}
-  input{width:100%;padding:8px;margin:6px 0 12px}button{background:#059669;color:#fff;border:none;padding:12px 20px;border-radius:6px;cursor:pointer}</style>
+  <style>
+    body{font-family:system-ui;max-width:640px;margin:0 auto;padding:32px 16px 80px;color:#0f172a}
+    textarea{width:100%;min-height:200px;padding:12px;font-size:13px;border:1px solid #cbd5e1;border-radius:8px}
+    input{width:100%;padding:10px;margin:6px 0 12px;border:1px solid #cbd5e1;border-radius:6px}
+    button{background:#059669;color:#fff;border:none;padding:12px 20px;border-radius:6px;cursor:pointer;font-weight:600}
+    .sticky{position:fixed;bottom:0;left:0;right:0;background:#0f172a;color:#fff;padding:12px;text-align:center;font-size:14px}
+    .sticky a{color:#22c55e;font-weight:700}
+  </style>
 </head>
 <body>
+  <div style="background:#059669;color:#fff;padding:10px 16px;text-align:center;font-size:13px;margin:-32px -16px 24px"><strong>LAUNCH25</strong> · <a href="/go/nda.html" style="color:#fff;font-weight:700">Pro PDF from $4 →</a></div>
   <h1>NDAGen</h1>
   <p>Not legal advice. Template for discussion purposes.</p>
   <label>Party A</label><input id="a" value="Your Company LLC">
   <label>Party B</label><input id="b" value="Counterparty Inc">
   <button id="gen">Generate preview</button>
   <textarea id="doc" readonly></textarea>
-  <p><a href="{{PAY:nda-pdf}}">Download signed-ready PDF — $4</a></p>
+  <p><a href="{{PAY:nda-pdf}}" onclick="fetch('/api/funnel/checkout_click',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({sku:'nda-pdf',path:'/ndagen'})})">Download signed-ready PDF — $4</a></p>
+  <div class="sticky">Need clean PDF? <a href="{{PAY:nda-pdf}}">Export for $4 →</a> · <a href="/comparestack/pages/nda-template-generators.html">Compare NDA tools</a></div>
   <script>
     gen.onclick=()=>{doc.value=`MUTUAL NON-DISCLOSURE AGREEMENT\n\nBetween ${a.value} and ${b.value}\n\n1. Confidential Information...\n2. Term: 2 years\n3. Governing law: [State]\n\nSign below.`;};
     gen.click();

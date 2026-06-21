@@ -5,13 +5,25 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>HookRelay — Webhook Forwarding with Retry</title>
   <meta name="description" content="Forward webhooks to your endpoint with automatic retry. $7/mo.">
-  <style>body{font-family:ui-monospace,monospace;background:#0d1117;color:#c9d1d9;padding:40px 20px;max-width:640px;margin:0 auto}
-  a{color:#58a6ff}.plan{border:1px solid #30363d;padding:20px;border-radius:8px;margin:20px 0}</style>
+  <style>
+    body{font-family:ui-monospace,monospace;background:#0d1117;color:#c9d1d9;padding:40px 20px 80px;max-width:640px;margin:0 auto}
+    a{color:#58a6ff}.plan{border:1px solid #30363d;padding:20px;border-radius:8px;margin:20px 0}
+    ul{font-family:system-ui,sans-serif;color:#8b949e;line-height:1.8}
+    .btn{display:inline-block;background:#238636;color:#fff;padding:12px 20px;text-decoration:none;border-radius:6px;font-weight:600;margin-top:12px}
+  </style>
 </head>
 <body>
+  <div style="background:#161b22;padding:10px 16px;text-align:center;font-family:system-ui,sans-serif;font-size:13px;margin:-40px -20px 24px;border-bottom:1px solid #30363d"><strong style="color:#3fb950">LAUNCH25</strong> · <a href="/go/webhook.html" style="color:#58a6ff">See landing →</a></div>
   <h1>HookRelay</h1>
   <p>Stripe webhook died? HookRelay retries with backoff. Self-serve setup.</p>
-  <div class="plan"><strong>$7/mo</strong> — 3 endpoints, 10k events<br><a href="{{PAY:relay-monthly}}">Subscribe →</a></div>
+  <ul>
+    <li>Forward Stripe, GitHub, Shopify webhooks</li>
+    <li>Dead-letter alerts when delivery fails</li>
+    <li>Replay events from dashboard</li>
+  </ul>
+  <div class="plan"><strong>$7/mo</strong> — 3 endpoints, 10k events<br>
+  <a class="btn" href="{{PAY:relay-monthly}}" onclick="fetch('/api/funnel/checkout_click',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({sku:'relay-monthly',path:'/hookrelay'})})">Subscribe →</a></div>
   <p>After checkout you receive a relay URL: <code>https://your-app/webhooks/in</code></p>
+  <p style="font-family:system-ui,sans-serif"><a href="/comparestack/pages/developer-api-toolkits.html">Compare dev tools →</a></p>
 </body>
 </html>
