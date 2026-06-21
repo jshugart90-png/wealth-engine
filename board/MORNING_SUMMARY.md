@@ -1,10 +1,10 @@
 # Overnight Build Summary — 2026-06-21
 
-**Prepared:** 2026-06-21T05:32:07.677Z (review at 8 AM US Central)
+**Prepared:** 2026-06-21T13:00:02.236Z (review at 8 AM US Central)
 **Production:** https://wealth-engine-0qlj.onrender.com
 **Health:** `/api/health` OK
 **Revenue:** $0 / $500 target (0%)
-**Commits pushed tonight (after bff97dc):** 64
+**Commits pushed tonight (after bff97dc):** 103
 
 ---
 
@@ -16,13 +16,52 @@
 - **134 SEO keywords** → full `/p/*.html` set (all keywords generated each build)
 - **Conversion CTAs** improved on BillSnap, StatusPing, PipeKit, HookRelay (sticky footers + sharper copy)
 - **/join redirect** → `/join.html` in server.mjs
-- **Google Ads CSV** — 6 campaigns, **$10/day cap**
+- **Google Ads CSV** — 8 campaigns, **$11/day cap**
 - **Outreach pack** — Reddit, Indie Hackers, HN Show HN drafts in `D:\wealth-engine-data\marketing\outreach\`
 - **Agent chain** executed (`npm run agent:chain`)
 - **MM daemon** running (PID verified)
 
 Recent commits:
 ```
+56e4fa3 production-orchestrator cycle 22: build, seo, games, marketing
+7abf3d6 production-orchestrator cycle 21: build, seo, games, marketing
+9bab677 production-orchestrator cycle 20: build, seo, games, marketing
+85b3ea2 production-orchestrator cycle 19: build, seo, games, marketing
+47458c4 production-orchestrator cycle 18: build, seo, games, marketing
+ad4dc07 production-orchestrator cycle 17: build, seo, games, marketing
+ff2705b production-orchestrator cycle 16: build, seo, games, marketing
+0dbb185 production-orchestrator cycle 15: build, seo, games, marketing
+8671ec1 production-orchestrator cycle 14: build, seo, games, marketing
+6413c5e production-orchestrator cycle 13: build, seo, games, marketing
+942b224 production-orchestrator cycle 12: build, seo, games, marketing
+713bf29 production-orchestrator cycle 11: build, seo, games, marketing
+fa4f5fc production-orchestrator cycle 10: build, seo, games, marketing
+cf35046 production-orchestrator cycle 9: build, seo, games, marketing
+ad516ec production-orchestrator cycle 8: build, seo, games, marketing
+e2675fc production-orchestrator cycle 7: build, seo, games, marketing
+29a4a0f production-orchestrator cycle 6: build, seo, games, marketing
+5119ec5 production-orchestrator cycle 5: build, seo, games, marketing
+9f7c26d production-orchestrator cycle 4: build, seo, games, marketing
+11f8efd production-orchestrator cycle 3: build, seo, games, marketing
+80a6bbe production-orchestrator cycle 2: build, seo, games, marketing
+5abecba fix(production): PowerShell loop sleep log syntax
+8dbfb62 chore(production): update status board after cycle 1
+0871135 production-orchestrator cycle 1: build, seo, games, marketing
+f679cd3 chore(github-pro): log cycle 1 prod verification
+6d3bc1e fix(github-pro): initial audit, agent rule, cycle script, board updates
+f1ac542 Mark Reddit account u/WealthEngineDev active in board docs.
+b68c3a9 Overnight cycle 2: SEO keywords, build refresh
+748a49f docs: Apple Dev ACTIVE (2026-06-21); TestFlight priority and MC-IOS-TESTFLIGHT
+27438f5 Add Reddit draft-only workflow for manual publish review.
+18ba167 Mark PWA assets LIVE verified on production.
+e8f3b5b docs: mark PWA manifest and sw.js LIVE verified on prod
+9dfe869 Fix static file paths for PWA manifest and service worker on Linux.
+a3cb336 Overnight cycle 2: SEO keywords, build refresh
+416a099 feat: App Store readiness pipeline — mobile, PWA, monetization
+0767030 docs: update game pipeline with 8 shipped games
+8440ae4 game: Webhook Whack-a-Mole
+692a308 game: Receipt Rush
+6050111 docs: game creator deploy log and games hub link on portfolio
 fecf606 Add 8 AM deliverables: Cycle 7 deploy log and $0 budget summaries.
 215c92a Log cycles 6-8 deploy verification and pipeline handoff.
 aff1268 game: Word Scramble Business Terms
@@ -117,7 +156,7 @@ d4e947f Add 3 SEO keywords and mark Render deploy verified.
 ## Ready to ship
 
 - Render production live with 9 ventures + Stripe (14 products, coupon LAUNCH25)
-- Google Ads CSV: `D:\wealth-engine-data\marketing\ads\google-ads-import.csv` — 6 campaigns, **$10/day**
+- Google Ads CSV: `D:\wealth-engine-data\marketing\ads\google-ads-import.csv` — 8 campaigns, **$11/day**
 - High-conversion landings under `/go/*`
 - Bundle pages: `/bundles/freelancer-stack`, `/bundles/dev-ops-stack`, `/bundles/landlord-tenant-stack`
 - Free tools hub: `/tools/index.html`
@@ -134,7 +173,7 @@ d4e947f Add 3 SEO keywords and mark Render deploy verified.
 
 Follow: `D:\wealth-engine-data\marketing\ADS_IMPORT_CHECKLIST.md`
 CSV: `D:\wealth-engine-data\marketing\ads\google-ads-import.csv`
-Cap at **$10/day** total.
+Cap at **$11/day** total.
 
 ### 2. GoDaddy DNS (~5 min)
 
@@ -182,18 +221,7 @@ Upload `C:\Users\jshug\Website\index.html` to GoDaddy (NOT Netlify).
 
 ## Agent / daemon status
 
-### GitHub Pro (repo guardian)
-
-- **Rule:** `.cursor/rules/github-pro.mdc`
-- **Audit log:** `board/GITHUB_PRO.md`
-- **Report:** `board/GITHUB_PRO_REPORT_2026-06-21.md`
-- **Initial audit:** PASS — build, health, mobile preflight, prod 6/6 URLs
-- **Render deploy:** 201 via API trigger
-- **Fixes:** encoding in itch packager; T-001 marked done; T-010–T-012 assigned
-- **Open:** 5 duplicate MM daemons (documented, not killed); IndexNow 403 → @research-guy
-- **Cycle script:** `node scripts/github-pro-cycle.mjs`
-
-Last ramp: 2026-06-21T04:30:44.312Z
+Last ramp: 2026-06-21T10:30:48.636Z
 MM daemon: `npm run daemon:mm` (360 min interval)
 Deploy trigger: `node scripts/trigger-render-deploy.mjs`
 
@@ -207,7 +235,7 @@ Status: `todo` | `in_progress` | `blocked` | `done`
 
 | # | Task | Owner agent | Status | Blocker |
 |---|------|-------------|--------|---------|
-| T-001 | Deploy wealth-engine to Render; verify `/api/health` | Deploy Guy | todo | Prod live; `/go/nda.html` + ad tools verified 200 (2026-06-21) |
+| T-001 | Deploy wealth-engine to Render; verify `/api/health` | Deploy Guy | done | Prod healthy; GitHub Pro verified 6/6 URLs 2026-06-21 |
 | T-002 | Point custom domain + update `PUBLIC_BASE_URL` + Stripe webhook | Deploy Guy | blocked | Human: CNAME `tools.horseshoeroundme.com` → Render (see deploy/GODADDY_DNS.md) |
 | T-003 | Import `google-ads-import.csv` from `D:\wealth-engine-data\marketing\ads\` | Marketing Guy | blocked | Human: 5-min import — see ADS_IMPORT_CHECKLIST.md |
 | T-004 | Optimize BillSnap `/go/invoice` landing + LAUNCH25 coupon in ads copy | Marketing Guy + Code Cracker Guy | in_progress | 15 /go/* landings, $16/day ads budget, stack SKU live |
@@ -216,7 +244,7 @@ Status: `todo` | `in_progress` | `blocked` | `done`
 | T-007 | AdSense free tools + privacy page | Code Cracker Guy | done | 4 free tools + /privacy.html |
 | T-009 | Build pipeline ships SEO/bundles/sitemap on `npm run build` | Code Cracker Guy | done | dist/p/*, bundles, sitemap in build |
 | T-008 | 8 AM summary scheduled task | Final Boss | done | `npm run install:8am-summary` + summary written overnight |
-
-## Completed
-
+| T-010 | Bing Webmaster verify + IndexNow resubmit | @research-guy | todo | IndexNow 403 — see deploy/SEARCH_CONSOLE_BING_FREE_SETUP.md |
+| T-011 | Set GitHub secret RENDER_DEPLOY_HOOK_URL | @deploy-guy | todo | Render API deploy works via trigger script as fallback |
+| T-012 | Consolidate duplicate MM daemon processes | @github-pro | todo | 5 PIDs documented in GITHUB_PRO.md — review after 8 AM |
 ```
