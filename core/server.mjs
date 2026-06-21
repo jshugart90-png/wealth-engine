@@ -21,6 +21,23 @@ const MIME = {
   ".txt": "text/plain",
 };
 
+const BING_SITE_AUTH_FILES = new Set([
+  "/BingSiteAuth.xml",
+  "/BFFC299D3E2BDBFCB92C641272C2C2DB.xml",
+]);
+
+function serveBingSiteAuth(pathname, res, root) {
+  if (!BING_SITE_AUTH_FILES.has(pathname)) return false;
+  const filePath = join(root, "dist", pathname.slice(1));
+  if (!existsSync(filePath)) return false;
+  res.writeHead(200, {
+    "Content-Type": "application/xml; charset=utf-8",
+    "Cache-Control": "no-store",
+  });
+  res.end(readFileSync(filePath));
+  return true;
+}
+
 function log(msg) {
   const line = `[${new Date().toISOString()}] ${msg}\n`;
   const dir = join(getDataRoot(), "logs");
@@ -172,6 +189,8 @@ export function createAppServer() {
       }
 
       if (tryExtensionlessRedirect(url.pathname, res, root)) return;
+
+      if (serveBingSiteAuth(url.pathname, res, root)) return;
 
       if (url.pathname === "/api/health") {
         res.writeHead(200, { "Content-Type": "application/json" });

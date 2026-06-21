@@ -133,15 +133,22 @@ export function buildAll() {
   };
 }
 
+const BING_SITE_AUTH_KEY = "BFFC299D3E2BDBFCB92C641272C2C2DB";
+
 function buildBingSiteAuth() {
-  const content = `<?xml version="1.0"?>
+  const source = join(root, "public", "BingSiteAuth.xml");
+  const content = existsSync(source)
+    ? readFileSync(source, "utf8")
+    : `<?xml version="1.0"?>
 <users>
-	<user>BFFC299D3E2BDBFCB92C641272C2C2DB</user>
+	<user>${BING_SITE_AUTH_KEY}</user>
 </users>
 `;
-  const path = join(root, "dist", "BingSiteAuth.xml");
-  writeFileSync(path, content);
-  return path;
+  const primary = join(root, "dist", "BingSiteAuth.xml");
+  const alt = join(root, "dist", `${BING_SITE_AUTH_KEY}.xml`);
+  writeFileSync(primary, content, "utf8");
+  writeFileSync(alt, content, "utf8");
+  return { primary, alt };
 }
 
 function getAdmobOpts() {
