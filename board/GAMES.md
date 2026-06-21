@@ -10,7 +10,9 @@
 | uptime-defender | Uptime Defender | **Shipped** | 5/5 PASS | https://wealth-engine-0qlj.onrender.com/games/uptime-defender/ | **PROMO_READY** |
 | freelancer-memory | Memory Match: Freelancer Tools | **Shipped** | 5/5 PASS | https://wealth-engine-0qlj.onrender.com/games/freelancer-memory/ | **PROMO_READY** |
 | color-switch-snake | Color Switch Snake | **Shipped** | 5/5 PASS | https://wealth-engine-0qlj.onrender.com/games/color-switch-snake/ | **PROMO_READY** |
-| word-scramble-biz | Word Scramble: Business Terms | **Shipped** | 5/5 PASS | https://wealth-engine-0qlj.onrender.com/games/word-scramble-biz/ | **PROMO_READY** |
+| word-scramble-biz | Word Scramble: Business Terms | **Shipped** | 5/5 PASS | https://wealth-engine-0qlj.onrender.com/games/word-scramble-biz/ | **NEEDS_PROMO** |
+| receipt-rush | Receipt Rush | **Shipped** | 5/5 PASS | https://wealth-engine-0qlj.onrender.com/games/receipt-rush/ | **NEEDS_PROMO** |
+| webhook-whack | Webhook Whack-a-Mole | **Shipped** | 5/5 PASS | https://wealth-engine-0qlj.onrender.com/games/webhook-whack/ | **NEEDS_PROMO** |
 
 **Games hub:** https://wealth-engine-0qlj.onrender.com/games/
 

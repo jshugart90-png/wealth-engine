@@ -1,6 +1,6 @@
-# Marketing Command Center
+﻿# Marketing Command Center
 
-**Director:** Zero-Budget Marketing Director Â· **Updated:** 2026-06-21T18:00 CT (MC-012 ACTIVE) Â· **Mode:** ZERO_BUDGET  
+**Director:** Zero-Budget Marketing Director Â· **Updated:** 2026-06-21T20:00 CT (MC-012 + MC-GAMES-001 PUBLISH_READY) Â· **Mode:** ZERO_BUDGET  
 **Prod:** https://wealth-engine-0qlj.onrender.com Â· **Goal:** $500/mo Â· **Budget:** **$0** (BLOCKED_NO_BUDGET)  
 **Coupon:** LAUNCH25 (25% off)
 
@@ -15,13 +15,14 @@
 | Ranked free channels | `D:\wealth-engine-data\marketing\ZERO_BUDGET_PLAYBOOK.md` |
 | Copy-paste posts (24) | `D:\wealth-engine-data\marketing\outreach\FREE_POSTS_batch1.md` |
 | Reddit signup steps | `D:\wealth-engine-data\marketing\REDDIT_SIGNUP_READY.md` |
+| Games promo batch (6 titles) | `D:\wealth-engine-data\marketing\outreach\GAMES_PROMO_2026-06-21.md` |
 | Ads import (blocked) | `D:\wealth-engine-data\marketing\ADS_IMPORT_CHECKLIST.md` |
 
 ### Active free campaigns (executing now)
 
 | ID | Campaign | Channel | Status | Notes |
 |----|----------|---------|--------|-------|
-| ZB-001 | IndexNow full sitemap | Bing/Yandex API | DEPLOY_PENDING | 222 URLs queued; key file in build, Render deploy triggered |
+| ZB-001 | IndexNow full sitemap | Bing/Yandex API | ATTEMPTED | 298 URLs; key file LIVE on prod; POST 403 — **verify Bing Webmaster first** |
 | ZB-002 | GSC + Bing Webmaster | Search engines | DOCUMENTED | GoDaddy DNS TXT steps in playbook |
 | ZB-003 | Directory blitz | Peerlist, Uneed, AltTo, SaaSHub, PH Ship | PUBLISH_READY | Copy in FREE_POSTS_batch1 |
 | ZB-004 | Content syndication | dev.to, Hashnode, Medium | PUBLISH_READY | Article ready; manual paste |
@@ -31,6 +32,7 @@
 | ZB-008 | Horseshoe cross-promo | GoDaddy free upload | PUBLISH_READY | Meta block in FREE_POSTS_batch1 |
 | ZB-009 | Backlink outreach | Gmail manual | PUBLISH_READY | RESEND placeholder â€” manual only |
 | ZB-010 | Quora answers | Q&A | PUBLISH_READY | 2 drafts in FREE_POSTS_batch1 |
+| ZB-011 | HTML5 games hub promo | itch.io, r/WebGames, r/indiegames, FB groups, Poki/CrazyGames/GameMonetize prep | **PUBLISH_READY** | GAMES_PROMO_2026-06-21.md; Reddit via REDDIT_SIGNUP_READY |
 
 ### BLOCKED_NO_BUDGET (parked)
 
@@ -60,6 +62,7 @@
 | MC-010 | BillSnap Pro Unlimited $29/mo | BillSnap | [go/billsnap-pro.html](https://wealth-engine-0qlj.onrender.com/go/billsnap-pro.html) Â· [go/invoice.html](https://wealth-engine-0qlj.onrender.com/go/invoice.html) | r/freelance, r/smallbusiness, r/Entrepreneur, ~~Google Ads~~ | **ACTIVE (organic)** | 4 |
 | MC-011 | State Compliance pSEO | TemplateForge | [p/freelancer-compliance-by-state.html](https://wealth-engine-0qlj.onrender.com/p/freelancer-compliance-by-state.html) Â· [go/compliance.html](https://wealth-engine-0qlj.onrender.com/go/compliance.html) | r/smallbusiness, r/freelance, dev.to, IH | **PUBLISH_READY** | 5 |
 | MC-012 | Portfolio Affiliate Partner Program | All portfolio | [partners/index.html](https://wealth-engine-0qlj.onrender.com/partners/index.html) Â· [refer.html](https://wealth-engine-0qlj.onrender.com/refer.html) Â· [join.html](https://wealth-engine-0qlj.onrender.com/join.html) | IH, dev.to, HN (Ask/Show), X DMs, finance blogger email (Gmail), Product Hunt Ship, GitHub README | **ACTIVE** (zero-budget only) | 6 |
+| MC-GAMES-001 | Free HTML5 games hub (6 shipped) | Games portfolio | [games/index.html](https://wealth-engine-0qlj.onrender.com/games/index.html) | itch.io (free), r/WebGames, r/indiegames, Facebook groups, Poki/CrazyGames/GameMonetize apply | **PUBLISH_READY** (zero-budget) | 6 |
 
 ---
 
@@ -114,7 +117,8 @@
 | Priority | File | Posts | Action |
 |----------|------|-------|--------|
 
-| 0 | outreach/AFFILIATE_LAUNCH_2026-06-21.md | 6 channels | MC-012 partner recruitment (IH, dev.to, HN, X, email, PH Ship) |
+| 0 | outreach/GAMES_PROMO_2026-06-21.md | 6 games + hub | MC-GAMES-001 — itch.io, Reddit (signup first), FB template, directory prep |
+| 0b | outreach/AFFILIATE_LAUNCH_2026-06-21.md | 6 channels | MC-012 partner recruitment (IH, dev.to, HN, X, email, PH Ship) |
 | 1 | `outreach/POST_2026-06-21_batch10.md` | 3 posts | MC-010 BillSnap Pro $29/mo â€” r/freelance, r/smallbusiness, r/Entrepreneur + Google Ads CSV |
 | 2 | `outreach/POST_2026-06-21_batch9.md` | 8 posts | MC-008 + MC-009 live URLs â€” r/freelance, r/webdev, IH, HN |
 | 2 | `outreach/POST_2026-06-21_batch8.md` | 6 posts | r/SaaS, PH prep, Slack template |
@@ -150,7 +154,7 @@
 | RESEND_API_KEY placeholder | 1) Manual Gmail 2) Templates in FREE_POSTS_batch1 | BLOCKED for auto-email |
 | DEVTO_API_KEY missing | 1) Manual dev.to paste 2) Hashnode cross-post | PUBLISH_READY manual |
 | Reddit login | 1) Browser MCP signup attempt 2) REDDIT_SIGNUP_READY.md | BLOCKED â€” needs user email/phone |
-| IndexNow 403 | Key file 404 on prod â†’ added to build, deploy triggered | DEPLOY_PENDING |
+| IndexNow 403 | Key file LIVE on prod (200); POST/GET 403 until Bing Webmaster verified | BLOCKED - verify Bing/GSC first |
 | Google Ads AP-001 | Zero-budget policy | **BLOCKED_NO_BUDGET** |
 | Microsoft Ads | Zero-budget policy | **BLOCKED_NO_BUDGET** |
 
@@ -164,8 +168,11 @@
 - [ ] Submit Peerlist + Uneed + AlternativeTo (FREE_POSTS_batch1 #6â€“9)
 - [ ] Publish dev.to article (FREE_POSTS_batch1 #15)
 - [ ] Show HN post (FREE_POSTS_batch1 #14) â€” 2-min HN signup
+- [ ] **MC-GAMES-001:** Execute `D:\wealth-engine-data\marketing\outreach\GAMES_PROMO_2026-06-21.md` (itch.io + directories; Reddit after REDDIT_SIGNUP_READY)
 - [ ] **MC-012:** Execute `D:\wealth-engine-data\marketing\outreach\AFFILIATE_LAUNCH_2026-06-21.md` (6 zero-budget channels; **no Reddit**) — 10 partner signups, 5 attributed conversions in 30 days
-- [ ] Re-run IndexNow after Render deploy completes
+- [ ] Verify Bing Webmaster ? re-run IndexNow (298 URLs ready)
 - [ ] Upload Horseshoe SEO meta (FREE_POSTS_batch1 #23)
 - [ ] ~~Google Ads import~~ â€” BLOCKED_NO_BUDGET
 - [ ] ~~Microsoft Ads import~~ â€” BLOCKED_NO_BUDGET
+
+
