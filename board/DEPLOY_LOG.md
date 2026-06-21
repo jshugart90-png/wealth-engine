@@ -18,3 +18,5 @@ Append-only log of production deploys and URL verification.
 | 2026-06-21T14:00:00Z | 4 | 9761524 | /go/billsnap-pro, /go/invoice, /p/general-contractor-invoice-template, /p/independent-consultant-invoice-template | PASS 5/5 prod |
 | 2026-06-21T16:30:00Z | 6 | 6223621 | /partners/index.html, /join.html, /refer.html, /join, /refer | PASS 5/5 prod (attempt 3) |
 | 2026-06-21T17:05:00Z | 6 | e96fc78 | /partners/index.html, /partners/, /join.html, /refer.html, /join, /refer | PASS 6/6 prod (attempt 1) |
+| 2026-06-21T17:15:00Z | 6 | 6c3daf9 | /partners/index.html, /partners/, /join.html, /refer.html, /join, /refer | PASS 6/6 prod + prod URL fix |
+| 2026-06-21T05:35:00Z | 6 | 3099c35 | /go/nda-team, /go/statusping-agency, /ndagen/index, /p/nda-generator-for-agencies, /p/white-label-uptime-monitoring-agency | PASS 5/5 prod (attempt 1) |
