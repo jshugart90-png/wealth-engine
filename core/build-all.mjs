@@ -156,7 +156,9 @@ function buildPortfolioHub(ventureIds) {
   <a href="/tools/index.html">All free tools</a>
   <a href="/go/meeting.html">Meeting cost</a>
   <a href="/go/receipt.html">Receipt $3</a>
-  <a href="/go/freelancer.html">Freelancer kit</a>
+  <a href="/go/freelancer.html">Freelancer stack</a>
+  <a href="/go/hookrelay-dlq.html">HookRelay DLQ</a>
+  <a href="/go/stack.html">Revenue stack $29/mo</a>
   <a href="/go/contractor.html">Contractor invoice</a>
   <a href="/tools/payment-terms-calculator.html">Net 30 calc</a>
   <a href="/tools/1099-tax-estimator.html">1099 tax calc</a>

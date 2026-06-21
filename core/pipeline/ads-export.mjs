@@ -108,6 +108,26 @@ const CAMPAIGNS = [
     sku: "smb-compliance-pack",
     finalUrlPath: "/go/compliance.html?utm_source=google&utm_campaign=compliance",
   },
+  {
+    name: "WE - Freelancer Stack",
+    budgetDailyUsd: 2,
+    keywords: [
+      { kw: "freelancer invoice contract bundle", h1: "Freelancer Stack", h2: "$29/mo Unlimited", desc: "Invoice + templates + NDA. LAUNCH25 saves 25%." },
+      { kw: "freelancer business tools bundle", h1: "Revenue Stack $49", h2: "One-Time Bundle", desc: "Replace 3 subscriptions. Instant Stripe checkout." },
+    ],
+    sku: "stack-unlimited",
+    finalUrlPath: "/go/stack.html?utm_source=google&utm_campaign=stack",
+  },
+  {
+    name: "WE - HookRelay DLQ",
+    budgetDailyUsd: 1,
+    keywords: [
+      { kw: "webhook dead letter queue", h1: "Webhook DLQ Pro", h2: "$29/mo", desc: "Retry, dead-letter alerts, replay. Indie SaaS pricing." },
+      { kw: "stripe webhook retry service", h1: "Stripe Webhook Retry", h2: "25K Events/mo", desc: "Production-grade relay. LAUNCH25 at checkout." },
+    ],
+    sku: "hookrelay-pro",
+    finalUrlPath: "/go/webhook.html?utm_source=google&utm_campaign=hookrelay-dlq",
+  },
 ];
 
 export function buildGoogleAdsCsv() {

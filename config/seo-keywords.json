@@ -521,6 +521,84 @@
       "title": "Stripe Webhook Test Tool",
       "venture": "hookrelay",
       "sku": "relay-monthly"
+    },
+    {
+      "slug": "freelancer-invoice-template-designer",
+      "title": "Freelancer Invoice Template for Designers",
+      "venture": "billsnap",
+      "sku": "stack-unlimited"
+    },
+    {
+      "slug": "freelancer-invoice-template-developer",
+      "title": "Freelancer Invoice Template for Developers",
+      "venture": "billsnap",
+      "sku": "stack-unlimited"
+    },
+    {
+      "slug": "freelancer-invoice-template-writer",
+      "title": "Freelancer Invoice Template for Writers",
+      "venture": "billsnap",
+      "sku": "stack-unlimited"
+    },
+    {
+      "slug": "freelancer-invoice-template-consultant",
+      "title": "Freelancer Invoice Template for Consultants",
+      "venture": "billsnap",
+      "sku": "stack-unlimited"
+    },
+    {
+      "slug": "freelancer-invoice-template-photographer",
+      "title": "Freelancer Invoice Template for Photographers",
+      "venture": "billsnap",
+      "sku": "stack-unlimited"
+    },
+    {
+      "slug": "contractor-invoice-template-plumber",
+      "title": "Contractor Invoice Template for Plumbers",
+      "venture": "billsnap",
+      "sku": "pro-pdf"
+    },
+    {
+      "slug": "contractor-invoice-template-electrician",
+      "title": "Contractor Invoice Template for Electricians",
+      "venture": "billsnap",
+      "sku": "pro-pdf"
+    },
+    {
+      "slug": "contractor-invoice-template-hvac",
+      "title": "Contractor Invoice Template for HVAC",
+      "venture": "billsnap",
+      "sku": "pro-pdf"
+    },
+    {
+      "slug": "freelance-contract-template-designer",
+      "title": "Freelance Contract Template for Designers",
+      "venture": "pdf-factory",
+      "sku": "freelancer-stack-bundle"
+    },
+    {
+      "slug": "freelance-proposal-template-consultant",
+      "title": "Freelance Proposal Template for Consultants",
+      "venture": "pdf-factory",
+      "sku": "freelancer-kit"
+    },
+    {
+      "slug": "webhook-dead-letter-queue-tool",
+      "title": "Webhook Dead Letter Queue Tool",
+      "venture": "hookrelay",
+      "sku": "hookrelay-pro"
+    },
+    {
+      "slug": "webhook-retry-exponential-backoff",
+      "title": "Webhook Retry with Exponential Backoff",
+      "venture": "hookrelay",
+      "sku": "hookrelay-pro"
+    },
+    {
+      "slug": "freelancer-revenue-stack",
+      "title": "Freelancer Revenue Stack — Invoice + Contract + NDA",
+      "venture": "billsnap",
+      "sku": "stack-unlimited"
     }
   ],
   "pagesPerCycle": 10

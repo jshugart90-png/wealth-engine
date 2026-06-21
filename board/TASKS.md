@@ -9,7 +9,7 @@ Status: `todo` | `in_progress` | `blocked` | `done`
 | T-001 | Deploy wealth-engine to Render; verify `/api/health` | Deploy Guy | todo | Prod live; `/go/nda.html` + ad tools verified 200 (2026-06-21) |
 | T-002 | Point custom domain + update `PUBLIC_BASE_URL` + Stripe webhook | Deploy Guy | blocked | Human: CNAME `tools.horseshoeroundme.com` → Render (see deploy/GODADDY_DNS.md) |
 | T-003 | Import `google-ads-import.csv` from `D:\wealth-engine-data\marketing\ads\` | Marketing Guy | blocked | Human: 5-min import — see ADS_IMPORT_CHECKLIST.md |
-| T-004 | Optimize BillSnap `/go/invoice` landing + LAUNCH25 coupon in ads copy | Marketing Guy + Code Cracker Guy | in_progress | 6 /go/* landings + expanded ads CSV |
+| T-004 | Optimize BillSnap `/go/invoice` landing + LAUNCH25 coupon in ads copy | Marketing Guy + Code Cracker Guy | in_progress | 15 /go/* landings, $16/day ads budget, stack SKU live |
 | T-005 | Run orchestrator on 180m interval; confirm ramp-report.json updates | Final Boss | in_progress | Render daemon + local MM daemon running |
 | T-006 | Deploy horseshoeroundme.com cross-promo bar | Marketing Guy | in_progress | Promo bar in Website/index.html — upload to GoDaddy (NOT Netlify) |
 | T-007 | AdSense free tools + privacy page | Code Cracker Guy | done | 4 free tools + /privacy.html |
@@ -29,3 +29,5 @@ Status: `todo` | `in_progress` | `blocked` | `done`
 | — | Overnight sprint: GoDaddy DNS docs, ads checklist, ad tools, funnel API, thanks page | 2026-06-21 |
 | — | Cycle 1: 6 /go landings, 4 ad tools, build ships SEO+bundles, 7 new SEO keywords | 2026-06-21 |
 | — | Cycle 2: Render API deploy (7 commits), 5 SEO keywords, ads CSV regen | 2026-06-21 |
+| — | Build/QC Cycle 1: 3 go landings, 2 tools, 5 SEO, invoice conversion | 2026-06-21 |
+| — | Build/QC Cycle 2: Freelancer Stack SKU, HookRelay DLQ Pro, 13 SEO, /go/stack | 2026-06-21 |

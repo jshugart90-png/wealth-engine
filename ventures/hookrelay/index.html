@@ -3,30 +3,43 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>HookRelay — Webhook Forwarding with Retry</title>
-  <meta name="description" content="Forward webhooks to your endpoint with automatic retry. $7/mo.">
+  <title>HookRelay — Webhook DLQ, Retry & Forwarding</title>
+  <meta name="description" content="Webhook dead letter queue with exponential backoff retry and one-click replay. Free tier + DLQ Pro at $29/mo for indie SaaS.">
   <style>
-    body{font-family:ui-monospace,monospace;background:#0d1117;color:#c9d1d9;padding:40px 20px 80px;max-width:640px;margin:0 auto}
-    a{color:#58a6ff}.plan{border:1px solid #30363d;padding:20px;border-radius:8px;margin:20px 0}
-    ul{font-family:system-ui,sans-serif;color:#8b949e;line-height:1.8}
-    .btn{display:inline-block;background:#238636;color:#fff;padding:12px 20px;text-decoration:none;border-radius:6px;font-weight:600;margin-top:12px}
+    body{font-family:ui-monospace,monospace;background:#0d1117;color:#c9d1d9;padding:40px 20px 80px;max-width:720px;margin:0 auto}
+    a{color:#58a6ff}.plans{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px;margin:24px 0}
+    .plan{border:1px solid #30363d;padding:20px;border-radius:8px}
+    .plan.featured{border-color:#238636}
+    ul{font-family:system-ui,sans-serif;color:#8b949e;line-height:1.8;font-size:14px}
+    .btn{display:inline-block;background:#238636;color:#fff;padding:12px 20px;text-decoration:none;border-radius:6px;font-weight:600;margin-top:12px;font-family:system-ui,sans-serif}
+    .btn.secondary{background:#21262d}
   </style>
 </head>
 <body>
-  <div style="background:#161b22;padding:10px 16px;text-align:center;font-family:system-ui,sans-serif;font-size:13px;margin:-40px -20px 24px;border-bottom:1px solid #30363d"><strong style="color:#3fb950">LAUNCH25</strong> · <a href="/go/webhook.html" style="color:#58a6ff">See landing →</a></div>
+  <div style="background:#161b22;padding:10px 16px;text-align:center;font-family:system-ui,sans-serif;font-size:13px;margin:-40px -20px 24px;border-bottom:1px solid #30363d"><strong style="color:#3fb950">LAUNCH25</strong> · <a href="/go/hookrelay-dlq.html">DLQ Pro landing →</a></div>
   <h1>HookRelay</h1>
-  <p>Stripe webhook died at 2 AM? HookRelay retries with exponential backoff, dead-letter alerts, and one-click replay — no Zapier bill, no enterprise sales call.</p>
+  <p style="font-family:system-ui,sans-serif">Stripe webhook died at 2 AM? HookRelay receives, retries with exponential backoff, queues failures to a dead letter queue, and lets you replay with one click — no Zapier bill, no enterprise sales call.</p>
   <ul>
-    <li>Forward Stripe, GitHub, Shopify, Paddle webhooks in 60 seconds</li>
-    <li>Dead-letter email when delivery fails 3× — fix before customers notice</li>
-    <li>Replay events from dashboard — no digging through logs</li>
-    <li>Cheaper than Hookdeck for indie SaaS ($7/mo vs $49+)</li>
+    <li>Durable receive → retry → DLQ → replay dashboard</li>
+    <li>Stripe, GitHub, Shopify, Paddle preset connectors (URL swap only)</li>
+    <li>Email + Slack alerts when delivery fails 3×</li>
+    <li>Payload inspector — debug without log archaeology</li>
+    <li>Cheaper than Hookdeck ($39+) for indie SaaS stacks</li>
   </ul>
-  <div class="plan"><strong>$7/mo</strong> — 3 endpoints, 10k events/mo<br>
-  <span style="color:#8b949e;font-size:13px">LAUNCH25 saves 25% first month</span><br>
-  <a class="btn" href="{{PAY:relay-monthly}}" onclick="fetch('/api/funnel/checkout_click',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({sku:'relay-monthly',path:'/hookrelay'})})">Start relaying →</a>
-  <a class="btn" style="background:#21262d;margin-left:8px" href="/go/webhook.html">See landing</a></div>
+  <div class="plans">
+    <div class="plan">
+      <strong>$7/mo Starter</strong><br>
+      <span style="color:#8b949e;font-size:13px">3 endpoints · 10K events/mo · retry + dead-letter email</span><br>
+      <a class="btn secondary" href="{{PAY:relay-monthly}}" onclick="fetch('/api/funnel/checkout_click',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({sku:'relay-monthly',path:'/hookrelay'})})">Start relaying →</a>
+    </div>
+    <div class="plan featured">
+      <strong>$29/mo DLQ Pro</strong><br>
+      <span style="color:#8b949e;font-size:13px">10 endpoints · 25K events/mo · full DLQ replay + Slack alerts</span><br>
+      <a class="btn" href="{{PAY:hookrelay-pro}}" onclick="fetch('/api/funnel/checkout_click',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({sku:'hookrelay-pro',path:'/hookrelay'})})">Get DLQ Pro →</a>
+    </div>
+  </div>
+  <p style="font-family:system-ui,sans-serif;font-size:13px;color:#8b949e">Free tier: 1 endpoint, 1K events/mo — <a href="/go/webhook.html">start here</a></p>
   <p>After checkout you receive a relay URL: <code>https://your-app/webhooks/in</code></p>
-  <p style="font-family:system-ui,sans-serif"><a href="/comparestack/pages/developer-api-toolkits.html">Compare dev tools →</a></p>
+  <p style="font-family:system-ui,sans-serif"><a href="/hookrelay/pricing.html">Full pricing →</a> · <a href="/go/webhook.html">Ad landing</a> · <a href="/comparestack/pages/webhook-relay-tools.html">Compare webhook tools →</a></p>
 </body>
 </html>

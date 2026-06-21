@@ -137,6 +137,22 @@
       "metadata": { "unlimited": "true" }
     },
     {
+      "ventureId": "billsnap",
+      "sku": "stack-unlimited",
+      "name": "Freelancer Stack Unlimited",
+      "priceUsd": 29,
+      "interval": "month",
+      "metadata": { "unlimited": "true", "bundle": "freelancer-stack" }
+    },
+    {
+      "ventureId": "pdf-factory",
+      "sku": "freelancer-stack-bundle",
+      "name": "Freelancer Stack Bundle",
+      "priceUsd": 49,
+      "interval": "one_time",
+      "metadata": { "bundle": "freelancer-stack", "includes": "billsnap-unlimited-30d,freelancer-kit,nda-pdf" }
+    },
+    {
       "ventureId": "leaselens",
       "sku": "single-report",
       "name": "LeaseLens Full Report",
@@ -215,6 +231,14 @@
       "priceUsd": 7,
       "interval": "month",
       "metadata": { "endpoints": "3" }
+    },
+    {
+      "ventureId": "hookrelay",
+      "sku": "hookrelay-pro",
+      "name": "HookRelay DLQ Pro",
+      "priceUsd": 29,
+      "interval": "month",
+      "metadata": { "endpoints": "10", "events_per_month": "25000", "dlq": "true" }
     }
   ]
 }
