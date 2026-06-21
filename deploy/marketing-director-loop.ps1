@@ -26,7 +26,6 @@ function Run-Cycle {
     Add-Content -Path (Join-Path $DataRoot "director-loop.log") -Value $logLine
 }
 
-# Initial cycle
 $cycle = Get-CycleNumber
 Run-Cycle -Cycle $cycle
 
@@ -34,13 +33,14 @@ while ((Get-Date) -lt $Deadline) {
     $remaining = ($Deadline - (Get-Date)).TotalMinutes
     if ($remaining -le 0) { break }
     $sleepMin = [Math]::Min($IntervalMinutes, [Math]::Max(1, [int]$remaining))
-    Write-Host "[$(Get-Date -Format 'HH:mm:ss')] Sleeping ${sleepMin}m (deadline 08:00 CT, $([int]$remaining)m left)"
+    Write-Host "[$(Get-Date -Format 'HH:mm:ss')] Sleeping ${sleepMin}m ($([int]$remaining)m until 08:00 CT)"
     Start-Sleep -Seconds ($sleepMin * 60)
     if ((Get-Date) -ge $Deadline) { break }
     $cycle = Get-CycleNumber
     Run-Cycle -Cycle $cycle
-    Write-Host "AGENT_LOOP_TICK_MARKETING_DIRECTOR {\"prompt\":\"Marketing Director: run next zero-budget cycle. Read board/MARKETING.md and DEPLOY_LOG.md. Create POST batch if missing. Update report. Cycle $cycle.\",\"cycle\":$cycle}"
+    $tick = "AGENT_LOOP_TICK_MARKETING_DIRECTOR cycle=$cycle"
+    Write-Host $tick
 }
 
-Write-Host "AGENT_LOOP_TICK_MARKETING_DIRECTOR {\"prompt\":\"Marketing Director 8AM deliverable: finalize MARKETING_DIRECTOR_REPORT_2026-06-21.md, update board/MARKETING.md, commit assets.\",\"final\":true}"
-Write-Host "[$(Get-Date -Format 'yyyy-MM-dd HH:mm:ss')] Marketing Director loop complete — 08:00 CT reached"
+Write-Host "AGENT_LOOP_TICK_MARKETING_DIRECTOR final=true"
+Write-Host "[$(Get-Date -Format 'yyyy-MM-dd HH:mm:ss')] Marketing Director loop complete at 08:00 CT"
