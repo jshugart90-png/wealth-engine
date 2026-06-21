@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-06-21T02:52:16.511Z",
+  "generatedAt": "2026-06-21T08:52:25.873Z",
   "ventures": [
     {
       "id": "devtools-api",
@@ -17,7 +17,7 @@
       "id": "billsnap",
       "name": "BillSnap",
       "model": "freemium-one-time",
-      "paymentLinks": 2,
+      "paymentLinks": 3,
       "channels": [
         "seo",
         "google-ads",
@@ -39,7 +39,7 @@
       "id": "pdf-factory",
       "name": "TemplateForge",
       "model": "catalog",
-      "paymentLinks": 3,
+      "paymentLinks": 5,
       "channels": [
         "seo",
         "etsy-alternative",
@@ -60,11 +60,44 @@
       "id": "statusping",
       "name": "StatusPing",
       "model": "subscription",
-      "paymentLinks": 2,
+      "paymentLinks": 4,
       "channels": [
         "seo",
         "indie-hackers",
         "dev-tools"
+      ]
+    },
+    {
+      "id": "meetingcost",
+      "name": "MeetingCost",
+      "model": "one-time",
+      "paymentLinks": 1,
+      "channels": [
+        "viral-share",
+        "seo",
+        "embed-widgets"
+      ]
+    },
+    {
+      "id": "ndagen",
+      "name": "NDAGen",
+      "model": "one-time",
+      "paymentLinks": 2,
+      "channels": [
+        "seo",
+        "freelancer-forums",
+        "comparison-pages"
+      ]
+    },
+    {
+      "id": "hookrelay",
+      "name": "HookRelay",
+      "model": "subscription",
+      "paymentLinks": 2,
+      "channels": [
+        "dev-communities",
+        "seo",
+        "api-directories"
       ]
     }
   ],
@@ -73,8 +106,8 @@
       {
         "stripe": {
           "ok": true,
-          "created": 0,
-          "total": 11
+          "created": 10,
+          "total": 21
         }
       },
       {

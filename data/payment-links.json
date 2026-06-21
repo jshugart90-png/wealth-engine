@@ -27,9 +27,9 @@
     "sku": "unlimited-month",
     "venture_id": "billsnap",
     "stripe_product_id": "prod_Uk5fTQ6hV6OeFk",
-    "stripe_price_id": "price_1TkdleCA8XeKRzqb4mBmY613",
-    "payment_link": "https://buy.stripe.com/7sY9ASaxM01z6jPeBz1Nu0j",
-    "updated_at": "2026-06-21T05:18:03.307Z"
+    "stripe_price_id": "price_1TkbTvCA8XeKRzqbhNGBy2el",
+    "payment_link": "https://buy.stripe.com/28EfZgcFUdSpfUpfFD1Nu03",
+    "updated_at": "2026-06-21T02:51:36.019Z"
   },
   {
     "sku": "single-report",
@@ -86,5 +86,85 @@
     "stripe_price_id": "price_1TkbU0CA8XeKRzqbIkEvOQ2t",
     "payment_link": "https://buy.stripe.com/6oU4gygWa8y5cId0KJ1Nu0a",
     "updated_at": "2026-06-21T02:51:41.261Z"
+  },
+  {
+    "sku": "stack-unlimited",
+    "venture_id": "billsnap",
+    "stripe_product_id": "prod_UkBTDcRjQ2D1Cz",
+    "stripe_price_id": "price_1Tkh6zCA8XeKRzqbx9g2yWpl",
+    "payment_link": "https://buy.stripe.com/00w5kC21gaGdbE98db1Nu0n",
+    "updated_at": "2026-06-21T08:52:18.404Z"
+  },
+  {
+    "sku": "freelancer-stack-bundle",
+    "venture_id": "pdf-factory",
+    "stripe_product_id": "prod_UkBTfDevVRYBjb",
+    "stripe_price_id": "price_1Tkh70CA8XeKRzqbxlI03jTa",
+    "payment_link": "https://buy.stripe.com/cNicN46hw9C9eQl0KJ1Nu0o",
+    "updated_at": "2026-06-21T08:52:19.141Z"
+  },
+  {
+    "sku": "1099-suite-pro",
+    "venture_id": "pdf-factory",
+    "stripe_product_id": "prod_UkBT6jVdFRSPRt",
+    "stripe_price_id": "price_1Tkh71CA8XeKRzqbfPOmZPLZ",
+    "payment_link": "https://buy.stripe.com/4gM6oG35k01zdMhfFD1Nu0p",
+    "updated_at": "2026-06-21T08:52:20.230Z"
+  },
+  {
+    "sku": "devwatch-monthly",
+    "venture_id": "statusping",
+    "stripe_product_id": "prod_UkBU2hr5mS2GVt",
+    "stripe_price_id": "price_1Tkh72CA8XeKRzqbEXESAWzN",
+    "payment_link": "https://buy.stripe.com/14A6oG49o7u1dMh1ON1Nu0q",
+    "updated_at": "2026-06-21T08:52:20.969Z"
+  },
+  {
+    "sku": "agency-monthly",
+    "venture_id": "statusping",
+    "stripe_product_id": "prod_UkBUmP8z8jyHrr",
+    "stripe_price_id": "price_1Tkh73CA8XeKRzqb5kI9OEyO",
+    "payment_link": "https://buy.stripe.com/14A8wO6hw3dL5fLbpn1Nu0r",
+    "updated_at": "2026-06-21T08:52:21.698Z"
+  },
+  {
+    "sku": "meeting-pro",
+    "venture_id": "meetingcost",
+    "stripe_product_id": "prod_UkBUSx5J2Agf5y",
+    "stripe_price_id": "price_1Tkh74CA8XeKRzqb2qIXytsH",
+    "payment_link": "https://buy.stripe.com/5kQfZg5dseWtcId2SR1Nu0s",
+    "updated_at": "2026-06-21T08:52:22.596Z"
+  },
+  {
+    "sku": "nda-pdf",
+    "venture_id": "ndagen",
+    "stripe_product_id": "prod_UkBUeJd4fbWqo5",
+    "stripe_price_id": "price_1Tkh74CA8XeKRzqbnagBpew2",
+    "payment_link": "https://buy.stripe.com/eVq8wObBQ01zeQlctr1Nu0t",
+    "updated_at": "2026-06-21T08:52:23.612Z"
+  },
+  {
+    "sku": "ndagen-team-monthly",
+    "venture_id": "ndagen",
+    "stripe_product_id": "prod_UkBU8ZWis3weBG",
+    "stripe_price_id": "price_1Tkh75CA8XeKRzqbzMpB6p25",
+    "payment_link": "https://buy.stripe.com/14A5kC5dsbKh6jP2SR1Nu0u",
+    "updated_at": "2026-06-21T08:52:24.339Z"
+  },
+  {
+    "sku": "relay-monthly",
+    "venture_id": "hookrelay",
+    "stripe_product_id": "prod_UkBU1dKPFExZHm",
+    "stripe_price_id": "price_1Tkh76CA8XeKRzqbNSt1OZcc",
+    "payment_link": "https://buy.stripe.com/6oU8wOfS6eWtgYt6531Nu0v",
+    "updated_at": "2026-06-21T08:52:25.049Z"
+  },
+  {
+    "sku": "hookrelay-pro",
+    "venture_id": "hookrelay",
+    "stripe_product_id": "prod_UkBULJrH2lFib3",
+    "stripe_price_id": "price_1Tkh77CA8XeKRzqbnbHXJHin",
+    "payment_link": "https://buy.stripe.com/4gM5kC9tI4hP6jP8db1Nu0w",
+    "updated_at": "2026-06-21T08:52:25.772Z"
   }
 ]
