@@ -1,0 +1,36 @@
+{
+  "appName": "Wealth Engine Partners",
+  "subtitle": "Affiliate portal & referral dashboard",
+  "bundleId": "com.wealthengine.partners",
+  "version": "1.0.0",
+  "privacyPolicyUrl": "https://wealth-engine-0qlj.onrender.com/privacy.html",
+  "supportUrl": "https://wealth-engine-0qlj.onrender.com/",
+  "marketingUrl": "https://wealth-engine-0qlj.onrender.com/partners/",
+  "category": {
+    "apple": "Business",
+    "appleSub": "Finance",
+    "google": "BUSINESS"
+  },
+  "contentRating": {
+    "ageRating": "4+",
+    "googleQuestionnaire": "Everyone — affiliate portal, Stripe checkout opens in browser",
+    "adsPresent": false,
+    "inAppPurchases": true,
+    "iapOptional": true,
+    "dataCollected": [
+      "Partner code and referral stats cached locally; email on signup via API"
+    ]
+  },
+  "keywords": [
+    "affiliate",
+    "partner",
+    "referral",
+    "commission",
+    "saas",
+    "freelancer",
+    "devtools",
+    "comparestack",
+    "passive income",
+    "partners"
+  ]
+}

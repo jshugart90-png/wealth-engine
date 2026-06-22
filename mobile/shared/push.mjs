@@ -218,6 +218,103 @@ export function meetingCostTeamPushInlineScript(storageKey = "meetingcost_team_p
 })();`;
 }
 
+/** Inline script: schedule weekly conversion check + monthly payout reminders on native platforms. */
+export function partnersPushInlineScript(storageKey = "partners_push_scheduled") {
+  return `(function(){
+  if(!window.Capacitor||!window.Capacitor.isNativePlatform())return;
+  try{
+    if(localStorage.getItem("${storageKey}"))return;
+    var LN=window.Capacitor.Plugins&&window.Capacitor.Plugins.LocalNotifications;
+    if(!LN)return;
+    LN.requestPermissions().then(function(perm){
+      if(!perm||perm.display!=="granted")return;
+      var now=new Date();
+      var year=now.getFullYear();
+      var month=now.getMonth();
+      var reminders=[
+        {id:441001,weekday:3,title:"Weekly conversion check",body:"Review referral clicks and conversions in your partner dashboard"},
+        {id:441015,monthDay:1,title:"Monthly payout day",body:"Wealth Engine Partners: commissions paid on the 1st — check pending balance"},
+        {id:441025,monthDay:25,title:"Month-end commission review",body:"Export commission CSV and verify attributed sales before payout hold clears"}
+      ];
+      var notifications=reminders.map(function(d){
+        var at;
+        if(d.weekday!=null){
+          at=new Date(now);
+          var diff=(d.weekday-at.getDay()+7)%7;
+          if(!diff)diff=7;
+          at.setDate(at.getDate()+diff);
+        }else{
+          at=new Date(year,month,d.monthDay,9,0,0);
+          if(at<=now)at=new Date(year,month+1,d.monthDay,9,0,0);
+        }
+        at.setHours(9,0,0,0);
+        return {id:d.id,title:d.title,body:d.body,schedule:{at:at.toISOString()}};
+      });
+      return LN.schedule({notifications:notifications}).then(function(){
+        localStorage.setItem("${storageKey}","1");
+      });
+    }).catch(function(){});
+  }catch(e){}
+})();`;
+}
+
+/** Inline script: export partner commission summary to CSV download. */
+export function partnersCommissionCsvExportScript(codeKey = "we_partner_code", statsKey = "we_partner_stats") {
+  return `(function(){
+  var btn=document.getElementById("export-commissions");
+  if(!btn)return;
+  btn.addEventListener("click",function(){
+    try{
+      var code=localStorage.getItem("${codeKey}")||"";
+      var stats={};
+      try{stats=JSON.parse(localStorage.getItem("${statsKey}")||"{}")}catch(e){}
+      var header=["Date","Partner Code","Clicks","Conversions","Pending USD","Notes"];
+      var lines=[header.join(",")].concat([[
+        new Date().toISOString().slice(0,10),
+        code||"—",
+        stats.clicks!=null?stats.clicks:"—",
+        stats.conversions!=null?stats.conversions:"—",
+        stats.pendingUsd!=null?stats.pendingUsd:"—",
+        code?"Load dashboard to refresh stats":"Sign up at Partner Portal first"
+      ].map(function(v){
+        return '"'+String(v).replace(/"/g,'""')+'"';
+      }).join(",")]);
+      var blob=new Blob([lines.join("\\n")],{type:"text/csv"});
+      var url=URL.createObjectURL(blob);
+      var a=document.createElement("a");
+      a.href=url;
+      a.download="partner-commissions-"+new Date().toISOString().slice(0,10)+".csv";
+      a.click();
+      URL.revokeObjectURL(url);
+    }catch(e){alert("Export failed — sign up at Partner Portal first.");}
+  });
+})();`;
+}
+
+/** Inline script: cache partner stats from referral dashboard for launcher + CSV export. */
+export function partnersStatsCacheScript(codeKey = "we_partner_code", statsKey = "we_partner_stats") {
+  return `(function(){
+  var code=localStorage.getItem("${codeKey}");
+  var statEl=document.getElementById("partner-stat");
+  if(!code){
+    if(statEl)statEl.textContent="Sign up to get your referral code";
+    return;
+  }
+  if(statEl)statEl.textContent="Code: "+code;
+  fetch("/api/affiliate/stats?code="+encodeURIComponent(code)).then(function(r){return r.json()}).then(function(d){
+    if(!d.ok)return;
+    var pending="$"+Number(d.commissionPendingUsd||0).toFixed(2);
+    localStorage.setItem("${statsKey}",JSON.stringify({
+      clicks:d.clicks,
+      conversions:d.conversions,
+      pendingUsd:pending,
+      updatedAt:new Date().toISOString()
+    }));
+    if(statEl)statEl.textContent=d.clicks+" clicks · "+d.conversions+" conversions · "+pending+" pending";
+  }).catch(function(){});
+})();`;
+}
+
 /** Inline script: export meeting history to CSV download. */
 export function meetingCostHistoryCsvExportScript(historyKey = "meetingcost_history", usageKey = "meetingcost_reports_mo") {
   return `(function(){

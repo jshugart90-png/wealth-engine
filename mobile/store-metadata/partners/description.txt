@@ -1,0 +1,15 @@
+Wealth Engine Partners — earn 25% recurring across the portfolio from your phone.
+
+Self-serve affiliate portal with live referral links in under 5 minutes. No manual approval.
+
+Features:
+• Partner signup and commission table — BillSnap, HookRelay, DevWatch, CompareStack, and 161 URLs
+• Referral dashboard with click and conversion stats
+• LAUNCH25 insider deals list signup
+• CompareStack comparison pages for content-site affiliates
+• Weekly conversion check and monthly payout reminders (enable notifications on first launch)
+• Export commission summary to CSV for Excel reporting
+
+Optional tip jar IAP — the affiliate portal is free to use.
+
+Privacy: Partner code stored on device. Signup email sent via API. Checkout via Stripe in browser.

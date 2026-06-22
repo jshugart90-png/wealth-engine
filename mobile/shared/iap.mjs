@@ -10,6 +10,19 @@ const sharedDir = dirname(fileURLToPath(import.meta.url));
 const mobileRoot = join(sharedDir, "..");
 const repoRoot = join(mobileRoot, "..");
 
+/** Apps where IAP is optional (tip jar only — not required for core features). */
+export const OPTIONAL_IAP_APPS = new Set(["partners"]);
+
+export const GAME_PRODUCT_DEFS = [
+  { key: "remove_ads", type: "non_consumable", price: 2.99, title: "Remove Ads", description: "Hide AdMob banners permanently" },
+  { key: "premium_unlock", type: "non_consumable", price: 4.99, title: "Premium Unlock", description: "Unlock premium features and badges" },
+  { key: "tip_jar", type: "consumable", price: 0.99, title: "Tip Jar", description: "Support the developer" },
+];
+
+export const TIP_ONLY_PRODUCT_DEFS = [
+  { key: "tip_jar", type: "consumable", price: 0.99, title: "Tip Jar", description: "Optional support tip — not required for affiliate features" },
+];
+
 export const GAME_SLUGS = new Set([
   "games",
   "horseshoe-toss",
@@ -45,14 +58,9 @@ export const STRIPE_IAP_MAP = {
   "statusping-agency": { pro_unlock: "agency-monthly" },
   "ndagen-team": { pro_unlock: "ndagen-team-monthly" },
   "meetingcost-team": { pro_unlock: "meetingcost-team-monthly" },
+  partners: { tip_jar: null },
   tools: { pro_unlock: null },
 };
-
-const GAME_PRODUCT_DEFS = [
-  { key: "remove_ads", type: "non_consumable", price: 2.99, title: "Remove Ads", description: "Hide AdMob banners permanently" },
-  { key: "premium_unlock", type: "non_consumable", price: 4.99, title: "Premium Unlock", description: "Unlock premium features and badges" },
-  { key: "tip_jar", type: "consumable", price: 0.99, title: "Tip Jar", description: "Support the developer" },
-];
 
 const UTILITY_PRODUCT_DEFS = [
   { key: "pro_unlock", type: "non_consumable", price: 4.99, title: "Pro Unlock", description: "Unlock Pro features (matches Stripe tier where applicable)" },
@@ -79,7 +87,11 @@ export function generateIapConfig() {
     if (!bundleId) continue;
 
     const isGame = GAME_SLUGS.has(slug);
-    const defs = isGame ? GAME_PRODUCT_DEFS : UTILITY_PRODUCT_DEFS;
+    const defs = OPTIONAL_IAP_APPS.has(slug)
+      ? TIP_ONLY_PRODUCT_DEFS
+      : isGame
+        ? GAME_PRODUCT_DEFS
+        : UTILITY_PRODUCT_DEFS;
     const stripeMap = STRIPE_IAP_MAP[slug] ?? {};
 
     apps[slug] = {

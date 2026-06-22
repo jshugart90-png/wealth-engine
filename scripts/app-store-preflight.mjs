@@ -11,7 +11,8 @@ const root = getRoot();
 const app = process.argv.includes("--app")
   ? process.argv[process.argv.indexOf("--app") + 1]
   : "games";
-const HUB_APPS = ["tools", "freelancer-stack", "devwatch", "renter-toolkit", "hookrelay-dlq", "1099-suite", "statusping-agency", "ndagen-team", "meetingcost-team"];
+const HUB_APPS = ["tools", "freelancer-stack", "devwatch", "renter-toolkit", "hookrelay-dlq", "1099-suite", "statusping-agency", "ndagen-team", "meetingcost-team", "partners"];
+const OPTIONAL_IAP_APPS = ["partners"];
 const MINI_GAMES = ["receipt-rush", "webhook-whack", "invoice-stack", "horseshoe-toss", "uptime-defender", "freelancer-memory", "color-switch-snake", "word-scramble-biz", "net-30-ninja", "ssl-shield", "nda-speed-sign", "invoice-number-rush"];
 const UTIL_APPS = ["billsnap", "statusping-lite", "leaselens", "ndagen", "hookrelay", "pipekit", "meetingcost", "templateforge", "comparestack", "tip-calculator-pro", "hourly-rate-calculator-pro", "freelancer-tax-estimator", "1099-threshold-tracker-pro", "quarterly-tax-deadline-pro", "profit-margin-calculator-pro", "break-even-calculator-pro", "late-fee-calculator-pro", "markup-calculator-pro", "day-rate-calculator-pro", "bill-splitter-pro", "percentage-calculator-pro"];
 const UTIL_DIST = { "statusping-lite": "statusping", pipekit: "pipekit", templateforge: "templateforge", comparestack: "comparestack", "tip-calculator-pro": "tip-calculator-pro", "hourly-rate-calculator-pro": "hourly-rate-calculator-pro", "freelancer-tax-estimator": "freelancer-tax-estimator", "1099-threshold-tracker-pro": "1099-threshold-tracker-pro", "quarterly-tax-deadline-pro": "quarterly-tax-deadline-pro", "profit-margin-calculator-pro": "profit-margin-calculator-pro", "break-even-calculator-pro": "break-even-calculator-pro", "late-fee-calculator-pro": "late-fee-calculator-pro", "markup-calculator-pro": "markup-calculator-pro", "day-rate-calculator-pro": "day-rate-calculator-pro", "bill-splitter-pro": "bill-splitter-pro", "percentage-calculator-pro": "percentage-calculator-pro" };
@@ -152,6 +153,17 @@ if (isHubApp) {
     else fail("5c-compare", "Meeting compare page built", "Missing dist/comparestack/pages/meeting-cost-calculators.html");
     if (existsSync(join(dist, "hourly-rate-calculator-pro", "index.html"))) pass("5c-rate", "Hourly rate pro built");
     else fail("5c-rate", "Hourly rate pro built", "Missing dist/hourly-rate-calculator-pro/index.html");
+  } else if (app === "partners") {
+    if (existsSync(join(dist, "partners", "index.html"))) pass("5b", "Partner portal built");
+    else fail("5b", "Partner portal built", "Missing dist/partners/index.html");
+    if (existsSync(join(dist, "refer.html"))) pass("5c-refer", "Referral dashboard built");
+    else fail("5c-refer", "Referral dashboard built", "Missing dist/refer.html");
+    if (existsSync(join(dist, "join.html"))) pass("5c-join", "LAUNCH25 join page built");
+    else fail("5c-join", "LAUNCH25 join page built", "Missing dist/join.html");
+    if (existsSync(join(dist, "comparestack", "index.html"))) pass("5c-compare", "CompareStack hub built");
+    else fail("5c-compare", "CompareStack hub built", "Missing dist/comparestack/index.html");
+    if (existsSync(join(dist, "go", "billsnap-pro.html"))) pass("5c-billsnap", "Top converter landing built");
+    else fail("5c-billsnap", "Top converter landing built", "Missing dist/go/billsnap-pro.html");
   }
 } else if (isUtilApp) {
   const utilDist = UTIL_DIST[utilSlug] ?? utilSlug;
@@ -224,6 +236,8 @@ if (isHubApp && app === "freelancer-stack" && existsSync(join(mobileRoot, app, "
   pass("6b", "Team landing synced");
 } else if (isHubApp && app === "meetingcost-team" && existsSync(join(mobileRoot, app, "www", "go", "meeting-cost-team.html"))) {
   pass("6b", "Team landing synced");
+} else if (isHubApp && app === "partners" && existsSync(join(mobileRoot, app, "www", "partners", "index.html"))) {
+  pass("6b", "Partner portal synced");
 } else if (isHubApp) {
   pass("6b", "Hub bundle sync", app);
 } else if (isUtilApp && existsSync(join(dist, (UTIL_DIST[utilSlug] ?? utilSlug), "index.html"))) {
@@ -328,10 +342,13 @@ if (existsSync(iapConfigPath)) {
   const iapConfig = JSON.parse(readFileSync(iapConfigPath, "utf8"));
   const appIap = iapConfig.apps?.[app];
   if (appIap?.products?.length) {
-    pass(16, "IAP products configured", `${appIap.products.length} products`);
+    pass(16, "IAP products configured", `${appIap.products.length} products${OPTIONAL_IAP_APPS.includes(app) ? " (optional)" : ""}`);
     const invalid = appIap.products.filter((p) => !p.storeKitId?.startsWith(appIap.bundleId + "."));
     if (!invalid.length) pass("16b", "IAP StoreKit IDs valid");
     else fail("16b", "IAP StoreKit IDs valid", invalid.map((p) => p.key).join(", "));
+  } else if (OPTIONAL_IAP_APPS.includes(app)) {
+    pass(16, "IAP products configured", "Optional — tip jar not required");
+    pass("16b", "IAP StoreKit IDs valid", "N/A — optional IAP");
   } else {
     fail(16, "IAP products configured", `Missing products for ${app} in mobile-iap-products.json`);
   }

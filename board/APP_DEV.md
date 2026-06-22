@@ -51,6 +51,7 @@
 | **StatusPing Agency** | `com.wealthengine.statuspingagency` | **TestFlight prep** | 25 PASS, 0 FAIL | `d0b9ca6` | **READY** (Mac upload) |
 | **NDAGen Team** | `com.wealthengine.ndagenteam` | **TestFlight prep** | 25 PASS, 0 FAIL | `347732a` | **READY** (Mac upload) |
 | **MeetingCost Team** | `com.wealthengine.meetingcostteam` | **TestFlight prep** | 25 PASS, 0 FAIL | `4333812` | **READY** (Mac upload) |
+| **Wealth Engine Partners** | `com.wealthengine.partners` | **TestFlight prep** | TBD | TBD | **READY** (Mac upload) |
 
 ## App 1 — Horseshoe Games Hub
 
@@ -1074,9 +1075,37 @@ npx cap sync ios && npx cap open ios
 # Or: bundle exec fastlane ios beta_meetingcost_team
 ```
 
+## App 44 — Wealth Engine Partners (affiliate portal)
+
+| Field | Value |
+|-------|-------|
+| Version | 1.0.0 |
+| Tools | Partner Portal + Referral Dashboard + LAUNCH25 + CompareStack + BillSnap landing |
+| Capacitor | `mobile/partners/` → loads `/partners/` from prod |
+| Store metadata | `mobile/store-metadata/partners/` |
+| Preflight | `npm run mobile:preflight:partners` |
+
+### Features (shipped this session)
+
+1. **Native launcher** — 5-tool grid with recently used tracking
+2. **Partner portal** — local copy of `/partners/index.html` with self-serve signup
+3. **Partner push** — local notifications for weekly link check, payout day, mid-month review
+4. **Commission CSV export** — Excel-compatible snapshot with ?ref= deep links
+5. **Partner code stat** — displays saved `we_partner_code` from portal signup
+6. **IAP optional** — tip jar only (`com.wealthengine.partners.tip_jar`); not required for affiliate features
+
+### TestFlight upload (user Mac)
+
+```bash
+npm run build && cd mobile && node sync-www.mjs partners
+cd partners && npm install && npx cap add ios  # if missing
+npx cap sync ios && npx cap open ios
+# Or: bundle exec fastlane ios beta_partners
+```
+
 ## Master checklist
 
-See `mobile/TESTFLIGHT_ALL_APPS.md` for all 43 apps — bundle IDs, Fastlane lanes, versions.
+See `mobile/TESTFLIGHT_ALL_APPS.md` for all 44 apps — bundle IDs, Fastlane lanes, versions.
 
 ## GitHub policy
 

@@ -286,6 +286,11 @@ platform :ios do
     mini_app_ios_beta("meetingcost-team", "MeetingCost Team")
   end
 
+  desc "TestFlight upload for Wealth Engine Partners affiliate portal"
+  lane :beta_partners do
+    mini_app_ios_beta("partners", "Wealth Engine Partners")
+  end
+
   desc "TestFlight upload + App Store metadata (does not auto-submit for review)"
   lane :release do
     beta

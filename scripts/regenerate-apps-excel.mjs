@@ -56,6 +56,7 @@ const FASTLANE_LANES = {
   "statusping-agency": "beta_statusping_agency",
   "ndagen-team": "beta_ndagen_team",
   "meetingcost-team": "beta_meetingcost_team",
+  partners: "beta_partners",
 };
 
 async function main() {

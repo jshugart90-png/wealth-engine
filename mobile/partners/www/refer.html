@@ -1,0 +1,108 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Your referral links — Wealth Engine Partners</title>
+<style>
+body{font-family:system-ui,-apple-system,sans-serif;max-width:720px;margin:0 auto;padding:24px 20px 48px;line-height:1.6;color:#0f172a;background:#f8fafc}
+h1{color:#1e40af;font-size:1.75rem;margin:0 0 8px}
+h2{color:#334155;font-size:1.15rem;margin:28px 0 12px;border-bottom:1px solid #e2e8f0;padding-bottom:6px}
+.lead{color:#64748b;margin-bottom:24px}
+.card{background:#fff;border:1px solid #e2e8f0;border-radius:12px;padding:20px;margin:16px 0;box-shadow:0 1px 3px rgba(0,0,0,.04)}
+.code{background:#f0fdf4;border:1px solid #bbf7d0;padding:14px 16px;border-radius:8px;font-family:ui-monospace,monospace;font-size:15px;word-break:break-all;margin:12px 0}
+.btn{display:inline-block;background:#2563eb;color:#fff;padding:12px 20px;text-decoration:none;border-radius:8px;font-weight:600;margin:6px 6px 6px 0;border:none;cursor:pointer;font-size:15px}
+.btn:hover{background:#1d4ed8}
+.btn.secondary{background:#fff;color:#2563eb;border:1px solid #2563eb}
+.btn.secondary:hover{background:#eff6ff}
+.btn.green{background:#16a34a}.btn.green:hover{background:#15803d}
+table{width:100%;border-collapse:collapse;font-size:14px;margin:12px 0}
+th,td{text-align:left;padding:10px 8px;border-bottom:1px solid #e2e8f0}
+th{color:#64748b;font-weight:600;font-size:12px;text-transform:uppercase;letter-spacing:.04em}
+.disclosure{font-size:13px;color:#64748b;background:#fffbeb;border:1px solid #fde68a;border-radius:8px;padding:12px 16px;margin:20px 0}
+input[type=email],input[type=text]{width:100%;padding:12px;margin:8px 0 12px;border:1px solid #cbd5e1;border-radius:8px;font-size:16px;box-sizing:border-box}
+.ok{display:none;color:#059669;margin-top:12px;font-weight:600}
+.nav{font-size:14px;margin-bottom:24px}
+.nav a{color:#2563eb;margin-right:16px}
+.tag{display:inline-block;background:#dbeafe;color:#1e40af;font-size:11px;font-weight:700;padding:3px 8px;border-radius:4px;text-transform:uppercase;letter-spacing:.05em}
+.grid{display:grid;gap:12px;margin:16px 0}
+@media(min-width:560px){.grid{grid-template-columns:1fr 1fr}}
+
+.stat{display:inline-block;background:#fff;border:1px solid #e2e8f0;border-radius:8px;padding:12px 16px;margin:6px 6px 6px 0;min-width:100px}
+.stat strong{display:block;font-size:22px;color:#1e40af}
+.stat span{font-size:12px;color:#64748b;text-transform:uppercase}
+</style></head><body>
+<div class="nav"><a href="/partners/">Partner program</a><a href="/">← Portfolio</a></div>
+<h1>Your referral dashboard</h1>
+<p class="lead">Share any link below. We track clicks for 90 days via first-click cookie.</p>
+
+<div id="stats" style="display:none">
+<div class="stat"><strong id="clicks">0</strong><span>Clicks</span></div>
+<div class="stat"><strong id="conversions">0</strong><span>Conversions</span></div>
+<div class="stat"><strong id="pending">$0</strong><span>Pending</span></div>
+</div>
+
+<label for="code">Partner code</label>
+<input type="text" id="code" placeholder="Enter your code or sign up at /partners/">
+<button class="btn" id="load">Load my links</button>
+
+<div id="panel" style="display:none">
+<h2>Primary link</h2>
+<div class="code" id="primary">/?ref=</div>
+<button class="btn secondary" id="copy">Copy link</button>
+
+<h2>Top converters</h2>
+<div class="grid" id="links"></div>
+
+<h2>FTC disclosure (paste on your site)</h2>
+<div class="code" id="ftc">Disclosure: I earn a commission if you purchase through my partner link. Prices and features are unchanged.</div>
+<button class="btn secondary" id="copyFtc">Copy disclosure</button>
+</div>
+
+<p style="margin-top:24px">New partner? <a href="/partners/">Join the program →</a></p>
+
+<script>
+const base=location.origin;
+const products=[{"label":"Invoice PDF $3","path":"/go/invoice.html","pitch":"One-click PDF invoices for freelancers — no subscription."},{"label":"BillSnap Pro $29/mo","path":"/go/billsnap-pro.html","pitch":"Unlimited invoices + client portal for growing freelancers."},{"label":"HookRelay DLQ $29/mo","path":"/go/hookrelay-dlq.html","pitch":"Webhook retry + dead-letter queue for indie SaaS."},{"label":"Freelancer Stack $29/mo","path":"/go/stack.html","pitch":"Invoice + NDA + templates in one subscription."},{"label":"CompareStack hub","path":"/comparestack/index.html","pitch":"Honest tool comparisons — great for SEO content sites."}];
+
+function buildLinks(code){
+  document.getElementById('panel').style.display='block';
+  document.getElementById('primary').textContent=base+'/?ref='+code;
+  const grid=document.getElementById('links');
+  grid.innerHTML=products.map(p=>
+    '<div class="card"><strong>'+p.label+'</strong><div class="code">'+base+p.path+'?ref='+code+'</div></div>'
+  ).join('');
+  localStorage.setItem('we_partner_code',code);
+}
+
+async function loadStats(code){
+  const r=await fetch('/api/affiliate/stats?code='+encodeURIComponent(code));
+  const d=await r.json();
+  if(!d.ok)return;
+  document.getElementById('stats').style.display='block';
+  document.getElementById('clicks').textContent=d.clicks;
+  document.getElementById('conversions').textContent=d.conversions;
+  document.getElementById('pending').textContent='$'+Number(d.commissionPendingUsd).toFixed(2);
+}
+
+document.getElementById('load').onclick=async()=>{
+  const code=(document.getElementById('code').value||'').trim()||localStorage.getItem('we_partner_code')||'';
+  if(!code){alert('Enter your partner code or sign up at /partners/');return;}
+  buildLinks(code);
+  await loadStats(code);
+};
+
+document.getElementById('copy').onclick=()=>{
+  navigator.clipboard.writeText(document.getElementById('primary').textContent);
+  alert('Copied!');
+};
+document.getElementById('copyFtc').onclick=()=>{
+  navigator.clipboard.writeText(document.getElementById('ftc').textContent);
+  alert('Disclosure copied!');
+};
+
+const params=new URLSearchParams(location.search);
+const fromUrl=params.get('code')||localStorage.getItem('we_partner_code');
+if(fromUrl){
+  document.getElementById('code').value=fromUrl;
+  buildLinks(fromUrl);
+  loadStats(fromUrl);
+}
+</script>
+</body></html>

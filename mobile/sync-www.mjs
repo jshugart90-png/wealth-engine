@@ -15,6 +15,9 @@ import {
   ndagenAuditCsvExportScript,
   meetingCostTeamPushInlineScript,
   meetingCostHistoryCsvExportScript,
+  partnersPushInlineScript,
+  partnersCommissionCsvExportScript,
+  partnersStatsCacheScript,
 } from "./shared/push.mjs";
 
 const mobileRoot = join(dirname(fileURLToPath(import.meta.url)));
@@ -1560,6 +1563,197 @@ p{margin:0 0 10px;color:#fca5a5;font-size:14px}
   console.log("Synced meetingcost-team → mobile/meetingcost-team/www");
 }
 
+function syncPartners() {
+  const www = join(mobileRoot, "partners", "www");
+  mkdirSync(www, { recursive: true });
+
+  const tools = [
+    {
+      href: "partners/index.html",
+      slug: "portal",
+      title: "Partner Portal",
+      desc: "25% recurring — signup and live link in under 5 min",
+      featured: true,
+    },
+    {
+      href: "refer.html",
+      slug: "refer",
+      title: "Referral Dashboard",
+      desc: "Your ?ref= links, stats, and FTC disclosure template",
+    },
+    {
+      href: "join.html",
+      slug: "join",
+      title: "LAUNCH25 List",
+      desc: "Email signup for launch deals across the portfolio",
+    },
+    {
+      href: "comparestack/index.html",
+      slug: "compare",
+      title: "CompareStack Hub",
+      desc: "Honest tool comparisons — great for SEO affiliate sites",
+    },
+    {
+      href: "go/billsnap-pro.html",
+      slug: "billsnap",
+      title: "BillSnap Pro",
+      desc: "Top converter — unlimited invoices $29/mo",
+    },
+  ];
+
+  const cards = tools
+    .map(
+      (t) => `
+    <a class="card${t.featured ? " featured" : ""}" href="${t.href}" data-slug="${t.slug}">
+      <h2>${t.title}</h2>
+      <p>${t.desc}</p>
+      <span class="open">Open →</span>
+    </a>`
+    )
+    .join("");
+
+  const titlesJson = JSON.stringify(Object.fromEntries(tools.map((t) => [t.slug, t.title])));
+  const hrefsJson = JSON.stringify(Object.fromEntries(tools.map((t) => [t.slug, t.href])));
+  const pushScript = partnersPushInlineScript();
+  const csvScript = partnersCommissionCsvExportScript();
+  const statsScript = partnersStatsCacheScript();
+
+  const indexHtml = `<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Wealth Engine Partners</title>
+<meta name="description" content="Self-serve affiliate portal — 25% recurring commissions across 161 portfolio URLs.">
+<link rel="manifest" href="/manifest.json">
+<meta name="theme-color" content="#1e3a8a">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<link rel="apple-touch-icon" href="/assets/pwa/icon-192.png">
+<style>
+body{font-family:system-ui,sans-serif;background:#0f172a;color:#e2e8f0;margin:0;padding:0 20px 40px}
+.promo{background:#2563eb;color:#fff;text-align:center;padding:10px 16px;font-size:13px;font-weight:700;margin:0 -20px 16px}
+.promo a{color:#fff;text-decoration:underline}
+.offline{display:none;background:#1e3a8a;color:#bfdbfe;text-align:center;padding:10px 16px;font-size:13px}
+.offline.show{display:block}
+h1{text-align:center;margin:28px 0 8px;font-size:1.6rem;color:#fff}
+.sub{text-align:center;max-width:360px;margin:0 auto 20px;color:#94a3b8;line-height:1.5}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:16px;max-width:900px;margin:0 auto}
+.card{display:block;background:#1e293b;border:1px solid #334155;border-radius:12px;padding:20px;color:inherit;text-decoration:none;transition:.2s}
+.card:hover{border-color:#2563eb;transform:translateY(-2px)}
+.card.featured{border-color:#2563eb;background:linear-gradient(135deg,#1e293b,#1e3a8a)}
+h2{margin:0 0 8px;font-size:18px;color:#fff}
+p{margin:0 0 10px;color:#94a3b8;font-size:14px}
+.open{color:#60a5fa;font-size:13px;font-weight:600}
+.stat{display:block;max-width:900px;margin:0 auto 20px;background:#1e3a8a;border:2px solid #2563eb;border-radius:12px;padding:16px 20px;text-align:center}
+.stat span{font-size:1.2rem;font-weight:700;color:#bfdbfe;word-break:break-all}
+.tier{display:block;max-width:900px;margin:24px auto 0;background:#1e3a8a;border:2px solid #2563eb;border-radius:12px;padding:20px;text-align:center;color:inherit;text-decoration:none}
+.tier strong{display:block;font-size:18px;margin-bottom:6px;color:#fff}
+.tier span{font-size:14px;color:#bfdbfe}
+.export{display:block;max-width:900px;margin:16px auto 0;background:#1e293b;border:1px solid #334155;border-radius:12px;padding:14px 20px;text-align:center}
+.export button{background:#2563eb;color:#fff;border:none;border-radius:8px;padding:10px 16px;font-weight:700;cursor:pointer;font-size:14px}
+.export p{margin:8px 0 0;font-size:12px;color:#64748b}
+.recent{max-width:900px;margin:0 auto 20px}
+.recent h3{font-size:13px;color:#64748b;margin:0 0 10px;text-transform:uppercase;letter-spacing:.05em}
+.recent-row{display:flex;gap:10px;flex-wrap:wrap}
+.recent a{background:#1e293b;border:1px solid #334155;border-radius:8px;padding:8px 12px;font-size:13px;color:#cbd5e1;text-decoration:none}
+.footer{text-align:center;margin-top:32px;font-size:13px;color:#64748b}
+.footer a{color:#60a5fa}
+</style></head><body>
+<div class="promo"><strong>25% recurring</strong> for 12 months · <a href="partners/index.html">Join free →</a></div>
+<div id="offline-banner" class="offline" role="status">You're offline — open tools you've used before</div>
+<h1>🤝 Wealth Engine Partners</h1>
+<p class="sub">Affiliate portal — 161 URLs, 90-day cookie, self-serve signup</p>
+<div class="stat">Partner stats<br><span id="partner-stat">—</span></div>
+<div id="recent-section" class="recent" hidden>
+  <h3>Recently used</h3>
+  <div id="recent-row" class="recent-row"></div>
+</div>
+<div class="grid">${cards}</div>
+<div class="export"><button type="button" id="export-commissions">Export commission snapshot CSV</button><p>Opens in Excel · deep links with your ?ref= code</p></div>
+<a class="tier" href="partners/index.html">
+  <strong>Partner Program — free signup</strong>
+  <span>25% recurring · $1 flat on one-time · starter kit included</span>
+</a>
+<p class="footer"><a href="privacy.html">Privacy</a> · <a href="https://wealth-engine-0qlj.onrender.com/partners/">View portal online</a></p>
+<script>(function(){
+  var KEY='partners_recent';
+  var titles=${titlesJson};
+  var hrefs=${hrefsJson};
+  function trackRecent(slug){
+    try{
+      var list=JSON.parse(localStorage.getItem(KEY)||'[]').filter(function(s){return s!==slug});
+      list.unshift(slug);
+      localStorage.setItem(KEY,JSON.stringify(list.slice(0,5)));
+    }catch(e){}
+  }
+  document.querySelectorAll('.card').forEach(function(card){
+    var slug=card.getAttribute('data-slug');
+    if(slug)card.addEventListener('click',function(){trackRecent(slug)});
+  });
+  function renderRecent(){
+    var row=document.getElementById('recent-row');
+    var section=document.getElementById('recent-section');
+    if(!row||!section)return;
+    var slugs=[];
+    try{slugs=JSON.parse(localStorage.getItem(KEY)||'[]')}catch(e){}
+    slugs=slugs.filter(function(s){return titles[s]&&hrefs[s]}).slice(0,3);
+    if(!slugs.length){section.hidden=true;return;}
+    section.hidden=false;
+    row.innerHTML=slugs.map(function(s){
+      return '<a href="'+hrefs[s]+'">'+titles[s]+'</a>';
+    }).join('');
+  }
+  renderRecent();
+  var banner=document.getElementById('offline-banner');
+  function setOffline(){if(banner)banner.classList.toggle('show',!navigator.onLine)}
+  window.addEventListener('online',setOffline);
+  window.addEventListener('offline',setOffline);
+  setOffline();
+})();</script>
+<script>${statsScript}</script>
+<script>${pushScript}</script>
+<script>${csvScript}</script>
+</body></html>`;
+
+  writeFileSync(join(www, "index.html"), indexHtml);
+
+  const portalSrc = join(dist, "partners", "index.html");
+  if (!existsSync(portalSrc)) {
+    console.error("Missing dist/partners/index.html — run npm run build first");
+    process.exit(1);
+  }
+  mkdirSync(join(www, "partners"), { recursive: true });
+  cpSync(portalSrc, join(www, "partners", "index.html"));
+
+  for (const page of ["refer.html", "join.html"]) {
+    const src = join(dist, page);
+    if (!existsSync(src)) {
+      console.error(`Missing dist/${page} — run npm run build first`);
+      process.exit(1);
+    }
+    cpSync(src, join(www, page));
+  }
+
+  const compareSrc = join(dist, "comparestack");
+  if (!existsSync(join(compareSrc, "index.html"))) {
+    console.error("Missing dist/comparestack — run npm run build first");
+    process.exit(1);
+  }
+  cpSync(compareSrc, join(www, "comparestack"), { recursive: true });
+
+  const billsnapLanding = join(dist, "go", "billsnap-pro.html");
+  if (!existsSync(billsnapLanding)) {
+    console.error("Missing dist/go/billsnap-pro.html — run npm run build first");
+    process.exit(1);
+  }
+  mkdirSync(join(www, "go"), { recursive: true });
+  cpSync(billsnapLanding, join(www, "go", "billsnap-pro.html"));
+
+  if (existsSync(join(dist, "privacy.html"))) cpSync(join(dist, "privacy.html"), join(www, "privacy.html"));
+  if (existsSync(join(dist, "manifest.json"))) cpSync(join(dist, "manifest.json"), join(www, "manifest.json"));
+  if (existsSync(join(dist, "sw.js"))) cpSync(join(dist, "sw.js"), join(www, "sw.js"));
+  if (existsSync(join(dist, "assets"))) cpSync(join(dist, "assets"), join(www, "assets"), { recursive: true });
+
+  console.log("Synced partners → mobile/partners/www");
+}
+
 const MINI_GAME_SHELLS = {
   "receipt-rush": {
     title: "Receipt Rush",
@@ -2432,6 +2626,7 @@ if (target === "1099-suite" || target === "all") sync1099Suite();
 if (target === "statusping-agency" || target === "all") syncStatuspingAgency();
 if (target === "ndagen-team" || target === "all") syncNdagenTeam();
 if (target === "meetingcost-team" || target === "all") syncMeetingcostTeam();
+if (target === "partners" || target === "all") syncPartners();
 if (target === "billsnap" || target === "all") syncUtility("billsnap");
 if (target === "statusping-lite" || target === "all") syncUtility("statusping-lite");
 if (target === "leaselens" || target === "all") syncUtility("leaselens");

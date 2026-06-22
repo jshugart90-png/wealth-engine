@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-06-22T22:45:33.143Z",
+  "generatedAt": "2026-06-22T22:58:07.195Z",
   "revenueCat": {
     "plugin": "@revenuecat/purchases-capacitor",
     "note": "Configure API key in App Store Connect + RevenueCat dashboard after IAP products are live"
@@ -504,6 +504,23 @@
         }
       ]
     },
+    "meetingcost-team": {
+      "appName": "MeetingCost Team",
+      "bundleId": "com.wealthengine.meetingcostteam",
+      "type": "utility",
+      "version": "1.0.0",
+      "products": [
+        {
+          "key": "pro_unlock",
+          "storeKitId": "com.wealthengine.meetingcostteam.pro_unlock",
+          "type": "non_consumable",
+          "price": 4.99,
+          "title": "Pro Unlock",
+          "description": "Unlock Pro features (matches Stripe tier where applicable)",
+          "stripeSku": "meetingcost-team-monthly"
+        }
+      ]
+    },
     "nda-speed-sign": {
       "appName": "NDA Speed Sign",
       "bundleId": "com.wealthengine.ndaspeedsign",
@@ -556,6 +573,23 @@
         }
       ]
     },
+    "ndagen-team": {
+      "appName": "NDAGen Team",
+      "bundleId": "com.wealthengine.ndagenteam",
+      "type": "utility",
+      "version": "1.0.0",
+      "products": [
+        {
+          "key": "pro_unlock",
+          "storeKitId": "com.wealthengine.ndagenteam.pro_unlock",
+          "type": "non_consumable",
+          "price": 4.99,
+          "title": "Pro Unlock",
+          "description": "Unlock Pro features (matches Stripe tier where applicable)",
+          "stripeSku": "ndagen-team-monthly"
+        }
+      ]
+    },
     "net-30-ninja": {
       "appName": "Net-30 Ninja",
       "bundleId": "com.wealthengine.net30ninja",
@@ -587,6 +621,23 @@
           "price": 0.99,
           "title": "Tip Jar",
           "description": "Support the developer",
+          "stripeSku": null
+        }
+      ]
+    },
+    "partners": {
+      "appName": "Wealth Engine Partners",
+      "bundleId": "com.wealthengine.partners",
+      "type": "utility",
+      "version": "1.0.0",
+      "products": [
+        {
+          "key": "tip_jar",
+          "storeKitId": "com.wealthengine.partners.tip_jar",
+          "type": "consumable",
+          "price": 0.99,
+          "title": "Tip Jar",
+          "description": "Optional support tip — not required for affiliate features",
           "stripeSku": null
         }
       ]
@@ -760,40 +811,6 @@
           "title": "Pro Unlock",
           "description": "Unlock Pro features (matches Stripe tier where applicable)",
           "stripeSku": "agency-monthly"
-        }
-      ]
-    },
-    "ndagen-team": {
-      "appName": "NDAGen Team",
-      "bundleId": "com.wealthengine.ndagenteam",
-      "type": "utility",
-      "version": "1.0.0",
-      "products": [
-        {
-          "key": "pro_unlock",
-          "storeKitId": "com.wealthengine.ndagenteam.pro_unlock",
-          "type": "non_consumable",
-          "price": 4.99,
-          "title": "Pro Unlock",
-          "description": "Unlock Pro features (matches Stripe tier where applicable)",
-          "stripeSku": "ndagen-team-monthly"
-        }
-      ]
-    },
-    "meetingcost-team": {
-      "appName": "MeetingCost Team",
-      "bundleId": "com.wealthengine.meetingcostteam",
-      "type": "utility",
-      "version": "1.0.0",
-      "products": [
-        {
-          "key": "pro_unlock",
-          "storeKitId": "com.wealthengine.meetingcostteam.pro_unlock",
-          "type": "non_consumable",
-          "price": 4.99,
-          "title": "Pro Unlock",
-          "description": "Unlock Pro features (matches Stripe tier where applicable)",
-          "stripeSku": "meetingcost-team-monthly"
         }
       ]
     },

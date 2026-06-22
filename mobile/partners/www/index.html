@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Wealth Engine Partners</title>
+<meta name="description" content="Self-serve affiliate portal — 25% recurring commissions across 161 portfolio URLs.">
+<link rel="manifest" href="/manifest.json">
+<meta name="theme-color" content="#1e3a8a">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<link rel="apple-touch-icon" href="/assets/pwa/icon-192.png">
+<style>
+body{font-family:system-ui,sans-serif;background:#0f172a;color:#e2e8f0;margin:0;padding:0 20px 40px}
+.promo{background:#2563eb;color:#fff;text-align:center;padding:10px 16px;font-size:13px;font-weight:700;margin:0 -20px 16px}
+.promo a{color:#fff;text-decoration:underline}
+.offline{display:none;background:#1e3a8a;color:#bfdbfe;text-align:center;padding:10px 16px;font-size:13px}
+.offline.show{display:block}
+h1{text-align:center;margin:28px 0 8px;font-size:1.6rem;color:#fff}
+.sub{text-align:center;max-width:360px;margin:0 auto 20px;color:#94a3b8;line-height:1.5}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:16px;max-width:900px;margin:0 auto}
+.card{display:block;background:#1e293b;border:1px solid #334155;border-radius:12px;padding:20px;color:inherit;text-decoration:none;transition:.2s}
+.card:hover{border-color:#2563eb;transform:translateY(-2px)}
+.card.featured{border-color:#2563eb;background:linear-gradient(135deg,#1e293b,#1e3a8a)}
+h2{margin:0 0 8px;font-size:18px;color:#fff}
+p{margin:0 0 10px;color:#94a3b8;font-size:14px}
+.open{color:#60a5fa;font-size:13px;font-weight:600}
+.stat{display:block;max-width:900px;margin:0 auto 20px;background:#1e3a8a;border:2px solid #2563eb;border-radius:12px;padding:16px 20px;text-align:center}
+.stat span{font-size:1.2rem;font-weight:700;color:#bfdbfe;word-break:break-all}
+.tier{display:block;max-width:900px;margin:24px auto 0;background:#1e3a8a;border:2px solid #2563eb;border-radius:12px;padding:20px;text-align:center;color:inherit;text-decoration:none}
+.tier strong{display:block;font-size:18px;margin-bottom:6px;color:#fff}
+.tier span{font-size:14px;color:#bfdbfe}
+.export{display:block;max-width:900px;margin:16px auto 0;background:#1e293b;border:1px solid #334155;border-radius:12px;padding:14px 20px;text-align:center}
+.export button{background:#2563eb;color:#fff;border:none;border-radius:8px;padding:10px 16px;font-weight:700;cursor:pointer;font-size:14px}
+.export p{margin:8px 0 0;font-size:12px;color:#64748b}
+.recent{max-width:900px;margin:0 auto 20px}
+.recent h3{font-size:13px;color:#64748b;margin:0 0 10px;text-transform:uppercase;letter-spacing:.05em}
+.recent-row{display:flex;gap:10px;flex-wrap:wrap}
+.recent a{background:#1e293b;border:1px solid #334155;border-radius:8px;padding:8px 12px;font-size:13px;color:#cbd5e1;text-decoration:none}
+.footer{text-align:center;margin-top:32px;font-size:13px;color:#64748b}
+.footer a{color:#60a5fa}
+</style></head><body>
+<div class="promo"><strong>25% recurring</strong> for 12 months · <a href="partners/index.html">Join free →</a></div>
+<div id="offline-banner" class="offline" role="status">You're offline — open tools you've used before</div>
+<h1>🤝 Wealth Engine Partners</h1>
+<p class="sub">Affiliate portal — 161 URLs, 90-day cookie, self-serve signup</p>
+<div class="stat">Partner stats<br><span id="partner-stat">—</span></div>
+<div id="recent-section" class="recent" hidden>
+  <h3>Recently used</h3>
+  <div id="recent-row" class="recent-row"></div>
+</div>
+<div class="grid">
+    <a class="card featured" href="partners/index.html" data-slug="portal">
+      <h2>Partner Portal</h2>
+      <p>25% recurring — signup and live link in under 5 min</p>
+      <span class="open">Open →</span>
+    </a>
+    <a class="card" href="refer.html" data-slug="refer">
+      <h2>Referral Dashboard</h2>
+      <p>Your ?ref= links, stats, and FTC disclosure template</p>
+      <span class="open">Open →</span>
+    </a>
+    <a class="card" href="join.html" data-slug="join">
+      <h2>LAUNCH25 List</h2>
+      <p>Email signup for launch deals across the portfolio</p>
+      <span class="open">Open →</span>
+    </a>
+    <a class="card" href="comparestack/index.html" data-slug="compare">
+      <h2>CompareStack Hub</h2>
+      <p>Honest tool comparisons — great for SEO affiliate sites</p>
+      <span class="open">Open →</span>
+    </a>
+    <a class="card" href="go/billsnap-pro.html" data-slug="billsnap">
+      <h2>BillSnap Pro</h2>
+      <p>Top converter — unlimited invoices $29/mo</p>
+      <span class="open">Open →</span>
+    </a></div>
+<div class="export"><button type="button" id="export-commissions">Export commission snapshot CSV</button><p>Opens in Excel · deep links with your ?ref= code</p></div>
+<a class="tier" href="partners/index.html">
+  <strong>Partner Program — free signup</strong>
+  <span>25% recurring · $1 flat on one-time · starter kit included</span>
+</a>
+<p class="footer"><a href="privacy.html">Privacy</a> · <a href="https://wealth-engine-0qlj.onrender.com/partners/">View portal online</a></p>
+<script>(function(){
+  var KEY='partners_recent';
+  var titles={"portal":"Partner Portal","refer":"Referral Dashboard","join":"LAUNCH25 List","compare":"CompareStack Hub","billsnap":"BillSnap Pro"};
+  var hrefs={"portal":"partners/index.html","refer":"refer.html","join":"join.html","compare":"comparestack/index.html","billsnap":"go/billsnap-pro.html"};
+  function trackRecent(slug){
+    try{
+      var list=JSON.parse(localStorage.getItem(KEY)||'[]').filter(function(s){return s!==slug});
+      list.unshift(slug);
+      localStorage.setItem(KEY,JSON.stringify(list.slice(0,5)));
+    }catch(e){}
+  }
+  document.querySelectorAll('.card').forEach(function(card){
+    var slug=card.getAttribute('data-slug');
+    if(slug)card.addEventListener('click',function(){trackRecent(slug)});
+  });
+  function renderRecent(){
+    var row=document.getElementById('recent-row');
+    var section=document.getElementById('recent-section');
+    if(!row||!section)return;
+    var slugs=[];
+    try{slugs=JSON.parse(localStorage.getItem(KEY)||'[]')}catch(e){}
+    slugs=slugs.filter(function(s){return titles[s]&&hrefs[s]}).slice(0,3);
+    if(!slugs.length){section.hidden=true;return;}
+    section.hidden=false;
+    row.innerHTML=slugs.map(function(s){
+      return '<a href="'+hrefs[s]+'">'+titles[s]+'</a>';
+    }).join('');
+  }
+  renderRecent();
+  var banner=document.getElementById('offline-banner');
+  function setOffline(){if(banner)banner.classList.toggle('show',!navigator.onLine)}
+  window.addEventListener('online',setOffline);
+  window.addEventListener('offline',setOffline);
+  setOffline();
+})();</script>
+<script>(function(){
+  var code=localStorage.getItem("we_partner_code");
+  var statEl=document.getElementById("partner-stat");
+  if(!code){
+    if(statEl)statEl.textContent="Sign up to get your referral code";
+    return;
+  }
+  if(statEl)statEl.textContent="Code: "+code;
+  fetch("/api/affiliate/stats?code="+encodeURIComponent(code)).then(function(r){return r.json()}).then(function(d){
+    if(!d.ok)return;
+    var pending="$"+Number(d.commissionPendingUsd||0).toFixed(2);
+    localStorage.setItem("we_partner_stats",JSON.stringify({
+      clicks:d.clicks,
+      conversions:d.conversions,
+      pendingUsd:pending,
+      updatedAt:new Date().toISOString()
+    }));
+    if(statEl)statEl.textContent=d.clicks+" clicks · "+d.conversions+" conversions · "+pending+" pending";
+  }).catch(function(){});
+})();</script>
+<script>(function(){
+  if(!window.Capacitor||!window.Capacitor.isNativePlatform())return;
+  try{
+    if(localStorage.getItem("partners_push_scheduled"))return;
+    var LN=window.Capacitor.Plugins&&window.Capacitor.Plugins.LocalNotifications;
+    if(!LN)return;
+    LN.requestPermissions().then(function(perm){
+      if(!perm||perm.display!=="granted")return;
+      var now=new Date();
+      var year=now.getFullYear();
+      var month=now.getMonth();
+      var reminders=[
+        {id:441001,weekday:3,title:"Weekly conversion check",body:"Review referral clicks and conversions in your partner dashboard"},
+        {id:441015,monthDay:1,title:"Monthly payout day",body:"Wealth Engine Partners: commissions paid on the 1st — check pending balance"},
+        {id:441025,monthDay:25,title:"Month-end commission review",body:"Export commission CSV and verify attributed sales before payout hold clears"}
+      ];
+      var notifications=reminders.map(function(d){
+        var at;
+        if(d.weekday!=null){
+          at=new Date(now);
+          var diff=(d.weekday-at.getDay()+7)%7;
+          if(!diff)diff=7;
+          at.setDate(at.getDate()+diff);
+        }else{
+          at=new Date(year,month,d.monthDay,9,0,0);
+          if(at<=now)at=new Date(year,month+1,d.monthDay,9,0,0);
+        }
+        at.setHours(9,0,0,0);
+        return {id:d.id,title:d.title,body:d.body,schedule:{at:at.toISOString()}};
+      });
+      return LN.schedule({notifications:notifications}).then(function(){
+        localStorage.setItem("partners_push_scheduled","1");
+      });
+    }).catch(function(){});
+  }catch(e){}
+})();</script>
+<script>(function(){
+  var btn=document.getElementById("export-commissions");
+  if(!btn)return;
+  btn.addEventListener("click",function(){
+    try{
+      var code=localStorage.getItem("we_partner_code")||"";
+      var stats={};
+      try{stats=JSON.parse(localStorage.getItem("we_partner_stats")||"{}")}catch(e){}
+      var header=["Date","Partner Code","Clicks","Conversions","Pending USD","Notes"];
+      var lines=[header.join(",")].concat([[
+        new Date().toISOString().slice(0,10),
+        code||"—",
+        stats.clicks!=null?stats.clicks:"—",
+        stats.conversions!=null?stats.conversions:"—",
+        stats.pendingUsd!=null?stats.pendingUsd:"—",
+        code?"Load dashboard to refresh stats":"Sign up at Partner Portal first"
+      ].map(function(v){
+        return '"'+String(v).replace(/"/g,'""')+'"';
+      }).join(",")]);
+      var blob=new Blob([lines.join("\n")],{type:"text/csv"});
+      var url=URL.createObjectURL(blob);
+      var a=document.createElement("a");
+      a.href=url;
+      a.download="partner-commissions-"+new Date().toISOString().slice(0,10)+".csv";
+      a.click();
+      URL.revokeObjectURL(url);
+    }catch(e){alert("Export failed — sign up at Partner Portal first.");}
+  });
+})();</script>
+</body></html>
