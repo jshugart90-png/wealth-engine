@@ -48,7 +48,7 @@
 | **Percentage Calculator Pro** | `com.wealthengine.percentagecalculatorpro` | **TestFlight prep** | 20 PASS, 0 FAIL | `9b4ef56` pushed | **READY** (Mac upload) |
 | **Renter Toolkit** | `com.wealthengine.rentertoolkit` | **TestFlight prep** | 23 PASS, 0 FAIL | `84613de` pushed | **READY** (Mac upload) |
 | **1099 Deadline Suite** | `com.wealthengine.1099suite` | **TestFlight prep** | 25 PASS, 0 FAIL | `72b1aae` | **READY** (Mac upload) |
-| **StatusPing Agency** | `com.wealthengine.statuspingagency` | **TestFlight prep** | 25 PASS, 0 FAIL | pending | **READY** (Mac upload) |
+| **StatusPing Agency** | `com.wealthengine.statuspingagency` | **TestFlight prep** | 25 PASS, 0 FAIL | `d0b9ca6` | **READY** (Mac upload) |
 
 ## App 1 — Horseshoe Games Hub
 
