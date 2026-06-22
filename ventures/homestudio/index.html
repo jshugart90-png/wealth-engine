@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>HomeStudio - AI assisted home design planner</title>
+  <meta name="description" content="Design single-level homes, basements, bunkers, and multi-level remodels from photos, boards, and real-world cost benchmarks.">
+  <style>
+    :root{
+      --bg:#07111f;--panel:#0d1b2f;--panel2:#12243d;--line:#25405f;--text:#edf7ff;--muted:#9fb3c8;
+      --brand:#38bdf8;--green:#22c55e;--amber:#f59e0b;--danger:#fb7185;--shadow:0 18px 55px rgba(0,0,0,.28)
+    }
+    *{box-sizing:border-box}
+    body{margin:0;background:radial-gradient(circle at top left,#123b59 0,#07111f 42%,#050a13 100%);color:var(--text);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+    a{color:var(--brand)}
+    button,input,select,textarea{font:inherit}
+    .wrap{max-width:1320px;margin:0 auto;padding:22px}
+    .hero{display:grid;grid-template-columns:1.05fr .95fr;gap:24px;align-items:center;padding:34px 0 20px}
+    .eyebrow{color:#7dd3fc;text-transform:uppercase;letter-spacing:.12em;font-size:12px;font-weight:800}
+    h1{font-size:clamp(34px,6vw,72px);line-height:.95;margin:14px 0}
+    .lead{font-size:18px;line-height:1.65;color:#c8d7e6;max-width:760px}
+    .heroCard,.panel{background:linear-gradient(180deg,rgba(18,36,61,.92),rgba(9,22,39,.92));border:1px solid rgba(125,211,252,.18);border-radius:24px;box-shadow:var(--shadow)}
+    .heroCard{padding:22px}
+    .heroGrid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+    .metric{background:#071525;border:1px solid var(--line);border-radius:18px;padding:16px}
+    .metric b{display:block;font-size:24px;color:#fff}
+    .metric span{color:var(--muted);font-size:13px}
+    .actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:22px}
+    .btn{border:0;border-radius:999px;padding:12px 18px;font-weight:800;cursor:pointer;background:var(--brand);color:#052033;text-decoration:none;display:inline-flex;gap:8px;align-items:center}
+    .btn.secondary{background:#0b1728;color:#dff7ff;border:1px solid var(--line)}
+    .btn.ghost{background:transparent;color:#dff7ff;border:1px dashed var(--line)}
+    .grid{display:grid;grid-template-columns:380px 1fr;gap:22px;align-items:start}
+    .panel{padding:18px;margin-bottom:18px}
+    h2{margin:0 0 12px;font-size:22px}
+    h3{margin:16px 0 8px;font-size:15px;color:#d9f4ff}
+    label{display:block;color:#c4d5e5;font-size:13px;font-weight:700;margin:12px 0 6px}
+    input,select,textarea{width:100%;border:1px solid var(--line);border-radius:12px;background:#071525;color:#eef8ff;padding:11px 12px}
+    textarea{min-height:88px;resize:vertical}
+    .two{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+    .three{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+    .hint{color:var(--muted);font-size:12px;line-height:1.5}
+    .chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+    .chip{background:#0a1727;border:1px solid var(--line);color:#dbeafe;border-radius:999px;padding:7px 10px;font-size:12px}
+    .chip.good{border-color:rgba(34,197,94,.55);color:#bbf7d0}
+    .chip.warn{border-color:rgba(245,158,11,.55);color:#fde68a}
+    .studio{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(360px,.9fr);gap:18px}
+    .stage{position:relative;min-height:500px;border-radius:24px;overflow:hidden;border:1px solid var(--line);background:linear-gradient(160deg,#15243a,#0a1423)}
+    .roomPhoto{position:absolute;inset:0;background:linear-gradient(160deg,#23364f,#111a29);background-size:cover;background-position:center;filter:saturate(1.04)}
+    .emptyState{position:absolute;inset:0;display:grid;place-items:center;text-align:center;padding:30px;color:#bcd0e1}
+    .surface{position:absolute;inset:0;mix-blend-mode:multiply;opacity:.5;pointer-events:none}
+    .floor{position:absolute;left:0;right:0;bottom:0;height:32%;opacity:.58;clip-path:polygon(8% 15%,92% 14%,100% 100%,0 100%);pointer-events:none}
+    .light{position:absolute;inset:0;background:radial-gradient(circle at 62% 18%,rgba(255,255,220,.28),transparent 34%);opacity:.8;pointer-events:none}
+    .furniture{position:absolute;border:2px solid rgba(255,255,255,.7);border-radius:14px;background:rgba(56,189,248,.3);backdrop-filter:blur(2px);cursor:grab;display:grid;place-items:center;font-size:12px;font-weight:900;color:#fff;text-shadow:0 1px 3px #000}
+    .sofa{width:140px;height:66px;left:12%;bottom:16%}
+    .table{width:92px;height:92px;border-radius:50%;left:48%;bottom:18%;background:rgba(245,158,11,.34)}
+    .plant{width:58px;height:90px;right:11%;bottom:20%;background:rgba(34,197,94,.34)}
+    .previewTools{position:absolute;left:16px;right:16px;bottom:16px;display:flex;gap:8px;flex-wrap:wrap;z-index:3}
+    .toolPill{background:rgba(3,9,18,.78);border:1px solid rgba(255,255,255,.16);border-radius:999px;color:#e8f7ff;padding:8px 10px;font-size:12px}
+    .swatches{display:grid;grid-template-columns:repeat(5,1fr);gap:8px}
+    .swatch{height:42px;border-radius:12px;border:2px solid rgba(255,255,255,.2);cursor:pointer}
+    .swatch.active{border-color:#fff;box-shadow:0 0 0 2px var(--brand)}
+    .tabs{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0}
+    .tab{border:1px solid var(--line);background:#071525;color:#d9ecff;border-radius:999px;padding:8px 12px;cursor:pointer;font-size:12px;font-weight:800}
+    .tab.active{background:var(--brand);color:#052033;border-color:var(--brand)}
+    .blueprint{background:#08101c;border:1px solid var(--line);border-radius:18px;min-height:420px;padding:14px}
+    svg{width:100%;height:auto;display:block}
+    .result{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:12px}
+    .costCard{background:#071525;border:1px solid var(--line);border-radius:16px;padding:14px}
+    .costCard strong{display:block;font-size:20px;color:#fff}
+    .list{display:grid;gap:8px;margin:10px 0 0;padding:0;list-style:none}
+    .list li{background:#071525;border:1px solid var(--line);border-radius:12px;padding:10px;color:#cde0ef;font-size:13px}
+    .source{font-size:12px;color:#9fb3c8;line-height:1.5;margin-top:10px}
+    .notice{border-left:4px solid var(--amber);background:rgba(245,158,11,.1);padding:12px;border-radius:12px;color:#fef3c7;font-size:13px;line-height:1.5}
+    .footer{color:#7f95a8;text-align:center;padding:30px 0;font-size:13px}
+    @media (max-width:1100px){.hero,.grid,.studio{grid-template-columns:1fr}.stage{min-height:430px}}
+    @media (max-width:650px){.two,.three,.result,.heroGrid{grid-template-columns:1fr}.wrap{padding:14px}.panel{padding:14px}}
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <section class="hero">
+      <div>
+        <div class="eyebrow">Professional architect mode for homeowners</div>
+        <h1>Design a home from photos, blueprints, boards, and real costs.</h1>
+        <p class="lead">HomeStudio helps you explore single-level builds, basements, bunkers, additions, and multi-level remodels. Upload a room photo, analyze its palette and layout signals, turn it into a live editable room, sketch floor plates, and price the concept with real-world construction benchmarks.</p>
+        <div class="actions">
+          <a class="btn" href="#studio">Start designing</a>
+          <button class="btn secondary" id="demoBtn">Load sample project</button>
+          <button class="btn ghost" id="exportBtn">Export design brief</button>
+        </div>
+      </div>
+      <div class="heroCard">
+        <div class="heroGrid">
+          <div class="metric"><b>Photo to room</b><span>On-device palette, brightness, edge, and style analysis.</span></div>
+          <div class="metric"><b>4 build modes</b><span>Single level, basement, bunker, and multi-level concepts.</span></div>
+          <div class="metric"><b>Live preview</b><span>Move furniture, recolor walls, test floors, and adjust lighting.</span></div>
+          <div class="metric"><b>Cost model</b><span>Regional labor and material estimates from benchmark data.</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="grid" id="studio">
+      <aside>
+        <div class="panel">
+          <h2>1. Project setup</h2>
+          <label for="projectName">Project name</label>
+          <input id="projectName" value="Dream home concept">
+          <div class="two">
+            <div>
+              <label for="buildType">Build type</label>
+              <select id="buildType">
+                <option value="single">Single level</option>
+                <option value="basement">Single level with basement</option>
+                <option value="bunker">Storm shelter / bunker</option>
+                <option value="multi">Multi-level home</option>
+              </select>
+            </div>
+            <div>
+              <label for="region">Region</label>
+              <select id="region">
+                <option value="midwest">Midwest</option>
+                <option value="south">South</option>
+                <option value="west">West</option>
+                <option value="northeast">Northeast</option>
+              </select>
+            </div>
+          </div>
+          <div class="three">
+            <div><label for="sqft">Finished sqft</label><input id="sqft" type="number" min="200" value="2200"></div>
+            <div><label for="levels">Levels</label><input id="levels" type="number" min="1" max="5" value="1"></div>
+            <div><label for="quality">Finish</label><select id="quality"><option value="standard">Standard</option><option value="upgraded">Upgraded</option><option value="premium">Premium</option></select></div>
+          </div>
+          <label for="rooms">Rooms to include</label>
+          <textarea id="rooms">Kitchen, living room, primary suite, two bedrooms, two baths, laundry, mudroom, mechanical/storage</textarea>
+          <p class="hint">Tip: add specialty spaces like safe room, wine cellar, theater, gym, workshop, hidden pantry, or roof deck.</p>
+        </div>
+
+        <div class="panel">
+          <h2>2. Photo and board inputs</h2>
+          <label for="photoInput">Upload room or exterior photo</label>
+          <input id="photoInput" type="file" accept="image/*">
+          <p class="hint">The photo is analyzed in your browser and used as the live preview background. No upload is required for the visual analysis.</p>
+          <label for="pinUrl">Pinterest, board, or inspiration link</label>
+          <div class="two">
+            <input id="pinUrl" placeholder="https://www.pinterest.com/...">
+            <button class="btn secondary" id="addPinBtn" type="button">Add link</button>
+          </div>
+          <div class="chips" id="pinChips"></div>
+          <h3>Detected photo profile</h3>
+          <div class="chips" id="analysisChips">
+            <span class="chip">Waiting for photo</span>
+          </div>
+        </div>
+
+        <div class="panel">
+          <h2>3. Customize live room</h2>
+          <label>Wall finish</label>
+          <div class="swatches" data-target="wall">
+            <button class="swatch active" style="background:#d8d2c4" data-color="#d8d2c4" aria-label="warm plaster"></button>
+            <button class="swatch" style="background:#cbd5e1" data-color="#cbd5e1" aria-label="soft gray"></button>
+            <button class="swatch" style="background:#f8fafc" data-color="#f8fafc" aria-label="gallery white"></button>
+            <button class="swatch" style="background:#b8c4ad" data-color="#b8c4ad" aria-label="sage"></button>
+            <button class="swatch" style="background:#222831" data-color="#222831" aria-label="charcoal"></button>
+          </div>
+          <label>Floor finish</label>
+          <div class="swatches" data-target="floor">
+            <button class="swatch active" style="background:#9a6b43" data-color="#9a6b43" aria-label="oak"></button>
+            <button class="swatch" style="background:#d6c5a8" data-color="#d6c5a8" aria-label="white oak"></button>
+            <button class="swatch" style="background:#6b4f3a" data-color="#6b4f3a" aria-label="walnut"></button>
+            <button class="swatch" style="background:#94a3b8" data-color="#94a3b8" aria-label="polished concrete"></button>
+            <button class="swatch" style="background:#111827" data-color="#111827" aria-label="black tile"></button>
+          </div>
+          <div class="two">
+            <div>
+              <label for="style">Design style</label>
+              <select id="style"><option>Modern warm minimal</option><option>Farmhouse transitional</option><option>Mountain modern</option><option>Luxury contemporary</option><option>Industrial bunker</option><option>Coastal bright</option></select>
+            </div>
+            <div>
+              <label for="lighting">Lighting</label>
+              <select id="lighting"><option value="soft">Soft daylight</option><option value="bright">Bright architectural</option><option value="moody">Moody warm</option></select>
+            </div>
+          </div>
+        </div>
+      </aside>
+
+      <section>
+        <div class="studio">
+          <div class="panel">
+            <h2>Live room version</h2>
+            <div class="stage" id="stage">
+              <div class="roomPhoto" id="roomPhoto"></div>
+              <div class="emptyState" id="emptyState">
+                <div>
+                  <strong>Upload a room photo to begin.</strong>
+                  <p class="hint">Then drag furniture, test finishes, and let the analysis influence the design palette.</p>
+                </div>
+              </div>
+              <div class="surface" id="wallOverlay"></div>
+              <div class="floor" id="floorOverlay"></div>
+              <div class="light" id="lightOverlay"></div>
+              <div class="furniture sofa" data-name="Sectional">Sectional</div>
+              <div class="furniture table" data-name="Table">Table</div>
+              <div class="furniture plant" data-name="Plant">Plant</div>
+              <div class="previewTools">
+                <span class="toolPill" id="palettePill">Palette: neutral</span>
+                <span class="toolPill" id="stylePill">Style: modern warm minimal</span>
+                <span class="toolPill">Drag items to customize</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="panel">
+            <h2>Architect notes</h2>
+            <div class="notice">Conceptual planning only. Final construction drawings, code checks, engineering, bunker life-safety design, permits, and stamped plans must be completed by licensed professionals in your jurisdiction.</div>
+            <ul class="list" id="recommendations">
+              <li>Upload a photo or load the sample project to generate room-specific recommendations.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="panel">
+          <h2>Blueprint builder</h2>
+          <div class="tabs" id="levelTabs"></div>
+          <div class="blueprint" id="blueprint"></div>
+          <div class="actions">
+            <button class="btn secondary" id="addRoomBtn">Add flexible room</button>
+            <button class="btn secondary" id="resetPlanBtn">Regenerate plan</button>
+          </div>
+        </div>
+
+        <div class="panel">
+          <h2>Price analysis from construction benchmarks</h2>
+          <div class="three">
+            <div><label for="scope">Scope</label><select id="scope"><option value="newBuild">New build</option><option value="renovation">Major renovation</option><option value="addition">Addition</option></select></div>
+            <div><label for="complexity">Complexity</label><select id="complexity"><option value="simple">Simple</option><option value="normal">Normal</option><option value="complex">Complex</option></select></div>
+            <div><label for="site">Site</label><select id="site"><option value="easy">Easy access</option><option value="normal">Normal</option><option value="difficult">Difficult site</option></select></div>
+          </div>
+          <div class="actions">
+            <button class="btn" id="estimateBtn">Run cost analysis</button>
+          </div>
+          <div class="result" id="costResult">
+            <div class="costCard"><span class="hint">Estimated low</span><strong>-</strong></div>
+            <div class="costCard"><span class="hint">Most likely</span><strong>-</strong></div>
+            <div class="costCard"><span class="hint">Estimated high</span><strong>-</strong></div>
+          </div>
+          <div class="source" id="sourceText">Uses regional labor/material benchmark ranges. Live public material-index refresh is attempted by the API when available.</div>
+        </div>
+      </section>
+    </section>
+  </main>
+  <canvas id="analysisCanvas" width="64" height="64" hidden></canvas>
+  <footer class="footer">HomeStudio by Wealth Engine - homeowner-friendly concept design, not a substitute for a licensed architect or engineer.</footer>
+
+  <script>
+    const state = {
+      pins: [],
+      photoProfile: null,
+      wall: "#d8d2c4",
+      floor: "#9a6b43",
+      activeLevel: 1,
+      flexibleRooms: 0,
+      plan: []
+    };
+
+    const $ = (id) => document.getElementById(id);
+    const money = (n) => "$" + Math.round(n).toLocaleString();
+
+    function project() {
+      return {
+        name: $("projectName").value.trim() || "HomeStudio concept",
+        buildType: $("buildType").value,
+        region: $("region").value,
+        sqft: Math.max(200, Number($("sqft").value) || 200),
+        levels: Math.max(1, Number($("levels").value) || 1),
+        quality: $("quality").value,
+        rooms: $("rooms").value.split(",").map((r) => r.trim()).filter(Boolean),
+        style: $("style").value,
+        lighting: $("lighting").value,
+        scope: $("scope").value,
+        complexity: $("complexity").value,
+        site: $("site").value,
+        pins: state.pins,
+        photoProfile: state.photoProfile
+      };
+    }
+
+    function syncBuildType() {
+      const type = $("buildType").value;
+      if (type === "single") $("levels").value = 1;
+      if (type === "basement" || type === "bunker") $("levels").value = Math.max(2, Number($("levels").value) || 2);
+      if (type === "multi") $("levels").value = Math.max(2, Number($("levels").value) || 2);
+      drawBlueprint();
+      recommend();
+    }
+
+    function addPin() {
+      const input = $("pinUrl");
+      const url = input.value.trim();
+      if (!url) return;
+      try { new URL(url); } catch { alert("Add a valid URL."); return; }
+      state.pins.push(url);
+      input.value = "";
+      renderPins();
+      recommend();
+    }
+
+    function renderPins() {
+      $("pinChips").innerHTML = state.pins.map((url) => {
+        const label = url.includes("pinterest.") ? "Pinterest board" : "Inspiration link";
+        return `<span class="chip good">${label}: ${new URL(url).hostname}</span>`;
+      }).join("");
+    }
+
+    function setSwatch(target, color, el) {
+      state[target] = color;
+      [...el.parentElement.children].forEach((b) => b.classList.remove("active"));
+      el.classList.add("active");
+      applyPreview();
+    }
+
+    function applyPreview() {
+      $("wallOverlay").style.background = state.wall;
+      $("floorOverlay").style.background = `linear-gradient(90deg, ${state.floor}, ${shade(state.floor, -28)})`;
+      const lighting = $("lighting").value;
+      $("lightOverlay").style.opacity = lighting === "bright" ? ".95" : lighting === "moody" ? ".45" : ".72";
+      $("lightOverlay").style.background = lighting === "moody"
+        ? "radial-gradient(circle at 35% 22%,rgba(255,190,120,.22),transparent 34%)"
+        : "radial-gradient(circle at 62% 18%,rgba(255,255,220,.3),transparent 34%)";
+      $("stylePill").textContent = "Style: " + $("style").value.toLowerCase();
+    }
+
+    function shade(hex, amt) {
+      const n = parseInt(hex.replace("#",""),16);
+      const r = Math.max(0, Math.min(255, (n >> 16) + amt));
+      const g = Math.max(0, Math.min(255, ((n >> 8) & 255) + amt));
+      const b = Math.max(0, Math.min(255, (n & 255) + amt));
+      return "#" + [r,g,b].map((x) => x.toString(16).padStart(2,"0")).join("");
+    }
+
+    function analyzePhoto(file) {
+      const reader = new FileReader();
+      reader.onload = () => {
+        $("roomPhoto").style.backgroundImage = `url(${reader.result})`;
+        $("emptyState").style.display = "none";
+        const img = new Image();
+        img.onload = () => runCanvasAnalysis(img);
+        img.src = reader.result;
+      };
+      reader.readAsDataURL(file);
+    }
+
+    function runCanvasAnalysis(img) {
+      const canvas = $("analysisCanvas");
+      const ctx = canvas.getContext("2d", { willReadFrequently: true });
+      ctx.clearRect(0,0,64,64);
+      ctx.drawImage(img,0,0,64,64);
+      const { data } = ctx.getImageData(0,0,64,64);
+      let r=0,g=0,b=0,brightness=0,edges=0,warm=0,cool=0;
+      const buckets = new Map();
+      for (let i=0;i<data.length;i+=4) {
+        r += data[i]; g += data[i+1]; b += data[i+2];
+        const lum = .2126*data[i] + .7152*data[i+1] + .0722*data[i+2];
+        brightness += lum;
+        if (data[i] > data[i+2] + 18) warm++;
+        if (data[i+2] > data[i] + 18) cool++;
+        const key = [data[i],data[i+1],data[i+2]].map((v) => Math.round(v / 48) * 48).join(",");
+        buckets.set(key, (buckets.get(key) || 0) + 1);
+        if (i > 260) {
+          const prev = .2126*data[i-256] + .7152*data[i-255] + .0722*data[i-254];
+          if (Math.abs(lum - prev) > 34) edges++;
+        }
+      }
+      const px = data.length / 4;
+      const avg = [r/px,g/px,b/px].map(Math.round);
+      const dominant = [...buckets.entries()].sort((a,b) => b[1]-a[1]).slice(0,4).map(([key]) => {
+        const parts = key.split(",").map(Number);
+        return "#" + parts.map((x) => Math.max(0, Math.min(255, x)).toString(16).padStart(2,"0")).join("");
+      });
+      const bright = brightness / px;
+      const style = bright > 170 ? "bright open plan" : edges > 850 ? "detailed traditional" : warm > cool ? "warm organic" : "cool contemporary";
+      state.photoProfile = {
+        averageColor: "#" + avg.map((x) => x.toString(16).padStart(2,"0")).join(""),
+        palette: dominant,
+        brightness: Math.round(bright),
+        edgeDensity: Math.round(edges / px * 100),
+        suggestedStyle: style
+      };
+      $("palettePill").textContent = "Palette: " + dominant.join(" ");
+      $("analysisChips").innerHTML = [
+        `<span class="chip good">Style signal: ${style}</span>`,
+        `<span class="chip">Brightness: ${state.photoProfile.brightness}/255</span>`,
+        `<span class="chip">Detail density: ${state.photoProfile.edgeDensity}%</span>`,
+        ...dominant.map((c) => `<span class="chip" style="border-color:${c};color:#fff">Color ${c}</span>`)
+      ].join("");
+      if (dominant[0]) state.wall = dominant[0];
+      applyPreview();
+      recommend();
+    }
+
+    function drawBlueprint() {
+      const p = project();
+      const levels = Math.max(1, p.levels);
+      if (state.activeLevel > levels) state.activeLevel = levels;
+      $("levelTabs").innerHTML = Array.from({length:levels}, (_, i) => {
+        const level = i + 1;
+        const name = p.buildType === "basement" && level === 1 ? "Basement" : p.buildType === "bunker" && level === 1 ? "Bunker" : `Level ${level}`;
+        return `<button class="tab ${level === state.activeLevel ? "active" : ""}" data-level="${level}">${name}</button>`;
+      }).join("");
+      const rooms = [...p.rooms];
+      for (let i=0;i<state.flexibleRooms;i++) rooms.push("Flexible room " + (i + 1));
+      const specialty = p.buildType === "bunker" ? ["Air lock", "water storage", "safe room"] : p.buildType === "basement" ? ["stairs", "mechanical", "storage"] : p.buildType === "multi" ? ["stairs", "upper lounge"] : ["covered patio"];
+      const planRooms = [...rooms, ...specialty].slice(0, 14);
+      const cols = 4;
+      const cellW = 220;
+      const cellH = 128;
+      const pad = 16;
+      const rows = Math.ceil(planRooms.length / cols);
+      const totalW = cols * cellW + pad * 2;
+      const totalH = rows * cellH + pad * 2 + 44;
+      const roomSvgs = planRooms.map((room, i) => {
+        const c = i % cols;
+        const r = Math.floor(i / cols);
+        const x = pad + c * cellW;
+        const y = pad + 44 + r * cellH;
+        const w = cellW - 10;
+        const h = cellH - 10;
+        const wet = /bath|laundry|kitchen|water|mechanical/i.test(room);
+        const secure = /bunker|safe|air|storage/i.test(room);
+        const fill = secure ? "#17324d" : wet ? "#123d45" : "#102642";
+        return `<g>
+          <rect x="${x}" y="${y}" width="${w}" height="${h}" fill="${fill}" stroke="#7dd3fc" stroke-width="2" rx="4"/>
+          <text x="${x+14}" y="${y+28}" fill="#edf7ff" font-size="17" font-weight="700">${escapeXml(room)}</text>
+          <text x="${x+14}" y="${y+52}" fill="#9fb3c8" font-size="13">${Math.round(p.sqft / Math.max(rooms.length, 4))} sqft concept zone</text>
+          <path d="M${x+w-46} ${y+h} q24 -28 46 -28" fill="none" stroke="#f8fafc" stroke-width="2"/>
+        </g>`;
+      }).join("");
+      $("blueprint").innerHTML = `<svg viewBox="0 0 ${totalW} ${totalH}" role="img" aria-label="Generated home blueprint">
+        <defs>
+          <pattern id="grid" width="22" height="22" patternUnits="userSpaceOnUse"><path d="M22 0H0V22" fill="none" stroke="#18314e" stroke-width="1"/></pattern>
+        </defs>
+        <rect width="${totalW}" height="${totalH}" fill="url(#grid)"/>
+        <rect x="10" y="10" width="${totalW-20}" height="${totalH-20}" fill="none" stroke="#38bdf8" stroke-width="3"/>
+        <text x="22" y="38" fill="#edf7ff" font-size="22" font-weight="800">${escapeXml(p.name)} - ${escapeXml(p.buildType)} concept</text>
+        ${roomSvgs}
+      </svg>`;
+      $("levelTabs").querySelectorAll("button").forEach((button) => {
+        button.addEventListener("click", () => {
+          state.activeLevel = Number(button.dataset.level);
+          drawBlueprint();
+        });
+      });
+    }
+
+    function escapeXml(str) {
+      return String(str).replace(/[<>&'"]/g, (c) => ({ "<":"&lt;", ">":"&gt;", "&":"&amp;", "'":"&apos;", '"':"&quot;" }[c]));
+    }
+
+    function recommend() {
+      const p = project();
+      const recs = [];
+      if (state.photoProfile) {
+        recs.push(`Use the uploaded room palette (${state.photoProfile.palette.join(", ")}) as the starting material board.`);
+        recs.push(`Photo analysis suggests a ${state.photoProfile.suggestedStyle} direction; balance it with ${p.style.toLowerCase()} finishes.`);
+      }
+      if (p.buildType === "bunker") recs.push("Plan independent ventilation, two exits where possible, drainage, waterproofing, communications, and structural engineering early.");
+      if (p.buildType === "basement") recs.push("Prioritize foundation waterproofing, egress windows, mechanical access, ceiling height, and moisture-tolerant finishes.");
+      if (p.buildType === "multi") recs.push("Stack wet walls vertically and place stairs near the center to reduce structural and plumbing complexity.");
+      if (state.pins.length) recs.push(`Imported ${state.pins.length} inspiration link${state.pins.length > 1 ? "s" : ""}; translate repeated colors and shapes into fixtures, cabinets, and facade details.`);
+      recs.push("Keep a 10% to 20% contingency until drawings, bids, utilities, soil conditions, and permits are confirmed.");
+      $("recommendations").innerHTML = recs.map((r) => `<li>${escapeXml(r)}</li>`).join("");
+    }
+
+    async function estimateCost() {
+      const payload = project();
+      $("estimateBtn").disabled = true;
+      $("estimateBtn").textContent = "Analyzing...";
+      try {
+        const res = await fetch("/api/homestudio/cost-estimate", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(payload)
+        });
+        if (!res.ok) throw new Error("estimate failed");
+        renderCost(await res.json());
+      } catch (err) {
+        renderCost(localEstimate(payload, "Browser fallback benchmark"));
+      } finally {
+        $("estimateBtn").disabled = false;
+        $("estimateBtn").textContent = "Run cost analysis";
+      }
+    }
+
+    function localEstimate(p, source) {
+      const base = { midwest:185, south:175, west:285, northeast:260 }[p.region] || 210;
+      const quality = { standard:1, upgraded:1.22, premium:1.48 }[p.quality] || 1;
+      const build = { single:1, basement:1.22, bunker:1.55, multi:1.18 }[p.buildType] || 1;
+      const scope = { newBuild:1, renovation:.62, addition:1.28 }[p.scope] || 1;
+      const complexity = { simple:.93, normal:1, complex:1.18 }[p.complexity] || 1;
+      const site = { easy:.96, normal:1, difficult:1.14 }[p.site] || 1;
+      const likely = p.sqft * base * quality * build * scope * complexity * site;
+      return { ok:true, low:likely*.86, likely, high:likely*1.2, source, lineItems:[], assumptions:["Local fallback used because the API was unavailable."] };
+    }
+
+    function renderCost(data) {
+      $("costResult").innerHTML = `
+        <div class="costCard"><span class="hint">Estimated low</span><strong>${money(data.low)}</strong></div>
+        <div class="costCard"><span class="hint">Most likely</span><strong>${money(data.likely)}</strong></div>
+        <div class="costCard"><span class="hint">Estimated high</span><strong>${money(data.high)}</strong></div>`;
+      const items = (data.lineItems || []).map((i) => `<li>${escapeXml(i.label)}: ${money(i.amount)} <span class="hint">(${escapeXml(i.note || "")})</span></li>`).join("");
+      const assumptions = (data.assumptions || []).map((a) => `<li>${escapeXml(a)}</li>`).join("");
+      $("sourceText").innerHTML = `<strong>Source:</strong> ${escapeXml(data.source || "Benchmark model")}<ul class="list">${items}${assumptions}</ul>`;
+    }
+
+    function enableDrag() {
+      document.querySelectorAll(".furniture").forEach((el) => {
+        let active = false, dx = 0, dy = 0;
+        el.addEventListener("pointerdown", (ev) => {
+          active = true;
+          el.setPointerCapture(ev.pointerId);
+          const rect = el.getBoundingClientRect();
+          dx = ev.clientX - rect.left;
+          dy = ev.clientY - rect.top;
+          el.style.cursor = "grabbing";
+        });
+        el.addEventListener("pointermove", (ev) => {
+          if (!active) return;
+          const stage = $("stage").getBoundingClientRect();
+          el.style.left = Math.max(0, Math.min(stage.width - el.offsetWidth, ev.clientX - stage.left - dx)) + "px";
+          el.style.top = Math.max(0, Math.min(stage.height - el.offsetHeight, ev.clientY - stage.top - dy)) + "px";
+          el.style.right = "auto";
+          el.style.bottom = "auto";
+        });
+        el.addEventListener("pointerup", () => { active = false; el.style.cursor = "grab"; });
+      });
+    }
+
+    function loadSample() {
+      $("projectName").value = "Lakeview multi-level remodel";
+      $("buildType").value = "multi";
+      $("region").value = "west";
+      $("sqft").value = 3400;
+      $("levels").value = 3;
+      $("quality").value = "premium";
+      $("rooms").value = "Kitchen, great room, primary suite, two bedrooms, guest suite, office, gym, theater, laundry, mudroom, roof deck";
+      $("style").value = "Mountain modern";
+      state.pins = ["https://www.pinterest.com/search/pins/?q=mountain%20modern%20interior"];
+      state.photoProfile = { averageColor:"#9aa3a7", palette:["#30485c","#b8aa91","#e3dfd2","#111827"], brightness:142, edgeDensity:22, suggestedStyle:"mountain modern" };
+      $("roomPhoto").style.backgroundImage = "linear-gradient(135deg,rgba(20,32,48,.65),rgba(20,32,48,.2)),linear-gradient(90deg,#1c2d44,#8c806f 55%,#e8e0d3)";
+      $("emptyState").style.display = "none";
+      $("analysisChips").innerHTML = `<span class="chip good">Style signal: mountain modern</span><span class="chip">Brightness: 142/255</span><span class="chip">Detail density: 22%</span>`;
+      renderPins();
+      drawBlueprint();
+      recommend();
+      applyPreview();
+    }
+
+    function exportBrief() {
+      const brief = JSON.stringify({ exportedAt:new Date().toISOString(), project:project(), finishes:{ wall:state.wall, floor:state.floor } }, null, 2);
+      const blob = new Blob([brief], { type:"application/json" });
+      const link = document.createElement("a");
+      link.href = URL.createObjectURL(blob);
+      link.download = "homestudio-design-brief.json";
+      link.click();
+      URL.revokeObjectURL(link.href);
+    }
+
+    document.querySelectorAll(".swatches .swatch").forEach((el) => el.addEventListener("click", () => setSwatch(el.parentElement.dataset.target, el.dataset.color, el)));
+    ["projectName","buildType","region","sqft","levels","quality","rooms","style","lighting","scope","complexity","site"].forEach((id) => $(id).addEventListener("input", () => { if (id === "buildType") syncBuildType(); else { drawBlueprint(); recommend(); applyPreview(); } }));
+    $("photoInput").addEventListener("change", (ev) => ev.target.files[0] && analyzePhoto(ev.target.files[0]));
+    $("addPinBtn").addEventListener("click", addPin);
+    $("pinUrl").addEventListener("keydown", (ev) => { if (ev.key === "Enter") { ev.preventDefault(); addPin(); } });
+    $("addRoomBtn").addEventListener("click", () => { state.flexibleRooms++; drawBlueprint(); });
+    $("resetPlanBtn").addEventListener("click", () => { state.flexibleRooms = 0; drawBlueprint(); });
+    $("estimateBtn").addEventListener("click", estimateCost);
+    $("demoBtn").addEventListener("click", loadSample);
+    $("exportBtn").addEventListener("click", exportBrief);
+    enableDrag();
+    syncBuildType();
+    applyPreview();
+    recommend();
+  </script>
+</body>
+</html>
