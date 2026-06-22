@@ -12,6 +12,7 @@
     "sync:invoice-stack": "node sync-www.mjs invoice-stack && cd invoice-stack && npx cap sync",
     "sync:uptime-defender": "node sync-www.mjs uptime-defender && cd uptime-defender && npx cap sync",
     "sync:freelancer-memory": "node sync-www.mjs freelancer-memory && cd freelancer-memory && npx cap sync",
+    "sync:color-switch-snake": "node sync-www.mjs color-switch-snake && cd color-switch-snake && npx cap sync",
     "sync:horseshoe-toss": "node sync-www.mjs horseshoe-toss && cd horseshoe-toss && npx cap sync",
     "android:games": "cd games && npx cap sync android && cd android && ./gradlew assembleDebug",
     "android:tools": "cd tools && npx cap sync android && cd android && ./gradlew assembleDebug",
@@ -20,6 +21,7 @@
     "android:invoice-stack": "cd invoice-stack && npx cap sync android && cd android && ./gradlew assembleDebug",
     "android:uptime-defender": "cd uptime-defender && npx cap sync android && cd android && ./gradlew assembleDebug",
     "android:freelancer-memory": "cd freelancer-memory && npx cap sync android && cd android && ./gradlew assembleDebug",
+    "android:color-switch-snake": "cd color-switch-snake && npx cap sync android && cd android && ./gradlew assembleDebug",
     "android:horseshoe-toss": "cd horseshoe-toss && npx cap sync android && cd android && ./gradlew assembleDebug",
     "ios:games": "cd games && npx cap sync ios",
     "ios:tools": "cd tools && npx cap sync ios",
@@ -28,6 +30,7 @@
     "ios:invoice-stack": "cd invoice-stack && npx cap sync ios",
     "ios:uptime-defender": "cd uptime-defender && npx cap sync ios",
     "ios:freelancer-memory": "cd freelancer-memory && npx cap sync ios",
+    "ios:color-switch-snake": "cd color-switch-snake && npx cap sync ios",
     "ios:horseshoe-toss": "cd horseshoe-toss && npx cap sync ios",
     "open:android:games": "cd games && npx cap open android",
     "open:ios:games": "cd games && npx cap open ios"

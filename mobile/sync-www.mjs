@@ -1,6 +1,6 @@
 /**
  * Sync dist/ assets into Capacitor www folders.
- * Usage: node sync-www.mjs [games|tools|receipt-rush|webhook-whack|invoice-stack|horseshoe-toss|uptime-defender|freelancer-memory|all]
+ * Usage: node sync-www.mjs [games|tools|receipt-rush|webhook-whack|invoice-stack|horseshoe-toss|uptime-defender|freelancer-memory|color-switch-snake|all]
  */
 import { cpSync, existsSync, mkdirSync, readFileSync, writeFileSync, readdirSync } from "fs";
 import { join, dirname } from "path";
@@ -234,6 +234,20 @@ const MINI_GAME_SHELLS = {
     bestLabel: "Fewest moves",
     bestEmpty: "—",
   },
+  "color-switch-snake": {
+    title: "Color Switch Snake",
+    emoji: "🐍",
+    tagline: "Swipe or tap sides to turn — match gate colors!",
+    themeColor: "#0c0c0c",
+    bg: "#0c0c0c",
+    text: "#fff",
+    sub: "#888",
+    accent: "#f472b6",
+    btnBg: "#ec4899",
+    btnHover: "#db2777",
+    bestBorder: "#333",
+    bestKey: "color_switch_snake_best",
+  },
 };
 
 function syncMiniGame(slug) {
@@ -307,4 +321,5 @@ if (target === "webhook-whack" || target === "all") syncMiniGame("webhook-whack"
 if (target === "invoice-stack" || target === "all") syncMiniGame("invoice-stack");
 if (target === "uptime-defender" || target === "all") syncMiniGame("uptime-defender");
 if (target === "freelancer-memory" || target === "all") syncMiniGame("freelancer-memory");
+if (target === "color-switch-snake" || target === "all") syncMiniGame("color-switch-snake");
 if (target === "horseshoe-toss" || target === "all") syncMiniGame("horseshoe-toss");

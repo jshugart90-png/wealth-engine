@@ -16,7 +16,8 @@
 | **Horseshoe Toss** | `com.wealthengine.horseshoetoss` | **TestFlight prep** | 16 PASS, 0 FAIL, 1 WARN | `82fe87d` pushed | **READY** (Mac upload) |
 | **Uptime Defender** | `com.wealthengine.uptimedefender` | **TestFlight prep** | 16 PASS, 0 FAIL, 1 WARN | `3c407bf` pushed | **READY** (Mac upload) |
 | **Freelancer Memory** | `com.wealthengine.freelancermemory` | **TestFlight prep** | 16 PASS, 0 FAIL, 1 WARN | `f435f91` pushed | **READY** (Mac upload) |
-| App 9+ | TBD | Queued | — | — | — |
+| **Color Switch Snake** | `com.wealthengine.colorswitchsnake` | **TestFlight prep** | 16 PASS, 0 FAIL, 1 WARN | `708e029` pushed | **READY** (Mac upload) |
+| App 10+ | TBD | Queued | — | — | — |
 
 ## App 1 — Horseshoe Games Hub
 
@@ -226,7 +227,31 @@ npx cap sync ios && npx cap open ios
 # Or: bundle exec fastlane ios beta_freelancer_memory
 ```
 
-## App 9+ queue
+## App 9 — Color Switch Snake (mini-app)
+
+| Field | Value |
+|-------|-------|
+| Version | 1.0.0 |
+| Game | Color Switch Snake (single-game Capacitor shell) |
+| Capacitor | `mobile/color-switch-snake/` → loads `/games/color-switch-snake/` from prod |
+| Store metadata | `mobile/store-metadata/color-switch-snake/` |
+| Preflight | `npm run mobile:preflight:color-switch-snake` |
+
+### Features (shipped this session)
+
+1. **Best score** — localStorage `color_switch_snake_best` with launcher + in-game HUD
+2. **Offline banner** — same pattern as Games Hub / Receipt Rush
+
+### TestFlight upload (user Mac)
+
+```bash
+npm run build && cd mobile && node sync-www.mjs color-switch-snake
+cd color-switch-snake && npm install && npx cap add ios  # if missing
+npx cap sync ios && npx cap open ios
+# Or: bundle exec fastlane ios beta_color_switch_snake
+```
+
+## App 10+ queue
 
 From `board/GAMES.md` or new simple utilities (calculators, timers) as standalone Capacitor shells.
 

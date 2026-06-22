@@ -1,0 +1,15 @@
+Color Switch Snake is a fast arcade game where your snake must match gate colors to survive!
+
+Tap left or right to turn through colorful barriers. Eat matching food to change your snake's color, then pass through gates of the same hue. Miss a match and it's game over.
+
+Features:
+• Simple tap controls — left or right turns
+• Best score saved on your device
+• Works offline after first load
+• Family-friendly, all ages
+• No account or signup required
+• More free games in the Horseshoe collection
+
+Perfect for quick arcade breaks. Part of the Horseshoe Games collection by Wealth Engine.
+
+Privacy: Scores stay on your device. See our privacy policy for details.
