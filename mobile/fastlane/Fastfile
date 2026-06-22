@@ -231,6 +231,11 @@ platform :ios do
     mini_app_ios_beta("day-rate-calculator-pro", "Day Rate to Hourly Calculator Pro")
   end
 
+  desc "TestFlight upload for Bill Splitter Pro utility app"
+  lane :beta_bill_splitter_pro do
+    mini_app_ios_beta("bill-splitter-pro", "Bill Splitter Pro")
+  end
+
   desc "TestFlight upload for Invoice Number Rush mini-app"
   lane :beta_invoice_number_rush do
     mini_app_ios_beta("invoice-number-rush", "Invoice Number Rush")

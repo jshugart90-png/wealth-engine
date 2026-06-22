@@ -1,6 +1,6 @@
 /**
  * Sync dist/ assets into Capacitor www folders.
- * Usage: node sync-www.mjs [games|tools|freelancer-stack|devwatch|hookrelay-dlq|receipt-rush|webhook-whack|invoice-stack|horseshoe-toss|uptime-defender|freelancer-memory|color-switch-snake|word-scramble-biz|net-30-ninja|ssl-shield|nda-speed-sign|invoice-number-rush|billsnap|statusping-lite|leaselens|ndagen|hookrelay|pipekit|meetingcost|templateforge|comparestack|tip-calculator-pro|hourly-rate-calculator-pro|freelancer-tax-estimator|1099-threshold-tracker-pro|quarterly-tax-deadline-pro|profit-margin-calculator-pro|break-even-calculator-pro|late-fee-calculator-pro|markup-calculator-pro|day-rate-calculator-pro|all]
+ * Usage: node sync-www.mjs [games|tools|freelancer-stack|devwatch|hookrelay-dlq|receipt-rush|webhook-whack|invoice-stack|horseshoe-toss|uptime-defender|freelancer-memory|color-switch-snake|word-scramble-biz|net-30-ninja|ssl-shield|nda-speed-sign|invoice-number-rush|billsnap|statusping-lite|leaselens|ndagen|hookrelay|pipekit|meetingcost|templateforge|comparestack|tip-calculator-pro|hourly-rate-calculator-pro|freelancer-tax-estimator|1099-threshold-tracker-pro|quarterly-tax-deadline-pro|profit-margin-calculator-pro|break-even-calculator-pro|late-fee-calculator-pro|markup-calculator-pro|day-rate-calculator-pro|bill-splitter-pro|all]
  */
 import { cpSync, existsSync, mkdirSync, readFileSync, writeFileSync, readdirSync } from "fs";
 import { join, dirname } from "path";
@@ -1273,6 +1273,32 @@ const UTILITY_SHELLS = {
       "Pro: reverse pricing & project vs retainer",
     ],
   },
+  "bill-splitter-pro": {
+    title: "Bill Splitter Pro",
+    emoji: "🍽️",
+    tagline: "Split bills with tip, tax & per-person totals",
+    themeColor: "#7c2d12",
+    bg: "#431407",
+    text: "#fff7ed",
+    sub: "#fdba74",
+    accent: "#fb923c",
+    btnBg: "#9a3412",
+    btnHover: "#7c2d12",
+    statBg: "#7c2d12",
+    statBorder: "#9a3412",
+    statKey: "billsplitpro_last",
+    statLabel: "Last split",
+    statEmpty: "—",
+    cta: "Split Bill",
+    moreLink: "https://wealth-engine-0qlj.onrender.com/tip-calculator-pro/",
+    moreLabel: "Tip Calculator Pro",
+    offlineMsg: "You're offline — open Bill Splitter Pro if you've used it before",
+    features: [
+      "Equal split with tip presets & per-person breakdown",
+      "Grand total, tip, and bill-per-person summary",
+      "Pro: tax line, round-up & uneven custom splits",
+    ],
+  },
 };
 
 function syncUtility(slug) {
@@ -1440,6 +1466,7 @@ if (target === "break-even-calculator-pro" || target === "all") syncUtility("bre
 if (target === "late-fee-calculator-pro" || target === "all") syncUtility("late-fee-calculator-pro");
 if (target === "markup-calculator-pro" || target === "all") syncUtility("markup-calculator-pro");
 if (target === "day-rate-calculator-pro" || target === "all") syncUtility("day-rate-calculator-pro");
+if (target === "bill-splitter-pro" || target === "all") syncUtility("bill-splitter-pro");
 if (target === "receipt-rush" || target === "all") syncMiniGame("receipt-rush");
 if (target === "webhook-whack" || target === "all") syncMiniGame("webhook-whack");
 if (target === "invoice-stack" || target === "all") syncMiniGame("invoice-stack");

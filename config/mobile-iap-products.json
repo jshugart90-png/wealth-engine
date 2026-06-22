@@ -436,6 +436,23 @@
         }
       ]
     },
+    "bill-splitter-pro": {
+      "appName": "Bill Splitter Pro",
+      "bundleId": "com.wealthengine.billsplitterpro",
+      "type": "utility",
+      "version": "1.0.0",
+      "products": [
+        {
+          "key": "pro_unlock",
+          "storeKitId": "com.wealthengine.billsplitterpro.pro_unlock",
+          "type": "non_consumable",
+          "price": 4.99,
+          "title": "Pro Unlock",
+          "description": "Unlock Pro features (tax line, round-up & uneven split)",
+          "stripeSku": null
+        }
+      ]
+    },
     "leaselens": {
       "appName": "LeaseLens",
       "bundleId": "com.wealthengine.leaselens",

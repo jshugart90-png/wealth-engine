@@ -1,0 +1,1 @@
+bill split,split bill,tip calculator,restaurant,dinner,gratuity,per person,group,shared expense,tax,uneven split

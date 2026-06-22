@@ -1,0 +1,17 @@
+Bill Splitter Pro helps you split restaurant bills, group dinners, and shared expenses with tip and per-person breakdown — instantly.
+
+Enter the bill subtotal, tip percentage, and number of people to see each person's share, total with tip, and tip per person. Pro unlock adds tax/service charge line, round-up totals, and uneven custom splits when people ordered different amounts.
+
+Features:
+• Equal bill split with tip presets (0%, 18%, 20%, 25%)
+• Per-person total and tip breakdown
+• Split between 1–20 people with +/- controls
+• Grand total, subtotal, and tip summary
+• Share split summary with friends
+• Last calculation saved locally on your device
+• Works offline — no account required
+• Pro: add tax or service charge before tip
+• Pro: round total up to nearest dollar
+• Pro: uneven split with custom share weights per person
+
+Perfect for restaurants, group outings, roommates, and travel — no mental math or spreadsheet needed.

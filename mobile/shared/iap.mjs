@@ -278,6 +278,7 @@ export const VENTURE_TO_MOBILE = {
   "late-fee-calculator-pro": "late-fee-calculator-pro",
   "markup-calculator-pro": "markup-calculator-pro",
   "day-rate-calculator-pro": "day-rate-calculator-pro",
+  "bill-splitter-pro": "bill-splitter-pro",
 };
 
 export function generateStoreKitConfig() {

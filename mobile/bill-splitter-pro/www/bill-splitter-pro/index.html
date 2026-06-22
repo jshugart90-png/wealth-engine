@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Bill Splitter Pro — Split bills with tip & tax</title>
+  <meta name="description" content="Split restaurant bills with tip, tax, and per-person breakdown. Uneven splits and round-up in Pro.">
+  <meta name="theme-color" content="#7c2d12">
+  <style>
+    :root {
+      --bg: #431407;
+      --card: #7c2d12;
+      --border: #9a3412;
+      --text: #fff7ed;
+      --muted: #fdba74;
+      --accent: #fb923c;
+      --accent-dim: #f97316;
+      --success: #34d399;
+      --danger: #f87171;
+    }
+    * { box-sizing: border-box; }
+    body {
+      font-family: system-ui, -apple-system, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      margin: 0;
+      min-height: 100vh;
+      padding: max(16px, env(safe-area-inset-top)) 16px max(32px, env(safe-area-inset-bottom));
+    }
+    .wrap { max-width: 420px; margin: 0 auto; }
+    h1 { font-size: 1.5rem; margin: 8px 0 4px; font-weight: 700; }
+    .tagline { color: var(--muted); font-size: 0.9rem; margin-bottom: 20px; }
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 20px;
+      margin-bottom: 16px;
+    }
+    label {
+      display: block;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--muted);
+      margin-bottom: 6px;
+    }
+    input[type="number"] {
+      width: 100%;
+      font-size: 1.5rem;
+      font-weight: 600;
+      padding: 12px 14px;
+      border: 2px solid var(--border);
+      border-radius: 12px;
+      background: var(--bg);
+      color: var(--text);
+      -webkit-appearance: none;
+      appearance: none;
+    }
+    input:focus { outline: none; border-color: var(--accent); }
+    .field { margin-bottom: 16px; }
+    .field:last-child { margin-bottom: 0; }
+    .tip-row {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 8px;
+      margin: 10px 0 4px;
+    }
+    .tip-btn {
+      padding: 10px 4px;
+      border: 2px solid var(--border);
+      border-radius: 10px;
+      background: var(--bg);
+      color: var(--text);
+      font-size: 0.85rem;
+      font-weight: 600;
+      cursor: pointer;
+    }
+    .tip-btn.active {
+      border-color: var(--accent);
+      background: rgba(251, 146, 60, 0.15);
+      color: var(--accent);
+    }
+    .split-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .split-btn {
+      width: 44px;
+      height: 44px;
+      border: 2px solid var(--border);
+      border-radius: 12px;
+      background: var(--bg);
+      color: var(--text);
+      font-size: 1.3rem;
+      font-weight: 700;
+      cursor: pointer;
+    }
+    #people { flex: 1; text-align: center; font-size: 1.4rem; }
+    .toggle-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 0 0;
+      border-top: 1px solid var(--border);
+      margin-top: 16px;
+    }
+    .toggle-row span { font-size: 0.9rem; }
+    .switch { position: relative; width: 52px; height: 30px; }
+    .switch input { opacity: 0; width: 0; height: 0; }
+    .slider {
+      position: absolute;
+      inset: 0;
+      background: var(--border);
+      border-radius: 30px;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+    .slider::before {
+      content: "";
+      position: absolute;
+      width: 24px;
+      height: 24px;
+      left: 3px;
+      bottom: 3px;
+      background: #fff;
+      border-radius: 50%;
+      transition: 0.2s;
+    }
+    .switch input:checked + .slider { background: var(--accent-dim); }
+    .switch input:checked + .slider::before { transform: translateX(22px); }
+    .result-card { text-align: center; padding: 24px 16px; }
+    .result-main {
+      font-size: 2.5rem;
+      font-weight: 800;
+      color: var(--accent);
+      line-height: 1.1;
+      margin-bottom: 8px;
+    }
+    .result-sub { color: var(--muted); font-size: 1rem; line-height: 1.5; }
+    .result-sub strong { color: var(--text); }
+    .breakdown {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-top: 16px;
+    }
+    .breakdown-item {
+      background: var(--bg);
+      border-radius: 10px;
+      padding: 12px;
+      text-align: center;
+    }
+    .breakdown-item .val { font-size: 1.15rem; font-weight: 700; color: var(--accent); }
+    .breakdown-item .lbl { font-size: 0.7rem; color: var(--muted); text-transform: uppercase; margin-top: 4px; }
+    .person-list {
+      margin-top: 16px;
+      text-align: left;
+    }
+    .person-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 8px;
+      font-size: 0.9rem;
+    }
+    .person-row label { margin: 0; min-width: 72px; text-transform: none; font-size: 0.85rem; }
+    .person-row input { font-size: 1rem; padding: 8px 10px; }
+    .actions {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-top: 16px;
+    }
+    .btn {
+      padding: 14px;
+      border: none;
+      border-radius: 12px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      cursor: pointer;
+    }
+    .btn-primary { background: var(--accent-dim); color: #431407; }
+    .btn-secondary { background: var(--card); color: var(--text); border: 2px solid var(--border); }
+    .btn:active { opacity: 0.85; }
+    .toast {
+      position: fixed;
+      bottom: 24px;
+      left: 50%;
+      transform: translateX(-50%) translateY(80px);
+      background: var(--success);
+      color: #064e3b;
+      padding: 12px 20px;
+      border-radius: 10px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      transition: transform 0.25s;
+      z-index: 100;
+    }
+    .toast.show { transform: translateX(-50%) translateY(0); }
+    .hint { font-size: 0.75rem; color: var(--muted); margin-top: 4px; }
+    body.we-iap-premium .pro-only { display: block; }
+    .pro-only { display: none; }
+  </style>
+<meta name="google-site-verification" content="X8W5bw-fSJ0pTZiA0LesNi2vZ_-bUdLqVokR5uJZlI4" />
+<script>(function(){try{var r=localStorage.getItem('we_ref')||new URLSearchParams(location.search).get('ref');fetch('/api/funnel/visit',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({path:"/bill-splitter-pro",refCode:r,source:new URLSearchParams(location.search).get('utm_source')||'direct'})}).catch(function(){})}catch(e){}})();</script></head>
+<body>
+  <div class="wrap">
+    <h1>Bill Splitter Pro</h1>
+    <p class="tagline">Split bills with tip, tax &amp; per-person totals</p>
+
+    <div class="card">
+      <div class="field">
+        <label for="total">Bill subtotal ($)</label>
+        <input type="number" id="total" value="120" step="0.01" min="0" inputmode="decimal">
+      </div>
+
+      <div class="field pro-only">
+        <label for="tax">Tax / service charge ($)</label>
+        <input type="number" id="tax" value="0" step="0.01" min="0" inputmode="decimal">
+        <p class="hint">Pro: add tax or service fee before tip</p>
+      </div>
+
+      <div class="field">
+        <label>Tip percentage</label>
+        <div class="tip-row" id="tip-presets">
+          <button type="button" class="tip-btn" data-pct="0">0%</button>
+          <button type="button" class="tip-btn active" data-pct="18">18%</button>
+          <button type="button" class="tip-btn" data-pct="20">20%</button>
+          <button type="button" class="tip-btn" data-pct="25">25%</button>
+        </div>
+        <input type="number" id="tip" value="18" min="0" max="100" step="0.5" inputmode="decimal" style="font-size:1.1rem;padding:10px 14px;margin-top:8px">
+      </div>
+
+      <div class="field">
+        <label>Split between</label>
+        <div class="split-row">
+          <button type="button" class="split-btn" id="people-minus" aria-label="Decrease people">−</button>
+          <input type="number" id="people" value="4" min="1" max="20" inputmode="numeric">
+          <button type="button" class="split-btn" id="people-plus" aria-label="Increase people">+</button>
+        </div>
+      </div>
+
+      <div class="toggle-row pro-only">
+        <span>Round total up to nearest dollar</span>
+        <label class="switch">
+          <input type="checkbox" id="round-up">
+          <span class="slider"></span>
+        </label>
+      </div>
+
+      <div class="toggle-row pro-only">
+        <span>Uneven split (custom per person)</span>
+        <label class="switch">
+          <input type="checkbox" id="uneven">
+          <span class="slider"></span>
+        </label>
+      </div>
+    </div>
+
+    <div class="card result-card">
+      <div class="result-main" id="per-person">$35.40</div>
+      <div class="result-sub" id="summary"><strong>$141.60</strong> total · <strong>$21.60</strong> tip · 4 people</div>
+
+      <div class="breakdown">
+        <div class="breakdown-item">
+          <div class="val" id="grand-total">$141.60</div>
+          <div class="lbl">Grand total</div>
+        </div>
+        <div class="breakdown-item">
+          <div class="val" id="tip-amt">$21.60</div>
+          <div class="lbl">Tip</div>
+        </div>
+        <div class="breakdown-item">
+          <div class="val" id="subtotal-amt">$120.00</div>
+          <div class="lbl">Subtotal</div>
+        </div>
+        <div class="breakdown-item pro-only">
+          <div class="val" id="tax-amt">$0.00</div>
+          <div class="lbl">Tax / fees</div>
+        </div>
+        <div class="breakdown-item">
+          <div class="val" id="each-bill">$30.00</div>
+          <div class="lbl">Bill / person</div>
+        </div>
+        <div class="breakdown-item">
+          <div class="val" id="tip-each">$5.40</div>
+          <div class="lbl">Tip / person</div>
+        </div>
+      </div>
+
+      <div class="person-list pro-only" id="person-list" style="display:none"></div>
+
+      <div class="actions">
+        <button type="button" class="btn btn-secondary" id="reset">Reset</button>
+        <button type="button" class="btn btn-primary" id="share">Share split</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="toast" id="toast" role="status"></div>
+
+  <script>
+    (function () {
+      var totalEl = document.getElementById("total");
+      var taxEl = document.getElementById("tax");
+      var tipEl = document.getElementById("tip");
+      var peopleEl = document.getElementById("people");
+      var roundEl = document.getElementById("round-up");
+      var unevenEl = document.getElementById("uneven");
+      var perPersonEl = document.getElementById("per-person");
+      var summaryEl = document.getElementById("summary");
+      var grandTotalEl = document.getElementById("grand-total");
+      var tipAmtEl = document.getElementById("tip-amt");
+      var subtotalAmtEl = document.getElementById("subtotal-amt");
+      var taxAmtEl = document.getElementById("tax-amt");
+      var eachBillEl = document.getElementById("each-bill");
+      var tipEachEl = document.getElementById("tip-each");
+      var personListEl = document.getElementById("person-list");
+      var toastEl = document.getElementById("toast");
+      var STORAGE_KEY = "billsplitpro_last";
+      var customShares = [];
+
+      function fmt(n) {
+        return "$" + n.toFixed(2);
+      }
+
+      function showToast(msg) {
+        toastEl.textContent = msg;
+        toastEl.classList.add("show");
+        setTimeout(function () { toastEl.classList.remove("show"); }, 2000);
+      }
+
+      function setActivePreset(pct) {
+        document.querySelectorAll(".tip-btn").forEach(function (btn) {
+          btn.classList.toggle("active", +btn.dataset.pct === pct);
+        });
+      }
+
+      function syncCustomShares(count) {
+        while (customShares.length < count) customShares.push(1);
+        customShares.length = count;
+      }
+
+      function renderPersonList(people, grandTotal) {
+        if (!unevenEl || !unevenEl.checked) {
+          personListEl.style.display = "none";
+          return;
+        }
+        syncCustomShares(people);
+        var shareSum = customShares.reduce(function (a, b) { return a + b; }, 0) || 1;
+        personListEl.innerHTML = "";
+        personListEl.style.display = "block";
+        for (var i = 0; i < people; i++) {
+          var row = document.createElement("div");
+          row.className = "person-row";
+          var sharePct = (customShares[i] / shareSum * 100).toFixed(0);
+          var owed = grandTotal * (customShares[i] / shareSum);
+          row.innerHTML = "<label>Person " + (i + 1) + "</label>" +
+            "<input type=\"number\" data-idx=\"" + i + "\" value=\"" + customShares[i] + "\" min=\"0\" step=\"0.1\" inputmode=\"decimal\">" +
+            "<span>" + sharePct + "% · " + fmt(owed) + "</span>";
+          personListEl.appendChild(row);
+        }
+        personListEl.querySelectorAll("input").forEach(function (inp) {
+          inp.addEventListener("input", function () {
+            var idx = +inp.dataset.idx;
+            customShares[idx] = Math.max(0, +inp.value || 0);
+            calc();
+          });
+        });
+      }
+
+      function calc() {
+        var subtotal = Math.max(0, +totalEl.value || 0);
+        var tax = taxEl ? Math.max(0, +taxEl.value || 0) : 0;
+        var tipPct = Math.max(0, +tipEl.value || 0);
+        var people = Math.max(1, Math.min(20, Math.round(+peopleEl.value || 1)));
+        peopleEl.value = people;
+
+        var preTip = subtotal + tax;
+        var tip = preTip * tipPct / 100;
+        var grand = preTip + tip;
+        if (roundEl && roundEl.checked) {
+          grand = Math.ceil(grand);
+          tip = grand - preTip;
+        }
+
+        var perPerson, shareText;
+        if (unevenEl && unevenEl.checked) {
+          syncCustomShares(people);
+          var shareSum = customShares.reduce(function (a, b) { return a + b; }, 0) || 1;
+          perPerson = grand / people;
+          shareText = "custom split";
+          renderPersonList(people, grand);
+        } else {
+          personListEl.style.display = "none";
+          perPerson = grand / people;
+          shareText = people + " " + (people === 1 ? "person" : "people");
+        }
+
+        perPersonEl.textContent = fmt(perPerson);
+        summaryEl.innerHTML = "<strong>" + fmt(grand) + "</strong> total · <strong>" + fmt(tip) + "</strong> tip · " + shareText;
+        grandTotalEl.textContent = fmt(grand);
+        tipAmtEl.textContent = fmt(tip);
+        subtotalAmtEl.textContent = fmt(subtotal);
+        if (taxAmtEl) taxAmtEl.textContent = fmt(tax);
+        eachBillEl.textContent = fmt(subtotal / people);
+        tipEachEl.textContent = fmt(tip / people);
+
+        if (unevenEl && unevenEl.checked) renderPersonList(people, grand);
+
+        try { localStorage.setItem(STORAGE_KEY, fmt(perPerson) + "/person · " + fmt(grand) + " total"); } catch (e) {}
+      }
+
+      document.querySelectorAll(".tip-btn").forEach(function (btn) {
+        btn.addEventListener("click", function () {
+          tipEl.value = btn.dataset.pct;
+          setActivePreset(+btn.dataset.pct);
+          calc();
+        });
+      });
+
+      document.getElementById("people-minus").addEventListener("click", function () {
+        peopleEl.value = Math.max(1, (+peopleEl.value || 1) - 1);
+        calc();
+      });
+      document.getElementById("people-plus").addEventListener("click", function () {
+        peopleEl.value = Math.min(20, (+peopleEl.value || 1) + 1);
+        calc();
+      });
+
+      [totalEl, taxEl, tipEl, peopleEl].forEach(function (el) {
+        if (el) el.addEventListener("input", function () {
+          setActivePreset(+tipEl.value);
+          calc();
+        });
+      });
+      if (roundEl) roundEl.addEventListener("change", calc);
+      if (unevenEl) unevenEl.addEventListener("change", calc);
+
+      document.getElementById("reset").addEventListener("click", function () {
+        totalEl.value = "120";
+        if (taxEl) taxEl.value = "0";
+        tipEl.value = "18";
+        peopleEl.value = "4";
+        if (roundEl) roundEl.checked = false;
+        if (unevenEl) unevenEl.checked = false;
+        customShares = [];
+        setActivePreset(18);
+        calc();
+        showToast("Reset to defaults");
+      });
+
+      document.getElementById("share").addEventListener("click", function () {
+        var text = "Bill split: " + perPersonEl.textContent + " per person — " + summaryEl.textContent.replace(/<[^>]+>/g, "") + " (Bill Splitter Pro)";
+        if (navigator.share) {
+          navigator.share({ title: "Bill Splitter Pro", text: text }).catch(function () {});
+        } else if (navigator.clipboard) {
+          navigator.clipboard.writeText(text).then(function () { showToast("Copied to clipboard"); });
+        } else {
+          showToast(text);
+        }
+      });
+
+      setActivePreset(+tipEl.value);
+      calc();
+    })();
+  </script>
+<div class="we-iap-bar" id="we-iap-bar" role="region" aria-label="In-app purchases">
+<style>
+.we-iap-bar{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;align-items:center;margin:8px 0;padding:8px;background:rgba(0,0,0,.15);border-radius:8px;max-width:360px;width:100%}
+.we-iap-bar button{background:#6366f1;color:#fff;border:none;padding:6px 12px;border-radius:6px;font-size:11px;font-weight:600;cursor:pointer}
+.we-iap-bar button:active{transform:scale(.97)}
+#we-iap-premium-badge{display:none;background:#eab308;color:#1c1917;padding:4px 10px;border-radius:999px;font-size:11px;font-weight:700}
+body.we-iap-premium .we-iap-bar{border-color:#eab308}
+body.we-iap-no-ads .ad{display:none!important}
+</style>
+
+<button type="button" id="we-iap-premium">Pro Unlock · $4.99</button>
+
+<button type="button" id="we-iap-restore">Restore</button>
+<span id="we-iap-premium-badge">★ Premium</span>
+</div><script>(function(){
+  var APP="bill-splitter-pro";
+  var PRODUCTS=[{"key":"pro_unlock","id":"com.wealthengine.billsplitterpro.pro_unlock","price":4.99,"title":"Pro Unlock"}];
+  var PREFIX='we_iap_'+APP+'_';
+
+  function owned(key){
+    try{return localStorage.getItem(PREFIX+key)==='1'}catch(e){return false}
+  }
+  function setOwned(key){
+    try{localStorage.setItem(PREFIX+key,'1')}catch(e){}
+    refreshUI();
+  }
+
+  function shouldShowAds(){
+    return true;
+  }
+
+  function hideAdSlots(){
+    if(shouldShowAds())return;
+    document.querySelectorAll('.ad,[data-ad-slot]').forEach(function(el){
+      el.style.display='none';
+    });
+  }
+
+  function refreshUI(){
+    var badge=document.getElementById('we-iap-premium-badge');
+    var removeBtn=document.getElementById('we-iap-remove-ads');
+    var hasPremium=owned('premium_unlock')||owned('pro_unlock');
+    var noAds=!shouldShowAds();
+    if(badge)badge.style.display=(hasPremium||noAds)?'inline-block':'none';
+    if(removeBtn)removeBtn.style.display=noAds?'none':'inline-block';
+    hideAdSlots();
+    document.body.classList.toggle('we-iap-premium',hasPremium);
+    document.body.classList.toggle('we-iap-no-ads',noAds);
+  }
+
+  function purchase(key){
+    var prod=PRODUCTS.find(function(p){return p.key===key});
+    if(!prod)return Promise.reject(new Error('Unknown product'));
+    if(owned(key))return Promise.resolve({key:key,restored:true});
+
+    /* Native: @revenuecat/purchases-capacitor or StoreKit 2 via Capacitor plugin */
+    if(window.Capacitor&&window.Capacitor.Plugins&&window.Capacitor.Plugins.Purchases){
+      return window.Capacitor.Plugins.Purchases.purchaseProduct({productIdentifier:prod.id})
+        .then(function(){setOwned(key);return{key:key,purchased:true};});
+    }
+
+    /* Sandbox / pre-App-Store-Connect: simulate success (replace after products live) */
+    if(confirm('Purchase '+prod.title+' (
+</html>
++prod.price.toFixed(2)+')?\n\nSandbox mode — receipt verify placeholder until App Store Connect products are live.')){
+      setOwned(key);
+      return Promise.resolve({key:key,purchased:true,sandbox:true});
+    }
+    return Promise.reject(new Error('Cancelled'));
+  }
+
+  function restore(){
+    if(window.Capacitor&&window.Capacitor.Plugins&&window.Capacitor.Plugins.Purchases){
+      return window.Capacitor.Plugins.Purchases.restorePurchases().then(function(res){
+        (res&&res.customerInfo&&res.customerInfo.entitlements&&res.customerInfo.entitlements.active||{}).forEach(function(){});
+        refreshUI();
+        return{restored:true};
+      });
+    }
+    refreshUI();
+    alert('Restore complete — checked local purchases. Connect RevenueCat for cross-device restore.');
+    return Promise.resolve({restored:true,local:true});
+  }
+
+  window.WE_IAP={
+    app:APP,
+    products:PRODUCTS,
+    owns:owned,
+    shouldShowAds:shouldShowAds,
+    purchase:purchase,
+    restore:restore,
+    refresh:refreshUI
+  };
+
+  function wireUI(){
+    var bar=document.getElementById('we-iap-bar');
+    if(!bar)return;
+    var removeBtn=document.getElementById('we-iap-remove-ads');
+    var premiumBtn=document.getElementById('we-iap-premium');
+    var restoreBtn=document.getElementById('we-iap-restore');
+    var tipBtn=document.getElementById('we-iap-tip');
+    if(removeBtn)removeBtn.addEventListener('click',function(){WE_IAP.purchase('remove_ads').catch(function(){})});
+    if(premiumBtn)premiumBtn.addEventListener('click',function(){
+      WE_IAP.purchase('pro_unlock').catch(function(){});
+    });
+    if(restoreBtn)restoreBtn.addEventListener('click',function(){WE_IAP.restore()});
+    if(tipBtn)tipBtn.addEventListener('click',function(){WE_IAP.purchase('tip_jar').catch(function(){})});
+    refreshUI();
+  }
+
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',wireUI);
+  else wireUI();
+})();</script></body>
+</html>

@@ -53,6 +53,7 @@ const FASTLANE_LANES = {
   "late-fee-calculator-pro": "beta_late_fee_calculator_pro",
   "markup-calculator-pro": "beta_markup_calculator_pro",
   "day-rate-calculator-pro": "beta_day_rate_calculator_pro",
+  "bill-splitter-pro": "beta_bill_splitter_pro",
   "invoice-number-rush": "beta_invoice_number_rush",
   "freelancer-stack": "beta_freelancer_stack",
   devwatch: "beta_devwatch",

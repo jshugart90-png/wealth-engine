@@ -201,6 +201,16 @@
       "deployPath": "dist/day-rate-calculator-pro",
       "channels": ["seo", "app-store", "freelancer-forums"],
       "autonomous": ["shareable-summaries", "local-history"]
+    },
+    {
+      "id": "bill-splitter-pro",
+      "name": "Bill Splitter Pro",
+      "type": "utility",
+      "model": "free",
+      "path": "ventures/bill-splitter-pro",
+      "deployPath": "dist/bill-splitter-pro",
+      "channels": ["seo", "app-store", "consumer-tools"],
+      "autonomous": ["shareable-summaries", "local-history"]
     }
   ],
   "stripeProducts": [

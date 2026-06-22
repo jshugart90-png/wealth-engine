@@ -1,0 +1,36 @@
+{
+  "appName": "Bill Splitter Pro",
+  "subtitle": "Split bills with tip, tax & breakdown",
+  "bundleId": "com.wealthengine.billsplitterpro",
+  "version": "1.0.0",
+  "privacyPolicyUrl": "https://wealth-engine-0qlj.onrender.com/privacy.html",
+  "supportUrl": "https://wealth-engine-0qlj.onrender.com/",
+  "marketingUrl": "https://wealth-engine-0qlj.onrender.com/bill-splitter-pro/",
+  "category": {
+    "apple": "Finance",
+    "appleSub": "Utilities",
+    "google": "FINANCE"
+  },
+  "contentRating": {
+    "ageRating": "4+",
+    "googleQuestionnaire": "Everyone — bill splitter calculator, no network required for core features",
+    "adsPresent": false,
+    "inAppPurchases": true,
+    "dataCollected": [
+      "calculation history stored locally only"
+    ]
+  },
+  "keywords": [
+    "bill split",
+    "split bill",
+    "tip",
+    "calculator",
+    "restaurant",
+    "dinner",
+    "gratuity",
+    "tax",
+    "per person",
+    "group",
+    "billsplitterpro"
+  ]
+}
