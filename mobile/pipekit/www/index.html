@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>PipeKit</title>
+<meta name="description" content="Developer API utilities — UUID, hash, JSON from $9/mo">
+<link rel="manifest" href="/manifest.json">
+<meta name="theme-color" content="#0d1117">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<link rel="apple-touch-icon" href="/assets/pwa/icon-192.png">
+<style>
+body{font-family:system-ui,sans-serif;background:#0d1117;color:#c9d1d9;margin:0;padding:0 20px 40px;min-height:100vh;display:flex;flex-direction:column;align-items:center}
+.offline{display:none;background:#7f1d1d;color:#fecaca;text-align:center;padding:10px 16px;font-size:13px;width:100%}
+.offline.show{display:block}
+h1{margin:32px 0 8px;font-size:1.6rem}
+.sub{color:#8b949e;text-align:center;margin-bottom:20px;max-width:340px;line-height:1.5}
+.stat{background:#fff;border:2px solid #30363d;border-radius:12px;padding:16px 28px;margin-bottom:16px;text-align:center;box-shadow:0 1px 3px rgba(15,23,42,.06)}
+.stat span{font-size:1.4rem;font-weight:700;color:#58a6ff}
+.features{max-width:320px;margin-bottom:24px;font-size:14px;color:#8b949e;line-height:1.6}
+.features li{margin-bottom:6px}
+.cta{display:inline-block;background:#238636;color:#fff;text-decoration:none;padding:14px 32px;border-radius:10px;font-weight:700;font-size:1.1rem;margin-bottom:16px}
+.cta:hover{background:#2ea043}
+.links{font-size:13px;color:#8b949e;margin-top:20px}
+.links a{color:#58a6ff}
+</style></head><body>
+<div id="offline-banner" class="offline" role="status">You're offline — open PipeKit if you've used it before</div>
+<h1>🔧 PipeKit</h1>
+<p class="sub">Developer API utilities — UUID, hash, JSON from $9/mo</p>
+<div class="stat">API tier<br><span id="last-stat">Free (100/day)</span></div>
+<ul class="features">
+  <li>UUID, hash, base64, JSON format APIs</li>
+  <li>100 free requests/day — no signup</li>
+  <li>Pro keys from $9/mo via Stripe</li>
+</ul>
+<a class="cta" href="pipekit/index.html">Open API Docs</a>
+<p class="links"><a href="privacy.html">Privacy</a> · <a href="https://wealth-engine-0qlj.onrender.com/go/pipekit.html">Get API key</a></p>
+<script>(function(){
+  var KEY='pipekit_tier';
+  var el=document.getElementById('last-stat');
+  try{var v=localStorage.getItem(KEY);if(el&&v)el.textContent=v}catch(e){}
+  var banner=document.getElementById('offline-banner');
+  function setOffline(){if(banner)banner.classList.toggle('show',!navigator.onLine)}
+  window.addEventListener('online',setOffline);
+  window.addEventListener('offline',setOffline);
+  setOffline();
+})();</script>
+</body></html>

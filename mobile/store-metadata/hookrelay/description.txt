@@ -1,0 +1,15 @@
+HookRelay receives webhooks, retries with exponential backoff, queues failures to a dead letter queue, and lets you replay with one click.
+
+Built for indie SaaS — cheaper than Hookdeck, no enterprise sales call. Stripe, GitHub, Shopify presets included.
+
+Features:
+• Durable receive → retry → DLQ → replay dashboard
+• Email + Slack alerts when delivery fails 3×
+• Payload inspector for fast debugging
+• Free tier: 1 endpoint, 1K events/mo
+• DLQ Pro from $29/mo via Stripe checkout
+• Works offline after first load for docs and pricing
+
+Perfect for developers who need reliable webhook delivery without Zapier bills.
+
+Privacy: Webhook payloads processed on server per your relay configuration. Subscription via Stripe.

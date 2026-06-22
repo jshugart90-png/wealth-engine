@@ -24,7 +24,11 @@
 | **BillSnap** | `com.wealthengine.billsnap` | **TestFlight prep** | 17 PASS, 0 FAIL | `2f614f4` pushed | **READY** (Mac upload) |
 | **StatusPing Lite** | `com.wealthengine.statuspinglite` | **TestFlight prep** | 17 PASS, 0 FAIL | `fed3955` pushed | **READY** (Mac upload) |
 | **LeaseLens** | `com.wealthengine.leaselens` | **TestFlight prep** | 17 PASS, 0 FAIL | `1814727` pushed | **READY** (Mac upload) |
-| App 17+ | TBD | Queued | — | — | — |
+| **NDAGen** | `com.wealthengine.ndagen` | **TestFlight prep** | 17 PASS, 0 FAIL | TBD pushed | **READY** (Mac upload) |
+| **HookRelay** | `com.wealthengine.hookrelay` | **TestFlight prep** | 17 PASS, 0 FAIL | TBD pushed | **READY** (Mac upload) |
+| **PipeKit** | `com.wealthengine.pipekit` | **TestFlight prep** | 17 PASS, 0 FAIL | TBD pushed | **READY** (Mac upload) |
+| **MeetingCost** | `com.wealthengine.meetingcost` | **TestFlight prep** | 17 PASS, 0 FAIL | TBD pushed | **READY** (Mac upload) |
+| App 21+ | TBD | Queued | — | — | — |
 
 ## App 1 — Horseshoe Games Hub
 
@@ -426,7 +430,104 @@ npx cap sync ios && npx cap open ios
 # Or: bundle exec fastlane ios beta_leaselens
 ```
 
-## App 17+ queue
+## App 17 — NDAGen (utility)
+
+| Field | Value |
+|-------|-------|
+| Version | 1.0.0 |
+| Tool | NDAGen mutual NDA generator (standalone Capacitor shell) |
+| Capacitor | `mobile/ndagen/` → loads `/ndagen/` from prod |
+| Store metadata | `mobile/store-metadata/ndagen/` |
+| Preflight | `npm run mobile:preflight:ndagen` |
+
+### Features (shipped this session)
+
+1. **Exports this month** — localStorage `ndagen_exports_mo` count with launcher display
+2. **Offline banner** — native launcher with feature highlights and offline message
+
+### TestFlight upload (user Mac)
+
+```bash
+npm run build && cd mobile && node sync-www.mjs ndagen
+cd ndagen && npm install && npx cap add ios  # if missing
+npx cap sync ios && npx cap open ios
+# Or: bundle exec fastlane ios beta_ndagen
+```
+
+## App 18 — HookRelay (utility)
+
+| Field | Value |
+|-------|-------|
+| Version | 1.0.0 |
+| Tool | HookRelay webhook DLQ & retry (standalone Capacitor shell) |
+| Capacitor | `mobile/hookrelay/` → loads `/hookrelay/` from prod |
+| Store metadata | `mobile/store-metadata/hookrelay/` |
+| Preflight | `npm run mobile:preflight:hookrelay` |
+
+### Features (shipped this session)
+
+1. **Active plan** — launcher shows free tier default with plan upgrade links
+2. **Offline banner** — native launcher with feature highlights and offline message
+
+### TestFlight upload (user Mac)
+
+```bash
+npm run build && cd mobile && node sync-www.mjs hookrelay
+cd hookrelay && npm install && npx cap add ios  # if missing
+npx cap sync ios && npx cap open ios
+# Or: bundle exec fastlane ios beta_hookrelay
+```
+
+## App 19 — PipeKit (utility)
+
+| Field | Value |
+|-------|-------|
+| Version | 1.0.0 |
+| Tool | PipeKit developer API utilities (standalone Capacitor shell) |
+| Capacitor | `mobile/pipekit/` → loads `/pipekit/` from prod |
+| Store metadata | `mobile/store-metadata/pipekit/` |
+| Preflight | `npm run mobile:preflight:pipekit` |
+
+### Features (shipped this session)
+
+1. **API tier** — launcher shows free tier default with upgrade path
+2. **Offline banner** — native launcher with feature highlights and offline message
+3. **Build alias** — `dist/pipekit/` copied from `dist/devtools-api/` at build time
+
+### TestFlight upload (user Mac)
+
+```bash
+npm run build && cd mobile && node sync-www.mjs pipekit
+cd pipekit && npm install && npx cap add ios  # if missing
+npx cap sync ios && npx cap open ios
+# Or: bundle exec fastlane ios beta_pipekit
+```
+
+## App 20 — MeetingCost (utility)
+
+| Field | Value |
+|-------|-------|
+| Version | 1.0.0 |
+| Tool | MeetingCost meeting cost calculator (standalone Capacitor shell) |
+| Capacitor | `mobile/meetingcost/` → loads `/meetingcost/` from prod |
+| Store metadata | `mobile/store-metadata/meetingcost/` |
+| Preflight | `npm run mobile:preflight:meetingcost` |
+
+### Features (shipped this session)
+
+1. **Last meeting cost** — localStorage `meetingcost_last` with launcher + calc save
+2. **Offline banner** — native launcher with feature highlights and offline message
+
+### TestFlight upload (user Mac)
+
+```bash
+npm run build && cd mobile && node sync-www.mjs meetingcost
+cd meetingcost && npm install && npx cap add ios  # if missing
+npx cap sync ios && npx cap open ios
+# Or: bundle exec fastlane ios beta_meetingcost
+```
+
+## App 21+ queue
 
 From `board/GAMES.md` or new simple utilities (calculators, timers) as standalone Capacitor shells.
 

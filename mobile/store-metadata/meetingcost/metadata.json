@@ -1,0 +1,22 @@
+{
+  "appName": "MeetingCost",
+  "subtitle": "Meeting cost calculator",
+  "bundleId": "com.wealthengine.meetingcost",
+  "version": "1.0.0",
+  "privacyPolicyUrl": "https://wealth-engine-0qlj.onrender.com/privacy.html",
+  "supportUrl": "https://wealth-engine-0qlj.onrender.com/",
+  "marketingUrl": "https://wealth-engine-0qlj.onrender.com/meetingcost/",
+  "category": {
+    "apple": "Business",
+    "appleSub": "Finance",
+    "google": "BUSINESS"
+  },
+  "contentRating": {
+    "ageRating": "4+",
+    "googleQuestionnaire": "Everyone — meeting calculator utility, Stripe checkout opens in browser",
+    "adsPresent": false,
+    "inAppPurchases": true,
+    "dataCollected": ["calculator inputs stored locally only; pro report via Stripe checkout"]
+  },
+  "keywords": ["meeting", "cost", "calculator", "team", "productivity", "salary", "hourly", "share", "meetingcost", "business"]
+}

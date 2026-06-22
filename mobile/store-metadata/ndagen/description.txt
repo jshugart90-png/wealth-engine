@@ -1,0 +1,15 @@
+NDAGen generates mutual NDAs in seconds — free preview, pay only to export PDF.
+
+Enter party names and governing law, generate a preview instantly, then unlock PDF export for $4 or subscribe to Team for 50 exports per month.
+
+Features:
+• Mutual NDA preview in seconds
+• US state governing law templates
+• PDF export $4 or Team plan $29/mo
+• Free previews unlimited — no signup wall
+• Works offline after first load
+• Not legal advice — template for discussion
+
+Perfect for freelancers, agencies, and startups who need quick NDAs before calls or deals.
+
+Privacy: Party names stored on device only. Checkout handled via Stripe in browser.

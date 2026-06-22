@@ -90,6 +90,13 @@ export function buildAll() {
     built.push(v.id);
   }
 
+  // PipeKit mobile app loads /pipekit/ — alias devtools-api venture
+  const devtoolsApi = join(dist, "devtools-api");
+  const pipekitDest = join(dist, "pipekit");
+  if (existsSync(devtoolsApi)) {
+    cpSync(devtoolsApi, pipekitDest, { recursive: true });
+  }
+
   // Portfolio hub
   const hub = buildPortfolioHub(built);
   writeFileSync(join(dist, "index.html"), hub);

@@ -1,6 +1,6 @@
 /**
  * Sync dist/ assets into Capacitor www folders.
- * Usage: node sync-www.mjs [games|tools|receipt-rush|webhook-whack|invoice-stack|horseshoe-toss|uptime-defender|freelancer-memory|color-switch-snake|word-scramble-biz|net-30-ninja|ssl-shield|nda-speed-sign|billsnap|statusping-lite|leaselens|all]
+ * Usage: node sync-www.mjs [games|tools|receipt-rush|webhook-whack|invoice-stack|horseshoe-toss|uptime-defender|freelancer-memory|color-switch-snake|word-scramble-biz|net-30-ninja|ssl-shield|nda-speed-sign|billsnap|statusping-lite|leaselens|ndagen|hookrelay|pipekit|meetingcost|all]
  */
 import { cpSync, existsSync, mkdirSync, readFileSync, writeFileSync, readdirSync } from "fs";
 import { join, dirname } from "path";
@@ -386,6 +386,108 @@ const UTILITY_SHELLS = {
       "License code restores paid reports on any device",
     ],
   },
+  ndagen: {
+    title: "NDAGen",
+    emoji: "📄",
+    tagline: "Mutual NDAs in seconds — PDF $4 or Team $29/mo",
+    themeColor: "#ecfdf5",
+    bg: "#ecfdf5",
+    text: "#064e3b",
+    sub: "#047857",
+    accent: "#059669",
+    btnBg: "#059669",
+    btnHover: "#047857",
+    statBorder: "#a7f3d0",
+    statKey: "ndagen_exports_mo",
+    statLabel: "Exports this month",
+    statEmpty: "0",
+    statRead: "try{var raw=JSON.parse(localStorage.getItem('ndagen_exports_mo')||'{}');if(el)el.textContent=String(raw.count||0)}catch(e){}",
+    cta: "Generate NDA",
+    moreLink: "https://wealth-engine-0qlj.onrender.com/go/nda-team.html",
+    moreLabel: "Team plan pricing",
+    offlineMsg: "You're offline — open NDAGen if you've used it before",
+    features: [
+      "Free unlimited NDA previews",
+      "Single PDF export for $4 via Stripe",
+      "Team plan — 50 exports/mo, 3 seats",
+    ],
+  },
+  hookrelay: {
+    title: "HookRelay",
+    emoji: "🔗",
+    tagline: "Webhook DLQ, retry & forwarding for indie SaaS",
+    themeColor: "#0d1117",
+    bg: "#0d1117",
+    text: "#c9d1d9",
+    sub: "#8b949e",
+    accent: "#58a6ff",
+    btnBg: "#238636",
+    btnHover: "#2ea043",
+    statBorder: "#30363d",
+    statKey: "hookrelay_plan",
+    statLabel: "Active plan",
+    statEmpty: "Free tier",
+    cta: "Open Relay",
+    moreLink: "https://wealth-engine-0qlj.onrender.com/go/hookrelay-dlq.html",
+    moreLabel: "DLQ Pro pricing",
+    offlineMsg: "You're offline — open HookRelay if you've used it before",
+    features: [
+      "Durable receive → retry → DLQ → replay",
+      "Stripe, GitHub, Shopify preset connectors",
+      "Plans from $7/mo — free tier included",
+    ],
+  },
+  pipekit: {
+    title: "PipeKit",
+    emoji: "🔧",
+    tagline: "Developer API utilities — UUID, hash, JSON from $9/mo",
+    themeColor: "#0d1117",
+    bg: "#0d1117",
+    text: "#c9d1d9",
+    sub: "#8b949e",
+    accent: "#58a6ff",
+    btnBg: "#238636",
+    btnHover: "#2ea043",
+    statBorder: "#30363d",
+    statKey: "pipekit_tier",
+    statLabel: "API tier",
+    statEmpty: "Free (100/day)",
+    cta: "Open API Docs",
+    moreLink: "https://wealth-engine-0qlj.onrender.com/go/pipekit.html",
+    moreLabel: "Get API key",
+    offlineMsg: "You're offline — open PipeKit if you've used it before",
+    distSlug: "pipekit",
+    features: [
+      "UUID, hash, base64, JSON format APIs",
+      "100 free requests/day — no signup",
+      "Pro keys from $9/mo via Stripe",
+    ],
+  },
+  meetingcost: {
+    title: "MeetingCost",
+    emoji: "💸",
+    tagline: "How much does this meeting actually cost?",
+    themeColor: "#fef2f2",
+    bg: "#fef2f2",
+    text: "#7f1d1d",
+    sub: "#991b1b",
+    accent: "#dc2626",
+    btnBg: "#dc2626",
+    btnHover: "#b91c1c",
+    statBorder: "#fecaca",
+    statKey: "meetingcost_last",
+    statLabel: "Last meeting cost",
+    statEmpty: "—",
+    cta: "Calculate Cost",
+    moreLink: "https://wealth-engine-0qlj.onrender.com/go/meeting.html",
+    moreLabel: "Pro report pricing",
+    offlineMsg: "You're offline — open MeetingCost if you've used it before",
+    features: [
+      "Instant cost from attendees, rate, and duration",
+      "Shareable link with pre-filled values",
+      "Pro report unlocks for $5 via Stripe",
+    ],
+  },
 };
 
 function syncUtility(slug) {
@@ -444,7 +546,7 @@ ${(shell.features ?? []).map((f) => `  <li>${f}</li>`).join("\n")}
 <script>(function(){
   var KEY='${shell.statKey}';
   var el=document.getElementById('last-stat');
-  try{var v=localStorage.getItem(KEY);if(el&&v)el.textContent=v}catch(e){}
+  ${shell.statRead ?? "try{var v=localStorage.getItem(KEY);if(el&&v)el.textContent=v}catch(e){}"}
   var banner=document.getElementById('offline-banner');
   function setOffline(){if(banner)banner.classList.toggle('show',!navigator.onLine)}
   window.addEventListener('online',setOffline);
@@ -530,6 +632,10 @@ if (target === "tools" || target === "all") syncTools();
 if (target === "billsnap" || target === "all") syncUtility("billsnap");
 if (target === "statusping-lite" || target === "all") syncUtility("statusping-lite");
 if (target === "leaselens" || target === "all") syncUtility("leaselens");
+if (target === "ndagen" || target === "all") syncUtility("ndagen");
+if (target === "hookrelay" || target === "all") syncUtility("hookrelay");
+if (target === "pipekit" || target === "all") syncUtility("pipekit");
+if (target === "meetingcost" || target === "all") syncUtility("meetingcost");
 if (target === "receipt-rush" || target === "all") syncMiniGame("receipt-rush");
 if (target === "webhook-whack" || target === "all") syncMiniGame("webhook-whack");
 if (target === "invoice-stack" || target === "all") syncMiniGame("invoice-stack");

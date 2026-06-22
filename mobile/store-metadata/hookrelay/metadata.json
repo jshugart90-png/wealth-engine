@@ -1,0 +1,22 @@
+{
+  "appName": "HookRelay",
+  "subtitle": "Webhook DLQ & retry",
+  "bundleId": "com.wealthengine.hookrelay",
+  "version": "1.0.0",
+  "privacyPolicyUrl": "https://wealth-engine-0qlj.onrender.com/privacy.html",
+  "supportUrl": "https://wealth-engine-0qlj.onrender.com/",
+  "marketingUrl": "https://wealth-engine-0qlj.onrender.com/hookrelay/",
+  "category": {
+    "apple": "Developer Tools",
+    "appleSub": "Utilities",
+    "google": "TOOLS"
+  },
+  "contentRating": {
+    "ageRating": "4+",
+    "googleQuestionnaire": "Everyone — developer webhook utility, Stripe checkout opens in browser",
+    "adsPresent": false,
+    "inAppPurchases": true,
+    "dataCollected": ["webhook payloads processed on server; subscription via Stripe"]
+  },
+  "keywords": ["webhook", "dlq", "retry", "relay", "stripe", "github", "developer", "api", "hookrelay", "saas"]
+}

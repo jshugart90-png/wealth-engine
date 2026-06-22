@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 /**
  * App Store preflight QC — 15-item checklist before mobile submission.
- * Run: node scripts/app-store-preflight.mjs [--app games|tools|receipt-rush|webhook-whack|invoice-stack|horseshoe-toss|uptime-defender|freelancer-memory|color-switch-snake|word-scramble-biz|net-30-ninja|ssl-shield|nda-speed-sign|billsnap|statusping-lite|leaselens]
+ * Run: node scripts/app-store-preflight.mjs [--app games|tools|receipt-rush|webhook-whack|invoice-stack|horseshoe-toss|uptime-defender|freelancer-memory|color-switch-snake|word-scramble-biz|net-30-ninja|ssl-shield|nda-speed-sign|billsnap|statusping-lite|leaselens|ndagen|hookrelay|pipekit|meetingcost]
  */
 import { readFileSync, existsSync, readdirSync } from "fs";
 import { join } from "path";
@@ -12,8 +12,8 @@ const app = process.argv.includes("--app")
   ? process.argv[process.argv.indexOf("--app") + 1]
   : "games";
 const MINI_GAMES = ["receipt-rush", "webhook-whack", "invoice-stack", "horseshoe-toss", "uptime-defender", "freelancer-memory", "color-switch-snake", "word-scramble-biz", "net-30-ninja", "ssl-shield", "nda-speed-sign"];
-const UTIL_APPS = ["billsnap", "statusping-lite", "leaselens"];
-const UTIL_DIST = { "statusping-lite": "statusping" };
+const UTIL_APPS = ["billsnap", "statusping-lite", "leaselens", "ndagen", "hookrelay", "pipekit", "meetingcost"];
+const UTIL_DIST = { "statusping-lite": "statusping", pipekit: "pipekit" };
 const isMiniGame = MINI_GAMES.includes(app);
 const isUtilApp = UTIL_APPS.includes(app);
 const miniGameSlug = isMiniGame ? app : null;

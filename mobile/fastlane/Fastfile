@@ -146,6 +146,26 @@ platform :ios do
     mini_app_ios_beta("leaselens", "LeaseLens")
   end
 
+  desc "TestFlight upload for NDAGen utility app"
+  lane :beta_ndagen do
+    mini_app_ios_beta("ndagen", "NDAGen")
+  end
+
+  desc "TestFlight upload for HookRelay utility app"
+  lane :beta_hookrelay do
+    mini_app_ios_beta("hookrelay", "HookRelay")
+  end
+
+  desc "TestFlight upload for PipeKit utility app"
+  lane :beta_pipekit do
+    mini_app_ios_beta("pipekit", "PipeKit")
+  end
+
+  desc "TestFlight upload for MeetingCost utility app"
+  lane :beta_meetingcost do
+    mini_app_ios_beta("meetingcost", "MeetingCost")
+  end
+
   desc "TestFlight upload + App Store metadata (does not auto-submit for review)"
   lane :release do
     beta

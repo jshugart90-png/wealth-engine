@@ -1,0 +1,22 @@
+{
+  "appName": "NDAGen",
+  "subtitle": "Free NDA generator",
+  "bundleId": "com.wealthengine.ndagen",
+  "version": "1.0.0",
+  "privacyPolicyUrl": "https://wealth-engine-0qlj.onrender.com/privacy.html",
+  "supportUrl": "https://wealth-engine-0qlj.onrender.com/",
+  "marketingUrl": "https://wealth-engine-0qlj.onrender.com/ndagen/",
+  "category": {
+    "apple": "Business",
+    "appleSub": "Productivity",
+    "google": "BUSINESS"
+  },
+  "contentRating": {
+    "ageRating": "4+",
+    "googleQuestionnaire": "Everyone — legal template utility, Stripe checkout opens in browser",
+    "adsPresent": false,
+    "inAppPurchases": true,
+    "dataCollected": ["party names stored locally; PDF export via Stripe checkout"]
+  },
+  "keywords": ["nda", "contract", "non-disclosure", "legal", "template", "freelancer", "mutual", "pdf", "ndagen", "signing"]
+}

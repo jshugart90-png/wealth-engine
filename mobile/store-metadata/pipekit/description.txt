@@ -1,0 +1,15 @@
+PipeKit ships UUID, hash, base64, and JSON format APIs with simple pricing — no Postman bloat, no enterprise sales call.
+
+100 free requests per day unauthenticated. Pro API keys from $9/mo with instant Stripe checkout.
+
+Features:
+• UUID, hash, base64, JSON, timestamp endpoints
+• 100 free requests/day — no signup required
+• Starter $9/mo · Pro $29/mo via Stripe
+• One endpoint, one price, no surprise overages
+• Works offline after first load for docs
+• API key delivered via webhook fulfillment
+
+Perfect for indie devs who need one endpoint, not a platform.
+
+Privacy: Request payloads processed on server. API keys issued after purchase.

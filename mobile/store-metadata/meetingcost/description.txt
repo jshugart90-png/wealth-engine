@@ -1,0 +1,15 @@
+MeetingCost shows how much a meeting actually costs your company — attendees × hourly rate × duration in seconds.
+
+Share the number with your team to cut wasteful meetings. Viral share links included.
+
+Features:
+• Instant cost calculation from three inputs
+• Copy shareable link for team awareness
+• Pro report export for $5 via Stripe
+• Free calculator — no signup wall
+• Works offline after first load
+• Embed widget available on web
+
+Perfect for managers, founders, and teams fighting meeting bloat.
+
+Privacy: Calculator inputs stored on device only. Pro checkout via Stripe in browser.

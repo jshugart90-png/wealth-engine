@@ -1,0 +1,22 @@
+{
+  "appName": "PipeKit",
+  "subtitle": "Developer API utilities",
+  "bundleId": "com.wealthengine.pipekit",
+  "version": "1.0.0",
+  "privacyPolicyUrl": "https://wealth-engine-0qlj.onrender.com/privacy.html",
+  "supportUrl": "https://wealth-engine-0qlj.onrender.com/",
+  "marketingUrl": "https://wealth-engine-0qlj.onrender.com/pipekit/",
+  "category": {
+    "apple": "Developer Tools",
+    "appleSub": "Utilities",
+    "google": "TOOLS"
+  },
+  "contentRating": {
+    "ageRating": "4+",
+    "googleQuestionnaire": "Everyone — developer API utility, Stripe checkout opens in browser",
+    "adsPresent": false,
+    "inAppPurchases": true,
+    "dataCollected": ["API requests processed on server; API key issued after Stripe checkout"]
+  },
+  "keywords": ["api", "uuid", "hash", "base64", "json", "developer", "pipekit", "utilities", "rest", "endpoint"]
+}
