@@ -86,6 +86,11 @@ platform :ios do
     mini_app_ios_beta("webhook-whack", "Webhook Whack")
   end
 
+  desc "TestFlight upload for Invoice Stack mini-app"
+  lane :beta_invoice_stack do
+    mini_app_ios_beta("invoice-stack", "Invoice Stack")
+  end
+
   desc "TestFlight upload + App Store metadata (does not auto-submit for review)"
   lane :release do
     beta

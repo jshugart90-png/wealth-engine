@@ -12,7 +12,8 @@
 | **Freelancer Tools** | `com.wealthengine.freelancertools` | **TestFlight prep** | 15 PASS, 0 FAIL | `c9a03f6` pushed | **READY** (Mac upload) |
 | **Receipt Rush** | `com.wealthengine.receiptrush` | **TestFlight prep** | 16 PASS, 0 FAIL, 1 WARN | `b730bb9` pushed | **READY** (Mac upload) |
 | **Webhook Whack** | `com.wealthengine.webhookwhack` | **TestFlight prep** | 16 PASS, 0 FAIL, 1 WARN | `9098f67` pushed | **READY** (Mac upload) |
-| App 5+ | TBD | Queued | — | — | — |
+| **Invoice Stack** | `com.wealthengine.invoicestack` | **TestFlight prep** | 16 PASS, 0 FAIL, 1 WARN | pending push | **READY** (Mac upload) |
+| App 6+ | TBD | Queued | — | — | — |
 
 ## App 1 — Horseshoe Games Hub
 
@@ -126,7 +127,31 @@ npx cap sync ios && npx cap open ios
 # Or: bundle exec fastlane ios beta_webhook_whack
 ```
 
-## App 5+ queue
+## App 5 — Invoice Stack (mini-app)
+
+| Field | Value |
+|-------|-------|
+| Version | 1.0.0 |
+| Game | Invoice Stack (single-game Capacitor shell) |
+| Capacitor | `mobile/invoice-stack/` → loads `/games/invoice-stack/` from prod |
+| Store metadata | `mobile/store-metadata/invoice-stack/` |
+| Preflight | `npm run mobile:preflight:invoice-stack` |
+
+### Features (shipped this session)
+
+1. **Best score** — localStorage persistence with HUD display
+2. **Offline banner** — same pattern as Games Hub / Receipt Rush
+
+### TestFlight upload (user Mac)
+
+```bash
+npm run build && cd mobile && node sync-www.mjs invoice-stack
+cd invoice-stack && npm install && npx cap add ios  # if missing
+npx cap sync ios && npx cap open ios
+# Or: bundle exec fastlane ios beta_invoice_stack
+```
+
+## App 6+ queue
 
 From `board/GAMES.md` or new simple utilities (calculators, timers) as standalone Capacitor shells.
 

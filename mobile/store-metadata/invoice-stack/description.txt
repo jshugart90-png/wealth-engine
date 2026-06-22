@@ -1,0 +1,15 @@
+Invoice Stack is a satisfying arcade stacking game for freelancers, bookkeepers, and anyone who loves quick skill challenges!
+
+Tap left or right to position falling invoice blocks — align them carefully or they'll topple off the stack. Lose lives on bad drops, level up as your tower grows, and chase your best score!
+
+Features:
+• Simple tap controls — left/right movement
+• Best score saved on your device
+• Works offline after first load
+• Family-friendly, all ages
+• No account or signup required
+• Link to BillSnap PDF invoice tools
+
+Perfect for quick breaks between client work. Part of the Horseshoe Games collection by Wealth Engine.
+
+Privacy: Scores stay on your device. See our privacy policy for details.

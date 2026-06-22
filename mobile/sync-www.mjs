@@ -1,6 +1,6 @@
 /**
  * Sync dist/ assets into Capacitor www folders.
- * Usage: node sync-www.mjs [games|tools|receipt-rush|webhook-whack|all]
+ * Usage: node sync-www.mjs [games|tools|receipt-rush|webhook-whack|invoice-stack|all]
  */
 import { cpSync, existsSync, mkdirSync, readFileSync, writeFileSync, readdirSync } from "fs";
 import { join, dirname } from "path";
@@ -176,6 +176,20 @@ const MINI_GAME_SHELLS = {
     bestBorder: "#312e81",
     bestKey: "webhook_whack_best",
   },
+  "invoice-stack": {
+    title: "Invoice Stack",
+    emoji: "🧾",
+    tagline: "Tap left/right to move — stack invoices before they fall!",
+    themeColor: "#0f172a",
+    bg: "#0f172a",
+    text: "#e2e8f0",
+    sub: "#94a3b8",
+    accent: "#38bdf8",
+    btnBg: "#2563eb",
+    btnHover: "#1d4ed8",
+    bestBorder: "#334155",
+    bestKey: "invoice_stack_best",
+  },
 };
 
 function syncMiniGame(slug) {
@@ -246,3 +260,4 @@ if (target === "games" || target === "all") syncGames();
 if (target === "tools" || target === "all") syncTools();
 if (target === "receipt-rush" || target === "all") syncMiniGame("receipt-rush");
 if (target === "webhook-whack" || target === "all") syncMiniGame("webhook-whack");
+if (target === "invoice-stack" || target === "all") syncMiniGame("invoice-stack");

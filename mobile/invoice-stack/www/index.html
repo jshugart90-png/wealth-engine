@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Invoice Stack</title>
+<meta name="description" content="Tap left/right to move — stack invoices before they fall!">
+<link rel="manifest" href="/manifest.json">
+<meta name="theme-color" content="#0f172a">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<link rel="apple-touch-icon" href="/assets/pwa/icon-192.png">
+<style>
+body{font-family:system-ui,sans-serif;background:#0f172a;color:#e2e8f0;margin:0;padding:0 20px 40px;min-height:100vh;display:flex;flex-direction:column;align-items:center}
+.offline{display:none;background:#7f1d1d;color:#fecaca;text-align:center;padding:10px 16px;font-size:13px;width:100%}
+.offline.show{display:block}
+h1{margin:32px 0 8px;font-size:1.6rem}
+.sub{color:#94a3b8;text-align:center;margin-bottom:20px;max-width:320px}
+.best{background:rgba(255,255,255,.06);border:2px solid #334155;border-radius:12px;padding:16px 28px;margin-bottom:24px;text-align:center}
+.best span{font-size:2rem;font-weight:700;color:#38bdf8}
+.play{display:inline-block;background:#2563eb;color:#fff;text-decoration:none;padding:14px 32px;border-radius:10px;font-weight:700;font-size:1.1rem;margin-bottom:16px}
+.play:hover{background:#1d4ed8}
+.links{font-size:13px;color:#94a3b8;margin-top:20px}
+.links a{color:#38bdf8}
+</style></head><body>
+<div id="offline-banner" class="offline" role="status">You're offline — tap Play if you've opened the game before</div>
+<h1>🧾 Invoice Stack</h1>
+<p class="sub">Tap left/right to move — stack invoices before they fall!</p>
+<div class="best">Best score<br><span id="best-score">0</span></div>
+<a class="play" href="invoice-stack/index.html">Play Now</a>
+<p class="links"><a href="privacy.html">Privacy</a> · <a href="https://wealth-engine-0qlj.onrender.com/games/">More games</a></p>
+<script>(function(){
+  var KEY='invoice_stack_best';
+  var el=document.getElementById('best-score');
+  try{var b=parseInt(localStorage.getItem(KEY)||'0',10);if(el)el.textContent=isNaN(b)?0:b}catch(e){}
+  var banner=document.getElementById('offline-banner');
+  function setOffline(){if(banner)banner.classList.toggle('show',!navigator.onLine)}
+  window.addEventListener('online',setOffline);
+  window.addEventListener('offline',setOffline);
+  setOffline();
+})();</script>
+</body></html>
