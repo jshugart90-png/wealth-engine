@@ -35,6 +35,7 @@
 | **Freelancer Tax Estimator Pro** | `com.wealthengine.freelancertaxestimatorpro` | **TestFlight prep** | 17 PASS, 0 FAIL | `ff2a04c` pushed | **READY** (Mac upload) |
 | **1099 Threshold Tracker Pro** | `com.wealthengine.thresholdtrackerpro` | **TestFlight prep** | 17 PASS, 0 FAIL | `882fecb` pushed | **READY** (Mac upload) |
 | **Quarterly Tax Deadline Pro** | `com.wealthengine.quarterlytaxdeadlinepro` | **TestFlight prep** | 17 PASS, 0 FAIL | `3b0414c` pushed | **READY** (Mac upload) |
+| **Profit Margin Calculator Pro** | `com.wealthengine.profitmargincalculatorpro` | **TestFlight prep** | 17 PASS, 0 FAIL | — | **READY** (Mac upload) |
 
 ## App 1 — Horseshoe Games Hub
 
@@ -708,9 +709,34 @@ npx cap sync ios && npx cap open ios
 # Or: bundle exec fastlane ios beta_quarterly_tax_deadline_pro
 ```
 
+## App 28 — Profit Margin Calculator Pro (utility)
+
+| Field | Value |
+|-------|-------|
+| Version | 1.0.0 |
+| Tool | Profit Margin Calculator Pro — gross & net margins, markup, break-even (standalone Capacitor shell) |
+| Capacitor | `mobile/profit-margin-calculator-pro/` → loads `/profit-margin-calculator-pro/` from prod |
+| Store metadata | `mobile/store-metadata/profit-margin-calculator-pro/` |
+| Preflight | `npm run mobile:preflight:profit-margin-calculator-pro` |
+
+### Features (shipped this session)
+
+1. **Last calculation** — localStorage `profitmarginpro_last` with launcher display
+2. **Native UI** — revenue presets, gross/net breakdown, markup, break-even units
+3. **Offline banner** — native launcher with feature highlights and offline message
+
+### TestFlight upload (user Mac)
+
+```bash
+npm run build && cd mobile && node sync-www.mjs profit-margin-calculator-pro
+cd profit-margin-calculator-pro && npm install && npx cap add ios  # if missing
+npx cap sync ios && npx cap open ios
+# Or: bundle exec fastlane ios beta_profit_margin_calculator_pro
+```
+
 ## Master checklist
 
-See `mobile/TESTFLIGHT_ALL_APPS.md` for all 27 apps — bundle IDs, Fastlane lanes, versions.
+See `mobile/TESTFLIGHT_ALL_APPS.md` for all 28 apps — bundle IDs, Fastlane lanes, versions.
 
 ## GitHub policy
 

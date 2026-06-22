@@ -1,6 +1,6 @@
 /**
  * Sync dist/ assets into Capacitor www folders.
- * Usage: node sync-www.mjs [games|tools|receipt-rush|webhook-whack|invoice-stack|horseshoe-toss|uptime-defender|freelancer-memory|color-switch-snake|word-scramble-biz|net-30-ninja|ssl-shield|nda-speed-sign|billsnap|statusping-lite|leaselens|ndagen|hookrelay|pipekit|meetingcost|templateforge|comparestack|tip-calculator-pro|hourly-rate-calculator-pro|freelancer-tax-estimator|1099-threshold-tracker-pro|quarterly-tax-deadline-pro|all]
+ * Usage: node sync-www.mjs [games|tools|receipt-rush|webhook-whack|invoice-stack|horseshoe-toss|uptime-defender|freelancer-memory|color-switch-snake|word-scramble-biz|net-30-ninja|ssl-shield|nda-speed-sign|billsnap|statusping-lite|leaselens|ndagen|hookrelay|pipekit|meetingcost|templateforge|comparestack|tip-calculator-pro|hourly-rate-calculator-pro|freelancer-tax-estimator|1099-threshold-tracker-pro|quarterly-tax-deadline-pro|profit-margin-calculator-pro|all]
  */
 import { cpSync, existsSync, mkdirSync, readFileSync, writeFileSync, readdirSync } from "fs";
 import { join, dirname } from "path";
@@ -670,6 +670,32 @@ const UTILITY_SHELLS = {
       "Mark quarters paid — saved locally",
     ],
   },
+  "profit-margin-calculator-pro": {
+    title: "Profit Margin Calculator Pro",
+    emoji: "📊",
+    tagline: "Gross & net margins, markup, and break-even",
+    themeColor: "#064e3b",
+    bg: "#064e3b",
+    text: "#ecfdf5",
+    sub: "#6ee7b7",
+    accent: "#fbbf24",
+    btnBg: "#f59e0b",
+    btnHover: "#d97706",
+    statBg: "#065f46",
+    statBorder: "#047857",
+    statKey: "profitmarginpro_last",
+    statLabel: "Last calculation",
+    statEmpty: "—",
+    cta: "Calculate Margins",
+    moreLink: "https://wealth-engine-0qlj.onrender.com/go/freelancer-stack.html",
+    moreLabel: "Freelancer Stack $49",
+    offlineMsg: "You're offline — open Profit Margin Calculator Pro if you've used it before",
+    features: [
+      "Gross & net margin with dollar breakdown",
+      "Markup on cost and per-unit margin",
+      "Break-even units with fixed costs",
+    ],
+  },
 };
 
 function syncUtility(slug) {
@@ -829,6 +855,8 @@ if (target === "hourly-rate-calculator-pro" || target === "all") syncUtility("ho
 if (target === "freelancer-tax-estimator" || target === "all") syncUtility("freelancer-tax-estimator");
 if (target === "1099-threshold-tracker-pro" || target === "all") syncUtility("1099-threshold-tracker-pro");
 if (target === "quarterly-tax-deadline-pro" || target === "all") syncUtility("quarterly-tax-deadline-pro");
+if (target === "profit-margin-calculator-pro" || target === "all") syncUtility("profit-margin-calculator-pro");
+if (target === "profit-margin-calculator-pro" || target === "all") syncUtility("profit-margin-calculator-pro");
 if (target === "receipt-rush" || target === "all") syncMiniGame("receipt-rush");
 if (target === "webhook-whack" || target === "all") syncMiniGame("webhook-whack");
 if (target === "invoice-stack" || target === "all") syncMiniGame("invoice-stack");

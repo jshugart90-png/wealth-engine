@@ -1,0 +1,14 @@
+Profit Margin Calculator Pro helps freelancers and small business owners instantly see whether a project, product, or service is actually profitable — with gross margin, net margin, markup, and dollar profit breakdowns.
+
+Enter revenue, cost of goods, and operating expenses to get a clear picture of your margins. Visual progress bars and health indicators show at a glance if your pricing is sustainable.
+
+Features:
+• Gross and net profit margin percentages
+• Dollar profit breakdown (gross profit, net profit)
+• Markup percentage on cost of goods
+• Revenue presets for quick what-if scenarios
+• Margin health indicator (strong, healthy, thin, loss)
+• Last calculation saved locally on your device
+• Works offline — no account required
+
+Perfect for solopreneurs, Etsy sellers, agency owners, and anyone pricing products or services without spreadsheet headaches.

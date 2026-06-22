@@ -1,0 +1,22 @@
+{
+  "appName": "Profit Margin Calculator Pro",
+  "subtitle": "Gross & net profit margins",
+  "bundleId": "com.wealthengine.profitmargincalculatorpro",
+  "version": "1.0.0",
+  "privacyPolicyUrl": "https://wealth-engine-0qlj.onrender.com/privacy.html",
+  "supportUrl": "https://wealth-engine-0qlj.onrender.com/",
+  "marketingUrl": "https://wealth-engine-0qlj.onrender.com/profit-margin-calculator-pro/",
+  "category": {
+    "apple": "Finance",
+    "appleSub": "Utilities",
+    "google": "FINANCE"
+  },
+  "contentRating": {
+    "ageRating": "4+",
+    "googleQuestionnaire": "Everyone — profit margin calculator, no network required for core features",
+    "adsPresent": false,
+    "inAppPurchases": false,
+    "dataCollected": ["calculation history stored locally only"]
+  },
+  "keywords": ["profit", "margin", "calculator", "gross", "net", "markup", "business", "freelance", "COGS", "profitmargincalculatorpro"]
+}

@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Profit Margin Calculator Pro — Gross &amp; net margins</title>
+  <meta name="description" content="Calculate gross and net profit margins, markup, and dollar profit for freelancers and small business. Free — no ads.">
+  <meta name="theme-color" content="#064e3b">
+  <style>
+    :root {
+      --bg: #064e3b;
+      --card: #065f46;
+      --border: #047857;
+      --text: #f0fdf4;
+      --muted: #6ee7b7;
+      --accent: #fbbf24;
+      --accent-dim: #f59e0b;
+      --success: #34d399;
+      --danger: #f87171;
+      --warn: #fb923c;
+    }
+    * { box-sizing: border-box; }
+    body {
+      font-family: system-ui, -apple-system, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      margin: 0;
+      min-height: 100vh;
+      padding: max(16px, env(safe-area-inset-top)) 16px max(32px, env(safe-area-inset-bottom));
+    }
+    .wrap { max-width: 420px; margin: 0 auto; }
+    h1 { font-size: 1.5rem; margin: 8px 0 4px; font-weight: 700; }
+    .tagline { color: var(--muted); font-size: 0.9rem; margin-bottom: 20px; }
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 20px;
+      margin-bottom: 16px;
+    }
+    label {
+      display: block;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--muted);
+      margin-bottom: 6px;
+    }
+    input[type="number"] {
+      width: 100%;
+      font-size: 1.5rem;
+      font-weight: 600;
+      padding: 12px 14px;
+      border: 2px solid var(--border);
+      border-radius: 12px;
+      background: var(--bg);
+      color: var(--text);
+      -webkit-appearance: none;
+      appearance: none;
+    }
+    input[type="number"]:focus {
+      outline: none;
+      border-color: var(--accent);
+    }
+    .field { margin-bottom: 16px; }
+    .field:last-child { margin-bottom: 0; }
+    .preset-row {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 8px;
+      margin: 12px 0 4px;
+    }
+    .preset-btn {
+      padding: 10px 4px;
+      border: 2px solid var(--border);
+      border-radius: 10px;
+      background: var(--bg);
+      color: var(--text);
+      font-size: 0.8rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: 0.15s;
+    }
+    .preset-btn.active {
+      border-color: var(--accent);
+      background: rgba(251, 191, 36, 0.15);
+      color: var(--accent);
+    }
+    .hint { font-size: 0.75rem; color: var(--muted); margin-top: 4px; }
+    .result-card { text-align: center; padding: 24px 16px; }
+    .result-main {
+      font-size: 2.5rem;
+      font-weight: 800;
+      color: var(--accent);
+      line-height: 1.1;
+      margin-bottom: 4px;
+    }
+    .result-sub {
+      font-size: 1.1rem;
+      color: var(--muted);
+      margin-bottom: 16px;
+    }
+    .result-sub strong { color: var(--text); }
+    .health {
+      display: inline-block;
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      padding: 6px 12px;
+      border-radius: 8px;
+      margin-bottom: 16px;
+    }
+    .health.strong { background: rgba(52, 211, 153, 0.15); color: var(--success); }
+    .health.ok { background: rgba(251, 191, 36, 0.15); color: var(--accent); }
+    .health.low { background: rgba(251, 146, 60, 0.15); color: var(--warn); }
+    .health.negative { background: rgba(248, 113, 113, 0.15); color: var(--danger); }
+    .breakdown {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-top: 8px;
+    }
+    .breakdown-item {
+      background: var(--bg);
+      border-radius: 10px;
+      padding: 12px;
+      text-align: center;
+    }
+    .breakdown-item .val { font-size: 1.15rem; font-weight: 700; color: var(--success); }
+    .breakdown-item .val.negative { color: var(--danger); }
+    .breakdown-item .lbl { font-size: 0.7rem; color: var(--muted); text-transform: uppercase; margin-top: 4px; }
+    .margin-bars { margin-top: 16px; text-align: left; }
+    .bar-row { margin-bottom: 12px; }
+    .bar-row:last-child { margin-bottom: 0; }
+    .bar-label {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.8rem;
+      color: var(--muted);
+      margin-bottom: 4px;
+    }
+    .bar-label strong { color: var(--text); }
+    .bar-track {
+      height: 8px;
+      background: var(--bg);
+      border-radius: 4px;
+      overflow: hidden;
+    }
+    .bar-fill {
+      height: 100%;
+      border-radius: 4px;
+      transition: width 0.2s;
+    }
+    .bar-fill.gross { background: var(--success); }
+    .bar-fill.net { background: var(--accent); }
+    .actions {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-top: 16px;
+    }
+    .btn {
+      padding: 14px;
+      border: none;
+      border-radius: 12px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      cursor: pointer;
+    }
+    .btn-primary { background: var(--accent-dim); color: #064e3b; }
+    .btn-secondary { background: var(--card); color: var(--text); border: 2px solid var(--border); }
+    .btn:active { opacity: 0.85; }
+    .toast {
+      position: fixed;
+      bottom: 24px;
+      left: 50%;
+      transform: translateX(-50%) translateY(80px);
+      background: var(--success);
+      color: #064e3b;
+      padding: 12px 20px;
+      border-radius: 10px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      transition: transform 0.25s;
+      z-index: 100;
+    }
+    .toast.show { transform: translateX(-50%) translateY(0); }
+    .disclaimer {
+      font-size: 0.7rem;
+      color: var(--muted);
+      text-align: center;
+      margin-top: 12px;
+      line-height: 1.4;
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <h1>Profit Margin Calculator Pro</h1>
+    <p class="tagline">Gross &amp; net margins, markup, and profit dollars for your business</p>
+
+    <div class="card">
+      <div class="field">
+        <label for="revenue">Revenue ($)</label>
+        <input type="number" id="revenue" value="10000" step="100" min="0" inputmode="decimal">
+        <div class="preset-row" id="revenue-presets">
+          <button type="button" class="preset-btn" data-val="1000">$1k</button>
+          <button type="button" class="preset-btn" data-val="5000">$5k</button>
+          <button type="button" class="preset-btn active" data-val="10000">$10k</button>
+          <button type="button" class="preset-btn" data-val="50000">$50k</button>
+        </div>
+      </div>
+
+      <div class="field">
+        <label for="cogs">Cost of goods / delivery ($)</label>
+        <input type="number" id="cogs" value="3500" step="50" min="0" inputmode="decimal">
+        <p class="hint">Direct costs: materials, subcontractors, platform fees</p>
+      </div>
+
+      <div class="field">
+        <label for="opex">Operating expenses ($)</label>
+        <input type="number" id="opex" value="2500" step="50" min="0" inputmode="decimal">
+        <p class="hint">Overhead: software, insurance, marketing, admin</p>
+      </div>
+    </div>
+
+    <div class="card result-card">
+      <div class="result-main" id="net-margin">41.5%</div>
+      <div class="result-sub" id="summary"><strong>41.5%</strong> net · <strong>65.0%</strong> gross margin</div>
+      <div class="health ok" id="health">Healthy margin</div>
+
+      <div class="breakdown">
+        <div class="breakdown-item">
+          <div class="val" id="gross-profit">$6,500</div>
+          <div class="lbl">Gross profit</div>
+        </div>
+        <div class="breakdown-item">
+          <div class="val" id="net-profit">$4,150</div>
+          <div class="lbl">Net profit</div>
+        </div>
+        <div class="breakdown-item">
+          <div class="val" id="gross-pct">65.0%</div>
+          <div class="lbl">Gross margin</div>
+        </div>
+        <div class="breakdown-item">
+          <div class="val" id="markup">85.7%</div>
+          <div class="lbl">Markup on cost</div>
+        </div>
+      </div>
+
+      <div class="margin-bars">
+        <div class="bar-row">
+          <div class="bar-label"><span>Gross margin</span><strong id="bar-gross-label">65.0%</strong></div>
+          <div class="bar-track"><div class="bar-fill gross" id="bar-gross" style="width:65%"></div></div>
+        </div>
+        <div class="bar-row">
+          <div class="bar-label"><span>Net margin</span><strong id="bar-net-label">41.5%</strong></div>
+          <div class="bar-track"><div class="bar-fill net" id="bar-net" style="width:41.5%"></div></div>
+        </div>
+      </div>
+
+      <div class="actions">
+        <button type="button" class="btn btn-secondary" id="reset">Reset</button>
+        <button type="button" class="btn btn-primary" id="share">Share margins</button>
+      </div>
+      <p class="disclaimer">Estimates only — confirm with your bookkeeper or CPA for tax planning.</p>
+    </div>
+  </div>
+
+  <div class="toast" id="toast" role="status"></div>
+
+  <script>
+    (function () {
+      var revenueEl = document.getElementById("revenue");
+      var cogsEl = document.getElementById("cogs");
+      var opexEl = document.getElementById("opex");
+      var netMarginEl = document.getElementById("net-margin");
+      var summaryEl = document.getElementById("summary");
+      var healthEl = document.getElementById("health");
+      var grossProfitEl = document.getElementById("gross-profit");
+      var netProfitEl = document.getElementById("net-profit");
+      var grossPctEl = document.getElementById("gross-pct");
+      var markupEl = document.getElementById("markup");
+      var barGrossEl = document.getElementById("bar-gross");
+      var barNetEl = document.getElementById("bar-net");
+      var barGrossLabel = document.getElementById("bar-gross-label");
+      var barNetLabel = document.getElementById("bar-net-label");
+      var toastEl = document.getElementById("toast");
+      var STORAGE_KEY = "profitmarginpro_last";
+
+      function fmt(n) {
+        return "$" + Math.round(n).toLocaleString("en-US");
+      }
+
+      function pct(n) {
+        return n.toFixed(1) + "%";
+      }
+
+      function showToast(msg) {
+        toastEl.textContent = msg;
+        toastEl.classList.add("show");
+        setTimeout(function () { toastEl.classList.remove("show"); }, 2000);
+      }
+
+      function setActivePreset(val) {
+        document.querySelectorAll("#revenue-presets .preset-btn").forEach(function (btn) {
+          btn.classList.toggle("active", +btn.dataset.val === val);
+        });
+      }
+
+      function healthClass(netPct) {
+        if (netPct < 0) return { cls: "negative", label: "Operating at a loss" };
+        if (netPct < 10) return { cls: "low", label: "Thin margin — review costs" };
+        if (netPct < 25) return { cls: "ok", label: "Moderate margin" };
+        if (netPct < 40) return { cls: "ok", label: "Healthy margin" };
+        return { cls: "strong", label: "Strong margin" };
+      }
+
+      function calc() {
+        var revenue = Math.max(0, +revenueEl.value || 0);
+        var cogs = Math.max(0, +cogsEl.value || 0);
+        var opex = Math.max(0, +opexEl.value || 0);
+
+        var grossProfit = revenue - cogs;
+        var netProfit = grossProfit - opex;
+        var grossMargin = revenue > 0 ? (grossProfit / revenue) * 100 : 0;
+        var netMargin = revenue > 0 ? (netProfit / revenue) * 100 : 0;
+        var markup = cogs > 0 ? (grossProfit / cogs) * 100 : 0;
+
+        netMarginEl.textContent = pct(netMargin);
+        netMarginEl.style.color = netMargin < 0 ? "var(--danger)" : "var(--accent)";
+        summaryEl.innerHTML = "<strong>" + pct(netMargin) + "</strong> net · <strong>" + pct(grossMargin) + "</strong> gross margin";
+
+        var health = healthClass(netMargin);
+        healthEl.className = "health " + health.cls;
+        healthEl.textContent = health.label;
+
+        grossProfitEl.textContent = fmt(grossProfit);
+        grossProfitEl.className = "val" + (grossProfit < 0 ? " negative" : "");
+        netProfitEl.textContent = fmt(netProfit);
+        netProfitEl.className = "val" + (netProfit < 0 ? " negative" : "");
+        grossPctEl.textContent = pct(grossMargin);
+        markupEl.textContent = pct(markup);
+
+        var grossBar = Math.max(0, Math.min(100, grossMargin));
+        var netBar = Math.max(0, Math.min(100, netMargin));
+        barGrossEl.style.width = grossBar + "%";
+        barNetEl.style.width = netBar + "%";
+        barGrossLabel.textContent = pct(grossMargin);
+        barNetLabel.textContent = pct(netMargin);
+
+        var summary = pct(netMargin) + " net · " + fmt(netProfit) + " profit on " + fmt(revenue);
+        try { localStorage.setItem(STORAGE_KEY, summary); } catch (e) {}
+      }
+
+      document.querySelectorAll("#revenue-presets .preset-btn").forEach(function (btn) {
+        btn.addEventListener("click", function () {
+          revenueEl.value = btn.dataset.val;
+          setActivePreset(+btn.dataset.val);
+          calc();
+        });
+      });
+
+      [revenueEl, cogsEl, opexEl].forEach(function (el) {
+        el.addEventListener("input", calc);
+      });
+
+      document.getElementById("reset").addEventListener("click", function () {
+        revenueEl.value = "10000";
+        cogsEl.value = "3500";
+        opexEl.value = "2500";
+        setActivePreset(10000);
+        calc();
+        showToast("Reset to defaults");
+      });
+
+      document.getElementById("share").addEventListener("click", function () {
+        var revenue = Math.max(0, +revenueEl.value || 0);
+        var cogs = Math.max(0, +cogsEl.value || 0);
+        var opex = Math.max(0, +opexEl.value || 0);
+        var netProfit = revenue - cogs - opex;
+        var netMargin = revenue > 0 ? ((netProfit / revenue) * 100).toFixed(1) : "0.0";
+        var text = "Profit margin: " + netMargin + "% net on " + fmt(revenue) + " revenue (" + fmt(netProfit) + " profit) — Profit Margin Calculator Pro";
+        if (navigator.share) {
+          navigator.share({ title: "Profit Margin Calculator Pro", text: text }).catch(function () {});
+        } else if (navigator.clipboard) {
+          navigator.clipboard.writeText(text).then(function () { showToast("Copied to clipboard"); });
+        } else {
+          showToast(text);
+        }
+      });
+
+      calc();
+    })();
+  </script>
+</body>
+</html>

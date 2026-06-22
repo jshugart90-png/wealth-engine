@@ -151,6 +151,16 @@
       "deployPath": "dist/quarterly-tax-deadline-pro",
       "channels": ["seo", "app-store", "freelancer-forums"],
       "autonomous": ["shareable-summaries", "local-history"]
+    },
+    {
+      "id": "profit-margin-calculator-pro",
+      "name": "Profit Margin Calculator Pro",
+      "type": "utility",
+      "model": "free",
+      "path": "ventures/profit-margin-calculator-pro",
+      "deployPath": "dist/profit-margin-calculator-pro",
+      "channels": ["seo", "app-store", "freelancer-forums"],
+      "autonomous": ["shareable-summaries", "local-history"]
     }
   ],
   "stripeProducts": [

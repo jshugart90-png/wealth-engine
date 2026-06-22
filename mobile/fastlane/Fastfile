@@ -206,6 +206,11 @@ platform :ios do
     mini_app_ios_beta("quarterly-tax-deadline-pro", "Quarterly Tax Deadline Pro")
   end
 
+  desc "TestFlight upload for Profit Margin Calculator Pro utility app"
+  lane :beta_profit_margin_calculator_pro do
+    mini_app_ios_beta("profit-margin-calculator-pro", "Profit Margin Calculator Pro")
+  end
+
   desc "TestFlight upload + App Store metadata (does not auto-submit for review)"
   lane :release do
     beta
