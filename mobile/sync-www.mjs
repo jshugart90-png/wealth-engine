@@ -13,6 +13,8 @@ import {
   agencyClientCsvExportScript,
   teamPushInlineScript,
   ndagenAuditCsvExportScript,
+  meetingCostTeamPushInlineScript,
+  meetingCostHistoryCsvExportScript,
 } from "./shared/push.mjs";
 
 const mobileRoot = join(dirname(fileURLToPath(import.meta.url)));
@@ -1354,6 +1356,210 @@ p{margin:0 0 10px;color:#94a3b8;font-size:14px}
   console.log("Synced ndagen-team → mobile/ndagen-team/www");
 }
 
+function syncMeetingcostTeam() {
+  const www = join(mobileRoot, "meetingcost-team", "www");
+  mkdirSync(www, { recursive: true });
+
+  const tools = [
+    {
+      href: "go/meeting-team.html",
+      slug: "landing",
+      title: "Team Landing",
+      desc: "$29/mo — 50 reports, 25 seats, embed widget",
+      featured: true,
+    },
+    {
+      href: "meetingcost/index.html",
+      slug: "meetingcost",
+      title: "MeetingCost",
+      desc: "Instant meeting cost from attendees, rate, and duration",
+    },
+    {
+      href: "tools/meeting-cost-free.html",
+      slug: "embed",
+      title: "Embed Widget",
+      desc: "Copy-paste intranet widget for company dashboards",
+    },
+    {
+      href: "comparestack/pages/meeting-cost-calculators.html",
+      slug: "compare",
+      title: "Meeting Compare",
+      desc: "Meeting cost tool pricing vs spreadsheets and Calwise",
+    },
+    {
+      href: "hourly-rate-calculator-pro/index.html",
+      slug: "rate",
+      title: "Hourly Rate Pro",
+      desc: "Convert salary to hourly rate for meeting math",
+    },
+  ];
+
+  const cards = tools
+    .map(
+      (t) => `
+    <a class="card${t.featured ? " featured" : ""}" href="${t.href}" data-slug="${t.slug}">
+      <h2>${t.title}</h2>
+      <p>${t.desc}</p>
+      <span class="open">Open →</span>
+    </a>`
+    )
+    .join("");
+
+  const titlesJson = JSON.stringify(Object.fromEntries(tools.map((t) => [t.slug, t.title])));
+  const hrefsJson = JSON.stringify(Object.fromEntries(tools.map((t) => [t.slug, t.href])));
+  const pushScript = meetingCostTeamPushInlineScript();
+  const csvScript = meetingCostHistoryCsvExportScript();
+
+  const indexHtml = `<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>MeetingCost Team</title>
+<meta name="description" content="50 shareable meeting cost reports per month — 25 team seats, embed widget, history dashboard.">
+<link rel="manifest" href="/manifest.json">
+<meta name="theme-color" content="#450a0a">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<link rel="apple-touch-icon" href="/assets/pwa/icon-192.png">
+<style>
+body{font-family:system-ui,sans-serif;background:#450a0a;color:#fecaca;margin:0;padding:0 20px 40px}
+.promo{background:#dc2626;color:#fff;text-align:center;padding:10px 16px;font-size:13px;font-weight:700;margin:0 -20px 16px}
+.promo a{color:#fff;text-decoration:underline}
+.offline{display:none;background:#7f1d1d;color:#fecaca;text-align:center;padding:10px 16px;font-size:13px}
+.offline.show{display:block}
+h1{text-align:center;margin:28px 0 8px;font-size:1.6rem;color:#fff}
+.sub{text-align:center;max-width:360px;margin:0 auto 20px;color:#fca5a5;line-height:1.5}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:16px;max-width:900px;margin:0 auto}
+.card{display:block;background:#7f1d1d;border:1px solid #991b1b;border-radius:12px;padding:20px;color:inherit;text-decoration:none;transition:.2s}
+.card:hover{border-color:#dc2626;transform:translateY(-2px)}
+.card.featured{border-color:#dc2626;background:linear-gradient(135deg,#7f1d1d,#450a0a)}
+h2{margin:0 0 8px;font-size:18px;color:#fff}
+p{margin:0 0 10px;color:#fca5a5;font-size:14px}
+.open{color:#fca5a5;font-size:13px;font-weight:600}
+.stat{display:block;max-width:900px;margin:0 auto 20px;background:#991b1b;border:2px solid #dc2626;border-radius:12px;padding:16px 20px;text-align:center}
+.stat span{font-size:1.2rem;font-weight:700;color:#fecaca}
+.tier{display:block;max-width:900px;margin:24px auto 0;background:#991b1b;border:2px solid #dc2626;border-radius:12px;padding:20px;text-align:center;color:inherit;text-decoration:none}
+.tier strong{display:block;font-size:18px;margin-bottom:6px;color:#fff}
+.tier span{font-size:14px;color:#fecaca}
+.export{display:block;max-width:900px;margin:16px auto 0;background:#7f1d1d;border:1px solid #991b1b;border-radius:12px;padding:14px 20px;text-align:center}
+.export button{background:#dc2626;color:#fff;border:none;border-radius:8px;padding:10px 16px;font-weight:700;cursor:pointer;font-size:14px}
+.export p{margin:8px 0 0;font-size:12px;color:#fca5a5}
+.recent{max-width:900px;margin:0 auto 20px}
+.recent h3{font-size:13px;color:#fca5a5;margin:0 0 10px;text-transform:uppercase;letter-spacing:.05em}
+.recent-row{display:flex;gap:10px;flex-wrap:wrap}
+.recent a{background:#7f1d1d;border:1px solid #991b1b;border-radius:8px;padding:8px 12px;font-size:13px;color:#fecaca;text-decoration:none}
+.footer{text-align:center;margin-top:32px;font-size:13px;color:#fca5a5}
+.footer a{color:#fecaca}
+</style></head><body>
+<div class="promo"><strong>LAUNCH25</strong> — 25% off first month · <a href="go/meeting-team.html">Team $29/mo →</a></div>
+<div id="offline-banner" class="offline" role="status">You're offline — open tools you've used before</div>
+<h1>💸 MeetingCost Team</h1>
+<p class="sub">50 shareable reports/mo — beats Calwise at €30</p>
+<div class="stat">Reports this month<br><span id="export-count">—</span></div>
+<div id="recent-section" class="recent" hidden>
+  <h3>Recently used</h3>
+  <div id="recent-row" class="recent-row"></div>
+</div>
+<div class="grid">${cards}</div>
+<div class="export"><button type="button" id="export-history">Export meeting history CSV</button><p>Opens in Excel · from MeetingCost activity</p></div>
+<a class="tier" href="go/meeting-team.html">
+  <strong>Team — $29/mo</strong>
+  <span>50 shareable reports · 25 seats · embed widget · history dashboard</span>
+</a>
+<p class="footer"><a href="privacy.html">Privacy</a> · <a href="https://wealth-engine-0qlj.onrender.com/go/meeting-team.html">View landing online</a></p>
+<script>(function(){
+  var KEY='meetingcost_team_recent';
+  var USAGE_KEY='meetingcost_reports_mo';
+  var TEAM_LIMIT=50;
+  var titles=${titlesJson};
+  var hrefs=${hrefsJson};
+  var countEl=document.getElementById('export-count');
+  try{
+    var raw=JSON.parse(localStorage.getItem(USAGE_KEY)||'{}');
+    var month=new Date().toISOString().slice(0,7);
+    var count=(raw.month===month)?(raw.count||0):0;
+    if(countEl)countEl.textContent=count+' of '+TEAM_LIMIT+' used';
+  }catch(e){}
+  function trackRecent(slug){
+    try{
+      var list=JSON.parse(localStorage.getItem(KEY)||'[]').filter(function(s){return s!==slug});
+      list.unshift(slug);
+      localStorage.setItem(KEY,JSON.stringify(list.slice(0,5)));
+    }catch(e){}
+  }
+  document.querySelectorAll('.card').forEach(function(card){
+    var slug=card.getAttribute('data-slug');
+    if(slug)card.addEventListener('click',function(){trackRecent(slug)});
+  });
+  function renderRecent(){
+    var row=document.getElementById('recent-row');
+    var section=document.getElementById('recent-section');
+    if(!row||!section)return;
+    var slugs=[];
+    try{slugs=JSON.parse(localStorage.getItem(KEY)||'[]')}catch(e){}
+    slugs=slugs.filter(function(s){return titles[s]&&hrefs[s]}).slice(0,3);
+    if(!slugs.length){section.hidden=true;return;}
+    section.hidden=false;
+    row.innerHTML=slugs.map(function(s){
+      return '<a href="'+hrefs[s]+'">'+titles[s]+'</a>';
+    }).join('');
+  }
+  renderRecent();
+  var banner=document.getElementById('offline-banner');
+  function setOffline(){if(banner)banner.classList.toggle('show',!navigator.onLine)}
+  window.addEventListener('online',setOffline);
+  window.addEventListener('offline',setOffline);
+  setOffline();
+})();</script>
+<script>${pushScript}</script>
+<script>${csvScript}</script>
+</body></html>`;
+
+  writeFileSync(join(www, "index.html"), indexHtml);
+
+  const landingSrc = join(dist, "go", "meeting-team.html");
+  if (!existsSync(landingSrc)) {
+    console.error("Missing dist/go/meeting-team.html — run npm run build first");
+    process.exit(1);
+  }
+  mkdirSync(join(www, "go"), { recursive: true });
+  cpSync(landingSrc, join(www, "go", "meeting-team.html"));
+
+  const meetingcostSrc = join(dist, "meetingcost");
+  if (!existsSync(join(meetingcostSrc, "index.html"))) {
+    console.error("Missing dist/meetingcost — run npm run build first");
+    process.exit(1);
+  }
+  cpSync(meetingcostSrc, join(www, "meetingcost"), { recursive: true });
+
+  const embedSrc = join(dist, "tools", "meeting-cost-free.html");
+  if (!existsSync(embedSrc)) {
+    console.error("Missing dist/tools/meeting-cost-free.html — run npm run build first");
+    process.exit(1);
+  }
+  mkdirSync(join(www, "tools"), { recursive: true });
+  cpSync(embedSrc, join(www, "tools", "meeting-cost-free.html"));
+
+  const compareSrc = join(dist, "comparestack", "pages", "meeting-cost-calculators.html");
+  if (!existsSync(compareSrc)) {
+    console.error("Missing dist/comparestack/pages/meeting-cost-calculators.html — run npm run build first");
+    process.exit(1);
+  }
+  mkdirSync(join(www, "comparestack", "pages"), { recursive: true });
+  cpSync(compareSrc, join(www, "comparestack", "pages", "meeting-cost-calculators.html"));
+
+  const rateSrc = join(dist, "hourly-rate-calculator-pro");
+  if (!existsSync(join(rateSrc, "index.html"))) {
+    console.error("Missing dist/hourly-rate-calculator-pro — run npm run build first");
+    process.exit(1);
+  }
+  cpSync(rateSrc, join(www, "hourly-rate-calculator-pro"), { recursive: true });
+
+  if (existsSync(join(dist, "privacy.html"))) cpSync(join(dist, "privacy.html"), join(www, "privacy.html"));
+  if (existsSync(join(dist, "manifest.json"))) cpSync(join(dist, "manifest.json"), join(www, "manifest.json"));
+  if (existsSync(join(dist, "sw.js"))) cpSync(join(dist, "sw.js"), join(www, "sw.js"));
+  if (existsSync(join(dist, "assets"))) cpSync(join(dist, "assets"), join(www, "assets"), { recursive: true });
+
+  console.log("Synced meetingcost-team → mobile/meetingcost-team/www");
+}
+
 const MINI_GAME_SHELLS = {
   "receipt-rush": {
     title: "Receipt Rush",
@@ -2225,6 +2431,7 @@ if (target === "hookrelay-dlq" || target === "all") syncHookRelayDlq();
 if (target === "1099-suite" || target === "all") sync1099Suite();
 if (target === "statusping-agency" || target === "all") syncStatuspingAgency();
 if (target === "ndagen-team" || target === "all") syncNdagenTeam();
+if (target === "meetingcost-team" || target === "all") syncMeetingcostTeam();
 if (target === "billsnap" || target === "all") syncUtility("billsnap");
 if (target === "statusping-lite" || target === "all") syncUtility("statusping-lite");
 if (target === "leaselens" || target === "all") syncUtility("leaselens");

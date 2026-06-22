@@ -1,0 +1,14 @@
+MeetingCost Team shows your organization the true dollar cost of every meeting — from your phone.
+
+50 shareable reports per month, 25 team seats, and an intranet embed widget — all for $29/mo.
+
+Features:
+• Monthly quota reminders and weekly meeting waste review (enable notifications on first launch)
+• MeetingCost calculator — instant cost from attendees, rate, and duration
+• Free embed widget for company intranet pages
+• Meeting cost tool comparisons and hourly rate helpers
+• Export meeting audit log to CSV for Excel reporting
+
+Perfect for teams tired of invisible meeting waste.
+
+Privacy: Meeting data stored on device. Checkout via Stripe in browser.

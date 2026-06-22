@@ -44,6 +44,7 @@ export const STRIPE_IAP_MAP = {
   "1099-suite": { pro_unlock: "1099-suite-pro" },
   "statusping-agency": { pro_unlock: "agency-monthly" },
   "ndagen-team": { pro_unlock: "ndagen-team-monthly" },
+  "meetingcost-team": { pro_unlock: "meetingcost-team-monthly" },
   tools: { pro_unlock: null },
 };
 

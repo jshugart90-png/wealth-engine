@@ -1,0 +1,35 @@
+{
+  "appName": "MeetingCost Team",
+  "subtitle": "Team meeting cost dashboard",
+  "bundleId": "com.wealthengine.meetingcostteam",
+  "version": "1.0.0",
+  "privacyPolicyUrl": "https://wealth-engine-0qlj.onrender.com/privacy.html",
+  "supportUrl": "https://wealth-engine-0qlj.onrender.com/",
+  "marketingUrl": "https://wealth-engine-0qlj.onrender.com/go/meeting-team.html",
+  "category": {
+    "apple": "Business",
+    "appleSub": "Productivity",
+    "google": "BUSINESS"
+  },
+  "contentRating": {
+    "ageRating": "4+",
+    "googleQuestionnaire": "Everyone — meeting cost utility, Stripe checkout opens in browser",
+    "adsPresent": false,
+    "inAppPurchases": true,
+    "dataCollected": [
+      "Meeting inputs stored locally; email on checkout only via Stripe"
+    ]
+  },
+  "keywords": [
+    "meeting",
+    "cost",
+    "calculator",
+    "team",
+    "productivity",
+    "salary",
+    "hourly",
+    "waste",
+    "meetingcost",
+    "business"
+  ]
+}

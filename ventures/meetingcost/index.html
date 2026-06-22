@@ -13,7 +13,7 @@
   </style>
 </head>
 <body>
-  <div style="background:#dc2626;color:#fff;padding:10px 16px;text-align:center;font-size:13px;margin:-40px -20px 24px"><a href="/tools/meeting-cost-free.html" style="color:#fff">Free embed widget →</a> · <a href="/go/invoice.html" style="color:#fff;font-weight:700">Invoice tool $3</a></div>
+  <div style="background:#dc2626;color:#fff;padding:10px 16px;text-align:center;font-size:13px;margin:-40px -20px 24px"><strong>LAUNCH25</strong> · <a href="/go/meeting-team.html" style="color:#fff;font-weight:700">Team: 50 reports/mo — $29 →</a></div>
   <h1>Meeting Cost Calculator</h1>
   <p>How much does this meeting <em>actually</em> cost the company?</p>
   <label>Attendees</label><input type="number" id="attendees" value="8">
@@ -24,10 +24,32 @@
   <button type="button" class="btn" id="share" style="border:none;cursor:pointer;margin-right:8px">Copy share link</button>
   <a class="btn" href="/statusping/index.html">Monitor uptime instead →</a>
   <script>
+    function logMeeting(attendees, rate, minutes, cost){
+      try{
+        var rows=JSON.parse(localStorage.getItem('meetingcost_history')||'[]');
+        rows.unshift({
+          date:new Date().toISOString().slice(0,10),
+          attendees:attendees,
+          rate:rate,
+          minutes:minutes,
+          cost:cost,
+          notes:'calculated'
+        });
+        localStorage.setItem('meetingcost_history',JSON.stringify(rows.slice(0,100)));
+        var raw=JSON.parse(localStorage.getItem('meetingcost_reports_mo')||'{}');
+        var month=new Date().toISOString().slice(0,7);
+        if(raw.month!==month)raw={month:month,count:0};
+        raw.count=(raw.count||0)+1;
+        localStorage.setItem('meetingcost_reports_mo',JSON.stringify(raw));
+      }catch(e){}
+    }
     function calc(){
-      var cost='$'+Math.round((+attendees.value||0)*(+rate.value||0)*(+minutes.value||0)/60).toLocaleString();
+      var a=+attendees.value||0,r=+rate.value||0,m=+minutes.value||0;
+      var costNum=Math.round(a*r*m/60);
+      var cost='$'+costNum.toLocaleString();
       out.textContent=cost;
       try{localStorage.setItem('meetingcost_last',cost)}catch(e){}
+      logMeeting(a,r,m,costNum);
     }
     [attendees,rate,minutes].forEach(el=>el.oninput=calc);calc();
     if(location.search.includes('share=1')) document.title='This meeting costs '+out.textContent;

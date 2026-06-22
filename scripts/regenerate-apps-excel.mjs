@@ -55,6 +55,7 @@ const FASTLANE_LANES = {
   "1099-suite": "beta_1099_suite",
   "statusping-agency": "beta_statusping_agency",
   "ndagen-team": "beta_ndagen_team",
+  "meetingcost-team": "beta_meetingcost_team",
 };
 
 async function main() {

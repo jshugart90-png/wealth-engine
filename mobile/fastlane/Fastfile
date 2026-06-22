@@ -281,6 +281,11 @@ platform :ios do
     mini_app_ios_beta("ndagen-team", "NDAGen Team")
   end
 
+  desc "TestFlight upload for MeetingCost Team hub app"
+  lane :beta_meetingcost_team do
+    mini_app_ios_beta("meetingcost-team", "MeetingCost Team")
+  end
+
   desc "TestFlight upload + App Store metadata (does not auto-submit for review)"
   lane :release do
     beta

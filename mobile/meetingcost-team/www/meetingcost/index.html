@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Meeting Cost Calculator — How much does this meeting cost?</title>
+  <meta name="description" content="Calculate the true cost of meetings. Shareable viral tool. Free — pro exports $5.">
+  <style>
+    body{font-family:system-ui,sans-serif;max-width:520px;margin:40px auto;padding:20px}
+    input{width:100%;padding:10px;margin:6px 0 14px;border:1px solid #ccc;border-radius:6px}
+    .result{font-size:48px;font-weight:bold;color:#dc2626;margin:20px 0}
+    a.btn{display:inline-block;background:#2563eb;color:#fff;padding:12px 20px;text-decoration:none;border-radius:6px}
+  </style>
+<meta name="google-site-verification" content="X8W5bw-fSJ0pTZiA0LesNi2vZ_-bUdLqVokR5uJZlI4" />
+<script>(function(){try{var r=localStorage.getItem('we_ref')||new URLSearchParams(location.search).get('ref');fetch('/api/funnel/visit',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({path:"/meetingcost",refCode:r,source:new URLSearchParams(location.search).get('utm_source')||'direct'})}).catch(function(){})}catch(e){}})();</script></head>
+<body>
+  <div style="background:#dc2626;color:#fff;padding:10px 16px;text-align:center;font-size:13px;margin:-40px -20px 24px"><strong>LAUNCH25</strong> · <a href="/go/meeting-team.html" style="color:#fff;font-weight:700">Team: 50 reports/mo — $29 →</a></div>
+  <h1>Meeting Cost Calculator</h1>
+  <p>How much does this meeting <em>actually</em> cost the company?</p>
+  <label>Attendees</label><input type="number" id="attendees" value="8">
+  <label>Average hourly rate ($)</label><input type="number" id="rate" value="75">
+  <label>Duration (minutes)</label><input type="number" id="minutes" value="60">
+  <div class="result" id="out">$600</div>
+  <p>Share this number with your team. <a href="https://buy.stripe.com/4gMcN45ds8y5fUpbpn1Nu0b">Pro report — $5</a></p>
+  <button type="button" class="btn" id="share" style="border:none;cursor:pointer;margin-right:8px">Copy share link</button>
+  <a class="btn" href="/statusping/index.html">Monitor uptime instead →</a>
+  <script>
+    function logMeeting(attendees, rate, minutes, cost){
+      try{
+        var rows=JSON.parse(localStorage.getItem('meetingcost_history')||'[]');
+        rows.unshift({
+          date:new Date().toISOString().slice(0,10),
+          attendees:attendees,
+          rate:rate,
+          minutes:minutes,
+          cost:cost,
+          notes:'calculated'
+        });
+        localStorage.setItem('meetingcost_history',JSON.stringify(rows.slice(0,100)));
+        var raw=JSON.parse(localStorage.getItem('meetingcost_reports_mo')||'{}');
+        var month=new Date().toISOString().slice(0,7);
+        if(raw.month!==month)raw={month:month,count:0};
+        raw.count=(raw.count||0)+1;
+        localStorage.setItem('meetingcost_reports_mo',JSON.stringify(raw));
+      }catch(e){}
+    }
+    function calc(){
+      var a=+attendees.value||0,r=+rate.value||0,m=+minutes.value||0;
+      var costNum=Math.round(a*r*m/60);
+      var cost='$'+costNum.toLocaleString();
+      out.textContent=cost;
+      try{localStorage.setItem('meetingcost_last',cost)}catch(e){}
+      logMeeting(a,r,m,costNum);
+    }
+    [attendees,rate,minutes].forEach(el=>el.oninput=calc);calc();
+    if(location.search.includes('share=1')) document.title='This meeting costs '+out.textContent;
+    document.getElementById('share').onclick=()=>{
+      const u=location.origin+location.pathname+'?share=1&a='+attendees.value+'&r='+rate.value+'&m='+minutes.value;
+      navigator.clipboard.writeText(u);alert('Share link copied!');
+    };
+  </script>
+<div class="we-iap-bar" id="we-iap-bar" role="region" aria-label="In-app purchases">
+<style>
+.we-iap-bar{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;align-items:center;margin:8px 0;padding:8px;background:rgba(0,0,0,.15);border-radius:8px;max-width:360px;width:100%}
+.we-iap-bar button{background:#6366f1;color:#fff;border:none;padding:6px 12px;border-radius:6px;font-size:11px;font-weight:600;cursor:pointer}
+.we-iap-bar button:active{transform:scale(.97)}
+#we-iap-premium-badge{display:none;background:#eab308;color:#1c1917;padding:4px 10px;border-radius:999px;font-size:11px;font-weight:700}
+body.we-iap-premium .we-iap-bar{border-color:#eab308}
+body.we-iap-no-ads .ad{display:none!important}
+</style>
+
+<button type="button" id="we-iap-premium">Pro Unlock · $4.99</button>
+
+<button type="button" id="we-iap-restore">Restore</button>
+<span id="we-iap-premium-badge">★ Premium</span>
+</div><script>(function(){
+  var APP="meetingcost";
+  var PRODUCTS=[{"key":"pro_unlock","id":"com.wealthengine.meetingcost.pro_unlock","price":4.99,"title":"Pro Unlock"}];
+  var PREFIX='we_iap_'+APP+'_';
+
+  function owned(key){
+    try{return localStorage.getItem(PREFIX+key)==='1'}catch(e){return false}
+  }
+  function setOwned(key){
+    try{localStorage.setItem(PREFIX+key,'1')}catch(e){}
+    refreshUI();
+  }
+
+  function shouldShowAds(){
+    return true;
+  }
+
+  function hideAdSlots(){
+    if(shouldShowAds())return;
+    document.querySelectorAll('.ad,[data-ad-slot]').forEach(function(el){
+      el.style.display='none';
+    });
+  }
+
+  function refreshUI(){
+    var badge=document.getElementById('we-iap-premium-badge');
+    var removeBtn=document.getElementById('we-iap-remove-ads');
+    var hasPremium=owned('premium_unlock')||owned('pro_unlock');
+    var noAds=!shouldShowAds();
+    if(badge)badge.style.display=(hasPremium||noAds)?'inline-block':'none';
+    if(removeBtn)removeBtn.style.display=noAds?'none':'inline-block';
+    hideAdSlots();
+    document.body.classList.toggle('we-iap-premium',hasPremium);
+    document.body.classList.toggle('we-iap-no-ads',noAds);
+  }
+
+  function purchase(key){
+    var prod=PRODUCTS.find(function(p){return p.key===key});
+    if(!prod)return Promise.reject(new Error('Unknown product'));
+    if(owned(key))return Promise.resolve({key:key,restored:true});
+
+    /* Native: @revenuecat/purchases-capacitor or StoreKit 2 via Capacitor plugin */
+    if(window.Capacitor&&window.Capacitor.Plugins&&window.Capacitor.Plugins.Purchases){
+      return window.Capacitor.Plugins.Purchases.purchaseProduct({productIdentifier:prod.id})
+        .then(function(){setOwned(key);return{key:key,purchased:true};});
+    }
+
+    /* Sandbox / pre-App-Store-Connect: simulate success (replace after products live) */
+    if(confirm('Purchase '+prod.title+' (
+</html>
++prod.price.toFixed(2)+')?\n\nSandbox mode — receipt verify placeholder until App Store Connect products are live.')){
+      setOwned(key);
+      return Promise.resolve({key:key,purchased:true,sandbox:true});
+    }
+    return Promise.reject(new Error('Cancelled'));
+  }
+
+  function restore(){
+    if(window.Capacitor&&window.Capacitor.Plugins&&window.Capacitor.Plugins.Purchases){
+      return window.Capacitor.Plugins.Purchases.restorePurchases().then(function(res){
+        (res&&res.customerInfo&&res.customerInfo.entitlements&&res.customerInfo.entitlements.active||{}).forEach(function(){});
+        refreshUI();
+        return{restored:true};
+      });
+    }
+    refreshUI();
+    alert('Restore complete — checked local purchases. Connect RevenueCat for cross-device restore.');
+    return Promise.resolve({restored:true,local:true});
+  }
+
+  window.WE_IAP={
+    app:APP,
+    products:PRODUCTS,
+    owns:owned,
+    shouldShowAds:shouldShowAds,
+    purchase:purchase,
+    restore:restore,
+    refresh:refreshUI
+  };
+
+  function wireUI(){
+    var bar=document.getElementById('we-iap-bar');
+    if(!bar)return;
+    var removeBtn=document.getElementById('we-iap-remove-ads');
+    var premiumBtn=document.getElementById('we-iap-premium');
+    var restoreBtn=document.getElementById('we-iap-restore');
+    var tipBtn=document.getElementById('we-iap-tip');
+    if(removeBtn)removeBtn.addEventListener('click',function(){WE_IAP.purchase('remove_ads').catch(function(){})});
+    if(premiumBtn)premiumBtn.addEventListener('click',function(){
+      WE_IAP.purchase('pro_unlock').catch(function(){});
+    });
+    if(restoreBtn)restoreBtn.addEventListener('click',function(){WE_IAP.restore()});
+    if(tipBtn)tipBtn.addEventListener('click',function(){WE_IAP.purchase('tip_jar').catch(function(){})});
+    refreshUI();
+  }
+
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',wireUI);
+  else wireUI();
+})();</script></body>
+</html>

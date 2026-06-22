@@ -1044,9 +1044,37 @@ npx cap sync ios && npx cap open ios
 # Or: bundle exec fastlane ios beta_ndagen_team
 ```
 
+## App 43 — MeetingCost Team (hub)
+
+| Field | Value |
+|-------|-------|
+| Version | 1.0.0 |
+| Tools | MeetingCost + Embed Widget + Meeting Compare + Hourly Rate Pro |
+| Capacitor | `mobile/meetingcost-team/` → loads `/go/meeting-team.html` from prod |
+| Store metadata | `mobile/store-metadata/meetingcost-team/` |
+| Preflight | `npm run mobile:preflight:meetingcost-team` |
+
+### Features (shipped this session)
+
+1. **Native launcher** — 5-tool grid with recently used tracking
+2. **Team landing** — local copy of `/go/meeting-team.html` with $29/mo checkout
+3. **Team push** — local notifications for weekly waste review, monthly quota reset, report check
+4. **History CSV export** — Excel-compatible export from MeetingCost activity localStorage
+5. **Report quota stat** — monthly report count vs 50 limit on launcher
+6. **IAP wired** — pro_unlock linked to Stripe SKU `meetingcost-team-monthly`
+
+### TestFlight upload (user Mac)
+
+```bash
+npm run build && cd mobile && node sync-www.mjs meetingcost-team
+cd meetingcost-team && npm install && npx cap add ios  # if missing
+npx cap sync ios && npx cap open ios
+# Or: bundle exec fastlane ios beta_meetingcost_team
+```
+
 ## Master checklist
 
-See `mobile/TESTFLIGHT_ALL_APPS.md` for all 42 apps — bundle IDs, Fastlane lanes, versions.
+See `mobile/TESTFLIGHT_ALL_APPS.md` for all 43 apps — bundle IDs, Fastlane lanes, versions.
 
 ## GitHub policy
 

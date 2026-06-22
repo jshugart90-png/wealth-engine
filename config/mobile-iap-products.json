@@ -780,6 +780,23 @@
         }
       ]
     },
+    "meetingcost-team": {
+      "appName": "MeetingCost Team",
+      "bundleId": "com.wealthengine.meetingcostteam",
+      "type": "utility",
+      "version": "1.0.0",
+      "products": [
+        {
+          "key": "pro_unlock",
+          "storeKitId": "com.wealthengine.meetingcostteam.pro_unlock",
+          "type": "non_consumable",
+          "price": 4.99,
+          "title": "Pro Unlock",
+          "description": "Unlock Pro features (matches Stripe tier where applicable)",
+          "stripeSku": "meetingcost-team-monthly"
+        }
+      ]
+    },
     "statusping-lite": {
       "appName": "StatusPing Lite",
       "bundleId": "com.wealthengine.statuspinglite",

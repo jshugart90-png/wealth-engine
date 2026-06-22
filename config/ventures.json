@@ -361,6 +361,14 @@
       "metadata": { "reports": "1" }
     },
     {
+      "ventureId": "meetingcost",
+      "sku": "meetingcost-team-monthly",
+      "name": "MeetingCost Team",
+      "priceUsd": 29,
+      "interval": "month",
+      "metadata": { "reports_per_month": "50", "seats": "25", "tier": "team", "embed": "true" }
+    },
+    {
       "ventureId": "ndagen",
       "sku": "nda-pdf",
       "name": "NDAGen PDF Export",

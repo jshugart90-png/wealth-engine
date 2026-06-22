@@ -32,6 +32,7 @@
     { "name": "Lease Check", "sku": "lease-report", "priceUsd": 7, "type": "oneTime", "landing": "/go/lease.html" },
     { "name": "NDA Generator", "sku": "nda-pdf", "priceUsd": 4, "type": "oneTime", "landing": "/go/nda.html" },
     { "name": "NDAGen Team", "sku": "ndagen-team-monthly", "priceUsd": 29, "type": "subscription", "landing": "/go/nda-team.html" },
+    { "name": "MeetingCost Team", "sku": "meetingcost-team-monthly", "priceUsd": 29, "type": "subscription", "landing": "/go/meeting-cost-team.html" },
     { "name": "StatusPing Agency", "sku": "agency-monthly", "priceUsd": 49, "type": "subscription", "landing": "/go/statusping-agency.html" }
   ],
   "starterLinks": [

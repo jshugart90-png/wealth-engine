@@ -192,6 +192,18 @@ const PAGES = [
     altLabel: "Single PDF — $4 one-time",
   },
   {
+    slug: "meeting-cost-team",
+    headline: "MeetingCost Team — show your org what meetings cost",
+    sub: "25 seats, shared salary templates, embed widget, and meeting history dashboard. $29/mo.",
+    sku: "meetingcost-team-monthly",
+    tool: "/meetingcost/index.html",
+    bullets: ["50 shareable reports per month", "25 team seats + audit log", "Intranet embed widget included"],
+    urgency: "Calwise charges €30/mo — indie team tier with no calendar OAuth.",
+    socialProof: "Viral embed widget + CompareStack meeting-cost traffic",
+    altSku: "meeting-pro",
+    altLabel: "Single report — $5 one-time",
+  },
+  {
     slug: "statusping-agency",
     headline: "StatusPing Agency — white-label monitoring",
     sub: "10 client workspaces, 100 monitors, branded status pages. $49/mo wholesale for agencies.",

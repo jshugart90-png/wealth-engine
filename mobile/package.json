@@ -34,6 +34,8 @@
     "sync:1099-suite": "node sync-www.mjs 1099-suite && cd 1099-suite && npx cap sync",
     "sync:statusping-agency": "node sync-www.mjs statusping-agency && cd statusping-agency && npx cap sync",
     "sync:ndagen-team": "node sync-www.mjs ndagen-team && cd ndagen-team && npx cap sync",
+    "sync:meetingcost-team": "node sync-www.mjs meetingcost-team && cd meetingcost-team && npx cap sync",
+    "sync:meetingcost-team": "node sync-www.mjs meetingcost-team && cd meetingcost-team && npx cap sync",
     "android:games": "cd games && npx cap sync android && cd android && ./gradlew assembleDebug",
     "android:tools": "cd tools && npx cap sync android && cd android && ./gradlew assembleDebug",
     "android:receipt-rush": "cd receipt-rush && npx cap sync android && cd android && ./gradlew assembleDebug",
