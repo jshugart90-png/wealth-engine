@@ -9,7 +9,7 @@
 | App | Bundle ID | Phase | Tests | GitHub | TestFlight |
 |-----|-----------|-------|-------|--------|------------|
 | **Horseshoe Games Hub** | `com.wealthengine.gameshub` | **TestFlight prep** | 15 PASS, 0 FAIL, 1 WARN | `99180a7` pushed | **READY** (Mac upload) |
-| **Freelancer Tools** | `com.wealthengine.freelancertools` | **TestFlight prep** | 15 PASS, 0 FAIL | pending | **READY** (Mac upload) |
+| **Freelancer Tools** | `com.wealthengine.freelancertools` | **TestFlight prep** | 15 PASS, 0 FAIL | `c9a03f6` pushed | **READY** (Mac upload) |
 | App 3+ | TBD | Queued | — | — | — |
 
 ## App 1 — Horseshoe Games Hub
