@@ -1,17 +1,17 @@
-Percentage Calculator Pro helps you solve everyday percentage math instantly — from discounts and tips to markup, tax, and growth rates.
+Percentage Calculator Pro helps you solve everyday percent math instantly — from "what is 15% of 250?" to percent change, difference, and reverse pricing.
 
-Calculate what X% of a number is, find what percent one value is of another, or apply increase/decrease changes with one tap. Pro unlock adds reverse calculations (find the original before a % change), compound multi-step % chains, and side-by-side value comparison.
+Enter values and see results update live. Free modes cover percent-of, what-percent, and increase/decrease. Pro unlock adds percent difference between two values, reverse original before a change, compound multi-step changes, and local calculation history.
 
 Features:
-• X% of Y — instant result with remainder
+• What is X% of Y — instant result and remainder
 • X is what % of Y — part-to-whole percentage
-• Increase or decrease any value by a percentage
-• One-tap presets for common rates (10%, 15%, 20%, 25%)
-• Share results with colleagues or friends
+• Increase or decrease a value by any %
+• Share results with one tap
 • Last calculation saved locally on your device
 • Works offline — no account required
-• Pro: reverse % — find original value before change
-• Pro: compound % — chain multiple steps (+10, -5, +15)
-• Pro: compare two values — % difference and ratio
+• Pro: percent difference from A to B
+• Pro: reverse original value before a % change
+• Pro: compound multiple % changes in sequence
+• Pro: local calculation history (last 20)
 
-Perfect for shopping discounts, business markup, grades, finance, and quick mental-math checks — no spreadsheet needed.
+Perfect for shopping discounts, tips, business markup, grades, finance, and quick mental-math checks — no spreadsheet needed.

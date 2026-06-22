@@ -1,1 +1,1 @@
-percentage calculator,percent,math,discount,markup,increase,decrease,compound,compare,tax,tip,grade,finance
+percentage,percent calculator,percent of,percent change,discount,markup,difference,math,percent increase,percent decrease

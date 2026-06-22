@@ -3,9 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <title>Percentage Calculator Pro — % of, change &amp; compare</title>
-  <meta name="description" content="Calculate percentages instantly — % of a number, what percent, increase/decrease, compound changes, and reverse pricing.">
-  <meta name="theme-color" content="#312e81">
+  <title>Percentage Calculator Pro — % of, change &amp; difference</title>
+  <meta name="description" content="Calculate percentages instantly — what is X% of Y, percent change, difference, reverse pricing, and compound growth.">
+  <meta name="theme-color" content="#4338ca">
   <style>
     :root {
       --bg: #1e1b4b;
@@ -45,9 +45,9 @@
       color: var(--muted);
       margin-bottom: 6px;
     }
-    input[type="number"], textarea {
+    input[type="number"] {
       width: 100%;
-      font-size: 1.25rem;
+      font-size: 1.35rem;
       font-weight: 600;
       padding: 12px 14px;
       border: 2px solid var(--border);
@@ -57,20 +57,14 @@
       -webkit-appearance: none;
       appearance: none;
     }
-    textarea {
-      font-size: 0.95rem;
-      font-weight: 500;
-      min-height: 72px;
-      resize: vertical;
-    }
-    input:focus, textarea:focus { outline: none; border-color: var(--accent); }
+    input:focus { outline: none; border-color: var(--accent); }
     .field { margin-bottom: 16px; }
     .field:last-child { margin-bottom: 0; }
     .mode-row {
       display: grid;
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: repeat(3, 1fr);
       gap: 8px;
-      margin-bottom: 8px;
+      margin-bottom: 16px;
     }
     .mode-btn {
       padding: 10px 6px;
@@ -78,9 +72,10 @@
       border-radius: 10px;
       background: var(--bg);
       color: var(--text);
-      font-size: 0.78rem;
+      font-size: 0.75rem;
       font-weight: 600;
       cursor: pointer;
+      text-align: center;
       line-height: 1.3;
     }
     .mode-btn.active {
@@ -88,42 +83,8 @@
       background: rgba(129, 140, 248, 0.15);
       color: var(--accent);
     }
-    .preset-row {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 8px;
-      margin: 10px 0 4px;
-    }
-    .preset-btn {
-      padding: 10px 4px;
-      border: 2px solid var(--border);
-      border-radius: 10px;
-      background: var(--bg);
-      color: var(--text);
-      font-size: 0.85rem;
-      font-weight: 600;
-      cursor: pointer;
-    }
-    .preset-btn.active {
-      border-color: var(--accent);
-      background: rgba(129, 140, 248, 0.15);
-      color: var(--accent);
-    }
-    .dir-row { display: flex; gap: 8px; margin-top: 8px; }
-    .dir-btn {
-      flex: 1;
-      padding: 10px;
-      border: 2px solid var(--border);
-      border-radius: 10px;
-      background: var(--bg);
-      color: var(--text);
-      font-size: 0.85rem;
-      font-weight: 600;
-      cursor: pointer;
-    }
-    .dir-btn.active { border-color: var(--accent); color: var(--accent); }
-    .dir-btn.up.active { border-color: var(--success); color: var(--success); }
-    .dir-btn.down.active { border-color: var(--danger); color: var(--danger); }
+    .pro-mode-row { display: none; }
+    body.we-iap-premium .pro-mode-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-bottom: 16px; }
     .result-card { text-align: center; padding: 24px 16px; }
     .result-main {
       font-size: 2.5rem;
@@ -156,6 +117,19 @@
       line-height: 1.6;
     }
     .compound-steps li { margin-bottom: 4px; }
+    .history {
+      margin-top: 16px;
+      text-align: left;
+      max-height: 140px;
+      overflow-y: auto;
+    }
+    .history-item {
+      font-size: 0.8rem;
+      color: var(--muted);
+      padding: 8px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .history-item:last-child { border-bottom: none; }
     .actions {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -170,7 +144,7 @@
       font-weight: 600;
       cursor: pointer;
     }
-    .btn-primary { background: var(--accent-dim); color: #fff; }
+    .btn-primary { background: var(--accent-dim); color: #1e1b4b; }
     .btn-secondary { background: var(--card); color: var(--text); border: 2px solid var(--border); }
     .btn:active { opacity: 0.85; }
     .toast {
@@ -189,114 +163,117 @@
     }
     .toast.show { transform: translateX(-50%) translateY(0); }
     .hint { font-size: 0.75rem; color: var(--muted); margin-top: 4px; }
-    body.we-iap-premium .pro-only { display: block; }
     .pro-only { display: none; }
+    body.we-iap-premium .pro-only { display: block; }
     .panel { display: none; }
     .panel.active { display: block; }
+    .sign-row { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 8px; }
+    .sign-btn {
+      padding: 10px;
+      border: 2px solid var(--border);
+      border-radius: 10px;
+      background: var(--bg);
+      color: var(--text);
+      font-weight: 600;
+      cursor: pointer;
+    }
+    .sign-btn.active { border-color: var(--accent); color: var(--accent); }
   </style>
 <meta name="google-site-verification" content="X8W5bw-fSJ0pTZiA0LesNi2vZ_-bUdLqVokR5uJZlI4" />
 <script>(function(){try{var r=localStorage.getItem('we_ref')||new URLSearchParams(location.search).get('ref');fetch('/api/funnel/visit',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({path:"/percentage-calculator-pro",refCode:r,source:new URLSearchParams(location.search).get('utm_source')||'direct'})}).catch(function(){})}catch(e){}})();</script></head>
 <body>
   <div class="wrap">
     <h1>Percentage Calculator Pro</h1>
-    <p class="tagline">% of, what percent, change &amp; compare</p>
+    <p class="tagline">% of, percent change, difference &amp; reverse math</p>
 
     <div class="card">
-      <div class="field">
-        <label>Calculation mode</label>
-        <div class="mode-row" id="mode-row">
-          <button type="button" class="mode-btn active" data-mode="percent-of">X% of Y</button>
-          <button type="button" class="mode-btn" data-mode="what-percent">X is % of Y</button>
-          <button type="button" class="mode-btn" data-mode="change">Change by %</button>
-          <button type="button" class="mode-btn pro-only" data-mode="reverse">Reverse %</button>
-          <button type="button" class="mode-btn pro-only" data-mode="compound">Compound</button>
-          <button type="button" class="mode-btn pro-only" data-mode="compare">Compare</button>
+      <div class="mode-row" id="mode-row">
+        <button type="button" class="mode-btn active" data-mode="of">% Of</button>
+        <button type="button" class="mode-btn" data-mode="what">What %</button>
+        <button type="button" class="mode-btn" data-mode="change">Change</button>
+      </div>
+      <div class="pro-mode-row" id="pro-mode-row">
+        <button type="button" class="mode-btn" data-mode="diff">Diff %</button>
+        <button type="button" class="mode-btn" data-mode="reverse">Reverse</button>
+        <button type="button" class="mode-btn" data-mode="compound">Compound</button>
+      </div>
+
+      <div class="panel active" id="panel-of">
+        <div class="field">
+          <label for="of-pct">Percentage</label>
+          <input type="number" id="of-pct" value="15" step="0.01" inputmode="decimal">
+        </div>
+        <div class="field">
+          <label for="of-num">Of number</label>
+          <input type="number" id="of-num" value="250" step="0.01" inputmode="decimal">
         </div>
       </div>
 
-      <div class="panel active" id="panel-percent-of">
+      <div class="panel" id="panel-what">
         <div class="field">
-          <label for="po-pct">Percentage (%)</label>
-          <input type="number" id="po-pct" value="15" step="0.01" inputmode="decimal">
-          <div class="preset-row" data-target="po-pct">
-            <button type="button" class="preset-btn" data-val="10">10%</button>
-            <button type="button" class="preset-btn active" data-val="15">15%</button>
-            <button type="button" class="preset-btn" data-val="20">20%</button>
-            <button type="button" class="preset-btn" data-val="25">25%</button>
-          </div>
+          <label for="what-part">Part (value)</label>
+          <input type="number" id="what-part" value="40" step="0.01" inputmode="decimal">
         </div>
         <div class="field">
-          <label for="po-of">Of value</label>
-          <input type="number" id="po-of" value="250" step="0.01" inputmode="decimal">
-        </div>
-      </div>
-
-      <div class="panel" id="panel-what-percent">
-        <div class="field">
-          <label for="wp-part">Part (X)</label>
-          <input type="number" id="wp-part" value="40" step="0.01" inputmode="decimal">
-        </div>
-        <div class="field">
-          <label for="wp-whole">Whole (Y)</label>
-          <input type="number" id="wp-whole" value="250" step="0.01" min="0.01" inputmode="decimal">
+          <label for="what-whole">Whole (total)</label>
+          <input type="number" id="what-whole" value="250" step="0.01" inputmode="decimal">
         </div>
       </div>
 
       <div class="panel" id="panel-change">
         <div class="field">
-          <label for="ch-val">Starting value</label>
-          <input type="number" id="ch-val" value="100" step="0.01" inputmode="decimal">
+          <label for="chg-val">Starting value</label>
+          <input type="number" id="chg-val" value="100" step="0.01" inputmode="decimal">
         </div>
         <div class="field">
-          <label for="ch-pct">Change (%)</label>
-          <input type="number" id="ch-pct" value="15" step="0.01" inputmode="decimal">
-          <div class="dir-row">
-            <button type="button" class="dir-btn up active" data-dir="up" id="ch-up">Increase</button>
-            <button type="button" class="dir-btn down" data-dir="down" id="ch-down">Decrease</button>
+          <label for="chg-pct">Change by %</label>
+          <input type="number" id="chg-pct" value="15" step="0.01" inputmode="decimal">
+          <div class="sign-row">
+            <button type="button" class="sign-btn active" id="chg-inc" data-sign="1">Increase</button>
+            <button type="button" class="sign-btn" id="chg-dec" data-sign="-1">Decrease</button>
           </div>
         </div>
+      </div>
+
+      <div class="panel pro-only" id="panel-diff">
+        <div class="field">
+          <label for="diff-a">Value A</label>
+          <input type="number" id="diff-a" value="120" step="0.01" inputmode="decimal">
+        </div>
+        <div class="field">
+          <label for="diff-b">Value B</label>
+          <input type="number" id="diff-b" value="150" step="0.01" inputmode="decimal">
+        </div>
+        <p class="hint">Pro: percent increase/decrease from A to B</p>
       </div>
 
       <div class="panel pro-only" id="panel-reverse">
         <div class="field">
-          <label for="rv-final">Final value (after change)</label>
-          <input type="number" id="rv-final" value="115" step="0.01" inputmode="decimal">
+          <label for="rev-result">Final value (after change)</label>
+          <input type="number" id="rev-result" value="115" step="0.01" inputmode="decimal">
         </div>
         <div class="field">
-          <label for="rv-pct">Applied change (%)</label>
-          <input type="number" id="rv-pct" value="15" step="0.01" inputmode="decimal">
-          <div class="dir-row">
-            <button type="button" class="dir-btn up active" data-dir="up" id="rv-up">Was increased</button>
-            <button type="button" class="dir-btn down" data-dir="down" id="rv-down">Was decreased</button>
+          <label for="rev-pct">Change was %</label>
+          <input type="number" id="rev-pct" value="15" step="0.01" inputmode="decimal">
+          <div class="sign-row">
+            <button type="button" class="sign-btn active" id="rev-inc" data-sign="1">After increase</button>
+            <button type="button" class="sign-btn" id="rev-dec" data-sign="-1">After decrease</button>
           </div>
-          <p class="hint">Pro: find original value before a % increase or decrease</p>
         </div>
+        <p class="hint">Pro: find original value before the % change</p>
       </div>
 
       <div class="panel pro-only" id="panel-compound">
         <div class="field">
-          <label for="cp-start">Starting value</label>
-          <input type="number" id="cp-start" value="1000" step="0.01" inputmode="decimal">
+          <label for="cmp-start">Starting value</label>
+          <input type="number" id="cmp-start" value="1000" step="0.01" inputmode="decimal">
         </div>
         <div class="field">
-          <label for="cp-steps">Steps (one % per line, e.g. +10, -5, +20)</label>
-          <textarea id="cp-steps" placeholder="+10&#10;-5&#10;+15">+10
--5
-+15</textarea>
-          <p class="hint">Pro: chain multiple % changes — use + or − prefix</p>
+          <label for="cmp-steps">Changes (comma-separated %)</label>
+          <input type="number" id="cmp-steps" value="10" step="0.01" inputmode="decimal" style="display:none">
+          <input type="text" id="cmp-chain" value="10, -5, 8" inputmode="text" style="font-size:1rem">
+          <p class="hint">Pro: apply multiple % changes in sequence (e.g. 10, -5, 8)</p>
         </div>
-      </div>
-
-      <div class="panel pro-only" id="panel-compare">
-        <div class="field">
-          <label for="cm-a">Value A</label>
-          <input type="number" id="cm-a" value="80" step="0.01" inputmode="decimal">
-        </div>
-        <div class="field">
-          <label for="cm-b">Value B</label>
-          <input type="number" id="cm-b" value="100" step="0.01" inputmode="decimal">
-        </div>
-        <p class="hint">Pro: % difference from A → B and B as % of A</p>
       </div>
     </div>
 
@@ -317,6 +294,8 @@
 
       <ol class="compound-steps pro-only" id="compound-list" style="display:none"></ol>
 
+      <div class="history pro-only" id="history" style="display:none"></div>
+
       <div class="actions">
         <button type="button" class="btn btn-secondary" id="reset">Reset</button>
         <button type="button" class="btn btn-primary" id="share">Share result</button>
@@ -328,16 +307,16 @@
 
   <script>
     (function () {
-      var mode = "percent-of";
-      var chDir = "up";
-      var rvDir = "up";
+      var mode = "of";
+      var chgSign = 1;
+      var revSign = 1;
       var STORAGE_KEY = "pctcalcpro_last";
+      var HISTORY_KEY = "pctcalcpro_history";
       var toastEl = document.getElementById("toast");
 
       function fmt(n, dec) {
-        dec = dec == null ? 2 : dec;
-        if (!isFinite(n)) return "—";
-        return (+n).toFixed(dec);
+        if (isNaN(n) || !isFinite(n)) return "—";
+        return (+n).toFixed(dec == null ? 2 : dec);
       }
 
       function showToast(msg) {
@@ -357,33 +336,50 @@
         calc();
       }
 
-      function setDir(group, dir) {
-        if (group === "ch") {
-          chDir = dir;
-          document.getElementById("ch-up").classList.toggle("active", dir === "up");
-          document.getElementById("ch-down").classList.toggle("active", dir === "down");
-        } else {
-          rvDir = dir;
-          document.getElementById("rv-up").classList.toggle("active", dir === "up");
-          document.getElementById("rv-down").classList.toggle("active", dir === "down");
-        }
-        calc();
-      }
-
-      function setPresets(row, val) {
-        row.querySelectorAll(".preset-btn").forEach(function (btn) {
-          btn.classList.toggle("active", +btn.dataset.val === val);
+      function bindSign(btnInc, btnDec, getter, setter) {
+        btnInc.addEventListener("click", function () {
+          setter(1);
+          btnInc.classList.add("active");
+          btnDec.classList.remove("active");
+          calc();
+        });
+        btnDec.addEventListener("click", function () {
+          setter(-1);
+          btnDec.classList.add("active");
+          btnInc.classList.remove("active");
+          calc();
         });
       }
 
-      function parseSteps(text) {
-        return text.split(/[\n,;]+/).map(function (s) { return s.trim(); }).filter(Boolean).map(function (s) {
-          var n = parseFloat(s.replace(/[%+]/g, ""));
-          if (isNaN(n)) return null;
-          if (s.indexOf("-") === 0 || s.indexOf("−") === 0) n = -Math.abs(n);
-          else if (s.indexOf("+") >= 0) n = Math.abs(n);
-          return n;
-        }).filter(function (x) { return x != null; });
+      bindSign(document.getElementById("chg-inc"), document.getElementById("chg-dec"), function () { return chgSign; }, function (v) { chgSign = v; });
+      bindSign(document.getElementById("rev-inc"), document.getElementById("rev-dec"), function () { return revSign; }, function (v) { revSign = v; });
+
+      document.querySelectorAll(".mode-btn").forEach(function (btn) {
+        btn.addEventListener("click", function () { setMode(btn.dataset.mode); });
+      });
+
+      function saveHistory(summary) {
+        try {
+          var list = JSON.parse(localStorage.getItem(HISTORY_KEY) || "[]");
+          list.unshift({ t: Date.now(), s: summary });
+          localStorage.setItem(HISTORY_KEY, JSON.stringify(list.slice(0, 20)));
+          renderHistory();
+        } catch (e) {}
+      }
+
+      function renderHistory() {
+        var el = document.getElementById("history");
+        if (!document.body.classList.contains("we-iap-premium")) {
+          el.style.display = "none";
+          return;
+        }
+        var list = [];
+        try { list = JSON.parse(localStorage.getItem(HISTORY_KEY) || "[]"); } catch (e) {}
+        if (!list.length) { el.style.display = "none"; return; }
+        el.style.display = "block";
+        el.innerHTML = list.slice(0, 5).map(function (item) {
+          return "<div class=\"history-item\">" + item.s + "</div>";
+        }).join("");
       }
 
       function calc() {
@@ -391,138 +387,115 @@
         var sub = document.getElementById("result-sub");
         var bd1 = document.getElementById("bd-1");
         var bd2 = document.getElementById("bd-2");
-        var compoundList = document.getElementById("compound-list");
-        compoundList.style.display = "none";
+        var cmpList = document.getElementById("compound-list");
+        cmpList.style.display = "none";
+        document.getElementById("breakdown").style.display = "grid";
+
         var summary = "";
 
-        if (mode === "percent-of") {
-          var pct = +document.getElementById("po-pct").value || 0;
-          var of = +document.getElementById("po-of").value || 0;
-          var result = of * pct / 100;
-          main.textContent = fmt(result);
-          sub.innerHTML = "<strong>" + fmt(pct, 1) + "%</strong> of <strong>" + fmt(of) + "</strong> = <strong>" + fmt(result) + "</strong>";
-          bd1.textContent = fmt(result);
-          bd1.parentElement.querySelector(".lbl").textContent = "Result";
-          bd2.textContent = fmt(of - result);
-          bd2.parentElement.querySelector(".lbl").textContent = "Remainder";
-          summary = fmt(pct, 1) + "% of " + fmt(of) + " = " + fmt(result);
-        } else if (mode === "what-percent") {
-          var part = +document.getElementById("wp-part").value || 0;
-          var whole = Math.max(0.0001, +document.getElementById("wp-whole").value || 1);
-          var pctW = part / whole * 100;
+        if (mode === "of") {
+          var pct = +document.getElementById("of-pct").value || 0;
+          var num = +document.getElementById("of-num").value || 0;
+          var res = num * pct / 100;
+          main.textContent = fmt(res);
+          sub.innerHTML = "<strong>" + fmt(pct, 1) + "%</strong> of <strong>" + fmt(num) + "</strong> = <strong>" + fmt(res) + "</strong>";
+          bd1.textContent = fmt(res);
+          bd2.textContent = fmt(num - res);
+          document.getElementById("bd-2").parentElement.querySelector(".lbl").textContent = "Remainder";
+          summary = fmt(pct, 1) + "% of " + fmt(num) + " = " + fmt(res);
+        } else if (mode === "what") {
+          var part = +document.getElementById("what-part").value || 0;
+          var whole = +document.getElementById("what-whole").value || 1;
+          var pctW = whole ? part / whole * 100 : 0;
           main.textContent = fmt(pctW, 1) + "%";
           sub.innerHTML = "<strong>" + fmt(part) + "</strong> is <strong>" + fmt(pctW, 1) + "%</strong> of <strong>" + fmt(whole) + "</strong>";
           bd1.textContent = fmt(pctW, 1) + "%";
-          bd1.parentElement.querySelector(".lbl").textContent = "Percentage";
-          bd2.textContent = fmt(whole - part);
-          bd2.parentElement.querySelector(".lbl").textContent = "Difference";
+          bd2.textContent = fmt(part);
+          document.getElementById("bd-2").parentElement.querySelector(".lbl").textContent = "Part";
           summary = fmt(part) + " is " + fmt(pctW, 1) + "% of " + fmt(whole);
         } else if (mode === "change") {
-          var val = +document.getElementById("ch-val").value || 0;
-          var chPct = +document.getElementById("ch-pct").value || 0;
-          var delta = val * chPct / 100 * (chDir === "up" ? 1 : -1);
-          var final = val + delta;
-          main.textContent = fmt(final);
-          var dirLabel = chDir === "up" ? "increase" : "decrease";
-          sub.innerHTML = "<strong>" + fmt(val) + "</strong> " + dirLabel + "d by <strong>" + fmt(chPct, 1) + "%</strong> → <strong>" + fmt(final) + "</strong>";
-          bd1.textContent = (delta >= 0 ? "+" : "") + fmt(delta);
-          bd1.parentElement.querySelector(".lbl").textContent = "Change";
-          bd2.textContent = fmt(final);
-          bd2.parentElement.querySelector(".lbl").textContent = "Final";
-          summary = fmt(val) + " " + dirLabel + " " + fmt(chPct, 1) + "% = " + fmt(final);
+          var val = +document.getElementById("chg-val").value || 0;
+          var cp = +document.getElementById("chg-pct").value || 0;
+          var delta = val * cp / 100 * chgSign;
+          var after = val + delta;
+          main.textContent = fmt(after);
+          var dir = chgSign > 0 ? "increase" : "decrease";
+          sub.innerHTML = "<strong>" + fmt(val) + "</strong> " + dir + " by <strong>" + fmt(cp, 1) + "%</strong> → <strong>" + fmt(after) + "</strong>";
+          bd1.textContent = fmt(after);
+          bd2.textContent = (delta >= 0 ? "+" : "") + fmt(delta);
+          document.getElementById("bd-2").parentElement.querySelector(".lbl").textContent = "Change";
+          summary = fmt(val) + " " + dir + " " + fmt(cp, 1) + "% = " + fmt(after);
+        } else if (mode === "diff") {
+          var a = +document.getElementById("diff-a").value || 0;
+          var b = +document.getElementById("diff-b").value || 0;
+          var diffPct = a ? (b - a) / a * 100 : 0;
+          main.textContent = (diffPct >= 0 ? "+" : "") + fmt(diffPct, 1) + "%";
+          sub.innerHTML = "From <strong>" + fmt(a) + "</strong> to <strong>" + fmt(b) + "</strong> = <strong>" + fmt(diffPct, 1) + "%</strong> change";
+          bd1.textContent = fmt(b - a);
+          bd2.textContent = fmt(a);
+          document.getElementById("bd-2").parentElement.querySelector(".lbl").textContent = "Original";
+          summary = fmt(a) + " → " + fmt(b) + " = " + fmt(diffPct, 1) + "%";
         } else if (mode === "reverse") {
-          var rvFinal = +document.getElementById("rv-final").value || 0;
-          var rvPct = +document.getElementById("rv-pct").value || 0;
-          var factor = rvDir === "up" ? 1 + rvPct / 100 : 1 - rvPct / 100;
-          var original = factor !== 0 ? rvFinal / factor : 0;
-          main.textContent = fmt(original);
-          sub.innerHTML = "Original: <strong>" + fmt(original) + "</strong> before <strong>" + fmt(rvPct, 1) + "%</strong> " + (rvDir === "up" ? "increase" : "decrease") + " → <strong>" + fmt(rvFinal) + "</strong>";
-          bd1.textContent = fmt(original);
-          bd1.parentElement.querySelector(".lbl").textContent = "Original";
-          bd2.textContent = fmt(rvFinal - original);
-          bd2.parentElement.querySelector(".lbl").textContent = "Change amt";
-          summary = "Original " + fmt(original) + " → " + fmt(rvFinal);
+          var fin = +document.getElementById("rev-result").value || 0;
+          var rp = +document.getElementById("rev-pct").value || 0;
+          var orig = revSign > 0 ? fin / (1 + rp / 100) : fin / (1 - rp / 100);
+          main.textContent = fmt(orig);
+          var rdir = revSign > 0 ? "increase" : "decrease";
+          sub.innerHTML = "Before <strong>" + fmt(rp, 1) + "%</strong> " + rdir + ", value was <strong>" + fmt(orig) + "</strong>";
+          bd1.textContent = fmt(orig);
+          bd2.textContent = fmt(fin);
+          document.getElementById("bd-2").parentElement.querySelector(".lbl").textContent = "Final";
+          summary = "Original before " + fmt(rp, 1) + "% " + rdir + " = " + fmt(orig);
         } else if (mode === "compound") {
-          var start = +document.getElementById("cp-start").value || 0;
-          var steps = parseSteps(document.getElementById("cp-steps").value);
+          var start = +document.getElementById("cmp-start").value || 0;
+          var chain = document.getElementById("cmp-chain").value.split(",").map(function (s) { return parseFloat(s.trim()); }).filter(function (n) { return !isNaN(n); });
           var cur = start;
-          compoundList.innerHTML = "";
-          compoundList.style.display = steps.length ? "block" : "none";
-          steps.forEach(function (step, i) {
+          var steps = [];
+          chain.forEach(function (p, i) {
             var prev = cur;
-            cur = cur * (1 + step / 100);
-            var li = document.createElement("li");
-            li.textContent = "Step " + (i + 1) + ": " + fmt(prev) + " " + (step >= 0 ? "+" : "") + fmt(step, 1) + "% → " + fmt(cur);
-            compoundList.appendChild(li);
+            cur = cur * (1 + p / 100);
+            steps.push("Step " + (i + 1) + ": " + fmt(prev) + " " + (p >= 0 ? "+" : "") + fmt(p, 1) + "% → " + fmt(cur));
           });
-          var totalPct = start !== 0 ? (cur / start - 1) * 100 : 0;
+          var totalPct = start ? (cur - start) / start * 100 : 0;
           main.textContent = fmt(cur);
-          sub.innerHTML = "<strong>" + fmt(start) + "</strong> after <strong>" + steps.length + "</strong> steps → <strong>" + fmt(cur) + "</strong> (<strong>" + (totalPct >= 0 ? "+" : "") + fmt(totalPct, 1) + "%</strong> net)";
+          sub.innerHTML = "<strong>" + fmt(start) + "</strong> after " + chain.length + " changes → <strong>" + fmt(cur) + "</strong> (<strong>" + fmt(totalPct, 1) + "%</strong> net)";
           bd1.textContent = fmt(cur);
-          bd1.parentElement.querySelector(".lbl").textContent = "Final";
-          bd2.textContent = (totalPct >= 0 ? "+" : "") + fmt(totalPct, 1) + "%";
-          bd2.parentElement.querySelector(".lbl").textContent = "Net change";
-          summary = fmt(start) + " → " + fmt(cur) + " (" + steps.length + " steps)";
-        } else if (mode === "compare") {
-          var a = +document.getElementById("cm-a").value || 0;
-          var b = +document.getElementById("cm-b").value || 0;
-          var diff = b - a;
-          var pctDiff = a !== 0 ? diff / Math.abs(a) * 100 : 0;
-          var bOfA = a !== 0 ? b / a * 100 : 0;
-          main.textContent = (pctDiff >= 0 ? "+" : "") + fmt(pctDiff, 1) + "%";
-          sub.innerHTML = "A=<strong>" + fmt(a) + "</strong> → B=<strong>" + fmt(b) + "</strong> · diff <strong>" + (diff >= 0 ? "+" : "") + fmt(diff) + "</strong>";
-          bd1.textContent = fmt(bOfA, 1) + "%";
-          bd1.parentElement.querySelector(".lbl").textContent = "B as % of A";
-          bd2.textContent = (diff >= 0 ? "+" : "") + fmt(diff);
-          bd2.parentElement.querySelector(".lbl").textContent = "Difference";
-          summary = fmt(a) + " → " + fmt(b) + " = " + fmt(pctDiff, 1) + "% change";
+          bd2.textContent = fmt(totalPct, 1) + "%";
+          document.getElementById("bd-2").parentElement.querySelector(".lbl").textContent = "Net change";
+          document.getElementById("breakdown").style.display = "none";
+          cmpList.style.display = "block";
+          cmpList.innerHTML = steps.map(function (s) { return "<li>" + s + "</li>"; }).join("");
+          summary = fmt(start) + " compound → " + fmt(cur) + " (" + fmt(totalPct, 1) + "% net)";
         }
 
         try { localStorage.setItem(STORAGE_KEY, summary); } catch (e) {}
+        if (summary) saveHistory(summary);
       }
 
-      document.querySelectorAll(".mode-btn").forEach(function (btn) {
-        btn.addEventListener("click", function () { setMode(btn.dataset.mode); });
-      });
-
-      document.querySelectorAll(".preset-row").forEach(function (row) {
-        var targetId = row.dataset.target;
-        row.querySelectorAll(".preset-btn").forEach(function (btn) {
-          btn.addEventListener("click", function () {
-            document.getElementById(targetId).value = btn.dataset.val;
-            setPresets(row, +btn.dataset.val);
-            calc();
-          });
-        });
-      });
-
-      ["ch-up", "ch-down", "rv-up", "rv-down"].forEach(function (id) {
-        document.getElementById(id).addEventListener("click", function () {
-          setDir(id.indexOf("ch") === 0 ? "ch" : "rv", id.indexOf("up") >= 0 ? "up" : "down");
-        });
-      });
-
-      document.querySelectorAll("input, textarea").forEach(function (el) {
-        el.addEventListener("input", calc);
+      ["of-pct", "of-num", "what-part", "what-whole", "chg-val", "chg-pct", "diff-a", "diff-b", "rev-result", "rev-pct", "cmp-start", "cmp-chain"].forEach(function (id) {
+        var el = document.getElementById(id);
+        if (el) el.addEventListener("input", calc);
       });
 
       document.getElementById("reset").addEventListener("click", function () {
-        document.getElementById("po-pct").value = "15";
-        document.getElementById("po-of").value = "250";
-        document.getElementById("wp-part").value = "40";
-        document.getElementById("wp-whole").value = "250";
-        document.getElementById("ch-val").value = "100";
-        document.getElementById("ch-pct").value = "15";
-        document.getElementById("rv-final").value = "115";
-        document.getElementById("rv-pct").value = "15";
-        document.getElementById("cp-start").value = "1000";
-        document.getElementById("cp-steps").value = "+10\n-5\n+15";
-        document.getElementById("cm-a").value = "80";
-        document.getElementById("cm-b").value = "100";
-        chDir = "up"; rvDir = "up";
-        setDir("ch", "up");
-        setDir("rv", "up");
-        setMode("percent-of");
+        document.getElementById("of-pct").value = "15";
+        document.getElementById("of-num").value = "250";
+        document.getElementById("what-part").value = "40";
+        document.getElementById("what-whole").value = "250";
+        document.getElementById("chg-val").value = "100";
+        document.getElementById("chg-pct").value = "15";
+        document.getElementById("diff-a").value = "120";
+        document.getElementById("diff-b").value = "150";
+        document.getElementById("rev-result").value = "115";
+        document.getElementById("rev-pct").value = "15";
+        document.getElementById("cmp-start").value = "1000";
+        document.getElementById("cmp-chain").value = "10, -5, 8";
+        chgSign = 1; revSign = 1;
+        document.getElementById("chg-inc").classList.add("active");
+        document.getElementById("chg-dec").classList.remove("active");
+        document.getElementById("rev-inc").classList.add("active");
+        document.getElementById("rev-dec").classList.remove("active");
+        setMode("of");
         showToast("Reset to defaults");
       });
 
@@ -537,6 +510,7 @@
         }
       });
 
+      renderHistory();
       calc();
     })();
   </script>

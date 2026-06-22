@@ -465,7 +465,7 @@
           "type": "non_consumable",
           "price": 4.99,
           "title": "Pro Unlock",
-          "description": "Unlock Pro features (reverse %, compound & compare)",
+          "description": "Unlock Pro features (diff %, reverse, compound & history)",
           "stripeSku": null
         }
       ]

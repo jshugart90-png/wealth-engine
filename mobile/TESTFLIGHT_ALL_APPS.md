@@ -1,4 +1,4 @@
-# TestFlight Master Checklist — All 37 Apps
+# TestFlight Master Checklist — All 38 Apps
 
 **Updated:** 2026-06-22  
 **Repo:** github.com/jshugart90-png/wealth-engine  
