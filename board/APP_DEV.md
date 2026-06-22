@@ -15,7 +15,7 @@
 | **Invoice Stack** | `com.wealthengine.invoicestack` | **TestFlight prep** | 16 PASS, 0 FAIL, 1 WARN | `0ff62cd` pushed | **READY** (Mac upload) |
 | **Horseshoe Toss** | `com.wealthengine.horseshoetoss` | **TestFlight prep** | 16 PASS, 0 FAIL, 1 WARN | `82fe87d` pushed | **READY** (Mac upload) |
 | **Uptime Defender** | `com.wealthengine.uptimedefender` | **TestFlight prep** | 16 PASS, 0 FAIL, 1 WARN | `3c407bf` pushed | **READY** (Mac upload) |
-| **Freelancer Memory** | `com.wealthengine.freelancermemory` | **TestFlight prep** | 16 PASS, 0 FAIL, 1 WARN | TBD pushed | **READY** (Mac upload) |
+| **Freelancer Memory** | `com.wealthengine.freelancermemory` | **TestFlight prep** | 16 PASS, 0 FAIL, 1 WARN | `f435f91` pushed | **READY** (Mac upload) |
 | App 9+ | TBD | Queued | — | — | — |
 
 ## App 1 — Horseshoe Games Hub
