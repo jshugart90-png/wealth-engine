@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 /**
  * App Store preflight QC — 15-item checklist before mobile submission.
- * Run: node scripts/app-store-preflight.mjs [--app games|tools|receipt-rush]
+ * Run: node scripts/app-store-preflight.mjs [--app games|tools|receipt-rush|webhook-whack]
  */
 import { readFileSync, existsSync, readdirSync } from "fs";
 import { join } from "path";
@@ -11,8 +11,9 @@ const root = getRoot();
 const app = process.argv.includes("--app")
   ? process.argv[process.argv.indexOf("--app") + 1]
   : "games";
-const isMiniGame = app === "receipt-rush";
-const miniGameSlug = isMiniGame ? "receipt-rush" : null;
+const MINI_GAMES = ["receipt-rush", "webhook-whack"];
+const isMiniGame = MINI_GAMES.includes(app);
+const miniGameSlug = isMiniGame ? app : null;
 const mobileRoot = join(root, "mobile");
 const dist = join(root, "dist");
 const baseUrl = "https://wealth-engine-0qlj.onrender.com";
@@ -85,7 +86,7 @@ if (isMiniGame) {
 if (isMiniGame) {
   const mobileWww = join(mobileRoot, app, "www", "index.html");
   if (existsSync(mobileWww)) pass(6, "Mini-game synced to mobile", mobileWww);
-  else fail(6, "Mini-game synced to mobile", "Run node mobile/sync-www.mjs receipt-rush");
+  else fail(6, "Mini-game synced to mobile", `Run node mobile/sync-www.mjs ${app}`);
 } else {
 const gameSlugs = readdirSync(join(root, "games"), { withFileTypes: true })
   .filter((d) => d.isDirectory())

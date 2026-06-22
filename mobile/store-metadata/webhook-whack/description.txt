@@ -1,0 +1,15 @@
+Webhook Whack is a fast-paced whack-a-mole arcade game for developers and anyone who loves quick reflex challenges!
+
+Tap the failed webhooks (🐛) before they disappear — but don't whack the healthy ones (✅) or you'll lose points. Beat the clock, chase your best score, and see if you can become a webhook hero!
+
+Features:
+• Simple tap controls — 3×3 grid
+• Best score saved on your device
+• Works offline after first load
+• Family-friendly, all ages
+• No account or signup required
+• Link to HookRelay webhook retry tools
+
+Perfect for quick breaks between deploys. Part of the Horseshoe Games collection by Wealth Engine.
+
+Privacy: Scores stay on your device. See our privacy policy for details.

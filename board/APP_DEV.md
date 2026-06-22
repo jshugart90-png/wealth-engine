@@ -11,7 +11,8 @@
 | **Horseshoe Games Hub** | `com.wealthengine.gameshub` | **TestFlight prep** | 15 PASS, 0 FAIL, 1 WARN | `99180a7` pushed | **READY** (Mac upload) |
 | **Freelancer Tools** | `com.wealthengine.freelancertools` | **TestFlight prep** | 15 PASS, 0 FAIL | `c9a03f6` pushed | **READY** (Mac upload) |
 | **Receipt Rush** | `com.wealthengine.receiptrush` | **TestFlight prep** | 16 PASS, 0 FAIL, 1 WARN | `b730bb9` pushed | **READY** (Mac upload) |
-| App 4+ | TBD | Queued | — | — | — |
+| **Webhook Whack** | `com.wealthengine.webhookwhack` | **TestFlight prep** | 16 PASS, 0 FAIL, 1 WARN | pending push | **READY** (Mac upload) |
+| App 5+ | TBD | Queued | — | — | — |
 
 ## App 1 — Horseshoe Games Hub
 
@@ -98,9 +99,34 @@ npm run build && cd mobile && node sync-www.mjs receipt-rush
 cd receipt-rush && npm install && npx cap add ios  # if missing
 npx cap sync ios && npx cap open ios
 # Or extend Fastlane with com.wealthengine.receiptrush — see mobile/APP_STORE_MANUAL_STEPS.md
+# bundle exec fastlane ios beta_receipt_rush
 ```
 
-## App 4+ queue
+## App 4 — Webhook Whack (mini-app)
+
+| Field | Value |
+|-------|-------|
+| Version | 1.0.0 |
+| Game | Webhook Whack (single-game Capacitor shell) |
+| Capacitor | `mobile/webhook-whack/` → loads `/games/webhook-whack/` from prod |
+| Store metadata | `mobile/store-metadata/webhook-whack/` |
+| Preflight | `npm run mobile:preflight:webhook-whack` |
+
+### Features (shipped this session)
+
+1. **Best score** — localStorage persistence with HUD display
+2. **Offline banner** — same pattern as Games Hub / Receipt Rush
+
+### TestFlight upload (user Mac)
+
+```bash
+npm run build && cd mobile && node sync-www.mjs webhook-whack
+cd webhook-whack && npm install && npx cap add ios  # if missing
+npx cap sync ios && npx cap open ios
+# Or: bundle exec fastlane ios beta_webhook_whack
+```
+
+## App 5+ queue
 
 From `board/GAMES.md` or new simple utilities (calculators, timers) as standalone Capacitor shells.
 

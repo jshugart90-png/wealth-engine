@@ -47,16 +47,14 @@ platform :android do
 end
 
 platform :ios do
-  desc "Build archive and upload to TestFlight (macOS + Xcode required)"
-  lane :beta do
-    UI.message("Apple Developer: account active — no fee step")
-    UI.message("Requires: macOS, Xcode, App Store Connect API key in fastlane/.env")
+  def mini_app_ios_beta(app_dir, display_name)
+    UI.message("Building #{display_name} — requires macOS + Xcode")
     UI.user_error!("Run on macOS with Xcode — see mobile/APP_STORE_MANUAL_STEPS.md") unless UI.mac?
 
     api_key = load_app_store_connect_api_key
 
     build_app(
-      workspace: "games/ios/App/App.xcworkspace",
+      workspace: "#{app_dir}/ios/App/App.xcworkspace",
       scheme: "App",
       export_method: "app-store",
       clean: true
@@ -68,7 +66,24 @@ platform :ios do
       distribute_external: false
     )
 
-    UI.success("Uploaded to TestFlight — check App Store Connect → TestFlight tab")
+    UI.success("Uploaded #{display_name} to TestFlight — check App Store Connect")
+  end
+
+  desc "Build archive and upload to TestFlight (macOS + Xcode required)"
+  lane :beta do
+    UI.message("Apple Developer: account active — no fee step")
+    UI.message("Requires: macOS, Xcode, App Store Connect API key in fastlane/.env")
+    mini_app_ios_beta("games", "Horseshoe Games Hub")
+  end
+
+  desc "TestFlight upload for Receipt Rush mini-app"
+  lane :beta_receipt_rush do
+    mini_app_ios_beta("receipt-rush", "Receipt Rush")
+  end
+
+  desc "TestFlight upload for Webhook Whack mini-app"
+  lane :beta_webhook_whack do
+    mini_app_ios_beta("webhook-whack", "Webhook Whack")
   end
 
   desc "TestFlight upload + App Store metadata (does not auto-submit for review)"
