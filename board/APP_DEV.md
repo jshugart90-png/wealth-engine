@@ -714,7 +714,7 @@ npx cap sync ios && npx cap open ios
 | Field | Value |
 |-------|-------|
 | Version | 1.0.0 |
-| Tool | Profit Margin Calculator Pro — gross & net margins, markup, break-even (standalone Capacitor shell) |
+| Tool | Profit Margin Calculator Pro — gross & net margins, markup, and profit breakdown (standalone Capacitor shell) |
 | Capacitor | `mobile/profit-margin-calculator-pro/` → loads `/profit-margin-calculator-pro/` from prod |
 | Store metadata | `mobile/store-metadata/profit-margin-calculator-pro/` |
 | Preflight | `npm run mobile:preflight:profit-margin-calculator-pro` |
@@ -722,7 +722,7 @@ npx cap sync ios && npx cap open ios
 ### Features (shipped this session)
 
 1. **Last calculation** — localStorage `profitmarginpro_last` with launcher display
-2. **Native UI** — revenue presets, gross/net breakdown, markup, break-even units
+2. **Native UI** — revenue presets, gross/net breakdown, markup, margin health bars
 3. **Offline banner** — native launcher with feature highlights and offline message
 
 ### TestFlight upload (user Mac)
