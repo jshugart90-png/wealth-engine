@@ -59,7 +59,7 @@ h1{font-size:18px;border-bottom:2px solid #333}h2{font-size:13px;margin-top:16px
 function buildStorefront(products) {
   const cards = products
     .map(
-      (p) => `<a class="card" href="{{PAY:${p.id === "smb-compliance-pack" ? "smb-compliance-pack" : p.id === "freelancer-kit" ? "freelancer-kit" : "hiring-pack"}}}">
+      (p) => `<a class="card" href="{{PAY:${p.id === "smb-compliance-pack" ? "smb-compliance-pack" : p.id === "freelancer-kit" ? "freelancer-kit" : "hiring-pack"}}}" data-kit="${p.name}">
       <h2>${p.name}</h2><p>${p.files.length} print-ready templates</p><span class="price">$${p.price}</span></a>`
     )
     .join("");
@@ -75,5 +75,6 @@ h1{text-align:center} .sub{text-align:center;color:#666;margin-bottom:32px}
 </style></head><body>
 <h1>TemplateForge</h1><p class="sub">Business document kits — no subscription, instant delivery</p>
 <div class="grid">${cards}</div>
+<script>document.querySelectorAll('.card[data-kit]').forEach(function(c){c.addEventListener('click',function(){try{localStorage.setItem('templateforge_last_kit',c.getAttribute('data-kit'))}catch(e){}})});</script>
 </body></html>`;
 }

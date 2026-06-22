@@ -212,6 +212,7 @@ a{color:#2563eb} .disclaimer{font-size:12px;color:#888;margin-top:40px;border-to
 <body><h1>CompareStack</h1><p>Data-driven comparison pages. We may earn from products we operate or recommend.</p>
 <ul>${links}</ul>
 <p class="disclaimer">Disclosure: CompareStack is operated by Wealth Engine. Some listed products are portfolio ventures with checkout links.</p>
+<script>document.querySelectorAll('ul li a').forEach(function(a){a.addEventListener('click',function(){try{localStorage.setItem('comparestack_last_page',a.textContent.trim())}catch(e){}})});</script>
 </body></html>`;
 }
 
