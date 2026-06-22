@@ -1202,9 +1202,9 @@ const UTILITY_SHELLS = {
     moreLabel: "BillSnap Invoices",
     offlineMsg: "You're offline — open Late Fee Calculator Pro if you've used it before",
     features: [
-      "Prorated monthly late fee with daily rate",
-      "Grace period and flat fee support",
-      "Simple or compound monthly calculation",
+      "Monthly %, daily %, flat & compound modes",
+      "Total due with effective daily rate",
+      "60-day projection for escalation planning",
     ],
   },
 };

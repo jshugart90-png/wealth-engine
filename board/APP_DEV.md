@@ -40,6 +40,7 @@
 | **Freelancer Revenue Stack** | `com.wealthengine.freelancerstack` | **TestFlight prep** | 21 PASS, 0 FAIL | `face453` pushed | **READY** (Mac upload) |
 | **DevWatch** | `com.wealthengine.devwatch` | **TestFlight prep** | 21 PASS, 0 FAIL | `bd278f1` pushed | **READY** (Mac upload) |
 | **HookRelay DLQ Pro** | `com.wealthengine.hookrelaydlqpro` | **TestFlight prep** | 21 PASS, 0 FAIL | `5ddaf84` pushed | **READY** (Mac upload) |
+| **Late Fee Calculator Pro** | `com.wealthengine.latefeecalculatorpro` | **TestFlight prep** | — | — | **READY** (Mac upload) |
 
 ## App 1 — Horseshoe Games Hub
 
@@ -853,12 +854,11 @@ npx cap sync ios && npx cap open ios
 
 ### Features (shipped this session)
 
-1. **Prorated late fee** — monthly % with daily rate breakdown
-2. **Grace period** — days before fees accrue
-3. **Flat fee add-on** — optional one-time penalty
-4. **Compound toggle** — simple vs compound monthly calculation
-5. **Last calculation** — localStorage `latefeepro_last` with launcher display
-6. **IAP wired** — pro_unlock via build-all.mjs VENTURE_TO_MOBILE injection
+1. **Fee modes** — monthly %, daily %, flat penalty, and compound
+2. **Total due** — late fee, effective daily rate, and 60-day projection
+3. **Health indicators** — overdue severity for follow-up timing
+4. **Last calculation** — localStorage `latefeepro_last` with launcher display
+5. **IAP wired** — pro_unlock via build-all.mjs VENTURE_TO_MOBILE injection
 
 ### TestFlight upload (user Mac)
 

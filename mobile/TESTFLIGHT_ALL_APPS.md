@@ -97,6 +97,7 @@ cd .. && bundle exec fastlane ios beta_<lane>
 | quarterly-tax-deadline-pro | `mobile/quarterly-tax-deadline-pro/` | `/quarterly-tax-deadline-pro/` |
 | profit-margin-calculator-pro | `mobile/profit-margin-calculator-pro/` | `/profit-margin-calculator-pro/` |
 | break-even-calculator-pro | `mobile/break-even-calculator-pro/` | `/break-even-calculator-pro/` |
+| late-fee-calculator-pro | `mobile/late-fee-calculator-pro/` | `/late-fee-calculator-pro/` |
 | freelancer-stack | `mobile/freelancer-stack/` | `/bundles/freelancer-stack.html` |
 | devwatch | `mobile/devwatch/` | `/bundles/devwatch.html` |
 | hookrelay-dlq | `mobile/hookrelay-dlq/` | `/go/hookrelay-dlq.html` |
@@ -120,6 +121,7 @@ npm run mobile:preflight:1099-threshold-tracker-pro  # expect 17 PASS, 0 FAIL
 npm run mobile:preflight:quarterly-tax-deadline-pro  # expect 17 PASS, 0 FAIL
 npm run mobile:preflight:profit-margin-calculator-pro  # expect 17 PASS, 0 FAIL
 npm run mobile:preflight:break-even-calculator-pro  # expect 17 PASS, 0 FAIL
+npm run mobile:preflight:late-fee-calculator-pro  # expect 17 PASS, 0 FAIL
 npm run mobile:preflight:freelancer-stack  # expect 21 PASS, 0 FAIL
 npm run mobile:preflight:devwatch  # expect 21 PASS, 0 FAIL
 ```
