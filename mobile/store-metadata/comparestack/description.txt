@@ -1,0 +1,15 @@
+CompareStack is your hub for honest SaaS and freelancer tool comparisons — data-driven guides updated for 2026.
+
+Browse 16+ comparison pages covering uptime monitoring, invoice generators, lease analyzers, NDA tools, webhook relays, tax software, and more.
+
+Features:
+• Independent comparison tables with pricing
+• Portfolio ventures clearly disclosed
+• Recently viewed comparison tracking
+• Offline access after first load
+• No account required
+• Affiliate disclosure on every page
+
+Perfect for freelancers, indie hackers, and SMB buyers researching tools before they commit.
+
+Privacy: Last viewed page stored on device only. Checkout links open in browser.

@@ -166,6 +166,16 @@ platform :ios do
     mini_app_ios_beta("meetingcost", "MeetingCost")
   end
 
+  desc "TestFlight upload for TemplateForge utility app"
+  lane :beta_templateforge do
+    mini_app_ios_beta("templateforge", "TemplateForge")
+  end
+
+  desc "TestFlight upload for CompareStack utility app"
+  lane :beta_comparestack do
+    mini_app_ios_beta("comparestack", "CompareStack")
+  end
+
   desc "TestFlight upload + App Store metadata (does not auto-submit for review)"
   lane :release do
     beta

@@ -1,6 +1,6 @@
 /**
  * Sync dist/ assets into Capacitor www folders.
- * Usage: node sync-www.mjs [games|tools|receipt-rush|webhook-whack|invoice-stack|horseshoe-toss|uptime-defender|freelancer-memory|color-switch-snake|word-scramble-biz|net-30-ninja|ssl-shield|nda-speed-sign|billsnap|statusping-lite|leaselens|ndagen|hookrelay|pipekit|meetingcost|all]
+ * Usage: node sync-www.mjs [games|tools|receipt-rush|webhook-whack|invoice-stack|horseshoe-toss|uptime-defender|freelancer-memory|color-switch-snake|word-scramble-biz|net-30-ninja|ssl-shield|nda-speed-sign|billsnap|statusping-lite|leaselens|ndagen|hookrelay|pipekit|meetingcost|templateforge|comparestack|all]
  */
 import { cpSync, existsSync, mkdirSync, readFileSync, writeFileSync, readdirSync } from "fs";
 import { join, dirname } from "path";
@@ -488,6 +488,58 @@ const UTILITY_SHELLS = {
       "Pro report unlocks for $5 via Stripe",
     ],
   },
+  templateforge: {
+    title: "TemplateForge",
+    emoji: "📄",
+    tagline: "Business document kits — instant download from $12",
+    themeColor: "#fafafa",
+    bg: "#fafafa",
+    text: "#111827",
+    sub: "#6b7280",
+    accent: "#2563eb",
+    btnBg: "#2563eb",
+    btnHover: "#1d4ed8",
+    statBorder: "#d1d5db",
+    statKey: "templateforge_last_kit",
+    statLabel: "Last kit viewed",
+    statEmpty: "—",
+    cta: "Browse Kits",
+    moreLink: "https://wealth-engine-0qlj.onrender.com/go/freelancer.html",
+    moreLabel: "LAUNCH25 discount",
+    offlineMsg: "You're offline — open TemplateForge if you've used it before",
+    copyRecursive: true,
+    features: [
+      "Freelancer, compliance, and hiring packs",
+      "Instant PDF download after Stripe checkout",
+      "No subscription — pay once per kit",
+    ],
+  },
+  comparestack: {
+    title: "CompareStack",
+    emoji: "⚖️",
+    tagline: "Honest SaaS & freelancer tool comparisons",
+    themeColor: "#ffffff",
+    bg: "#ffffff",
+    text: "#111827",
+    sub: "#6b7280",
+    accent: "#2563eb",
+    btnBg: "#2563eb",
+    btnHover: "#1d4ed8",
+    statBorder: "#e5e7eb",
+    statKey: "comparestack_last_page",
+    statLabel: "Last comparison",
+    statEmpty: "—",
+    cta: "Browse Comparisons",
+    moreLink: "https://wealth-engine-0qlj.onrender.com/comparestack/",
+    moreLabel: "All 16+ guides",
+    offlineMsg: "You're offline — open CompareStack if you've used it before",
+    copyRecursive: true,
+    features: [
+      "16+ comparison guides for SaaS and tools",
+      "Pricing tables with portfolio disclosures",
+      "Recently viewed saved on your device",
+    ],
+  },
 };
 
 function syncUtility(slug) {
@@ -506,9 +558,13 @@ function syncUtility(slug) {
   }
   mkdirSync(www, { recursive: true });
   mkdirSync(join(www, wwwSlug), { recursive: true });
-  cpSync(join(utilSrc, "index.html"), join(www, wwwSlug, "index.html"));
-  if (existsSync(join(utilSrc, "handlers.mjs"))) {
-    cpSync(join(utilSrc, "handlers.mjs"), join(www, wwwSlug, "handlers.mjs"));
+  if (shell.copyRecursive) {
+    cpSync(utilSrc, join(www, wwwSlug), { recursive: true });
+  } else {
+    cpSync(join(utilSrc, "index.html"), join(www, wwwSlug, "index.html"));
+    if (existsSync(join(utilSrc, "handlers.mjs"))) {
+      cpSync(join(utilSrc, "handlers.mjs"), join(www, wwwSlug, "handlers.mjs"));
+    }
   }
 
   const indexHtml = `<!DOCTYPE html>
@@ -636,6 +692,8 @@ if (target === "ndagen" || target === "all") syncUtility("ndagen");
 if (target === "hookrelay" || target === "all") syncUtility("hookrelay");
 if (target === "pipekit" || target === "all") syncUtility("pipekit");
 if (target === "meetingcost" || target === "all") syncUtility("meetingcost");
+if (target === "templateforge" || target === "all") syncUtility("templateforge");
+if (target === "comparestack" || target === "all") syncUtility("comparestack");
 if (target === "receipt-rush" || target === "all") syncMiniGame("receipt-rush");
 if (target === "webhook-whack" || target === "all") syncMiniGame("webhook-whack");
 if (target === "invoice-stack" || target === "all") syncMiniGame("invoice-stack");

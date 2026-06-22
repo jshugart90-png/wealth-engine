@@ -28,7 +28,8 @@
 | **HookRelay** | `com.wealthengine.hookrelay` | **TestFlight prep** | 17 PASS, 0 FAIL | `c26a038` pushed | **READY** (Mac upload) |
 | **PipeKit** | `com.wealthengine.pipekit` | **TestFlight prep** | 17 PASS, 0 FAIL | `c26a038` pushed | **READY** (Mac upload) |
 | **MeetingCost** | `com.wealthengine.meetingcost` | **TestFlight prep** | 17 PASS, 0 FAIL | `c26a038` pushed | **READY** (Mac upload) |
-| App 21+ | TBD | Queued | — | — | — |
+| **TemplateForge** | `com.wealthengine.templateforge` | **TestFlight prep** | 17 PASS, 0 FAIL | pending | **READY** (Mac upload) |
+| **CompareStack** | `com.wealthengine.comparestack` | **TestFlight prep** | 17 PASS, 0 FAIL | pending | **READY** (Mac upload) |
 
 ## App 1 — Horseshoe Games Hub
 
@@ -527,9 +528,59 @@ npx cap sync ios && npx cap open ios
 # Or: bundle exec fastlane ios beta_meetingcost
 ```
 
-## App 21+ queue
+## App 21 — TemplateForge (utility)
 
-From `board/GAMES.md` or new simple utilities (calculators, timers) as standalone Capacitor shells.
+| Field | Value |
+|-------|-------|
+| Version | 1.0.0 |
+| Tool | TemplateForge business document kits (standalone Capacitor shell) |
+| Capacitor | `mobile/templateforge/` → loads `/templateforge/` from prod |
+| Store metadata | `mobile/store-metadata/templateforge/` |
+| Preflight | `npm run mobile:preflight:templateforge` |
+
+### Features (shipped this session)
+
+1. **Last kit viewed** — localStorage `templateforge_last_kit` with launcher display
+2. **Offline banner** — native launcher with feature highlights and offline message
+3. **Full catalog sync** — `dist/templateforge/` copied recursively for offline pages
+
+### TestFlight upload (user Mac)
+
+```bash
+npm run build && cd mobile && node sync-www.mjs templateforge
+cd templateforge && npm install && npx cap add ios  # if missing
+npx cap sync ios && npx cap open ios
+# Or: bundle exec fastlane ios beta_templateforge
+```
+
+## App 22 — CompareStack (utility)
+
+| Field | Value |
+|-------|-------|
+| Version | 1.0.0 |
+| Tool | CompareStack comparison guides hub (standalone Capacitor shell) |
+| Capacitor | `mobile/comparestack/` → loads `/comparestack/` from prod |
+| Store metadata | `mobile/store-metadata/comparestack/` |
+| Preflight | `npm run mobile:preflight:comparestack` |
+
+### Features (shipped this session)
+
+1. **Last comparison** — localStorage `comparestack_last_page` with launcher display
+2. **Offline banner** — native launcher with feature highlights and offline message
+3. **Full pages sync** — `dist/comparestack/pages/` copied recursively for offline hub
+
+### TestFlight upload (user Mac)
+
+```bash
+npm run build && cd mobile && node sync-www.mjs comparestack
+cd comparestack && npm install && npx cap add ios  # if missing
+npx cap sync ios && npx cap open ios
+# Or: bundle exec fastlane ios beta_comparestack
+```
+
+## Master checklist
+
+See `mobile/TESTFLIGHT_ALL_APPS.md` for all 22 apps — bundle IDs, Fastlane lanes, versions.
 
 ## GitHub policy
 

@@ -1,0 +1,22 @@
+{
+  "appName": "CompareStack",
+  "subtitle": "Honest tool comparisons",
+  "bundleId": "com.wealthengine.comparestack",
+  "version": "1.0.0",
+  "privacyPolicyUrl": "https://wealth-engine-0qlj.onrender.com/privacy.html",
+  "supportUrl": "https://wealth-engine-0qlj.onrender.com/",
+  "marketingUrl": "https://wealth-engine-0qlj.onrender.com/comparestack/",
+  "category": {
+    "apple": "Business",
+    "appleSub": "Reference",
+    "google": "BUSINESS"
+  },
+  "contentRating": {
+    "ageRating": "4+",
+    "googleQuestionnaire": "Everyone — comparison reference app, affiliate links open in browser",
+    "adsPresent": false,
+    "inAppPurchases": false,
+    "dataCollected": ["last page viewed stored locally only"]
+  },
+  "keywords": ["compare", "saas", "tools", "freelancer", "uptime", "invoice", "monitoring", "review", "comparestack", "alternatives"]
+}

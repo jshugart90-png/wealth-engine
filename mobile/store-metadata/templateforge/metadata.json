@@ -1,0 +1,22 @@
+{
+  "appName": "TemplateForge",
+  "subtitle": "Business document kits",
+  "bundleId": "com.wealthengine.templateforge",
+  "version": "1.0.0",
+  "privacyPolicyUrl": "https://wealth-engine-0qlj.onrender.com/privacy.html",
+  "supportUrl": "https://wealth-engine-0qlj.onrender.com/",
+  "marketingUrl": "https://wealth-engine-0qlj.onrender.com/templateforge/",
+  "category": {
+    "apple": "Business",
+    "appleSub": "Productivity",
+    "google": "BUSINESS"
+  },
+  "contentRating": {
+    "ageRating": "4+",
+    "googleQuestionnaire": "Everyone — document catalog utility, Stripe checkout opens in browser",
+    "adsPresent": false,
+    "inAppPurchases": true,
+    "dataCollected": ["kit browsing stored locally; checkout via Stripe in browser"]
+  },
+  "keywords": ["template", "business", "documents", "freelancer", "compliance", "pdf", "contracts", "kit", "templateforge", "download"]
+}
