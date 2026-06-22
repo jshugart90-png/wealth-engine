@@ -1,4 +1,4 @@
-# TestFlight Master Checklist — All 38 Apps
+# TestFlight Master Checklist — All 39 Apps
 
 **Updated:** 2026-06-22  
 **Repo:** github.com/jshugart90-png/wealth-engine  
@@ -47,8 +47,9 @@
 | 36 | Day Rate to Hourly Calculator Pro | `com.wealthengine.dayratecalculatorpro` | 1.0.0 | 1 | `beta_day_rate_calculator_pro` | `mobile:preflight:day-rate-calculator-pro` | READY |
 | 37 | Bill Splitter Pro | `com.wealthengine.billsplitterpro` | 1.0.0 | 1 | `beta_bill_splitter_pro` | `mobile:preflight:bill-splitter-pro` | READY |
 | 38 | Percentage Calculator Pro | `com.wealthengine.percentagecalculatorpro` | 1.0.0 | 1 | `beta_percentage_calculator_pro` | `mobile:preflight:percentage-calculator-pro` | READY |
+| 39 | Renter Toolkit | `com.wealthengine.rentertoolkit` | 1.0.0 | 1 | `beta_renter_toolkit` | `mobile:preflight:renter-toolkit` | READY |
 
-**IAP totals:** 64 products (13 games × 3 + Games Hub × 3 + 25 utilities × 1) · Catalog: `config/mobile-iap-products.json` · Setup: `mobile/APP_STORE_CONNECT_IAP_SETUP.md`
+**IAP totals:** 65 products (13 games × 3 + Games Hub × 3 + 26 utilities × 1) · Catalog: `config/mobile-iap-products.json` · Setup: `mobile/APP_STORE_CONNECT_IAP_SETUP.md`
 
 **Validation:** `npm run mobile:ios-checklist` (all apps) · `npm run mobile:storekit:generate` (Xcode local testing)
 
@@ -108,6 +109,7 @@ cd .. && bundle exec fastlane ios beta_<lane>
 | invoice-number-rush | `mobile/invoice-number-rush/` | `/games/invoice-number-rush/` |
 | freelancer-stack | `mobile/freelancer-stack/` | `/bundles/freelancer-stack.html` |
 | devwatch | `mobile/devwatch/` | `/bundles/devwatch.html` |
+| renter-toolkit | `mobile/renter-toolkit/` | `/bundles/landlord-tenant-stack.html` |
 | hookrelay-dlq | `mobile/hookrelay-dlq/` | `/go/hookrelay-dlq.html` |
 
 ## Global blockers

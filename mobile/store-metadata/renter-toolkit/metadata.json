@@ -1,0 +1,35 @@
+{
+  "appName": "Renter Toolkit",
+  "subtitle": "Lease review & compliance",
+  "bundleId": "com.wealthengine.rentertoolkit",
+  "version": "1.0.0",
+  "privacyPolicyUrl": "https://wealth-engine-0qlj.onrender.com/privacy.html",
+  "supportUrl": "https://wealth-engine-0qlj.onrender.com/",
+  "marketingUrl": "https://wealth-engine-0qlj.onrender.com/bundles/landlord-tenant-stack.html",
+  "category": {
+    "apple": "Business",
+    "appleSub": "Productivity",
+    "google": "BUSINESS"
+  },
+  "contentRating": {
+    "ageRating": "4+",
+    "googleQuestionnaire": "Everyone — rental utility hub, Stripe checkout opens in browser",
+    "adsPresent": false,
+    "inAppPurchases": true,
+    "dataCollected": [
+      "lease text processed locally; email on checkout only via Stripe"
+    ]
+  },
+  "keywords": [
+    "renter",
+    "lease",
+    "tenant",
+    "landlord",
+    "leaselens",
+    "compliance",
+    "template",
+    "rental",
+    "review",
+    "rentertoolkit"
+  ]
+}

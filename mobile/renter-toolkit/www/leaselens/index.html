@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>LeaseLens — Rental Lease Red Flag Analyzer</title>
+  <meta name="description" content="Paste your lease, get an instant risk score and clause flags. Full report $7. Organic search + tenant forums — no social required.">
+  <style>
+    body{font-family:system-ui,sans-serif;background:#fff;margin:0;padding:32px 16px;color:#111;max-width:720px;margin-inline:auto}
+    h1{font-size:28px} .sub{color:#666;margin-bottom:20px}
+    textarea{width:100%;min-height:200px;padding:12px;border:1px solid #ccc;border-radius:8px;font-size:13px}
+    button{background:#059669;color:#fff;border:none;padding:12px 24px;border-radius:8px;cursor:pointer;margin-top:12px}
+    #out{margin-top:24px;padding:20px;background:#f0fdf4;border-radius:8px;display:none}
+    .score{font-size:48px;font-weight:bold;color:#059669}
+    .flag{margin:8px 0;padding:8px;background:#fff;border-left:4px solid #f59e0b}
+    .flag.high{border-color:#dc2626}
+    a{color:#059669}
+  </style>
+<meta name="google-site-verification" content="X8W5bw-fSJ0pTZiA0LesNi2vZ_-bUdLqVokR5uJZlI4" />
+<script>(function(){try{var r=localStorage.getItem('we_ref')||new URLSearchParams(location.search).get('ref');fetch('/api/funnel/visit',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({path:"/leaselens",refCode:r,source:new URLSearchParams(location.search).get('utm_source')||'direct'})}).catch(function(){})}catch(e){}})();</script></head>
+<body>
+  <div style="background:#059669;color:#fff;padding:10px 16px;text-align:center;font-size:13px"><strong>LAUNCH25</strong> · <a href="/go/lease.html" style="color:#fff;font-weight:700">Full report from $7</a> · <a href="/go/invoice.html" style="color:#fff">Invoice tool →</a></div>
+  <h1>LeaseLens</h1>
+  <p class="sub">Signing blind costs tenants thousands. Paste your lease — get a risk score and red flags in 30 seconds. Rule-based analysis, not legal advice.</p>
+  <p style="font-size:14px;color:#666;margin:-12px 0 16px">Free preview shows top flags. Full report unlocks every clause check + printable summary for $7. Use code <strong>LAUNCH25</strong> at checkout for 25% off.</p>
+  <textarea id="lease" placeholder="Paste lease text here..."></textarea>
+  <label>License (after purchase): <input id="lic" placeholder="WE-XXXXXXXX"></label><br>
+  <button id="go">Analyze</button>
+  <div id="out"></div>
+  <p style="margin-top:24px"><a href="https://buy.stripe.com/aFa8wO21g15DeQlctr1Nu04">Full report — $7</a> · <a href="https://buy.stripe.com/dRm8wObBQbKh4bH9hf1Nu05">3 reports — $15</a></p>
+  <div style="position:fixed;bottom:0;left:0;right:0;background:#059669;color:#fff;padding:12px;text-align:center;font-size:14px">
+    Unlock full report · <a href="https://buy.stripe.com/aFa8wO21g15DeQlctr1Nu04" style="color:#fff;font-weight:700" onclick="fetch('/api/funnel/checkout_click',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({sku:'single-report',path:'/leaselens'})})">$7 →</a>
+    · <a href="/go/lease.html" style="color:#fff">Ad landing</a>
+  </div>
+  <script>
+    document.getElementById("go").onclick = async () => {
+      const r = await fetch("/api/leaselens/analyze", {
+        method:"POST", headers:{"Content-Type":"application/json"},
+        body: JSON.stringify({ text: document.getElementById("lease").value, license: document.getElementById("lic").value || undefined })
+      });
+      const d = await r.json();
+      const data = d.report || d.preview;
+      const o = document.getElementById("out");
+      o.style.display = "block";
+      if (data.score != null) try { localStorage.setItem("leaselens_last_score", data.score + "/100"); } catch (e) {}
+      o.innerHTML = `<div class="score">${data.score}/100</div><p>${data.summary}</p>` +
+        data.flags.map(f => `<div class="flag ${f.severity}"><strong>${f.title}</strong><br>${f.tip}</div>`).join("") +
+        (d.preview ? `<p><a href="https://buy.stripe.com/aFa8wO21g15DeQlctr1Nu04">Unlock all ${data.flagCount || "?"} flags →</a></p>` : "");
+      try { localStorage.setItem("leaselens_last_score", data.score + "/100"); } catch (e) {}
+    };
+  </script>
+<div class="we-iap-bar" id="we-iap-bar" role="region" aria-label="In-app purchases">
+<style>
+.we-iap-bar{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;align-items:center;margin:8px 0;padding:8px;background:rgba(0,0,0,.15);border-radius:8px;max-width:360px;width:100%}
+.we-iap-bar button{background:#6366f1;color:#fff;border:none;padding:6px 12px;border-radius:6px;font-size:11px;font-weight:600;cursor:pointer}
+.we-iap-bar button:active{transform:scale(.97)}
+#we-iap-premium-badge{display:none;background:#eab308;color:#1c1917;padding:4px 10px;border-radius:999px;font-size:11px;font-weight:700}
+body.we-iap-premium .we-iap-bar{border-color:#eab308}
+body.we-iap-no-ads .ad{display:none!important}
+</style>
+
+<button type="button" id="we-iap-premium">Pro Unlock · $4.99</button>
+
+<button type="button" id="we-iap-restore">Restore</button>
+<span id="we-iap-premium-badge">★ Premium</span>
+</div><script>(function(){
+  var APP="leaselens";
+  var PRODUCTS=[{"key":"pro_unlock","id":"com.wealthengine.leaselens.pro_unlock","price":4.99,"title":"Pro Unlock"}];
+  var PREFIX='we_iap_'+APP+'_';
+
+  function owned(key){
+    try{return localStorage.getItem(PREFIX+key)==='1'}catch(e){return false}
+  }
+  function setOwned(key){
+    try{localStorage.setItem(PREFIX+key,'1')}catch(e){}
+    refreshUI();
+  }
+
+  function shouldShowAds(){
+    return true;
+  }
+
+  function hideAdSlots(){
+    if(shouldShowAds())return;
+    document.querySelectorAll('.ad,[data-ad-slot]').forEach(function(el){
+      el.style.display='none';
+    });
+  }
+
+  function refreshUI(){
+    var badge=document.getElementById('we-iap-premium-badge');
+    var removeBtn=document.getElementById('we-iap-remove-ads');
+    var hasPremium=owned('premium_unlock')||owned('pro_unlock');
+    var noAds=!shouldShowAds();
+    if(badge)badge.style.display=(hasPremium||noAds)?'inline-block':'none';
+    if(removeBtn)removeBtn.style.display=noAds?'none':'inline-block';
+    hideAdSlots();
+    document.body.classList.toggle('we-iap-premium',hasPremium);
+    document.body.classList.toggle('we-iap-no-ads',noAds);
+  }
+
+  function purchase(key){
+    var prod=PRODUCTS.find(function(p){return p.key===key});
+    if(!prod)return Promise.reject(new Error('Unknown product'));
+    if(owned(key))return Promise.resolve({key:key,restored:true});
+
+    /* Native: @revenuecat/purchases-capacitor or StoreKit 2 via Capacitor plugin */
+    if(window.Capacitor&&window.Capacitor.Plugins&&window.Capacitor.Plugins.Purchases){
+      return window.Capacitor.Plugins.Purchases.purchaseProduct({productIdentifier:prod.id})
+        .then(function(){setOwned(key);return{key:key,purchased:true};});
+    }
+
+    /* Sandbox / pre-App-Store-Connect: simulate success (replace after products live) */
+    if(confirm('Purchase '+prod.title+' (
+</html>
++prod.price.toFixed(2)+')?\n\nSandbox mode — receipt verify placeholder until App Store Connect products are live.')){
+      setOwned(key);
+      return Promise.resolve({key:key,purchased:true,sandbox:true});
+    }
+    return Promise.reject(new Error('Cancelled'));
+  }
+
+  function restore(){
+    if(window.Capacitor&&window.Capacitor.Plugins&&window.Capacitor.Plugins.Purchases){
+      return window.Capacitor.Plugins.Purchases.restorePurchases().then(function(res){
+        (res&&res.customerInfo&&res.customerInfo.entitlements&&res.customerInfo.entitlements.active||{}).forEach(function(){});
+        refreshUI();
+        return{restored:true};
+      });
+    }
+    refreshUI();
+    alert('Restore complete — checked local purchases. Connect RevenueCat for cross-device restore.');
+    return Promise.resolve({restored:true,local:true});
+  }
+
+  window.WE_IAP={
+    app:APP,
+    products:PRODUCTS,
+    owns:owned,
+    shouldShowAds:shouldShowAds,
+    purchase:purchase,
+    restore:restore,
+    refresh:refreshUI
+  };
+
+  function wireUI(){
+    var bar=document.getElementById('we-iap-bar');
+    if(!bar)return;
+    var removeBtn=document.getElementById('we-iap-remove-ads');
+    var premiumBtn=document.getElementById('we-iap-premium');
+    var restoreBtn=document.getElementById('we-iap-restore');
+    var tipBtn=document.getElementById('we-iap-tip');
+    if(removeBtn)removeBtn.addEventListener('click',function(){WE_IAP.purchase('remove_ads').catch(function(){})});
+    if(premiumBtn)premiumBtn.addEventListener('click',function(){
+      WE_IAP.purchase('pro_unlock').catch(function(){});
+    });
+    if(restoreBtn)restoreBtn.addEventListener('click',function(){WE_IAP.restore()});
+    if(tipBtn)tipBtn.addEventListener('click',function(){WE_IAP.purchase('tip_jar').catch(function(){})});
+    refreshUI();
+  }
+
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',wireUI);
+  else wireUI();
+})();</script></body>
+</html>

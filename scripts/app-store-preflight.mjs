@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 /**
  * App Store preflight QC — 15-item checklist before mobile submission.
- * Run: node scripts/app-store-preflight.mjs [--app games|tools|freelancer-stack|devwatch|hookrelay-dlq|receipt-rush|webhook-whack|invoice-stack|horseshoe-toss|uptime-defender|freelancer-memory|color-switch-snake|word-scramble-biz|net-30-ninja|ssl-shield|nda-speed-sign|invoice-number-rush|billsnap|statusping-lite|leaselens|ndagen|hookrelay|pipekit|meetingcost|templateforge|comparestack|tip-calculator-pro|hourly-rate-calculator-pro|freelancer-tax-estimator|1099-threshold-tracker-pro|quarterly-tax-deadline-pro|profit-margin-calculator-pro|break-even-calculator-pro|late-fee-calculator-pro|markup-calculator-pro|day-rate-calculator-pro|bill-splitter-pro|percentage-calculator-pro]
+ * Run: node scripts/app-store-preflight.mjs [--app games|tools|freelancer-stack|devwatch|renter-toolkit|hookrelay-dlq|receipt-rush|webhook-whack|invoice-stack|horseshoe-toss|uptime-defender|freelancer-memory|color-switch-snake|word-scramble-biz|net-30-ninja|ssl-shield|nda-speed-sign|invoice-number-rush|billsnap|statusping-lite|leaselens|ndagen|hookrelay|pipekit|meetingcost|templateforge|comparestack|tip-calculator-pro|hourly-rate-calculator-pro|freelancer-tax-estimator|1099-threshold-tracker-pro|quarterly-tax-deadline-pro|profit-margin-calculator-pro|break-even-calculator-pro|late-fee-calculator-pro|markup-calculator-pro|day-rate-calculator-pro|bill-splitter-pro|percentage-calculator-pro]
  */
 import { readFileSync, existsSync, readdirSync } from "fs";
 import { join } from "path";
@@ -11,7 +11,7 @@ const root = getRoot();
 const app = process.argv.includes("--app")
   ? process.argv[process.argv.indexOf("--app") + 1]
   : "games";
-const HUB_APPS = ["tools", "freelancer-stack", "devwatch", "hookrelay-dlq"];
+const HUB_APPS = ["tools", "freelancer-stack", "devwatch", "renter-toolkit", "hookrelay-dlq"];
 const MINI_GAMES = ["receipt-rush", "webhook-whack", "invoice-stack", "horseshoe-toss", "uptime-defender", "freelancer-memory", "color-switch-snake", "word-scramble-biz", "net-30-ninja", "ssl-shield", "nda-speed-sign", "invoice-number-rush"];
 const UTIL_APPS = ["billsnap", "statusping-lite", "leaselens", "ndagen", "hookrelay", "pipekit", "meetingcost", "templateforge", "comparestack", "tip-calculator-pro", "hourly-rate-calculator-pro", "freelancer-tax-estimator", "1099-threshold-tracker-pro", "quarterly-tax-deadline-pro", "profit-margin-calculator-pro", "break-even-calculator-pro", "late-fee-calculator-pro", "markup-calculator-pro", "day-rate-calculator-pro", "bill-splitter-pro", "percentage-calculator-pro"];
 const UTIL_DIST = { "statusping-lite": "statusping", pipekit: "pipekit", templateforge: "templateforge", comparestack: "comparestack", "tip-calculator-pro": "tip-calculator-pro", "hourly-rate-calculator-pro": "hourly-rate-calculator-pro", "freelancer-tax-estimator": "freelancer-tax-estimator", "1099-threshold-tracker-pro": "1099-threshold-tracker-pro", "quarterly-tax-deadline-pro": "quarterly-tax-deadline-pro", "profit-margin-calculator-pro": "profit-margin-calculator-pro", "break-even-calculator-pro": "break-even-calculator-pro", "late-fee-calculator-pro": "late-fee-calculator-pro", "markup-calculator-pro": "markup-calculator-pro", "day-rate-calculator-pro": "day-rate-calculator-pro", "bill-splitter-pro": "bill-splitter-pro", "percentage-calculator-pro": "percentage-calculator-pro" };
@@ -86,6 +86,14 @@ if (isHubApp) {
       if (existsSync(join(dist, "tools", tool))) pass(`5c-${tool}`, `${tool} built in dist`);
       else fail(`5c-${tool}`, `${tool} built in dist`, `Missing dist/tools/${tool}`);
     }
+  } else if (app === "renter-toolkit") {
+    const bundle = join(dist, "bundles", "landlord-tenant-stack.html");
+    if (existsSync(bundle)) pass("5b", "Renter Toolkit bundle built");
+    else fail("5b", "Renter Toolkit bundle built", "Missing dist/bundles/landlord-tenant-stack.html");
+    for (const tool of ["leaselens", "templateforge"]) {
+      if (existsSync(join(dist, tool, "index.html"))) pass(`5c-${tool}`, `${tool} built in dist`);
+      else fail(`5c-${tool}`, `${tool} built in dist`, `Missing dist/${tool}/index.html`);
+    }
   } else if (app === "hookrelay-dlq") {
     const landing = join(dist, "go", "hookrelay-dlq.html");
     if (existsSync(landing)) pass("5b", "DLQ Pro landing built");
@@ -154,6 +162,8 @@ if (isHubApp && app === "freelancer-stack" && existsSync(join(mobileRoot, app, "
   pass("6b", "Freelancer stack bundle synced");
 } else if (isHubApp && app === "devwatch" && existsSync(join(mobileRoot, app, "www", "bundles", "devwatch.html"))) {
   pass("6b", "DevWatch bundle synced");
+} else if (isHubApp && app === "renter-toolkit" && existsSync(join(mobileRoot, app, "www", "bundles", "landlord-tenant-stack.html"))) {
+  pass("6b", "Renter Toolkit bundle synced");
 } else if (isHubApp && app === "hookrelay-dlq" && existsSync(join(mobileRoot, app, "www", "go", "hookrelay-dlq.html"))) {
   pass("6b", "DLQ Pro landing synced");
 } else if (isHubApp) {

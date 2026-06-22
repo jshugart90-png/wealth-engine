@@ -470,6 +470,23 @@
         }
       ]
     },
+    "renter-toolkit": {
+      "appName": "Renter Toolkit",
+      "bundleId": "com.wealthengine.rentertoolkit",
+      "type": "utility",
+      "version": "1.0.0",
+      "products": [
+        {
+          "key": "pro_unlock",
+          "storeKitId": "com.wealthengine.rentertoolkit.pro_unlock",
+          "type": "non_consumable",
+          "price": 4.99,
+          "title": "Pro Unlock",
+          "description": "Unlock Pro features (matches Stripe tier where applicable)",
+          "stripeSku": "report-bundle"
+        }
+      ]
+    },
     "leaselens": {
       "appName": "LeaseLens",
       "bundleId": "com.wealthengine.leaselens",

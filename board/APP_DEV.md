@@ -45,8 +45,8 @@
 | **Markup Calculator Pro** | `com.wealthengine.markupcalculatorpro` | **TestFlight prep** | 20 PASS, 0 FAIL | `6f71e2d` pushed | **READY** (Mac upload) |
 | **Day Rate to Hourly Calculator Pro** | `com.wealthengine.dayratecalculatorpro` | **TestFlight prep** | 20 PASS, 0 FAIL | `a5062d9` pushed | **READY** (Mac upload) |
 | **Bill Splitter Pro** | `com.wealthengine.billsplitterpro` | **TestFlight prep** | 20 PASS, 0 FAIL | `33c8396` pushed | **READY** (Mac upload) |
-| **Percentage Calculator Pro** | `com.wealthengine.percentagecalculatorpro` | **TestFlight prep** | 20 PASS, 0 FAIL | `deae006` pushed | **READY** (Mac upload) |
 | **Percentage Calculator Pro** | `com.wealthengine.percentagecalculatorpro` | **TestFlight prep** | 20 PASS, 0 FAIL | `9b4ef56` pushed | **READY** (Mac upload) |
+| **Renter Toolkit** | `com.wealthengine.rentertoolkit` | **TestFlight prep** | TBD | TBD | **READY** (Mac upload) |
 
 ## App 1 — Horseshoe Games Hub
 
@@ -931,9 +931,36 @@ npx cap sync ios && npx cap open ios
 # Or: bundle exec fastlane ios beta_markup_calculator_pro
 ```
 
+## App 39 — Renter Toolkit (hub)
+
+| Field | Value |
+|-------|-------|
+| Version | 1.0.0 |
+| Tools | LeaseLens + TemplateForge |
+| Capacitor | `mobile/renter-toolkit/` → loads `/bundles/landlord-tenant-stack.html` from prod |
+| Store metadata | `mobile/store-metadata/renter-toolkit/` |
+| Preflight | `npm run mobile:preflight:renter-toolkit` |
+
+### Features (shipped this session)
+
+1. **Native launcher** — 2-tool grid with recently used tracking
+2. **Bundle page** — local copy of `/bundles/landlord-tenant-stack.html` with $15 3-pack + $19 compliance templates
+3. **Last lease score** — localStorage `leaselens_last_score` on launcher
+4. **LAUNCH25 checkout** — promo banner deep link to `/go/lease.html`
+5. **IAP wired** — pro_unlock via mobile-iap-products.json
+
+### TestFlight upload (user Mac)
+
+```bash
+npm run build && cd mobile && node sync-www.mjs renter-toolkit
+cd renter-toolkit && npm install && npx cap add ios  # if missing
+npx cap sync ios && npx cap open ios
+# Or: bundle exec fastlane ios beta_renter_toolkit
+```
+
 ## Master checklist
 
-See `mobile/TESTFLIGHT_ALL_APPS.md` for all 38 apps — bundle IDs, Fastlane lanes, versions.
+See `mobile/TESTFLIGHT_ALL_APPS.md` for all 39 apps — bundle IDs, Fastlane lanes, versions.
 
 ## GitHub policy
 

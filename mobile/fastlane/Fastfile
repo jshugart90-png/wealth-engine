@@ -256,6 +256,11 @@ platform :ios do
     mini_app_ios_beta("devwatch", "DevWatch")
   end
 
+  desc "TestFlight upload for Renter Toolkit bundle hub app"
+  lane :beta_renter_toolkit do
+    mini_app_ios_beta("renter-toolkit", "Renter Toolkit")
+  end
+
   desc "TestFlight upload for HookRelay DLQ Pro hub app"
   lane :beta_hookrelay_dlq_pro do
     mini_app_ios_beta("hookrelay-dlq", "HookRelay DLQ Pro")

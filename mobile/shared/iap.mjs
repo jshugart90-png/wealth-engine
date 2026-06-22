@@ -40,6 +40,7 @@ export const STRIPE_IAP_MAP = {
   "hookrelay-dlq": { pro_unlock: "pro" },
   devwatch: { pro_unlock: "bundle" },
   "freelancer-stack": { pro_unlock: "bundle" },
+  "renter-toolkit": { pro_unlock: "report-bundle" },
   tools: { pro_unlock: null },
 };
 

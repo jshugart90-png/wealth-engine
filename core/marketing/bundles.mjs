@@ -48,9 +48,18 @@ const BUNDLES = [
   {
     slug: "landlord-tenant-stack",
     title: "Renter Toolkit",
-    desc: "LeaseLens 3-pack + compliance templates",
-    skus: ["report-bundle", "smb-compliance-pack"],
-    ventures: ["/leaselens/index.html", "/templateforge/index.html"],
+    desc: "Lease review + compliance templates for tenants and small landlords.",
+    primarySku: "report-bundle",
+    primaryLabel: "LeaseLens 3-Pack — $15",
+    primarySub: "Three full lease risk reports — analyze before you sign or renew.",
+    bundleSku: "smb-compliance-pack",
+    bundleLabel: "Compliance Templates — $19",
+    bundleSub: "Employee handbook, vendor checklist, and incident log templates.",
+    ventures: [
+      { name: "LeaseLens", path: "/leaselens/index.html", desc: "Lease risk score & red flags" },
+      { name: "TemplateForge", path: "/templateforge/index.html", desc: "Compliance & rental templates" },
+    ],
+    adLanding: "/go/lease.html",
   },
 ];
 
@@ -163,6 +172,61 @@ h1{color:#22d3ee;font-size:clamp(28px,5vw,36px);margin-bottom:8px}
 </body></html>`;
 }
 
+function buildRenterToolkitStackHtml(b, base) {
+  const subLink = getPaymentLink(b.primarySku) ?? "#";
+  const bundleLink = getPaymentLink(b.bundleSku) ?? "#";
+  const ventureCards = b.ventures
+    .map(
+      (v) =>
+        `<a class="tool" href="${base}${v.path}"><strong>${v.name}</strong><span>${v.desc}</span></a>`
+    )
+    .join("");
+
+  return `<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>${b.title} — lease review bundle</title>
+<meta name="description" content="${b.desc} Use code LAUNCH25 at checkout.">
+<style>
+body{font-family:system-ui;max-width:720px;margin:40px auto;padding:20px;line-height:1.5;color:#14532d;background:#f0fdf4}
+h1{color:#15803d;font-size:clamp(28px,5vw,36px);margin-bottom:8px}
+.lead{color:#166534;font-size:18px;margin-bottom:24px}
+.badge{background:#eab308;color:#000;font-size:11px;padding:4px 10px;border-radius:20px;display:inline-block;margin-bottom:12px;font-weight:700}
+.plans{display:grid;gap:16px;margin:24px 0}
+.plan{border:2px solid #bbf7d0;border-radius:12px;padding:20px;background:#fff}
+.plan.featured{border-color:#22c55e;background:#f0fdf4}
+.plan h2{margin:0 0 6px;font-size:20px;color:#14532d}
+.plan p{margin:0 0 14px;color:#166534;font-size:14px}
+.btn{display:block;background:#22c55e;color:#fff;text-align:center;padding:14px;text-decoration:none;border-radius:8px;font-weight:600}
+.btn.secondary{background:#fff;color:#15803d;border:2px solid #22c55e}
+.tools{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px;margin:28px 0}
+.tool{display:block;border:1px solid #bbf7d0;border-radius:8px;padding:14px;text-decoration:none;color:inherit;background:#fff}
+.tool:hover{border-color:#22c55e}
+.tool strong{display:block;color:#15803d;margin-bottom:4px}
+.tool span{font-size:13px;color:#166534}
+.footer{margin-top:32px;font-size:14px;color:#166534}
+.footer a{color:#15803d}
+</style></head><body>
+<span class="badge">LAUNCH25 — 25% off at checkout</span>
+<h1>${b.title}</h1>
+<p class="lead">${b.desc}</p>
+<div class="plans">
+  <div class="plan featured">
+    <h2>${b.primaryLabel}</h2>
+    <p>${b.primarySub}</p>
+    <a class="btn" href="${subLink}" onclick="fetch('/api/funnel/checkout_click',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({sku:'${b.primarySku}',path:'/bundles/landlord-tenant-stack'})})">Get 3 reports →</a>
+  </div>
+  <div class="plan">
+    <h2>${b.bundleLabel}</h2>
+    <p>${b.bundleSub}</p>
+    <a class="btn secondary" href="${bundleLink}" onclick="fetch('/api/funnel/checkout_click',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({sku:'${b.bundleSku}',path:'/bundles/landlord-tenant-stack'})})">Get templates →</a>
+  </div>
+</div>
+<h2>Included tools — try free first</h2>
+<div class="tools">${ventureCards}</div>
+<p class="footer"><a href="${base}${b.adLanding}">Ad landing →</a> · <a href="${base}/go/lease.html">Single report $7</a> · <a href="${base}/">← All products</a></p>
+<p style="font-size:12px;color:#86efac">Not legal advice. Instant delivery after Stripe checkout.</p>
+</body></html>`;
+}
+
 function buildSimpleBundleHtml(b, base) {
   const links = b.skus.map((s) => getPaymentLink(s)).filter(Boolean);
   return `<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
@@ -245,9 +309,11 @@ export function buildBundleLandings() {
         ? buildFreelancerStackHtml(b, base)
         : b.slug === "devwatch"
           ? buildDevWatchStackHtml(b, base)
-          : b.primarySku
-            ? buildRichStackHtml(b, base, `/bundles/${b.slug}.html`)
-            : buildSimpleBundleHtml(b, base);
+          : b.slug === "landlord-tenant-stack"
+            ? buildRenterToolkitStackHtml(b, base)
+            : b.primarySku
+              ? buildRichStackHtml(b, base, `/bundles/${b.slug}.html`)
+              : buildSimpleBundleHtml(b, base);
     writeFileSync(join(dist, `${b.slug}.html`), html);
   }
   return { bundles: BUNDLES.length };

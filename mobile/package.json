@@ -29,6 +29,7 @@
     "sync:templateforge": "node sync-www.mjs templateforge && cd templateforge && npx cap sync",
     "sync:comparestack": "node sync-www.mjs comparestack && cd comparestack && npx cap sync",
     "sync:devwatch": "node sync-www.mjs devwatch && cd devwatch && npx cap sync",
+    "sync:renter-toolkit": "node sync-www.mjs renter-toolkit && cd renter-toolkit && npx cap sync",
     "sync:hookrelay-dlq": "node sync-www.mjs hookrelay-dlq && cd hookrelay-dlq && npx cap sync",
     "android:games": "cd games && npx cap sync android && cd android && ./gradlew assembleDebug",
     "android:tools": "cd tools && npx cap sync android && cd android && ./gradlew assembleDebug",
@@ -77,6 +78,7 @@
     "ios:comparestack": "cd comparestack && npx cap sync ios",
     "ios:freelancer-stack": "cd freelancer-stack && npx cap sync ios",
     "ios:devwatch": "cd devwatch && npx cap sync ios",
+    "ios:renter-toolkit": "cd renter-toolkit && npx cap sync ios",
     "ios:hookrelay-dlq": "cd hookrelay-dlq && npx cap sync ios",
     "open:android:games": "cd games && npx cap open android",
     "open:ios:games": "cd games && npx cap open ios"
