@@ -10,6 +10,7 @@ import { runUptimeChecks } from "../ventures/statusping/checker.mjs";
 import { handleApiRequest } from "../ventures/devtools-api/handlers.mjs";
 import { handleBillSnap } from "../ventures/billsnap/handlers.mjs";
 import { handleLeaseLens } from "../ventures/leaselens/handlers.mjs";
+import { handleHomeStudio } from "../ventures/homestudio/handlers.mjs";
 
 const MIME = {
   ".html": "text/html",
@@ -166,6 +167,13 @@ export function createAppServer() {
 
       if (url.pathname.startsWith("/api/leaselens/")) {
         const result = await handleLeaseLens(url.pathname, req, url);
+        res.writeHead(result.status ?? 200, { "Content-Type": "application/json" });
+        res.end(JSON.stringify(result.body));
+        return;
+      }
+
+      if (url.pathname.startsWith("/api/homestudio/")) {
+        const result = await handleHomeStudio(url.pathname, req, url);
         res.writeHead(result.status ?? 200, { "Content-Type": "application/json" });
         res.end(JSON.stringify(result.body));
         return;

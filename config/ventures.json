@@ -101,6 +101,17 @@
       "deployPath": "dist/hookrelay",
       "channels": ["dev-communities", "seo", "api-directories"],
       "autonomous": ["stripe-billing", "webhook-forward"]
+    },
+    {
+      "id": "homestudio",
+      "name": "HomeStudio",
+      "type": "design-tool",
+      "model": "lead-gen",
+      "prices": { "planner": 0 },
+      "path": "ventures/homestudio",
+      "deployPath": "dist/homestudio",
+      "channels": ["seo", "pinterest", "homeowner-forums"],
+      "autonomous": ["photo-analysis", "blueprint-concepts", "cost-benchmarks"]
     }
   ],
   "stripeProducts": [
