@@ -40,7 +40,7 @@
 | **Freelancer Revenue Stack** | `com.wealthengine.freelancerstack` | **TestFlight prep** | 21 PASS, 0 FAIL | `face453` pushed | **READY** (Mac upload) |
 | **DevWatch** | `com.wealthengine.devwatch` | **TestFlight prep** | 21 PASS, 0 FAIL | `bd278f1` pushed | **READY** (Mac upload) |
 | **HookRelay DLQ Pro** | `com.wealthengine.hookrelaydlqpro` | **TestFlight prep** | 21 PASS, 0 FAIL | `5ddaf84` pushed | **READY** (Mac upload) |
-| **Late Fee Calculator Pro** | `com.wealthengine.latefeecalculatorpro` | **TestFlight prep** | — | — | **READY** (Mac upload) |
+| **Late Fee Calculator Pro** | `com.wealthengine.latefeecalculatorpro` | **TestFlight prep** | 20 PASS, 0 FAIL | `5575eed` pushed | **READY** (Mac upload) |
 
 ## App 1 — Horseshoe Games Hub
 
