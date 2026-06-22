@@ -23,6 +23,7 @@ export const GAME_SLUGS = new Set([
   "net-30-ninja",
   "ssl-shield",
   "nda-speed-sign",
+  "invoice-number-rush",
 ]);
 
 /** Stripe SKU cross-reference for dual monetization (web + App Store). */

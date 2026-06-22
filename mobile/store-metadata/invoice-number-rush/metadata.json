@@ -1,0 +1,35 @@
+{
+  "appName": "Invoice Number Rush",
+  "subtitle": "Match invoice numbers fast",
+  "bundleId": "com.wealthengine.invoicenumberrush",
+  "version": "1.0.0",
+  "privacyPolicyUrl": "https://wealth-engine-0qlj.onrender.com/privacy.html",
+  "supportUrl": "https://wealth-engine-0qlj.onrender.com/",
+  "marketingUrl": "https://wealth-engine-0qlj.onrender.com/games/invoice-number-rush/",
+  "category": {
+    "apple": "Games",
+    "appleSub": "Arcade",
+    "google": "GAME_ARCADE"
+  },
+  "contentRating": {
+    "ageRating": "4+",
+    "googleQuestionnaire": "Everyone — no violence, no user-generated content, optional ads",
+    "adsPresent": true,
+    "inAppPurchases": true,
+    "dataCollected": [
+      "best score stored locally only"
+    ]
+  },
+  "keywords": [
+    "invoice",
+    "number",
+    "rush",
+    "arcade",
+    "casual",
+    "free",
+    "freelancer",
+    "business",
+    "game",
+    "billsnap"
+  ]
+}

@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-06-22T22:16:51.079Z",
+  "generatedAt": "2026-06-22T22:21:55.506Z",
   "revenueCat": {
     "plugin": "@revenuecat/purchases-capacitor",
     "note": "Configure API key in App Store Connect + RevenueCat dashboard after IAP products are live"
@@ -311,6 +311,41 @@
           "price": 4.99,
           "title": "Pro Unlock",
           "description": "Unlock Pro features (matches Stripe tier where applicable)",
+          "stripeSku": null
+        }
+      ]
+    },
+    "invoice-number-rush": {
+      "appName": "Invoice Number Rush",
+      "bundleId": "com.wealthengine.invoicenumberrush",
+      "type": "game",
+      "version": "1.0.0",
+      "products": [
+        {
+          "key": "remove_ads",
+          "storeKitId": "com.wealthengine.invoicenumberrush.remove_ads",
+          "type": "non_consumable",
+          "price": 2.99,
+          "title": "Remove Ads",
+          "description": "Hide AdMob banners permanently",
+          "stripeSku": null
+        },
+        {
+          "key": "premium_unlock",
+          "storeKitId": "com.wealthengine.invoicenumberrush.premium_unlock",
+          "type": "non_consumable",
+          "price": 4.99,
+          "title": "Premium Unlock",
+          "description": "Unlock premium features and badges",
+          "stripeSku": null
+        },
+        {
+          "key": "tip_jar",
+          "storeKitId": "com.wealthengine.invoicenumberrush.tip_jar",
+          "type": "consumable",
+          "price": 0.99,
+          "title": "Tip Jar",
+          "description": "Support the developer",
           "stripeSku": null
         }
       ]

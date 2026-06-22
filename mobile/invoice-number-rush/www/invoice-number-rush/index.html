@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
+<title>Invoice Number Rush — Wealth Engine Games</title>
+<meta name="description" content="Tap the matching invoice number before it vanishes! Fast reflex game for freelancers and bookkeepers.">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#0c1a2e;color:#e2e8f0;font-family:system-ui,sans-serif;min-height:100vh;padding:12px;touch-action:manipulation;user-select:none}
+.offline{display:none;background:#7f1d1d;color:#fecaca;text-align:center;padding:8px 12px;font-size:12px}
+.offline.show{display:block}
+h1{font-size:1.15rem;text-align:center;margin-bottom:4px}
+.sub{font-size:.72rem;color:#94a3b8;text-align:center;margin-bottom:8px}
+#target{background:#1e3a5f;border:2px solid #38bdf8;border-radius:12px;padding:12px 16px;text-align:center;margin:0 auto 12px;max-width:320px}
+#target .label{font-size:.65rem;text-transform:uppercase;letter-spacing:.08em;color:#7dd3fc;margin-bottom:4px}
+#target .num{font-size:1.35rem;font-weight:800;color:#38bdf8;font-variant-numeric:tabular-nums}
+#hud{display:flex;justify-content:center;gap:14px;font-size:.82rem;margin-bottom:10px;flex-wrap:wrap}
+#hud span{color:#fbbf24;font-weight:700}
+#grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;max-width:320px;margin:0 auto}
+.slot{min-height:64px;background:#162032;border:2px solid #334155;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:.78rem;font-weight:700;padding:8px 6px;text-align:center;cursor:pointer;position:relative;overflow:hidden;font-variant-numeric:tabular-nums}
+.slot:active{transform:scale(.97)}
+.slot .chip{transform:translateY(110%);transition:transform .12s;color:#cbd5e1;line-height:1.2}
+.slot.up .chip{transform:translateY(0)}
+.slot.up.match .chip{color:#34d399}
+.slot.up.wrong .chip{color:#f87171}
+#msg{text-align:center;font-size:.82rem;color:#94a3b8;margin:10px 0;min-height:1.2em}
+.btn{background:#2563eb;color:#fff;border:none;padding:10px 20px;border-radius:8px;font-weight:600;cursor:pointer;display:block;margin:8px auto}
+.ad{max-width:320px;margin:8px auto;background:#162032;border:1px dashed #334155;border-radius:6px;padding:8px;text-align:center;font-size:10px;color:#64748b}
+.cta{font-size:11px;color:#94a3b8;text-align:center;margin-top:6px}
+.cta a{color:#38bdf8;text-decoration:none}
+</style>
+<meta name="google-site-verification" content="X8W5bw-fSJ0pTZiA0LesNi2vZ_-bUdLqVokR5uJZlI4" />
+</head>
+<body>
+<div id="offline-banner" class="offline" role="status">You're offline — game works after first load</div>
+<h1>🧾 Invoice Number Rush</h1>
+<p class="sub">Tap the invoice number that matches the target — speed increases!</p>
+<div id="target"><div class="label">Find this invoice</div><div class="num" id="target-num">INV-2024-0001</div></div>
+<div id="hud">Score: <span id="score">0</span> · Best: <span id="best">0</span> · Streak: <span id="streak">0</span> · Time: <span id="time">45</span>s</div>
+<div id="grid"></div>
+<p id="msg">Tap the matching number when it pops up!</p>
+<button class="btn" id="restart" style="display:none">Rush Again</button>
+<div class="ad">AdSense placeholder — 320×50</div>
+<p class="cta">Real invoices? <a href="/go/invoice.html">BillSnap</a> · <a href="/tools/invoice-number-generator.html">Invoice # Generator</a></p>
+<script>
+(function(){
+const SLOTS=6;
+const BEST_KEY='invoice_number_rush_best';
+const PREFIXES=['INV','BILL','NET30','PO','EST','REC'];
+let score=0,best=0,streak=0,timeLeft=45,timer=null,spawnT=null,slots=[],gameOver=false;
+let targetNum='',spawnMs=1100;
+try{best=parseInt(localStorage.getItem(BEST_KEY)||'0',10)||0}catch(e){}
+document.getElementById('best').textContent=best;
+
+function saveBest(){
+  if(score>best){
+    best=score;
+    document.getElementById('best').textContent=best;
+    try{localStorage.setItem(BEST_KEY,String(best))}catch(e){}
+  }
+}
+
+function randNum(){
+  const p=PREFIXES[Math.random()*PREFIXES.length|0];
+  const y=2023+(Math.random()*3|0);
+  const n=String(1+Math.random()*9999|0).padStart(4,'0');
+  return p+'-'+y+'-'+n;
+}
+
+function decoy(base){
+  let d=base;
+  while(d===base)d=randNum();
+  return d;
+}
+
+function setTarget(){
+  targetNum=randNum();
+  document.getElementById('target-num').textContent=targetNum;
+}
+
+function buildGrid(){
+  const g=document.getElementById('grid');g.innerHTML='';
+  for(let i=0;i<SLOTS;i++){
+    const s=document.createElement('div');s.className='slot';s.dataset.i=i;
+    s.innerHTML='<span class="chip"></span>';
+    s.onclick=()=>tap(i,s);
+    g.appendChild(s);
+  }
+  slots=[...g.children];
+}
+
+function pop(){
+  if(gameOver)return;
+  slots.forEach(s=>{s.classList.remove('up','match','wrong');});
+  const i=Math.random()*SLOTS|0;
+  const match=Math.random()<0.55;
+  const num=match?targetNum:decoy(targetNum);
+  const chip=slots[i].querySelector('.chip');
+  chip.textContent=num;
+  slots[i].dataset.match=match?'1':'0';
+  slots[i].dataset.num=num;
+  slots[i].classList.add('up');
+  if(match)slots[i].classList.add('match');
+  const hide=Math.max(500,spawnMs-200);
+  setTimeout(()=>{slots[i].classList.remove('up','match','wrong');},hide);
+}
+
+function tap(i,s){
+  if(gameOver||!s.classList.contains('up'))return;
+  const isMatch=s.dataset.match==='1';
+  s.classList.remove('up');
+  if(isMatch){
+    streak++;
+    const bonus=Math.min(streak,10)*2;
+    const pts=15+bonus;
+    score+=pts;
+    document.getElementById('score').textContent=score;
+    document.getElementById('streak').textContent=streak;
+    document.getElementById('msg').textContent='Matched! +'+pts+(streak>1?' ('+streak+' streak)':'');
+    setTarget();
+    spawnMs=Math.max(550,spawnMs-35);
+    clearInterval(spawnT);
+    spawnT=setInterval(pop,spawnMs);
+  }else{
+    streak=0;
+    score=Math.max(0,score-8);
+    document.getElementById('score').textContent=score;
+    document.getElementById('streak').textContent=0;
+    s.classList.add('wrong');
+    document.getElementById('msg').textContent='Wrong invoice! -8';
+  }
+}
+
+function endGame(){
+  gameOver=true;
+  clearInterval(timer);
+  clearInterval(spawnT);
+  saveBest();
+  const hero=score>=200;
+  document.getElementById('msg').textContent='Time! Final score: '+score+(score>=best&&score>0?' — New best!':'')+(hero?' 🏆 Invoice ace!':'');
+  document.getElementById('restart').style.display='block';
+}
+
+function start(){
+  score=0;streak=0;timeLeft=45;gameOver=false;spawnMs=1100;
+  document.getElementById('score').textContent=0;
+  document.getElementById('streak').textContent=0;
+  document.getElementById('time').textContent=45;
+  document.getElementById('restart').style.display='none';
+  document.getElementById('msg').textContent='Tap the matching number when it pops up!';
+  setTarget();
+  buildGrid();
+  clearInterval(timer);
+  clearInterval(spawnT);
+  timer=setInterval(()=>{timeLeft--;document.getElementById('time').textContent=timeLeft;if(timeLeft<=0)endGame();},1000);
+  spawnT=setInterval(pop,spawnMs);
+  pop();
+}
+
+document.getElementById('restart').onclick=start;
+start();
+var banner=document.getElementById('offline-banner');
+function setOffline(){if(banner)banner.classList.toggle('show',!navigator.onLine)}
+window.addEventListener('online',setOffline);
+window.addEventListener('offline',setOffline);
+setOffline();
+})();
+</script>
+<div class="we-iap-bar" id="we-iap-bar" role="region" aria-label="In-app purchases">
+<style>
+.we-iap-bar{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;align-items:center;margin:8px 0;padding:8px;background:rgba(0,0,0,.15);border-radius:8px;max-width:360px;width:100%}
+.we-iap-bar button{background:#6366f1;color:#fff;border:none;padding:6px 12px;border-radius:6px;font-size:11px;font-weight:600;cursor:pointer}
+.we-iap-bar button:active{transform:scale(.97)}
+#we-iap-premium-badge{display:none;background:#eab308;color:#1c1917;padding:4px 10px;border-radius:999px;font-size:11px;font-weight:700}
+body.we-iap-premium .we-iap-bar{border-color:#eab308}
+body.we-iap-no-ads .ad{display:none!important}
+</style>
+<button type="button" id="we-iap-remove-ads">Remove Ads · $2.99</button>
+<button type="button" id="we-iap-premium">Premium Unlock · $4.99</button>
+<button type="button" id="we-iap-tip">Tip · $0.99</button>
+<button type="button" id="we-iap-restore">Restore</button>
+<span id="we-iap-premium-badge">★ Premium</span>
+</div><script>(function(){
+  var APP="invoice-number-rush";
+  var PRODUCTS=[{"key":"remove_ads","id":"com.wealthengine.invoicenumberrush.remove_ads","price":2.99,"title":"Remove Ads"},{"key":"premium_unlock","id":"com.wealthengine.invoicenumberrush.premium_unlock","price":4.99,"title":"Premium Unlock"},{"key":"tip_jar","id":"com.wealthengine.invoicenumberrush.tip_jar","price":0.99,"title":"Tip Jar"}];
+  var PREFIX='we_iap_'+APP+'_';
+
+  function owned(key){
+    try{return localStorage.getItem(PREFIX+key)==='1'}catch(e){return false}
+  }
+  function setOwned(key){
+    try{localStorage.setItem(PREFIX+key,'1')}catch(e){}
+    refreshUI();
+  }
+
+  function shouldShowAds(){
+    return !owned('remove_ads');
+  }
+
+  function hideAdSlots(){
+    if(shouldShowAds())return;
+    document.querySelectorAll('.ad,[data-ad-slot]').forEach(function(el){
+      el.style.display='none';
+    });
+  }
+
+  function refreshUI(){
+    var badge=document.getElementById('we-iap-premium-badge');
+    var removeBtn=document.getElementById('we-iap-remove-ads');
+    var hasPremium=owned('premium_unlock')||owned('pro_unlock');
+    var noAds=!shouldShowAds();
+    if(badge)badge.style.display=(hasPremium||noAds)?'inline-block':'none';
+    if(removeBtn)removeBtn.style.display=noAds?'none':'inline-block';
+    hideAdSlots();
+    document.body.classList.toggle('we-iap-premium',hasPremium);
+    document.body.classList.toggle('we-iap-no-ads',noAds);
+  }
+
+  function purchase(key){
+    var prod=PRODUCTS.find(function(p){return p.key===key});
+    if(!prod)return Promise.reject(new Error('Unknown product'));
+    if(owned(key))return Promise.resolve({key:key,restored:true});
+
+    /* Native: @revenuecat/purchases-capacitor or StoreKit 2 via Capacitor plugin */
+    if(window.Capacitor&&window.Capacitor.Plugins&&window.Capacitor.Plugins.Purchases){
+      return window.Capacitor.Plugins.Purchases.purchaseProduct({productIdentifier:prod.id})
+        .then(function(){setOwned(key);return{key:key,purchased:true};});
+    }
+
+    /* Sandbox / pre-App-Store-Connect: simulate success (replace after products live) */
+    if(confirm('Purchase '+prod.title+' (
+</html>
++prod.price.toFixed(2)+')?\n\nSandbox mode — receipt verify placeholder until App Store Connect products are live.')){
+      setOwned(key);
+      return Promise.resolve({key:key,purchased:true,sandbox:true});
+    }
+    return Promise.reject(new Error('Cancelled'));
+  }
+
+  function restore(){
+    if(window.Capacitor&&window.Capacitor.Plugins&&window.Capacitor.Plugins.Purchases){
+      return window.Capacitor.Plugins.Purchases.restorePurchases().then(function(res){
+        (res&&res.customerInfo&&res.customerInfo.entitlements&&res.customerInfo.entitlements.active||{}).forEach(function(){});
+        refreshUI();
+        return{restored:true};
+      });
+    }
+    refreshUI();
+    alert('Restore complete — checked local purchases. Connect RevenueCat for cross-device restore.');
+    return Promise.resolve({restored:true,local:true});
+  }
+
+  window.WE_IAP={
+    app:APP,
+    products:PRODUCTS,
+    owns:owned,
+    shouldShowAds:shouldShowAds,
+    purchase:purchase,
+    restore:restore,
+    refresh:refreshUI
+  };
+
+  function wireUI(){
+    var bar=document.getElementById('we-iap-bar');
+    if(!bar)return;
+    var removeBtn=document.getElementById('we-iap-remove-ads');
+    var premiumBtn=document.getElementById('we-iap-premium');
+    var restoreBtn=document.getElementById('we-iap-restore');
+    var tipBtn=document.getElementById('we-iap-tip');
+    if(removeBtn)removeBtn.addEventListener('click',function(){WE_IAP.purchase('remove_ads').catch(function(){})});
+    if(premiumBtn)premiumBtn.addEventListener('click',function(){
+      WE_IAP.purchase('premium_unlock').catch(function(){});
+    });
+    if(restoreBtn)restoreBtn.addEventListener('click',function(){WE_IAP.restore()});
+    if(tipBtn)tipBtn.addEventListener('click',function(){WE_IAP.purchase('tip_jar').catch(function(){})});
+    refreshUI();
+  }
+
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',wireUI);
+  else wireUI();
+})();</script><script>(function(){
+  var WE_ADMOB={appId:'ca-app-pub-3940256099942544~3347511713',banner:'ca-app-pub-3940256099942544/6300978111',rewarded:'ca-app-pub-3940256099942544/5224354917',testMode:true};
+  window.WE_ADMOB=WE_ADMOB;
+  function showBanner(el){
+    if(!el)return;
+    if(window.WE_IAP&&window.WE_IAP.shouldShowAds&&!window.WE_IAP.shouldShowAds()){el.style.display='none';return;}
+    el.setAttribute('data-admob','banner');
+    el.innerHTML='<div style="font-size:10px;color:#666;padding:4px">'+(WE_ADMOB.testMode?'AdMob TEST banner · ':'AdMob banner · ')+WE_ADMOB.banner+'</div>';
+  }
+  function refreshAds(){
+    document.querySelectorAll('.ad,[data-ad-slot]').forEach(showBanner);
+  }
+  window.WE_refreshAds=refreshAds;
+  refreshAds();
+  window.WE_showRewardedAd=function(onReward){
+    if(WE_ADMOB.testMode){
+      var code='LAUNCH25-'+Math.random().toString(36).slice(2,8).toUpperCase();
+      try{localStorage.setItem('we_game_reward',code)}catch(e){}
+      if(onReward)onReward(code);
+      return;
+    }
+    /* Native Capacitor AdMob plugin: @capacitor-community/admob — wire in mobile/ after Play Console setup */
+    if(window.Capacitor&&window.Capacitor.Plugins&&window.Capacitor.Plugins.AdMob){
+      window.Capacitor.Plugins.AdMob.showRewardVideoAd({adId:WE_ADMOB.rewarded}).then(function(){if(onReward)onReward('LAUNCH25')});
+    }else if(onReward){onReward('LAUNCH25');}
+  };
+})();</script><script>(function(){try{var r=localStorage.getItem('we_ref')||new URLSearchParams(location.search).get('ref');fetch('/api/funnel/visit',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({path:"/games/invoice-number-rush/",refCode:r,source:new URLSearchParams(location.search).get('utm_source')||'direct'})}).catch(function(){})}catch(e){}})();</script></body>
+</html>

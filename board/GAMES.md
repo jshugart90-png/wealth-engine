@@ -19,6 +19,7 @@
 | net-30-ninja | Net-30 Ninja | **Shipped** | 5/5 PASS | https://wealth-engine-0qlj.onrender.com/games/net-30-ninja/ | **PROMO_READY** |
 | ssl-shield | SSL Shield | **Shipped** | 5/5 PASS | https://wealth-engine-0qlj.onrender.com/games/ssl-shield/ | **PROMO_READY** |
 | nda-speed-sign | NDA Speed Sign | **Shipped** | 5/5 PASS | https://wealth-engine-0qlj.onrender.com/games/nda-speed-sign/ | **PROMO_READY** |
+| invoice-number-rush | Invoice Number Rush | **Shipped** | — | https://wealth-engine-0qlj.onrender.com/games/invoice-number-rush/ | **PROMO_READY** |
 ## Queue (future ideas)
 
 - Receipt Rush — catch falling receipts (BillSnap)

@@ -1,6 +1,6 @@
 /**
  * Sync dist/ assets into Capacitor www folders.
- * Usage: node sync-www.mjs [games|tools|freelancer-stack|devwatch|hookrelay-dlq|receipt-rush|webhook-whack|invoice-stack|horseshoe-toss|uptime-defender|freelancer-memory|color-switch-snake|word-scramble-biz|net-30-ninja|ssl-shield|nda-speed-sign|billsnap|statusping-lite|leaselens|ndagen|hookrelay|pipekit|meetingcost|templateforge|comparestack|tip-calculator-pro|hourly-rate-calculator-pro|freelancer-tax-estimator|1099-threshold-tracker-pro|quarterly-tax-deadline-pro|profit-margin-calculator-pro|break-even-calculator-pro|late-fee-calculator-pro|all]
+ * Usage: node sync-www.mjs [games|tools|freelancer-stack|devwatch|hookrelay-dlq|receipt-rush|webhook-whack|invoice-stack|horseshoe-toss|uptime-defender|freelancer-memory|color-switch-snake|word-scramble-biz|net-30-ninja|ssl-shield|nda-speed-sign|invoice-number-rush|billsnap|statusping-lite|leaselens|ndagen|hookrelay|pipekit|meetingcost|templateforge|comparestack|tip-calculator-pro|hourly-rate-calculator-pro|freelancer-tax-estimator|1099-threshold-tracker-pro|quarterly-tax-deadline-pro|profit-margin-calculator-pro|break-even-calculator-pro|late-fee-calculator-pro|all]
  */
 import { cpSync, existsSync, mkdirSync, readFileSync, writeFileSync, readdirSync } from "fs";
 import { join, dirname } from "path";
@@ -749,6 +749,20 @@ const MINI_GAME_SHELLS = {
     bestBorder: "#1e293b",
     bestKey: "ssl_shield_best",
   },
+  "invoice-number-rush": {
+    title: "Invoice Number Rush",
+    emoji: "🧾",
+    tagline: "Tap the matching invoice number before it vanishes!",
+    themeColor: "#0c1a2e",
+    bg: "#0c1a2e",
+    text: "#e2e8f0",
+    sub: "#94a3b8",
+    accent: "#38bdf8",
+    btnBg: "#2563eb",
+    btnHover: "#1d4ed8",
+    bestBorder: "#334155",
+    bestKey: "invoice_number_rush_best",
+  },
   "nda-speed-sign": {
     title: "NDA Speed Sign",
     emoji: "📄",
@@ -1383,3 +1397,4 @@ if (target === "word-scramble-biz" || target === "all") syncMiniGame("word-scram
 if (target === "net-30-ninja" || target === "all") syncMiniGame("net-30-ninja");
 if (target === "ssl-shield" || target === "all") syncMiniGame("ssl-shield");
 if (target === "nda-speed-sign" || target === "all") syncMiniGame("nda-speed-sign");
+if (target === "invoice-number-rush" || target === "all") syncMiniGame("invoice-number-rush");

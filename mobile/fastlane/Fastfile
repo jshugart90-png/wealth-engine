@@ -221,6 +221,11 @@ platform :ios do
     mini_app_ios_beta("late-fee-calculator-pro", "Late Fee Calculator Pro")
   end
 
+  desc "TestFlight upload for Invoice Number Rush mini-app"
+  lane :beta_invoice_number_rush do
+    mini_app_ios_beta("invoice-number-rush", "Invoice Number Rush")
+  end
+
   desc "TestFlight upload for Freelancer Revenue Stack hub app"
   lane :beta_freelancer_stack do
     mini_app_ios_beta("freelancer-stack", "Freelancer Revenue Stack")

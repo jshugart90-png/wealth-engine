@@ -41,6 +41,7 @@
 | **DevWatch** | `com.wealthengine.devwatch` | **TestFlight prep** | 21 PASS, 0 FAIL | `bd278f1` pushed | **READY** (Mac upload) |
 | **HookRelay DLQ Pro** | `com.wealthengine.hookrelaydlqpro` | **TestFlight prep** | 21 PASS, 0 FAIL | `5ddaf84` pushed | **READY** (Mac upload) |
 | **Late Fee Calculator Pro** | `com.wealthengine.latefeecalculatorpro` | **TestFlight prep** | 20 PASS, 0 FAIL | `5575eed` pushed | **READY** (Mac upload) |
+| **Invoice Number Rush** | `com.wealthengine.invoicenumberrush` | **TestFlight prep** | — | — | **READY** (Mac upload) |
 
 ## App 1 — Horseshoe Games Hub
 
@@ -869,9 +870,36 @@ npx cap sync ios && npx cap open ios
 # Or: bundle exec fastlane ios beta_late_fee_calculator_pro
 ```
 
+## App 34 — Invoice Number Rush
+
+| Field | Value |
+|-------|-------|
+| Version | 1.0.0 |
+| Type | Mini-game — match invoice numbers before they vanish |
+| Capacitor | `mobile/invoice-number-rush/` → loads `/games/invoice-number-rush/` from prod |
+| Store metadata | `mobile/store-metadata/invoice-number-rush/` |
+| Preflight | `npm run mobile:preflight:invoice-number-rush` |
+
+### Features (shipped this session)
+
+1. **Target matching** — tap the invoice number that matches the target
+2. **Streak multipliers** — bonus points for consecutive correct picks
+3. **45-second rounds** — speed increases as you score
+4. **Best score** — localStorage `invoice_number_rush_best` with launcher display
+5. **IAP wired** — remove_ads, premium_unlock, tip_jar via build-all.mjs injection
+
+### TestFlight upload (user Mac)
+
+```bash
+npm run build && cd mobile && node sync-www.mjs invoice-number-rush
+cd invoice-number-rush && npm install && npx cap add ios  # if missing
+npx cap sync ios && npx cap open ios
+# Or: bundle exec fastlane ios beta_invoice_number_rush
+```
+
 ## Master checklist
 
-See `mobile/TESTFLIGHT_ALL_APPS.md` for all 33 apps — bundle IDs, Fastlane lanes, versions.
+See `mobile/TESTFLIGHT_ALL_APPS.md` for all 34 apps — bundle IDs, Fastlane lanes, versions.
 
 ## GitHub policy
 
