@@ -49,3 +49,11 @@ Run on a physical device (Android debug APK or iOS TestFlight) after `npm run mo
 - [ ] Hub lists BillSnap + top calculators
 - [ ] BillSnap PDF flow works on device
 - [ ] Privacy link works
+
+## Freelancer Revenue Stack (`com.wealthengine.freelancerstack`)
+
+- [ ] Launcher shows BillSnap, TemplateForge, NDAGen cards
+- [ ] LAUNCH25 promo banner opens `/go/freelancer.html`
+- [ ] Bundle card opens local `/bundles/freelancer-stack.html`
+- [ ] Recently used updates after opening a tool
+- [ ] Offline banner after airplane mode (post first load)
