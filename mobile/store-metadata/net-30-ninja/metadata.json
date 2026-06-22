@@ -1,0 +1,22 @@
+{
+  "appName": "Net-30 Ninja",
+  "subtitle": "Jump over late invoices",
+  "bundleId": "com.wealthengine.net30ninja",
+  "version": "1.0.0",
+  "privacyPolicyUrl": "https://wealth-engine-0qlj.onrender.com/privacy.html",
+  "supportUrl": "https://wealth-engine-0qlj.onrender.com/",
+  "marketingUrl": "https://wealth-engine-0qlj.onrender.com/games/net-30-ninja/",
+  "category": {
+    "apple": "Games",
+    "appleSub": "Arcade",
+    "google": "GAME_ARCADE"
+  },
+  "contentRating": {
+    "ageRating": "4+",
+    "googleQuestionnaire": "Everyone — no violence, no user-generated content, optional ads",
+    "adsPresent": true,
+    "inAppPurchases": false,
+    "dataCollected": ["best score stored locally only"]
+  },
+  "keywords": ["ninja", "runner", "jump", "arcade", "invoice", "freelancer", "net30", "casual", "free", "game"]
+}
