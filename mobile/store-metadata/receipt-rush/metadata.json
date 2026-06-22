@@ -1,0 +1,22 @@
+{
+  "appName": "Receipt Rush",
+  "subtitle": "Catch receipts arcade game",
+  "bundleId": "com.wealthengine.receiptrush",
+  "version": "1.0.0",
+  "privacyPolicyUrl": "https://wealth-engine-0qlj.onrender.com/privacy.html",
+  "supportUrl": "https://wealth-engine-0qlj.onrender.com/",
+  "marketingUrl": "https://wealth-engine-0qlj.onrender.com/games/receipt-rush/",
+  "category": {
+    "apple": "Games",
+    "appleSub": "Arcade",
+    "google": "GAME_ARCADE"
+  },
+  "contentRating": {
+    "ageRating": "4+",
+    "googleQuestionnaire": "Everyone — no violence, no user-generated content, optional ads",
+    "adsPresent": true,
+    "inAppPurchases": false,
+    "dataCollected": ["best score stored locally only"]
+  },
+  "keywords": ["receipt", "arcade", "catch", "casual", "free", "family", "bill", "game"]
+}

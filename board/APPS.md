@@ -21,6 +21,7 @@
 | **Games Hub PWA** | — (web) | PWA shortcut | **LIVE verified** | https://wealth-engine-0qlj.onrender.com/games/ · prod **200** (2026-06-21) | None |
 | **Horseshoe Games Hub** | `com.wealthengine.gameshub` | Capacitor → Play/App | **TestFlight READY** v1.0.1 | `mobile/games/` · 9 games · CI AAB artifact | **iOS:** Mac + Fastlane upload · **Play:** $25 |
 | **Freelancer Tools** | `com.wealthengine.freelancertools` | Capacitor → Play/App | **TestFlight READY** v1.0.0 | `mobile/tools/` | **iOS:** Mac upload · **Play:** $25 |
+| **Receipt Rush** | `com.wealthengine.receiptrush` | Capacitor → Play/App | **TestFlight READY** v1.0.0 | `mobile/receipt-rush/` · single-game mini-app | **iOS:** Mac upload · **Play:** $25 |
 | **itch.io packs** | — | HTML zip | **PACKAGED** | `D:\wealth-engine-data\mobile\itch\*.zip` | Manual upload (free) |
 
 ## Shipped games (9) — in all channels

@@ -1,6 +1,6 @@
 /**
  * Sync dist/ assets into Capacitor www folders.
- * Usage: node sync-www.mjs [games|tools|all]
+ * Usage: node sync-www.mjs [games|tools|receipt-rush|all]
  */
 import { cpSync, existsSync, mkdirSync, readFileSync, writeFileSync, readdirSync } from "fs";
 import { join, dirname } from "path";
@@ -147,6 +147,21 @@ p{margin:0 0 10px;color:#888;font-size:14px}
   console.log("Synced tools → mobile/tools/www");
 }
 
+function syncReceiptRush() {
+  const www = join(mobileRoot, "receipt-rush", "www");
+  const gameSrc = join(dist, "games", "receipt-rush");
+  if (!existsSync(join(gameSrc, "index.html"))) {
+    console.error("Missing dist/games/receipt-rush — run npm run build first");
+    process.exit(1);
+  }
+  mkdirSync(www, { recursive: true });
+  cpSync(join(gameSrc, "index.html"), join(www, "index.html"));
+  if (existsSync(join(dist, "privacy.html"))) cpSync(join(dist, "privacy.html"), join(www, "privacy.html"));
+  if (existsSync(join(dist, "assets"))) cpSync(join(dist, "assets"), join(www, "assets"), { recursive: true });
+  console.log("Synced receipt-rush → mobile/receipt-rush/www");
+}
+
 ensureBuild();
 if (target === "games" || target === "all") syncGames();
 if (target === "tools" || target === "all") syncTools();
+if (target === "receipt-rush" || target === "all") syncReceiptRush();

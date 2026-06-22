@@ -28,6 +28,8 @@
     "mobile:ios": "npm run mobile:sync && cd mobile && npm run ios:games",
     "mobile:preflight": "node scripts/app-store-preflight.mjs --app games",
     "mobile:preflight:tools": "node scripts/app-store-preflight.mjs --app tools",
+    "mobile:preflight:receipt-rush": "node scripts/app-store-preflight.mjs --app receipt-rush",
+    "mobile:sync:receipt-rush": "npm run build && cd mobile && node sync-www.mjs receipt-rush",
     "mobile:itch": "npm run build && node scripts/package-games-itch.mjs",
     "summary:overnight": "node scripts/write-overnight-summary.mjs",
     "summary:status": "node scripts/write-wealth-status.mjs",

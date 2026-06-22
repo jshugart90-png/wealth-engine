@@ -10,7 +10,8 @@
 |-----|-----------|-------|-------|--------|------------|
 | **Horseshoe Games Hub** | `com.wealthengine.gameshub` | **TestFlight prep** | 15 PASS, 0 FAIL, 1 WARN | `99180a7` pushed | **READY** (Mac upload) |
 | **Freelancer Tools** | `com.wealthengine.freelancertools` | **TestFlight prep** | 15 PASS, 0 FAIL | `c9a03f6` pushed | **READY** (Mac upload) |
-| App 3+ | TBD | Queued | — | — | — |
+| **Receipt Rush** | `com.wealthengine.receiptrush` | **TestFlight prep** | 16 PASS, 0 FAIL, 1 WARN | pending push | **READY** (Mac upload) |
+| App 4+ | TBD | Queued | — | — | — |
 
 ## App 1 — Horseshoe Games Hub
 
@@ -75,7 +76,31 @@ npx cap sync ios && npx cap open ios
 # Or extend Fastlane — see mobile/APP_STORE_MANUAL_STEPS.md
 ```
 
-## App 3+ queue
+## App 3 — Receipt Rush (mini-app)
+
+| Field | Value |
+|-------|-------|
+| Version | 1.0.0 |
+| Game | Receipt Rush (single-game Capacitor shell) |
+| Capacitor | `mobile/receipt-rush/` → loads `/games/receipt-rush/` from prod |
+| Store metadata | `mobile/store-metadata/receipt-rush/` |
+| Preflight | `npm run mobile:preflight:receipt-rush` |
+
+### Features (shipped this session)
+
+1. **Best score** — localStorage persistence with HUD display
+2. **Offline banner** — same pattern as Games Hub / Freelancer Tools
+
+### TestFlight upload (user Mac)
+
+```bash
+npm run build && cd mobile && node sync-www.mjs receipt-rush
+cd receipt-rush && npm install && npx cap add ios  # if missing
+npx cap sync ios && npx cap open ios
+# Or extend Fastlane with com.wealthengine.receiptrush — see mobile/APP_STORE_MANUAL_STEPS.md
+```
+
+## App 4+ queue
 
 From `board/GAMES.md` or new simple utilities (calculators, timers) as standalone Capacitor shells.
 
