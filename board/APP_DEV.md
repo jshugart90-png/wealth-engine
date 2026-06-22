@@ -31,6 +31,7 @@
 | **TemplateForge** | `com.wealthengine.templateforge` | **TestFlight prep** | 17 PASS, 0 FAIL | `0dc927a` pushed | **READY** (Mac upload) |
 | **CompareStack** | `com.wealthengine.comparestack` | **TestFlight prep** | 17 PASS, 0 FAIL | `0dc927a` pushed | **READY** (Mac upload) |
 | **Tip Calculator Pro** | `com.wealthengine.tipcalculatorpro` | **TestFlight prep** | 17 PASS, 0 FAIL | `5cc90ea` pushed | **READY** (Mac upload) |
+| **Hourly Rate Calculator Pro** | `com.wealthengine.hourlyratepro` | **TestFlight prep** | 17 PASS, 0 FAIL | pending | **READY** (Mac upload) |
 
 ## App 1 — Horseshoe Games Hub
 
@@ -604,9 +605,34 @@ npx cap sync ios && npx cap open ios
 # Or: bundle exec fastlane ios beta_tip_calculator_pro
 ```
 
+## App 24 — Hourly Rate Calculator Pro (utility)
+
+| Field | Value |
+|-------|-------|
+| Version | 1.0.0 |
+| Tool | Hourly Rate Calculator Pro — freelance pricing from income goals, overhead, SE tax (standalone Capacitor shell) |
+| Capacitor | `mobile/hourly-rate-calculator-pro/` → loads `/hourly-rate-calculator-pro/` from prod |
+| Store metadata | `mobile/store-metadata/hourly-rate-calculator-pro/` |
+| Preflight | `npm run mobile:preflight:hourly-rate-calculator-pro` |
+
+### Features (shipped this session)
+
+1. **Last rate** — localStorage `hourlyratepro_last` with launcher + calc save
+2. **Dual modes** — Income → Rate and Rate → Income with billable hours, vacation, overhead
+3. **Offline banner** — native launcher with feature highlights and offline message
+
+### TestFlight upload (user Mac)
+
+```bash
+npm run build && cd mobile && node sync-www.mjs hourly-rate-calculator-pro
+cd hourly-rate-calculator-pro && npm install && npx cap add ios  # if missing
+npx cap sync ios && npx cap open ios
+# Or: bundle exec fastlane ios beta_hourly_rate_calculator_pro
+```
+
 ## Master checklist
 
-See `mobile/TESTFLIGHT_ALL_APPS.md` for all 23 apps — bundle IDs, Fastlane lanes, versions.
+See `mobile/TESTFLIGHT_ALL_APPS.md` for all 24 apps — bundle IDs, Fastlane lanes, versions.
 
 ## GitHub policy
 

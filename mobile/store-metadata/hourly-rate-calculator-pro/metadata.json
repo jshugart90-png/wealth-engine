@@ -1,0 +1,22 @@
+{
+  "appName": "Hourly Rate Calculator Pro",
+  "subtitle": "Freelancer hourly rate pricing",
+  "bundleId": "com.wealthengine.hourlyratecalculatorpro",
+  "version": "1.0.0",
+  "privacyPolicyUrl": "https://wealth-engine-0qlj.onrender.com/privacy.html",
+  "supportUrl": "https://wealth-engine-0qlj.onrender.com/",
+  "marketingUrl": "https://wealth-engine-0qlj.onrender.com/hourly-rate-calculator-pro/",
+  "category": {
+    "apple": "Finance",
+    "appleSub": "Utilities",
+    "google": "FINANCE"
+  },
+  "contentRating": {
+    "ageRating": "4+",
+    "googleQuestionnaire": "Everyone — freelance rate calculator utility, no network required for core features",
+    "adsPresent": false,
+    "inAppPurchases": false,
+    "dataCollected": ["last calculation summary stored locally only"]
+  },
+  "keywords": ["hourly", "rate", "calculator", "freelance", "freelancer", "pricing", "consultant", "contractor", "income", "tax", "billable", "hourlyratecalculatorpro"]
+}

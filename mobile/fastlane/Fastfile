@@ -186,6 +186,11 @@ platform :ios do
     mini_app_ios_beta("tip-calculator-pro", "Tip Calculator Pro")
   end
 
+  desc "TestFlight upload for Hourly Rate Calculator Pro utility app"
+  lane :beta_hourly_rate_calculator_pro do
+    mini_app_ios_beta("hourly-rate-calculator-pro", "Hourly Rate Calculator Pro")
+  end
+
   desc "TestFlight upload + App Store metadata (does not auto-submit for review)"
   lane :release do
     beta

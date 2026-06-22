@@ -1,4 +1,4 @@
-# TestFlight Master Checklist — All 23 Apps
+# TestFlight Master Checklist — All 24 Apps
 
 **Updated:** 2026-06-22  
 **Repo:** github.com/jshugart90-png/wealth-engine  
@@ -32,6 +32,7 @@
 | 21 | TemplateForge | `com.wealthengine.templateforge` | 1.0.0 | `beta_templateforge` | `mobile:preflight:templateforge` | READY |
 | 22 | CompareStack | `com.wealthengine.comparestack` | 1.0.0 | `beta_comparestack` | `mobile:preflight:comparestack` | READY |
 | 23 | Tip Calculator Pro | `com.wealthengine.tipcalculatorpro` | 1.0.0 | `beta_tip_calculator_pro` | `mobile:preflight:tip-calculator-pro` | READY |
+| 24 | Hourly Rate Calculator Pro | `com.wealthengine.hourlyratepro` | 1.0.0 | `beta_hourly_rate_calculator_pro` | `mobile:preflight:hourly-rate-calculator-pro` | READY |
 
 ## Per-app upload commands (Mac)
 
@@ -77,6 +78,7 @@ cd .. && bundle exec fastlane ios beta_<lane>
 | templateforge | `mobile/templateforge/` | `/templateforge/` |
 | comparestack | `mobile/comparestack/` | `/comparestack/` |
 | tip-calculator-pro | `mobile/tip-calculator-pro/` | `/tip-calculator-pro/` |
+| hourly-rate-calculator-pro | `mobile/hourly-rate-calculator-pro/` | `/hourly-rate-calculator-pro/` |
 
 ## Global blockers
 
@@ -91,6 +93,7 @@ cd .. && bundle exec fastlane ios beta_<lane>
 npm run mobile:preflight:templateforge   # expect 17 PASS, 0 FAIL
 npm run mobile:preflight:comparestack    # expect 17 PASS, 0 FAIL
 npm run mobile:preflight:tip-calculator-pro  # expect 17 PASS, 0 FAIL
+npm run mobile:preflight:hourly-rate-calculator-pro  # expect 17 PASS, 0 FAIL
 ```
 
 See `board/APP_DEV.md` for per-app features and device checklist (`mobile/DEVICE_TEST_CHECKLIST.md`).

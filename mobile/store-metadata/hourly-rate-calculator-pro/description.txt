@@ -1,0 +1,17 @@
+Hourly Rate Calculator Pro helps freelancers and consultants set the right billing rate — factor in target income, billable hours, taxes, and business expenses in seconds.
+
+Built for independent contractors, consultants, and side-hustlers who need a clear, honest hourly rate without ads or signup walls.
+
+Features:
+• Target take-home income with one-tap presets ($60k, $80k, $120k)
+• Billable hours per week and weeks worked per year
+• Estimated tax rate and business expense percentage
+• Required hourly rate with gross annual and monthly breakdown
+• Tax and expense estimates at a glance
+• Share your rate via system share sheet
+• Dark native-style UI optimized for one-handed use
+• Works offline after first load
+
+Free forever — no in-app purchases, no ads.
+
+Privacy: All calculations stay on your device. Last result saved locally only. Not tax advice — consult a CPA for your situation.

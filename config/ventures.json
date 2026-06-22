@@ -111,6 +111,16 @@
       "deployPath": "dist/tip-calculator-pro",
       "channels": ["seo", "app-store", "restaurant-travel"],
       "autonomous": ["shareable-summaries", "local-history"]
+    },
+    {
+      "id": "hourly-rate-calculator-pro",
+      "name": "Hourly Rate Calculator Pro",
+      "type": "utility",
+      "model": "free",
+      "path": "ventures/hourly-rate-calculator-pro",
+      "deployPath": "dist/hourly-rate-calculator-pro",
+      "channels": ["seo", "app-store", "freelancer-forums"],
+      "autonomous": ["shareable-summaries", "local-history"]
     }
   ],
   "stripeProducts": [

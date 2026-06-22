@@ -1,6 +1,6 @@
 /**
  * Sync dist/ assets into Capacitor www folders.
- * Usage: node sync-www.mjs [games|tools|receipt-rush|webhook-whack|invoice-stack|horseshoe-toss|uptime-defender|freelancer-memory|color-switch-snake|word-scramble-biz|net-30-ninja|ssl-shield|nda-speed-sign|billsnap|statusping-lite|leaselens|ndagen|hookrelay|pipekit|meetingcost|templateforge|comparestack|tip-calculator-pro|all]
+ * Usage: node sync-www.mjs [games|tools|receipt-rush|webhook-whack|invoice-stack|horseshoe-toss|uptime-defender|freelancer-memory|color-switch-snake|word-scramble-biz|net-30-ninja|ssl-shield|nda-speed-sign|billsnap|statusping-lite|leaselens|ndagen|hookrelay|pipekit|meetingcost|templateforge|comparestack|tip-calculator-pro|hourly-rate-calculator-pro|all]
  */
 import { cpSync, existsSync, mkdirSync, readFileSync, writeFileSync, readdirSync } from "fs";
 import { join, dirname } from "path";
@@ -566,6 +566,32 @@ const UTILITY_SHELLS = {
       "Round up and copy summary to share",
     ],
   },
+  "hourly-rate-calculator-pro": {
+    title: "Hourly Rate Calculator Pro",
+    emoji: "💰",
+    tagline: "Freelancer pricing from income goals & overhead",
+    themeColor: "#1c1917",
+    bg: "#1c1917",
+    text: "#fafaf9",
+    sub: "#a8a29e",
+    accent: "#fbbf24",
+    btnBg: "#d97706",
+    btnHover: "#b45309",
+    statBg: "#292524",
+    statBorder: "#44403c",
+    statKey: "hourlyratepro_last",
+    statLabel: "Last rate",
+    statEmpty: "—",
+    cta: "Calculate Rate",
+    moreLink: "https://wealth-engine-0qlj.onrender.com/go/invoice.html",
+    moreLabel: "Invoice PDF $3",
+    offlineMsg: "You're offline — open Hourly Rate Calculator Pro if you've used it before",
+    features: [
+      "Income → Rate and Rate → Income modes",
+      "Billable hours, vacation weeks, overhead %",
+      "Self-employment tax estimate toggle",
+    ],
+  },
 };
 
 function syncUtility(slug) {
@@ -721,6 +747,8 @@ if (target === "meetingcost" || target === "all") syncUtility("meetingcost");
 if (target === "templateforge" || target === "all") syncUtility("templateforge");
 if (target === "comparestack" || target === "all") syncUtility("comparestack");
 if (target === "tip-calculator-pro" || target === "all") syncUtility("tip-calculator-pro");
+if (target === "hourly-rate-calculator-pro" || target === "all") syncUtility("hourly-rate-calculator-pro");
+if (target === "hourly-rate-calculator-pro" || target === "all") syncUtility("hourly-rate-calculator-pro");
 if (target === "receipt-rush" || target === "all") syncMiniGame("receipt-rush");
 if (target === "webhook-whack" || target === "all") syncMiniGame("webhook-whack");
 if (target === "invoice-stack" || target === "all") syncMiniGame("invoice-stack");

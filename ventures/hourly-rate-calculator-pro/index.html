@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Hourly Rate Calculator Pro — Freelancer pricing</title>
+  <meta name="description" content="Calculate your freelance hourly rate from target income, billable hours, taxes, and expenses. Free — no ads.">
+  <meta name="theme-color" content="#1e1b4b">
+  <style>
+    :root {
+      --bg: #1e1b4b;
+      --card: #312e81;
+      --border: #4338ca;
+      --text: #f1f5f9;
+      --muted: #a5b4fc;
+      --accent: #fbbf24;
+      --accent-dim: #f59e0b;
+      --success: #34d399;
+      --danger: #f87171;
+    }
+    * { box-sizing: border-box; }
+    body {
+      font-family: system-ui, -apple-system, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      margin: 0;
+      min-height: 100vh;
+      padding: max(16px, env(safe-area-inset-top)) 16px max(32px, env(safe-area-inset-bottom));
+    }
+    .wrap { max-width: 420px; margin: 0 auto; }
+    h1 { font-size: 1.5rem; margin: 8px 0 4px; font-weight: 700; }
+    .tagline { color: var(--muted); font-size: 0.9rem; margin-bottom: 20px; }
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 20px;
+      margin-bottom: 16px;
+    }
+    label {
+      display: block;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--muted);
+      margin-bottom: 6px;
+    }
+    input[type="number"] {
+      width: 100%;
+      font-size: 1.5rem;
+      font-weight: 600;
+      padding: 12px 14px;
+      border: 2px solid var(--border);
+      border-radius: 12px;
+      background: var(--bg);
+      color: var(--text);
+      -webkit-appearance: none;
+      appearance: none;
+    }
+    input[type="number"]:focus {
+      outline: none;
+      border-color: var(--accent);
+    }
+    .field { margin-bottom: 16px; }
+    .field:last-child { margin-bottom: 0; }
+    .preset-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+      margin: 12px 0 4px;
+    }
+    .preset-btn {
+      padding: 10px 6px;
+      border: 2px solid var(--border);
+      border-radius: 10px;
+      background: var(--bg);
+      color: var(--text);
+      font-size: 0.85rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: 0.15s;
+    }
+    .preset-btn.active {
+      border-color: var(--accent);
+      background: rgba(251, 191, 36, 0.15);
+      color: var(--accent);
+    }
+    .hint { font-size: 0.75rem; color: var(--muted); margin-top: 4px; }
+    .result-card { text-align: center; padding: 24px 16px; }
+    .result-main {
+      font-size: 2.5rem;
+      font-weight: 800;
+      color: var(--accent);
+      line-height: 1.1;
+      margin-bottom: 8px;
+    }
+    .result-sub { color: var(--muted); font-size: 1rem; line-height: 1.5; }
+    .result-sub strong { color: var(--text); }
+    .breakdown {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-top: 16px;
+    }
+    .breakdown-item {
+      background: var(--bg);
+      border-radius: 10px;
+      padding: 12px;
+      text-align: center;
+    }
+    .breakdown-item .val { font-size: 1.15rem; font-weight: 700; color: var(--success); }
+    .breakdown-item .lbl { font-size: 0.7rem; color: var(--muted); text-transform: uppercase; margin-top: 4px; }
+    .actions {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-top: 16px;
+    }
+    .btn {
+      padding: 14px;
+      border: none;
+      border-radius: 12px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      cursor: pointer;
+    }
+    .btn-primary { background: var(--accent-dim); color: #1e1b4b; }
+    .btn-secondary { background: var(--card); color: var(--text); border: 2px solid var(--border); }
+    .btn:active { opacity: 0.85; }
+    .toast {
+      position: fixed;
+      bottom: 24px;
+      left: 50%;
+      transform: translateX(-50%) translateY(80px);
+      background: var(--success);
+      color: #064e3b;
+      padding: 12px 20px;
+      border-radius: 10px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      transition: transform 0.25s;
+      z-index: 100;
+    }
+    .toast.show { transform: translateX(-50%) translateY(0); }
+    .disclaimer {
+      font-size: 0.7rem;
+      color: var(--muted);
+      text-align: center;
+      margin-top: 12px;
+      line-height: 1.4;
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <h1>Hourly Rate Calculator Pro</h1>
+    <p class="tagline">Price your freelance work from income goals, taxes &amp; expenses</p>
+
+    <div class="card">
+      <div class="field">
+        <label for="income">Target take-home (annual)</label>
+        <input type="number" id="income" value="80000" step="1000" min="0" inputmode="decimal">
+        <div class="preset-row" id="income-presets">
+          <button type="button" class="preset-btn" data-val="60000">$60k</button>
+          <button type="button" class="preset-btn active" data-val="80000">$80k</button>
+          <button type="button" class="preset-btn" data-val="120000">$120k</button>
+        </div>
+      </div>
+
+      <div class="field">
+        <label for="hours">Billable hours / week</label>
+        <input type="number" id="hours" value="30" step="1" min="1" max="80" inputmode="numeric">
+        <p class="hint">Non-billable time (admin, sales) is excluded</p>
+      </div>
+
+      <div class="field">
+        <label for="weeks">Weeks worked / year</label>
+        <input type="number" id="weeks" value="48" step="1" min="1" max="52" inputmode="numeric">
+        <p class="hint">Subtract vacation, holidays, sick days</p>
+      </div>
+
+      <div class="field">
+        <label for="tax">Estimated tax rate (%)</label>
+        <input type="number" id="tax" value="30" step="0.5" min="0" max="60" inputmode="decimal">
+      </div>
+
+      <div class="field">
+        <label for="expense">Business expenses (% of gross)</label>
+        <input type="number" id="expense" value="15" step="0.5" min="0" max="50" inputmode="decimal">
+        <p class="hint">Software, insurance, equipment, home office</p>
+      </div>
+    </div>
+
+    <div class="card result-card">
+      <div class="result-main" id="hourly-rate">$77.42</div>
+      <div class="result-sub" id="summary"><strong>$80,000</strong> take-home · <strong>1,440</strong> billable hrs/yr</div>
+      <div class="breakdown">
+        <div class="breakdown-item">
+          <div class="val" id="gross-annual">$133,333</div>
+          <div class="lbl">Gross needed</div>
+        </div>
+        <div class="breakdown-item">
+          <div class="val" id="monthly">$6,667</div>
+          <div class="lbl">Gross / month</div>
+        </div>
+        <div class="breakdown-item">
+          <div class="val" id="tax-amt">$40,000</div>
+          <div class="lbl">Est. taxes</div>
+        </div>
+        <div class="breakdown-item">
+          <div class="val" id="expense-amt">$20,000</div>
+          <div class="lbl">Est. expenses</div>
+        </div>
+      </div>
+      <div class="actions">
+        <button type="button" class="btn btn-secondary" id="reset">Reset</button>
+        <button type="button" class="btn btn-primary" id="share">Share rate</button>
+      </div>
+      <p class="disclaimer">Estimates only — not tax advice. Consult a CPA for your situation.</p>
+    </div>
+  </div>
+
+  <div class="toast" id="toast" role="status"></div>
+
+  <script>
+    (function () {
+      var incomeEl = document.getElementById("income");
+      var hoursEl = document.getElementById("hours");
+      var weeksEl = document.getElementById("weeks");
+      var taxEl = document.getElementById("tax");
+      var expenseEl = document.getElementById("expense");
+      var hourlyEl = document.getElementById("hourly-rate");
+      var summaryEl = document.getElementById("summary");
+      var grossEl = document.getElementById("gross-annual");
+      var monthlyEl = document.getElementById("monthly");
+      var taxAmtEl = document.getElementById("tax-amt");
+      var expenseAmtEl = document.getElementById("expense-amt");
+      var toastEl = document.getElementById("toast");
+      var STORAGE_KEY = "hourlyratepro_last";
+
+      function fmt(n) {
+        return "$" + Math.round(n).toLocaleString("en-US");
+      }
+
+      function fmtDec(n) {
+        return "$" + n.toFixed(2);
+      }
+
+      function showToast(msg) {
+        toastEl.textContent = msg;
+        toastEl.classList.add("show");
+        setTimeout(function () { toastEl.classList.remove("show"); }, 2000);
+      }
+
+      function setActivePreset(val) {
+        document.querySelectorAll("#income-presets .preset-btn").forEach(function (btn) {
+          btn.classList.toggle("active", +btn.dataset.val === val);
+        });
+      }
+
+      function calc() {
+        var takeHome = Math.max(0, +incomeEl.value || 0);
+        var hoursWeek = Math.max(1, Math.min(80, +hoursEl.value || 1));
+        var weeks = Math.max(1, Math.min(52, Math.round(+weeksEl.value || 1)));
+        var taxPct = Math.max(0, Math.min(60, +taxEl.value || 0));
+        var expensePct = Math.max(0, Math.min(50, +expenseEl.value || 0));
+        weeksEl.value = weeks;
+
+        var billableHours = hoursWeek * weeks;
+        var taxRate = taxPct / 100;
+        var expenseRate = expensePct / 100;
+        var netRate = 1 - taxRate - expenseRate;
+
+        var grossNeeded = netRate > 0 ? takeHome / netRate : 0;
+        var hourly = billableHours > 0 ? grossNeeded / billableHours : 0;
+        var taxAmt = grossNeeded * taxRate;
+        var expenseAmt = grossNeeded * expenseRate;
+        var monthly = grossNeeded / 12;
+
+        hourlyEl.textContent = fmtDec(hourly);
+        summaryEl.innerHTML = "<strong>" + fmt(takeHome) + "</strong> take-home · <strong>" + billableHours.toLocaleString() + "</strong> billable hrs/yr";
+        grossEl.textContent = fmt(grossNeeded);
+        monthlyEl.textContent = fmt(monthly);
+        taxAmtEl.textContent = fmt(taxAmt);
+        expenseAmtEl.textContent = fmt(expenseAmt);
+
+        var summary = fmtDec(hourly) + "/hr for " + fmt(takeHome) + " take-home";
+        try { localStorage.setItem(STORAGE_KEY, summary); } catch (e) {}
+      }
+
+      document.querySelectorAll("#income-presets .preset-btn").forEach(function (btn) {
+        btn.addEventListener("click", function () {
+          incomeEl.value = btn.dataset.val;
+          setActivePreset(+btn.dataset.val);
+          calc();
+        });
+      });
+
+      [incomeEl, hoursEl, weeksEl, taxEl, expenseEl].forEach(function (el) {
+        el.addEventListener("input", function () {
+          setActivePreset(+incomeEl.value);
+          calc();
+        });
+      });
+
+      document.getElementById("reset").addEventListener("click", function () {
+        incomeEl.value = "80000";
+        hoursEl.value = "30";
+        weeksEl.value = "48";
+        taxEl.value = "30";
+        expenseEl.value = "15";
+        setActivePreset(80000);
+        calc();
+      });
+
+      document.getElementById("share").addEventListener("click", function () {
+        var text = "Freelance rate: " + hourlyEl.textContent + "/hr to earn " + fmt(+incomeEl.value || 0) + " take-home (" + (+taxEl.value || 0) + "% tax, " + (+expenseEl.value || 0) + "% expenses)";
+        if (navigator.share) {
+          navigator.share({ title: "Hourly Rate Calculator Pro", text: text }).catch(function () {});
+        } else if (navigator.clipboard) {
+          navigator.clipboard.writeText(text).then(function () { showToast("Copied to clipboard"); });
+        } else {
+          showToast(text);
+        }
+      });
+
+      var params = new URLSearchParams(location.search);
+      if (params.has("i")) incomeEl.value = params.get("i");
+      if (params.has("h")) hoursEl.value = params.get("h");
+      if (params.has("w")) weeksEl.value = params.get("w");
+      if (params.has("t")) taxEl.value = params.get("t");
+      if (params.has("e")) expenseEl.value = params.get("e");
+
+      setActivePreset(+incomeEl.value);
+      calc();
+    })();
+  </script>
+</body>
+</html>
