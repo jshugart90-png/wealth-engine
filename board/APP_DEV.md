@@ -34,7 +34,7 @@
 | **Hourly Rate Calculator Pro** | `com.wealthengine.hourlyratecalculatorpro` | **TestFlight prep** | 17 PASS, 0 FAIL | `3c9b224` pushed | **READY** (Mac upload) |
 | **Freelancer Tax Estimator Pro** | `com.wealthengine.freelancertaxestimatorpro` | **TestFlight prep** | 17 PASS, 0 FAIL | `ff2a04c` pushed | **READY** (Mac upload) |
 | **1099 Threshold Tracker Pro** | `com.wealthengine.thresholdtrackerpro` | **TestFlight prep** | 17 PASS, 0 FAIL | `882fecb` pushed | **READY** (Mac upload) |
-| **Quarterly Tax Deadline Pro** | `com.wealthengine.quarterlytaxdeadlinepro` | **TestFlight prep** | — | — | **BUILDING** |
+| **Quarterly Tax Deadline Pro** | `com.wealthengine.quarterlytaxdeadlinepro` | **TestFlight prep** | 17 PASS, 0 FAIL | `3b0414c` pushed | **READY** (Mac upload) |
 
 ## App 1 — Horseshoe Games Hub
 
