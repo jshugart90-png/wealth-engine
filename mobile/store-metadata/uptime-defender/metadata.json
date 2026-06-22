@@ -1,0 +1,22 @@
+{
+  "appName": "Uptime Defender",
+  "subtitle": "Tower defense for uptime nerds",
+  "bundleId": "com.wealthengine.uptimedefender",
+  "version": "1.0.0",
+  "privacyPolicyUrl": "https://wealth-engine-0qlj.onrender.com/privacy.html",
+  "supportUrl": "https://wealth-engine-0qlj.onrender.com/",
+  "marketingUrl": "https://wealth-engine-0qlj.onrender.com/games/uptime-defender/",
+  "category": {
+    "apple": "Games",
+    "appleSub": "Strategy",
+    "google": "GAME_STRATEGY"
+  },
+  "contentRating": {
+    "ageRating": "4+",
+    "googleQuestionnaire": "Everyone — no violence, no user-generated content, optional ads",
+    "adsPresent": true,
+    "inAppPurchases": false,
+    "dataCollected": ["best wave stored locally only"]
+  },
+  "keywords": ["uptime", "tower", "defense", "server", "monitoring", "devops", "arcade", "casual", "free", "game"]
+}

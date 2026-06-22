@@ -91,6 +91,11 @@ platform :ios do
     mini_app_ios_beta("invoice-stack", "Invoice Stack")
   end
 
+  desc "TestFlight upload for Uptime Defender mini-app"
+  lane :beta_uptime_defender do
+    mini_app_ios_beta("uptime-defender", "Uptime Defender")
+  end
+
   desc "TestFlight upload for Horseshoe Toss mini-app"
   lane :beta_horseshoe_toss do
     mini_app_ios_beta("horseshoe-toss", "Horseshoe Toss")

@@ -14,7 +14,8 @@
 | **Webhook Whack** | `com.wealthengine.webhookwhack` | **TestFlight prep** | 16 PASS, 0 FAIL, 1 WARN | `9098f67` pushed | **READY** (Mac upload) |
 | **Invoice Stack** | `com.wealthengine.invoicestack` | **TestFlight prep** | 16 PASS, 0 FAIL, 1 WARN | `0ff62cd` pushed | **READY** (Mac upload) |
 | **Horseshoe Toss** | `com.wealthengine.horseshoetoss` | **TestFlight prep** | 16 PASS, 0 FAIL, 1 WARN | `82fe87d` pushed | **READY** (Mac upload) |
-| App 7+ | TBD | Queued | — | — | — |
+| **Uptime Defender** | `com.wealthengine.uptimedefender` | **TestFlight prep** | 16 PASS, 0 FAIL, 1 WARN | `2853c0b` pushed | **READY** (Mac upload) |
+| App 8+ | TBD | Queued | — | — | — |
 
 ## App 1 — Horseshoe Games Hub
 
@@ -176,7 +177,31 @@ npx cap sync ios && npx cap open ios
 # Or: bundle exec fastlane ios beta_horseshoe_toss
 ```
 
-## App 7+ queue
+## App 7 — Uptime Defender (mini-app)
+
+| Field | Value |
+|-------|-------|
+| Version | 1.0.0 |
+| Game | Uptime Defender (single-game Capacitor shell) |
+| Capacitor | `mobile/uptime-defender/` → loads `/games/uptime-defender/` from prod |
+| Store metadata | `mobile/store-metadata/uptime-defender/` |
+| Preflight | `npm run mobile:preflight:uptime-defender` |
+
+### Features (shipped this session)
+
+1. **Best wave** — localStorage `uptime_defender_best` with launcher + in-game HUD
+2. **Offline banner** — same pattern as Games Hub / Receipt Rush
+
+### TestFlight upload (user Mac)
+
+```bash
+npm run build && cd mobile && node sync-www.mjs uptime-defender
+cd uptime-defender && npm install && npx cap add ios  # if missing
+npx cap sync ios && npx cap open ios
+# Or: bundle exec fastlane ios beta_uptime_defender
+```
+
+## App 8+ queue
 
 From `board/GAMES.md` or new simple utilities (calculators, timers) as standalone Capacitor shells.
 

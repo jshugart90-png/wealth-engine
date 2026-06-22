@@ -1,0 +1,15 @@
+Uptime Defender is a fast tower-defense game for developers, SREs, and anyone who hates downtime!
+
+Deploy ping monitors in lanes to stop bugs before they reach your server. Manage credits, survive wave after wave, and chase your best wave record — all with simple tap controls.
+
+Features:
+• Tap lanes to place monitors ($25 each)
+• Best wave saved on your device
+• Works offline after first load
+• Family-friendly, all ages
+• No account or signup required
+• Link to StatusPing real uptime monitoring
+
+Perfect for quick breaks between deploys. Part of the Horseshoe Games collection by Wealth Engine.
+
+Privacy: Scores stay on your device. See our privacy policy for details.

@@ -1,6 +1,6 @@
 /**
  * Sync dist/ assets into Capacitor www folders.
- * Usage: node sync-www.mjs [games|tools|receipt-rush|webhook-whack|invoice-stack|horseshoe-toss|all]
+ * Usage: node sync-www.mjs [games|tools|receipt-rush|webhook-whack|invoice-stack|horseshoe-toss|uptime-defender|all]
  */
 import { cpSync, existsSync, mkdirSync, readFileSync, writeFileSync, readdirSync } from "fs";
 import { join, dirname } from "path";
@@ -204,6 +204,20 @@ const MINI_GAME_SHELLS = {
     bestBorder: "#3a5a3a",
     bestKey: "hsBest",
   },
+  "uptime-defender": {
+    title: "Uptime Defender",
+    emoji: "🛡️",
+    tagline: "Deploy ping monitors — stop downtime bugs!",
+    themeColor: "#0a0a12",
+    bg: "#0a0a12",
+    text: "#e0e0ff",
+    sub: "#8888bb",
+    accent: "#6ee7b7",
+    btnBg: "#6366f1",
+    btnHover: "#4f46e5",
+    bestBorder: "#1e1e30",
+    bestKey: "uptime_defender_best",
+  },
 };
 
 function syncMiniGame(slug) {
@@ -275,4 +289,5 @@ if (target === "tools" || target === "all") syncTools();
 if (target === "receipt-rush" || target === "all") syncMiniGame("receipt-rush");
 if (target === "webhook-whack" || target === "all") syncMiniGame("webhook-whack");
 if (target === "invoice-stack" || target === "all") syncMiniGame("invoice-stack");
+if (target === "uptime-defender" || target === "all") syncMiniGame("uptime-defender");
 if (target === "horseshoe-toss" || target === "all") syncMiniGame("horseshoe-toss");
