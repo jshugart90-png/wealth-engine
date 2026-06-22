@@ -211,6 +211,11 @@ platform :ios do
     mini_app_ios_beta("profit-margin-calculator-pro", "Profit Margin Calculator Pro")
   end
 
+  desc "TestFlight upload for Break-Even Calculator Pro utility app"
+  lane :beta_break_even_calculator_pro do
+    mini_app_ios_beta("break-even-calculator-pro", "Break-Even Calculator Pro")
+  end
+
   desc "TestFlight upload + App Store metadata (does not auto-submit for review)"
   lane :release do
     beta

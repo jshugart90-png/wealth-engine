@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Break-Even Calculator Pro — Units &amp; revenue targets</title>
+  <meta name="description" content="Calculate break-even units, contribution margin, and revenue needed to cover fixed costs. Free for freelancers and small business — no ads.">
+  <meta name="theme-color" content="#1e3a8a">
+  <style>
+    :root {
+      --bg: #1e3a8a;
+      --card: #1d4ed8;
+      --border: #2563eb;
+      --text: #eff6ff;
+      --muted: #93c5fd;
+      --accent: #38bdf8;
+      --accent-dim: #0ea5e9;
+      --success: #34d399;
+      --danger: #f87171;
+      --warn: #fb923c;
+    }
+    * { box-sizing: border-box; }
+    body {
+      font-family: system-ui, -apple-system, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      margin: 0;
+      min-height: 100vh;
+      padding: max(16px, env(safe-area-inset-top)) 16px max(32px, env(safe-area-inset-bottom));
+    }
+    .wrap { max-width: 420px; margin: 0 auto; }
+    h1 { font-size: 1.5rem; margin: 8px 0 4px; font-weight: 700; }
+    .tagline { color: var(--muted); font-size: 0.9rem; margin-bottom: 20px; }
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 20px;
+      margin-bottom: 16px;
+    }
+    label {
+      display: block;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--muted);
+      margin-bottom: 6px;
+    }
+    input[type="number"] {
+      width: 100%;
+      font-size: 1.5rem;
+      font-weight: 600;
+      padding: 12px 14px;
+      border: 2px solid var(--border);
+      border-radius: 12px;
+      background: var(--bg);
+      color: var(--text);
+      -webkit-appearance: none;
+      appearance: none;
+    }
+    input[type="number"]:focus {
+      outline: none;
+      border-color: var(--accent);
+    }
+    .field { margin-bottom: 16px; }
+    .field:last-child { margin-bottom: 0; }
+    .preset-row {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 8px;
+      margin: 12px 0 4px;
+    }
+    .preset-btn {
+      padding: 10px 4px;
+      border: 2px solid var(--border);
+      border-radius: 10px;
+      background: var(--bg);
+      color: var(--text);
+      font-size: 0.8rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: 0.15s;
+    }
+    .preset-btn.active {
+      border-color: var(--accent);
+      background: rgba(56, 189, 248, 0.15);
+      color: var(--accent);
+    }
+    .hint { font-size: 0.75rem; color: var(--muted); margin-top: 4px; }
+    .result-card { text-align: center; padding: 24px 16px; }
+    .result-main {
+      font-size: 2.5rem;
+      font-weight: 800;
+      color: var(--accent);
+      line-height: 1.1;
+      margin-bottom: 4px;
+    }
+    .result-sub {
+      font-size: 1.1rem;
+      color: var(--muted);
+      margin-bottom: 16px;
+    }
+    .result-sub strong { color: var(--text); }
+    .health {
+      display: inline-block;
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      padding: 6px 12px;
+      border-radius: 8px;
+      margin-bottom: 16px;
+    }
+    .health.strong { background: rgba(52, 211, 153, 0.15); color: var(--success); }
+    .health.ok { background: rgba(56, 189, 248, 0.15); color: var(--accent); }
+    .health.low { background: rgba(251, 146, 60, 0.15); color: var(--warn); }
+    .health.negative { background: rgba(248, 113, 113, 0.15); color: var(--danger); }
+    .breakdown {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-top: 8px;
+    }
+    .breakdown-item {
+      background: var(--bg);
+      border-radius: 10px;
+      padding: 12px;
+      text-align: center;
+    }
+    .breakdown-item .val { font-size: 1.15rem; font-weight: 700; color: var(--success); }
+    .breakdown-item .val.negative { color: var(--danger); }
+    .breakdown-item .lbl { font-size: 0.7rem; color: var(--muted); text-transform: uppercase; margin-top: 4px; }
+    .margin-bars { margin-top: 16px; text-align: left; }
+    .bar-row { margin-bottom: 12px; }
+    .bar-row:last-child { margin-bottom: 0; }
+    .bar-label {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.8rem;
+      color: var(--muted);
+      margin-bottom: 4px;
+    }
+    .bar-label strong { color: var(--text); }
+    .bar-track {
+      height: 8px;
+      background: var(--bg);
+      border-radius: 4px;
+      overflow: hidden;
+    }
+    .bar-fill {
+      height: 100%;
+      border-radius: 4px;
+      transition: width 0.2s;
+    }
+    .bar-fill.contrib { background: var(--success); }
+    .bar-fill.fixed { background: var(--accent); }
+    .actions {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-top: 16px;
+    }
+    .btn {
+      padding: 14px;
+      border: none;
+      border-radius: 12px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      cursor: pointer;
+    }
+    .btn-primary { background: var(--accent-dim); color: #0c4a6e; }
+    .btn-secondary { background: var(--card); color: var(--text); border: 2px solid var(--border); }
+    .btn:active { opacity: 0.85; }
+    .toast {
+      position: fixed;
+      bottom: 24px;
+      left: 50%;
+      transform: translateX(-50%) translateY(80px);
+      background: var(--success);
+      color: #064e3b;
+      padding: 12px 20px;
+      border-radius: 10px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      transition: transform 0.25s;
+      z-index: 100;
+    }
+    .toast.show { transform: translateX(-50%) translateY(0); }
+    .disclaimer {
+      font-size: 0.7rem;
+      color: var(--muted);
+      text-align: center;
+      margin-top: 12px;
+      line-height: 1.4;
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <h1>Break-Even Calculator Pro</h1>
+    <p class="tagline">Units and revenue needed to cover fixed costs</p>
+
+    <div class="card">
+      <div class="field">
+        <label for="fixed">Fixed costs ($/month)</label>
+        <input type="number" id="fixed" value="2000" step="100" min="0" inputmode="decimal">
+        <div class="preset-row" id="fixed-presets">
+          <button type="button" class="preset-btn" data-val="500">$500</button>
+          <button type="button" class="preset-btn active" data-val="2000">$2k</button>
+          <button type="button" class="preset-btn" data-val="5000">$5k</button>
+          <button type="button" class="preset-btn" data-val="10000">$10k</button>
+        </div>
+        <p class="hint">Rent, salaries, software, insurance — costs that don't change per unit</p>
+      </div>
+
+      <div class="field">
+        <label for="price">Price per unit ($)</label>
+        <input type="number" id="price" value="25" step="0.01" min="0" inputmode="decimal">
+      </div>
+
+      <div class="field">
+        <label for="variable">Variable cost per unit ($)</label>
+        <input type="number" id="variable" value="8" step="0.01" min="0" inputmode="decimal">
+        <p class="hint">Materials, shipping, payment fees, contractor per-unit costs</p>
+      </div>
+    </div>
+
+    <div class="card result-card">
+      <div class="result-main" id="be-units">118 units</div>
+      <div class="result-sub" id="summary">Break even at <strong>118 units</strong> · <strong>$2,950</strong> revenue</div>
+      <div class="health ok" id="health">Healthy contribution margin</div>
+
+      <div class="breakdown">
+        <div class="breakdown-item">
+          <div class="val" id="contrib-unit">$17.00</div>
+          <div class="lbl">Contribution / unit</div>
+        </div>
+        <div class="breakdown-item">
+          <div class="val" id="contrib-pct">68.0%</div>
+          <div class="lbl">Contribution margin</div>
+        </div>
+        <div class="breakdown-item">
+          <div class="val" id="be-revenue">$2,950</div>
+          <div class="lbl">Break-even revenue</div>
+        </div>
+        <div class="breakdown-item">
+          <div class="val" id="units-10pct">130 units</div>
+          <div class="lbl">+10% profit buffer</div>
+        </div>
+      </div>
+
+      <div class="margin-bars">
+        <div class="bar-row">
+          <div class="bar-label"><span>Contribution margin</span><strong id="bar-contrib-label">68.0%</strong></div>
+          <div class="bar-track"><div class="bar-fill contrib" id="bar-contrib" style="width:68%"></div></div>
+        </div>
+        <div class="bar-row">
+          <div class="bar-label"><span>Fixed cost coverage at 150 units</span><strong id="bar-coverage-label">85%</strong></div>
+          <div class="bar-track"><div class="bar-fill fixed" id="bar-coverage" style="width:85%"></div></div>
+        </div>
+      </div>
+
+      <div class="actions">
+        <button type="button" class="btn btn-secondary" id="reset">Reset</button>
+        <button type="button" class="btn btn-primary" id="share">Share result</button>
+      </div>
+      <p class="disclaimer">Estimates only — confirm pricing and costs with your bookkeeper or CPA.</p>
+    </div>
+  </div>
+
+  <div class="toast" id="toast" role="status"></div>
+
+  <script>
+    (function () {
+      var fixedEl = document.getElementById("fixed");
+      var priceEl = document.getElementById("price");
+      var variableEl = document.getElementById("variable");
+      var beUnitsEl = document.getElementById("be-units");
+      var summaryEl = document.getElementById("summary");
+      var healthEl = document.getElementById("health");
+      var contribUnitEl = document.getElementById("contrib-unit");
+      var contribPctEl = document.getElementById("contrib-pct");
+      var beRevenueEl = document.getElementById("be-revenue");
+      var units10El = document.getElementById("units-10pct");
+      var barContribEl = document.getElementById("bar-contrib");
+      var barCoverageEl = document.getElementById("bar-coverage");
+      var barContribLabel = document.getElementById("bar-contrib-label");
+      var barCoverageLabel = document.getElementById("bar-coverage-label");
+      var toastEl = document.getElementById("toast");
+      var STORAGE_KEY = "breakevenpro_last";
+
+      function fmt(n) {
+        return "$" + Math.round(n).toLocaleString("en-US");
+      }
+
+      function fmtDec(n) {
+        return "$" + n.toFixed(2);
+      }
+
+      function pct(n) {
+        return n.toFixed(1) + "%";
+      }
+
+      function showToast(msg) {
+        toastEl.textContent = msg;
+        toastEl.classList.add("show");
+        setTimeout(function () { toastEl.classList.remove("show"); }, 2000);
+      }
+
+      function setActivePreset(val) {
+        document.querySelectorAll("#fixed-presets .preset-btn").forEach(function (btn) {
+          btn.classList.toggle("active", +btn.dataset.val === val);
+        });
+      }
+
+      function healthClass(contribPct, margin) {
+        if (margin <= 0) return { cls: "negative", label: "Price must exceed variable cost" };
+        if (contribPct < 20) return { cls: "low", label: "Thin margin — raise price or cut costs" };
+        if (contribPct < 40) return { cls: "ok", label: "Moderate contribution margin" };
+        if (contribPct < 60) return { cls: "ok", label: "Healthy contribution margin" };
+        return { cls: "strong", label: "Strong contribution margin" };
+      }
+
+      function calc() {
+        var fixed = Math.max(0, +fixedEl.value || 0);
+        var price = Math.max(0, +priceEl.value || 0);
+        var variable = Math.max(0, +variableEl.value || 0);
+        var margin = price - variable;
+        var contribPct = price > 0 ? (margin / price) * 100 : 0;
+        var beUnits = margin > 0 ? Math.ceil(fixed / margin) : 0;
+        var beRevenue = beUnits * price;
+        var bufferUnits = margin > 0 ? Math.ceil((fixed * 1.1) / margin) : 0;
+        var sampleUnits = 150;
+        var coveragePct = beUnits > 0 ? Math.min(100, (sampleUnits * margin / fixed) * 100) : 0;
+
+        if (margin <= 0) {
+          beUnitsEl.textContent = "—";
+          beUnitsEl.style.color = "var(--danger)";
+          summaryEl.innerHTML = "Set <strong>price &gt; variable cost</strong> to calculate break-even";
+        } else {
+          beUnitsEl.textContent = beUnits.toLocaleString("en-US") + " units";
+          beUnitsEl.style.color = "var(--accent)";
+          summaryEl.innerHTML = "Break even at <strong>" + beUnits.toLocaleString("en-US") + " units</strong> · <strong>" + fmt(beRevenue) + "</strong> revenue";
+        }
+
+        var health = healthClass(contribPct, margin);
+        healthEl.className = "health " + health.cls;
+        healthEl.textContent = health.label;
+
+        contribUnitEl.textContent = fmtDec(margin);
+        contribUnitEl.className = "val" + (margin <= 0 ? " negative" : "");
+        contribPctEl.textContent = pct(contribPct);
+        beRevenueEl.textContent = margin > 0 ? fmt(beRevenue) : "—";
+        units10El.textContent = margin > 0 ? bufferUnits.toLocaleString("en-US") + " units" : "—";
+
+        var contribBar = Math.max(0, Math.min(100, contribPct));
+        barContribEl.style.width = contribBar + "%";
+        barContribLabel.textContent = pct(contribPct);
+        barCoverageEl.style.width = coveragePct + "%";
+        barCoverageLabel.textContent = pct(coveragePct);
+
+        var summary = margin > 0
+          ? beUnits.toLocaleString("en-US") + " units to break even on " + fmt(fixed) + " fixed costs"
+          : "Need price > variable cost";
+        try { localStorage.setItem(STORAGE_KEY, summary); } catch (e) {}
+      }
+
+      document.querySelectorAll("#fixed-presets .preset-btn").forEach(function (btn) {
+        btn.addEventListener("click", function () {
+          fixedEl.value = btn.dataset.val;
+          setActivePreset(+btn.dataset.val);
+          calc();
+        });
+      });
+
+      [fixedEl, priceEl, variableEl].forEach(function (el) {
+        el.addEventListener("input", calc);
+      });
+
+      document.getElementById("reset").addEventListener("click", function () {
+        fixedEl.value = "2000";
+        priceEl.value = "25";
+        variableEl.value = "8";
+        setActivePreset(2000);
+        calc();
+        showToast("Reset to defaults");
+      });
+
+      document.getElementById("share").addEventListener("click", function () {
+        var fixed = Math.max(0, +fixedEl.value || 0);
+        var price = Math.max(0, +priceEl.value || 0);
+        var variable = Math.max(0, +variableEl.value || 0);
+        var margin = price - variable;
+        var beUnits = margin > 0 ? Math.ceil(fixed / margin) : 0;
+        var text = margin <= 0
+          ? "Break-even: need price > variable cost — Break-Even Calculator Pro"
+          : "Break-even: " + beUnits.toLocaleString("en-US") + " units (" + fmt(beUnits * price) + " revenue) on " + fmt(fixed) + " fixed costs — Break-Even Calculator Pro";
+        if (navigator.share) {
+          navigator.share({ title: "Break-Even Calculator Pro", text: text }).catch(function () {});
+        } else if (navigator.clipboard) {
+          navigator.clipboard.writeText(text).then(function () { showToast("Copied to clipboard"); });
+        } else {
+          showToast(text);
+        }
+      });
+
+      calc();
+    })();
+  </script>
+</body>
+</html>

@@ -161,6 +161,16 @@
       "deployPath": "dist/profit-margin-calculator-pro",
       "channels": ["seo", "app-store", "freelancer-forums"],
       "autonomous": ["shareable-summaries", "local-history"]
+    },
+    {
+      "id": "break-even-calculator-pro",
+      "name": "Break-Even Calculator Pro",
+      "type": "utility",
+      "model": "free",
+      "path": "ventures/break-even-calculator-pro",
+      "deployPath": "dist/break-even-calculator-pro",
+      "channels": ["seo", "app-store", "freelancer-forums"],
+      "autonomous": ["shareable-summaries", "local-history"]
     }
   ],
   "stripeProducts": [

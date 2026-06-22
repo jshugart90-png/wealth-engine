@@ -1,6 +1,6 @@
 /**
  * Sync dist/ assets into Capacitor www folders.
- * Usage: node sync-www.mjs [games|tools|receipt-rush|webhook-whack|invoice-stack|horseshoe-toss|uptime-defender|freelancer-memory|color-switch-snake|word-scramble-biz|net-30-ninja|ssl-shield|nda-speed-sign|billsnap|statusping-lite|leaselens|ndagen|hookrelay|pipekit|meetingcost|templateforge|comparestack|tip-calculator-pro|hourly-rate-calculator-pro|freelancer-tax-estimator|1099-threshold-tracker-pro|quarterly-tax-deadline-pro|profit-margin-calculator-pro|all]
+ * Usage: node sync-www.mjs [games|tools|receipt-rush|webhook-whack|invoice-stack|horseshoe-toss|uptime-defender|freelancer-memory|color-switch-snake|word-scramble-biz|net-30-ninja|ssl-shield|nda-speed-sign|billsnap|statusping-lite|leaselens|ndagen|hookrelay|pipekit|meetingcost|templateforge|comparestack|tip-calculator-pro|hourly-rate-calculator-pro|freelancer-tax-estimator|1099-threshold-tracker-pro|quarterly-tax-deadline-pro|profit-margin-calculator-pro|break-even-calculator-pro|all]
  */
 import { cpSync, existsSync, mkdirSync, readFileSync, writeFileSync, readdirSync } from "fs";
 import { join, dirname } from "path";
@@ -696,6 +696,32 @@ const UTILITY_SHELLS = {
       "Break-even units with fixed costs",
     ],
   },
+  "break-even-calculator-pro": {
+    title: "Break-Even Calculator Pro",
+    emoji: "⚖️",
+    tagline: "Units and revenue needed to cover fixed costs",
+    themeColor: "#0c4a6e",
+    bg: "#0c4a6e",
+    text: "#f0f9ff",
+    sub: "#7dd3fc",
+    accent: "#fbbf24",
+    btnBg: "#0284c7",
+    btnHover: "#0369a1",
+    statBg: "#075985",
+    statBorder: "#0284c7",
+    statKey: "breakevenpro_last",
+    statLabel: "Last calculation",
+    statEmpty: "—",
+    cta: "Calculate Break-Even",
+    moreLink: "https://wealth-engine-0qlj.onrender.com/go/freelancer-stack.html",
+    moreLabel: "Freelancer Stack $49",
+    offlineMsg: "You're offline — open Break-Even Calculator Pro if you've used it before",
+    features: [
+      "Break-even units and revenue target",
+      "Contribution margin per unit",
+      "Profit scenarios at 150, 200, 250 units",
+    ],
+  },
 };
 
 function syncUtility(slug) {
@@ -856,6 +882,7 @@ if (target === "freelancer-tax-estimator" || target === "all") syncUtility("free
 if (target === "1099-threshold-tracker-pro" || target === "all") syncUtility("1099-threshold-tracker-pro");
 if (target === "quarterly-tax-deadline-pro" || target === "all") syncUtility("quarterly-tax-deadline-pro");
 if (target === "profit-margin-calculator-pro" || target === "all") syncUtility("profit-margin-calculator-pro");
+if (target === "break-even-calculator-pro" || target === "all") syncUtility("break-even-calculator-pro");
 if (target === "receipt-rush" || target === "all") syncMiniGame("receipt-rush");
 if (target === "webhook-whack" || target === "all") syncMiniGame("webhook-whack");
 if (target === "invoice-stack" || target === "all") syncMiniGame("invoice-stack");

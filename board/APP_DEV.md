@@ -36,6 +36,7 @@
 | **1099 Threshold Tracker Pro** | `com.wealthengine.thresholdtrackerpro` | **TestFlight prep** | 17 PASS, 0 FAIL | `882fecb` pushed | **READY** (Mac upload) |
 | **Quarterly Tax Deadline Pro** | `com.wealthengine.quarterlytaxdeadlinepro` | **TestFlight prep** | 17 PASS, 0 FAIL | `3b0414c` pushed | **READY** (Mac upload) |
 | **Profit Margin Calculator Pro** | `com.wealthengine.profitmargincalculatorpro` | **TestFlight prep** | 17 PASS, 0 FAIL | `fd65368` pushed | **READY** (Mac upload) |
+| **Break-Even Calculator Pro** | `com.wealthengine.breakevencalculatorpro` | **TestFlight prep** | 17 PASS, 0 FAIL | TBD pushed | **READY** (Mac upload) |
 
 ## App 1 — Horseshoe Games Hub
 
@@ -734,9 +735,34 @@ npx cap sync ios && npx cap open ios
 # Or: bundle exec fastlane ios beta_profit_margin_calculator_pro
 ```
 
+## App 29 — Break-Even Calculator Pro (utility)
+
+| Field | Value |
+|-------|-------|
+| Version | 1.0.0 |
+| Tool | Break-Even Calculator Pro — units and revenue to cover fixed costs (standalone Capacitor shell) |
+| Capacitor | `mobile/break-even-calculator-pro/` → loads `/break-even-calculator-pro/` from prod |
+| Store metadata | `mobile/store-metadata/break-even-calculator-pro/` |
+| Preflight | `npm run mobile:preflight:break-even-calculator-pro` |
+
+### Features (shipped this session)
+
+1. **Last calculation** — localStorage `breakevenpro_last` with launcher display
+2. **Native UI** — fixed cost presets, contribution margin, profit scenarios at 150/200/250 units
+3. **Offline banner** — native launcher with feature highlights and offline message
+
+### TestFlight upload (user Mac)
+
+```bash
+npm run build && cd mobile && node sync-www.mjs break-even-calculator-pro
+cd break-even-calculator-pro && npm install && npx cap add ios  # if missing
+npx cap sync ios && npx cap open ios
+# Or: bundle exec fastlane ios beta_break_even_calculator_pro
+```
+
 ## Master checklist
 
-See `mobile/TESTFLIGHT_ALL_APPS.md` for all 28 apps — bundle IDs, Fastlane lanes, versions.
+See `mobile/TESTFLIGHT_ALL_APPS.md` for all 29 apps — bundle IDs, Fastlane lanes, versions.
 
 ## GitHub policy
 

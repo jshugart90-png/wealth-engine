@@ -1,0 +1,14 @@
+Break-Even Calculator Pro helps freelancers and small business owners find exactly how many sales or units they need to cover fixed costs — with contribution margin, break-even revenue, and profit buffer built in.
+
+Enter fixed costs, price per unit, and variable cost per unit to instantly see your break-even point. Visual bars and health indicators show whether your pricing leaves enough room to cover overhead.
+
+Features:
+• Break-even units and revenue at a glance
+• Contribution margin per unit and percentage
+• +10% profit buffer unit target
+• Fixed cost presets for quick what-if scenarios
+• Margin health indicator (strong, healthy, thin, invalid)
+• Last calculation saved locally on your device
+• Works offline — no account required
+
+Perfect for product sellers, service providers, Etsy shops, and anyone launching a side business without spreadsheet headaches.

@@ -1,0 +1,22 @@
+{
+  "appName": "Break-Even Calculator Pro",
+  "subtitle": "Units & revenue to break even",
+  "bundleId": "com.wealthengine.breakevencalculatorpro",
+  "version": "1.0.0",
+  "privacyPolicyUrl": "https://wealth-engine-0qlj.onrender.com/privacy.html",
+  "supportUrl": "https://wealth-engine-0qlj.onrender.com/",
+  "marketingUrl": "https://wealth-engine-0qlj.onrender.com/break-even-calculator-pro/",
+  "category": {
+    "apple": "Finance",
+    "appleSub": "Utilities",
+    "google": "FINANCE"
+  },
+  "contentRating": {
+    "ageRating": "4+",
+    "googleQuestionnaire": "Everyone — break-even calculator, no network required for core features",
+    "adsPresent": false,
+    "inAppPurchases": false,
+    "dataCollected": ["calculation history stored locally only"]
+  },
+  "keywords": ["break", "even", "calculator", "units", "revenue", "fixed", "costs", "contribution", "margin", "business", "freelance", "breakevencalculatorpro"]
+}
