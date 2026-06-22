@@ -16,6 +16,7 @@
     "sync:horseshoe-toss": "node sync-www.mjs horseshoe-toss && cd horseshoe-toss && npx cap sync",
     "sync:net-30-ninja": "node sync-www.mjs net-30-ninja && cd net-30-ninja && npx cap sync",
     "sync:ssl-shield": "node sync-www.mjs ssl-shield && cd ssl-shield && npx cap sync",
+    "sync:nda-speed-sign": "node sync-www.mjs nda-speed-sign && cd nda-speed-sign && npx cap sync",
     "android:games": "cd games && npx cap sync android && cd android && ./gradlew assembleDebug",
     "android:tools": "cd tools && npx cap sync android && cd android && ./gradlew assembleDebug",
     "android:receipt-rush": "cd receipt-rush && npx cap sync android && cd android && ./gradlew assembleDebug",
@@ -27,6 +28,7 @@
     "android:horseshoe-toss": "cd horseshoe-toss && npx cap sync android && cd android && ./gradlew assembleDebug",
     "android:net-30-ninja": "cd net-30-ninja && npx cap sync android && cd android && ./gradlew assembleDebug",
     "android:ssl-shield": "cd ssl-shield && npx cap sync android && cd android && ./gradlew assembleDebug",
+    "android:nda-speed-sign": "cd nda-speed-sign && npx cap sync android && cd android && ./gradlew assembleDebug",
     "ios:games": "cd games && npx cap sync ios",
     "ios:tools": "cd tools && npx cap sync ios",
     "ios:receipt-rush": "cd receipt-rush && npx cap sync ios",
@@ -38,6 +40,7 @@
     "ios:horseshoe-toss": "cd horseshoe-toss && npx cap sync ios",
     "ios:net-30-ninja": "cd net-30-ninja && npx cap sync ios",
     "ios:ssl-shield": "cd ssl-shield && npx cap sync ios",
+    "ios:nda-speed-sign": "cd nda-speed-sign && npx cap sync ios",
     "open:android:games": "cd games && npx cap open android",
     "open:ios:games": "cd games && npx cap open ios"
   },

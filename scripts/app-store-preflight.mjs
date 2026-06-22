@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 /**
  * App Store preflight QC — 15-item checklist before mobile submission.
- * Run: node scripts/app-store-preflight.mjs [--app games|tools|receipt-rush|webhook-whack|invoice-stack|horseshoe-toss|uptime-defender|freelancer-memory|color-switch-snake|word-scramble-biz|net-30-ninja|ssl-shield]
+ * Run: node scripts/app-store-preflight.mjs [--app games|tools|receipt-rush|webhook-whack|invoice-stack|horseshoe-toss|uptime-defender|freelancer-memory|color-switch-snake|word-scramble-biz|net-30-ninja|ssl-shield|nda-speed-sign]
  */
 import { readFileSync, existsSync, readdirSync } from "fs";
 import { join } from "path";
@@ -11,7 +11,7 @@ const root = getRoot();
 const app = process.argv.includes("--app")
   ? process.argv[process.argv.indexOf("--app") + 1]
   : "games";
-const MINI_GAMES = ["receipt-rush", "webhook-whack", "invoice-stack", "horseshoe-toss", "uptime-defender", "freelancer-memory", "color-switch-snake", "word-scramble-biz", "net-30-ninja", "ssl-shield"];
+const MINI_GAMES = ["receipt-rush", "webhook-whack", "invoice-stack", "horseshoe-toss", "uptime-defender", "freelancer-memory", "color-switch-snake", "word-scramble-biz", "net-30-ninja", "ssl-shield", "nda-speed-sign"];
 const isMiniGame = MINI_GAMES.includes(app);
 const miniGameSlug = isMiniGame ? app : null;
 const mobileRoot = join(root, "mobile");
@@ -75,6 +75,7 @@ if (isMiniGame) {
     "webhook-whack",
     "net-30-ninja",
     "ssl-shield",
+    "nda-speed-sign",
   ];
   const missing = slugs.filter((s) => !hub.includes(`/games/${s}/`));
   if (!missing.length) pass(5, "Games hub links intact", `${slugs.length} games`);

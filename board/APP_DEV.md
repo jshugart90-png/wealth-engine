@@ -20,7 +20,8 @@
 | **Word Scramble Biz** | `com.wealthengine.wordscramblebiz` | **TestFlight prep** | 16 PASS, 0 FAIL, 1 WARN | `bbb87ca` pushed | **READY** (Mac upload) |
 | **Net-30 Ninja** | `com.wealthengine.net30ninja` | **TestFlight prep** | 16 PASS, 0 FAIL, 1 WARN | `aea2139` pushed | **READY** (Mac upload) |
 | **SSL Shield** | `com.wealthengine.sslshield` | **TestFlight prep** | 16 PASS, 0 FAIL, 1 WARN | `c09b780` pushed | **READY** (Mac upload) |
-| App 13+ | TBD | Queued | — | — | — |
+| **NDA Speed Sign** | `com.wealthengine.ndaspeedsign` | **TestFlight prep** | 16 PASS, 0 FAIL, 1 WARN | TBD pushed | **READY** (Mac upload) |
+| App 14+ | TBD | Queued | — | — | — |
 
 ## App 1 — Horseshoe Games Hub
 
@@ -326,7 +327,31 @@ npx cap sync ios && npx cap open ios
 # Or: bundle exec fastlane ios beta_ssl_shield
 ```
 
-## App 13+ queue
+## App 13 — NDA Speed Sign (mini-app)
+
+| Field | Value |
+|-------|-------|
+| Version | 1.0.0 |
+| Game | NDA Speed Sign (single-game Capacitor shell) |
+| Capacitor | `mobile/nda-speed-sign/` → loads `/games/nda-speed-sign/` from prod |
+| Store metadata | `mobile/store-metadata/nda-speed-sign/` |
+| Preflight | `npm run mobile:preflight:nda-speed-sign` |
+
+### Features (shipped this session)
+
+1. **Best time** — localStorage `nda_speed_sign_best` with launcher + in-game HUD
+2. **Offline banner** — same pattern as Games Hub / Receipt Rush
+
+### TestFlight upload (user Mac)
+
+```bash
+npm run build && cd mobile && node sync-www.mjs nda-speed-sign
+cd nda-speed-sign && npm install && npx cap add ios  # if missing
+npx cap sync ios && npx cap open ios
+# Or: bundle exec fastlane ios beta_nda_speed_sign
+```
+
+## App 14+ queue
 
 From `board/GAMES.md` or new simple utilities (calculators, timers) as standalone Capacitor shells.
 

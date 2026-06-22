@@ -126,6 +126,11 @@ platform :ios do
     mini_app_ios_beta("ssl-shield", "SSL Shield")
   end
 
+  desc "TestFlight upload for NDA Speed Sign mini-app"
+  lane :beta_nda_speed_sign do
+    mini_app_ios_beta("nda-speed-sign", "NDA Speed Sign")
+  end
+
   desc "TestFlight upload + App Store metadata (does not auto-submit for review)"
   lane :release do
     beta

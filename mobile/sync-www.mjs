@@ -1,6 +1,6 @@
 /**
  * Sync dist/ assets into Capacitor www folders.
- * Usage: node sync-www.mjs [games|tools|receipt-rush|webhook-whack|invoice-stack|horseshoe-toss|uptime-defender|freelancer-memory|color-switch-snake|word-scramble-biz|net-30-ninja|ssl-shield|all]
+ * Usage: node sync-www.mjs [games|tools|receipt-rush|webhook-whack|invoice-stack|horseshoe-toss|uptime-defender|freelancer-memory|color-switch-snake|word-scramble-biz|net-30-ninja|ssl-shield|nda-speed-sign|all]
  */
 import { cpSync, existsSync, mkdirSync, readFileSync, writeFileSync, readdirSync } from "fs";
 import { join, dirname } from "path";
@@ -290,6 +290,22 @@ const MINI_GAME_SHELLS = {
     bestBorder: "#1e293b",
     bestKey: "ssl_shield_best",
   },
+  "nda-speed-sign": {
+    title: "NDA Speed Sign",
+    emoji: "📄",
+    tagline: "Match NDA clause pairs before time runs out!",
+    themeColor: "#1a1625",
+    bg: "#1a1625",
+    text: "#f5f3ff",
+    sub: "#a78bfa",
+    accent: "#fbbf24",
+    btnBg: "#7c3aed",
+    btnHover: "#6d28d9",
+    bestBorder: "#4c3d6e",
+    bestKey: "nda_speed_sign_best",
+    bestLabel: "Best time",
+    bestEmpty: "—",
+  },
 };
 
 function syncMiniGame(slug) {
@@ -368,3 +384,4 @@ if (target === "horseshoe-toss" || target === "all") syncMiniGame("horseshoe-tos
 if (target === "word-scramble-biz" || target === "all") syncMiniGame("word-scramble-biz");
 if (target === "net-30-ninja" || target === "all") syncMiniGame("net-30-ninja");
 if (target === "ssl-shield" || target === "all") syncMiniGame("ssl-shield");
+if (target === "nda-speed-sign" || target === "all") syncMiniGame("nda-speed-sign");

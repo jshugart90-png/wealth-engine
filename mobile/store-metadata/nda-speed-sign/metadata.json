@@ -1,0 +1,22 @@
+{
+  "appName": "NDA Speed Sign",
+  "subtitle": "Match NDA clause pairs fast",
+  "bundleId": "com.wealthengine.ndaspeedsign",
+  "version": "1.0.0",
+  "privacyPolicyUrl": "https://wealth-engine-0qlj.onrender.com/privacy.html",
+  "supportUrl": "https://wealth-engine-0qlj.onrender.com/",
+  "marketingUrl": "https://wealth-engine-0qlj.onrender.com/games/nda-speed-sign/",
+  "category": {
+    "apple": "Games",
+    "appleSub": "Puzzle",
+    "google": "GAME_PUZZLE"
+  },
+  "contentRating": {
+    "ageRating": "4+",
+    "googleQuestionnaire": "Everyone — no violence, no user-generated content, optional ads",
+    "adsPresent": true,
+    "inAppPurchases": false,
+    "dataCollected": ["best time stored locally only"]
+  },
+  "keywords": ["nda", "contract", "clause", "legal", "memory", "match", "puzzle", "freelancer", "ndagen", "free", "game"]
+}
