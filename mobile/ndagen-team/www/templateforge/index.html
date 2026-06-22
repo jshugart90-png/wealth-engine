@@ -1,0 +1,128 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>TemplateForge — Business Document Kits</title>
+<meta name="description" content="Print-ready business templates for freelancers and small teams. Instant download.">
+<style>
+body{font-family:system-ui,sans-serif;background:#fafafa;margin:0;padding:40px 20px;color:#111}
+h1{text-align:center} .sub{text-align:center;color:#666;margin-bottom:32px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:20px;max-width:900px;margin:0 auto}
+.card{background:#fff;border:1px solid #ddd;border-radius:8px;padding:24px;text-decoration:none;color:inherit}
+.card:hover{border-color:#2563eb}.price{color:#2563eb;font-weight:bold;margin-top:12px;display:block}
+</style><meta name="google-site-verification" content="X8W5bw-fSJ0pTZiA0LesNi2vZ_-bUdLqVokR5uJZlI4" />
+<script>(function(){try{var r=localStorage.getItem('we_ref')||new URLSearchParams(location.search).get('ref');fetch('/api/funnel/visit',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({path:"/templateforge",refCode:r,source:new URLSearchParams(location.search).get('utm_source')||'direct'})}).catch(function(){})}catch(e){}})();</script></head><body>
+<h1>TemplateForge</h1><p class="sub">Business document kits — no subscription, instant delivery</p>
+<div class="grid"><a class="card" href="https://buy.stripe.com/00w14maxMbKh0Zvdxv1Nu06" data-kit="SMB Compliance Starter Pack">
+      <h2>SMB Compliance Starter Pack</h2><p>3 print-ready templates</p><span class="price">$19</span></a><a class="card" href="https://buy.stripe.com/6oU14m5dseWt0Zv8db1Nu07" data-kit="Freelancer Business Kit">
+      <h2>Freelancer Business Kit</h2><p>3 print-ready templates</p><span class="price">$14</span></a><a class="card" href="https://buy.stripe.com/3cI8wO35kdSp0Zv9hf1Nu08" data-kit="Small Team Hiring Pack">
+      <h2>Small Team Hiring Pack</h2><p>3 print-ready templates</p><span class="price">$12</span></a></div>
+<script>document.querySelectorAll('.card[data-kit]').forEach(function(c){c.addEventListener('click',function(){try{localStorage.setItem('templateforge_last_kit',c.getAttribute('data-kit'))}catch(e){}})});</script>
+<div class="we-iap-bar" id="we-iap-bar" role="region" aria-label="In-app purchases">
+<style>
+.we-iap-bar{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;align-items:center;margin:8px 0;padding:8px;background:rgba(0,0,0,.15);border-radius:8px;max-width:360px;width:100%}
+.we-iap-bar button{background:#6366f1;color:#fff;border:none;padding:6px 12px;border-radius:6px;font-size:11px;font-weight:600;cursor:pointer}
+.we-iap-bar button:active{transform:scale(.97)}
+#we-iap-premium-badge{display:none;background:#eab308;color:#1c1917;padding:4px 10px;border-radius:999px;font-size:11px;font-weight:700}
+body.we-iap-premium .we-iap-bar{border-color:#eab308}
+body.we-iap-no-ads .ad{display:none!important}
+</style>
+
+<button type="button" id="we-iap-premium">Pro Unlock · $4.99</button>
+
+<button type="button" id="we-iap-restore">Restore</button>
+<span id="we-iap-premium-badge">★ Premium</span>
+</div><script>(function(){
+  var APP="templateforge";
+  var PRODUCTS=[{"key":"pro_unlock","id":"com.wealthengine.templateforge.pro_unlock","price":4.99,"title":"Pro Unlock"}];
+  var PREFIX='we_iap_'+APP+'_';
+
+  function owned(key){
+    try{return localStorage.getItem(PREFIX+key)==='1'}catch(e){return false}
+  }
+  function setOwned(key){
+    try{localStorage.setItem(PREFIX+key,'1')}catch(e){}
+    refreshUI();
+  }
+
+  function shouldShowAds(){
+    return true;
+  }
+
+  function hideAdSlots(){
+    if(shouldShowAds())return;
+    document.querySelectorAll('.ad,[data-ad-slot]').forEach(function(el){
+      el.style.display='none';
+    });
+  }
+
+  function refreshUI(){
+    var badge=document.getElementById('we-iap-premium-badge');
+    var removeBtn=document.getElementById('we-iap-remove-ads');
+    var hasPremium=owned('premium_unlock')||owned('pro_unlock');
+    var noAds=!shouldShowAds();
+    if(badge)badge.style.display=(hasPremium||noAds)?'inline-block':'none';
+    if(removeBtn)removeBtn.style.display=noAds?'none':'inline-block';
+    hideAdSlots();
+    document.body.classList.toggle('we-iap-premium',hasPremium);
+    document.body.classList.toggle('we-iap-no-ads',noAds);
+  }
+
+  function purchase(key){
+    var prod=PRODUCTS.find(function(p){return p.key===key});
+    if(!prod)return Promise.reject(new Error('Unknown product'));
+    if(owned(key))return Promise.resolve({key:key,restored:true});
+
+    /* Native: @revenuecat/purchases-capacitor or StoreKit 2 via Capacitor plugin */
+    if(window.Capacitor&&window.Capacitor.Plugins&&window.Capacitor.Plugins.Purchases){
+      return window.Capacitor.Plugins.Purchases.purchaseProduct({productIdentifier:prod.id})
+        .then(function(){setOwned(key);return{key:key,purchased:true};});
+    }
+
+    /* Sandbox / pre-App-Store-Connect: simulate success (replace after products live) */
+    if(confirm('Purchase '+prod.title+' (</html>+prod.price.toFixed(2)+')?\n\nSandbox mode — receipt verify placeholder until App Store Connect products are live.')){
+      setOwned(key);
+      return Promise.resolve({key:key,purchased:true,sandbox:true});
+    }
+    return Promise.reject(new Error('Cancelled'));
+  }
+
+  function restore(){
+    if(window.Capacitor&&window.Capacitor.Plugins&&window.Capacitor.Plugins.Purchases){
+      return window.Capacitor.Plugins.Purchases.restorePurchases().then(function(res){
+        (res&&res.customerInfo&&res.customerInfo.entitlements&&res.customerInfo.entitlements.active||{}).forEach(function(){});
+        refreshUI();
+        return{restored:true};
+      });
+    }
+    refreshUI();
+    alert('Restore complete — checked local purchases. Connect RevenueCat for cross-device restore.');
+    return Promise.resolve({restored:true,local:true});
+  }
+
+  window.WE_IAP={
+    app:APP,
+    products:PRODUCTS,
+    owns:owned,
+    shouldShowAds:shouldShowAds,
+    purchase:purchase,
+    restore:restore,
+    refresh:refreshUI
+  };
+
+  function wireUI(){
+    var bar=document.getElementById('we-iap-bar');
+    if(!bar)return;
+    var removeBtn=document.getElementById('we-iap-remove-ads');
+    var premiumBtn=document.getElementById('we-iap-premium');
+    var restoreBtn=document.getElementById('we-iap-restore');
+    var tipBtn=document.getElementById('we-iap-tip');
+    if(removeBtn)removeBtn.addEventListener('click',function(){WE_IAP.purchase('remove_ads').catch(function(){})});
+    if(premiumBtn)premiumBtn.addEventListener('click',function(){
+      WE_IAP.purchase('pro_unlock').catch(function(){});
+    });
+    if(restoreBtn)restoreBtn.addEventListener('click',function(){WE_IAP.restore()});
+    if(tipBtn)tipBtn.addEventListener('click',function(){WE_IAP.purchase('tip_jar').catch(function(){})});
+    refreshUI();
+  }
+
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',wireUI);
+  else wireUI();
+})();</script></body></html>

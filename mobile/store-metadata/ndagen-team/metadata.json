@@ -1,0 +1,35 @@
+{
+  "appName": "NDAGen Team",
+  "subtitle": "Team NDA generator for agencies",
+  "bundleId": "com.wealthengine.ndagenteam",
+  "version": "1.0.0",
+  "privacyPolicyUrl": "https://wealth-engine-0qlj.onrender.com/privacy.html",
+  "supportUrl": "https://wealth-engine-0qlj.onrender.com/",
+  "marketingUrl": "https://wealth-engine-0qlj.onrender.com/go/nda-team.html",
+  "category": {
+    "apple": "Business",
+    "appleSub": "Productivity",
+    "google": "BUSINESS"
+  },
+  "contentRating": {
+    "ageRating": "4+",
+    "googleQuestionnaire": "Everyone — NDA utility, Stripe checkout opens in browser",
+    "adsPresent": false,
+    "inAppPurchases": true,
+    "dataCollected": [
+      "NDA party names stored locally; email on checkout only via Stripe"
+    ]
+  },
+  "keywords": [
+    "nda",
+    "contract",
+    "legal",
+    "agency",
+    "team",
+    "mutual",
+    "template",
+    "pdf",
+    "freelancer",
+    "ndagen"
+  ]
+}

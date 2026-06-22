@@ -43,6 +43,7 @@ export const STRIPE_IAP_MAP = {
   "renter-toolkit": { pro_unlock: "report-bundle" },
   "1099-suite": { pro_unlock: "1099-suite-pro" },
   "statusping-agency": { pro_unlock: "agency-monthly" },
+  "ndagen-team": { pro_unlock: "ndagen-team-monthly" },
   tools: { pro_unlock: null },
 };
 

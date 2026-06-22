@@ -11,7 +11,7 @@ const root = getRoot();
 const app = process.argv.includes("--app")
   ? process.argv[process.argv.indexOf("--app") + 1]
   : "games";
-const HUB_APPS = ["tools", "freelancer-stack", "devwatch", "renter-toolkit", "hookrelay-dlq", "1099-suite", "statusping-agency"];
+const HUB_APPS = ["tools", "freelancer-stack", "devwatch", "renter-toolkit", "hookrelay-dlq", "1099-suite", "statusping-agency", "ndagen-team"];
 const MINI_GAMES = ["receipt-rush", "webhook-whack", "invoice-stack", "horseshoe-toss", "uptime-defender", "freelancer-memory", "color-switch-snake", "word-scramble-biz", "net-30-ninja", "ssl-shield", "nda-speed-sign", "invoice-number-rush"];
 const UTIL_APPS = ["billsnap", "statusping-lite", "leaselens", "ndagen", "hookrelay", "pipekit", "meetingcost", "templateforge", "comparestack", "tip-calculator-pro", "hourly-rate-calculator-pro", "freelancer-tax-estimator", "1099-threshold-tracker-pro", "quarterly-tax-deadline-pro", "profit-margin-calculator-pro", "break-even-calculator-pro", "late-fee-calculator-pro", "markup-calculator-pro", "day-rate-calculator-pro", "bill-splitter-pro", "percentage-calculator-pro"];
 const UTIL_DIST = { "statusping-lite": "statusping", pipekit: "pipekit", templateforge: "templateforge", comparestack: "comparestack", "tip-calculator-pro": "tip-calculator-pro", "hourly-rate-calculator-pro": "hourly-rate-calculator-pro", "freelancer-tax-estimator": "freelancer-tax-estimator", "1099-threshold-tracker-pro": "1099-threshold-tracker-pro", "quarterly-tax-deadline-pro": "quarterly-tax-deadline-pro", "profit-margin-calculator-pro": "profit-margin-calculator-pro", "break-even-calculator-pro": "break-even-calculator-pro", "late-fee-calculator-pro": "late-fee-calculator-pro", "markup-calculator-pro": "markup-calculator-pro", "day-rate-calculator-pro": "day-rate-calculator-pro", "bill-splitter-pro": "bill-splitter-pro", "percentage-calculator-pro": "percentage-calculator-pro" };
@@ -125,6 +125,20 @@ if (isHubApp) {
     const compare = join(dist, "comparestack", "pages", "white-label-monitoring-agency.html");
     if (existsSync(compare)) pass("5c-compare", "Agency compare page built");
     else fail("5c-compare", "Agency compare page built", "Missing dist/comparestack/pages/white-label-monitoring-agency.html");
+  } else if (app === "ndagen-team") {
+    const landing = join(dist, "go", "nda-team.html");
+    if (existsSync(landing)) pass("5b", "Team landing built");
+    else fail("5b", "Team landing built", "Missing dist/go/nda-team.html");
+    if (existsSync(join(dist, "ndagen", "index.html"))) pass("5c-ndagen", "ndagen built in dist");
+    else fail("5c-ndagen", "ndagen built in dist", "Missing dist/ndagen/index.html");
+    if (existsSync(join(dist, "templateforge", "index.html"))) pass("5c-templateforge", "templateforge built in dist");
+    else fail("5c-templateforge", "templateforge built in dist", "Missing dist/templateforge/index.html");
+    const compare = join(dist, "comparestack", "pages", "nda-template-generators.html");
+    if (existsSync(compare)) pass("5c-compare", "NDA compare page built");
+    else fail("5c-compare", "NDA compare page built", "Missing dist/comparestack/pages/nda-template-generators.html");
+    const bundle = join(dist, "bundles", "freelancer-stack.html");
+    if (existsSync(bundle)) pass("5c-stack", "Freelancer stack bundle built");
+    else fail("5c-stack", "Freelancer stack bundle built", "Missing dist/bundles/freelancer-stack.html");
   }
 } else if (isUtilApp) {
   const utilDist = UTIL_DIST[utilSlug] ?? utilSlug;
@@ -193,6 +207,8 @@ if (isHubApp && app === "freelancer-stack" && existsSync(join(mobileRoot, app, "
   pass("6b", "1099 Pro landing synced");
 } else if (isHubApp && app === "statusping-agency" && existsSync(join(mobileRoot, app, "www", "go", "statusping-agency.html"))) {
   pass("6b", "Agency landing synced");
+} else if (isHubApp && app === "ndagen-team" && existsSync(join(mobileRoot, app, "www", "go", "nda-team.html"))) {
+  pass("6b", "Team landing synced");
 } else if (isHubApp) {
   pass("6b", "Hub bundle sync", app);
 } else if (isUtilApp && existsSync(join(dist, (UTIL_DIST[utilSlug] ?? utilSlug), "index.html"))) {

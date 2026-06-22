@@ -276,6 +276,11 @@ platform :ios do
     mini_app_ios_beta("statusping-agency", "StatusPing Agency")
   end
 
+  desc "TestFlight upload for NDAGen Team hub app"
+  lane :beta_ndagen_team do
+    mini_app_ios_beta("ndagen-team", "NDAGen Team")
+  end
+
   desc "TestFlight upload + App Store metadata (does not auto-submit for review)"
   lane :release do
     beta

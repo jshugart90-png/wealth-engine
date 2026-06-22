@@ -1,0 +1,25 @@
+{
+  "name": "ndagen-team",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Capacitor shell for NDAGen Team hub",
+  "scripts": {
+    "sync": "node ../sync-www.mjs ndagen-team && npx cap sync",
+    "android": "npx cap open android",
+    "ios": "npx cap open ios"
+  },
+  "dependencies": {
+    "@capacitor/android": "^6.2.0",
+    "@capacitor/app": "^6.0.2",
+    "@capacitor/core": "^6.2.0",
+    "@capacitor/ios": "^6.2.0",
+    "@capacitor/local-notifications": "^6.1.0",
+    "@capacitor/splash-screen": "^6.0.3"
+  },
+  "devDependencies": {
+    "@capacitor/cli": "^6.2.0"
+  },
+  "capacitor": {
+    "platforms": ["android", "ios"]
+  }
+}

@@ -1,0 +1,14 @@
+NDAGen Team helps agencies and small firms generate mutual and one-way NDAs from your phone.
+
+50 PDF exports per month, 3 team seats, and shared templates — all for $29/mo.
+
+Features:
+• Monthly quota reminders and weekly audit review (enable notifications on first launch)
+• NDAGen — instant NDA preview with governing-law selector
+• TemplateForge — shared contract and proposal templates
+• NDA tool comparisons and Freelancer Stack cross-sell
+• Export NDA audit log to CSV for Excel compliance tracking
+
+Perfect for agencies outgrowing $4 one-off PDF exports.
+
+Privacy: NDA data stored on device. Checkout via Stripe in browser.

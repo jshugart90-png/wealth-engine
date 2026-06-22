@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>NDAGen — Free NDA Generator</title>
+  <meta name="description" content="Generate a mutual NDA in seconds. Free preview. Pro PDF $4 or Team $29/mo (50 exports, 3 seats).">
+  <style>
+    body{font-family:system-ui;max-width:640px;margin:0 auto;padding:32px 16px 100px;color:#0f172a}
+    textarea{width:100%;min-height:200px;padding:12px;font-size:13px;border:1px solid #cbd5e1;border-radius:8px}
+    input,select{width:100%;padding:10px;margin:6px 0 12px;border:1px solid #cbd5e1;border-radius:6px}
+    button{background:#059669;color:#fff;border:none;padding:12px 20px;border-radius:6px;cursor:pointer;font-weight:600}
+    .sticky{position:fixed;bottom:0;left:0;right:0;background:#0f172a;color:#fff;padding:12px;text-align:center;font-size:14px}
+    .sticky a{color:#22c55e;font-weight:700}
+    .tier{background:#f0fdf4;border:1px solid #86efac;border-radius:8px;padding:12px;margin:16px 0;font-size:14px}
+    .usage{font-size:13px;color:#64748b;margin-top:8px}
+  </style>
+<meta name="google-site-verification" content="X8W5bw-fSJ0pTZiA0LesNi2vZ_-bUdLqVokR5uJZlI4" />
+<script>(function(){try{var r=localStorage.getItem('we_ref')||new URLSearchParams(location.search).get('ref');fetch('/api/funnel/visit',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({path:"/ndagen",refCode:r,source:new URLSearchParams(location.search).get('utm_source')||'direct'})}).catch(function(){})}catch(e){}})();</script></head>
+<body>
+  <div style="background:#059669;color:#fff;padding:10px 16px;text-align:center;font-size:13px;margin:-32px -16px 24px"><strong>LAUNCH25</strong> · <a href="/go/nda-team.html" style="color:#fff;font-weight:700">Team: 50 NDAs/mo — $29 →</a></div>
+  <h1>NDAGen</h1>
+  <p>Not legal advice. Template for discussion purposes.</p>
+  <label>Party A</label><input id="a" value="Your Company LLC">
+  <label>Party B</label><input id="b" value="Counterparty Inc">
+  <label>Governing law (US state)</label>
+  <select id="state">
+    <option value="California">California</option>
+    <option value="Texas">Texas</option>
+    <option value="New York">New York</option>
+    <option value="Florida">Florida</option>
+    <option value="Delaware">Delaware</option>
+    <option value="Illinois">Illinois</option>
+    <option value="Other">Other / specify in doc</option>
+  </select>
+  <button id="gen">Generate preview</button>
+  <textarea id="doc" readonly></textarea>
+  <div class="tier">
+    <strong>Export options</strong><br>
+    <a href="https://buy.stripe.com/7sY9AS0XcdSp0ZvfFD1Nu0c" onclick="trackExport('nda-pdf')">Single PDF — $4</a> ·
+    <a href="https://buy.stripe.com/7sYcN435kbKhdMhdxv1Nu0l" onclick="trackExport('ndagen-team-monthly')">Team — $29/mo (50 exports, 3 seats)</a>
+  </div>
+  <p class="usage" id="usage"></p>
+  <p><a href="/p/nda-template-freelancer.html">NDA template guide</a> · <a href="/comparestack/pages/nda-template-generators.html">Compare NDA tools</a></p>
+  <div class="sticky">Agency? <a href="/go/nda-team.html">NDAGen Team $29/mo →</a> · Single PDF <a href="https://buy.stripe.com/7sY9AS0XcdSp0ZvfFD1Nu0c">$4 →</a></div>
+  <script>
+    const USAGE_KEY = 'ndagen_exports_mo';
+    const TEAM_LIMIT = 50;
+    function monthKey(){ return new Date().toISOString().slice(0,7); }
+    function getUsage(){
+      const raw = JSON.parse(localStorage.getItem(USAGE_KEY) || '{}');
+      if (raw.month !== monthKey()) return { month: monthKey(), count: 0, team: !!localStorage.getItem('ndagen_team_active') };
+      return { month: raw.month, count: raw.count || 0, team: !!localStorage.getItem('ndagen_team_active') };
+    }
+    function trackExport(sku){
+      fetch('/api/funnel/checkout_click',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({sku,path:'/ndagen'})});
+      const u = getUsage();
+      if (sku === 'ndagen-team-monthly') localStorage.setItem('ndagen_team_active','1');
+    }
+    function renderUsage(){
+      const u = getUsage();
+      usage.textContent = u.team
+        ? `Team plan: ${u.count}/${TEAM_LIMIT} exports used this month (local counter)`
+        : `Free previews unlimited · ${u.count} export(s) tracked this month`;
+    }
+    gen.onclick=()=>{
+      doc.value=`MUTUAL NON-DISCLOSURE AGREEMENT\n\nBetween ${a.value} and ${b.value}\n\n1. Confidential Information...\n2. Term: 2 years\n3. Governing law: ${state.value}\n\nSign below.`;
+      const u = getUsage();
+      u.count++;
+      localStorage.setItem(USAGE_KEY, JSON.stringify({ month: monthKey(), count: u.count }));
+      renderUsage();
+    };
+    gen.click();
+    renderUsage();
+  </script>
+<div class="we-iap-bar" id="we-iap-bar" role="region" aria-label="In-app purchases">
+<style>
+.we-iap-bar{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;align-items:center;margin:8px 0;padding:8px;background:rgba(0,0,0,.15);border-radius:8px;max-width:360px;width:100%}
+.we-iap-bar button{background:#6366f1;color:#fff;border:none;padding:6px 12px;border-radius:6px;font-size:11px;font-weight:600;cursor:pointer}
+.we-iap-bar button:active{transform:scale(.97)}
+#we-iap-premium-badge{display:none;background:#eab308;color:#1c1917;padding:4px 10px;border-radius:999px;font-size:11px;font-weight:700}
+body.we-iap-premium .we-iap-bar{border-color:#eab308}
+body.we-iap-no-ads .ad{display:none!important}
+</style>
+
+<button type="button" id="we-iap-premium">Pro Unlock · $4.99</button>
+
+<button type="button" id="we-iap-restore">Restore</button>
+<span id="we-iap-premium-badge">★ Premium</span>
+</div><script>(function(){
+  var APP="ndagen";
+  var PRODUCTS=[{"key":"pro_unlock","id":"com.wealthengine.ndagen.pro_unlock","price":4.99,"title":"Pro Unlock"}];
+  var PREFIX='we_iap_'+APP+'_';
+
+  function owned(key){
+    try{return localStorage.getItem(PREFIX+key)==='1'}catch(e){return false}
+  }
+  function setOwned(key){
+    try{localStorage.setItem(PREFIX+key,'1')}catch(e){}
+    refreshUI();
+  }
+
+  function shouldShowAds(){
+    return true;
+  }
+
+  function hideAdSlots(){
+    if(shouldShowAds())return;
+    document.querySelectorAll('.ad,[data-ad-slot]').forEach(function(el){
+      el.style.display='none';
+    });
+  }
+
+  function refreshUI(){
+    var badge=document.getElementById('we-iap-premium-badge');
+    var removeBtn=document.getElementById('we-iap-remove-ads');
+    var hasPremium=owned('premium_unlock')||owned('pro_unlock');
+    var noAds=!shouldShowAds();
+    if(badge)badge.style.display=(hasPremium||noAds)?'inline-block':'none';
+    if(removeBtn)removeBtn.style.display=noAds?'none':'inline-block';
+    hideAdSlots();
+    document.body.classList.toggle('we-iap-premium',hasPremium);
+    document.body.classList.toggle('we-iap-no-ads',noAds);
+  }
+
+  function purchase(key){
+    var prod=PRODUCTS.find(function(p){return p.key===key});
+    if(!prod)return Promise.reject(new Error('Unknown product'));
+    if(owned(key))return Promise.resolve({key:key,restored:true});
+
+    /* Native: @revenuecat/purchases-capacitor or StoreKit 2 via Capacitor plugin */
+    if(window.Capacitor&&window.Capacitor.Plugins&&window.Capacitor.Plugins.Purchases){
+      return window.Capacitor.Plugins.Purchases.purchaseProduct({productIdentifier:prod.id})
+        .then(function(){setOwned(key);return{key:key,purchased:true};});
+    }
+
+    /* Sandbox / pre-App-Store-Connect: simulate success (replace after products live) */
+    if(confirm('Purchase '+prod.title+' (
+</html>
++prod.price.toFixed(2)+')?\n\nSandbox mode — receipt verify placeholder until App Store Connect products are live.')){
+      setOwned(key);
+      return Promise.resolve({key:key,purchased:true,sandbox:true});
+    }
+    return Promise.reject(new Error('Cancelled'));
+  }
+
+  function restore(){
+    if(window.Capacitor&&window.Capacitor.Plugins&&window.Capacitor.Plugins.Purchases){
+      return window.Capacitor.Plugins.Purchases.restorePurchases().then(function(res){
+        (res&&res.customerInfo&&res.customerInfo.entitlements&&res.customerInfo.entitlements.active||{}).forEach(function(){});
+        refreshUI();
+        return{restored:true};
+      });
+    }
+    refreshUI();
+    alert('Restore complete — checked local purchases. Connect RevenueCat for cross-device restore.');
+    return Promise.resolve({restored:true,local:true});
+  }
+
+  window.WE_IAP={
+    app:APP,
+    products:PRODUCTS,
+    owns:owned,
+    shouldShowAds:shouldShowAds,
+    purchase:purchase,
+    restore:restore,
+    refresh:refreshUI
+  };
+
+  function wireUI(){
+    var bar=document.getElementById('we-iap-bar');
+    if(!bar)return;
+    var removeBtn=document.getElementById('we-iap-remove-ads');
+    var premiumBtn=document.getElementById('we-iap-premium');
+    var restoreBtn=document.getElementById('we-iap-restore');
+    var tipBtn=document.getElementById('we-iap-tip');
+    if(removeBtn)removeBtn.addEventListener('click',function(){WE_IAP.purchase('remove_ads').catch(function(){})});
+    if(premiumBtn)premiumBtn.addEventListener('click',function(){
+      WE_IAP.purchase('pro_unlock').catch(function(){});
+    });
+    if(restoreBtn)restoreBtn.addEventListener('click',function(){WE_IAP.restore()});
+    if(tipBtn)tipBtn.addEventListener('click',function(){WE_IAP.purchase('tip_jar').catch(function(){})});
+    refreshUI();
+  }
+
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',wireUI);
+  else wireUI();
+})();</script></body>
+</html>

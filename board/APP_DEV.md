@@ -1016,9 +1016,37 @@ npx cap sync ios && npx cap open ios
 # Or: bundle exec fastlane ios beta_statusping_agency
 ```
 
+## App 42 — NDAGen Team (hub)
+
+| Field | Value |
+|-------|-------|
+| Version | 1.0.0 |
+| Tools | NDAGen + TemplateForge + NDA Compare + Freelancer Stack |
+| Capacitor | `mobile/ndagen-team/` → loads `/go/nda-team.html` from prod |
+| Store metadata | `mobile/store-metadata/ndagen-team/` |
+| Preflight | `npm run mobile:preflight:ndagen-team` |
+
+### Features (shipped this session)
+
+1. **Native launcher** — 5-tool grid with recently used tracking
+2. **Team landing** — local copy of `/go/nda-team.html` with $29/mo checkout
+3. **Team push** — local notifications for weekly NDA review, monthly quota reset, export check
+4. **Audit log CSV export** — Excel-compatible export from NDAGen activity localStorage
+5. **Export quota stat** — monthly export count vs 50 limit on launcher
+6. **IAP wired** — pro_unlock linked to Stripe SKU `ndagen-team-monthly`
+
+### TestFlight upload (user Mac)
+
+```bash
+npm run build && cd mobile && node sync-www.mjs ndagen-team
+cd ndagen-team && npm install && npx cap add ios  # if missing
+npx cap sync ios && npx cap open ios
+# Or: bundle exec fastlane ios beta_ndagen_team
+```
+
 ## Master checklist
 
-See `mobile/TESTFLIGHT_ALL_APPS.md` for all 41 apps — bundle IDs, Fastlane lanes, versions.
+See `mobile/TESTFLIGHT_ALL_APPS.md` for all 42 apps — bundle IDs, Fastlane lanes, versions.
 
 ## GitHub policy
 
