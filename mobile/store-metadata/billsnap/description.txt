@@ -1,0 +1,15 @@
+BillSnap helps freelancers create client-ready invoice PDFs in 30 seconds.
+
+Fill in your details, preview for free, and export a print-ready Pro PDF for just $3 — no subscription required. Built for 1099 contractors who invoice weekly.
+
+Features:
+• Free invoice preview in your browser
+• Pro PDF export for $3 per invoice
+• Line items, dates, and invoice numbers
+• Works offline after first load
+• No account or signup wall
+• Optional unlimited plan for power users
+
+Perfect for freelancers, consultants, and side-hustle contractors. Part of the Wealth Engine business tools collection.
+
+Privacy: Invoice drafts stay on your device. Checkout handled securely by Stripe.

@@ -1,0 +1,22 @@
+{
+  "appName": "BillSnap",
+  "subtitle": "Invoice PDF in 30 seconds",
+  "bundleId": "com.wealthengine.billsnap",
+  "version": "1.0.0",
+  "privacyPolicyUrl": "https://wealth-engine-0qlj.onrender.com/privacy.html",
+  "supportUrl": "https://wealth-engine-0qlj.onrender.com/",
+  "marketingUrl": "https://wealth-engine-0qlj.onrender.com/billsnap/",
+  "category": {
+    "apple": "Business",
+    "appleSub": "Finance",
+    "google": "BUSINESS"
+  },
+  "contentRating": {
+    "ageRating": "4+",
+    "googleQuestionnaire": "Everyone — business utility, Stripe checkout opens in browser",
+    "adsPresent": false,
+    "inAppPurchases": true,
+    "dataCollected": ["invoice fields stored locally only; email on checkout via Stripe"]
+  },
+  "keywords": ["invoice", "pdf", "freelancer", "1099", "contractor", "billing", "receipt", "business", "billsnap", "export"]
+}

@@ -1,6 +1,6 @@
 /**
  * Sync dist/ assets into Capacitor www folders.
- * Usage: node sync-www.mjs [games|tools|receipt-rush|webhook-whack|invoice-stack|horseshoe-toss|uptime-defender|freelancer-memory|color-switch-snake|word-scramble-biz|net-30-ninja|ssl-shield|nda-speed-sign|all]
+ * Usage: node sync-www.mjs [games|tools|receipt-rush|webhook-whack|invoice-stack|horseshoe-toss|uptime-defender|freelancer-memory|color-switch-snake|word-scramble-biz|net-30-ninja|ssl-shield|nda-speed-sign|billsnap|all]
  */
 import { cpSync, existsSync, mkdirSync, readFileSync, writeFileSync, readdirSync } from "fs";
 import { join, dirname } from "path";
@@ -308,6 +308,102 @@ const MINI_GAME_SHELLS = {
   },
 };
 
+const UTILITY_SHELLS = {
+  billsnap: {
+    title: "BillSnap",
+    emoji: "🧾",
+    tagline: "Invoice PDF in 30 seconds — preview free, $3 pro export",
+    themeColor: "#f8fafc",
+    bg: "#f8fafc",
+    text: "#0f172a",
+    sub: "#64748b",
+    accent: "#2563eb",
+    btnBg: "#2563eb",
+    btnHover: "#1d4ed8",
+    statBorder: "#cbd5e1",
+    statKey: "billsnap_last_invoice",
+    statLabel: "Last invoice #",
+    statEmpty: "—",
+    cta: "Create Invoice",
+    moreLink: "https://wealth-engine-0qlj.onrender.com/tools/",
+    moreLabel: "More tools",
+    offlineMsg: "You're offline — open BillSnap if you've used it before",
+  },
+};
+
+function syncUtility(slug) {
+  const shell = UTILITY_SHELLS[slug];
+  if (!shell) {
+    console.error(`Unknown utility slug: ${slug}`);
+    process.exit(1);
+  }
+  const www = join(mobileRoot, slug, "www");
+  const utilSrc = join(dist, slug);
+  if (!existsSync(join(utilSrc, "index.html"))) {
+    console.error(`Missing dist/${slug} — run npm run build first`);
+    process.exit(1);
+  }
+  mkdirSync(www, { recursive: true });
+  mkdirSync(join(www, slug), { recursive: true });
+  cpSync(join(utilSrc, "index.html"), join(www, slug, "index.html"));
+  if (existsSync(join(utilSrc, "handlers.mjs"))) {
+    cpSync(join(utilSrc, "handlers.mjs"), join(www, slug, "handlers.mjs"));
+  }
+
+  const indexHtml = `<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>${shell.title}</title>
+<meta name="description" content="${shell.tagline}">
+<link rel="manifest" href="/manifest.json">
+<meta name="theme-color" content="${shell.themeColor}">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<link rel="apple-touch-icon" href="/assets/pwa/icon-192.png">
+<style>
+body{font-family:system-ui,sans-serif;background:${shell.bg};color:${shell.text};margin:0;padding:0 20px 40px;min-height:100vh;display:flex;flex-direction:column;align-items:center}
+.offline{display:none;background:#7f1d1d;color:#fecaca;text-align:center;padding:10px 16px;font-size:13px;width:100%}
+.offline.show{display:block}
+h1{margin:32px 0 8px;font-size:1.6rem}
+.sub{color:${shell.sub};text-align:center;margin-bottom:20px;max-width:340px;line-height:1.5}
+.stat{background:#fff;border:2px solid ${shell.statBorder};border-radius:12px;padding:16px 28px;margin-bottom:16px;text-align:center;box-shadow:0 1px 3px rgba(15,23,42,.06)}
+.stat span{font-size:1.4rem;font-weight:700;color:${shell.accent}}
+.features{max-width:320px;margin-bottom:24px;font-size:14px;color:${shell.sub};line-height:1.6}
+.features li{margin-bottom:6px}
+.cta{display:inline-block;background:${shell.btnBg};color:#fff;text-decoration:none;padding:14px 32px;border-radius:10px;font-weight:700;font-size:1.1rem;margin-bottom:16px}
+.cta:hover{background:${shell.btnHover}}
+.links{font-size:13px;color:${shell.sub};margin-top:20px}
+.links a{color:${shell.accent}}
+</style></head><body>
+<div id="offline-banner" class="offline" role="status">${shell.offlineMsg}</div>
+<h1>${shell.emoji} ${shell.title}</h1>
+<p class="sub">${shell.tagline}</p>
+<div class="stat">${shell.statLabel}<br><span id="last-stat">${shell.statEmpty}</span></div>
+<ul class="features">
+  <li>Free preview — pay $3 only to export PDF</li>
+  <li>No subscription or signup wall</li>
+  <li>Draft saved locally on your device</li>
+</ul>
+<a class="cta" href="${slug}/index.html">${shell.cta}</a>
+<p class="links"><a href="privacy.html">Privacy</a> · <a href="${shell.moreLink}">${shell.moreLabel}</a></p>
+<script>(function(){
+  var KEY='${shell.statKey}';
+  var el=document.getElementById('last-stat');
+  try{var v=localStorage.getItem(KEY);if(el&&v)el.textContent=v}catch(e){}
+  var banner=document.getElementById('offline-banner');
+  function setOffline(){if(banner)banner.classList.toggle('show',!navigator.onLine)}
+  window.addEventListener('online',setOffline);
+  window.addEventListener('offline',setOffline);
+  setOffline();
+})();</script>
+</body></html>`;
+
+  writeFileSync(join(www, "index.html"), indexHtml);
+  if (existsSync(join(dist, "privacy.html"))) cpSync(join(dist, "privacy.html"), join(www, "privacy.html"));
+  if (existsSync(join(dist, "manifest.json"))) cpSync(join(dist, "manifest.json"), join(www, "manifest.json"));
+  if (existsSync(join(dist, "sw.js"))) cpSync(join(dist, "sw.js"), join(www, "sw.js"));
+  if (existsSync(join(dist, "assets"))) cpSync(join(dist, "assets"), join(www, "assets"), { recursive: true });
+  console.log(`Synced ${slug} → mobile/${slug}/www`);
+}
+
 function syncMiniGame(slug) {
   const shell = MINI_GAME_SHELLS[slug];
   if (!shell) {
@@ -374,6 +470,7 @@ h1{margin:32px 0 8px;font-size:1.6rem}
 ensureBuild();
 if (target === "games" || target === "all") syncGames();
 if (target === "tools" || target === "all") syncTools();
+if (target === "billsnap" || target === "all") syncUtility("billsnap");
 if (target === "receipt-rush" || target === "all") syncMiniGame("receipt-rush");
 if (target === "webhook-whack" || target === "all") syncMiniGame("webhook-whack");
 if (target === "invoice-stack" || target === "all") syncMiniGame("invoice-stack");

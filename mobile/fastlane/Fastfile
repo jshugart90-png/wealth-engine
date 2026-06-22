@@ -131,6 +131,11 @@ platform :ios do
     mini_app_ios_beta("nda-speed-sign", "NDA Speed Sign")
   end
 
+  desc "TestFlight upload for BillSnap utility app"
+  lane :beta_billsnap do
+    mini_app_ios_beta("billsnap", "BillSnap")
+  end
+
   desc "TestFlight upload + App Store metadata (does not auto-submit for review)"
   lane :release do
     beta

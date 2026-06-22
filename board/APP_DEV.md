@@ -21,7 +21,8 @@
 | **Net-30 Ninja** | `com.wealthengine.net30ninja` | **TestFlight prep** | 16 PASS, 0 FAIL, 1 WARN | `aea2139` pushed | **READY** (Mac upload) |
 | **SSL Shield** | `com.wealthengine.sslshield` | **TestFlight prep** | 16 PASS, 0 FAIL, 1 WARN | `c09b780` pushed | **READY** (Mac upload) |
 | **NDA Speed Sign** | `com.wealthengine.ndaspeedsign` | **TestFlight prep** | 16 PASS, 0 FAIL, 1 WARN | `94567c8` pushed | **READY** (Mac upload) |
-| App 14+ | TBD | Queued | — | — | — |
+| **BillSnap** | `com.wealthengine.billsnap` | **TestFlight prep** | 17 PASS, 0 FAIL | TBD | **READY** (Mac upload) |
+| App 15+ | TBD | Queued | — | — | — |
 
 ## App 1 — Horseshoe Games Hub
 
@@ -351,7 +352,31 @@ npx cap sync ios && npx cap open ios
 # Or: bundle exec fastlane ios beta_nda_speed_sign
 ```
 
-## App 14+ queue
+## App 14 — BillSnap (utility)
+
+| Field | Value |
+|-------|-------|
+| Version | 1.0.0 |
+| Tool | BillSnap invoice PDF generator (standalone Capacitor shell) |
+| Capacitor | `mobile/billsnap/` → loads `/billsnap/` from prod |
+| Store metadata | `mobile/store-metadata/billsnap/` |
+| Preflight | `npm run mobile:preflight:billsnap` |
+
+### Features (shipped this session)
+
+1. **Last invoice #** — localStorage `billsnap_last_invoice` with launcher + form restore
+2. **Offline banner** — native launcher with feature highlights and offline message
+
+### TestFlight upload (user Mac)
+
+```bash
+npm run build && cd mobile && node sync-www.mjs billsnap
+cd billsnap && npm install && npx cap add ios  # if missing
+npx cap sync ios && npx cap open ios
+# Or: bundle exec fastlane ios beta_billsnap
+```
+
+## App 15+ queue
 
 From `board/GAMES.md` or new simple utilities (calculators, timers) as standalone Capacitor shells.
 

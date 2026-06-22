@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 /**
  * App Store preflight QC — 15-item checklist before mobile submission.
- * Run: node scripts/app-store-preflight.mjs [--app games|tools|receipt-rush|webhook-whack|invoice-stack|horseshoe-toss|uptime-defender|freelancer-memory|color-switch-snake|word-scramble-biz|net-30-ninja|ssl-shield|nda-speed-sign]
+ * Run: node scripts/app-store-preflight.mjs [--app games|tools|receipt-rush|webhook-whack|invoice-stack|horseshoe-toss|uptime-defender|freelancer-memory|color-switch-snake|word-scramble-biz|net-30-ninja|ssl-shield|nda-speed-sign|billsnap]
  */
 import { readFileSync, existsSync, readdirSync } from "fs";
 import { join } from "path";
@@ -12,8 +12,11 @@ const app = process.argv.includes("--app")
   ? process.argv[process.argv.indexOf("--app") + 1]
   : "games";
 const MINI_GAMES = ["receipt-rush", "webhook-whack", "invoice-stack", "horseshoe-toss", "uptime-defender", "freelancer-memory", "color-switch-snake", "word-scramble-biz", "net-30-ninja", "ssl-shield", "nda-speed-sign"];
+const UTIL_APPS = ["billsnap"];
 const isMiniGame = MINI_GAMES.includes(app);
+const isUtilApp = UTIL_APPS.includes(app);
 const miniGameSlug = isMiniGame ? app : null;
+const utilSlug = isUtilApp ? app : null;
 const mobileRoot = join(root, "mobile");
 const dist = join(root, "dist");
 const baseUrl = "https://wealth-engine-0qlj.onrender.com";
@@ -56,9 +59,13 @@ const capConfig = join(mobileRoot, app, "capacitor.config.ts");
 if (existsSync(capConfig) && readFileSync(capConfig, "utf8").includes("SplashScreen")) pass(4, "Splash screen configured");
 else warn(4, "Splash screen configured", "Add SplashScreen plugin config");
 
-// 5. Games hub links OR mini-game entry
+// 5. Games hub links OR mini-game/utility entry
 const gamesHub = join(dist, "games", "index.html");
-if (isMiniGame) {
+if (isUtilApp) {
+  const utilApp = join(dist, utilSlug, "index.html");
+  if (existsSync(utilApp)) pass(5, "Utility app built", utilSlug);
+  else fail(5, "Utility app built", `Missing dist/${utilSlug}/index.html`);
+} else if (isMiniGame) {
   const miniGame = join(dist, "games", miniGameSlug, "index.html");
   if (existsSync(miniGame)) pass(5, "Mini-game built", miniGameSlug);
   else fail(5, "Mini-game built", `Missing dist/games/${miniGameSlug}/index.html`);
@@ -84,8 +91,12 @@ if (isMiniGame) {
   fail(5, "Games hub links intact", "No dist/games/index.html");
 }
 
-// 6. All games in dist OR mini-game synced to mobile www
-if (isMiniGame) {
+// 6. All games in dist OR mini-game/utility synced to mobile www
+if (isUtilApp) {
+  const mobileWww = join(mobileRoot, app, "www", "index.html");
+  if (existsSync(mobileWww)) pass(6, "Utility synced to mobile", mobileWww);
+  else fail(6, "Utility synced to mobile", `Run node mobile/sync-www.mjs ${app}`);
+} else if (isMiniGame) {
   const mobileWww = join(mobileRoot, app, "www", "index.html");
   if (existsSync(mobileWww)) pass(6, "Mini-game synced to mobile", mobileWww);
   else fail(6, "Mini-game synced to mobile", `Run node mobile/sync-www.mjs ${app}`);
@@ -98,8 +109,10 @@ if (!missingGames.length) pass(6, "All games in dist", `${gameSlugs.length} game
 else fail(6, "All games in dist", `Missing: ${missingGames.join(", ")}`);
 }
 
-// 6b. (mini-game only — placeholder to keep check IDs stable)
-if (isMiniGame && existsSync(join(dist, "games", miniGameSlug, "index.html"))) {
+// 6b. (mini-game / utility — placeholder to keep check IDs stable)
+if (isUtilApp && existsSync(join(dist, utilSlug, "index.html"))) {
+  pass("6b", "Utility source in dist", utilSlug);
+} else if (isMiniGame && existsSync(join(dist, "games", miniGameSlug, "index.html"))) {
   pass("6b", "Mini-game source in dist", miniGameSlug);
 }
 
@@ -109,10 +122,14 @@ if (existsSync(admobDoc)) pass(7, "AdMob setup documented");
 else fail(7, "AdMob setup documented", "Missing docs/ADSENSE_ADMOB_SETUP.md");
 
 // 8. AdMob production check
-const sampleGamePath = isMiniGame
+const sampleGamePath = isUtilApp
+  ? join(dist, utilSlug, "index.html")
+  : isMiniGame
   ? join(dist, "games", miniGameSlug, "index.html")
   : join(dist, "games", "horseshoe-toss", "index.html");
-if (existsSync(sampleGamePath)) {
+if (isUtilApp && existsSync(sampleGamePath)) {
+  pass(8, "AdMob production mode", "N/A — utility app, no in-app ads");
+} else if (existsSync(sampleGamePath)) {
   const g = readFileSync(sampleGamePath, "utf8");
   if (g.includes("testMode:true") || g.includes("3940256099942544")) {
     warn(8, "AdMob production mode", "Test IDs active — swap ADMOB_* env vars before store release");
@@ -164,8 +181,8 @@ if (existsSync(join(dist, "manifest.json"))) {
 
 // 13b. Games PWA manifest (hub only)
 const gamesManifest = join(dist, "games", "manifest.json");
-if (isMiniGame) {
-  pass("13b", "Games PWA manifest", "N/A — single-game mini-app");
+if (isMiniGame || isUtilApp) {
+  pass("13b", "Games PWA manifest", isUtilApp ? "N/A — standalone utility app" : "N/A — single-game mini-app");
 } else if (existsSync(gamesManifest)) {
   const gm = JSON.parse(readFileSync(gamesManifest, "utf8"));
   if (gm.start_url === "/games/") pass("13b", "Games PWA manifest", `${baseUrl}/games/manifest.json`);

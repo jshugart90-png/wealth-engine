@@ -18,7 +18,8 @@
     .pricing{margin-top:32px;padding:20px;background:#fff;border:1px solid #e2e8f0;border-radius:8px}
     a{color:#2563eb}
   </style>
-</head>
+<meta name="google-site-verification" content="X8W5bw-fSJ0pTZiA0LesNi2vZ_-bUdLqVokR5uJZlI4" />
+<script>(function(){try{var r=localStorage.getItem('we_ref')||new URLSearchParams(location.search).get('ref');fetch('/api/funnel/visit',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({path:"/billsnap",refCode:r,source:new URLSearchParams(location.search).get('utm_source')||'direct'})}).catch(function(){})}catch(e){}})();</script></head>
 <body>
   <div style="background:#0f172a;color:#e2e8f0;padding:10px 16px;text-align:center;font-size:13px"><strong style="color:#eab308">LAUNCH25</strong> · <a href="/go/invoice.html" style="color:#22c55e;margin:0 8px">Invoice $3</a><a href="/go/lease.html" style="color:#22c55e;margin:0 8px">Lease check</a><a href="/go/uptime.html" style="color:#22c55e;margin:0 8px">Uptime $5/mo</a></div>
   <div class="wrap">
@@ -42,13 +43,13 @@
     <button type="button" class="secondary" id="pro">Export Pro PDF</button>
 
     <div class="pricing">
-      <strong>Pricing:</strong> $3 per PDF · <a href="{{PAY:pro-pdf}}" id="buy-pro">Buy 1 export</a> ·
-      <a href="{{PAY:unlimited-month}}">$29/mo unlimited</a>
+      <strong>Pricing:</strong> $3 per PDF · <a href="https://buy.stripe.com/00wdR821g9C94bHfFD1Nu02" id="buy-pro">Buy 1 export</a> ·
+      <a href="https://buy.stripe.com/7sY9ASaxM01z6jPeBz1Nu0j">$29/mo unlimited</a>
       <p style="margin-top:8px;font-size:13px;color:#64748b">Cheaper than QuickBooks for weekly invoicers. BillSnap Pro unlimited — print-ready PDFs, your logo, line items.</p>
       <p style="margin-top:8px;font-size:13px;color:#64748b">Use code <strong style="color:#eab308">LAUNCH25</strong> at checkout for 25% off</p>
     </div>
     <div style="position:fixed;bottom:0;left:0;right:0;background:#0f172a;color:#fff;padding:12px;text-align:center;font-size:14px;z-index:99">
-      Ready to export? <a href="{{PAY:pro-pdf}}" style="color:#22c55e;font-weight:700" onclick="fetch('/api/funnel/checkout_click',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({sku:'pro-pdf',path:'/billsnap'})})">Pro PDF $3 →</a>
+      Ready to export? <a href="https://buy.stripe.com/00wdR821g9C94bHfFD1Nu02" style="color:#22c55e;font-weight:700" onclick="fetch('/api/funnel/checkout_click',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({sku:'pro-pdf',path:'/billsnap'})})">Pro PDF $3 →</a>
     </div>
   </div>
   <script>
