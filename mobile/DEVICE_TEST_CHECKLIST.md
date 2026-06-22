@@ -26,7 +26,6 @@ Run on a physical device (Android debug APK or iOS TestFlight) after `npm run mo
 | uptime-defender | | | |
 | freelancer-memory | | | |
 | color-switch-snake | | | |
-| color-switch-snake | | | |
 | word-scramble-biz | | | |
 | receipt-rush | | | |
 | webhook-whack | | | |
