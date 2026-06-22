@@ -1,0 +1,15 @@
+LeaseLens helps tenants spot risky lease clauses before signing — instant risk score and red flags in 30 seconds.
+
+Paste your lease text, get a free preview of top flags, then unlock the full clause-by-clause report for $7. Rule-based analysis, not legal advice.
+
+Features:
+• Instant risk score from pasted lease text
+• Red-flag highlights for unfair or risky clauses
+• Full report unlock via secure Stripe checkout
+• License code restores paid reports on any device
+• Works offline after first load
+• No signup wall for preview
+
+Perfect for renters, roommates, and anyone reviewing a lease before signing thousands in obligations.
+
+Privacy: Lease text sent for analysis only when you tap Analyze. Paid reports tied to license code.

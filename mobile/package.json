@@ -19,6 +19,7 @@
     "sync:nda-speed-sign": "node sync-www.mjs nda-speed-sign && cd nda-speed-sign && npx cap sync",
     "sync:billsnap": "node sync-www.mjs billsnap && cd billsnap && npx cap sync",
     "sync:statusping-lite": "node sync-www.mjs statusping-lite && cd statusping-lite && npx cap sync",
+    "sync:leaselens": "node sync-www.mjs leaselens && cd leaselens && npx cap sync",
     "android:games": "cd games && npx cap sync android && cd android && ./gradlew assembleDebug",
     "android:tools": "cd tools && npx cap sync android && cd android && ./gradlew assembleDebug",
     "android:receipt-rush": "cd receipt-rush && npx cap sync android && cd android && ./gradlew assembleDebug",
@@ -33,6 +34,7 @@
     "android:nda-speed-sign": "cd nda-speed-sign && npx cap sync android && cd android && ./gradlew assembleDebug",
     "android:billsnap": "cd billsnap && npx cap sync android && cd android && ./gradlew assembleDebug",
     "android:statusping-lite": "cd statusping-lite && npx cap sync android && cd android && ./gradlew assembleDebug",
+    "android:leaselens": "cd leaselens && npx cap sync android && cd android && ./gradlew assembleDebug",
     "ios:games": "cd games && npx cap sync ios",
     "ios:tools": "cd tools && npx cap sync ios",
     "ios:receipt-rush": "cd receipt-rush && npx cap sync ios",
@@ -47,6 +49,7 @@
     "ios:nda-speed-sign": "cd nda-speed-sign && npx cap sync ios",
     "ios:billsnap": "cd billsnap && npx cap sync ios",
     "ios:statusping-lite": "cd statusping-lite && npx cap sync ios",
+    "ios:leaselens": "cd leaselens && npx cap sync ios",
     "open:android:games": "cd games && npx cap open android",
     "open:ios:games": "cd games && npx cap open ios"
   },

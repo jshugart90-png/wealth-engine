@@ -1,0 +1,22 @@
+{
+  "appName": "LeaseLens",
+  "subtitle": "Lease red-flag analyzer",
+  "bundleId": "com.wealthengine.leaselens",
+  "version": "1.0.0",
+  "privacyPolicyUrl": "https://wealth-engine-0qlj.onrender.com/privacy.html",
+  "supportUrl": "https://wealth-engine-0qlj.onrender.com/",
+  "marketingUrl": "https://wealth-engine-0qlj.onrender.com/leaselens/",
+  "category": {
+    "apple": "Business",
+    "appleSub": "Finance",
+    "google": "BUSINESS"
+  },
+  "contentRating": {
+    "ageRating": "4+",
+    "googleQuestionnaire": "Everyone — lease review utility, Stripe checkout opens in browser",
+    "adsPresent": false,
+    "inAppPurchases": true,
+    "dataCollected": ["lease text analyzed on server; license code after purchase; no account required"]
+  },
+  "keywords": ["lease", "rental", "tenant", "landlord", "red flags", "analyzer", "apartment", "contract", "leaselens", "review"]
+}

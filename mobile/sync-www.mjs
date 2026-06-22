@@ -1,6 +1,6 @@
 /**
  * Sync dist/ assets into Capacitor www folders.
- * Usage: node sync-www.mjs [games|tools|receipt-rush|webhook-whack|invoice-stack|horseshoe-toss|uptime-defender|freelancer-memory|color-switch-snake|word-scramble-biz|net-30-ninja|ssl-shield|nda-speed-sign|billsnap|statusping-lite|all]
+ * Usage: node sync-www.mjs [games|tools|receipt-rush|webhook-whack|invoice-stack|horseshoe-toss|uptime-defender|freelancer-memory|color-switch-snake|word-scramble-biz|net-30-ninja|ssl-shield|nda-speed-sign|billsnap|statusping-lite|leaselens|all]
  */
 import { cpSync, existsSync, mkdirSync, readFileSync, writeFileSync, readdirSync } from "fs";
 import { join, dirname } from "path";
@@ -361,6 +361,31 @@ const UTILITY_SHELLS = {
       "Subscribe from $5/mo — cancel anytime",
     ],
   },
+  leaselens: {
+    title: "LeaseLens",
+    emoji: "📋",
+    tagline: "Rental lease red flags — full report $7",
+    themeColor: "#ecfdf5",
+    bg: "#ecfdf5",
+    text: "#064e3b",
+    sub: "#047857",
+    accent: "#059669",
+    btnBg: "#059669",
+    btnHover: "#047857",
+    statBorder: "#a7f3d0",
+    statKey: "leaselens_last_score",
+    statLabel: "Last risk score",
+    statEmpty: "—",
+    cta: "Analyze Lease",
+    moreLink: "https://wealth-engine-0qlj.onrender.com/go/lease.html",
+    moreLabel: "Full report pricing",
+    offlineMsg: "You're offline — open LeaseLens if you've used it before",
+    features: [
+      "Free preview — top red flags before you sign",
+      "Full clause report unlocks for $7 via Stripe",
+      "License code restores paid reports on any device",
+    ],
+  },
 };
 
 function syncUtility(slug) {
@@ -504,6 +529,7 @@ if (target === "games" || target === "all") syncGames();
 if (target === "tools" || target === "all") syncTools();
 if (target === "billsnap" || target === "all") syncUtility("billsnap");
 if (target === "statusping-lite" || target === "all") syncUtility("statusping-lite");
+if (target === "leaselens" || target === "all") syncUtility("leaselens");
 if (target === "receipt-rush" || target === "all") syncMiniGame("receipt-rush");
 if (target === "webhook-whack" || target === "all") syncMiniGame("webhook-whack");
 if (target === "invoice-stack" || target === "all") syncMiniGame("invoice-stack");

@@ -23,7 +23,8 @@
 | **NDA Speed Sign** | `com.wealthengine.ndaspeedsign` | **TestFlight prep** | 16 PASS, 0 FAIL, 1 WARN | `94567c8` pushed | **READY** (Mac upload) |
 | **BillSnap** | `com.wealthengine.billsnap` | **TestFlight prep** | 17 PASS, 0 FAIL | `2f614f4` pushed | **READY** (Mac upload) |
 | **StatusPing Lite** | `com.wealthengine.statuspinglite` | **TestFlight prep** | 17 PASS, 0 FAIL | `fed3955` pushed | **READY** (Mac upload) |
-| App 16+ | TBD | Queued | — | — | — |
+| **LeaseLens** | `com.wealthengine.leaselens` | **TestFlight prep** | 17 PASS, 0 FAIL | TBD | **READY** (Mac upload) |
+| App 17+ | TBD | Queued | — | — | — |
 
 ## App 1 — Horseshoe Games Hub
 
@@ -401,7 +402,31 @@ npx cap sync ios && npx cap open ios
 # Or: bundle exec fastlane ios beta_statusping_lite
 ```
 
-## App 16+ queue
+## App 16 — LeaseLens (utility)
+
+| Field | Value |
+|-------|-------|
+| Version | 1.0.0 |
+| Tool | LeaseLens lease red-flag analyzer (standalone Capacitor shell) |
+| Capacitor | `mobile/leaselens/` → loads `/leaselens/` from prod |
+| Store metadata | `mobile/store-metadata/leaselens/` |
+| Preflight | `npm run mobile:preflight:leaselens` |
+
+### Features (shipped this session)
+
+1. **Last risk score** — localStorage `leaselens_last_score` with launcher + post-analyze save
+2. **Offline banner** — native launcher with feature highlights and offline message
+
+### TestFlight upload (user Mac)
+
+```bash
+npm run build && cd mobile && node sync-www.mjs leaselens
+cd leaselens && npm install && npx cap add ios  # if missing
+npx cap sync ios && npx cap open ios
+# Or: bundle exec fastlane ios beta_leaselens
+```
+
+## App 17+ queue
 
 From `board/GAMES.md` or new simple utilities (calculators, timers) as standalone Capacitor shells.
 

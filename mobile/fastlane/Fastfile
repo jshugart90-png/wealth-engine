@@ -141,6 +141,11 @@ platform :ios do
     mini_app_ios_beta("statusping-lite", "StatusPing Lite")
   end
 
+  desc "TestFlight upload for LeaseLens utility app"
+  lane :beta_leaselens do
+    mini_app_ios_beta("leaselens", "LeaseLens")
+  end
+
   desc "TestFlight upload + App Store metadata (does not auto-submit for review)"
   lane :release do
     beta
