@@ -1,6 +1,6 @@
 /**
  * Sync dist/ assets into Capacitor www folders.
- * Usage: node sync-www.mjs [games|tools|receipt-rush|webhook-whack|invoice-stack|horseshoe-toss|uptime-defender|all]
+ * Usage: node sync-www.mjs [games|tools|receipt-rush|webhook-whack|invoice-stack|horseshoe-toss|uptime-defender|freelancer-memory|all]
  */
 import { cpSync, existsSync, mkdirSync, readFileSync, writeFileSync, readdirSync } from "fs";
 import { join, dirname } from "path";
@@ -218,6 +218,22 @@ const MINI_GAME_SHELLS = {
     bestBorder: "#1e1e30",
     bestKey: "uptime_defender_best",
   },
+  "freelancer-memory": {
+    title: "Freelancer Memory",
+    emoji: "🧠",
+    tagline: "Match freelancer tool pairs — tap two cards!",
+    themeColor: "#111827",
+    bg: "#111827",
+    text: "#f3f4f6",
+    sub: "#9ca3af",
+    accent: "#a78bfa",
+    btnBg: "#6366f1",
+    btnHover: "#4f46e5",
+    bestBorder: "#374151",
+    bestKey: "freelancer_memory_best",
+    bestLabel: "Fewest moves",
+    bestEmpty: "—",
+  },
 };
 
 function syncMiniGame(slug) {
@@ -260,13 +276,13 @@ h1{margin:32px 0 8px;font-size:1.6rem}
 <div id="offline-banner" class="offline" role="status">You're offline — tap Play if you've opened the game before</div>
 <h1>${shell.emoji} ${shell.title}</h1>
 <p class="sub">${shell.tagline}</p>
-<div class="best">Best score<br><span id="best-score">0</span></div>
+<div class="best">${shell.bestLabel ?? "Best score"}<br><span id="best-score">${shell.bestEmpty ?? "0"}</span></div>
 <a class="play" href="${slug}/index.html">Play Now</a>
 <p class="links"><a href="privacy.html">Privacy</a> · <a href="https://wealth-engine-0qlj.onrender.com/games/">More games</a></p>
 <script>(function(){
   var KEY='${shell.bestKey}';
   var el=document.getElementById('best-score');
-  try{var b=parseInt(localStorage.getItem(KEY)||'0',10);if(el)el.textContent=isNaN(b)?0:b}catch(e){}
+  try{var b=parseInt(localStorage.getItem(KEY)||'0',10);if(el)el.textContent=b&&!isNaN(b)?b:'${shell.bestEmpty ?? "0"}'}catch(e){}
   var banner=document.getElementById('offline-banner');
   function setOffline(){if(banner)banner.classList.toggle('show',!navigator.onLine)}
   window.addEventListener('online',setOffline);
@@ -290,4 +306,5 @@ if (target === "receipt-rush" || target === "all") syncMiniGame("receipt-rush");
 if (target === "webhook-whack" || target === "all") syncMiniGame("webhook-whack");
 if (target === "invoice-stack" || target === "all") syncMiniGame("invoice-stack");
 if (target === "uptime-defender" || target === "all") syncMiniGame("uptime-defender");
+if (target === "freelancer-memory" || target === "all") syncMiniGame("freelancer-memory");
 if (target === "horseshoe-toss" || target === "all") syncMiniGame("horseshoe-toss");

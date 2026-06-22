@@ -101,6 +101,11 @@ platform :ios do
     mini_app_ios_beta("horseshoe-toss", "Horseshoe Toss")
   end
 
+  desc "TestFlight upload for Freelancer Memory mini-app"
+  lane :beta_freelancer_memory do
+    mini_app_ios_beta("freelancer-memory", "Freelancer Memory")
+  end
+
   desc "TestFlight upload + App Store metadata (does not auto-submit for review)"
   lane :release do
     beta

@@ -15,7 +15,8 @@
 | **Invoice Stack** | `com.wealthengine.invoicestack` | **TestFlight prep** | 16 PASS, 0 FAIL, 1 WARN | `0ff62cd` pushed | **READY** (Mac upload) |
 | **Horseshoe Toss** | `com.wealthengine.horseshoetoss` | **TestFlight prep** | 16 PASS, 0 FAIL, 1 WARN | `82fe87d` pushed | **READY** (Mac upload) |
 | **Uptime Defender** | `com.wealthengine.uptimedefender` | **TestFlight prep** | 16 PASS, 0 FAIL, 1 WARN | `3c407bf` pushed | **READY** (Mac upload) |
-| App 8+ | TBD | Queued | — | — | — |
+| **Freelancer Memory** | `com.wealthengine.freelancermemory` | **TestFlight prep** | 16 PASS, 0 FAIL, 1 WARN | TBD pushed | **READY** (Mac upload) |
+| App 9+ | TBD | Queued | — | — | — |
 
 ## App 1 — Horseshoe Games Hub
 
@@ -201,7 +202,31 @@ npx cap sync ios && npx cap open ios
 # Or: bundle exec fastlane ios beta_uptime_defender
 ```
 
-## App 8+ queue
+## App 8 — Freelancer Memory (mini-app)
+
+| Field | Value |
+|-------|-------|
+| Version | 1.0.0 |
+| Game | Freelancer Memory (single-game Capacitor shell) |
+| Capacitor | `mobile/freelancer-memory/` → loads `/games/freelancer-memory/` from prod |
+| Store metadata | `mobile/store-metadata/freelancer-memory/` |
+| Preflight | `npm run mobile:preflight:freelancer-memory` |
+
+### Features (shipped this session)
+
+1. **Fewest moves** — localStorage `freelancer_memory_best` with launcher + in-game HUD
+2. **Offline banner** — same pattern as Games Hub / Receipt Rush
+
+### TestFlight upload (user Mac)
+
+```bash
+npm run build && cd mobile && node sync-www.mjs freelancer-memory
+cd freelancer-memory && npm install && npx cap add ios  # if missing
+npx cap sync ios && npx cap open ios
+# Or: bundle exec fastlane ios beta_freelancer_memory
+```
+
+## App 9+ queue
 
 From `board/GAMES.md` or new simple utilities (calculators, timers) as standalone Capacitor shells.
 

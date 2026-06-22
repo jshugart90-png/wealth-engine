@@ -11,6 +11,7 @@
     "sync:webhook-whack": "node sync-www.mjs webhook-whack && cd webhook-whack && npx cap sync",
     "sync:invoice-stack": "node sync-www.mjs invoice-stack && cd invoice-stack && npx cap sync",
     "sync:uptime-defender": "node sync-www.mjs uptime-defender && cd uptime-defender && npx cap sync",
+    "sync:freelancer-memory": "node sync-www.mjs freelancer-memory && cd freelancer-memory && npx cap sync",
     "sync:horseshoe-toss": "node sync-www.mjs horseshoe-toss && cd horseshoe-toss && npx cap sync",
     "android:games": "cd games && npx cap sync android && cd android && ./gradlew assembleDebug",
     "android:tools": "cd tools && npx cap sync android && cd android && ./gradlew assembleDebug",
@@ -18,6 +19,7 @@
     "android:webhook-whack": "cd webhook-whack && npx cap sync android && cd android && ./gradlew assembleDebug",
     "android:invoice-stack": "cd invoice-stack && npx cap sync android && cd android && ./gradlew assembleDebug",
     "android:uptime-defender": "cd uptime-defender && npx cap sync android && cd android && ./gradlew assembleDebug",
+    "android:freelancer-memory": "cd freelancer-memory && npx cap sync android && cd android && ./gradlew assembleDebug",
     "android:horseshoe-toss": "cd horseshoe-toss && npx cap sync android && cd android && ./gradlew assembleDebug",
     "ios:games": "cd games && npx cap sync ios",
     "ios:tools": "cd tools && npx cap sync ios",
@@ -25,6 +27,7 @@
     "ios:webhook-whack": "cd webhook-whack && npx cap sync ios",
     "ios:invoice-stack": "cd invoice-stack && npx cap sync ios",
     "ios:uptime-defender": "cd uptime-defender && npx cap sync ios",
+    "ios:freelancer-memory": "cd freelancer-memory && npx cap sync ios",
     "ios:horseshoe-toss": "cd horseshoe-toss && npx cap sync ios",
     "open:android:games": "cd games && npx cap open android",
     "open:ios:games": "cd games && npx cap open ios"

@@ -1,0 +1,22 @@
+{
+  "appName": "Freelancer Memory",
+  "subtitle": "Match freelancer tool pairs",
+  "bundleId": "com.wealthengine.freelancermemory",
+  "version": "1.0.0",
+  "privacyPolicyUrl": "https://wealth-engine-0qlj.onrender.com/privacy.html",
+  "supportUrl": "https://wealth-engine-0qlj.onrender.com/",
+  "marketingUrl": "https://wealth-engine-0qlj.onrender.com/games/freelancer-memory/",
+  "category": {
+    "apple": "Games",
+    "appleSub": "Puzzle",
+    "google": "GAME_PUZZLE"
+  },
+  "contentRating": {
+    "ageRating": "4+",
+    "googleQuestionnaire": "Everyone — no violence, no user-generated content, optional ads",
+    "adsPresent": true,
+    "inAppPurchases": false,
+    "dataCollected": ["fewest moves stored locally only"]
+  },
+  "keywords": ["memory", "match", "freelancer", "puzzle", "cards", "brain", "casual", "free", "game", "tools"]
+}
