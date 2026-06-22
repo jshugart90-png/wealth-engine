@@ -16,7 +16,20 @@
     "googleQuestionnaire": "Everyone — legal template utility, Stripe checkout opens in browser",
     "adsPresent": false,
     "inAppPurchases": true,
-    "dataCollected": ["party names stored locally; PDF export via Stripe checkout"]
+    "dataCollected": [
+      "party names stored locally; PDF export via Stripe checkout"
+    ]
   },
-  "keywords": ["nda", "contract", "non-disclosure", "legal", "template", "freelancer", "mutual", "pdf", "ndagen", "signing"]
+  "keywords": [
+    "nda",
+    "contract",
+    "non-disclosure",
+    "legal",
+    "template",
+    "freelancer",
+    "mutual",
+    "pdf",
+    "ndagen",
+    "signing"
+  ]
 }

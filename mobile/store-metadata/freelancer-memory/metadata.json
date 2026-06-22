@@ -15,8 +15,21 @@
     "ageRating": "4+",
     "googleQuestionnaire": "Everyone — no violence, no user-generated content, optional ads",
     "adsPresent": true,
-    "inAppPurchases": false,
-    "dataCollected": ["fewest moves stored locally only"]
+    "inAppPurchases": true,
+    "dataCollected": [
+      "fewest moves stored locally only"
+    ]
   },
-  "keywords": ["memory", "match", "freelancer", "puzzle", "cards", "brain", "casual", "free", "game", "tools"]
+  "keywords": [
+    "memory",
+    "match",
+    "freelancer",
+    "puzzle",
+    "cards",
+    "brain",
+    "casual",
+    "free",
+    "game",
+    "tools"
+  ]
 }

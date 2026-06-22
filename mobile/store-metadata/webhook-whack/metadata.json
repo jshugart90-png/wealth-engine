@@ -15,8 +15,20 @@
     "ageRating": "4+",
     "googleQuestionnaire": "Everyone — no violence, no user-generated content, optional ads",
     "adsPresent": true,
-    "inAppPurchases": false,
-    "dataCollected": ["best score stored locally only"]
+    "inAppPurchases": true,
+    "dataCollected": [
+      "best score stored locally only"
+    ]
   },
-  "keywords": ["webhook", "arcade", "whack", "reflex", "casual", "free", "developer", "api", "game"]
+  "keywords": [
+    "webhook",
+    "arcade",
+    "whack",
+    "reflex",
+    "casual",
+    "free",
+    "developer",
+    "api",
+    "game"
+  ]
 }

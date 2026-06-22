@@ -15,8 +15,21 @@
     "ageRating": "4+",
     "googleQuestionnaire": "Everyone — no violence, no user-generated content, optional ads",
     "adsPresent": true,
-    "inAppPurchases": false,
-    "dataCollected": ["best wave stored locally only"]
+    "inAppPurchases": true,
+    "dataCollected": [
+      "best wave stored locally only"
+    ]
   },
-  "keywords": ["uptime", "tower", "defense", "server", "monitoring", "devops", "arcade", "casual", "free", "game"]
+  "keywords": [
+    "uptime",
+    "tower",
+    "defense",
+    "server",
+    "monitoring",
+    "devops",
+    "arcade",
+    "casual",
+    "free",
+    "game"
+  ]
 }

@@ -16,7 +16,20 @@
     "googleQuestionnaire": "Everyone — developer API utility, Stripe checkout opens in browser",
     "adsPresent": false,
     "inAppPurchases": true,
-    "dataCollected": ["API requests processed on server; API key issued after Stripe checkout"]
+    "dataCollected": [
+      "API requests processed on server; API key issued after Stripe checkout"
+    ]
   },
-  "keywords": ["api", "uuid", "hash", "base64", "json", "developer", "pipekit", "utilities", "rest", "endpoint"]
+  "keywords": [
+    "api",
+    "uuid",
+    "hash",
+    "base64",
+    "json",
+    "developer",
+    "pipekit",
+    "utilities",
+    "rest",
+    "endpoint"
+  ]
 }

@@ -15,8 +15,21 @@
     "ageRating": "4+",
     "googleQuestionnaire": "Everyone — no violence, no user-generated content, optional ads",
     "adsPresent": true,
-    "inAppPurchases": false,
-    "dataCollected": ["best score stored locally only"]
+    "inAppPurchases": true,
+    "dataCollected": [
+      "best score stored locally only"
+    ]
   },
-  "keywords": ["ninja", "runner", "jump", "arcade", "invoice", "freelancer", "net30", "casual", "free", "game"]
+  "keywords": [
+    "ninja",
+    "runner",
+    "jump",
+    "arcade",
+    "invoice",
+    "freelancer",
+    "net30",
+    "casual",
+    "free",
+    "game"
+  ]
 }

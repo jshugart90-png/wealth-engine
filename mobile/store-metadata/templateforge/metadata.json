@@ -16,7 +16,20 @@
     "googleQuestionnaire": "Everyone — document catalog utility, Stripe checkout opens in browser",
     "adsPresent": false,
     "inAppPurchases": true,
-    "dataCollected": ["kit browsing stored locally; checkout via Stripe in browser"]
+    "dataCollected": [
+      "kit browsing stored locally; checkout via Stripe in browser"
+    ]
   },
-  "keywords": ["template", "business", "documents", "freelancer", "compliance", "pdf", "contracts", "kit", "templateforge", "download"]
+  "keywords": [
+    "template",
+    "business",
+    "documents",
+    "freelancer",
+    "compliance",
+    "pdf",
+    "contracts",
+    "kit",
+    "templateforge",
+    "download"
+  ]
 }

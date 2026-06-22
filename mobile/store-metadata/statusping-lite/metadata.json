@@ -16,7 +16,20 @@
     "googleQuestionnaire": "Everyone — monitoring utility, Stripe checkout opens in browser",
     "adsPresent": false,
     "inAppPurchases": true,
-    "dataCollected": ["monitor URL and alert email submitted after checkout; no local account"]
+    "dataCollected": [
+      "monitor URL and alert email submitted after checkout; no local account"
+    ]
   },
-  "keywords": ["uptime", "monitoring", "alerts", "ssl", "website", "server", "status", "ping", "devops", "statusping"]
+  "keywords": [
+    "uptime",
+    "monitoring",
+    "alerts",
+    "ssl",
+    "website",
+    "server",
+    "status",
+    "ping",
+    "devops",
+    "statusping"
+  ]
 }

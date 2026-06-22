@@ -16,7 +16,20 @@
     "googleQuestionnaire": "Everyone — developer webhook utility, Stripe checkout opens in browser",
     "adsPresent": false,
     "inAppPurchases": true,
-    "dataCollected": ["webhook payloads processed on server; subscription via Stripe"]
+    "dataCollected": [
+      "webhook payloads processed on server; subscription via Stripe"
+    ]
   },
-  "keywords": ["webhook", "dlq", "retry", "relay", "stripe", "github", "developer", "api", "hookrelay", "saas"]
+  "keywords": [
+    "webhook",
+    "dlq",
+    "retry",
+    "relay",
+    "stripe",
+    "github",
+    "developer",
+    "api",
+    "hookrelay",
+    "saas"
+  ]
 }

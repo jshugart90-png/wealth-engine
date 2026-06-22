@@ -25,6 +25,11 @@ import {
   pwaHeadTags,
   visitTrackerScript,
 } from "./marketing/monetization.mjs";
+import {
+  iapClientScript,
+  iapBarHtml,
+  VENTURE_TO_MOBILE,
+} from "../mobile/shared/iap.mjs";
 
 const root = getRoot();
 const config = JSON.parse(readFileSync(join(root, "config", "ventures.json"), "utf8"));
@@ -72,6 +77,10 @@ export function buildAll() {
         html = injectCheckoutTracking(html, `/${v.deployPath.replace("dist/", "")}`);
         if (html.includes("</head>") && !html.includes("we_ref")) {
           html = html.replace("</head>", `<script>${visitTrackerScript(`/${v.deployPath.replace("dist/", "")}`)}</script></head>`);
+        }
+        const mobileSlug = VENTURE_TO_MOBILE[v.id];
+        if (mobileSlug && html.includes("</body>") && !html.includes("WE_IAP")) {
+          html = html.replace("</body>", `${iapBarHtml(mobileSlug)}<script>${iapClientScript(mobileSlug)}</script></body>`);
         }
         writeFileSync(fp, html);
       }
@@ -212,6 +221,12 @@ function buildGames() {
     if (existsSync(idx)) {
       let html = readFileSync(idx, "utf8");
       html = injectGoogleSiteVerification(html);
+      if (!html.includes("we-iap-bar") && html.includes("</body>")) {
+        html = html.replace("</body>", `${iapBarHtml(slug)}</body>`);
+      }
+      if (!html.includes("WE_IAP") && html.includes("</body>")) {
+        html = html.replace("</body>", `<script>${iapClientScript(slug)}</script></body>`);
+      }
       if (!html.includes("WE_ADMOB")) {
         html = html.replace("</body>", `<script>${admobScript}</script><script>${visitTrackerScript(`/games/${slug}/`)}</script></body>`);
       }
@@ -286,8 +301,10 @@ ${googleSiteVerificationMeta()}
   <div id="recent-row" class="recent-row"></div>
 </div>
 <div class="grid">${cards || "<p style='text-align:center;color:#888'>Games coming soon…</p>"}</div>
+${iapBarHtml("games")}
 <div class="ad" style="margin-top:32px">AdSense placeholder — 300×250 rectangle</div>
 <script>${admobScript}</script>
+<script>${iapClientScript("games")}</script>
 <script>(function(){
   var KEY='we_recent_games';
   var titles=${JSON.stringify(Object.fromEntries(meta.map((g) => [g.slug, g.title.replace(/🥷\\s*/, "")])))};

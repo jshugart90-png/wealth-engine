@@ -15,8 +15,23 @@
     "ageRating": "4+",
     "googleQuestionnaire": "Everyone — break-even calculator, no network required for core features",
     "adsPresent": false,
-    "inAppPurchases": false,
-    "dataCollected": ["calculation history stored locally only"]
+    "inAppPurchases": true,
+    "dataCollected": [
+      "calculation history stored locally only"
+    ]
   },
-  "keywords": ["break", "even", "calculator", "units", "revenue", "fixed", "costs", "contribution", "margin", "business", "freelance", "breakevencalculatorpro"]
+  "keywords": [
+    "break",
+    "even",
+    "calculator",
+    "units",
+    "revenue",
+    "fixed",
+    "costs",
+    "contribution",
+    "margin",
+    "business",
+    "freelance",
+    "breakevencalculatorpro"
+  ]
 }

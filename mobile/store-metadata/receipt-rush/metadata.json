@@ -15,8 +15,19 @@
     "ageRating": "4+",
     "googleQuestionnaire": "Everyone — no violence, no user-generated content, optional ads",
     "adsPresent": true,
-    "inAppPurchases": false,
-    "dataCollected": ["best score stored locally only"]
+    "inAppPurchases": true,
+    "dataCollected": [
+      "best score stored locally only"
+    ]
   },
-  "keywords": ["receipt", "arcade", "catch", "casual", "free", "family", "bill", "game"]
+  "keywords": [
+    "receipt",
+    "arcade",
+    "catch",
+    "casual",
+    "free",
+    "family",
+    "bill",
+    "game"
+  ]
 }

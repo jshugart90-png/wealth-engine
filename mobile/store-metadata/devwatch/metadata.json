@@ -16,7 +16,20 @@
     "googleQuestionnaire": "Everyone — monitoring utility hub, Stripe checkout opens in browser",
     "adsPresent": false,
     "inAppPurchases": true,
-    "dataCollected": ["email on checkout only via Stripe"]
+    "dataCollected": [
+      "email on checkout only via Stripe"
+    ]
   },
-  "keywords": ["devwatch", "uptime", "ssl", "cron", "monitoring", "statusping", "devops", "alerts", "heartbeat", "certificate"]
+  "keywords": [
+    "devwatch",
+    "uptime",
+    "ssl",
+    "cron",
+    "monitoring",
+    "statusping",
+    "devops",
+    "alerts",
+    "heartbeat",
+    "certificate"
+  ]
 }

@@ -1,0 +1,138 @@
+name: iOS TestFlight Build
+
+on:
+  workflow_dispatch:
+    inputs:
+      app:
+        description: "Capacitor app slug to build and upload"
+        required: true
+        default: games
+        type: choice
+        options:
+          - games
+          - tools
+          - receipt-rush
+          - webhook-whack
+          - invoice-stack
+          - horseshoe-toss
+          - uptime-defender
+          - freelancer-memory
+          - color-switch-snake
+          - word-scramble-biz
+          - net-30-ninja
+          - ssl-shield
+          - nda-speed-sign
+          - billsnap
+          - statusping-lite
+          - leaselens
+          - ndagen
+          - hookrelay
+          - pipekit
+          - meetingcost
+          - templateforge
+          - comparestack
+          - tip-calculator-pro
+          - hourly-rate-calculator-pro
+          - freelancer-tax-estimator
+          - 1099-threshold-tracker-pro
+          - quarterly-tax-deadline-pro
+          - profit-margin-calculator-pro
+          - break-even-calculator-pro
+          - freelancer-stack
+          - devwatch
+          - hookrelay-dlq
+      upload_testflight:
+        description: "Upload to TestFlight (requires ASC API key secrets)"
+        required: false
+        default: false
+        type: boolean
+
+jobs:
+  ios-build:
+    runs-on: macos-latest
+    defaults:
+      run:
+        working-directory: mobile
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: npm
+
+      - name: Install root dependencies and build dist
+        working-directory: .
+        run: |
+          npm ci
+          npm run build
+
+      - name: Install mobile dependencies
+        run: npm ci
+
+      - name: Install app dependencies
+        run: npm ci
+        working-directory: mobile/${{ github.event.inputs.app }}
+
+      - name: Sync Capacitor www
+        run: node sync-www.mjs ${{ github.event.inputs.app }}
+
+      - name: Add iOS platform (if missing)
+        working-directory: mobile/${{ github.event.inputs.app }}
+        run: |
+          if [ ! -d ios ]; then
+            npx cap add ios
+          fi
+          npx cap sync ios
+
+      - name: Run iOS upload checklist
+        working-directory: .
+        run: node mobile/ios-upload-checklist.mjs --app ${{ github.event.inputs.app }} --json
+
+      - name: Run app store preflight
+        working-directory: .
+        run: node scripts/app-store-preflight.mjs --app ${{ github.event.inputs.app }}
+        continue-on-error: true
+
+      - name: Setup Ruby for Fastlane
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: "3.2"
+          bundler-cache: true
+          working-directory: mobile
+
+      - name: Build iOS archive (no upload)
+        if: ${{ !github.event.inputs.upload_testflight }}
+        working-directory: mobile/${{ github.event.inputs.app }}/ios/App
+        run: |
+          xcodebuild -workspace App.xcworkspace -scheme App -configuration Release -destination 'generic/platform=iOS' -archivePath build/App.xcarchive archive CODE_SIGNING_ALLOWED=NO
+        continue-on-error: true
+
+      - name: Resolve Fastlane lane
+        id: lane
+        working-directory: .
+        run: |
+          LANE=$(node -e "
+            const m={games:'beta',tools:'beta_freelancer_tools','receipt-rush':'beta_receipt_rush','webhook-whack':'beta_webhook_whack','invoice-stack':'beta_invoice_stack','horseshoe-toss':'beta_horseshoe_toss','uptime-defender':'beta_uptime_defender','freelancer-memory':'beta_freelancer_memory','color-switch-snake':'beta_color_switch_snake','word-scramble-biz':'beta_word_scramble_biz','net-30-ninja':'beta_net_30_ninja','ssl-shield':'beta_ssl_shield','nda-speed-sign':'beta_nda_speed_sign',billsnap:'beta_billsnap','statusping-lite':'beta_statusping_lite',leaselens:'beta_leaselens',ndagen:'beta_ndagen',hookrelay:'beta_hookrelay',pipekit:'beta_pipekit',meetingcost:'beta_meetingcost',templateforge:'beta_templateforge',comparestack:'beta_comparestack','tip-calculator-pro':'beta_tip_calculator_pro','hourly-rate-calculator-pro':'beta_hourly_rate_calculator_pro','freelancer-tax-estimator':'beta_freelancer_tax_estimator_pro','1099-threshold-tracker-pro':'beta_1099_threshold_tracker_pro','quarterly-tax-deadline-pro':'beta_quarterly_tax_deadline_pro','profit-margin-calculator-pro':'beta_profit_margin_calculator_pro','break-even-calculator-pro':'beta_break_even_calculator_pro','freelancer-stack':'beta_freelancer_stack',devwatch:'beta_devwatch','hookrelay-dlq':'beta_hookrelay_dlq_pro'};
+            console.log(m['${{ github.event.inputs.app }}']||'beta');
+          ")
+          echo "name=$LANE" >> $GITHUB_OUTPUT
+
+      - name: Upload to TestFlight via Fastlane
+        if: ${{ github.event.inputs.upload_testflight }}
+        env:
+          APP_STORE_CONNECT_API_KEY_ID: ${{ secrets.APP_STORE_CONNECT_API_KEY_ID }}
+          APP_STORE_CONNECT_ISSUER_ID: ${{ secrets.APP_STORE_CONNECT_ISSUER_ID }}
+          APP_STORE_CONNECT_API_KEY_PATH: ${{ github.workspace }}/mobile/fastlane/AuthKey.p8
+        run: |
+          echo "${{ secrets.APP_STORE_CONNECT_API_KEY }}" > fastlane/AuthKey.p8
+          bundle exec fastlane ios ${{ steps.lane.outputs.name }}
+        working-directory: mobile
+        continue-on-error: true
+
+      - name: Build summary
+        run: |
+          echo "### iOS build — ${{ github.event.inputs.app }}" >> $GITHUB_STEP_SUMMARY
+          echo "- Checklist: node mobile/ios-upload-checklist.mjs --app ${{ github.event.inputs.app }}" >> $GITHUB_STEP_SUMMARY
+          echo "- See mobile/APP_STORE_CONNECT_IAP_SETUP.md" >> $GITHUB_STEP_SUMMARY

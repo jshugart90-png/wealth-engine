@@ -16,7 +16,17 @@
     "googleQuestionnaire": "Everyone — business utility, Stripe checkout opens in browser",
     "adsPresent": true,
     "inAppPurchases": true,
-    "dataCollected": ["email on checkout only via Stripe"]
+    "dataCollected": [
+      "email on checkout only via Stripe"
+    ]
   },
-  "keywords": ["invoice", "freelancer", "calculator", "1099", "receipt", "business", "contractor"]
+  "keywords": [
+    "invoice",
+    "freelancer",
+    "calculator",
+    "1099",
+    "receipt",
+    "business",
+    "contractor"
+  ]
 }

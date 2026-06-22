@@ -7,40 +7,44 @@
 
 ## Quick status
 
-| # | App | Bundle ID | Version | Fastlane lane | Preflight | Status |
-|---|-----|-----------|---------|---------------|-----------|--------|
-| 1 | Horseshoe Games Hub | `com.wealthengine.gameshub` | 1.0.1 | `beta` | `mobile:preflight` | READY |
-| 2 | Freelancer Tools | `com.wealthengine.freelancertools` | 1.0.0 | `beta_freelancer_tools` | `mobile:preflight:tools` | READY |
-| 3 | Receipt Rush | `com.wealthengine.receiptrush` | 1.0.0 | `beta_receipt_rush` | `mobile:preflight:receipt-rush` | READY |
-| 4 | Webhook Whack | `com.wealthengine.webhookwhack` | 1.0.0 | `beta_webhook_whack` | `mobile:preflight:webhook-whack` | READY |
-| 5 | Invoice Stack | `com.wealthengine.invoicestack` | 1.0.0 | `beta_invoice_stack` | `mobile:preflight:invoice-stack` | READY |
-| 6 | Horseshoe Toss | `com.wealthengine.horseshoetoss` | 1.0.0 | `beta_horseshoe_toss` | `mobile:preflight:horseshoe-toss` | READY |
-| 7 | Uptime Defender | `com.wealthengine.uptimedefender` | 1.0.0 | `beta_uptime_defender` | `mobile:preflight:uptime-defender` | READY |
-| 8 | Freelancer Memory | `com.wealthengine.freelancermemory` | 1.0.0 | `beta_freelancer_memory` | `mobile:preflight:freelancer-memory` | READY |
-| 9 | Color Switch Snake | `com.wealthengine.colorswitchsnake` | 1.0.0 | `beta_color_switch_snake` | `mobile:preflight:color-switch-snake` | READY |
-| 10 | Word Scramble Biz | `com.wealthengine.wordscramblebiz` | 1.0.0 | `beta_word_scramble_biz` | `mobile:preflight:word-scramble-biz` | READY |
-| 11 | Net-30 Ninja | `com.wealthengine.net30ninja` | 1.0.0 | `beta_net_30_ninja` | `mobile:preflight:net-30-ninja` | READY |
-| 12 | SSL Shield | `com.wealthengine.sslshield` | 1.0.0 | `beta_ssl_shield` | `mobile:preflight:ssl-shield` | READY |
-| 13 | NDA Speed Sign | `com.wealthengine.ndaspeedsign` | 1.0.0 | `beta_nda_speed_sign` | `mobile:preflight:nda-speed-sign` | READY |
-| 14 | BillSnap | `com.wealthengine.billsnap` | 1.0.0 | `beta_billsnap` | `mobile:preflight:billsnap` | READY |
-| 15 | StatusPing Lite | `com.wealthengine.statuspinglite` | 1.0.0 | `beta_statusping_lite` | `mobile:preflight:statusping-lite` | READY |
-| 16 | LeaseLens | `com.wealthengine.leaselens` | 1.0.0 | `beta_leaselens` | `mobile:preflight:leaselens` | READY |
-| 17 | NDAGen | `com.wealthengine.ndagen` | 1.0.0 | `beta_ndagen` | `mobile:preflight:ndagen` | READY |
-| 18 | HookRelay | `com.wealthengine.hookrelay` | 1.0.0 | `beta_hookrelay` | `mobile:preflight:hookrelay` | READY |
-| 19 | PipeKit | `com.wealthengine.pipekit` | 1.0.0 | `beta_pipekit` | `mobile:preflight:pipekit` | READY |
-| 20 | MeetingCost | `com.wealthengine.meetingcost` | 1.0.0 | `beta_meetingcost` | `mobile:preflight:meetingcost` | READY |
-| 21 | TemplateForge | `com.wealthengine.templateforge` | 1.0.0 | `beta_templateforge` | `mobile:preflight:templateforge` | READY |
-| 22 | CompareStack | `com.wealthengine.comparestack` | 1.0.0 | `beta_comparestack` | `mobile:preflight:comparestack` | READY |
-| 23 | Tip Calculator Pro | `com.wealthengine.tipcalculatorpro` | 1.0.0 | `beta_tip_calculator_pro` | `mobile:preflight:tip-calculator-pro` | READY |
-| 24 | Hourly Rate Calculator Pro | `com.wealthengine.hourlyratecalculatorpro` | 1.0.0 | `beta_hourly_rate_calculator_pro` | `mobile:preflight:hourly-rate-calculator-pro` | READY |
-| 25 | Freelancer Tax Estimator Pro | `com.wealthengine.freelancertaxestimatorpro` | 1.0.0 | `beta_freelancer_tax_estimator_pro` | `mobile:preflight:freelancer-tax-estimator` | READY |
-| 26 | 1099 Threshold Tracker Pro | `com.wealthengine.thresholdtrackerpro` | 1.0.0 | `beta_1099_threshold_tracker_pro` | `mobile:preflight:1099-threshold-tracker-pro` | READY |
-| 27 | Quarterly Tax Deadline Pro | `com.wealthengine.quarterlytaxdeadlinepro` | 1.0.0 | `beta_quarterly_tax_deadline_pro` | `mobile:preflight:quarterly-tax-deadline-pro` | READY |
-| 28 | Profit Margin Calculator Pro | `com.wealthengine.profitmargincalculatorpro` | 1.0.0 | `beta_profit_margin_calculator_pro` | `mobile:preflight:profit-margin-calculator-pro` | READY |
-| 29 | Break-Even Calculator Pro | `com.wealthengine.breakevencalculatorpro` | 1.0.0 | `beta_break_even_calculator_pro` | `mobile:preflight:break-even-calculator-pro` | READY |
-| 30 | Freelancer Revenue Stack | `com.wealthengine.freelancerstack` | 1.0.0 | `beta_freelancer_stack` | `mobile:preflight:freelancer-stack` | READY |
-| 31 | DevWatch | `com.wealthengine.devwatch` | 1.0.0 | `beta_devwatch` | `mobile:preflight:devwatch` | READY |
-| 32 | HookRelay DLQ Pro | `com.wealthengine.hookrelaydlqpro` | 1.0.0 | `beta_hookrelay_dlq_pro` | `mobile:preflight:hookrelay-dlq` | READY |
+| # | App | Bundle ID | Version | IAP | Fastlane lane | Preflight | Status |
+|---|-----|-----------|---------|-----|---------------|-----------|--------|
+| 1 | Horseshoe Games Hub | `com.wealthengine.gameshub` | 1.0.1 | 3 | `beta` | `mobile:preflight` | READY |
+| 2 | Freelancer Tools | `com.wealthengine.freelancertools` | 1.0.0 | 1 | `beta_freelancer_tools` | `mobile:preflight:tools` | READY |
+| 3 | Receipt Rush | `com.wealthengine.receiptrush` | 1.0.0 | 3 | `beta_receipt_rush` | `mobile:preflight:receipt-rush` | READY |
+| 4 | Webhook Whack | `com.wealthengine.webhookwhack` | 1.0.0 | 3 | `beta_webhook_whack` | `mobile:preflight:webhook-whack` | READY |
+| 5 | Invoice Stack | `com.wealthengine.invoicestack` | 1.0.0 | 3 | `beta_invoice_stack` | `mobile:preflight:invoice-stack` | READY |
+| 6 | Horseshoe Toss | `com.wealthengine.horseshoetoss` | 1.0.0 | 3 | `beta_horseshoe_toss` | `mobile:preflight:horseshoe-toss` | READY |
+| 7 | Uptime Defender | `com.wealthengine.uptimedefender` | 1.0.0 | 3 | `beta_uptime_defender` | `mobile:preflight:uptime-defender` | READY |
+| 8 | Freelancer Memory | `com.wealthengine.freelancermemory` | 1.0.0 | 3 | `beta_freelancer_memory` | `mobile:preflight:freelancer-memory` | READY |
+| 9 | Color Switch Snake | `com.wealthengine.colorswitchsnake` | 1.0.0 | 3 | `beta_color_switch_snake` | `mobile:preflight:color-switch-snake` | READY |
+| 10 | Word Scramble Biz | `com.wealthengine.wordscramblebiz` | 1.0.0 | 3 | `beta_word_scramble_biz` | `mobile:preflight:word-scramble-biz` | READY |
+| 11 | Net-30 Ninja | `com.wealthengine.net30ninja` | 1.0.0 | 3 | `beta_net_30_ninja` | `mobile:preflight:net-30-ninja` | READY |
+| 12 | SSL Shield | `com.wealthengine.sslshield` | 1.0.0 | 3 | `beta_ssl_shield` | `mobile:preflight:ssl-shield` | READY |
+| 13 | NDA Speed Sign | `com.wealthengine.ndaspeedsign` | 1.0.0 | 3 | `beta_nda_speed_sign` | `mobile:preflight:nda-speed-sign` | READY |
+| 14 | BillSnap | `com.wealthengine.billsnap` | 1.0.0 | 1 | `beta_billsnap` | `mobile:preflight:billsnap` | READY |
+| 15 | StatusPing Lite | `com.wealthengine.statuspinglite` | 1.0.0 | 1 | `beta_statusping_lite` | `mobile:preflight:statusping-lite` | READY |
+| 16 | LeaseLens | `com.wealthengine.leaselens` | 1.0.0 | 1 | `beta_leaselens` | `mobile:preflight:leaselens` | READY |
+| 17 | NDAGen | `com.wealthengine.ndagen` | 1.0.0 | 1 | `beta_ndagen` | `mobile:preflight:ndagen` | READY |
+| 18 | HookRelay | `com.wealthengine.hookrelay` | 1.0.0 | 1 | `beta_hookrelay` | `mobile:preflight:hookrelay` | READY |
+| 19 | PipeKit | `com.wealthengine.pipekit` | 1.0.0 | 1 | `beta_pipekit` | `mobile:preflight:pipekit` | READY |
+| 20 | MeetingCost | `com.wealthengine.meetingcost` | 1.0.0 | 1 | `beta_meetingcost` | `mobile:preflight:meetingcost` | READY |
+| 21 | TemplateForge | `com.wealthengine.templateforge` | 1.0.0 | 1 | `beta_templateforge` | `mobile:preflight:templateforge` | READY |
+| 22 | CompareStack | `com.wealthengine.comparestack` | 1.0.0 | 1 | `beta_comparestack` | `mobile:preflight:comparestack` | READY |
+| 23 | Tip Calculator Pro | `com.wealthengine.tipcalculatorpro` | 1.0.0 | 1 | `beta_tip_calculator_pro` | `mobile:preflight:tip-calculator-pro` | READY |
+| 24 | Hourly Rate Calculator Pro | `com.wealthengine.hourlyratecalculatorpro` | 1.0.0 | 1 | `beta_hourly_rate_calculator_pro` | `mobile:preflight:hourly-rate-calculator-pro` | READY |
+| 25 | Freelancer Tax Estimator Pro | `com.wealthengine.freelancertaxestimatorpro` | 1.0.0 | 1 | `beta_freelancer_tax_estimator_pro` | `mobile:preflight:freelancer-tax-estimator` | READY |
+| 26 | 1099 Threshold Tracker Pro | `com.wealthengine.thresholdtrackerpro` | 1.0.0 | 1 | `beta_1099_threshold_tracker_pro` | `mobile:preflight:1099-threshold-tracker-pro` | READY |
+| 27 | Quarterly Tax Deadline Pro | `com.wealthengine.quarterlytaxdeadlinepro` | 1.0.0 | 1 | `beta_quarterly_tax_deadline_pro` | `mobile:preflight:quarterly-tax-deadline-pro` | READY |
+| 28 | Profit Margin Calculator Pro | `com.wealthengine.profitmargincalculatorpro` | 1.0.0 | 1 | `beta_profit_margin_calculator_pro` | `mobile:preflight:profit-margin-calculator-pro` | READY |
+| 29 | Break-Even Calculator Pro | `com.wealthengine.breakevencalculatorpro` | 1.0.0 | 1 | `beta_break_even_calculator_pro` | `mobile:preflight:break-even-calculator-pro` | READY |
+| 30 | Freelancer Revenue Stack | `com.wealthengine.freelancerstack` | 1.0.0 | 1 | `beta_freelancer_stack` | `mobile:preflight:freelancer-stack` | READY |
+| 31 | DevWatch | `com.wealthengine.devwatch` | 1.0.0 | 1 | `beta_devwatch` | `mobile:preflight:devwatch` | READY |
+| 32 | HookRelay DLQ Pro | `com.wealthengine.hookrelaydlqpro` | 1.0.0 | 1 | `beta_hookrelay_dlq_pro` | `mobile:preflight:hookrelay-dlq` | READY |
+
+**IAP totals:** 56 products (12 games × 3 + Games Hub × 3 + 20 utilities × 1) · Catalog: `config/mobile-iap-products.json` · Setup: `mobile/APP_STORE_CONNECT_IAP_SETUP.md`
+
+**Validation:** `npm run mobile:ios-checklist` (all apps) · `npm run mobile:storekit:generate` (Xcode local testing)
 
 ## Per-app upload commands (Mac)
 

@@ -16,7 +16,19 @@
     "googleQuestionnaire": "Everyone — business utility hub, Stripe checkout opens in browser",
     "adsPresent": false,
     "inAppPurchases": true,
-    "dataCollected": ["email on checkout only via Stripe"]
+    "dataCollected": [
+      "email on checkout only via Stripe"
+    ]
   },
-  "keywords": ["freelancer", "invoice", "nda", "contract", "template", "billsnap", "revenue", "stack", "freelancerstack"]
+  "keywords": [
+    "freelancer",
+    "invoice",
+    "nda",
+    "contract",
+    "template",
+    "billsnap",
+    "revenue",
+    "stack",
+    "freelancerstack"
+  ]
 }

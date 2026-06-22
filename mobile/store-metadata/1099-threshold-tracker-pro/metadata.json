@@ -15,8 +15,21 @@
     "ageRating": "4+",
     "googleQuestionnaire": "Everyone — 1099 contractor payment tracker, no network required for core features",
     "adsPresent": false,
-    "inAppPurchases": false,
-    "dataCollected": ["vendor list stored locally only"]
+    "inAppPurchases": true,
+    "dataCollected": [
+      "vendor list stored locally only"
+    ]
   },
-  "keywords": ["1099", "threshold", "contractor", "W-9", "NEC", "freelance", "vendor", "compliance", "payments", "thresholdtrackerpro"]
+  "keywords": [
+    "1099",
+    "threshold",
+    "contractor",
+    "W-9",
+    "NEC",
+    "freelance",
+    "vendor",
+    "compliance",
+    "payments",
+    "thresholdtrackerpro"
+  ]
 }

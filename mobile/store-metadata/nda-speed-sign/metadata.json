@@ -15,8 +15,22 @@
     "ageRating": "4+",
     "googleQuestionnaire": "Everyone — no violence, no user-generated content, optional ads",
     "adsPresent": true,
-    "inAppPurchases": false,
-    "dataCollected": ["best time stored locally only"]
+    "inAppPurchases": true,
+    "dataCollected": [
+      "best time stored locally only"
+    ]
   },
-  "keywords": ["nda", "contract", "clause", "legal", "memory", "match", "puzzle", "freelancer", "ndagen", "free", "game"]
+  "keywords": [
+    "nda",
+    "contract",
+    "clause",
+    "legal",
+    "memory",
+    "match",
+    "puzzle",
+    "freelancer",
+    "ndagen",
+    "free",
+    "game"
+  ]
 }

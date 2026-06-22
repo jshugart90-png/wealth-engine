@@ -16,7 +16,20 @@
     "googleQuestionnaire": "Everyone — business utility, Stripe checkout opens in browser",
     "adsPresent": false,
     "inAppPurchases": true,
-    "dataCollected": ["invoice fields stored locally only; email on checkout via Stripe"]
+    "dataCollected": [
+      "invoice fields stored locally only; email on checkout via Stripe"
+    ]
   },
-  "keywords": ["invoice", "pdf", "freelancer", "1099", "contractor", "billing", "receipt", "business", "billsnap", "export"]
+  "keywords": [
+    "invoice",
+    "pdf",
+    "freelancer",
+    "1099",
+    "contractor",
+    "billing",
+    "receipt",
+    "business",
+    "billsnap",
+    "export"
+  ]
 }

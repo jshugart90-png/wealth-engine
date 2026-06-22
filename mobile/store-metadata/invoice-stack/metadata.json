@@ -15,8 +15,20 @@
     "ageRating": "4+",
     "googleQuestionnaire": "Everyone — no violence, no user-generated content, optional ads",
     "adsPresent": true,
-    "inAppPurchases": false,
-    "dataCollected": ["best score stored locally only"]
+    "inAppPurchases": true,
+    "dataCollected": [
+      "best score stored locally only"
+    ]
   },
-  "keywords": ["invoice", "stack", "arcade", "casual", "free", "freelancer", "business", "game", "billsnap"]
+  "keywords": [
+    "invoice",
+    "stack",
+    "arcade",
+    "casual",
+    "free",
+    "freelancer",
+    "business",
+    "game",
+    "billsnap"
+  ]
 }

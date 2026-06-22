@@ -15,8 +15,21 @@
     "ageRating": "4+",
     "googleQuestionnaire": "Everyone — no violence, no user-generated content, optional ads",
     "adsPresent": true,
-    "inAppPurchases": false,
-    "dataCollected": ["best score stored locally only"]
+    "inAppPurchases": true,
+    "dataCollected": [
+      "best score stored locally only"
+    ]
   },
-  "keywords": ["ssl", "certificate", "expiry", "uptime", "server", "arcade", "tap", "casual", "free", "game"]
+  "keywords": [
+    "ssl",
+    "certificate",
+    "expiry",
+    "uptime",
+    "server",
+    "arcade",
+    "tap",
+    "casual",
+    "free",
+    "game"
+  ]
 }

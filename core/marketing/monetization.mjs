@@ -30,10 +30,15 @@ export function admobPlaceholderScript(opts = {}) {
   window.WE_ADMOB=WE_ADMOB;
   function showBanner(el){
     if(!el)return;
+    if(window.WE_IAP&&window.WE_IAP.shouldShowAds&&!window.WE_IAP.shouldShowAds()){el.style.display='none';return;}
     el.setAttribute('data-admob','banner');
     el.innerHTML='<div style="font-size:10px;color:#666;padding:4px">'+(WE_ADMOB.testMode?'AdMob TEST banner · ':'AdMob banner · ')+WE_ADMOB.banner+'</div>';
   }
-  document.querySelectorAll('.ad,[data-ad-slot]').forEach(showBanner);
+  function refreshAds(){
+    document.querySelectorAll('.ad,[data-ad-slot]').forEach(showBanner);
+  }
+  window.WE_refreshAds=refreshAds;
+  refreshAds();
   window.WE_showRewardedAd=function(onReward){
     if(WE_ADMOB.testMode){
       var code='LAUNCH25-'+Math.random().toString(36).slice(2,8).toUpperCase();

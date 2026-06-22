@@ -15,8 +15,20 @@
     "ageRating": "4+",
     "googleQuestionnaire": "Everyone — no violence, no user-generated content, no location, no ads targeting children under COPPA without consent",
     "adsPresent": true,
-    "inAppPurchases": false,
-    "dataCollected": ["analytics optional", "no account required"]
+    "inAppPurchases": true,
+    "dataCollected": [
+      "analytics optional",
+      "no account required"
+    ]
   },
-  "keywords": ["games", "casual", "family", "free", "offline", "horseshoe", "puzzle", "arcade"]
+  "keywords": [
+    "games",
+    "casual",
+    "family",
+    "free",
+    "offline",
+    "horseshoe",
+    "puzzle",
+    "arcade"
+  ]
 }

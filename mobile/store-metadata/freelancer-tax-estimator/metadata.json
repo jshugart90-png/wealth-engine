@@ -15,8 +15,21 @@
     "ageRating": "4+",
     "googleQuestionnaire": "Everyone — freelance tax estimator utility, no network required for core features",
     "adsPresent": false,
-    "inAppPurchases": false,
-    "dataCollected": ["last estimate summary stored locally only"]
+    "inAppPurchases": true,
+    "dataCollected": [
+      "last estimate summary stored locally only"
+    ]
   },
-  "keywords": ["1099", "tax", "estimator", "freelance", "freelancer", "self-employment", "quarterly", "contractor", "income", "freelancertaxestimatorpro"]
+  "keywords": [
+    "1099",
+    "tax",
+    "estimator",
+    "freelance",
+    "freelancer",
+    "self-employment",
+    "quarterly",
+    "contractor",
+    "income",
+    "freelancertaxestimatorpro"
+  ]
 }

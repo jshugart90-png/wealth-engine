@@ -15,8 +15,21 @@
     "ageRating": "4+",
     "googleQuestionnaire": "Everyone — profit margin calculator, no network required for core features",
     "adsPresent": false,
-    "inAppPurchases": false,
-    "dataCollected": ["calculation history stored locally only"]
+    "inAppPurchases": true,
+    "dataCollected": [
+      "calculation history stored locally only"
+    ]
   },
-  "keywords": ["profit", "margin", "calculator", "gross", "net", "markup", "business", "freelance", "COGS", "profitmargincalculatorpro"]
+  "keywords": [
+    "profit",
+    "margin",
+    "calculator",
+    "gross",
+    "net",
+    "markup",
+    "business",
+    "freelance",
+    "COGS",
+    "profitmargincalculatorpro"
+  ]
 }

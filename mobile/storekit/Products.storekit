@@ -1,0 +1,855 @@
+{
+  "identifier": "Products",
+  "nonRenewingSubscriptions": [],
+  "products": [
+    {
+      "displayPrice": "4.99",
+      "familyShareable": false,
+      "internalID": "1001",
+      "localizations": [
+        {
+          "description": "Unlock Pro features (matches Stripe tier where applicable)",
+          "displayName": "Pro Unlock",
+          "locale": "en_US"
+        }
+      ],
+      "productID": "com.wealthengine.thresholdtrackerpro.pro_unlock",
+      "referenceName": "1099 Threshold Tracker Pro Pro Unlock",
+      "type": "NonConsumable"
+    },
+    {
+      "displayPrice": "4.99",
+      "familyShareable": false,
+      "internalID": "1002",
+      "localizations": [
+        {
+          "description": "Unlock Pro features (matches Stripe tier where applicable)",
+          "displayName": "Pro Unlock",
+          "locale": "en_US"
+        }
+      ],
+      "productID": "com.wealthengine.billsnap.pro_unlock",
+      "referenceName": "BillSnap Pro Unlock",
+      "type": "NonConsumable"
+    },
+    {
+      "displayPrice": "4.99",
+      "familyShareable": false,
+      "internalID": "1003",
+      "localizations": [
+        {
+          "description": "Unlock Pro features (matches Stripe tier where applicable)",
+          "displayName": "Pro Unlock",
+          "locale": "en_US"
+        }
+      ],
+      "productID": "com.wealthengine.breakevencalculatorpro.pro_unlock",
+      "referenceName": "Break-Even Calculator Pro Pro Unlock",
+      "type": "NonConsumable"
+    },
+    {
+      "displayPrice": "2.99",
+      "familyShareable": false,
+      "internalID": "1004",
+      "localizations": [
+        {
+          "description": "Hide AdMob banners permanently",
+          "displayName": "Remove Ads",
+          "locale": "en_US"
+        }
+      ],
+      "productID": "com.wealthengine.colorswitchsnake.remove_ads",
+      "referenceName": "Color Switch Snake Remove Ads",
+      "type": "NonConsumable"
+    },
+    {
+      "displayPrice": "4.99",
+      "familyShareable": false,
+      "internalID": "1005",
+      "localizations": [
+        {
+          "description": "Unlock premium features and badges",
+          "displayName": "Premium Unlock",
+          "locale": "en_US"
+        }
+      ],
+      "productID": "com.wealthengine.colorswitchsnake.premium_unlock",
+      "referenceName": "Color Switch Snake Premium Unlock",
+      "type": "NonConsumable"
+    },
+    {
+      "displayPrice": "0.99",
+      "familyShareable": false,
+      "internalID": "1006",
+      "localizations": [
+        {
+          "description": "Support the developer",
+          "displayName": "Tip Jar",
+          "locale": "en_US"
+        }
+      ],
+      "productID": "com.wealthengine.colorswitchsnake.tip_jar",
+      "referenceName": "Color Switch Snake Tip Jar",
+      "type": "Consumable"
+    },
+    {
+      "displayPrice": "4.99",
+      "familyShareable": false,
+      "internalID": "1007",
+      "localizations": [
+        {
+          "description": "Unlock Pro features (matches Stripe tier where applicable)",
+          "displayName": "Pro Unlock",
+          "locale": "en_US"
+        }
+      ],
+      "productID": "com.wealthengine.comparestack.pro_unlock",
+      "referenceName": "CompareStack Pro Unlock",
+      "type": "NonConsumable"
+    },
+    {
+      "displayPrice": "4.99",
+      "familyShareable": false,
+      "internalID": "1008",
+      "localizations": [
+        {
+          "description": "Unlock Pro features (matches Stripe tier where applicable)",
+          "displayName": "Pro Unlock",
+          "locale": "en_US"
+        }
+      ],
+      "productID": "com.wealthengine.devwatch.pro_unlock",
+      "referenceName": "DevWatch Pro Unlock",
+      "type": "NonConsumable"
+    },
+    {
+      "displayPrice": "2.99",
+      "familyShareable": false,
+      "internalID": "1009",
+      "localizations": [
+        {
+          "description": "Hide AdMob banners permanently",
+          "displayName": "Remove Ads",
+          "locale": "en_US"
+        }
+      ],
+      "productID": "com.wealthengine.freelancermemory.remove_ads",
+      "referenceName": "Freelancer Memory Remove Ads",
+      "type": "NonConsumable"
+    },
+    {
+      "displayPrice": "4.99",
+      "familyShareable": false,
+      "internalID": "1010",
+      "localizations": [
+        {
+          "description": "Unlock premium features and badges",
+          "displayName": "Premium Unlock",
+          "locale": "en_US"
+        }
+      ],
+      "productID": "com.wealthengine.freelancermemory.premium_unlock",
+      "referenceName": "Freelancer Memory Premium Unlock",
+      "type": "NonConsumable"
+    },
+    {
+      "displayPrice": "0.99",
+      "familyShareable": false,
+      "internalID": "1011",
+      "localizations": [
+        {
+          "description": "Support the developer",
+          "displayName": "Tip Jar",
+          "locale": "en_US"
+        }
+      ],
+      "productID": "com.wealthengine.freelancermemory.tip_jar",
+      "referenceName": "Freelancer Memory Tip Jar",
+      "type": "Consumable"
+    },
+    {
+      "displayPrice": "4.99",
+      "familyShareable": false,
+      "internalID": "1012",
+      "localizations": [
+        {
+          "description": "Unlock Pro features (matches Stripe tier where applicable)",
+          "displayName": "Pro Unlock",
+          "locale": "en_US"
+        }
+      ],
+      "productID": "com.wealthengine.freelancerstack.pro_unlock",
+      "referenceName": "Freelancer Revenue Stack Pro Unlock",
+      "type": "NonConsumable"
+    },
+    {
+      "displayPrice": "4.99",
+      "familyShareable": false,
+      "internalID": "1013",
+      "localizations": [
+        {
+          "description": "Unlock Pro features (matches Stripe tier where applicable)",
+          "displayName": "Pro Unlock",
+          "locale": "en_US"
+        }
+      ],
+      "productID": "com.wealthengine.freelancertaxestimatorpro.pro_unlock",
+      "referenceName": "Freelancer Tax Estimator Pro Pro Unlock",
+      "type": "NonConsumable"
+    },
+    {
+      "displayPrice": "2.99",
+      "familyShareable": false,
+      "internalID": "1014",
+      "localizations": [
+        {
+          "description": "Hide AdMob banners permanently",
+          "displayName": "Remove Ads",
+          "locale": "en_US"
+        }
+      ],
+      "productID": "com.wealthengine.gameshub.remove_ads",
+      "referenceName": "Horseshoe Games Hub Remove Ads",
+      "type": "NonConsumable"
+    },
+    {
+      "displayPrice": "4.99",
+      "familyShareable": false,
+      "internalID": "1015",
+      "localizations": [
+        {
+          "description": "Unlock premium features and badges",
+          "displayName": "Premium Unlock",
+          "locale": "en_US"
+        }
+      ],
+      "productID": "com.wealthengine.gameshub.premium_unlock",
+      "referenceName": "Horseshoe Games Hub Premium Unlock",
+      "type": "NonConsumable"
+    },
+    {
+      "displayPrice": "0.99",
+      "familyShareable": false,
+      "internalID": "1016",
+      "localizations": [
+        {
+          "description": "Support the developer",
+          "displayName": "Tip Jar",
+          "locale": "en_US"
+        }
+      ],
+      "productID": "com.wealthengine.gameshub.tip_jar",
+      "referenceName": "Horseshoe Games Hub Tip Jar",
+      "type": "Consumable"
+    },
+    {
+      "displayPrice": "4.99",
+      "familyShareable": false,
+      "internalID": "1017",
+      "localizations": [
+        {
+          "description": "Unlock Pro features (matches Stripe tier where applicable)",
+          "displayName": "Pro Unlock",
+          "locale": "en_US"
+        }
+      ],
+      "productID": "com.wealthengine.hookrelay.pro_unlock",
+      "referenceName": "HookRelay Pro Unlock",
+      "type": "NonConsumable"
+    },
+    {
+      "displayPrice": "4.99",
+      "familyShareable": false,
+      "internalID": "1018",
+      "localizations": [
+        {
+          "description": "Unlock Pro features (matches Stripe tier where applicable)",
+          "displayName": "Pro Unlock",
+          "locale": "en_US"
+        }
+      ],
+      "productID": "com.wealthengine.hookrelaydlqpro.pro_unlock",
+      "referenceName": "HookRelay DLQ Pro Pro Unlock",
+      "type": "NonConsumable"
+    },
+    {
+      "displayPrice": "2.99",
+      "familyShareable": false,
+      "internalID": "1019",
+      "localizations": [
+        {
+          "description": "Hide AdMob banners permanently",
+          "displayName": "Remove Ads",
+          "locale": "en_US"
+        }
+      ],
+      "productID": "com.wealthengine.horseshoetoss.remove_ads",
+      "referenceName": "Horseshoe Toss Remove Ads",
+      "type": "NonConsumable"
+    },
+    {
+      "displayPrice": "4.99",
+      "familyShareable": false,
+      "internalID": "1020",
+      "localizations": [
+        {
+          "description": "Unlock premium features and badges",
+          "displayName": "Premium Unlock",
+          "locale": "en_US"
+        }
+      ],
+      "productID": "com.wealthengine.horseshoetoss.premium_unlock",
+      "referenceName": "Horseshoe Toss Premium Unlock",
+      "type": "NonConsumable"
+    },
+    {
+      "displayPrice": "0.99",
+      "familyShareable": false,
+      "internalID": "1021",
+      "localizations": [
+        {
+          "description": "Support the developer",
+          "displayName": "Tip Jar",
+          "locale": "en_US"
+        }
+      ],
+      "productID": "com.wealthengine.horseshoetoss.tip_jar",
+      "referenceName": "Horseshoe Toss Tip Jar",
+      "type": "Consumable"
+    },
+    {
+      "displayPrice": "4.99",
+      "familyShareable": false,
+      "internalID": "1022",
+      "localizations": [
+        {
+          "description": "Unlock Pro features (matches Stripe tier where applicable)",
+          "displayName": "Pro Unlock",
+          "locale": "en_US"
+        }
+      ],
+      "productID": "com.wealthengine.hourlyratecalculatorpro.pro_unlock",
+      "referenceName": "Hourly Rate Calculator Pro Pro Unlock",
+      "type": "NonConsumable"
+    },
+    {
+      "displayPrice": "2.99",
+      "familyShareable": false,
+      "internalID": "1023",
+      "localizations": [
+        {
+          "description": "Hide AdMob banners permanently",
+          "displayName": "Remove Ads",
+          "locale": "en_US"
+        }
+      ],
+      "productID": "com.wealthengine.invoicestack.remove_ads",
+      "referenceName": "Invoice Stack Remove Ads",
+      "type": "NonConsumable"
+    },
+    {
+      "displayPrice": "4.99",
+      "familyShareable": false,
+      "internalID": "1024",
+      "localizations": [
+        {
+          "description": "Unlock premium features and badges",
+          "displayName": "Premium Unlock",
+          "locale": "en_US"
+        }
+      ],
+      "productID": "com.wealthengine.invoicestack.premium_unlock",
+      "referenceName": "Invoice Stack Premium Unlock",
+      "type": "NonConsumable"
+    },
+    {
+      "displayPrice": "0.99",
+      "familyShareable": false,
+      "internalID": "1025",
+      "localizations": [
+        {
+          "description": "Support the developer",
+          "displayName": "Tip Jar",
+          "locale": "en_US"
+        }
+      ],
+      "productID": "com.wealthengine.invoicestack.tip_jar",
+      "referenceName": "Invoice Stack Tip Jar",
+      "type": "Consumable"
+    },
+    {
+      "displayPrice": "4.99",
+      "familyShareable": false,
+      "internalID": "1026",
+      "localizations": [
+        {
+          "description": "Unlock Pro features (matches Stripe tier where applicable)",
+          "displayName": "Pro Unlock",
+          "locale": "en_US"
+        }
+      ],
+      "productID": "com.wealthengine.leaselens.pro_unlock",
+      "referenceName": "LeaseLens Pro Unlock",
+      "type": "NonConsumable"
+    },
+    {
+      "displayPrice": "4.99",
+      "familyShareable": false,
+      "internalID": "1027",
+      "localizations": [
+        {
+          "description": "Unlock Pro features (matches Stripe tier where applicable)",
+          "displayName": "Pro Unlock",
+          "locale": "en_US"
+        }
+      ],
+      "productID": "com.wealthengine.meetingcost.pro_unlock",
+      "referenceName": "MeetingCost Pro Unlock",
+      "type": "NonConsumable"
+    },
+    {
+      "displayPrice": "2.99",
+      "familyShareable": false,
+      "internalID": "1028",
+      "localizations": [
+        {
+          "description": "Hide AdMob banners permanently",
+          "displayName": "Remove Ads",
+          "locale": "en_US"
+        }
+      ],
+      "productID": "com.wealthengine.ndaspeedsign.remove_ads",
+      "referenceName": "NDA Speed Sign Remove Ads",
+      "type": "NonConsumable"
+    },
+    {
+      "displayPrice": "4.99",
+      "familyShareable": false,
+      "internalID": "1029",
+      "localizations": [
+        {
+          "description": "Unlock premium features and badges",
+          "displayName": "Premium Unlock",
+          "locale": "en_US"
+        }
+      ],
+      "productID": "com.wealthengine.ndaspeedsign.premium_unlock",
+      "referenceName": "NDA Speed Sign Premium Unlock",
+      "type": "NonConsumable"
+    },
+    {
+      "displayPrice": "0.99",
+      "familyShareable": false,
+      "internalID": "1030",
+      "localizations": [
+        {
+          "description": "Support the developer",
+          "displayName": "Tip Jar",
+          "locale": "en_US"
+        }
+      ],
+      "productID": "com.wealthengine.ndaspeedsign.tip_jar",
+      "referenceName": "NDA Speed Sign Tip Jar",
+      "type": "Consumable"
+    },
+    {
+      "displayPrice": "4.99",
+      "familyShareable": false,
+      "internalID": "1031",
+      "localizations": [
+        {
+          "description": "Unlock Pro features (matches Stripe tier where applicable)",
+          "displayName": "Pro Unlock",
+          "locale": "en_US"
+        }
+      ],
+      "productID": "com.wealthengine.ndagen.pro_unlock",
+      "referenceName": "NDAGen Pro Unlock",
+      "type": "NonConsumable"
+    },
+    {
+      "displayPrice": "2.99",
+      "familyShareable": false,
+      "internalID": "1032",
+      "localizations": [
+        {
+          "description": "Hide AdMob banners permanently",
+          "displayName": "Remove Ads",
+          "locale": "en_US"
+        }
+      ],
+      "productID": "com.wealthengine.net30ninja.remove_ads",
+      "referenceName": "Net-30 Ninja Remove Ads",
+      "type": "NonConsumable"
+    },
+    {
+      "displayPrice": "4.99",
+      "familyShareable": false,
+      "internalID": "1033",
+      "localizations": [
+        {
+          "description": "Unlock premium features and badges",
+          "displayName": "Premium Unlock",
+          "locale": "en_US"
+        }
+      ],
+      "productID": "com.wealthengine.net30ninja.premium_unlock",
+      "referenceName": "Net-30 Ninja Premium Unlock",
+      "type": "NonConsumable"
+    },
+    {
+      "displayPrice": "0.99",
+      "familyShareable": false,
+      "internalID": "1034",
+      "localizations": [
+        {
+          "description": "Support the developer",
+          "displayName": "Tip Jar",
+          "locale": "en_US"
+        }
+      ],
+      "productID": "com.wealthengine.net30ninja.tip_jar",
+      "referenceName": "Net-30 Ninja Tip Jar",
+      "type": "Consumable"
+    },
+    {
+      "displayPrice": "4.99",
+      "familyShareable": false,
+      "internalID": "1035",
+      "localizations": [
+        {
+          "description": "Unlock Pro features (matches Stripe tier where applicable)",
+          "displayName": "Pro Unlock",
+          "locale": "en_US"
+        }
+      ],
+      "productID": "com.wealthengine.pipekit.pro_unlock",
+      "referenceName": "PipeKit Pro Unlock",
+      "type": "NonConsumable"
+    },
+    {
+      "displayPrice": "4.99",
+      "familyShareable": false,
+      "internalID": "1036",
+      "localizations": [
+        {
+          "description": "Unlock Pro features (matches Stripe tier where applicable)",
+          "displayName": "Pro Unlock",
+          "locale": "en_US"
+        }
+      ],
+      "productID": "com.wealthengine.profitmargincalculatorpro.pro_unlock",
+      "referenceName": "Profit Margin Calculator Pro Pro Unlock",
+      "type": "NonConsumable"
+    },
+    {
+      "displayPrice": "4.99",
+      "familyShareable": false,
+      "internalID": "1037",
+      "localizations": [
+        {
+          "description": "Unlock Pro features (matches Stripe tier where applicable)",
+          "displayName": "Pro Unlock",
+          "locale": "en_US"
+        }
+      ],
+      "productID": "com.wealthengine.quarterlytaxdeadlinepro.pro_unlock",
+      "referenceName": "Quarterly Tax Deadline Pro Pro Unlock",
+      "type": "NonConsumable"
+    },
+    {
+      "displayPrice": "2.99",
+      "familyShareable": false,
+      "internalID": "1038",
+      "localizations": [
+        {
+          "description": "Hide AdMob banners permanently",
+          "displayName": "Remove Ads",
+          "locale": "en_US"
+        }
+      ],
+      "productID": "com.wealthengine.receiptrush.remove_ads",
+      "referenceName": "Receipt Rush Remove Ads",
+      "type": "NonConsumable"
+    },
+    {
+      "displayPrice": "4.99",
+      "familyShareable": false,
+      "internalID": "1039",
+      "localizations": [
+        {
+          "description": "Unlock premium features and badges",
+          "displayName": "Premium Unlock",
+          "locale": "en_US"
+        }
+      ],
+      "productID": "com.wealthengine.receiptrush.premium_unlock",
+      "referenceName": "Receipt Rush Premium Unlock",
+      "type": "NonConsumable"
+    },
+    {
+      "displayPrice": "0.99",
+      "familyShareable": false,
+      "internalID": "1040",
+      "localizations": [
+        {
+          "description": "Support the developer",
+          "displayName": "Tip Jar",
+          "locale": "en_US"
+        }
+      ],
+      "productID": "com.wealthengine.receiptrush.tip_jar",
+      "referenceName": "Receipt Rush Tip Jar",
+      "type": "Consumable"
+    },
+    {
+      "displayPrice": "2.99",
+      "familyShareable": false,
+      "internalID": "1041",
+      "localizations": [
+        {
+          "description": "Hide AdMob banners permanently",
+          "displayName": "Remove Ads",
+          "locale": "en_US"
+        }
+      ],
+      "productID": "com.wealthengine.sslshield.remove_ads",
+      "referenceName": "SSL Shield Remove Ads",
+      "type": "NonConsumable"
+    },
+    {
+      "displayPrice": "4.99",
+      "familyShareable": false,
+      "internalID": "1042",
+      "localizations": [
+        {
+          "description": "Unlock premium features and badges",
+          "displayName": "Premium Unlock",
+          "locale": "en_US"
+        }
+      ],
+      "productID": "com.wealthengine.sslshield.premium_unlock",
+      "referenceName": "SSL Shield Premium Unlock",
+      "type": "NonConsumable"
+    },
+    {
+      "displayPrice": "0.99",
+      "familyShareable": false,
+      "internalID": "1043",
+      "localizations": [
+        {
+          "description": "Support the developer",
+          "displayName": "Tip Jar",
+          "locale": "en_US"
+        }
+      ],
+      "productID": "com.wealthengine.sslshield.tip_jar",
+      "referenceName": "SSL Shield Tip Jar",
+      "type": "Consumable"
+    },
+    {
+      "displayPrice": "4.99",
+      "familyShareable": false,
+      "internalID": "1044",
+      "localizations": [
+        {
+          "description": "Unlock Pro features (matches Stripe tier where applicable)",
+          "displayName": "Pro Unlock",
+          "locale": "en_US"
+        }
+      ],
+      "productID": "com.wealthengine.statuspinglite.pro_unlock",
+      "referenceName": "StatusPing Lite Pro Unlock",
+      "type": "NonConsumable"
+    },
+    {
+      "displayPrice": "4.99",
+      "familyShareable": false,
+      "internalID": "1045",
+      "localizations": [
+        {
+          "description": "Unlock Pro features (matches Stripe tier where applicable)",
+          "displayName": "Pro Unlock",
+          "locale": "en_US"
+        }
+      ],
+      "productID": "com.wealthengine.templateforge.pro_unlock",
+      "referenceName": "TemplateForge Pro Unlock",
+      "type": "NonConsumable"
+    },
+    {
+      "displayPrice": "4.99",
+      "familyShareable": false,
+      "internalID": "1046",
+      "localizations": [
+        {
+          "description": "Unlock Pro features (matches Stripe tier where applicable)",
+          "displayName": "Pro Unlock",
+          "locale": "en_US"
+        }
+      ],
+      "productID": "com.wealthengine.tipcalculatorpro.pro_unlock",
+      "referenceName": "Tip Calculator Pro Pro Unlock",
+      "type": "NonConsumable"
+    },
+    {
+      "displayPrice": "4.99",
+      "familyShareable": false,
+      "internalID": "1047",
+      "localizations": [
+        {
+          "description": "Unlock Pro features (matches Stripe tier where applicable)",
+          "displayName": "Pro Unlock",
+          "locale": "en_US"
+        }
+      ],
+      "productID": "com.wealthengine.freelancertools.pro_unlock",
+      "referenceName": "Freelancer Tools Pro Unlock",
+      "type": "NonConsumable"
+    },
+    {
+      "displayPrice": "2.99",
+      "familyShareable": false,
+      "internalID": "1048",
+      "localizations": [
+        {
+          "description": "Hide AdMob banners permanently",
+          "displayName": "Remove Ads",
+          "locale": "en_US"
+        }
+      ],
+      "productID": "com.wealthengine.uptimedefender.remove_ads",
+      "referenceName": "Uptime Defender Remove Ads",
+      "type": "NonConsumable"
+    },
+    {
+      "displayPrice": "4.99",
+      "familyShareable": false,
+      "internalID": "1049",
+      "localizations": [
+        {
+          "description": "Unlock premium features and badges",
+          "displayName": "Premium Unlock",
+          "locale": "en_US"
+        }
+      ],
+      "productID": "com.wealthengine.uptimedefender.premium_unlock",
+      "referenceName": "Uptime Defender Premium Unlock",
+      "type": "NonConsumable"
+    },
+    {
+      "displayPrice": "0.99",
+      "familyShareable": false,
+      "internalID": "1050",
+      "localizations": [
+        {
+          "description": "Support the developer",
+          "displayName": "Tip Jar",
+          "locale": "en_US"
+        }
+      ],
+      "productID": "com.wealthengine.uptimedefender.tip_jar",
+      "referenceName": "Uptime Defender Tip Jar",
+      "type": "Consumable"
+    },
+    {
+      "displayPrice": "2.99",
+      "familyShareable": false,
+      "internalID": "1051",
+      "localizations": [
+        {
+          "description": "Hide AdMob banners permanently",
+          "displayName": "Remove Ads",
+          "locale": "en_US"
+        }
+      ],
+      "productID": "com.wealthengine.webhookwhack.remove_ads",
+      "referenceName": "Webhook Whack Remove Ads",
+      "type": "NonConsumable"
+    },
+    {
+      "displayPrice": "4.99",
+      "familyShareable": false,
+      "internalID": "1052",
+      "localizations": [
+        {
+          "description": "Unlock premium features and badges",
+          "displayName": "Premium Unlock",
+          "locale": "en_US"
+        }
+      ],
+      "productID": "com.wealthengine.webhookwhack.premium_unlock",
+      "referenceName": "Webhook Whack Premium Unlock",
+      "type": "NonConsumable"
+    },
+    {
+      "displayPrice": "0.99",
+      "familyShareable": false,
+      "internalID": "1053",
+      "localizations": [
+        {
+          "description": "Support the developer",
+          "displayName": "Tip Jar",
+          "locale": "en_US"
+        }
+      ],
+      "productID": "com.wealthengine.webhookwhack.tip_jar",
+      "referenceName": "Webhook Whack Tip Jar",
+      "type": "Consumable"
+    },
+    {
+      "displayPrice": "2.99",
+      "familyShareable": false,
+      "internalID": "1054",
+      "localizations": [
+        {
+          "description": "Hide AdMob banners permanently",
+          "displayName": "Remove Ads",
+          "locale": "en_US"
+        }
+      ],
+      "productID": "com.wealthengine.wordscramblebiz.remove_ads",
+      "referenceName": "Word Scramble Biz Remove Ads",
+      "type": "NonConsumable"
+    },
+    {
+      "displayPrice": "4.99",
+      "familyShareable": false,
+      "internalID": "1055",
+      "localizations": [
+        {
+          "description": "Unlock premium features and badges",
+          "displayName": "Premium Unlock",
+          "locale": "en_US"
+        }
+      ],
+      "productID": "com.wealthengine.wordscramblebiz.premium_unlock",
+      "referenceName": "Word Scramble Biz Premium Unlock",
+      "type": "NonConsumable"
+    },
+    {
+      "displayPrice": "0.99",
+      "familyShareable": false,
+      "internalID": "1056",
+      "localizations": [
+        {
+          "description": "Support the developer",
+          "displayName": "Tip Jar",
+          "locale": "en_US"
+        }
+      ],
+      "productID": "com.wealthengine.wordscramblebiz.tip_jar",
+      "referenceName": "Word Scramble Biz Tip Jar",
+      "type": "Consumable"
+    }
+  ],
+  "settings": {
+    "_failTransactionsEnabled": false,
+    "_storeKitErrors": []
+  },
+  "subscriptionGroups": [],
+  "version": {
+    "major": 3,
+    "minor": 0
+  }
+}

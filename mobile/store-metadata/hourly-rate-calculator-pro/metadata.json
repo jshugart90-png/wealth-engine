@@ -15,8 +15,23 @@
     "ageRating": "4+",
     "googleQuestionnaire": "Everyone — freelance rate calculator utility, no network required for core features",
     "adsPresent": false,
-    "inAppPurchases": false,
-    "dataCollected": ["last calculation summary stored locally only"]
+    "inAppPurchases": true,
+    "dataCollected": [
+      "last calculation summary stored locally only"
+    ]
   },
-  "keywords": ["hourly", "rate", "calculator", "freelance", "freelancer", "pricing", "consultant", "contractor", "income", "tax", "billable", "hourlyratecalculatorpro"]
+  "keywords": [
+    "hourly",
+    "rate",
+    "calculator",
+    "freelance",
+    "freelancer",
+    "pricing",
+    "consultant",
+    "contractor",
+    "income",
+    "tax",
+    "billable",
+    "hourlyratecalculatorpro"
+  ]
 }

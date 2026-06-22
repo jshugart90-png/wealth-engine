@@ -16,7 +16,20 @@
     "googleQuestionnaire": "Everyone — meeting calculator utility, Stripe checkout opens in browser",
     "adsPresent": false,
     "inAppPurchases": true,
-    "dataCollected": ["calculator inputs stored locally only; pro report via Stripe checkout"]
+    "dataCollected": [
+      "calculator inputs stored locally only; pro report via Stripe checkout"
+    ]
   },
-  "keywords": ["meeting", "cost", "calculator", "team", "productivity", "salary", "hourly", "share", "meetingcost", "business"]
+  "keywords": [
+    "meeting",
+    "cost",
+    "calculator",
+    "team",
+    "productivity",
+    "salary",
+    "hourly",
+    "share",
+    "meetingcost",
+    "business"
+  ]
 }

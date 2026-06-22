@@ -16,7 +16,20 @@
     "googleQuestionnaire": "Everyone — lease review utility, Stripe checkout opens in browser",
     "adsPresent": false,
     "inAppPurchases": true,
-    "dataCollected": ["lease text analyzed on server; license code after purchase; no account required"]
+    "dataCollected": [
+      "lease text analyzed on server; license code after purchase; no account required"
+    ]
   },
-  "keywords": ["lease", "rental", "tenant", "landlord", "red flags", "analyzer", "apartment", "contract", "leaselens", "review"]
+  "keywords": [
+    "lease",
+    "rental",
+    "tenant",
+    "landlord",
+    "red flags",
+    "analyzer",
+    "apartment",
+    "contract",
+    "leaselens",
+    "review"
+  ]
 }

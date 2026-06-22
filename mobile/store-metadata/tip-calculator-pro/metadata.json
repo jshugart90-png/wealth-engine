@@ -15,8 +15,21 @@
     "ageRating": "4+",
     "googleQuestionnaire": "Everyone — tip calculator utility, no network required for core features",
     "adsPresent": false,
-    "inAppPurchases": false,
-    "dataCollected": ["last calculation summary stored locally only"]
+    "inAppPurchases": true,
+    "dataCollected": [
+      "last calculation summary stored locally only"
+    ]
   },
-  "keywords": ["tip", "calculator", "gratuity", "split", "bill", "restaurant", "dining", "tipcalculatorpro", "split bill", "per person"]
+  "keywords": [
+    "tip",
+    "calculator",
+    "gratuity",
+    "split",
+    "bill",
+    "restaurant",
+    "dining",
+    "tipcalculatorpro",
+    "split bill",
+    "per person"
+  ]
 }

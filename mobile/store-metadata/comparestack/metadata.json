@@ -15,8 +15,21 @@
     "ageRating": "4+",
     "googleQuestionnaire": "Everyone — comparison reference app, affiliate links open in browser",
     "adsPresent": false,
-    "inAppPurchases": false,
-    "dataCollected": ["last page viewed stored locally only"]
+    "inAppPurchases": true,
+    "dataCollected": [
+      "last page viewed stored locally only"
+    ]
   },
-  "keywords": ["compare", "saas", "tools", "freelancer", "uptime", "invoice", "monitoring", "review", "comparestack", "alternatives"]
+  "keywords": [
+    "compare",
+    "saas",
+    "tools",
+    "freelancer",
+    "uptime",
+    "invoice",
+    "monitoring",
+    "review",
+    "comparestack",
+    "alternatives"
+  ]
 }

@@ -253,6 +253,28 @@ if (existsSync(privacyMeta)) {
   else fail(15, "Support URL configured", "Add supportUrl to metadata.json");
 }
 
+// 16. IAP products defined
+const iapConfigPath = join(root, "config", "mobile-iap-products.json");
+if (existsSync(iapConfigPath)) {
+  const iapConfig = JSON.parse(readFileSync(iapConfigPath, "utf8"));
+  const appIap = iapConfig.apps?.[app];
+  if (appIap?.products?.length) {
+    pass(16, "IAP products configured", `${appIap.products.length} products`);
+    const invalid = appIap.products.filter((p) => !p.storeKitId?.startsWith(appIap.bundleId + "."));
+    if (!invalid.length) pass("16b", "IAP StoreKit IDs valid");
+    else fail("16b", "IAP StoreKit IDs valid", invalid.map((p) => p.key).join(", "));
+  } else {
+    fail(16, "IAP products configured", `Missing products for ${app} in mobile-iap-products.json`);
+  }
+} else {
+  fail(16, "IAP products configured", "Run npm run mobile:iap:generate");
+}
+
+// 17. StoreKit template present
+const storeKitPath = join(mobileRoot, "storekit", "Products.storekit");
+if (existsSync(storeKitPath)) pass(17, "StoreKit config template");
+else warn(17, "StoreKit config template", "Run npm run mobile:storekit:generate");
+
 const passed = checks.filter((c) => c.status === "PASS").length;
 const failed = checks.filter((c) => c.status === "FAIL").length;
 const warned = checks.filter((c) => c.status === "WARN").length;
