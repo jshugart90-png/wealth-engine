@@ -841,9 +841,37 @@ npx cap sync ios && npx cap open ios
 # Or: bundle exec fastlane ios beta_hookrelay_dlq_pro
 ```
 
+## App 33 — Late Fee Calculator Pro
+
+| Field | Value |
+|-------|-------|
+| Version | 1.0.0 |
+| Type | Utility — overdue invoice penalty calculator |
+| Capacitor | `mobile/late-fee-calculator-pro/` → loads `/late-fee-calculator-pro/` from prod |
+| Store metadata | `mobile/store-metadata/late-fee-calculator-pro/` |
+| Preflight | `npm run mobile:preflight:late-fee-calculator-pro` |
+
+### Features (shipped this session)
+
+1. **Prorated late fee** — monthly % with daily rate breakdown
+2. **Grace period** — days before fees accrue
+3. **Flat fee add-on** — optional one-time penalty
+4. **Compound toggle** — simple vs compound monthly calculation
+5. **Last calculation** — localStorage `latefeepro_last` with launcher display
+6. **IAP wired** — pro_unlock via build-all.mjs VENTURE_TO_MOBILE injection
+
+### TestFlight upload (user Mac)
+
+```bash
+npm run build && cd mobile && node sync-www.mjs late-fee-calculator-pro
+cd late-fee-calculator-pro && npm install && npx cap add ios  # if missing
+npx cap sync ios && npx cap open ios
+# Or: bundle exec fastlane ios beta_late_fee_calculator_pro
+```
+
 ## Master checklist
 
-See `mobile/TESTFLIGHT_ALL_APPS.md` for all 32 apps — bundle IDs, Fastlane lanes, versions.
+See `mobile/TESTFLIGHT_ALL_APPS.md` for all 33 apps — bundle IDs, Fastlane lanes, versions.
 
 ## GitHub policy
 

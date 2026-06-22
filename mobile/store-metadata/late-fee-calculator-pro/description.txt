@@ -1,0 +1,14 @@
+Late Fee Calculator Pro helps freelancers and small business owners calculate invoice late fees instantly — monthly rate, daily interest, flat penalties, or compound overdue charges.
+
+Enter invoice amount, days late, and your fee terms to see the penalty, total due, effective daily rate, and projected fees at 60 days. Health indicators flag when it's time to follow up or escalate collection.
+
+Features:
+• Monthly %, daily %, flat fee, and compound modes
+• Total due with late fee breakdown
+• Effective daily rate and fee % of invoice
+• 60-day projection for escalation planning
+• Invoice amount and days-late presets
+• Last calculation saved locally on your device
+• Works offline — no account required
+
+Perfect for freelancers, agencies, and anyone chasing Net-30 invoices without spreadsheet headaches.

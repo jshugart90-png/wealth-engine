@@ -216,6 +216,11 @@ platform :ios do
     mini_app_ios_beta("break-even-calculator-pro", "Break-Even Calculator Pro")
   end
 
+  desc "TestFlight upload for Late Fee Calculator Pro utility app"
+  lane :beta_late_fee_calculator_pro do
+    mini_app_ios_beta("late-fee-calculator-pro", "Late Fee Calculator Pro")
+  end
+
   desc "TestFlight upload for Freelancer Revenue Stack hub app"
   lane :beta_freelancer_stack do
     mini_app_ios_beta("freelancer-stack", "Freelancer Revenue Stack")

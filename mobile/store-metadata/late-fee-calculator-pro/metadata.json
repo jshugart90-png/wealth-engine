@@ -1,0 +1,37 @@
+{
+  "appName": "Late Fee Calculator Pro",
+  "subtitle": "Invoice late fees & totals",
+  "bundleId": "com.wealthengine.latefeecalculatorpro",
+  "version": "1.0.0",
+  "privacyPolicyUrl": "https://wealth-engine-0qlj.onrender.com/privacy.html",
+  "supportUrl": "https://wealth-engine-0qlj.onrender.com/",
+  "marketingUrl": "https://wealth-engine-0qlj.onrender.com/late-fee-calculator-pro/",
+  "category": {
+    "apple": "Finance",
+    "appleSub": "Utilities",
+    "google": "FINANCE"
+  },
+  "contentRating": {
+    "ageRating": "4+",
+    "googleQuestionnaire": "Everyone — late fee calculator, no network required for core features",
+    "adsPresent": false,
+    "inAppPurchases": true,
+    "dataCollected": [
+      "calculation history stored locally only"
+    ]
+  },
+  "keywords": [
+    "late",
+    "fee",
+    "calculator",
+    "invoice",
+    "overdue",
+    "penalty",
+    "interest",
+    "freelance",
+    "collections",
+    "accounts",
+    "receivable",
+    "latefeecalculatorpro"
+  ]
+}

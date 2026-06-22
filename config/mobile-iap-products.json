@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-06-22T22:08:34.913Z",
+  "generatedAt": "2026-06-22T22:15:16.062Z",
   "revenueCat": {
     "plugin": "@revenuecat/purchases-capacitor",
     "note": "Configure API key in App Store Connect + RevenueCat dashboard after IAP products are live"
@@ -346,6 +346,23 @@
           "price": 0.99,
           "title": "Tip Jar",
           "description": "Support the developer",
+          "stripeSku": null
+        }
+      ]
+    },
+    "late-fee-calculator-pro": {
+      "appName": "Late Fee Calculator Pro",
+      "bundleId": "com.wealthengine.latefeecalculatorpro",
+      "type": "utility",
+      "version": "1.0.0",
+      "products": [
+        {
+          "key": "pro_unlock",
+          "storeKitId": "com.wealthengine.latefeecalculatorpro.pro_unlock",
+          "type": "non_consumable",
+          "price": 4.99,
+          "title": "Pro Unlock",
+          "description": "Unlock Pro features (matches Stripe tier where applicable)",
           "stripeSku": null
         }
       ]

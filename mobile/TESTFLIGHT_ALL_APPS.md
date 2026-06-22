@@ -1,4 +1,4 @@
-# TestFlight Master Checklist — All 32 Apps
+# TestFlight Master Checklist — All 33 Apps
 
 **Updated:** 2026-06-22  
 **Repo:** github.com/jshugart90-png/wealth-engine  
@@ -41,8 +41,9 @@
 | 30 | Freelancer Revenue Stack | `com.wealthengine.freelancerstack` | 1.0.0 | 1 | `beta_freelancer_stack` | `mobile:preflight:freelancer-stack` | READY |
 | 31 | DevWatch | `com.wealthengine.devwatch` | 1.0.0 | 1 | `beta_devwatch` | `mobile:preflight:devwatch` | READY |
 | 32 | HookRelay DLQ Pro | `com.wealthengine.hookrelaydlqpro` | 1.0.0 | 1 | `beta_hookrelay_dlq_pro` | `mobile:preflight:hookrelay-dlq` | READY |
+| 33 | Late Fee Calculator Pro | `com.wealthengine.latefeecalculatorpro` | 1.0.0 | 1 | `beta_late_fee_calculator_pro` | `mobile:preflight:late-fee-calculator-pro` | READY |
 
-**IAP totals:** 56 products (12 games × 3 + Games Hub × 3 + 20 utilities × 1) · Catalog: `config/mobile-iap-products.json` · Setup: `mobile/APP_STORE_CONNECT_IAP_SETUP.md`
+**IAP totals:** 57 products (12 games × 3 + Games Hub × 3 + 21 utilities × 1) · Catalog: `config/mobile-iap-products.json` · Setup: `mobile/APP_STORE_CONNECT_IAP_SETUP.md`
 
 **Validation:** `npm run mobile:ios-checklist` (all apps) · `npm run mobile:storekit:generate` (Xcode local testing)
 

@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Late Fee Calculator Pro — Invoice penalties &amp; totals</title>
+  <meta name="description" content="Calculate invoice late fees by day, monthly rate, or flat penalty. Free for freelancers and small business — no ads.">
+  <meta name="theme-color" content="#7f1d1d">
+  <style>
+    :root {
+      --bg: #450a0a;
+      --card: #7f1d1d;
+      --border: #b91c1c;
+      --text: #fef2f2;
+      --muted: #fca5a5;
+      --accent: #fbbf24;
+      --accent-dim: #f59e0b;
+      --success: #34d399;
+      --danger: #f87171;
+      --warn: #fb923c;
+    }
+    * { box-sizing: border-box; }
+    body {
+      font-family: system-ui, -apple-system, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      margin: 0;
+      min-height: 100vh;
+      padding: max(16px, env(safe-area-inset-top)) 16px max(32px, env(safe-area-inset-bottom));
+    }
+    .wrap { max-width: 420px; margin: 0 auto; }
+    h1 { font-size: 1.5rem; margin: 8px 0 4px; font-weight: 700; }
+    .tagline { color: var(--muted); font-size: 0.9rem; margin-bottom: 20px; }
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 20px;
+      margin-bottom: 16px;
+    }
+    label {
+      display: block;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--muted);
+      margin-bottom: 6px;
+    }
+    input[type="number"], input[type="date"], select {
+      width: 100%;
+      font-size: 1.25rem;
+      font-weight: 600;
+      padding: 12px 14px;
+      border: 2px solid var(--border);
+      border-radius: 12px;
+      background: var(--bg);
+      color: var(--text);
+      -webkit-appearance: none;
+      appearance: none;
+    }
+    input:focus, select:focus {
+      outline: none;
+      border-color: var(--accent);
+    }
+    .field { margin-bottom: 16px; }
+    .field:last-child { margin-bottom: 0; }
+    .preset-row {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 8px;
+      margin: 12px 0 4px;
+    }
+    .preset-btn {
+      padding: 10px 4px;
+      border: 2px solid var(--border);
+      border-radius: 10px;
+      background: var(--bg);
+      color: var(--text);
+      font-size: 0.8rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: 0.15s;
+    }
+    .preset-btn.active {
+      border-color: var(--accent);
+      background: rgba(251, 191, 36, 0.15);
+      color: var(--accent);
+    }
+    .hint { font-size: 0.75rem; color: var(--muted); margin-top: 4px; }
+    .mode-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+    }
+    .mode-btn {
+      padding: 12px;
+      border: 2px solid var(--border);
+      border-radius: 10px;
+      background: var(--bg);
+      color: var(--text);
+      font-size: 0.85rem;
+      font-weight: 600;
+      cursor: pointer;
+      text-align: center;
+    }
+    .mode-btn.active {
+      border-color: var(--accent);
+      background: rgba(251, 191, 36, 0.12);
+      color: var(--accent);
+    }
+    .result-card { text-align: center; padding: 24px 16px; }
+    .result-main {
+      font-size: 2.5rem;
+      font-weight: 800;
+      color: var(--accent);
+      line-height: 1.1;
+      margin-bottom: 4px;
+    }
+    .result-sub {
+      font-size: 1.05rem;
+      color: var(--muted);
+      margin-bottom: 16px;
+    }
+    .result-sub strong { color: var(--text); }
+    .health {
+      display: inline-block;
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      padding: 6px 12px;
+      border-radius: 8px;
+      margin-bottom: 16px;
+    }
+    .health.ok { background: rgba(52, 211, 153, 0.15); color: var(--success); }
+    .health.warn { background: rgba(251, 146, 60, 0.15); color: var(--warn); }
+    .health.late { background: rgba(248, 113, 113, 0.15); color: var(--danger); }
+    .breakdown {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-top: 8px;
+    }
+    .breakdown-item {
+      background: var(--bg);
+      border-radius: 10px;
+      padding: 12px;
+      text-align: center;
+    }
+    .breakdown-item .val { font-size: 1.15rem; font-weight: 700; color: var(--accent); }
+    .breakdown-item .val.danger { color: var(--danger); }
+    .breakdown-item .lbl { font-size: 0.7rem; color: var(--muted); text-transform: uppercase; margin-top: 4px; }
+    .timeline {
+      margin-top: 16px;
+      text-align: left;
+      font-size: 0.85rem;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+    .timeline strong { color: var(--text); }
+    .actions {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-top: 16px;
+    }
+    .btn {
+      padding: 14px;
+      border: none;
+      border-radius: 12px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      cursor: pointer;
+    }
+    .btn-primary { background: var(--accent-dim); color: #451a03; }
+    .btn-secondary { background: var(--card); color: var(--text); border: 2px solid var(--border); }
+    .btn:active { opacity: 0.85; }
+    .toast {
+      position: fixed;
+      bottom: 24px;
+      left: 50%;
+      transform: translateX(-50%) translateY(80px);
+      background: var(--success);
+      color: #064e3b;
+      padding: 12px 20px;
+      border-radius: 10px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      transition: transform 0.25s;
+      z-index: 100;
+    }
+    .toast.show { transform: translateX(-50%) translateY(0); }
+    .disclaimer {
+      font-size: 0.7rem;
+      color: var(--muted);
+      text-align: center;
+      margin-top: 12px;
+      line-height: 1.4;
+    }
+    body.we-iap-premium .pro-only { display: block; }
+    .pro-only { display: none; }
+  </style>
+<meta name="google-site-verification" content="X8W5bw-fSJ0pTZiA0LesNi2vZ_-bUdLqVokR5uJZlI4" />
+<script>(function(){try{var r=localStorage.getItem('we_ref')||new URLSearchParams(location.search).get('ref');fetch('/api/funnel/visit',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({path:"/late-fee-calculator-pro",refCode:r,source:new URLSearchParams(location.search).get('utm_source')||'direct'})}).catch(function(){})}catch(e){}})();</script></head>
+<body>
+  <div class="wrap">
+    <h1>Late Fee Calculator Pro</h1>
+    <p class="tagline">Invoice penalties, daily interest &amp; total due</p>
+
+    <div class="card">
+      <div class="field">
+        <label for="invoice">Invoice amount ($)</label>
+        <input type="number" id="invoice" value="2500" step="0.01" min="0" inputmode="decimal">
+        <div class="preset-row" id="inv-presets">
+          <button type="button" class="preset-btn" data-val="500">$500</button>
+          <button type="button" class="preset-btn" data-val="1500">$1.5k</button>
+          <button type="button" class="preset-btn active" data-val="2500">$2.5k</button>
+          <button type="button" class="preset-btn" data-val="10000">$10k</button>
+        </div>
+      </div>
+
+      <div class="field">
+        <label for="days">Days late</label>
+        <input type="number" id="days" value="30" min="0" step="1" inputmode="numeric">
+        <div class="preset-row" id="days-presets">
+          <button type="button" class="preset-btn" data-val="7">7d</button>
+          <button type="button" class="preset-btn" data-val="15">15d</button>
+          <button type="button" class="preset-btn active" data-val="30">30d</button>
+          <button type="button" class="preset-btn" data-val="60">60d</button>
+        </div>
+      </div>
+
+      <div class="field">
+        <label>Fee method</label>
+        <div class="mode-row" id="mode-row">
+          <button type="button" class="mode-btn active" data-mode="monthly">Monthly %</button>
+          <button type="button" class="mode-btn" data-mode="daily">Daily %</button>
+          <button type="button" class="mode-btn" data-mode="flat">Flat fee</button>
+          <button type="button" class="mode-btn" data-mode="compound">Compound</button>
+        </div>
+      </div>
+
+      <div class="field" id="rate-field">
+        <label for="rate" id="rate-label">Monthly late fee (%)</label>
+        <input type="number" id="rate" value="1.5" step="0.01" min="0" inputmode="decimal">
+        <p class="hint" id="rate-hint">Common: 1–2% per month on overdue balance</p>
+      </div>
+
+      <div class="field pro-only" id="flat-field" style="display:none">
+        <label for="flat">Flat penalty ($)</label>
+        <input type="number" id="flat" value="50" step="0.01" min="0" inputmode="decimal">
+      </div>
+    </div>
+
+    <div class="card result-card">
+      <div class="result-main" id="late-fee">$37.50</div>
+      <div class="result-sub" id="summary">Late fee on <strong>$2,500</strong> after <strong>30 days</strong></div>
+      <div class="health warn" id="health">Moderate overdue — follow up now</div>
+
+      <div class="breakdown">
+        <div class="breakdown-item">
+          <div class="val" id="total-due">$2,537.50</div>
+          <div class="lbl">Total due</div>
+        </div>
+        <div class="breakdown-item">
+          <div class="val danger" id="daily-rate">$1.25/day</div>
+          <div class="lbl">Effective daily</div>
+        </div>
+        <div class="breakdown-item">
+          <div class="val" id="pct-of-inv">1.5%</div>
+          <div class="lbl">Fee % of invoice</div>
+        </div>
+        <div class="breakdown-item">
+          <div class="val" id="at-60">$75.00</div>
+          <div class="lbl">Fee at 60 days</div>
+        </div>
+      </div>
+
+      <div class="timeline" id="timeline">
+        <strong>30 days late</strong> on a $2,500 invoice at 1.5%/month → $37.50 penalty
+      </div>
+
+      <div class="actions">
+        <button type="button" class="btn btn-secondary" id="reset">Reset</button>
+        <button type="button" class="btn btn-primary" id="share">Share result</button>
+      </div>
+      <p class="disclaimer">Estimates only — confirm late-fee terms in your contract and state law.</p>
+    </div>
+  </div>
+
+  <div class="toast" id="toast" role="status"></div>
+
+  <script>
+    (function () {
+      var invoiceEl = document.getElementById("invoice");
+      var daysEl = document.getElementById("days");
+      var rateEl = document.getElementById("rate");
+      var flatEl = document.getElementById("flat");
+      var mode = "monthly";
+      var lateFeeEl = document.getElementById("late-fee");
+      var summaryEl = document.getElementById("summary");
+      var healthEl = document.getElementById("health");
+      var totalDueEl = document.getElementById("total-due");
+      var dailyRateEl = document.getElementById("daily-rate");
+      var pctOfInvEl = document.getElementById("pct-of-inv");
+      var at60El = document.getElementById("at-60");
+      var timelineEl = document.getElementById("timeline");
+      var rateLabel = document.getElementById("rate-label");
+      var rateHint = document.getElementById("rate-hint");
+      var rateField = document.getElementById("rate-field");
+      var flatField = document.getElementById("flat-field");
+      var toastEl = document.getElementById("toast");
+      var STORAGE_KEY = "latefeepro_last";
+
+      function fmt(n) {
+        return "$" + n.toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+      }
+
+      function showToast(msg) {
+        toastEl.textContent = msg;
+        toastEl.classList.add("show");
+        setTimeout(function () { toastEl.classList.remove("show"); }, 2000);
+      }
+
+      function setActivePreset(container, val) {
+        document.querySelectorAll("#" + container + " .preset-btn").forEach(function (btn) {
+          btn.classList.toggle("active", +btn.dataset.val === val);
+        });
+      }
+
+      function calcFee(inv, days, rate, flatAmt, m) {
+        if (m === "flat") return Math.max(0, flatAmt);
+        if (m === "daily") return inv * (rate / 100) * days;
+        if (m === "compound") {
+          var months = days / 30;
+          return inv * (Math.pow(1 + rate / 100, months) - 1);
+        }
+        return inv * (rate / 100) * (days / 30);
+      }
+
+      function healthInfo(days, feePct) {
+        if (days <= 0) return { cls: "ok", label: "On time — no late fee" };
+        if (days <= 14) return { cls: "warn", label: "Recently overdue — send reminder" };
+        if (days <= 45) return { cls: "warn", label: "Moderate overdue — follow up now" };
+        if (feePct > 10) return { cls: "late", label: "Seriously overdue — escalate collection" };
+        return { cls: "late", label: "Seriously overdue — escalate collection" };
+      }
+
+      function updateModeUI() {
+        document.querySelectorAll("#mode-row .mode-btn").forEach(function (btn) {
+          btn.classList.toggle("active", btn.dataset.mode === mode);
+        });
+        var isFlat = mode === "flat";
+        rateField.style.display = isFlat ? "none" : "block";
+        flatField.style.display = isFlat ? "block" : "none";
+        if (mode === "daily") {
+          rateLabel.textContent = "Daily late fee (%)";
+          rateHint.textContent = "Per-day rate on principal (e.g. 0.05% daily)";
+        } else if (mode === "compound") {
+          rateLabel.textContent = "Monthly compound rate (%)";
+          rateHint.textContent = "Interest compounds monthly on overdue balance";
+        } else if (mode === "monthly") {
+          rateLabel.textContent = "Monthly late fee (%)";
+          rateHint.textContent = "Common: 1–2% per month on overdue balance";
+        }
+      }
+
+      function calc() {
+        var inv = Math.max(0, +invoiceEl.value || 0);
+        var days = Math.max(0, +daysEl.value || 0);
+        var rate = Math.max(0, +rateEl.value || 0);
+        var flatAmt = Math.max(0, +flatEl.value || 0);
+        var late = calcFee(inv, days, rate, flatAmt, mode);
+        var total = inv + late;
+        var feePct = inv > 0 ? (late / inv) * 100 : 0;
+        var daily = days > 0 ? late / days : 0;
+        var at60 = calcFee(inv, 60, rate, flatAmt, mode);
+
+        lateFeeEl.textContent = fmt(late);
+        summaryEl.innerHTML = "Late fee on <strong>" + fmt(inv) + "</strong> after <strong>" + days + " days</strong>";
+        var health = healthInfo(days, feePct);
+        healthEl.className = "health " + health.cls;
+        healthEl.textContent = health.label;
+        totalDueEl.textContent = fmt(total);
+        dailyRateEl.textContent = days > 0 ? fmt(daily) + "/day" : "—";
+        pctOfInvEl.textContent = feePct.toFixed(1) + "%";
+        at60El.textContent = fmt(at60);
+
+        var modeLabel = { monthly: "monthly", daily: "daily", flat: "flat", compound: "compound monthly" }[mode];
+        timelineEl.innerHTML = "<strong>" + days + " days late</strong> on a " + fmt(inv) + " invoice (" + modeLabel + ") → " + fmt(late) + " penalty · <strong>" + fmt(total) + " total</strong>";
+
+        var summary = days + "d late on " + fmt(inv) + " → " + fmt(late) + " fee";
+        try { localStorage.setItem(STORAGE_KEY, summary); } catch (e) {}
+      }
+
+      document.querySelectorAll("#inv-presets .preset-btn").forEach(function (btn) {
+        btn.addEventListener("click", function () {
+          invoiceEl.value = btn.dataset.val;
+          setActivePreset("inv-presets", +btn.dataset.val);
+          calc();
+        });
+      });
+
+      document.querySelectorAll("#days-presets .preset-btn").forEach(function (btn) {
+        btn.addEventListener("click", function () {
+          daysEl.value = btn.dataset.val;
+          setActivePreset("days-presets", +btn.dataset.val);
+          calc();
+        });
+      });
+
+      document.querySelectorAll("#mode-row .mode-btn").forEach(function (btn) {
+        btn.addEventListener("click", function () {
+          mode = btn.dataset.mode;
+          updateModeUI();
+          calc();
+        });
+      });
+
+      [invoiceEl, daysEl, rateEl, flatEl].forEach(function (el) {
+        el.addEventListener("input", calc);
+      });
+
+      document.getElementById("reset").addEventListener("click", function () {
+        invoiceEl.value = "2500";
+        daysEl.value = "30";
+        rateEl.value = "1.5";
+        flatEl.value = "50";
+        mode = "monthly";
+        setActivePreset("inv-presets", 2500);
+        setActivePreset("days-presets", 30);
+        updateModeUI();
+        calc();
+        showToast("Reset to defaults");
+      });
+
+      document.getElementById("share").addEventListener("click", function () {
+        var inv = Math.max(0, +invoiceEl.value || 0);
+        var days = Math.max(0, +daysEl.value || 0);
+        var late = calcFee(inv, days, +rateEl.value || 0, +flatEl.value || 0, mode);
+        var text = "Late fee: " + fmt(late) + " on " + fmt(inv) + " invoice (" + days + " days late) — Late Fee Calculator Pro";
+        if (navigator.share) {
+          navigator.share({ title: "Late Fee Calculator Pro", text: text }).catch(function () {});
+        } else if (navigator.clipboard) {
+          navigator.clipboard.writeText(text).then(function () { showToast("Copied to clipboard"); });
+        } else {
+          showToast(text);
+        }
+      });
+
+      updateModeUI();
+      calc();
+    })();
+  </script>
+<script></script></body>
+</html>

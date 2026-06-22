@@ -274,6 +274,7 @@ export const VENTURE_TO_MOBILE = {
   "quarterly-tax-deadline-pro": "quarterly-tax-deadline-pro",
   "profit-margin-calculator-pro": "profit-margin-calculator-pro",
   "break-even-calculator-pro": "break-even-calculator-pro",
+  "late-fee-calculator-pro": "late-fee-calculator-pro",
 };
 
 export function generateStoreKitConfig() {

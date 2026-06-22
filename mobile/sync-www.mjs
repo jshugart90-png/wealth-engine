@@ -1,6 +1,6 @@
 /**
  * Sync dist/ assets into Capacitor www folders.
- * Usage: node sync-www.mjs [games|tools|freelancer-stack|devwatch|hookrelay-dlq|receipt-rush|webhook-whack|invoice-stack|horseshoe-toss|uptime-defender|freelancer-memory|color-switch-snake|word-scramble-biz|net-30-ninja|ssl-shield|nda-speed-sign|billsnap|statusping-lite|leaselens|ndagen|hookrelay|pipekit|meetingcost|templateforge|comparestack|tip-calculator-pro|hourly-rate-calculator-pro|freelancer-tax-estimator|1099-threshold-tracker-pro|quarterly-tax-deadline-pro|profit-margin-calculator-pro|break-even-calculator-pro|all]
+ * Usage: node sync-www.mjs [games|tools|freelancer-stack|devwatch|hookrelay-dlq|receipt-rush|webhook-whack|invoice-stack|horseshoe-toss|uptime-defender|freelancer-memory|color-switch-snake|word-scramble-biz|net-30-ninja|ssl-shield|nda-speed-sign|billsnap|statusping-lite|leaselens|ndagen|hookrelay|pipekit|meetingcost|templateforge|comparestack|tip-calculator-pro|hourly-rate-calculator-pro|freelancer-tax-estimator|1099-threshold-tracker-pro|quarterly-tax-deadline-pro|profit-margin-calculator-pro|break-even-calculator-pro|late-fee-calculator-pro|all]
  */
 import { cpSync, existsSync, mkdirSync, readFileSync, writeFileSync, readdirSync } from "fs";
 import { join, dirname } from "path";
@@ -1181,6 +1181,32 @@ const UTILITY_SHELLS = {
       "Profit scenarios at 150, 200, 250 units",
     ],
   },
+  "late-fee-calculator-pro": {
+    title: "Late Fee Calculator Pro",
+    emoji: "⏰",
+    tagline: "Overdue invoice penalties with grace period & flat fees",
+    themeColor: "#450a0a",
+    bg: "#450a0a",
+    text: "#fef2f2",
+    sub: "#fca5a5",
+    accent: "#fbbf24",
+    btnBg: "#f59e0b",
+    btnHover: "#d97706",
+    statBg: "#7f1d1d",
+    statBorder: "#991b1b",
+    statKey: "latefeepro_last",
+    statLabel: "Last calculation",
+    statEmpty: "—",
+    cta: "Calculate Late Fee",
+    moreLink: "https://wealth-engine-0qlj.onrender.com/go/invoice.html",
+    moreLabel: "BillSnap Invoices",
+    offlineMsg: "You're offline — open Late Fee Calculator Pro if you've used it before",
+    features: [
+      "Prorated monthly late fee with daily rate",
+      "Grace period and flat fee support",
+      "Simple or compound monthly calculation",
+    ],
+  },
 };
 
 function syncUtility(slug) {
@@ -1345,6 +1371,7 @@ if (target === "1099-threshold-tracker-pro" || target === "all") syncUtility("10
 if (target === "quarterly-tax-deadline-pro" || target === "all") syncUtility("quarterly-tax-deadline-pro");
 if (target === "profit-margin-calculator-pro" || target === "all") syncUtility("profit-margin-calculator-pro");
 if (target === "break-even-calculator-pro" || target === "all") syncUtility("break-even-calculator-pro");
+if (target === "late-fee-calculator-pro" || target === "all") syncUtility("late-fee-calculator-pro");
 if (target === "receipt-rush" || target === "all") syncMiniGame("receipt-rush");
 if (target === "webhook-whack" || target === "all") syncMiniGame("webhook-whack");
 if (target === "invoice-stack" || target === "all") syncMiniGame("invoice-stack");

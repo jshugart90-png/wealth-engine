@@ -171,6 +171,16 @@
       "deployPath": "dist/break-even-calculator-pro",
       "channels": ["seo", "app-store", "freelancer-forums"],
       "autonomous": ["shareable-summaries", "local-history"]
+    },
+    {
+      "id": "late-fee-calculator-pro",
+      "name": "Late Fee Calculator Pro",
+      "type": "utility",
+      "model": "free",
+      "path": "ventures/late-fee-calculator-pro",
+      "deployPath": "dist/late-fee-calculator-pro",
+      "channels": ["seo", "app-store", "freelancer-forums"],
+      "autonomous": ["shareable-summaries", "local-history"]
     }
   ],
   "stripeProducts": [
