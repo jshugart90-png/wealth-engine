@@ -9,8 +9,9 @@ h1{text-align:center} .sub{text-align:center;color:#666;margin-bottom:32px}
 .card:hover{border-color:#2563eb}.price{color:#2563eb;font-weight:bold;margin-top:12px;display:block}
 </style></head><body>
 <h1>TemplateForge</h1><p class="sub">Business document kits — no subscription, instant delivery</p>
-<div class="grid"><a class="card" href="{{PAY:smb-compliance-pack}}">
-      <h2>SMB Compliance Starter Pack</h2><p>3 print-ready templates</p><span class="price">$19</span></a><a class="card" href="{{PAY:freelancer-kit}}">
-      <h2>Freelancer Business Kit</h2><p>3 print-ready templates</p><span class="price">$14</span></a><a class="card" href="{{PAY:hiring-pack}}">
+<div class="grid"><a class="card" href="{{PAY:smb-compliance-pack}}" data-kit="SMB Compliance Starter Pack">
+      <h2>SMB Compliance Starter Pack</h2><p>3 print-ready templates</p><span class="price">$19</span></a><a class="card" href="{{PAY:freelancer-kit}}" data-kit="Freelancer Business Kit">
+      <h2>Freelancer Business Kit</h2><p>3 print-ready templates</p><span class="price">$14</span></a><a class="card" href="{{PAY:hiring-pack}}" data-kit="Small Team Hiring Pack">
       <h2>Small Team Hiring Pack</h2><p>3 print-ready templates</p><span class="price">$12</span></a></div>
+<script>document.querySelectorAll('.card[data-kit]').forEach(function(c){c.addEventListener('click',function(){try{localStorage.setItem('templateforge_last_kit',c.getAttribute('data-kit'))}catch(e){}})});</script>
 </body></html>
