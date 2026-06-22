@@ -38,6 +38,7 @@
 | **Profit Margin Calculator Pro** | `com.wealthengine.profitmargincalculatorpro` | **TestFlight prep** | 17 PASS, 0 FAIL | `fd65368` pushed | **READY** (Mac upload) |
 | **Break-Even Calculator Pro** | `com.wealthengine.breakevencalculatorpro` | **TestFlight prep** | 17 PASS, 0 FAIL | `d7fc23d` pushed | **READY** (Mac upload) |
 | **Freelancer Revenue Stack** | `com.wealthengine.freelancerstack` | **TestFlight prep** | 21 PASS, 0 FAIL | `face453` pushed | **READY** (Mac upload) |
+| **DevWatch** | `com.wealthengine.devwatch` | **TestFlight prep** | 21 PASS, 0 FAIL | pending | **READY** (Mac upload) |
 
 ## App 1 — Horseshoe Games Hub
 
@@ -792,7 +793,6 @@ npx cap sync ios && npx cap open ios
 | Field | Value |
 |-------|-------|
 | Version | 1.0.0 |
-| Commit | `bd278f1` |
 | Tools | StatusPing + SSL Expiry Checker + Cron Schedule Helper |
 | Capacitor | `mobile/devwatch/` → loads `/bundles/devwatch.html` from prod |
 | Store metadata | `mobile/store-metadata/devwatch/` |

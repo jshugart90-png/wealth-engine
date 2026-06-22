@@ -57,3 +57,11 @@ Run on a physical device (Android debug APK or iOS TestFlight) after `npm run mo
 - [ ] Bundle card opens local `/bundles/freelancer-stack.html`
 - [ ] Recently used updates after opening a tool
 - [ ] Offline banner after airplane mode (post first load)
+
+## DevWatch (`com.wealthengine.devwatch`)
+
+- [ ] Launcher shows StatusPing, SSL Expiry Checker, Cron Schedule Helper cards
+- [ ] LAUNCH25 promo banner opens `/go/devwatch.html`
+- [ ] Bundle card opens local `/bundles/devwatch.html`
+- [ ] Recently used updates after opening a tool
+- [ ] Offline banner after airplane mode (post first load)

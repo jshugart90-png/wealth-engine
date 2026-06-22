@@ -1179,7 +1179,6 @@ if (target === "games" || target === "all") syncGames();
 if (target === "tools" || target === "all") syncTools();
 if (target === "freelancer-stack" || target === "all") syncFreelancerStack();
 if (target === "devwatch" || target === "all") syncDevWatch();
-if (target === "devwatch" || target === "all") syncDevWatch();
 if (target === "billsnap" || target === "all") syncUtility("billsnap");
 if (target === "statusping-lite" || target === "all") syncUtility("statusping-lite");
 if (target === "leaselens" || target === "all") syncUtility("leaselens");
