@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Horseshoe Toss</title>
+<meta name="description" content="Tap when the power bar is green — ring the stake!">
+<link rel="manifest" href="/manifest.json">
+<meta name="theme-color" content="#1a2f1a">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<link rel="apple-touch-icon" href="/assets/pwa/icon-192.png">
+<style>
+body{font-family:system-ui,sans-serif;background:#1a2f1a;color:#f0f4e8;margin:0;padding:0 20px 40px;min-height:100vh;display:flex;flex-direction:column;align-items:center}
+.offline{display:none;background:#7f1d1d;color:#fecaca;text-align:center;padding:10px 16px;font-size:13px;width:100%}
+.offline.show{display:block}
+h1{margin:32px 0 8px;font-size:1.6rem}
+.sub{color:#a8c4a0;text-align:center;margin-bottom:20px;max-width:320px}
+.best{background:rgba(255,255,255,.06);border:2px solid #3a5a3a;border-radius:12px;padding:16px 28px;margin-bottom:24px;text-align:center}
+.best span{font-size:2rem;font-weight:700;color:#ffd54f}
+.play{display:inline-block;background:#4caf50;color:#fff;text-decoration:none;padding:14px 32px;border-radius:10px;font-weight:700;font-size:1.1rem;margin-bottom:16px}
+.play:hover{background:#388e3c}
+.links{font-size:13px;color:#a8c4a0;margin-top:20px}
+.links a{color:#ffd54f}
+</style></head><body>
+<div id="offline-banner" class="offline" role="status">You're offline — tap Play if you've opened the game before</div>
+<h1>🐴 Horseshoe Toss</h1>
+<p class="sub">Tap when the power bar is green — ring the stake!</p>
+<div class="best">Best score<br><span id="best-score">0</span></div>
+<a class="play" href="horseshoe-toss/index.html">Play Now</a>
+<p class="links"><a href="privacy.html">Privacy</a> · <a href="https://wealth-engine-0qlj.onrender.com/games/">More games</a></p>
+<script>(function(){
+  var KEY='hsBest';
+  var el=document.getElementById('best-score');
+  try{var b=parseInt(localStorage.getItem(KEY)||'0',10);if(el)el.textContent=isNaN(b)?0:b}catch(e){}
+  var banner=document.getElementById('offline-banner');
+  function setOffline(){if(banner)banner.classList.toggle('show',!navigator.onLine)}
+  window.addEventListener('online',setOffline);
+  window.addEventListener('offline',setOffline);
+  setOffline();
+})();</script>
+</body></html>

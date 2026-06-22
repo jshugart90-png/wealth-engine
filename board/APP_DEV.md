@@ -13,7 +13,8 @@
 | **Receipt Rush** | `com.wealthengine.receiptrush` | **TestFlight prep** | 16 PASS, 0 FAIL, 1 WARN | `b730bb9` pushed | **READY** (Mac upload) |
 | **Webhook Whack** | `com.wealthengine.webhookwhack` | **TestFlight prep** | 16 PASS, 0 FAIL, 1 WARN | `9098f67` pushed | **READY** (Mac upload) |
 | **Invoice Stack** | `com.wealthengine.invoicestack` | **TestFlight prep** | 16 PASS, 0 FAIL, 1 WARN | `0ff62cd` pushed | **READY** (Mac upload) |
-| App 6+ | TBD | Queued | — | — | — |
+| **Horseshoe Toss** | `com.wealthengine.horseshoetoss` | **TestFlight prep** | 16 PASS, 0 FAIL, 1 WARN | TBD pushed | **READY** (Mac upload) |
+| App 7+ | TBD | Queued | — | — | — |
 
 ## App 1 — Horseshoe Games Hub
 
@@ -151,7 +152,31 @@ npx cap sync ios && npx cap open ios
 # Or: bundle exec fastlane ios beta_invoice_stack
 ```
 
-## App 6+ queue
+## App 6 — Horseshoe Toss (mini-app)
+
+| Field | Value |
+|-------|-------|
+| Version | 1.0.0 |
+| Game | Horseshoe Toss (single-game Capacitor shell) |
+| Capacitor | `mobile/horseshoe-toss/` → loads `/games/horseshoe-toss/` from prod |
+| Store metadata | `mobile/store-metadata/horseshoe-toss/` |
+| Preflight | `npm run mobile:preflight:horseshoe-toss` |
+
+### Features (shipped this session)
+
+1. **Best score** — localStorage `hsBest` with launcher + in-game HUD
+2. **Offline banner** — same pattern as Games Hub / Receipt Rush
+
+### TestFlight upload (user Mac)
+
+```bash
+npm run build && cd mobile && node sync-www.mjs horseshoe-toss
+cd horseshoe-toss && npm install && npx cap add ios  # if missing
+npx cap sync ios && npx cap open ios
+# Or: bundle exec fastlane ios beta_horseshoe_toss
+```
+
+## App 7+ queue
 
 From `board/GAMES.md` or new simple utilities (calculators, timers) as standalone Capacitor shells.
 

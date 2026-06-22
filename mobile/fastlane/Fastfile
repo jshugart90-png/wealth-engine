@@ -91,6 +91,11 @@ platform :ios do
     mini_app_ios_beta("invoice-stack", "Invoice Stack")
   end
 
+  desc "TestFlight upload for Horseshoe Toss mini-app"
+  lane :beta_horseshoe_toss do
+    mini_app_ios_beta("horseshoe-toss", "Horseshoe Toss")
+  end
+
   desc "TestFlight upload + App Store metadata (does not auto-submit for review)"
   lane :release do
     beta

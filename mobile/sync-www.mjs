@@ -1,6 +1,6 @@
 /**
  * Sync dist/ assets into Capacitor www folders.
- * Usage: node sync-www.mjs [games|tools|receipt-rush|webhook-whack|invoice-stack|all]
+ * Usage: node sync-www.mjs [games|tools|receipt-rush|webhook-whack|invoice-stack|horseshoe-toss|all]
  */
 import { cpSync, existsSync, mkdirSync, readFileSync, writeFileSync, readdirSync } from "fs";
 import { join, dirname } from "path";
@@ -190,6 +190,20 @@ const MINI_GAME_SHELLS = {
     bestBorder: "#334155",
     bestKey: "invoice_stack_best",
   },
+  "horseshoe-toss": {
+    title: "Horseshoe Toss",
+    emoji: "🐴",
+    tagline: "Tap when the power bar is green — ring the stake!",
+    themeColor: "#1a2f1a",
+    bg: "#1a2f1a",
+    text: "#f0f4e8",
+    sub: "#a8c4a0",
+    accent: "#ffd54f",
+    btnBg: "#4caf50",
+    btnHover: "#388e3c",
+    bestBorder: "#3a5a3a",
+    bestKey: "hsBest",
+  },
 };
 
 function syncMiniGame(slug) {
@@ -261,3 +275,4 @@ if (target === "tools" || target === "all") syncTools();
 if (target === "receipt-rush" || target === "all") syncMiniGame("receipt-rush");
 if (target === "webhook-whack" || target === "all") syncMiniGame("webhook-whack");
 if (target === "invoice-stack" || target === "all") syncMiniGame("invoice-stack");
+if (target === "horseshoe-toss" || target === "all") syncMiniGame("horseshoe-toss");

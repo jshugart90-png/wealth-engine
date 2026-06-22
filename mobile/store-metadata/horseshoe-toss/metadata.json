@@ -1,0 +1,22 @@
+{
+  "appName": "Horseshoe Toss",
+  "subtitle": "Ring the stake timing game",
+  "bundleId": "com.wealthengine.horseshoetoss",
+  "version": "1.0.0",
+  "privacyPolicyUrl": "https://wealth-engine-0qlj.onrender.com/privacy.html",
+  "supportUrl": "https://wealth-engine-0qlj.onrender.com/",
+  "marketingUrl": "https://wealth-engine-0qlj.onrender.com/games/horseshoe-toss/",
+  "category": {
+    "apple": "Games",
+    "appleSub": "Casual",
+    "google": "GAME_CASUAL"
+  },
+  "contentRating": {
+    "ageRating": "4+",
+    "googleQuestionnaire": "Everyone — no violence, no user-generated content, optional ads",
+    "adsPresent": true,
+    "inAppPurchases": false,
+    "dataCollected": ["best score stored locally only"]
+  },
+  "keywords": ["horseshoe", "toss", "casual", "family", "free", "timing", "arcade", "game", "outdoor"]
+}
