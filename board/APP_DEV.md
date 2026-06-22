@@ -792,6 +792,7 @@ npx cap sync ios && npx cap open ios
 | Field | Value |
 |-------|-------|
 | Version | 1.0.0 |
+| Commit | `bd278f1` |
 | Tools | StatusPing + SSL Expiry Checker + Cron Schedule Helper |
 | Capacitor | `mobile/devwatch/` → loads `/bundles/devwatch.html` from prod |
 | Store metadata | `mobile/store-metadata/devwatch/` |
