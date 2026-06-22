@@ -21,7 +21,7 @@
 | **Net-30 Ninja** | `com.wealthengine.net30ninja` | **TestFlight prep** | 16 PASS, 0 FAIL, 1 WARN | `aea2139` pushed | **READY** (Mac upload) |
 | **SSL Shield** | `com.wealthengine.sslshield` | **TestFlight prep** | 16 PASS, 0 FAIL, 1 WARN | `c09b780` pushed | **READY** (Mac upload) |
 | **NDA Speed Sign** | `com.wealthengine.ndaspeedsign` | **TestFlight prep** | 16 PASS, 0 FAIL, 1 WARN | `94567c8` pushed | **READY** (Mac upload) |
-| **BillSnap** | `com.wealthengine.billsnap` | **TestFlight prep** | 17 PASS, 0 FAIL | TBD | **READY** (Mac upload) |
+| **BillSnap** | `com.wealthengine.billsnap` | **TestFlight prep** | 17 PASS, 0 FAIL | `2f614f4` pushed | **READY** (Mac upload) |
 | App 15+ | TBD | Queued | — | — | — |
 
 ## App 1 — Horseshoe Games Hub
