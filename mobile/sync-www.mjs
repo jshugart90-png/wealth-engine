@@ -241,79 +241,8 @@ h1{margin:32px 0 8px;font-size:1.6rem}
   console.log(`Synced ${slug} → mobile/${slug}/www`);
 }
 
-function syncMiniGame(slug, opts) {
-  const { title, emoji, subtitle, themeColor, bestKey, playLabel } = opts;
-  const www = join(mobileRoot, slug, "www");
-  const gameSrc = join(dist, "games", slug);
-  if (!existsSync(join(gameSrc, "index.html"))) {
-    console.error(`Missing dist/games/${slug} — run npm run build first`);
-    process.exit(1);
-  }
-  mkdirSync(www, { recursive: true });
-  mkdirSync(join(www, slug), { recursive: true });
-  cpSync(join(gameSrc, "index.html"), join(www, slug, "index.html"));
-
-  const indexHtml = `<!DOCTYPE html>
-<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>${title}</title>
-<meta name="description" content="${subtitle}">
-<link rel="manifest" href="/manifest.json">
-<meta name="theme-color" content="${themeColor}">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<link rel="apple-touch-icon" href="/assets/pwa/icon-192.png">
-<style>
-body{font-family:system-ui,sans-serif;background:${themeColor};color:#e0e7ff;margin:0;padding:0 20px 40px;min-height:100vh;display:flex;flex-direction:column;align-items:center}
-.offline{display:none;background:#7f1d1d;color:#fecaca;text-align:center;padding:10px 16px;font-size:13px;width:100%}
-.offline.show{display:block}
-h1{margin:32px 0 8px;font-size:1.6rem}
-.sub{color:#818cf8;text-align:center;margin-bottom:20px;max-width:320px}
-.best{background:#1e1b4b;border:2px solid #312e81;border-radius:12px;padding:16px 28px;margin-bottom:24px;text-align:center}
-.best span{font-size:2rem;font-weight:700;color:#34d399}
-.play{display:inline-block;background:#6366f1;color:#fff;text-decoration:none;padding:14px 32px;border-radius:10px;font-weight:700;font-size:1.1rem;margin-bottom:16px}
-.play:hover{background:#4f46e5}
-.links{font-size:13px;color:#818cf8;margin-top:20px}
-.links a{color:#34d399}
-</style></head><body>
-<div id="offline-banner" class="offline" role="status">You're offline — tap Play if you've opened the game before</div>
-<h1>${emoji} ${title}</h1>
-<p class="sub">${subtitle}</p>
-<div class="best">Best score<br><span id="best-score">0</span></div>
-<a class="play" href="${slug}/index.html">${playLabel}</a>
-<p class="links"><a href="privacy.html">Privacy</a> · <a href="https://wealth-engine-0qlj.onrender.com/games/">More games</a></p>
-<script>(function(){
-  var KEY='${bestKey}';
-  var el=document.getElementById('best-score');
-  try{var b=parseInt(localStorage.getItem(KEY)||'0',10);if(el)el.textContent=isNaN(b)?0:b}catch(e){}
-  var banner=document.getElementById('offline-banner');
-  function setOffline(){if(banner)banner.classList.toggle('show',!navigator.onLine)}
-  window.addEventListener('online',setOffline);
-  window.addEventListener('offline',setOffline);
-  setOffline();
-})();</script>
-</body></html>`;
-
-  writeFileSync(join(www, "index.html"), indexHtml);
-  if (existsSync(join(dist, "privacy.html"))) cpSync(join(dist, "privacy.html"), join(www, "privacy.html"));
-  if (existsSync(join(dist, "manifest.json"))) cpSync(join(dist, "manifest.json"), join(www, "manifest.json"));
-  if (existsSync(join(dist, "sw.js"))) cpSync(join(dist, "sw.js"), join(www, "sw.js"));
-  if (existsSync(join(dist, "assets"))) cpSync(join(dist, "assets"), join(www, "assets"), { recursive: true });
-  console.log(`Synced ${slug} → mobile/${slug}/www`);
-}
-
-function syncWebhookWhack() {
-  syncMiniGame("webhook-whack", {
-    title: "Webhook Whack",
-    emoji: "🔗",
-    subtitle: "Tap failed webhooks — ignore the healthy ones!",
-    themeColor: "#0f0f1a",
-    bestKey: "webhook_whack_best",
-    playLabel: "Whack Now",
-  });
-}
-
 ensureBuild();
 if (target === "games" || target === "all") syncGames();
 if (target === "tools" || target === "all") syncTools();
 if (target === "receipt-rush" || target === "all") syncMiniGame("receipt-rush");
 if (target === "webhook-whack" || target === "all") syncMiniGame("webhook-whack");
-if (target === "webhook-whack" || target === "all") syncWebhookWhack();
