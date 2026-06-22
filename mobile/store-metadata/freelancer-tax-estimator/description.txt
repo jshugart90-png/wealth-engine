@@ -1,0 +1,17 @@
+Freelancer Tax Estimator Pro helps independent contractors estimate 1099 self-employment and income taxes — with quarterly payment breakdowns in seconds.
+
+Built for freelancers, consultants, and side-hustlers who need a clear tax estimate without ads or signup walls.
+
+Features:
+• 1099 income and business expense inputs with quick presets
+• Self-employment tax (15.3%) and income tax estimates
+• Quarterly payment breakdown (Q1–Q4 with due dates)
+• Next quarterly deadline countdown
+• Effective tax rate at a glance
+• Share your estimate via system share sheet
+• Dark native-style UI optimized for one-handed use
+• Works offline after first load
+
+Free forever — no in-app purchases, no ads.
+
+Privacy: All calculations stay on your device. Last result saved locally only. Not tax advice — consult a CPA for your situation.

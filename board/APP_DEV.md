@@ -32,6 +32,7 @@
 | **CompareStack** | `com.wealthengine.comparestack` | **TestFlight prep** | 17 PASS, 0 FAIL | `0dc927a` pushed | **READY** (Mac upload) |
 | **Tip Calculator Pro** | `com.wealthengine.tipcalculatorpro` | **TestFlight prep** | 17 PASS, 0 FAIL | `5cc90ea` pushed | **READY** (Mac upload) |
 | **Hourly Rate Calculator Pro** | `com.wealthengine.hourlyratecalculatorpro` | **TestFlight prep** | 17 PASS, 0 FAIL | `3c9b224` pushed | **READY** (Mac upload) |
+| **Freelancer Tax Estimator Pro** | `com.wealthengine.freelancertaxestimatorpro` | **TestFlight prep** | 17 PASS, 0 FAIL | `2b2805d` pushed | **READY** (Mac upload) |
 
 ## App 1 — Horseshoe Games Hub
 
@@ -630,9 +631,34 @@ npx cap sync ios && npx cap open ios
 # Or: bundle exec fastlane ios beta_hourly_rate_calculator_pro
 ```
 
+## App 25 — Freelancer Tax Estimator Pro (utility)
+
+| Field | Value |
+|-------|-------|
+| Version | 1.0.0 |
+| Tool | Freelancer Tax Estimator Pro — 1099 SE tax, federal/state income tax & quarterly payments (standalone Capacitor shell) |
+| Capacitor | `mobile/freelancer-tax-estimator/` → loads `/freelancer-tax-estimator/` from prod |
+| Store metadata | `mobile/store-metadata/freelancer-tax-estimator/` |
+| Preflight | `npm run mobile:preflight:freelancer-tax-estimator` |
+
+### Features (shipped this session)
+
+1. **Last estimate** — localStorage `freelancertaxpro_last` with launcher + calc save
+2. **Native UI** — gross income presets, deductions, federal/state rates, SE tax & quarterly breakdown
+3. **Offline banner** — native launcher with feature highlights and offline message
+
+### TestFlight upload (user Mac)
+
+```bash
+npm run build && cd mobile && node sync-www.mjs freelancer-tax-estimator
+cd freelancer-tax-estimator && npm install && npx cap add ios  # if missing
+npx cap sync ios && npx cap open ios
+# Or: bundle exec fastlane ios beta_freelancer_tax_estimator_pro
+```
+
 ## Master checklist
 
-See `mobile/TESTFLIGHT_ALL_APPS.md` for all 24 apps — bundle IDs, Fastlane lanes, versions.
+See `mobile/TESTFLIGHT_ALL_APPS.md` for all 25 apps — bundle IDs, Fastlane lanes, versions.
 
 ## GitHub policy
 

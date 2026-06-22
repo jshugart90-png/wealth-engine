@@ -121,6 +121,16 @@
       "deployPath": "dist/hourly-rate-calculator-pro",
       "channels": ["seo", "app-store", "freelancer-forums"],
       "autonomous": ["shareable-summaries", "local-history"]
+    },
+    {
+      "id": "freelancer-tax-estimator",
+      "name": "Freelancer Tax Estimator Pro",
+      "type": "utility",
+      "model": "free",
+      "path": "ventures/freelancer-tax-estimator",
+      "deployPath": "dist/freelancer-tax-estimator",
+      "channels": ["seo", "app-store", "freelancer-forums"],
+      "autonomous": ["shareable-summaries", "local-history"]
     }
   ],
   "stripeProducts": [

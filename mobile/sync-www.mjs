@@ -1,6 +1,6 @@
 /**
  * Sync dist/ assets into Capacitor www folders.
- * Usage: node sync-www.mjs [games|tools|receipt-rush|webhook-whack|invoice-stack|horseshoe-toss|uptime-defender|freelancer-memory|color-switch-snake|word-scramble-biz|net-30-ninja|ssl-shield|nda-speed-sign|billsnap|statusping-lite|leaselens|ndagen|hookrelay|pipekit|meetingcost|templateforge|comparestack|tip-calculator-pro|hourly-rate-calculator-pro|all]
+ * Usage: node sync-www.mjs [games|tools|receipt-rush|webhook-whack|invoice-stack|horseshoe-toss|uptime-defender|freelancer-memory|color-switch-snake|word-scramble-biz|net-30-ninja|ssl-shield|nda-speed-sign|billsnap|statusping-lite|leaselens|ndagen|hookrelay|pipekit|meetingcost|templateforge|comparestack|tip-calculator-pro|hourly-rate-calculator-pro|freelancer-tax-estimator|all]
  */
 import { cpSync, existsSync, mkdirSync, readFileSync, writeFileSync, readdirSync } from "fs";
 import { join, dirname } from "path";
@@ -592,6 +592,32 @@ const UTILITY_SHELLS = {
       "Hourly rate with gross annual breakdown",
     ],
   },
+  "freelancer-tax-estimator": {
+    title: "Freelancer Tax Estimator Pro",
+    emoji: "📊",
+    tagline: "1099 self-employment tax & quarterly payments",
+    themeColor: "#064e3b",
+    bg: "#064e3b",
+    text: "#f0fdf4",
+    sub: "#6ee7b7",
+    accent: "#fbbf24",
+    btnBg: "#f59e0b",
+    btnHover: "#d97706",
+    statBg: "#065f46",
+    statBorder: "#047857",
+    statKey: "freelancertaxpro_last",
+    statLabel: "Last estimate",
+    statEmpty: "—",
+    cta: "Estimate Taxes",
+    moreLink: "https://wealth-engine-0qlj.onrender.com/go/freelancer-stack.html",
+    moreLabel: "Freelancer Stack $49",
+    offlineMsg: "You're offline — open Freelancer Tax Estimator Pro if you've used it before",
+    features: [
+      "Gross income & business deductions",
+      "Self-employment tax (92.35% × 15.3%)",
+      "Federal, state & quarterly payment estimates",
+    ],
+  },
 };
 
 function syncUtility(slug) {
@@ -748,6 +774,7 @@ if (target === "templateforge" || target === "all") syncUtility("templateforge")
 if (target === "comparestack" || target === "all") syncUtility("comparestack");
 if (target === "tip-calculator-pro" || target === "all") syncUtility("tip-calculator-pro");
 if (target === "hourly-rate-calculator-pro" || target === "all") syncUtility("hourly-rate-calculator-pro");
+if (target === "freelancer-tax-estimator" || target === "all") syncUtility("freelancer-tax-estimator");
 if (target === "receipt-rush" || target === "all") syncMiniGame("receipt-rush");
 if (target === "webhook-whack" || target === "all") syncMiniGame("webhook-whack");
 if (target === "invoice-stack" || target === "all") syncMiniGame("invoice-stack");

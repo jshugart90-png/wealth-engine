@@ -191,6 +191,10 @@ platform :ios do
     mini_app_ios_beta("hourly-rate-calculator-pro", "Hourly Rate Calculator Pro")
   end
 
+  lane :beta_freelancer_tax_estimator_pro do
+    mini_app_ios_beta("freelancer-tax-estimator", "Freelancer Tax Estimator Pro")
+  end
+
   desc "TestFlight upload + App Store metadata (does not auto-submit for review)"
   lane :release do
     beta
