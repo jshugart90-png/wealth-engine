@@ -569,27 +569,27 @@ const UTILITY_SHELLS = {
   "hourly-rate-calculator-pro": {
     title: "Hourly Rate Calculator Pro",
     emoji: "💰",
-    tagline: "Freelancer pricing from income goals & overhead",
-    themeColor: "#1c1917",
-    bg: "#1c1917",
-    text: "#fafaf9",
-    sub: "#a8a29e",
+    tagline: "Freelancer hourly rate from income, taxes & expenses",
+    themeColor: "#1e1b4b",
+    bg: "#1e1b4b",
+    text: "#f8fafc",
+    sub: "#a5b4fc",
     accent: "#fbbf24",
-    btnBg: "#d97706",
-    btnHover: "#b45309",
-    statBg: "#292524",
-    statBorder: "#44403c",
+    btnBg: "#f59e0b",
+    btnHover: "#d97706",
+    statBg: "#312e81",
+    statBorder: "#4338ca",
     statKey: "hourlyratepro_last",
     statLabel: "Last rate",
     statEmpty: "—",
     cta: "Calculate Rate",
-    moreLink: "https://wealth-engine-0qlj.onrender.com/go/invoice.html",
-    moreLabel: "Invoice PDF $3",
+    moreLink: "https://wealth-engine-0qlj.onrender.com/go/freelancer-stack.html",
+    moreLabel: "Freelancer Stack $49",
     offlineMsg: "You're offline — open Hourly Rate Calculator Pro if you've used it before",
     features: [
-      "Income → Rate and Rate → Income modes",
-      "Billable hours, vacation weeks, overhead %",
-      "Self-employment tax estimate toggle",
+      "Target take-home income with quick presets",
+      "Billable hours, weeks worked, tax & expense %",
+      "Hourly rate with gross annual breakdown",
     ],
   },
 };
@@ -747,7 +747,6 @@ if (target === "meetingcost" || target === "all") syncUtility("meetingcost");
 if (target === "templateforge" || target === "all") syncUtility("templateforge");
 if (target === "comparestack" || target === "all") syncUtility("comparestack");
 if (target === "tip-calculator-pro" || target === "all") syncUtility("tip-calculator-pro");
-if (target === "hourly-rate-calculator-pro" || target === "all") syncUtility("hourly-rate-calculator-pro");
 if (target === "hourly-rate-calculator-pro" || target === "all") syncUtility("hourly-rate-calculator-pro");
 if (target === "receipt-rush" || target === "all") syncMiniGame("receipt-rush");
 if (target === "webhook-whack" || target === "all") syncMiniGame("webhook-whack");

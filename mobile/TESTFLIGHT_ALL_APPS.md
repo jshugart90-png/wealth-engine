@@ -32,7 +32,7 @@
 | 21 | TemplateForge | `com.wealthengine.templateforge` | 1.0.0 | `beta_templateforge` | `mobile:preflight:templateforge` | READY |
 | 22 | CompareStack | `com.wealthengine.comparestack` | 1.0.0 | `beta_comparestack` | `mobile:preflight:comparestack` | READY |
 | 23 | Tip Calculator Pro | `com.wealthengine.tipcalculatorpro` | 1.0.0 | `beta_tip_calculator_pro` | `mobile:preflight:tip-calculator-pro` | READY |
-| 24 | Hourly Rate Calculator Pro | `com.wealthengine.hourlyratepro` | 1.0.0 | `beta_hourly_rate_calculator_pro` | `mobile:preflight:hourly-rate-calculator-pro` | READY |
+| 24 | Hourly Rate Calculator Pro | `com.wealthengine.hourlyratecalculatorpro` | 1.0.0 | `beta_hourly_rate_calculator_pro` | `mobile:preflight:hourly-rate-calculator-pro` | READY |
 
 ## Per-app upload commands (Mac)
 
