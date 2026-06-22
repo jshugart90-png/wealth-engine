@@ -9,7 +9,7 @@
 | App | Bundle ID | Phase | Tests | GitHub | TestFlight |
 |-----|-----------|-------|-------|--------|------------|
 | **Horseshoe Games Hub** | `com.wealthengine.gameshub` | **TestFlight prep** | 15 PASS, 0 FAIL, 1 WARN | `99180a7` pushed | **READY** (Mac upload) |
-| **Freelancer Tools** | `com.wealthengine.freelancertools` | Queued | — | — | — |
+| **Freelancer Tools** | `com.wealthengine.freelancertools` | **TestFlight prep** | 15 PASS, 0 FAIL | pending | **READY** (Mac upload) |
 | App 3+ | TBD | Queued | — | — | — |
 
 ## App 1 — Horseshoe Games Hub
@@ -50,13 +50,30 @@ See `mobile/DEVICE_TEST_CHECKLIST.md`
 
 **Blocker:** Windows cannot build/upload iOS — Mac + Xcode required (no fee; Apple Dev active).
 
-## App 2 — Freelancer Tools (next)
+## App 2 — Freelancer Tools
 
 | Field | Value |
 |-------|-------|
-| Shell | `mobile/tools/` |
-| Core tools | BillSnap, tip calculator, meeting cost, net-30, hourly rate, 1099 estimator |
-| Status | Scaffold exists — build after Games Hub TestFlight READY |
+| Version | 1.0.0 |
+| Tools | BillSnap + 7 calculators |
+| Capacitor | `mobile/tools/` → loads prod site |
+| Store metadata | `mobile/store-metadata/tools/` |
+| Preflight | `npm run mobile:preflight:tools` |
+
+### Features (shipped this session)
+
+1. **Recently used** — hub tracks last 3 tools
+2. **Expanded grid** — late fee + profit margin calculators added
+3. **Offline banner** — same pattern as Games Hub
+
+### TestFlight upload (user Mac)
+
+```bash
+npm run build && cd mobile && node sync-www.mjs tools
+cd tools && npm install && npx cap add ios  # if missing
+npx cap sync ios && npx cap open ios
+# Or extend Fastlane — see mobile/APP_STORE_MANUAL_STEPS.md
+```
 
 ## App 3+ queue
 

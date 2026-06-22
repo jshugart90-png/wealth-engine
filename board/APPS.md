@@ -20,7 +20,7 @@
 | **Wealth Engine PWA** | — (web) | PWA | **LIVE verified** | [manifest](https://wealth-engine-0qlj.onrender.com/manifest.json) · [sw.js](https://wealth-engine-0qlj.onrender.com/sw.js) · prod **200/200** (2026-06-21) | None |
 | **Games Hub PWA** | — (web) | PWA shortcut | **LIVE verified** | https://wealth-engine-0qlj.onrender.com/games/ · prod **200** (2026-06-21) | None |
 | **Horseshoe Games Hub** | `com.wealthengine.gameshub` | Capacitor → Play/App | **TestFlight READY** v1.0.1 | `mobile/games/` · 9 games · CI AAB artifact | **iOS:** Mac + Fastlane upload · **Play:** $25 |
-| **Freelancer Tools** | `com.wealthengine.freelancertools` | Capacitor → Play/App | **SCaffold** | `mobile/tools/` | Play $25 · iOS TestFlight after games ship |
+| **Freelancer Tools** | `com.wealthengine.freelancertools` | Capacitor → Play/App | **TestFlight READY** v1.0.0 | `mobile/tools/` | **iOS:** Mac upload · **Play:** $25 |
 | **itch.io packs** | — | HTML zip | **PACKAGED** | `D:\wealth-engine-data\mobile\itch\*.zip` | Manual upload (free) |
 
 ## Shipped games (9) — in all channels
