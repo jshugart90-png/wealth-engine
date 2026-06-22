@@ -41,6 +41,7 @@ export const STRIPE_IAP_MAP = {
   devwatch: { pro_unlock: "bundle" },
   "freelancer-stack": { pro_unlock: "bundle" },
   "renter-toolkit": { pro_unlock: "report-bundle" },
+  "1099-suite": { pro_unlock: "1099-suite-pro" },
   tools: { pro_unlock: null },
 };
 

@@ -1,11 +1,12 @@
 /**
  * Sync dist/ assets into Capacitor www folders.
- * Usage: node sync-www.mjs [games|tools|freelancer-stack|devwatch|renter-toolkit|hookrelay-dlq|receipt-rush|webhook-whack|invoice-stack|horseshoe-toss|uptime-defender|freelancer-memory|color-switch-snake|word-scramble-biz|net-30-ninja|ssl-shield|nda-speed-sign|invoice-number-rush|billsnap|statusping-lite|leaselens|ndagen|hookrelay|pipekit|meetingcost|templateforge|comparestack|tip-calculator-pro|hourly-rate-calculator-pro|freelancer-tax-estimator|1099-threshold-tracker-pro|quarterly-tax-deadline-pro|profit-margin-calculator-pro|break-even-calculator-pro|late-fee-calculator-pro|markup-calculator-pro|day-rate-calculator-pro|bill-splitter-pro|percentage-calculator-pro|all]
+ * Usage: node sync-www.mjs [games|tools|freelancer-stack|devwatch|renter-toolkit|hookrelay-dlq|1099-suite|receipt-rush|webhook-whack|invoice-stack|horseshoe-toss|uptime-defender|freelancer-memory|color-switch-snake|word-scramble-biz|net-30-ninja|ssl-shield|nda-speed-sign|invoice-number-rush|billsnap|statusping-lite|leaselens|ndagen|hookrelay|pipekit|meetingcost|templateforge|comparestack|tip-calculator-pro|hourly-rate-calculator-pro|freelancer-tax-estimator|1099-threshold-tracker-pro|quarterly-tax-deadline-pro|profit-margin-calculator-pro|break-even-calculator-pro|late-fee-calculator-pro|markup-calculator-pro|day-rate-calculator-pro|bill-splitter-pro|percentage-calculator-pro|all]
  */
 import { cpSync, existsSync, mkdirSync, readFileSync, writeFileSync, readdirSync } from "fs";
 import { join, dirname } from "path";
 import { fileURLToPath } from "url";
 import { execSync } from "child_process";
+import { deadlinePushInlineScript, contractorCsvExportScript } from "./shared/push.mjs";
 
 const mobileRoot = join(dirname(fileURLToPath(import.meta.url)));
 const repoRoot = join(mobileRoot, "..");
@@ -755,6 +756,195 @@ p{margin:0 0 10px;color:#8b949e;font-size:14px}
   if (existsSync(join(dist, "assets"))) cpSync(join(dist, "assets"), join(www, "assets"), { recursive: true });
 
   console.log("Synced hookrelay-dlq → mobile/hookrelay-dlq/www");
+}
+
+function sync1099Suite() {
+  const www = join(mobileRoot, "1099-suite", "www");
+  mkdirSync(www, { recursive: true });
+
+  const tools = [
+    {
+      href: "go/1099-deadline.html",
+      slug: "landing",
+      title: "1099 Pro Landing",
+      desc: "$19 — track contractors, generate 1099-NEC PDFs",
+      featured: true,
+    },
+    {
+      href: "1099-threshold-tracker-pro/index.html",
+      slug: "threshold",
+      title: "Threshold Tracker",
+      desc: "Flag contractors crossing the $600 NEC threshold",
+    },
+    {
+      href: "quarterly-tax-deadline-pro/index.html",
+      slug: "quarterly",
+      title: "Quarterly Deadlines",
+      desc: "Estimated tax payment calendar & reminders",
+    },
+    {
+      href: "tools/1099-tax-estimator.html",
+      slug: "estimator",
+      title: "1099 Tax Estimator",
+      desc: "Penalty calculator & filing checklist",
+    },
+    {
+      href: "freelancer-tax-estimator/index.html",
+      slug: "freelancer",
+      title: "Freelancer Tax Estimator",
+      desc: "Self-employment tax & quarterly estimates",
+    },
+  ];
+
+  const cards = tools
+    .map(
+      (t) => `
+    <a class="card${t.featured ? " featured" : ""}" href="${t.href}" data-slug="${t.slug}">
+      <h2>${t.title}</h2>
+      <p>${t.desc}</p>
+      <span class="open">Open →</span>
+    </a>`
+    )
+    .join("");
+
+  const titlesJson = JSON.stringify(Object.fromEntries(tools.map((t) => [t.slug, t.title])));
+  const hrefsJson = JSON.stringify(Object.fromEntries(tools.map((t) => [t.slug, t.href])));
+  const pushScript = deadlinePushInlineScript();
+  const csvScript = contractorCsvExportScript();
+
+  const indexHtml = `<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>1099 Deadline Suite</title>
+<meta name="description" content="1099-NEC deadline tracker, contractor threshold alerts, and filing checklists for Jan 31.">
+<link rel="manifest" href="/manifest.json">
+<meta name="theme-color" content="#78350f">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<link rel="apple-touch-icon" href="/assets/pwa/icon-192.png">
+<style>
+body{font-family:system-ui,sans-serif;background:#0f172a;color:#e2e8f0;margin:0;padding:0 20px 40px}
+.promo{background:#d97706;color:#000;text-align:center;padding:10px 16px;font-size:13px;font-weight:700;margin:0 -20px 16px}
+.promo a{color:#000;text-decoration:underline}
+.offline{display:none;background:#7f1d1d;color:#fecaca;text-align:center;padding:10px 16px;font-size:13px}
+.offline.show{display:block}
+h1{text-align:center;margin:28px 0 8px;font-size:1.6rem}
+.sub{text-align:center;max-width:360px;margin:0 auto 20px;color:#94a3b8;line-height:1.5}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:16px;max-width:900px;margin:0 auto}
+.card{display:block;background:#1e293b;border:1px solid #334155;border-radius:12px;padding:20px;color:inherit;text-decoration:none;transition:.2s}
+.card:hover{border-color:#d97706;transform:translateY(-2px)}
+.card.featured{border-color:#d97706;background:linear-gradient(135deg,#1e293b,#78350f)}
+h2{margin:0 0 8px;font-size:18px}
+p{margin:0 0 10px;color:#94a3b8;font-size:14px}
+.open{color:#fbbf24;font-size:13px;font-weight:600}
+.stat{display:block;max-width:900px;margin:0 auto 20px;background:#78350f;border:2px solid #d97706;border-radius:12px;padding:16px 20px;text-align:center}
+.stat span{font-size:1.2rem;font-weight:700;color:#fbbf24}
+.tier{display:block;max-width:900px;margin:24px auto 0;background:#78350f;border:2px solid #d97706;border-radius:12px;padding:20px;text-align:center;color:inherit;text-decoration:none}
+.tier strong{display:block;font-size:18px;margin-bottom:6px;color:#fff}
+.tier span{font-size:14px;color:#fde68a}
+.export{display:block;max-width:900px;margin:16px auto 0;background:#1e293b;border:1px solid #334155;border-radius:12px;padding:14px 20px;text-align:center}
+.export button{background:#d97706;color:#000;border:none;border-radius:8px;padding:10px 16px;font-weight:700;cursor:pointer;font-size:14px}
+.export p{margin:8px 0 0;font-size:12px;color:#64748b}
+.recent{max-width:900px;margin:0 auto 20px}
+.recent h3{font-size:13px;color:#64748b;margin:0 0 10px;text-transform:uppercase;letter-spacing:.05em}
+.recent-row{display:flex;gap:10px;flex-wrap:wrap}
+.recent a{background:#1e293b;border:1px solid #334155;border-radius:8px;padding:8px 12px;font-size:13px;color:#cbd5e1;text-decoration:none}
+.footer{text-align:center;margin-top:32px;font-size:13px;color:#64748b}
+.footer a{color:#fbbf24}
+</style></head><body>
+<div class="promo"><strong>JAN31</strong> — 1099-NEC deadline · <a href="go/1099-deadline.html">Pro Suite $19 →</a></div>
+<div id="offline-banner" class="offline" role="status">You're offline — open tools you've used before</div>
+<h1>📋 1099 Deadline Suite</h1>
+<p class="sub">Track contractor payments, hit Jan 31, and export your filing list</p>
+<div class="stat">Contractors needing 1099<br><span id="contractor-count">—</span></div>
+<div id="recent-section" class="recent" hidden>
+  <h3>Recently used</h3>
+  <div id="recent-row" class="recent-row"></div>
+</div>
+<div class="grid">${cards}</div>
+<div class="export"><button type="button" id="export-contractors">Export contractors CSV</button><p>Opens in Excel · from Threshold Tracker data</p></div>
+<a class="tier" href="go/1099-deadline.html">
+  <strong>Pro Suite — $19</strong>
+  <span>Up to 10 contractor 1099-NEC PDFs · state filing checklists · Jan deadline tracker</span>
+</a>
+<p class="footer"><a href="privacy.html">Privacy</a> · <a href="https://wealth-engine-0qlj.onrender.com/go/1099-deadline.html">View landing online</a></p>
+<script>(function(){
+  var KEY='1099_suite_recent';
+  var STORAGE_KEY='thresholdpro_contractors';
+  var titles=${titlesJson};
+  var hrefs=${hrefsJson};
+  var countEl=document.getElementById('contractor-count');
+  try{
+    var rows=JSON.parse(localStorage.getItem(STORAGE_KEY)||'[]');
+    var need=rows.filter(function(r){return (r.paid||0)>=600}).length;
+    if(countEl)countEl.textContent=rows.length?need+' of '+rows.length:'0 saved';
+  }catch(e){}
+  function trackRecent(slug){
+    try{
+      var list=JSON.parse(localStorage.getItem(KEY)||'[]').filter(function(s){return s!==slug});
+      list.unshift(slug);
+      localStorage.setItem(KEY,JSON.stringify(list.slice(0,5)));
+    }catch(e){}
+  }
+  document.querySelectorAll('.card').forEach(function(card){
+    var slug=card.getAttribute('data-slug');
+    if(slug)card.addEventListener('click',function(){trackRecent(slug)});
+  });
+  function renderRecent(){
+    var row=document.getElementById('recent-row');
+    var section=document.getElementById('recent-section');
+    if(!row||!section)return;
+    var slugs=[];
+    try{slugs=JSON.parse(localStorage.getItem(KEY)||'[]')}catch(e){}
+    slugs=slugs.filter(function(s){return titles[s]&&hrefs[s]}).slice(0,3);
+    if(!slugs.length){section.hidden=true;return;}
+    section.hidden=false;
+    row.innerHTML=slugs.map(function(s){
+      return '<a href="'+hrefs[s]+'">'+titles[s]+'</a>';
+    }).join('');
+  }
+  renderRecent();
+  var banner=document.getElementById('offline-banner');
+  function setOffline(){if(banner)banner.classList.toggle('show',!navigator.onLine)}
+  window.addEventListener('online',setOffline);
+  window.addEventListener('offline',setOffline);
+  setOffline();
+})();</script>
+<script>${pushScript}</script>
+<script>${csvScript}</script>
+</body></html>`;
+
+  writeFileSync(join(www, "index.html"), indexHtml);
+
+  const landingSrc = join(dist, "go", "1099-deadline.html");
+  if (!existsSync(landingSrc)) {
+    console.error("Missing dist/go/1099-deadline.html — run npm run build first");
+    process.exit(1);
+  }
+  mkdirSync(join(www, "go"), { recursive: true });
+  cpSync(landingSrc, join(www, "go", "1099-deadline.html"));
+
+  const estimatorSrc = join(dist, "tools", "1099-tax-estimator.html");
+  if (!existsSync(estimatorSrc)) {
+    console.error("Missing dist/tools/1099-tax-estimator.html — run npm run build first");
+    process.exit(1);
+  }
+  mkdirSync(join(www, "tools"), { recursive: true });
+  cpSync(estimatorSrc, join(www, "tools", "1099-tax-estimator.html"));
+
+  for (const dir of ["1099-threshold-tracker-pro", "quarterly-tax-deadline-pro", "freelancer-tax-estimator"]) {
+    const src = join(dist, dir);
+    if (!existsSync(join(src, "index.html"))) {
+      console.error(`Missing dist/${dir} — run npm run build first`);
+      process.exit(1);
+    }
+    cpSync(src, join(www, dir), { recursive: true });
+  }
+
+  if (existsSync(join(dist, "privacy.html"))) cpSync(join(dist, "privacy.html"), join(www, "privacy.html"));
+  if (existsSync(join(dist, "manifest.json"))) cpSync(join(dist, "manifest.json"), join(www, "manifest.json"));
+  if (existsSync(join(dist, "sw.js"))) cpSync(join(dist, "sw.js"), join(www, "sw.js"));
+  if (existsSync(join(dist, "assets"))) cpSync(join(dist, "assets"), join(www, "assets"), { recursive: true });
+
+  console.log("Synced 1099-suite → mobile/1099-suite/www");
 }
 
 const MINI_GAME_SHELLS = {
@@ -1625,6 +1815,7 @@ if (target === "freelancer-stack" || target === "all") syncFreelancerStack();
 if (target === "devwatch" || target === "all") syncDevWatch();
 if (target === "renter-toolkit" || target === "all") syncRenterToolkit();
 if (target === "hookrelay-dlq" || target === "all") syncHookRelayDlq();
+if (target === "1099-suite" || target === "all") sync1099Suite();
 if (target === "billsnap" || target === "all") syncUtility("billsnap");
 if (target === "statusping-lite" || target === "all") syncUtility("statusping-lite");
 if (target === "leaselens" || target === "all") syncUtility("leaselens");

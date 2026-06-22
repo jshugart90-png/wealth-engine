@@ -52,6 +52,7 @@ const FASTLANE_LANES = {
   "freelancer-stack": "beta_freelancer_stack",
   devwatch: "beta_devwatch",
   "hookrelay-dlq": "beta_hookrelay_dlq_pro",
+  "1099-suite": "beta_1099_suite",
 };
 
 async function main() {

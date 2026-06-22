@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>1099 Tax Estimator — Free Online Tool (2026)</title>
+<meta name="description" content="Estimate quarterly 1099 taxes for freelancers — self-employment + income tax.">
+<link rel="canonical" href="https://wealth-engine-0qlj.onrender.com/tools/1099-tax-estimator.html">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"1099 Tax Estimator","description":"Estimate quarterly 1099 taxes for freelancers — self-employment + income tax.","applicationCategory":"BusinessApplication","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"url":"https://wealth-engine-0qlj.onrender.com/tools/1099-tax-estimator.html"}</script>
+<!-- Set GOOGLE_ADSENSE_CLIENT in .env after AdSense approval -->
+<style>
+body{font-family:system-ui,sans-serif;max-width:640px;margin:0 auto;padding:24px 16px;line-height:1.5;color:#0f172a}
+h1{font-size:clamp(24px,4vw,32px)}input,select{width:100%;padding:10px;margin:8px 0;border:1px solid #cbd5e1;border-radius:6px;font-size:16px}
+.result{font-size:36px;font-weight:700;color:#2563eb;margin:16px 0}
+.promo{background:#f0fdf4;border:1px solid #bbf7d0;padding:12px;border-radius:8px;margin-top:24px;font-size:14px}
+.promo a{color:#059669;font-weight:600}
+</style></head><body>
+<h1>1099 Tax Estimator</h1>
+<p>Estimate quarterly 1099 taxes for freelancers — self-employment + income tax.</p>
+<div class="ad-slot" data-adsense-placeholder="728x90" style="min-height:90px;background:#1e293b;border:1px dashed #475569;border-radius:8px;display:flex;align-items:center;justify-content:center;color:#64748b;font-size:12px;margin:20px 0">Ad slot — replace after AdSense approval</div>
+<div style="background:#fef3c7;border:1px solid #f59e0b;border-radius:8px;padding:12px;margin-bottom:16px;font-size:14px">
+<strong>1099-NEC deadline:</strong> <span id="deadline"></span> · <a href="/go/1099-deadline.html">Get 1099 PDF suite $19 →</a>
+</div>
+<label>1099 income YTD ($)</label><input type="number" id="income" value="45000" step="0.01">
+<label>Business expenses ($)</label><input type="number" id="expenses" value="8000" step="0.01">
+<label>Other W-2 income ($)</label><input type="number" id="w2" value="0" step="0.01">
+<label>Estimated tax rate %</label><input type="number" id="rate" value="25" step="0.01">
+<div class="result" id="tout">$9,250 estimated tax</div>
+<p style="font-size:13px;margin-top:12px"><a href="/p/freelancer-compliance-by-state.html">State 1099 filing guides</a> · <a href="/go/compliance.html">Compliance pack</a></p>
+<script>
+const dl=new Date(new Date().getFullYear(),0,31);const now=new Date();const days=Math.ceil((dl-now)/86400000);
+deadline.textContent=days>0?days+' days until Jan 31 filing deadline':'Jan 31 deadline passed — file ASAP';
+function tc(){const i=+income.value||0,e=+expenses.value||0,w=+w2.value||0,r=(+rate.value||0)/100;
+const se=(i-e)*0.153;const fed=Math.max(0,i-e)*r;const total=se+fed;
+tout.textContent='$'+total.toFixed(0)+' estimated tax · $'+(total/4).toFixed(0)+'/quarter';}
+[income,expenses,w2,rate].forEach(el=>el.oninput=tc);tc();
+</script>
+<div class="ad-slot" data-adsense-placeholder="300x250" style="min-height:90px;background:#1e293b;border:1px dashed #475569;border-radius:8px;display:flex;align-items:center;justify-content:center;color:#64748b;font-size:12px;margin:20px 0">Ad slot — replace after AdSense approval</div>
+<div class="email-cap" style="background:#eff6ff;border:1px solid #bfdbfe;border-radius:8px;padding:16px;margin:24px 0">
+<strong style="display:block;margin-bottom:8px">Get freelancer tax reminders + LAUNCH25 deals</strong>
+<form onsubmit="event.preventDefault();fetch('/api/funnel/email_capture',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({email:this.email.value,path:'/tools/1099-tax-estimator'})}).then(()=>{this.querySelector('.ok').style.display='block';this.reset()});">
+<input type="email" name="email" placeholder="you@email.com" required style="width:100%;padding:10px;border:1px solid #cbd5e1;border-radius:6px;margin-bottom:8px;font-size:16px">
+<button type="submit" style="width:100%;padding:10px;background:#2563eb;color:#fff;border:none;border-radius:6px;font-weight:600;cursor:pointer">Join free list</button>
+<p class="ok" style="display:none;color:#059669;margin-top:8px;font-size:14px">✓ You're on the list — check inbox for LAUNCH25.</p>
+</form></div>
+<div class="promo">Need a pro tool? <a href="https://wealth-engine-0qlj.onrender.com/go/invoice.html">Invoice PDF $3</a> · <a href="https://wealth-engine-0qlj.onrender.com/go/uptime.html">Uptime alerts $5/mo</a> · <a href="https://wealth-engine-0qlj.onrender.com/go/compliance.html">Compliance pack $19</a></div>
+<div style="font-size:14px;margin-top:24px;padding-top:16px;border-top:1px solid #e2e8f0">
+<strong>Related tools:</strong>
+<a href="/tools/1099-tax-estimator.html">1099 tax</a> ·
+<a href="/tools/hourly-rate-calculator.html">Hourly rate</a> ·
+<a href="/tools/payment-terms-calculator.html">Payment terms</a> ·
+<a href="/go/invoice.html">Invoice PDF</a> ·
+<a href="/p/freelancer-compliance-by-state.html">State compliance</a> ·
+<a href="/comparestack/">Compare tools</a>
+</div>
+<p style="margin-top:24px;font-size:13px"><a href="https://wealth-engine-0qlj.onrender.com/tools/">← All free tools</a> · <a href="https://wealth-engine-0qlj.onrender.com/join.html?utm_source=tools-1099-tax-estimator">Email list</a></p>
+</body></html>

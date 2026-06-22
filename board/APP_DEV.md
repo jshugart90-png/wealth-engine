@@ -47,6 +47,7 @@
 | **Bill Splitter Pro** | `com.wealthengine.billsplitterpro` | **TestFlight prep** | 20 PASS, 0 FAIL | `33c8396` pushed | **READY** (Mac upload) |
 | **Percentage Calculator Pro** | `com.wealthengine.percentagecalculatorpro` | **TestFlight prep** | 20 PASS, 0 FAIL | `9b4ef56` pushed | **READY** (Mac upload) |
 | **Renter Toolkit** | `com.wealthengine.rentertoolkit` | **TestFlight prep** | 23 PASS, 0 FAIL | `84613de` pushed | **READY** (Mac upload) |
+| **1099 Deadline Suite** | `com.wealthengine.1099suite` | **TestFlight prep** | 25 PASS, 0 FAIL | pending | **READY** (Mac upload) |
 
 ## App 1 — Horseshoe Games Hub
 
@@ -958,9 +959,37 @@ npx cap sync ios && npx cap open ios
 # Or: bundle exec fastlane ios beta_renter_toolkit
 ```
 
+## App 40 — 1099 Deadline Suite (hub)
+
+| Field | Value |
+|-------|-------|
+| Version | 1.0.0 |
+| Tools | Threshold Tracker + Quarterly Deadlines + 1099 Estimator + Freelancer Tax Estimator |
+| Capacitor | `mobile/1099-suite/` → loads `/go/1099-deadline.html` from prod |
+| Store metadata | `mobile/store-metadata/1099-suite/` |
+| Preflight | `npm run mobile:preflight:1099-suite` |
+
+### Features (shipped this session)
+
+1. **Native launcher** — 5-tool grid with recently used tracking
+2. **Pro landing** — local copy of `/go/1099-deadline.html` with $19 Pro Suite checkout
+3. **Jan deadline push** — local notifications Jan 15/25/31 via `@capacitor/local-notifications`
+4. **Contractor CSV export** — Excel-compatible export from Threshold Tracker localStorage
+5. **Contractor count stat** — `$600+` threshold count on launcher
+6. **IAP wired** — pro_unlock linked to Stripe SKU `1099-suite-pro`
+
+### TestFlight upload (user Mac)
+
+```bash
+npm run build && cd mobile && node sync-www.mjs 1099-suite
+cd 1099-suite && npm install && npx cap add ios  # if missing
+npx cap sync ios && npx cap open ios
+# Or: bundle exec fastlane ios beta_1099_suite
+```
+
 ## Master checklist
 
-See `mobile/TESTFLIGHT_ALL_APPS.md` for all 39 apps — bundle IDs, Fastlane lanes, versions.
+See `mobile/TESTFLIGHT_ALL_APPS.md` for all 40 apps — bundle IDs, Fastlane lanes, versions.
 
 ## GitHub policy
 

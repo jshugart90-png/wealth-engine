@@ -2,12 +2,12 @@
 
 Each app uses a standard Capacitor WebView shell. Enable only capabilities you need in Xcode → Signing & Capabilities.
 
-## Default (all 32 apps)
+## Default (all 40 apps)
 
 | Capability | Required | Notes |
 |------------|----------|-------|
 | **In-App Purchase** | Yes (games + pro utilities) | App Store Connect → App ID → In-App Purchase |
-| **Push Notifications** | No | Not used |
+| **Push Notifications** | Optional | **1099 Deadline Suite only** — local Jan 15/25/31 deadline reminders via `@capacitor/local-notifications` |
 | **App Groups** | No | Not used |
 | **Associated Domains** | Optional | For universal links to `wealth-engine-0qlj.onrender.com` |
 
@@ -38,4 +38,4 @@ Configure `Purchases.configure({ apiKey: 'appl_...' })` in native iOS `AppDelega
 
 ## Per-app bundle IDs
 
-See `mobile/TESTFLIGHT_ALL_APPS.md` — one App ID per Capacitor wrapper (32 total).
+See `mobile/TESTFLIGHT_ALL_APPS.md` — one App ID per Capacitor wrapper (40 total).

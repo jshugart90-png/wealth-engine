@@ -1,0 +1,15 @@
+1099 Deadline Suite helps US businesses and freelancers hit the Jan 31 1099-NEC filing deadline without $60/form penalties.
+
+Track contractor payments, estimate tax impact, and generate filing checklists — all in one seasonal hub.
+
+Features:
+• Jan 15 / 25 / 31 local deadline reminders (enable notifications on first launch)
+• 1099 Threshold Tracker — flag contractors crossing the $600 NEC threshold
+• Quarterly Tax Deadline Pro — never miss estimated tax payments
+• 1099 Tax Estimator — penalty calculator and filing checklist
+• Pro Suite $19 — up to 10 contractor 1099-NEC PDFs via Stripe checkout
+• Export contractor list to CSV for your accountant
+
+Perfect for solo founders, bookkeepers, and freelancers who paid contractors $600+ this year.
+
+Privacy: Contractor data stored on device. Checkout via Stripe in browser.

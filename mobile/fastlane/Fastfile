@@ -266,6 +266,11 @@ platform :ios do
     mini_app_ios_beta("hookrelay-dlq", "HookRelay DLQ Pro")
   end
 
+  desc "TestFlight upload for 1099 Deadline Suite hub app"
+  lane :beta_1099_suite do
+    mini_app_ios_beta("1099-suite", "1099 Deadline Suite")
+  end
+
   desc "TestFlight upload + App Store metadata (does not auto-submit for review)"
   lane :release do
     beta

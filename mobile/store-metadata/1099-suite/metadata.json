@@ -1,0 +1,35 @@
+{
+  "appName": "1099 Deadline Suite",
+  "subtitle": "1099-NEC deadline tracker & PDFs",
+  "bundleId": "com.wealthengine.1099suite",
+  "version": "1.0.0",
+  "privacyPolicyUrl": "https://wealth-engine-0qlj.onrender.com/privacy.html",
+  "supportUrl": "https://wealth-engine-0qlj.onrender.com/",
+  "marketingUrl": "https://wealth-engine-0qlj.onrender.com/go/1099-deadline.html",
+  "category": {
+    "apple": "Finance",
+    "appleSub": "Productivity",
+    "google": "FINANCE"
+  },
+  "contentRating": {
+    "ageRating": "4+",
+    "googleQuestionnaire": "Everyone — tax deadline utility, Stripe checkout opens in browser",
+    "adsPresent": false,
+    "inAppPurchases": true,
+    "dataCollected": [
+      "contractor payment data stored locally; email on checkout only via Stripe"
+    ]
+  },
+  "keywords": [
+    "1099",
+    "1099-nec",
+    "contractor",
+    "deadline",
+    "tax",
+    "w9",
+    "freelancer",
+    "irs",
+    "filing",
+    "1099suite"
+  ]
+}

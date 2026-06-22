@@ -1,10 +1,27 @@
 {
-  "generatedAt": "2026-06-22T22:22:17.782Z",
+  "generatedAt": "2026-06-22T22:42:54.193Z",
   "revenueCat": {
     "plugin": "@revenuecat/purchases-capacitor",
     "note": "Configure API key in App Store Connect + RevenueCat dashboard after IAP products are live"
   },
   "apps": {
+    "1099-suite": {
+      "appName": "1099 Deadline Suite",
+      "bundleId": "com.wealthengine.1099suite",
+      "type": "utility",
+      "version": "1.0.0",
+      "products": [
+        {
+          "key": "pro_unlock",
+          "storeKitId": "com.wealthengine.1099suite.pro_unlock",
+          "type": "non_consumable",
+          "price": 4.99,
+          "title": "Pro Unlock",
+          "description": "Unlock Pro features (matches Stripe tier where applicable)",
+          "stripeSku": "1099-suite-pro"
+        }
+      ]
+    },
     "1099-threshold-tracker-pro": {
       "appName": "1099 Threshold Tracker Pro",
       "bundleId": "com.wealthengine.thresholdtrackerpro",
@@ -14,6 +31,23 @@
         {
           "key": "pro_unlock",
           "storeKitId": "com.wealthengine.thresholdtrackerpro.pro_unlock",
+          "type": "non_consumable",
+          "price": 4.99,
+          "title": "Pro Unlock",
+          "description": "Unlock Pro features (matches Stripe tier where applicable)",
+          "stripeSku": null
+        }
+      ]
+    },
+    "bill-splitter-pro": {
+      "appName": "Bill Splitter Pro",
+      "bundleId": "com.wealthengine.billsplitterpro",
+      "type": "utility",
+      "version": "1.0.0",
+      "products": [
+        {
+          "key": "pro_unlock",
+          "storeKitId": "com.wealthengine.billsplitterpro.pro_unlock",
           "type": "non_consumable",
           "price": 4.99,
           "title": "Pro Unlock",
@@ -100,6 +134,23 @@
         {
           "key": "pro_unlock",
           "storeKitId": "com.wealthengine.comparestack.pro_unlock",
+          "type": "non_consumable",
+          "price": 4.99,
+          "title": "Pro Unlock",
+          "description": "Unlock Pro features (matches Stripe tier where applicable)",
+          "stripeSku": null
+        }
+      ]
+    },
+    "day-rate-calculator-pro": {
+      "appName": "Day Rate to Hourly Calculator Pro",
+      "bundleId": "com.wealthengine.dayratecalculatorpro",
+      "type": "utility",
+      "version": "1.0.0",
+      "products": [
+        {
+          "key": "pro_unlock",
+          "storeKitId": "com.wealthengine.dayratecalculatorpro.pro_unlock",
           "type": "non_consumable",
           "price": 4.99,
           "title": "Pro Unlock",
@@ -402,91 +453,6 @@
         }
       ]
     },
-    "markup-calculator-pro": {
-      "appName": "Markup Calculator Pro",
-      "bundleId": "com.wealthengine.markupcalculatorpro",
-      "type": "utility",
-      "version": "1.0.0",
-      "products": [
-        {
-          "key": "pro_unlock",
-          "storeKitId": "com.wealthengine.markupcalculatorpro.pro_unlock",
-          "type": "non_consumable",
-          "price": 4.99,
-          "title": "Pro Unlock",
-          "description": "Unlock Pro features (reverse pricing, bulk totals)",
-          "stripeSku": null
-        }
-      ]
-    },
-    "day-rate-calculator-pro": {
-      "appName": "Day Rate to Hourly Calculator Pro",
-      "bundleId": "com.wealthengine.dayratecalculatorpro",
-      "type": "utility",
-      "version": "1.0.0",
-      "products": [
-        {
-          "key": "pro_unlock",
-          "storeKitId": "com.wealthengine.dayratecalculatorpro.pro_unlock",
-          "type": "non_consumable",
-          "price": 4.99,
-          "title": "Pro Unlock",
-          "description": "Unlock Pro features (reverse pricing, annual & compare)",
-          "stripeSku": null
-        }
-      ]
-    },
-    "bill-splitter-pro": {
-      "appName": "Bill Splitter Pro",
-      "bundleId": "com.wealthengine.billsplitterpro",
-      "type": "utility",
-      "version": "1.0.0",
-      "products": [
-        {
-          "key": "pro_unlock",
-          "storeKitId": "com.wealthengine.billsplitterpro.pro_unlock",
-          "type": "non_consumable",
-          "price": 4.99,
-          "title": "Pro Unlock",
-          "description": "Unlock Pro features (tax line, round-up & uneven split)",
-          "stripeSku": null
-        }
-      ]
-    },
-    "percentage-calculator-pro": {
-      "appName": "Percentage Calculator Pro",
-      "bundleId": "com.wealthengine.percentagecalculatorpro",
-      "type": "utility",
-      "version": "1.0.0",
-      "products": [
-        {
-          "key": "pro_unlock",
-          "storeKitId": "com.wealthengine.percentagecalculatorpro.pro_unlock",
-          "type": "non_consumable",
-          "price": 4.99,
-          "title": "Pro Unlock",
-          "description": "Unlock Pro features (diff %, reverse, compound & history)",
-          "stripeSku": null
-        }
-      ]
-    },
-    "renter-toolkit": {
-      "appName": "Renter Toolkit",
-      "bundleId": "com.wealthengine.rentertoolkit",
-      "type": "utility",
-      "version": "1.0.0",
-      "products": [
-        {
-          "key": "pro_unlock",
-          "storeKitId": "com.wealthengine.rentertoolkit.pro_unlock",
-          "type": "non_consumable",
-          "price": 4.99,
-          "title": "Pro Unlock",
-          "description": "Unlock Pro features (matches Stripe tier where applicable)",
-          "stripeSku": "report-bundle"
-        }
-      ]
-    },
     "leaselens": {
       "appName": "LeaseLens",
       "bundleId": "com.wealthengine.leaselens",
@@ -501,6 +467,23 @@
           "title": "Pro Unlock",
           "description": "Unlock Pro features (matches Stripe tier where applicable)",
           "stripeSku": "report"
+        }
+      ]
+    },
+    "markup-calculator-pro": {
+      "appName": "Markup Calculator Pro",
+      "bundleId": "com.wealthengine.markupcalculatorpro",
+      "type": "utility",
+      "version": "1.0.0",
+      "products": [
+        {
+          "key": "pro_unlock",
+          "storeKitId": "com.wealthengine.markupcalculatorpro.pro_unlock",
+          "type": "non_consumable",
+          "price": 4.99,
+          "title": "Pro Unlock",
+          "description": "Unlock Pro features (matches Stripe tier where applicable)",
+          "stripeSku": null
         }
       ]
     },
@@ -608,6 +591,23 @@
         }
       ]
     },
+    "percentage-calculator-pro": {
+      "appName": "Percentage Calculator Pro",
+      "bundleId": "com.wealthengine.percentagecalculatorpro",
+      "type": "utility",
+      "version": "1.0.0",
+      "products": [
+        {
+          "key": "pro_unlock",
+          "storeKitId": "com.wealthengine.percentagecalculatorpro.pro_unlock",
+          "type": "non_consumable",
+          "price": 4.99,
+          "title": "Pro Unlock",
+          "description": "Unlock Pro features (matches Stripe tier where applicable)",
+          "stripeSku": null
+        }
+      ]
+    },
     "pipekit": {
       "appName": "PipeKit",
       "bundleId": "com.wealthengine.pipekit",
@@ -691,6 +691,23 @@
           "title": "Tip Jar",
           "description": "Support the developer",
           "stripeSku": null
+        }
+      ]
+    },
+    "renter-toolkit": {
+      "appName": "Renter Toolkit",
+      "bundleId": "com.wealthengine.rentertoolkit",
+      "type": "utility",
+      "version": "1.0.0",
+      "products": [
+        {
+          "key": "pro_unlock",
+          "storeKitId": "com.wealthengine.rentertoolkit.pro_unlock",
+          "type": "non_consumable",
+          "price": 4.99,
+          "title": "Pro Unlock",
+          "description": "Unlock Pro features (matches Stripe tier where applicable)",
+          "stripeSku": "report-bundle"
         }
       ]
     },

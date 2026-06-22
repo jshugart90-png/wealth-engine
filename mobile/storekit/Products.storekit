@@ -13,6 +13,21 @@
           "locale": "en_US"
         }
       ],
+      "productID": "com.wealthengine.1099suite.pro_unlock",
+      "referenceName": "1099 Deadline Suite Pro Unlock",
+      "type": "NonConsumable"
+    },
+    {
+      "displayPrice": "4.99",
+      "familyShareable": false,
+      "internalID": "1002",
+      "localizations": [
+        {
+          "description": "Unlock Pro features (matches Stripe tier where applicable)",
+          "displayName": "Pro Unlock",
+          "locale": "en_US"
+        }
+      ],
       "productID": "com.wealthengine.thresholdtrackerpro.pro_unlock",
       "referenceName": "1099 Threshold Tracker Pro Pro Unlock",
       "type": "NonConsumable"
@@ -20,7 +35,22 @@
     {
       "displayPrice": "4.99",
       "familyShareable": false,
-      "internalID": "1002",
+      "internalID": "1003",
+      "localizations": [
+        {
+          "description": "Unlock Pro features (matches Stripe tier where applicable)",
+          "displayName": "Pro Unlock",
+          "locale": "en_US"
+        }
+      ],
+      "productID": "com.wealthengine.billsplitterpro.pro_unlock",
+      "referenceName": "Bill Splitter Pro Pro Unlock",
+      "type": "NonConsumable"
+    },
+    {
+      "displayPrice": "4.99",
+      "familyShareable": false,
+      "internalID": "1004",
       "localizations": [
         {
           "description": "Unlock Pro features (matches Stripe tier where applicable)",
@@ -35,7 +65,7 @@
     {
       "displayPrice": "4.99",
       "familyShareable": false,
-      "internalID": "1003",
+      "internalID": "1005",
       "localizations": [
         {
           "description": "Unlock Pro features (matches Stripe tier where applicable)",
@@ -50,7 +80,7 @@
     {
       "displayPrice": "2.99",
       "familyShareable": false,
-      "internalID": "1004",
+      "internalID": "1006",
       "localizations": [
         {
           "description": "Hide AdMob banners permanently",
@@ -65,7 +95,7 @@
     {
       "displayPrice": "4.99",
       "familyShareable": false,
-      "internalID": "1005",
+      "internalID": "1007",
       "localizations": [
         {
           "description": "Unlock premium features and badges",
@@ -80,7 +110,7 @@
     {
       "displayPrice": "0.99",
       "familyShareable": false,
-      "internalID": "1006",
+      "internalID": "1008",
       "localizations": [
         {
           "description": "Support the developer",
@@ -95,7 +125,7 @@
     {
       "displayPrice": "4.99",
       "familyShareable": false,
-      "internalID": "1007",
+      "internalID": "1009",
       "localizations": [
         {
           "description": "Unlock Pro features (matches Stripe tier where applicable)",
@@ -110,7 +140,22 @@
     {
       "displayPrice": "4.99",
       "familyShareable": false,
-      "internalID": "1008",
+      "internalID": "1010",
+      "localizations": [
+        {
+          "description": "Unlock Pro features (matches Stripe tier where applicable)",
+          "displayName": "Pro Unlock",
+          "locale": "en_US"
+        }
+      ],
+      "productID": "com.wealthengine.dayratecalculatorpro.pro_unlock",
+      "referenceName": "Day Rate to Hourly Calculator Pro Pro Unlock",
+      "type": "NonConsumable"
+    },
+    {
+      "displayPrice": "4.99",
+      "familyShareable": false,
+      "internalID": "1011",
       "localizations": [
         {
           "description": "Unlock Pro features (matches Stripe tier where applicable)",
@@ -125,7 +170,7 @@
     {
       "displayPrice": "2.99",
       "familyShareable": false,
-      "internalID": "1009",
+      "internalID": "1012",
       "localizations": [
         {
           "description": "Hide AdMob banners permanently",
@@ -140,7 +185,7 @@
     {
       "displayPrice": "4.99",
       "familyShareable": false,
-      "internalID": "1010",
+      "internalID": "1013",
       "localizations": [
         {
           "description": "Unlock premium features and badges",
@@ -155,7 +200,7 @@
     {
       "displayPrice": "0.99",
       "familyShareable": false,
-      "internalID": "1011",
+      "internalID": "1014",
       "localizations": [
         {
           "description": "Support the developer",
@@ -170,7 +215,7 @@
     {
       "displayPrice": "4.99",
       "familyShareable": false,
-      "internalID": "1012",
+      "internalID": "1015",
       "localizations": [
         {
           "description": "Unlock Pro features (matches Stripe tier where applicable)",
@@ -185,7 +230,7 @@
     {
       "displayPrice": "4.99",
       "familyShareable": false,
-      "internalID": "1013",
+      "internalID": "1016",
       "localizations": [
         {
           "description": "Unlock Pro features (matches Stripe tier where applicable)",
@@ -200,7 +245,7 @@
     {
       "displayPrice": "2.99",
       "familyShareable": false,
-      "internalID": "1014",
+      "internalID": "1017",
       "localizations": [
         {
           "description": "Hide AdMob banners permanently",
@@ -215,7 +260,7 @@
     {
       "displayPrice": "4.99",
       "familyShareable": false,
-      "internalID": "1015",
+      "internalID": "1018",
       "localizations": [
         {
           "description": "Unlock premium features and badges",
@@ -230,7 +275,7 @@
     {
       "displayPrice": "0.99",
       "familyShareable": false,
-      "internalID": "1016",
+      "internalID": "1019",
       "localizations": [
         {
           "description": "Support the developer",
@@ -245,7 +290,7 @@
     {
       "displayPrice": "4.99",
       "familyShareable": false,
-      "internalID": "1017",
+      "internalID": "1020",
       "localizations": [
         {
           "description": "Unlock Pro features (matches Stripe tier where applicable)",
@@ -260,7 +305,7 @@
     {
       "displayPrice": "4.99",
       "familyShareable": false,
-      "internalID": "1018",
+      "internalID": "1021",
       "localizations": [
         {
           "description": "Unlock Pro features (matches Stripe tier where applicable)",
@@ -275,7 +320,7 @@
     {
       "displayPrice": "2.99",
       "familyShareable": false,
-      "internalID": "1019",
+      "internalID": "1022",
       "localizations": [
         {
           "description": "Hide AdMob banners permanently",
@@ -290,7 +335,7 @@
     {
       "displayPrice": "4.99",
       "familyShareable": false,
-      "internalID": "1020",
+      "internalID": "1023",
       "localizations": [
         {
           "description": "Unlock premium features and badges",
@@ -305,7 +350,7 @@
     {
       "displayPrice": "0.99",
       "familyShareable": false,
-      "internalID": "1021",
+      "internalID": "1024",
       "localizations": [
         {
           "description": "Support the developer",
@@ -320,7 +365,7 @@
     {
       "displayPrice": "4.99",
       "familyShareable": false,
-      "internalID": "1022",
+      "internalID": "1025",
       "localizations": [
         {
           "description": "Unlock Pro features (matches Stripe tier where applicable)",
@@ -335,7 +380,7 @@
     {
       "displayPrice": "2.99",
       "familyShareable": false,
-      "internalID": "1023",
+      "internalID": "1026",
       "localizations": [
         {
           "description": "Hide AdMob banners permanently",
@@ -350,7 +395,7 @@
     {
       "displayPrice": "4.99",
       "familyShareable": false,
-      "internalID": "1024",
+      "internalID": "1027",
       "localizations": [
         {
           "description": "Unlock premium features and badges",
@@ -365,7 +410,7 @@
     {
       "displayPrice": "0.99",
       "familyShareable": false,
-      "internalID": "1025",
+      "internalID": "1028",
       "localizations": [
         {
           "description": "Support the developer",
@@ -380,7 +425,7 @@
     {
       "displayPrice": "2.99",
       "familyShareable": false,
-      "internalID": "1026",
+      "internalID": "1029",
       "localizations": [
         {
           "description": "Hide AdMob banners permanently",
@@ -395,7 +440,7 @@
     {
       "displayPrice": "4.99",
       "familyShareable": false,
-      "internalID": "1027",
+      "internalID": "1030",
       "localizations": [
         {
           "description": "Unlock premium features and badges",
@@ -410,7 +455,7 @@
     {
       "displayPrice": "0.99",
       "familyShareable": false,
-      "internalID": "1028",
+      "internalID": "1031",
       "localizations": [
         {
           "description": "Support the developer",
@@ -425,7 +470,7 @@
     {
       "displayPrice": "4.99",
       "familyShareable": false,
-      "internalID": "1029",
+      "internalID": "1032",
       "localizations": [
         {
           "description": "Unlock Pro features (matches Stripe tier where applicable)",
@@ -440,82 +485,7 @@
     {
       "displayPrice": "4.99",
       "familyShareable": false,
-      "internalID": "1030",
-      "localizations": [
-        {
-          "description": "Unlock Pro features (reverse pricing, bulk totals)",
-          "displayName": "Pro Unlock",
-          "locale": "en_US"
-        }
-      ],
-      "productID": "com.wealthengine.markupcalculatorpro.pro_unlock",
-      "referenceName": "Markup Calculator Pro Pro Unlock",
-      "type": "NonConsumable"
-    },
-    {
-      "displayPrice": "4.99",
-      "familyShareable": false,
-      "internalID": "1031",
-      "localizations": [
-        {
-          "description": "Unlock Pro features (reverse pricing, annual & compare)",
-          "displayName": "Pro Unlock",
-          "locale": "en_US"
-        }
-      ],
-      "productID": "com.wealthengine.dayratecalculatorpro.pro_unlock",
-      "referenceName": "Day Rate to Hourly Calculator Pro Pro Unlock",
-      "type": "NonConsumable"
-    },
-    {
-      "displayPrice": "4.99",
-      "familyShareable": false,
-      "internalID": "1032",
-      "localizations": [
-        {
-          "description": "Unlock Pro features (tax line, round-up & uneven split)",
-          "displayName": "Pro Unlock",
-          "locale": "en_US"
-        }
-      ],
-      "productID": "com.wealthengine.billsplitterpro.pro_unlock",
-      "referenceName": "Bill Splitter Pro Pro Unlock",
-      "type": "NonConsumable"
-    },
-    {
-      "displayPrice": "4.99",
-      "familyShareable": false,
       "internalID": "1033",
-      "localizations": [
-        {
-          "description": "Unlock Pro features (diff %, reverse, compound & history)",
-          "displayName": "Pro Unlock",
-          "locale": "en_US"
-        }
-      ],
-      "productID": "com.wealthengine.percentagecalculatorpro.pro_unlock",
-      "referenceName": "Percentage Calculator Pro Pro Unlock",
-      "type": "NonConsumable"
-    },
-    {
-      "displayPrice": "4.99",
-      "familyShareable": false,
-      "internalID": "1034",
-      "localizations": [
-        {
-          "description": "Unlock Pro features (matches Stripe tier where applicable)",
-          "displayName": "Pro Unlock",
-          "locale": "en_US"
-        }
-      ],
-      "productID": "com.wealthengine.rentertoolkit.pro_unlock",
-      "referenceName": "Renter Toolkit Pro Unlock",
-      "type": "NonConsumable"
-    },
-    {
-      "displayPrice": "4.99",
-      "familyShareable": false,
-      "internalID": "1035",
       "localizations": [
         {
           "description": "Unlock Pro features (matches Stripe tier where applicable)",
@@ -530,7 +500,22 @@
     {
       "displayPrice": "4.99",
       "familyShareable": false,
-      "internalID": "1036",
+      "internalID": "1034",
+      "localizations": [
+        {
+          "description": "Unlock Pro features (matches Stripe tier where applicable)",
+          "displayName": "Pro Unlock",
+          "locale": "en_US"
+        }
+      ],
+      "productID": "com.wealthengine.markupcalculatorpro.pro_unlock",
+      "referenceName": "Markup Calculator Pro Pro Unlock",
+      "type": "NonConsumable"
+    },
+    {
+      "displayPrice": "4.99",
+      "familyShareable": false,
+      "internalID": "1035",
       "localizations": [
         {
           "description": "Unlock Pro features (matches Stripe tier where applicable)",
@@ -545,7 +530,7 @@
     {
       "displayPrice": "2.99",
       "familyShareable": false,
-      "internalID": "1037",
+      "internalID": "1036",
       "localizations": [
         {
           "description": "Hide AdMob banners permanently",
@@ -560,7 +545,7 @@
     {
       "displayPrice": "4.99",
       "familyShareable": false,
-      "internalID": "1038",
+      "internalID": "1037",
       "localizations": [
         {
           "description": "Unlock premium features and badges",
@@ -575,7 +560,7 @@
     {
       "displayPrice": "0.99",
       "familyShareable": false,
-      "internalID": "1039",
+      "internalID": "1038",
       "localizations": [
         {
           "description": "Support the developer",
@@ -590,7 +575,7 @@
     {
       "displayPrice": "4.99",
       "familyShareable": false,
-      "internalID": "1040",
+      "internalID": "1039",
       "localizations": [
         {
           "description": "Unlock Pro features (matches Stripe tier where applicable)",
@@ -605,7 +590,7 @@
     {
       "displayPrice": "2.99",
       "familyShareable": false,
-      "internalID": "1041",
+      "internalID": "1040",
       "localizations": [
         {
           "description": "Hide AdMob banners permanently",
@@ -620,7 +605,7 @@
     {
       "displayPrice": "4.99",
       "familyShareable": false,
-      "internalID": "1042",
+      "internalID": "1041",
       "localizations": [
         {
           "description": "Unlock premium features and badges",
@@ -635,7 +620,7 @@
     {
       "displayPrice": "0.99",
       "familyShareable": false,
-      "internalID": "1043",
+      "internalID": "1042",
       "localizations": [
         {
           "description": "Support the developer",
@@ -646,6 +631,21 @@
       "productID": "com.wealthengine.net30ninja.tip_jar",
       "referenceName": "Net-30 Ninja Tip Jar",
       "type": "Consumable"
+    },
+    {
+      "displayPrice": "4.99",
+      "familyShareable": false,
+      "internalID": "1043",
+      "localizations": [
+        {
+          "description": "Unlock Pro features (matches Stripe tier where applicable)",
+          "displayName": "Pro Unlock",
+          "locale": "en_US"
+        }
+      ],
+      "productID": "com.wealthengine.percentagecalculatorpro.pro_unlock",
+      "referenceName": "Percentage Calculator Pro Pro Unlock",
+      "type": "NonConsumable"
     },
     {
       "displayPrice": "4.99",
@@ -738,9 +738,24 @@
       "type": "Consumable"
     },
     {
-      "displayPrice": "2.99",
+      "displayPrice": "4.99",
       "familyShareable": false,
       "internalID": "1050",
+      "localizations": [
+        {
+          "description": "Unlock Pro features (matches Stripe tier where applicable)",
+          "displayName": "Pro Unlock",
+          "locale": "en_US"
+        }
+      ],
+      "productID": "com.wealthengine.rentertoolkit.pro_unlock",
+      "referenceName": "Renter Toolkit Pro Unlock",
+      "type": "NonConsumable"
+    },
+    {
+      "displayPrice": "2.99",
+      "familyShareable": false,
+      "internalID": "1051",
       "localizations": [
         {
           "description": "Hide AdMob banners permanently",
@@ -755,7 +770,7 @@
     {
       "displayPrice": "4.99",
       "familyShareable": false,
-      "internalID": "1051",
+      "internalID": "1052",
       "localizations": [
         {
           "description": "Unlock premium features and badges",
@@ -770,7 +785,7 @@
     {
       "displayPrice": "0.99",
       "familyShareable": false,
-      "internalID": "1052",
+      "internalID": "1053",
       "localizations": [
         {
           "description": "Support the developer",
@@ -785,7 +800,7 @@
     {
       "displayPrice": "4.99",
       "familyShareable": false,
-      "internalID": "1053",
+      "internalID": "1054",
       "localizations": [
         {
           "description": "Unlock Pro features (matches Stripe tier where applicable)",
@@ -800,7 +815,7 @@
     {
       "displayPrice": "4.99",
       "familyShareable": false,
-      "internalID": "1054",
+      "internalID": "1055",
       "localizations": [
         {
           "description": "Unlock Pro features (matches Stripe tier where applicable)",
@@ -815,7 +830,7 @@
     {
       "displayPrice": "4.99",
       "familyShareable": false,
-      "internalID": "1055",
+      "internalID": "1056",
       "localizations": [
         {
           "description": "Unlock Pro features (matches Stripe tier where applicable)",
@@ -830,7 +845,7 @@
     {
       "displayPrice": "4.99",
       "familyShareable": false,
-      "internalID": "1056",
+      "internalID": "1057",
       "localizations": [
         {
           "description": "Unlock Pro features (matches Stripe tier where applicable)",
@@ -845,7 +860,7 @@
     {
       "displayPrice": "2.99",
       "familyShareable": false,
-      "internalID": "1057",
+      "internalID": "1058",
       "localizations": [
         {
           "description": "Hide AdMob banners permanently",
@@ -860,7 +875,7 @@
     {
       "displayPrice": "4.99",
       "familyShareable": false,
-      "internalID": "1058",
+      "internalID": "1059",
       "localizations": [
         {
           "description": "Unlock premium features and badges",
@@ -875,7 +890,7 @@
     {
       "displayPrice": "0.99",
       "familyShareable": false,
-      "internalID": "1059",
+      "internalID": "1060",
       "localizations": [
         {
           "description": "Support the developer",
@@ -890,7 +905,7 @@
     {
       "displayPrice": "2.99",
       "familyShareable": false,
-      "internalID": "1060",
+      "internalID": "1061",
       "localizations": [
         {
           "description": "Hide AdMob banners permanently",
@@ -905,7 +920,7 @@
     {
       "displayPrice": "4.99",
       "familyShareable": false,
-      "internalID": "1061",
+      "internalID": "1062",
       "localizations": [
         {
           "description": "Unlock premium features and badges",
@@ -920,7 +935,7 @@
     {
       "displayPrice": "0.99",
       "familyShareable": false,
-      "internalID": "1062",
+      "internalID": "1063",
       "localizations": [
         {
           "description": "Support the developer",
@@ -935,7 +950,7 @@
     {
       "displayPrice": "2.99",
       "familyShareable": false,
-      "internalID": "1063",
+      "internalID": "1064",
       "localizations": [
         {
           "description": "Hide AdMob banners permanently",
@@ -950,7 +965,7 @@
     {
       "displayPrice": "4.99",
       "familyShareable": false,
-      "internalID": "1064",
+      "internalID": "1065",
       "localizations": [
         {
           "description": "Unlock premium features and badges",
@@ -965,7 +980,7 @@
     {
       "displayPrice": "0.99",
       "familyShareable": false,
-      "internalID": "1065",
+      "internalID": "1066",
       "localizations": [
         {
           "description": "Support the developer",

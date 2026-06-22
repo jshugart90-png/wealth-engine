@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>1099 Threshold Tracker Pro — W-9 &amp; NEC compliance</title>
+  <meta name="description" content="Track contractor payments toward the $600 1099-NEC threshold. W-9 status, multi-vendor list, filing alerts — free, no ads.">
+  <meta name="theme-color" content="#312e81">
+  <style>
+    :root {
+      --bg: #1e1b4b;
+      --card: #312e81;
+      --border: #4338ca;
+      --text: #f8fafc;
+      --muted: #a5b4fc;
+      --accent: #fbbf24;
+      --accent-dim: #f59e0b;
+      --success: #34d399;
+      --danger: #f87171;
+      --warn-bg: rgba(251, 191, 36, 0.12);
+      --warn-border: #fbbf24;
+    }
+    * { box-sizing: border-box; }
+    body {
+      font-family: system-ui, -apple-system, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      margin: 0;
+      min-height: 100vh;
+      padding: max(16px, env(safe-area-inset-top)) 16px max(32px, env(safe-area-inset-bottom));
+    }
+    .wrap { max-width: 420px; margin: 0 auto; }
+    h1 { font-size: 1.5rem; margin: 8px 0 4px; font-weight: 700; }
+    .tagline { color: var(--muted); font-size: 0.9rem; margin-bottom: 16px; }
+    .summary-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+      margin-bottom: 16px;
+    }
+    .summary-item {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 12px 8px;
+      text-align: center;
+    }
+    .summary-item .val { font-size: 1.25rem; font-weight: 800; color: var(--accent); }
+    .summary-item .lbl { font-size: 0.65rem; color: var(--muted); text-transform: uppercase; margin-top: 4px; letter-spacing: 0.04em; }
+    .summary-item.danger .val { color: var(--danger); }
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 20px;
+      margin-bottom: 16px;
+    }
+    label {
+      display: block;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--muted);
+      margin-bottom: 6px;
+    }
+    input[type="text"], input[type="number"] {
+      width: 100%;
+      font-size: 1rem;
+      font-weight: 600;
+      padding: 12px 14px;
+      border: 2px solid var(--border);
+      border-radius: 12px;
+      background: var(--bg);
+      color: var(--text);
+      -webkit-appearance: none;
+      appearance: none;
+    }
+    input:focus { outline: none; border-color: var(--accent); }
+    .field { margin-bottom: 14px; }
+    .field:last-child { margin-bottom: 0; }
+    .check-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-top: 4px;
+    }
+    .check-row input { width: 20px; height: 20px; accent-color: var(--accent); }
+    .check-row span { font-size: 0.9rem; color: var(--text); text-transform: none; letter-spacing: 0; }
+    .btn {
+      padding: 14px;
+      border: none;
+      border-radius: 12px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      cursor: pointer;
+      width: 100%;
+    }
+    .btn-primary { background: var(--accent-dim); color: #1e1b4b; }
+    .btn-secondary { background: var(--card); color: var(--text); border: 2px solid var(--border); }
+    .btn:active { opacity: 0.85; }
+    .form-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 14px; }
+    .list-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 12px;
+    }
+    .list-header h2 { font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--muted); margin: 0; }
+    .threshold-badge { font-size: 0.75rem; color: var(--muted); }
+    .contractor {
+      background: var(--bg);
+      border: 2px solid var(--border);
+      border-radius: 12px;
+      padding: 14px;
+      margin-bottom: 10px;
+    }
+    .contractor.required { border-color: var(--danger); }
+    .contractor-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 8px;
+      margin-bottom: 8px;
+    }
+    .contractor-name { font-weight: 700; font-size: 1rem; }
+    .status {
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      padding: 4px 8px;
+      border-radius: 6px;
+      white-space: nowrap;
+    }
+    .status.ok { background: rgba(52, 211, 153, 0.15); color: var(--success); }
+    .status.warn { background: rgba(251, 191, 36, 0.15); color: var(--accent); }
+    .status.danger { background: rgba(248, 113, 113, 0.15); color: var(--danger); }
+    .contractor-meta { font-size: 0.85rem; color: var(--muted); line-height: 1.5; }
+    .contractor-meta strong { color: var(--text); }
+    .progress {
+      height: 6px;
+      background: var(--border);
+      border-radius: 3px;
+      margin: 10px 0 6px;
+      overflow: hidden;
+    }
+    .progress-bar {
+      height: 100%;
+      background: var(--success);
+      border-radius: 3px;
+      transition: width 0.2s;
+    }
+    .progress-bar.near { background: var(--accent); }
+    .progress-bar.over { background: var(--danger); }
+    .contractor-actions { display: flex; gap: 8px; margin-top: 10px; }
+    .contractor-actions button {
+      flex: 1;
+      padding: 8px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      background: transparent;
+      color: var(--muted);
+      font-size: 0.8rem;
+      cursor: pointer;
+    }
+    .contractor-actions button:hover { border-color: var(--accent); color: var(--text); }
+    .empty {
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.9rem;
+      padding: 24px 12px;
+      line-height: 1.5;
+    }
+    .toast {
+      position: fixed;
+      bottom: 24px;
+      left: 50%;
+      transform: translateX(-50%) translateY(80px);
+      background: var(--success);
+      color: #1e1b4b;
+      padding: 12px 20px;
+      border-radius: 10px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      transition: transform 0.25s;
+      z-index: 100;
+    }
+    .toast.show { transform: translateX(-50%) translateY(0); }
+    .disclaimer {
+      font-size: 0.7rem;
+      color: var(--muted);
+      text-align: center;
+      margin-top: 12px;
+      line-height: 1.4;
+    }
+  </style>
+<meta name="google-site-verification" content="X8W5bw-fSJ0pTZiA0LesNi2vZ_-bUdLqVokR5uJZlI4" />
+<script>(function(){try{var r=localStorage.getItem('we_ref')||new URLSearchParams(location.search).get('ref');fetch('/api/funnel/visit',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({path:"/1099-threshold-tracker-pro",refCode:r,source:new URLSearchParams(location.search).get('utm_source')||'direct'})}).catch(function(){})}catch(e){}})();</script></head>
+<body>
+  <div class="wrap">
+    <h1>1099 Threshold Tracker Pro</h1>
+    <p class="tagline">Track contractor payments toward the $600 1099-NEC filing threshold</p>
+
+    <div class="summary-row">
+      <div class="summary-item">
+        <div class="val" id="sum-vendors">0</div>
+        <div class="lbl">Vendors</div>
+      </div>
+      <div class="summary-item danger">
+        <div class="val" id="sum-required">0</div>
+        <div class="lbl">Need 1099</div>
+      </div>
+      <div class="summary-item">
+        <div class="val" id="sum-ytd">$0</div>
+        <div class="lbl">Total YTD</div>
+      </div>
+    </div>
+
+    <div class="card" id="form-card">
+      <div class="field">
+        <label for="name">Contractor / vendor name</label>
+        <input type="text" id="name" placeholder="Jane Doe LLC" autocomplete="organization">
+      </div>
+      <div class="field">
+        <label for="paid">Payments YTD ($)</label>
+        <input type="number" id="paid" value="0" step="0.01" min="0" inputmode="decimal">
+      </div>
+      <div class="field">
+        <label for="threshold">1099-NEC threshold ($)</label>
+        <input type="number" id="threshold" value="600" step="1" min="0" inputmode="decimal">
+      </div>
+      <div class="check-row">
+        <input type="checkbox" id="w9" checked>
+        <span>W-9 on file</span>
+      </div>
+      <div class="form-actions">
+        <button type="button" class="btn btn-secondary" id="cancel-edit" hidden>Cancel</button>
+        <button type="button" class="btn btn-primary" id="save">Add vendor</button>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="list-header">
+        <h2>Your vendors</h2>
+        <span class="threshold-badge">Federal: $600</span>
+      </div>
+      <div id="list"></div>
+    </div>
+
+    <p class="disclaimer">Tracking helper only — verify IRS rules and state thresholds with your CPA or tax software.</p>
+  </div>
+
+  <div class="toast" id="toast" role="status"></div>
+
+  <script>
+    (function () {
+      var STORAGE_KEY = "thresholdpro_contractors";
+      var SUMMARY_KEY = "thresholdpro_last";
+      var DEFAULT_THRESHOLD = 600;
+      var listEl = document.getElementById("list");
+      var nameEl = document.getElementById("name");
+      var paidEl = document.getElementById("paid");
+      var thresholdEl = document.getElementById("threshold");
+      var w9El = document.getElementById("w9");
+      var saveBtn = document.getElementById("save");
+      var cancelBtn = document.getElementById("cancel-edit");
+      var toastEl = document.getElementById("toast");
+      var editId = null;
+      var contractors = [];
+
+      function fmt(n) {
+        return "$" + (+n || 0).toLocaleString("en-US", { minimumFractionDigits: 0, maximumFractionDigits: 0 });
+      }
+
+      function uid() {
+        return "v_" + Date.now().toString(36) + Math.random().toString(36).slice(2, 6);
+      }
+
+      function load() {
+        try {
+          contractors = JSON.parse(localStorage.getItem(STORAGE_KEY) || "[]");
+          if (!Array.isArray(contractors)) contractors = [];
+        } catch (e) {
+          contractors = [];
+        }
+      }
+
+      function persist() {
+        try {
+          localStorage.setItem(STORAGE_KEY, JSON.stringify(contractors));
+        } catch (e) {}
+        updateSummary();
+        render();
+      }
+
+      function updateSummary() {
+        var required = contractors.filter(function (c) { return (+c.paid || 0) >= (+c.threshold || DEFAULT_THRESHOLD); });
+        var totalYtd = contractors.reduce(function (s, c) { return s + (+c.paid || 0); }, 0);
+        var missingW9 = required.filter(function (c) { return !c.w9; });
+        document.getElementById("sum-vendors").textContent = String(contractors.length);
+        document.getElementById("sum-required").textContent = String(required.length);
+        document.getElementById("sum-ytd").textContent = fmt(totalYtd);
+        var summary = contractors.length + " vendor" + (contractors.length !== 1 ? "s" : "") + " · " + required.length + " need 1099";
+        if (missingW9.length) summary += " · " + missingW9.length + " missing W-9";
+        try { localStorage.setItem(SUMMARY_KEY, summary); } catch (e) {}
+      }
+
+      function showToast(msg) {
+        toastEl.textContent = msg;
+        toastEl.classList.add("show");
+        setTimeout(function () { toastEl.classList.remove("show"); }, 2000);
+      }
+
+      function resetForm() {
+        editId = null;
+        nameEl.value = "";
+        paidEl.value = "0";
+        thresholdEl.value = String(DEFAULT_THRESHOLD);
+        w9El.checked = true;
+        saveBtn.textContent = "Add vendor";
+        cancelBtn.hidden = true;
+      }
+
+      function statusFor(c) {
+        var paid = +c.paid || 0;
+        var threshold = +c.threshold || DEFAULT_THRESHOLD;
+        var remaining = threshold - paid;
+        if (paid >= threshold) {
+          return {
+            cls: "danger",
+            label: "1099 required",
+            text: fmt(paid) + " paid — file 1099-NEC",
+            pct: 100,
+            bar: "over"
+          };
+        }
+        if (paid >= threshold * 0.8) {
+          return {
+            cls: "warn",
+            label: "Near threshold",
+            text: fmt(remaining) + " until " + fmt(threshold),
+            pct: Math.min(99, (paid / threshold) * 100),
+            bar: "near"
+          };
+        }
+        return {
+          cls: "ok",
+          label: "Below threshold",
+          text: fmt(remaining) + " until " + fmt(threshold),
+          pct: threshold > 0 ? (paid / threshold) * 100 : 0,
+          bar: ""
+        };
+      }
+
+      function render() {
+        if (!contractors.length) {
+          listEl.innerHTML = '<div class="empty">No vendors yet — add contractors you pay to track 1099 filing requirements.</div>';
+          return;
+        }
+        listEl.innerHTML = contractors.map(function (c) {
+          var st = statusFor(c);
+          var w9Note = c.w9 ? "W-9 on file" : "⚠ W-9 missing";
+          return (
+            '<div class="contractor' + (st.cls === "danger" ? " required" : "") + '" data-id="' + c.id + '">' +
+              '<div class="contractor-head">' +
+                '<div class="contractor-name">' + escapeHtml(c.name || "Unnamed") + '</div>' +
+                '<span class="status ' + st.cls + '">' + st.label + '</span>' +
+              '</div>' +
+              '<div class="progress"><div class="progress-bar ' + st.bar + '" style="width:' + st.pct + '%"></div></div>' +
+              '<div class="contractor-meta"><strong>' + fmt(c.paid) + '</strong> YTD · ' + st.text + '<br>' + w9Note + '</div>' +
+              '<div class="contractor-actions">' +
+                '<button type="button" data-action="edit" data-id="' + c.id + '">Edit</button>' +
+                '<button type="button" data-action="delete" data-id="' + c.id + '">Remove</button>' +
+              '</div>' +
+            '</div>'
+          );
+        }).join("");
+      }
+
+      function escapeHtml(s) {
+        return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
+      }
+
+      saveBtn.addEventListener("click", function () {
+        var name = nameEl.value.trim();
+        if (!name) {
+          showToast("Enter a vendor name");
+          nameEl.focus();
+          return;
+        }
+        var entry = {
+          id: editId || uid(),
+          name: name,
+          paid: Math.max(0, +paidEl.value || 0),
+          threshold: Math.max(0, +thresholdEl.value || DEFAULT_THRESHOLD),
+          w9: w9El.checked
+        };
+        if (editId) {
+          contractors = contractors.map(function (c) { return c.id === editId ? entry : c; });
+          showToast("Vendor updated");
+        } else {
+          contractors.push(entry);
+          showToast("Vendor added");
+        }
+        persist();
+        resetForm();
+      });
+
+      cancelBtn.addEventListener("click", resetForm);
+
+      listEl.addEventListener("click", function (e) {
+        var btn = e.target.closest("button[data-action]");
+        if (!btn) return;
+        var id = btn.dataset.id;
+        var action = btn.dataset.action;
+        var c = contractors.find(function (x) { return x.id === id; });
+        if (!c) return;
+        if (action === "edit") {
+          editId = id;
+          nameEl.value = c.name;
+          paidEl.value = String(c.paid);
+          thresholdEl.value = String(c.threshold);
+          w9El.checked = !!c.w9;
+          saveBtn.textContent = "Save changes";
+          cancelBtn.hidden = false;
+          document.getElementById("form-card").scrollIntoView({ behavior: "smooth" });
+        } else if (action === "delete") {
+          contractors = contractors.filter(function (x) { return x.id !== id; });
+          persist();
+          if (editId === id) resetForm();
+          showToast("Vendor removed");
+        }
+      });
+
+      load();
+      updateSummary();
+      render();
+    })();
+  </script>
+<div class="we-iap-bar" id="we-iap-bar" role="region" aria-label="In-app purchases">
+<style>
+.we-iap-bar{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;align-items:center;margin:8px 0;padding:8px;background:rgba(0,0,0,.15);border-radius:8px;max-width:360px;width:100%}
+.we-iap-bar button{background:#6366f1;color:#fff;border:none;padding:6px 12px;border-radius:6px;font-size:11px;font-weight:600;cursor:pointer}
+.we-iap-bar button:active{transform:scale(.97)}
+#we-iap-premium-badge{display:none;background:#eab308;color:#1c1917;padding:4px 10px;border-radius:999px;font-size:11px;font-weight:700}
+body.we-iap-premium .we-iap-bar{border-color:#eab308}
+body.we-iap-no-ads .ad{display:none!important}
+</style>
+
+<button type="button" id="we-iap-premium">Pro Unlock · $4.99</button>
+
+<button type="button" id="we-iap-restore">Restore</button>
+<span id="we-iap-premium-badge">★ Premium</span>
+</div><script>(function(){
+  var APP="1099-threshold-tracker-pro";
+  var PRODUCTS=[{"key":"pro_unlock","id":"com.wealthengine.thresholdtrackerpro.pro_unlock","price":4.99,"title":"Pro Unlock"}];
+  var PREFIX='we_iap_'+APP+'_';
+
+  function owned(key){
+    try{return localStorage.getItem(PREFIX+key)==='1'}catch(e){return false}
+  }
+  function setOwned(key){
+    try{localStorage.setItem(PREFIX+key,'1')}catch(e){}
+    refreshUI();
+  }
+
+  function shouldShowAds(){
+    return true;
+  }
+
+  function hideAdSlots(){
+    if(shouldShowAds())return;
+    document.querySelectorAll('.ad,[data-ad-slot]').forEach(function(el){
+      el.style.display='none';
+    });
+  }
+
+  function refreshUI(){
+    var badge=document.getElementById('we-iap-premium-badge');
+    var removeBtn=document.getElementById('we-iap-remove-ads');
+    var hasPremium=owned('premium_unlock')||owned('pro_unlock');
+    var noAds=!shouldShowAds();
+    if(badge)badge.style.display=(hasPremium||noAds)?'inline-block':'none';
+    if(removeBtn)removeBtn.style.display=noAds?'none':'inline-block';
+    hideAdSlots();
+    document.body.classList.toggle('we-iap-premium',hasPremium);
+    document.body.classList.toggle('we-iap-no-ads',noAds);
+  }
+
+  function purchase(key){
+    var prod=PRODUCTS.find(function(p){return p.key===key});
+    if(!prod)return Promise.reject(new Error('Unknown product'));
+    if(owned(key))return Promise.resolve({key:key,restored:true});
+
+    /* Native: @revenuecat/purchases-capacitor or StoreKit 2 via Capacitor plugin */
+    if(window.Capacitor&&window.Capacitor.Plugins&&window.Capacitor.Plugins.Purchases){
+      return window.Capacitor.Plugins.Purchases.purchaseProduct({productIdentifier:prod.id})
+        .then(function(){setOwned(key);return{key:key,purchased:true};});
+    }
+
+    /* Sandbox / pre-App-Store-Connect: simulate success (replace after products live) */
+    if(confirm('Purchase '+prod.title+' (
+</html>
++prod.price.toFixed(2)+')?\n\nSandbox mode — receipt verify placeholder until App Store Connect products are live.')){
+      setOwned(key);
+      return Promise.resolve({key:key,purchased:true,sandbox:true});
+    }
+    return Promise.reject(new Error('Cancelled'));
+  }
+
+  function restore(){
+    if(window.Capacitor&&window.Capacitor.Plugins&&window.Capacitor.Plugins.Purchases){
+      return window.Capacitor.Plugins.Purchases.restorePurchases().then(function(res){
+        (res&&res.customerInfo&&res.customerInfo.entitlements&&res.customerInfo.entitlements.active||{}).forEach(function(){});
+        refreshUI();
+        return{restored:true};
+      });
+    }
+    refreshUI();
+    alert('Restore complete — checked local purchases. Connect RevenueCat for cross-device restore.');
+    return Promise.resolve({restored:true,local:true});
+  }
+
+  window.WE_IAP={
+    app:APP,
+    products:PRODUCTS,
+    owns:owned,
+    shouldShowAds:shouldShowAds,
+    purchase:purchase,
+    restore:restore,
+    refresh:refreshUI
+  };
+
+  function wireUI(){
+    var bar=document.getElementById('we-iap-bar');
+    if(!bar)return;
+    var removeBtn=document.getElementById('we-iap-remove-ads');
+    var premiumBtn=document.getElementById('we-iap-premium');
+    var restoreBtn=document.getElementById('we-iap-restore');
+    var tipBtn=document.getElementById('we-iap-tip');
+    if(removeBtn)removeBtn.addEventListener('click',function(){WE_IAP.purchase('remove_ads').catch(function(){})});
+    if(premiumBtn)premiumBtn.addEventListener('click',function(){
+      WE_IAP.purchase('pro_unlock').catch(function(){});
+    });
+    if(restoreBtn)restoreBtn.addEventListener('click',function(){WE_IAP.restore()});
+    if(tipBtn)tipBtn.addEventListener('click',function(){WE_IAP.purchase('tip_jar').catch(function(){})});
+    refreshUI();
+  }
+
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',wireUI);
+  else wireUI();
+})();</script></body>
+</html>
