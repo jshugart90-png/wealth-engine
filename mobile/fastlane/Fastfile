@@ -221,6 +221,11 @@ platform :ios do
     mini_app_ios_beta("freelancer-stack", "Freelancer Revenue Stack")
   end
 
+  desc "TestFlight upload for DevWatch monitoring bundle hub app"
+  lane :beta_devwatch do
+    mini_app_ios_beta("devwatch", "DevWatch")
+  end
+
   desc "TestFlight upload + App Store metadata (does not auto-submit for review)"
   lane :release do
     beta

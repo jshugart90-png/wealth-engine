@@ -1,0 +1,13 @@
+DevWatch unifies uptime monitoring, SSL certificate expiry alerts, and cron heartbeat checks in one mobile hub — built for indie developers and small teams who need to know before customers do.
+
+Open StatusPing to configure uptime monitors with email and Slack alerts. Use the SSL Expiry Checker to preview certificate renewal dates. Launch the Cron Schedule Helper to build heartbeat URLs for scheduled jobs.
+
+Features:
+• Native launcher with all three monitoring tools
+• Recently used tool tracking on your device
+• Bundle page with $39/mo DevWatch or $19/mo StatusPing Team
+• LAUNCH25 checkout — 25% off at Stripe checkout
+• Works offline for tools you've opened before
+• No account required for free previews
+
+Perfect for SaaS founders, dev agencies, and anyone running cron jobs, APIs, or production sites on Render, Fly, Vercel, or AWS.

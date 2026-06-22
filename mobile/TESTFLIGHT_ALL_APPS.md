@@ -1,4 +1,4 @@
-# TestFlight Master Checklist — All 30 Apps
+# TestFlight Master Checklist — All 31 Apps
 
 **Updated:** 2026-06-22  
 **Repo:** github.com/jshugart90-png/wealth-engine  
@@ -39,6 +39,7 @@
 | 28 | Profit Margin Calculator Pro | `com.wealthengine.profitmargincalculatorpro` | 1.0.0 | `beta_profit_margin_calculator_pro` | `mobile:preflight:profit-margin-calculator-pro` | READY |
 | 29 | Break-Even Calculator Pro | `com.wealthengine.breakevencalculatorpro` | 1.0.0 | `beta_break_even_calculator_pro` | `mobile:preflight:break-even-calculator-pro` | READY |
 | 30 | Freelancer Revenue Stack | `com.wealthengine.freelancerstack` | 1.0.0 | `beta_freelancer_stack` | `mobile:preflight:freelancer-stack` | READY |
+| 31 | DevWatch | `com.wealthengine.devwatch` | 1.0.0 | `beta_devwatch` | `mobile:preflight:devwatch` | READY |
 
 ## Per-app upload commands (Mac)
 
@@ -91,6 +92,7 @@ cd .. && bundle exec fastlane ios beta_<lane>
 | profit-margin-calculator-pro | `mobile/profit-margin-calculator-pro/` | `/profit-margin-calculator-pro/` |
 | break-even-calculator-pro | `mobile/break-even-calculator-pro/` | `/break-even-calculator-pro/` |
 | freelancer-stack | `mobile/freelancer-stack/` | `/bundles/freelancer-stack.html` |
+| devwatch | `mobile/devwatch/` | `/bundles/devwatch.html` |
 
 ## Global blockers
 
@@ -112,6 +114,7 @@ npm run mobile:preflight:quarterly-tax-deadline-pro  # expect 17 PASS, 0 FAIL
 npm run mobile:preflight:profit-margin-calculator-pro  # expect 17 PASS, 0 FAIL
 npm run mobile:preflight:break-even-calculator-pro  # expect 17 PASS, 0 FAIL
 npm run mobile:preflight:freelancer-stack  # expect 21 PASS, 0 FAIL
+npm run mobile:preflight:devwatch  # expect 21 PASS, 0 FAIL
 ```
 
 See `board/APP_DEV.md` for per-app features and device checklist (`mobile/DEVICE_TEST_CHECKLIST.md`).

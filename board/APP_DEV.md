@@ -787,9 +787,35 @@ npx cap sync ios && npx cap open ios
 # Or: bundle exec fastlane ios beta_freelancer_stack
 ```
 
+## App 31 — DevWatch (hub)
+
+| Field | Value |
+|-------|-------|
+| Version | 1.0.0 |
+| Tools | StatusPing + SSL Expiry Checker + Cron Schedule Helper |
+| Capacitor | `mobile/devwatch/` → loads `/bundles/devwatch.html` from prod |
+| Store metadata | `mobile/store-metadata/devwatch/` |
+| Preflight | `npm run mobile:preflight:devwatch` |
+
+### Features (shipped this session)
+
+1. **Native launcher** — 3-tool grid with recently used tracking
+2. **Bundle page** — local copy of `/bundles/devwatch.html` with $39/mo DevWatch + $19/mo StatusPing Team
+3. **LAUNCH25 checkout** — promo banner deep link to `/go/devwatch.html`
+4. **Offline banner** — same pattern as Freelancer Revenue Stack hub
+
+### TestFlight upload (user Mac)
+
+```bash
+npm run build && cd mobile && node sync-www.mjs devwatch
+cd devwatch && npm install && npx cap add ios  # if missing
+npx cap sync ios && npx cap open ios
+# Or: bundle exec fastlane ios beta_devwatch
+```
+
 ## Master checklist
 
-See `mobile/TESTFLIGHT_ALL_APPS.md` for all 30 apps — bundle IDs, Fastlane lanes, versions.
+See `mobile/TESTFLIGHT_ALL_APPS.md` for all 31 apps — bundle IDs, Fastlane lanes, versions.
 
 ## GitHub policy
 

@@ -22,6 +22,7 @@ const STATIC_PATHS = [
   "/hookrelay/pricing.html",
   "/go/pipekit.html",
   "/bundles/freelancer-stack.html",
+  "/bundles/devwatch.html",
   "/bundles/dev-ops-stack.html",
   "/bundles/landlord-tenant-stack.html",
   "/tools/tip-calculator.html",

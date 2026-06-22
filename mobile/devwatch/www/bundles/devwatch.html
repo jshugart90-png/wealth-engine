@@ -1,0 +1,43 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>DevWatch — $39/mo monitoring bundle</title>
+<meta name="description" content="Uptime + SSL expiry + cron heartbeat monitoring in one dashboard. Use code LAUNCH25 at checkout.">
+<style>
+body{font-family:system-ui;max-width:720px;margin:40px auto;padding:20px;line-height:1.5;color:#e2e8f0;background:#0c1222}
+h1{color:#22d3ee;font-size:clamp(28px,5vw,36px);margin-bottom:8px}
+.lead{color:#94a3b8;font-size:18px;margin-bottom:24px}
+.badge{background:#eab308;color:#000;font-size:11px;padding:4px 10px;border-radius:20px;display:inline-block;margin-bottom:12px;font-weight:700}
+.plans{display:grid;gap:16px;margin:24px 0}
+.plan{border:2px solid #1e293b;border-radius:12px;padding:20px;background:#111827}
+.plan.featured{border-color:#0891b2;background:#0f172a}
+.plan h2{margin:0 0 6px;font-size:20px;color:#f8fafc}
+.plan p{margin:0 0 14px;color:#94a3b8;font-size:14px}
+.btn{display:block;background:#0891b2;color:#fff;text-align:center;padding:14px;text-decoration:none;border-radius:8px;font-weight:600}
+.btn.secondary{background:#0c1222;color:#22d3ee;border:2px solid #0891b2}
+.tools{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px;margin:28px 0}
+.tool{display:block;border:1px solid #1e293b;border-radius:8px;padding:14px;text-decoration:none;color:inherit;background:#111827}
+.tool:hover{border-color:#22d3ee}
+.tool strong{display:block;color:#22d3ee;margin-bottom:4px}
+.tool span{font-size:13px;color:#94a3b8}
+.footer{margin-top:32px;font-size:14px;color:#64748b}
+.footer a{color:#22d3ee}
+</style></head><body>
+<span class="badge">LAUNCH25 — 25% off at checkout</span>
+<h1>DevWatch</h1>
+<p class="lead">Uptime + SSL expiry + cron heartbeat monitoring in one dashboard.</p>
+<div class="plans">
+  <div class="plan featured">
+    <h2>DevWatch — $39/mo</h2>
+    <p>25 uptime monitors + 10 SSL certs + 20 cron jobs. Email & Slack alerts.</p>
+    <a class="btn" href="https://buy.stripe.com/4gM14m7lAdSp23zfFD1Nu0h" onclick="fetch('/api/funnel/checkout_click',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({sku:'devwatch-monthly',path:'/bundles/devwatch'})})">Start monitoring →</a>
+  </div>
+  <div class="plan">
+    <h2>StatusPing Team — $19/mo</h2>
+    <p>Uptime-only tier — upgrade to DevWatch anytime for SSL + cron.</p>
+    <a class="btn secondary" href="https://buy.stripe.com/6oU4gygWa8y5cId0KJ1Nu0a" onclick="fetch('/api/funnel/checkout_click',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({sku:'team-monthly',path:'/bundles/devwatch'})})">Uptime only →</a>
+  </div>
+</div>
+<h2>Included tools — try free first</h2>
+<div class="tools"><a class="tool" href="https://wealth-engine-0qlj.onrender.com/statusping/index.html"><strong>StatusPing</strong><span>Uptime monitors & alerts</span></a><a class="tool" href="https://wealth-engine-0qlj.onrender.com/tools/ssl-expiry-checker.html"><strong>SSL Expiry Checker</strong><span>Certificate expiry alerts</span></a><a class="tool" href="https://wealth-engine-0qlj.onrender.com/tools/cron-schedule-helper.html"><strong>Cron Schedule Helper</strong><span>Heartbeat cron monitoring</span></a></div>
+<p class="footer"><a href="https://wealth-engine-0qlj.onrender.com/go/devwatch.html">Ad landing →</a> · <a href="https://wealth-engine-0qlj.onrender.com/go/uptime.html">Uptime only $5</a> · <a href="https://wealth-engine-0qlj.onrender.com/">← All products</a></p>
+<p style="font-size:12px;color:#475569">Monitoring alerts are informational — verify critical systems independently. Instant access after Stripe checkout.</p>
+</body></html>

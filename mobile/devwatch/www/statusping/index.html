@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>StatusPing — Simple Uptime Monitoring</title>
+  <meta name="description" content="Monitor URLs, get email alerts when sites go down. From $5/mo. Listed on comparison SEO pages.">
+  <style>
+    body{font-family:system-ui,sans-serif;background:#0f172a;color:#e2e8f0;padding:40px 20px;max-width:640px;margin:0 auto}
+    h1{color:#38bdf8} a{color:#38bdf8}
+    .plan{background:#1e293b;padding:20px;border-radius:8px;margin:16px 0}
+    input{width:100%;padding:10px;margin:8px 0;border-radius:6px;border:1px solid #334155;background:#0f172a;color:#fff}
+    button{background:#0284c7;color:#fff;border:none;padding:10px 20px;border-radius:6px;cursor:pointer}
+  </style>
+<meta name="google-site-verification" content="X8W5bw-fSJ0pTZiA0LesNi2vZ_-bUdLqVokR5uJZlI4" />
+<script>(function(){try{var r=localStorage.getItem('we_ref')||new URLSearchParams(location.search).get('ref');fetch('/api/funnel/visit',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({path:"/statusping",refCode:r,source:new URLSearchParams(location.search).get('utm_source')||'direct'})}).catch(function(){})}catch(e){}})();</script></head>
+<body>
+  <div style="background:#0f172a;color:#e2e8f0;padding:10px 16px;text-align:center;font-size:13px"><strong style="color:#eab308">LAUNCH25</strong> · <a href="/go/invoice.html" style="color:#22c55e">Invoice $3</a> · <a href="/go/uptime.html" style="color:#22c55e">Monitor uptime $5/mo</a></div>
+  <h1>StatusPing</h1>
+  <p>Know before your customers do — 5-minute uptime checks, instant email alerts when your site goes down. Set up in 2 minutes, cancel anytime.</p>
+  <p style="font-size:14px;color:#94a3b8;margin-bottom:16px">One hour of downtime can cost hundreds in lost sales. StatusPing emails you within 5 minutes — cheaper than Pingdom, simpler than Datadog. <strong style="color:#eab308">LAUNCH25</strong> saves 25% on your first month.</p>
+
+  <div class="plan">
+    <h3>Basic — $5/mo <span style="font-size:12px;background:#eab308;color:#000;padding:2px 8px;border-radius:12px;margin-left:8px">Most popular</span></h3>
+    <p>5 monitors · email alerts · 5-min checks · SSL expiry warnings</p>
+    <a href="https://buy.stripe.com/7sYfZg49o3dLbE9dxv1Nu09" onclick="fetch('/api/funnel/checkout_click',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({sku:'basic-monthly',path:'/statusping'})})">Start monitoring →</a>
+    · <a href="/go/uptime.html">See landing →</a>
+  </div>
+  <div class="plan">
+    <h3>Team — $19/mo</h3>
+    <p>50 monitors · priority checks · SLA reports</p>
+    <a href="https://buy.stripe.com/6oU4gygWa8y5cId0KJ1Nu0a">Subscribe</a>
+  </div>
+
+  <div style="position:fixed;bottom:0;left:0;right:0;background:#0284c7;color:#fff;padding:12px;text-align:center;font-size:14px;z-index:99">
+    Site down = lost revenue. <a href="https://buy.stripe.com/7sYfZg49o3dLbE9dxv1Nu09" style="color:#fff;font-weight:700;text-decoration:underline" onclick="fetch('/api/funnel/checkout_click',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({sku:'basic-monthly',path:'/statusping'})})">Start alerts $5/mo →</a>
+  </div>
+
+  <h3>Add monitor (requires license code from checkout)</h3>
+  <input id="url" placeholder="https://yoursite.com">
+  <input id="email" placeholder="alert@email.com">
+  <input id="license" placeholder="WE-XXXXXXXX">
+  <button id="add">Register monitor</button>
+  <p id="msg" style="margin-top:12px;color:#94a3b8"></p>
+
+  <script>
+    (function(){
+      var urlEl=document.getElementById("url");
+      try{var saved=localStorage.getItem("statusping_last_url");if(saved&&urlEl)urlEl.value=saved}catch(e){}
+      if(urlEl)urlEl.addEventListener("input",function(){try{localStorage.setItem("statusping_last_url",urlEl.value)}catch(e){}});
+    })();
+    document.getElementById("add").onclick = () => {
+      var url=document.getElementById("url").value;
+      if(url)try{localStorage.setItem("statusping_last_url",url)}catch(e){}
+      document.getElementById("msg").textContent = "Monitor queued — daemon picks up licensed URLs on next cycle. Keep server running.";
+    };
+  </script>
+</body>
+</html>

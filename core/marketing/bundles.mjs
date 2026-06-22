@@ -22,6 +22,23 @@ const BUNDLES = [
     adLanding: "/go/freelancer.html",
   },
   {
+    slug: "devwatch",
+    title: "DevWatch",
+    desc: "Uptime + SSL expiry + cron heartbeat monitoring in one dashboard.",
+    primarySku: "devwatch-monthly",
+    primaryLabel: "DevWatch — $39/mo",
+    primarySub: "25 uptime monitors + 10 SSL certs + 20 cron jobs. Email & Slack alerts.",
+    bundleSku: "team-monthly",
+    bundleLabel: "StatusPing Team — $19/mo",
+    bundleSub: "Uptime-only tier — upgrade to DevWatch anytime for SSL + cron.",
+    ventures: [
+      { name: "StatusPing", path: "/statusping/index.html", desc: "Uptime monitors & alerts" },
+      { name: "SSL Expiry Checker", path: "/tools/ssl-expiry-checker.html", desc: "Certificate expiry alerts" },
+      { name: "Cron Schedule Helper", path: "/tools/cron-schedule-helper.html", desc: "Heartbeat cron monitoring" },
+    ],
+    adLanding: "/go/devwatch.html",
+  },
+  {
     slug: "dev-ops-stack",
     title: "Dev Ops Stack",
     desc: "PipeKit Pro + StatusPing Team",
@@ -91,6 +108,61 @@ h1{color:#2563eb;font-size:clamp(28px,5vw,36px);margin-bottom:8px}
 </body></html>`;
 }
 
+function buildDevWatchStackHtml(b, base) {
+  const subLink = getPaymentLink(b.primarySku) ?? "#";
+  const bundleLink = getPaymentLink(b.bundleSku) ?? "#";
+  const ventureCards = b.ventures
+    .map(
+      (v) =>
+        `<a class="tool" href="${base}${v.path}"><strong>${v.name}</strong><span>${v.desc}</span></a>`
+    )
+    .join("");
+
+  return `<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>${b.title} — $39/mo monitoring bundle</title>
+<meta name="description" content="${b.desc} Use code LAUNCH25 at checkout.">
+<style>
+body{font-family:system-ui;max-width:720px;margin:40px auto;padding:20px;line-height:1.5;color:#e2e8f0;background:#0c1222}
+h1{color:#22d3ee;font-size:clamp(28px,5vw,36px);margin-bottom:8px}
+.lead{color:#94a3b8;font-size:18px;margin-bottom:24px}
+.badge{background:#eab308;color:#000;font-size:11px;padding:4px 10px;border-radius:20px;display:inline-block;margin-bottom:12px;font-weight:700}
+.plans{display:grid;gap:16px;margin:24px 0}
+.plan{border:2px solid #1e293b;border-radius:12px;padding:20px;background:#111827}
+.plan.featured{border-color:#0891b2;background:#0f172a}
+.plan h2{margin:0 0 6px;font-size:20px;color:#f8fafc}
+.plan p{margin:0 0 14px;color:#94a3b8;font-size:14px}
+.btn{display:block;background:#0891b2;color:#fff;text-align:center;padding:14px;text-decoration:none;border-radius:8px;font-weight:600}
+.btn.secondary{background:#0c1222;color:#22d3ee;border:2px solid #0891b2}
+.tools{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px;margin:28px 0}
+.tool{display:block;border:1px solid #1e293b;border-radius:8px;padding:14px;text-decoration:none;color:inherit;background:#111827}
+.tool:hover{border-color:#22d3ee}
+.tool strong{display:block;color:#22d3ee;margin-bottom:4px}
+.tool span{font-size:13px;color:#94a3b8}
+.footer{margin-top:32px;font-size:14px;color:#64748b}
+.footer a{color:#22d3ee}
+</style></head><body>
+<span class="badge">LAUNCH25 — 25% off at checkout</span>
+<h1>${b.title}</h1>
+<p class="lead">${b.desc}</p>
+<div class="plans">
+  <div class="plan featured">
+    <h2>${b.primaryLabel}</h2>
+    <p>${b.primarySub}</p>
+    <a class="btn" href="${subLink}" onclick="fetch('/api/funnel/checkout_click',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({sku:'${b.primarySku}',path:'/bundles/devwatch'})})">Start monitoring →</a>
+  </div>
+  <div class="plan">
+    <h2>${b.bundleLabel}</h2>
+    <p>${b.bundleSub}</p>
+    <a class="btn secondary" href="${bundleLink}" onclick="fetch('/api/funnel/checkout_click',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({sku:'${b.bundleSku}',path:'/bundles/devwatch'})})">Uptime only →</a>
+  </div>
+</div>
+<h2>Included tools — try free first</h2>
+<div class="tools">${ventureCards}</div>
+<p class="footer"><a href="${base}${b.adLanding}">Ad landing →</a> · <a href="${base}/go/uptime.html">Uptime only $5</a> · <a href="${base}/">← All products</a></p>
+<p style="font-size:12px;color:#475569">Monitoring alerts are informational — verify critical systems independently. Instant access after Stripe checkout.</p>
+</body></html>`;
+}
+
 function buildSimpleBundleHtml(b, base) {
   const links = b.skus.map((s) => getPaymentLink(s)).filter(Boolean);
   return `<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
@@ -108,6 +180,60 @@ ${links.map((l, i) => `<a class="btn" href="${l}">Get part ${i + 1} →</a>`).jo
 <p style="margin-top:24px"><a href="${base}/">← All products</a></p></body></html>`;
 }
 
+function buildRichStackHtml(b, base, bundlePath) {
+  const subLink = getPaymentLink(b.primarySku) ?? "#";
+  const bundleLink = getPaymentLink(b.bundleSku) ?? "#";
+  const ventureCards = b.ventures
+    .map(
+      (v) =>
+        `<a class="tool" href="${base}${v.path}"><strong>${v.name}</strong><span>${v.desc}</span></a>`
+    )
+    .join("");
+
+  return `<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>${b.title} — ${b.primaryLabel}</title>
+<meta name="description" content="${b.desc} Use code LAUNCH25 at checkout.">
+<style>
+body{font-family:system-ui;max-width:720px;margin:40px auto;padding:20px;line-height:1.5;color:#1e293b}
+h1{color:#2563eb;font-size:clamp(28px,5vw,36px);margin-bottom:8px}
+.lead{color:#64748b;font-size:18px;margin-bottom:24px}
+.badge{background:#eab308;color:#000;font-size:11px;padding:4px 10px;border-radius:20px;display:inline-block;margin-bottom:12px;font-weight:700}
+.plans{display:grid;gap:16px;margin:24px 0}
+.plan{border:2px solid #e2e8f0;border-radius:12px;padding:20px}
+.plan.featured{border-color:#2563eb;background:#f8fafc}
+.plan h2{margin:0 0 6px;font-size:20px}
+.plan p{margin:0 0 14px;color:#64748b;font-size:14px}
+.btn{display:block;background:#2563eb;color:#fff;text-align:center;padding:14px;text-decoration:none;border-radius:8px;font-weight:600}
+.btn.secondary{background:#fff;color:#2563eb;border:2px solid #2563eb}
+.tools{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px;margin:28px 0}
+.tool{display:block;border:1px solid #e2e8f0;border-radius:8px;padding:14px;text-decoration:none;color:inherit}
+.tool:hover{border-color:#2563eb}
+.tool strong{display:block;color:#2563eb;margin-bottom:4px}
+.tool span{font-size:13px;color:#64748b}
+.footer{margin-top:32px;font-size:14px;color:#64748b}
+</style></head><body>
+<span class="badge">LAUNCH25 — 25% off at checkout</span>
+<h1>${b.title}</h1>
+<p class="lead">${b.desc}</p>
+<div class="plans">
+  <div class="plan featured">
+    <h2>${b.primaryLabel}</h2>
+    <p>${b.primarySub}</p>
+    <a class="btn" href="${subLink}" onclick="fetch('/api/funnel/checkout_click',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({sku:'${b.primarySku}',path:'${bundlePath}'})})">Start monitoring →</a>
+  </div>
+  <div class="plan">
+    <h2>${b.bundleLabel}</h2>
+    <p>${b.bundleSub}</p>
+    <a class="btn secondary" href="${bundleLink}" onclick="fetch('/api/funnel/checkout_click',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({sku:'${b.bundleSku}',path:'${bundlePath}'})})">Uptime only →</a>
+  </div>
+</div>
+<h2>Included tools — try free first</h2>
+<div class="tools">${ventureCards}</div>
+<p class="footer"><a href="${base}${b.adLanding}">Ad landing →</a> · <a href="${base}/go/uptime.html">Uptime from $5/mo</a> · <a href="${base}/">← All products</a></p>
+<p style="font-size:12px;color:#94a3b8">Instant delivery after Stripe checkout. Monitoring alerts via email.</p>
+</body></html>`;
+}
+
 export function buildBundleLandings() {
   const dist = join(getRoot(), "dist", "bundles");
   mkdirSync(dist, { recursive: true });
@@ -115,7 +241,13 @@ export function buildBundleLandings() {
 
   for (const b of BUNDLES) {
     const html =
-      b.slug === "freelancer-stack" ? buildFreelancerStackHtml(b, base) : buildSimpleBundleHtml(b, base);
+      b.slug === "freelancer-stack"
+        ? buildFreelancerStackHtml(b, base)
+        : b.slug === "devwatch"
+          ? buildDevWatchStackHtml(b, base)
+          : b.primarySku
+            ? buildRichStackHtml(b, base, `/bundles/${b.slug}.html`)
+            : buildSimpleBundleHtml(b, base);
     writeFileSync(join(dist, `${b.slug}.html`), html);
   }
   return { bundles: BUNDLES.length };

@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 /**
  * App Store preflight QC — 15-item checklist before mobile submission.
- * Run: node scripts/app-store-preflight.mjs [--app games|tools|freelancer-stack|receipt-rush|webhook-whack|invoice-stack|horseshoe-toss|uptime-defender|freelancer-memory|color-switch-snake|word-scramble-biz|net-30-ninja|ssl-shield|nda-speed-sign|billsnap|statusping-lite|leaselens|ndagen|hookrelay|pipekit|meetingcost|templateforge|comparestack|tip-calculator-pro|hourly-rate-calculator-pro|freelancer-tax-estimator|1099-threshold-tracker-pro|quarterly-tax-deadline-pro|profit-margin-calculator-pro|break-even-calculator-pro]
+ * Run: node scripts/app-store-preflight.mjs [--app games|tools|freelancer-stack|devwatch|receipt-rush|webhook-whack|invoice-stack|horseshoe-toss|uptime-defender|freelancer-memory|color-switch-snake|word-scramble-biz|net-30-ninja|ssl-shield|nda-speed-sign|billsnap|statusping-lite|leaselens|ndagen|hookrelay|pipekit|meetingcost|templateforge|comparestack|tip-calculator-pro|hourly-rate-calculator-pro|freelancer-tax-estimator|1099-threshold-tracker-pro|quarterly-tax-deadline-pro|profit-margin-calculator-pro|break-even-calculator-pro]
  */
 import { readFileSync, existsSync, readdirSync } from "fs";
 import { join } from "path";
@@ -11,7 +11,7 @@ const root = getRoot();
 const app = process.argv.includes("--app")
   ? process.argv[process.argv.indexOf("--app") + 1]
   : "games";
-const HUB_APPS = ["tools", "freelancer-stack"];
+const HUB_APPS = ["tools", "freelancer-stack", "devwatch"];
 const MINI_GAMES = ["receipt-rush", "webhook-whack", "invoice-stack", "horseshoe-toss", "uptime-defender", "freelancer-memory", "color-switch-snake", "word-scramble-biz", "net-30-ninja", "ssl-shield", "nda-speed-sign"];
 const UTIL_APPS = ["billsnap", "statusping-lite", "leaselens", "ndagen", "hookrelay", "pipekit", "meetingcost", "templateforge", "comparestack", "tip-calculator-pro", "hourly-rate-calculator-pro", "freelancer-tax-estimator", "1099-threshold-tracker-pro", "quarterly-tax-deadline-pro", "profit-margin-calculator-pro", "break-even-calculator-pro"];
 const UTIL_DIST = { "statusping-lite": "statusping", pipekit: "pipekit", templateforge: "templateforge", comparestack: "comparestack", "tip-calculator-pro": "tip-calculator-pro", "hourly-rate-calculator-pro": "hourly-rate-calculator-pro", "freelancer-tax-estimator": "freelancer-tax-estimator", "1099-threshold-tracker-pro": "1099-threshold-tracker-pro", "quarterly-tax-deadline-pro": "quarterly-tax-deadline-pro", "profit-margin-calculator-pro": "profit-margin-calculator-pro", "break-even-calculator-pro": "break-even-calculator-pro" };
@@ -76,6 +76,16 @@ if (isHubApp) {
       if (existsSync(join(dist, tool, "index.html"))) pass(`5c-${tool}`, `${tool} built in dist`);
       else fail(`5c-${tool}`, `${tool} built in dist`, `Missing dist/${tool}/index.html`);
     }
+  } else if (app === "devwatch") {
+    const bundle = join(dist, "bundles", "devwatch.html");
+    if (existsSync(bundle)) pass("5b", "DevWatch bundle built");
+    else fail("5b", "DevWatch bundle built", "Missing dist/bundles/devwatch.html");
+    if (existsSync(join(dist, "statusping", "index.html"))) pass("5c-statusping", "statusping built in dist");
+    else fail("5c-statusping", "statusping built in dist", "Missing dist/statusping/index.html");
+    for (const tool of ["ssl-expiry-checker.html", "cron-schedule-helper.html"]) {
+      if (existsSync(join(dist, "tools", tool))) pass(`5c-${tool}`, `${tool} built in dist`);
+      else fail(`5c-${tool}`, `${tool} built in dist`, `Missing dist/tools/${tool}`);
+    }
   }
 } else if (isUtilApp) {
   const utilDist = UTIL_DIST[utilSlug] ?? utilSlug;
@@ -133,6 +143,8 @@ else fail(6, "All games in dist", `Missing: ${missingGames.join(", ")}`);
 // 6b. (mini-game / utility / hub — placeholder to keep check IDs stable)
 if (isHubApp && app === "freelancer-stack" && existsSync(join(mobileRoot, app, "www", "bundles", "freelancer-stack.html"))) {
   pass("6b", "Freelancer stack bundle synced");
+} else if (isHubApp && app === "devwatch" && existsSync(join(mobileRoot, app, "www", "bundles", "devwatch.html"))) {
+  pass("6b", "DevWatch bundle synced");
 } else if (isHubApp) {
   pass("6b", "Hub bundle sync", app);
 } else if (isUtilApp && existsSync(join(dist, (UTIL_DIST[utilSlug] ?? utilSlug), "index.html"))) {
