@@ -1,0 +1,22 @@
+{
+  "appName": "1099 Threshold Tracker Pro",
+  "subtitle": "Track $600 1099-NEC threshold",
+  "bundleId": "com.wealthengine.thresholdtrackerpro",
+  "version": "1.0.0",
+  "privacyPolicyUrl": "https://wealth-engine-0qlj.onrender.com/privacy.html",
+  "supportUrl": "https://wealth-engine-0qlj.onrender.com/",
+  "marketingUrl": "https://wealth-engine-0qlj.onrender.com/1099-threshold-tracker-pro/",
+  "category": {
+    "apple": "Finance",
+    "appleSub": "Utilities",
+    "google": "FINANCE"
+  },
+  "contentRating": {
+    "ageRating": "4+",
+    "googleQuestionnaire": "Everyone — 1099 contractor payment tracker, no network required for core features",
+    "adsPresent": false,
+    "inAppPurchases": false,
+    "dataCollected": ["vendor list stored locally only"]
+  },
+  "keywords": ["1099", "threshold", "contractor", "W-9", "NEC", "freelance", "vendor", "compliance", "payments", "thresholdtrackerpro"]
+}

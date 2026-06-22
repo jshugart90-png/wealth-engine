@@ -1,6 +1,6 @@
 /**
  * Sync dist/ assets into Capacitor www folders.
- * Usage: node sync-www.mjs [games|tools|receipt-rush|webhook-whack|invoice-stack|horseshoe-toss|uptime-defender|freelancer-memory|color-switch-snake|word-scramble-biz|net-30-ninja|ssl-shield|nda-speed-sign|billsnap|statusping-lite|leaselens|ndagen|hookrelay|pipekit|meetingcost|templateforge|comparestack|tip-calculator-pro|hourly-rate-calculator-pro|freelancer-tax-estimator|all]
+ * Usage: node sync-www.mjs [games|tools|receipt-rush|webhook-whack|invoice-stack|horseshoe-toss|uptime-defender|freelancer-memory|color-switch-snake|word-scramble-biz|net-30-ninja|ssl-shield|nda-speed-sign|billsnap|statusping-lite|leaselens|ndagen|hookrelay|pipekit|meetingcost|templateforge|comparestack|tip-calculator-pro|hourly-rate-calculator-pro|freelancer-tax-estimator|1099-threshold-tracker-pro|all]
  */
 import { cpSync, existsSync, mkdirSync, readFileSync, writeFileSync, readdirSync } from "fs";
 import { join, dirname } from "path";
@@ -618,6 +618,32 @@ const UTILITY_SHELLS = {
       "Federal, state & quarterly payment estimates",
     ],
   },
+  "1099-threshold-tracker-pro": {
+    title: "1099 Threshold Tracker Pro",
+    emoji: "📋",
+    tagline: "Track contractor payments toward $600 1099-NEC threshold",
+    themeColor: "#1e1b4b",
+    bg: "#1e1b4b",
+    text: "#f8fafc",
+    sub: "#a5b4fc",
+    accent: "#fbbf24",
+    btnBg: "#f59e0b",
+    btnHover: "#d97706",
+    statBg: "#312e81",
+    statBorder: "#4338ca",
+    statKey: "thresholdpro_last",
+    statLabel: "Vendor summary",
+    statEmpty: "—",
+    cta: "Track Vendors",
+    moreLink: "https://wealth-engine-0qlj.onrender.com/go/compliance.html",
+    moreLabel: "Compliance pack $19",
+    offlineMsg: "You're offline — open 1099 Threshold Tracker Pro if you've used it before",
+    features: [
+      "Multi-vendor YTD payment tracking",
+      "W-9 on-file status per contractor",
+      "1099-NEC threshold alerts & progress bars",
+    ],
+  },
 };
 
 function syncUtility(slug) {
@@ -775,6 +801,7 @@ if (target === "comparestack" || target === "all") syncUtility("comparestack");
 if (target === "tip-calculator-pro" || target === "all") syncUtility("tip-calculator-pro");
 if (target === "hourly-rate-calculator-pro" || target === "all") syncUtility("hourly-rate-calculator-pro");
 if (target === "freelancer-tax-estimator" || target === "all") syncUtility("freelancer-tax-estimator");
+if (target === "1099-threshold-tracker-pro" || target === "all") syncUtility("1099-threshold-tracker-pro");
 if (target === "receipt-rush" || target === "all") syncMiniGame("receipt-rush");
 if (target === "webhook-whack" || target === "all") syncMiniGame("webhook-whack");
 if (target === "invoice-stack" || target === "all") syncMiniGame("invoice-stack");

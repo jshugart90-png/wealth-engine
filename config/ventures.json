@@ -131,6 +131,16 @@
       "deployPath": "dist/freelancer-tax-estimator",
       "channels": ["seo", "app-store", "freelancer-forums"],
       "autonomous": ["shareable-summaries", "local-history"]
+    },
+    {
+      "id": "1099-threshold-tracker-pro",
+      "name": "1099 Threshold Tracker Pro",
+      "type": "utility",
+      "model": "free",
+      "path": "ventures/1099-threshold-tracker-pro",
+      "deployPath": "dist/1099-threshold-tracker-pro",
+      "channels": ["seo", "app-store", "freelancer-forums"],
+      "autonomous": ["shareable-summaries", "local-history"]
     }
   ],
   "stripeProducts": [

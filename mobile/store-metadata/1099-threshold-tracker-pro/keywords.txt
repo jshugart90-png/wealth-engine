@@ -1,0 +1,1 @@
+1099,NEC,threshold,contractor,W-9,vendor,freelance,compliance,payments,1099-NEC

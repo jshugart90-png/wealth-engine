@@ -196,6 +196,11 @@ platform :ios do
     mini_app_ios_beta("freelancer-tax-estimator", "Freelancer Tax Estimator Pro")
   end
 
+  desc "TestFlight upload for 1099 Threshold Tracker Pro utility app"
+  lane :beta_1099_threshold_tracker_pro do
+    mini_app_ios_beta("1099-threshold-tracker-pro", "1099 Threshold Tracker Pro")
+  end
+
   desc "TestFlight upload + App Store metadata (does not auto-submit for review)"
   lane :release do
     beta

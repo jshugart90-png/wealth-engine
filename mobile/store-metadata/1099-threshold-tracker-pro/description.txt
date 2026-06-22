@@ -1,0 +1,12 @@
+1099 Threshold Tracker Pro helps small businesses and freelancers track contractor payments toward the federal $600 1099-NEC filing threshold — with W-9 status, multi-vendor lists, and filing alerts.
+
+Add vendors, log year-to-date payments, and instantly see who needs a 1099-NEC form. Progress bars show how close each contractor is to the threshold. Flag missing W-9s before year-end.
+
+Features:
+• Multi-vendor payment tracking with local save
+• Configurable threshold (default $600 federal)
+• W-9 on-file status per contractor
+• Summary: total vendors, 1099s required, YTD spend
+• Works offline — data stays on your device
+
+Perfect for solopreneurs, agencies, and bookkeepers managing 1099 compliance without spreadsheet headaches.

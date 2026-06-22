@@ -33,6 +33,7 @@
 | **Tip Calculator Pro** | `com.wealthengine.tipcalculatorpro` | **TestFlight prep** | 17 PASS, 0 FAIL | `5cc90ea` pushed | **READY** (Mac upload) |
 | **Hourly Rate Calculator Pro** | `com.wealthengine.hourlyratecalculatorpro` | **TestFlight prep** | 17 PASS, 0 FAIL | `3c9b224` pushed | **READY** (Mac upload) |
 | **Freelancer Tax Estimator Pro** | `com.wealthengine.freelancertaxestimatorpro` | **TestFlight prep** | 17 PASS, 0 FAIL | `ff2a04c` pushed | **READY** (Mac upload) |
+| **1099 Threshold Tracker Pro** | `com.wealthengine.thresholdtrackerpro` | **TestFlight prep** | 17 PASS, 0 FAIL | — | **READY** (Mac upload) |
 
 ## App 1 — Horseshoe Games Hub
 
@@ -656,9 +657,34 @@ npx cap sync ios && npx cap open ios
 # Or: bundle exec fastlane ios beta_freelancer_tax_estimator_pro
 ```
 
+## App 26 — 1099 Threshold Tracker Pro (utility)
+
+| Field | Value |
+|-------|-------|
+| Version | 1.0.0 |
+| Tool | 1099 Threshold Tracker Pro — multi-vendor 1099-NEC threshold & W-9 compliance (standalone Capacitor shell) |
+| Capacitor | `mobile/1099-threshold-tracker-pro/` → loads `/1099-threshold-tracker-pro/` from prod |
+| Store metadata | `mobile/store-metadata/1099-threshold-tracker-pro/` |
+| Preflight | `npm run mobile:preflight:1099-threshold-tracker-pro` |
+
+### Features (shipped this session)
+
+1. **Vendor summary** — localStorage `thresholdpro_last` with launcher display
+2. **Native UI** — multi-vendor list, YTD payments, W-9 status, threshold progress bars
+3. **Offline banner** — native launcher with feature highlights and offline message
+
+### TestFlight upload (user Mac)
+
+```bash
+npm run build && cd mobile && node sync-www.mjs 1099-threshold-tracker-pro
+cd 1099-threshold-tracker-pro && npm install && npx cap add ios  # if missing
+npx cap sync ios && npx cap open ios
+# Or: bundle exec fastlane ios beta_1099_threshold_tracker_pro
+```
+
 ## Master checklist
 
-See `mobile/TESTFLIGHT_ALL_APPS.md` for all 25 apps — bundle IDs, Fastlane lanes, versions.
+See `mobile/TESTFLIGHT_ALL_APPS.md` for all 26 apps — bundle IDs, Fastlane lanes, versions.
 
 ## GitHub policy
 
