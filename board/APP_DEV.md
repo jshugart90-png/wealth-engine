@@ -31,7 +31,7 @@
 | **TemplateForge** | `com.wealthengine.templateforge` | **TestFlight prep** | 17 PASS, 0 FAIL | `0dc927a` pushed | **READY** (Mac upload) |
 | **CompareStack** | `com.wealthengine.comparestack` | **TestFlight prep** | 17 PASS, 0 FAIL | `0dc927a` pushed | **READY** (Mac upload) |
 | **Tip Calculator Pro** | `com.wealthengine.tipcalculatorpro` | **TestFlight prep** | 17 PASS, 0 FAIL | `5cc90ea` pushed | **READY** (Mac upload) |
-| **Hourly Rate Calculator Pro** | `com.wealthengine.hourlyratecalculatorpro` | **TestFlight prep** | 17 PASS, 0 FAIL | pending | **READY** (Mac upload) |
+| **Hourly Rate Calculator Pro** | `com.wealthengine.hourlyratecalculatorpro` | **TestFlight prep** | 17 PASS, 0 FAIL | `3c9b224` pushed | **READY** (Mac upload) |
 
 ## App 1 — Horseshoe Games Hub
 
