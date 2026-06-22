@@ -211,6 +211,16 @@
       "deployPath": "dist/bill-splitter-pro",
       "channels": ["seo", "app-store", "consumer-tools"],
       "autonomous": ["shareable-summaries", "local-history"]
+    },
+    {
+      "id": "percentage-calculator-pro",
+      "name": "Percentage Calculator Pro",
+      "type": "utility",
+      "model": "free",
+      "path": "ventures/percentage-calculator-pro",
+      "deployPath": "dist/percentage-calculator-pro",
+      "channels": ["seo", "app-store", "consumer-tools"],
+      "autonomous": ["shareable-summaries", "local-history"]
     }
   ],
   "stripeProducts": [

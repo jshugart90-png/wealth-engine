@@ -1,0 +1,36 @@
+{
+  "appName": "Percentage Calculator Pro",
+  "subtitle": "% of, change, compound & compare",
+  "bundleId": "com.wealthengine.percentagecalculatorpro",
+  "version": "1.0.0",
+  "privacyPolicyUrl": "https://wealth-engine-0qlj.onrender.com/privacy.html",
+  "supportUrl": "https://wealth-engine-0qlj.onrender.com/",
+  "marketingUrl": "https://wealth-engine-0qlj.onrender.com/percentage-calculator-pro/",
+  "category": {
+    "apple": "Finance",
+    "appleSub": "Utilities",
+    "google": "FINANCE"
+  },
+  "contentRating": {
+    "ageRating": "4+",
+    "googleQuestionnaire": "Everyone — percentage calculator, no network required for core features",
+    "adsPresent": false,
+    "inAppPurchases": true,
+    "dataCollected": [
+      "calculation history stored locally only"
+    ]
+  },
+  "keywords": [
+    "percentage",
+    "percent",
+    "calculator",
+    "math",
+    "discount",
+    "markup",
+    "increase",
+    "decrease",
+    "compound",
+    "compare",
+    "percentagecalculatorpro"
+  ]
+}

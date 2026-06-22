@@ -279,6 +279,7 @@ export const VENTURE_TO_MOBILE = {
   "markup-calculator-pro": "markup-calculator-pro",
   "day-rate-calculator-pro": "day-rate-calculator-pro",
   "bill-splitter-pro": "bill-splitter-pro",
+  "percentage-calculator-pro": "percentage-calculator-pro",
 };
 
 export function generateStoreKitConfig() {

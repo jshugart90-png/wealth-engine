@@ -1,6 +1,6 @@
 /**
  * Sync dist/ assets into Capacitor www folders.
- * Usage: node sync-www.mjs [games|tools|freelancer-stack|devwatch|hookrelay-dlq|receipt-rush|webhook-whack|invoice-stack|horseshoe-toss|uptime-defender|freelancer-memory|color-switch-snake|word-scramble-biz|net-30-ninja|ssl-shield|nda-speed-sign|invoice-number-rush|billsnap|statusping-lite|leaselens|ndagen|hookrelay|pipekit|meetingcost|templateforge|comparestack|tip-calculator-pro|hourly-rate-calculator-pro|freelancer-tax-estimator|1099-threshold-tracker-pro|quarterly-tax-deadline-pro|profit-margin-calculator-pro|break-even-calculator-pro|late-fee-calculator-pro|markup-calculator-pro|day-rate-calculator-pro|bill-splitter-pro|all]
+ * Usage: node sync-www.mjs [games|tools|freelancer-stack|devwatch|hookrelay-dlq|receipt-rush|webhook-whack|invoice-stack|horseshoe-toss|uptime-defender|freelancer-memory|color-switch-snake|word-scramble-biz|net-30-ninja|ssl-shield|nda-speed-sign|invoice-number-rush|billsnap|statusping-lite|leaselens|ndagen|hookrelay|pipekit|meetingcost|templateforge|comparestack|tip-calculator-pro|hourly-rate-calculator-pro|freelancer-tax-estimator|1099-threshold-tracker-pro|quarterly-tax-deadline-pro|profit-margin-calculator-pro|break-even-calculator-pro|late-fee-calculator-pro|markup-calculator-pro|day-rate-calculator-pro|bill-splitter-pro|percentage-calculator-pro|all]
  */
 import { cpSync, existsSync, mkdirSync, readFileSync, writeFileSync, readdirSync } from "fs";
 import { join, dirname } from "path";
@@ -1299,6 +1299,32 @@ const UTILITY_SHELLS = {
       "Pro: tax line, round-up & uneven custom splits",
     ],
   },
+  "percentage-calculator-pro": {
+    title: "Percentage Calculator Pro",
+    emoji: "📊",
+    tagline: "% of, change, compound & compare",
+    themeColor: "#312e81",
+    bg: "#1e1b4b",
+    text: "#eef2ff",
+    sub: "#a5b4fc",
+    accent: "#818cf8",
+    btnBg: "#4338ca",
+    btnHover: "#312e81",
+    statBg: "#312e81",
+    statBorder: "#4338ca",
+    statKey: "pctcalcpro_last",
+    statLabel: "Last result",
+    statEmpty: "—",
+    cta: "Calculate",
+    moreLink: "https://wealth-engine-0qlj.onrender.com/bill-splitter-pro/",
+    moreLabel: "Bill Splitter Pro",
+    offlineMsg: "You're offline — open Percentage Calculator Pro if you've used it before",
+    features: [
+      "X% of Y, what percent, and increase/decrease modes",
+      "One-tap presets and shareable results",
+      "Pro: reverse %, compound steps & value compare",
+    ],
+  },
 };
 
 function syncUtility(slug) {
@@ -1467,6 +1493,7 @@ if (target === "late-fee-calculator-pro" || target === "all") syncUtility("late-
 if (target === "markup-calculator-pro" || target === "all") syncUtility("markup-calculator-pro");
 if (target === "day-rate-calculator-pro" || target === "all") syncUtility("day-rate-calculator-pro");
 if (target === "bill-splitter-pro" || target === "all") syncUtility("bill-splitter-pro");
+if (target === "percentage-calculator-pro" || target === "all") syncUtility("percentage-calculator-pro");
 if (target === "receipt-rush" || target === "all") syncMiniGame("receipt-rush");
 if (target === "webhook-whack" || target === "all") syncMiniGame("webhook-whack");
 if (target === "invoice-stack" || target === "all") syncMiniGame("invoice-stack");

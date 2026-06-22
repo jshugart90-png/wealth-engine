@@ -46,8 +46,9 @@
 | 35 | Markup Calculator Pro | `com.wealthengine.markupcalculatorpro` | 1.0.0 | 1 | `beta_markup_calculator_pro` | `mobile:preflight:markup-calculator-pro` | READY |
 | 36 | Day Rate to Hourly Calculator Pro | `com.wealthengine.dayratecalculatorpro` | 1.0.0 | 1 | `beta_day_rate_calculator_pro` | `mobile:preflight:day-rate-calculator-pro` | READY |
 | 37 | Bill Splitter Pro | `com.wealthengine.billsplitterpro` | 1.0.0 | 1 | `beta_bill_splitter_pro` | `mobile:preflight:bill-splitter-pro` | READY |
+| 38 | Percentage Calculator Pro | `com.wealthengine.percentagecalculatorpro` | 1.0.0 | 1 | `beta_percentage_calculator_pro` | `mobile:preflight:percentage-calculator-pro` | READY |
 
-**IAP totals:** 63 products (13 games × 3 + Games Hub × 3 + 24 utilities × 1) · Catalog: `config/mobile-iap-products.json` · Setup: `mobile/APP_STORE_CONNECT_IAP_SETUP.md`
+**IAP totals:** 64 products (13 games × 3 + Games Hub × 3 + 25 utilities × 1) · Catalog: `config/mobile-iap-products.json` · Setup: `mobile/APP_STORE_CONNECT_IAP_SETUP.md`
 
 **Validation:** `npm run mobile:ios-checklist` (all apps) · `npm run mobile:storekit:generate` (Xcode local testing)
 
