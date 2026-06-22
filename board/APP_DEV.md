@@ -28,8 +28,8 @@
 | **HookRelay** | `com.wealthengine.hookrelay` | **TestFlight prep** | 17 PASS, 0 FAIL | `c26a038` pushed | **READY** (Mac upload) |
 | **PipeKit** | `com.wealthengine.pipekit` | **TestFlight prep** | 17 PASS, 0 FAIL | `c26a038` pushed | **READY** (Mac upload) |
 | **MeetingCost** | `com.wealthengine.meetingcost` | **TestFlight prep** | 17 PASS, 0 FAIL | `c26a038` pushed | **READY** (Mac upload) |
-| **TemplateForge** | `com.wealthengine.templateforge` | **TestFlight prep** | 17 PASS, 0 FAIL | pending | **READY** (Mac upload) |
-| **CompareStack** | `com.wealthengine.comparestack` | **TestFlight prep** | 17 PASS, 0 FAIL | pending | **READY** (Mac upload) |
+| **TemplateForge** | `com.wealthengine.templateforge` | **TestFlight prep** | 17 PASS, 0 FAIL | `7de659a` pushed | **READY** (Mac upload) |
+| **CompareStack** | `com.wealthengine.comparestack` | **TestFlight prep** | 17 PASS, 0 FAIL | `7de659a` pushed | **READY** (Mac upload) |
 
 ## App 1 — Horseshoe Games Hub
 
