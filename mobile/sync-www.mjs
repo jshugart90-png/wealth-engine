@@ -829,7 +829,6 @@ if (target === "hourly-rate-calculator-pro" || target === "all") syncUtility("ho
 if (target === "freelancer-tax-estimator" || target === "all") syncUtility("freelancer-tax-estimator");
 if (target === "1099-threshold-tracker-pro" || target === "all") syncUtility("1099-threshold-tracker-pro");
 if (target === "quarterly-tax-deadline-pro" || target === "all") syncUtility("quarterly-tax-deadline-pro");
-if (target === "quarterly-tax-deadline-pro" || target === "all") syncUtility("quarterly-tax-deadline-pro");
 if (target === "receipt-rush" || target === "all") syncMiniGame("receipt-rush");
 if (target === "webhook-whack" || target === "all") syncMiniGame("webhook-whack");
 if (target === "invoice-stack" || target === "all") syncMiniGame("invoice-stack");
