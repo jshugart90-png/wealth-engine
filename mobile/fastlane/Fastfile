@@ -191,6 +191,7 @@ platform :ios do
     mini_app_ios_beta("hourly-rate-calculator-pro", "Hourly Rate Calculator Pro")
   end
 
+  desc "TestFlight upload for Freelancer Tax Estimator Pro utility app"
   lane :beta_freelancer_tax_estimator_pro do
     mini_app_ios_beta("freelancer-tax-estimator", "Freelancer Tax Estimator Pro")
   end
