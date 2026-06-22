@@ -1,0 +1,13 @@
+Freelancer Revenue Stack unifies BillSnap invoicing, TemplateForge business document kits, and NDAGen contract PDFs in one mobile hub — built for freelancers who need to bill clients, send proposals, and protect IP without juggling three subscriptions.
+
+Open BillSnap to generate invoice PDFs in 30 seconds. Browse TemplateForge for contracts, proposals, and compliance kits with instant download. Launch NDAGen for one-way or mutual NDA PDFs ready to sign.
+
+Features:
+• Native launcher with all three stack tools
+• Recently used tool tracking on your device
+• Bundle page with $29/mo unlimited or $49 one-time stack
+• LAUNCH25 checkout — 25% off at Stripe checkout
+• Works offline for tools you've opened before
+• No account required for free previews
+
+Perfect for 1099 contractors, consultants, designers, and anyone building a freelance business from invoice to signed NDA.

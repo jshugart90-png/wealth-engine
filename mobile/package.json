@@ -7,6 +7,7 @@
     "sync:www": "node sync-www.mjs",
     "sync:games": "node sync-www.mjs games && cd games && npx cap sync",
     "sync:tools": "node sync-www.mjs tools && cd tools && npx cap sync",
+    "sync:freelancer-stack": "node sync-www.mjs freelancer-stack && cd freelancer-stack && npx cap sync",
     "sync:receipt-rush": "node sync-www.mjs receipt-rush && cd receipt-rush && npx cap sync",
     "sync:webhook-whack": "node sync-www.mjs webhook-whack && cd webhook-whack && npx cap sync",
     "sync:invoice-stack": "node sync-www.mjs invoice-stack && cd invoice-stack && npx cap sync",
@@ -47,6 +48,7 @@
     "android:meetingcost": "cd meetingcost && npx cap sync android && cd android && ./gradlew assembleDebug",
     "android:templateforge": "cd templateforge && npx cap sync android && cd android && ./gradlew assembleDebug",
     "android:comparestack": "cd comparestack && npx cap sync android && cd android && ./gradlew assembleDebug",
+    "android:freelancer-stack": "cd freelancer-stack && npx cap sync android && cd android && ./gradlew assembleDebug",
     "ios:games": "cd games && npx cap sync ios",
     "ios:tools": "cd tools && npx cap sync ios",
     "ios:receipt-rush": "cd receipt-rush && npx cap sync ios",
@@ -68,6 +70,7 @@
     "ios:meetingcost": "cd meetingcost && npx cap sync ios",
     "ios:templateforge": "cd templateforge && npx cap sync ios",
     "ios:comparestack": "cd comparestack && npx cap sync ios",
+    "ios:freelancer-stack": "cd freelancer-stack && npx cap sync ios",
     "open:android:games": "cd games && npx cap open android",
     "open:ios:games": "cd games && npx cap open ios"
   },

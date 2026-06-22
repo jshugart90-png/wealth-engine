@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>BillSnap — Invoice PDF Generator for Freelancers</title>
+  <meta name="description" content="Free invoice preview. Pro PDF for $3 — no subscription required. SEO-driven freelancer tool.">
+  <style>
+    body{font-family:system-ui,sans-serif;background:#f8fafc;margin:0;padding:0;color:#0f172a}
+    .wrap{max-width:640px;margin:0 auto;padding:32px 16px}
+    h1{font-size:32px;margin-bottom:8px}
+    .sub{color:#64748b;margin-bottom:24px}
+    label{display:block;font-size:13px;font-weight:600;margin:12px 0 4px}
+    input,textarea{width:100%;padding:10px;border:1px solid #cbd5e1;border-radius:6px;font-size:14px}
+    .row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+    button{background:#2563eb;color:#fff;border:none;padding:12px 20px;border-radius:6px;font-size:15px;cursor:pointer;margin-top:16px}
+    button.secondary{background:#fff;color:#2563eb;border:1px solid #2563eb;margin-left:8px}
+    .pricing{margin-top:32px;padding:20px;background:#fff;border:1px solid #e2e8f0;border-radius:8px}
+    a{color:#2563eb}
+  </style>
+<meta name="google-site-verification" content="X8W5bw-fSJ0pTZiA0LesNi2vZ_-bUdLqVokR5uJZlI4" />
+<script>(function(){try{var r=localStorage.getItem('we_ref')||new URLSearchParams(location.search).get('ref');fetch('/api/funnel/visit',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({path:"/billsnap",refCode:r,source:new URLSearchParams(location.search).get('utm_source')||'direct'})}).catch(function(){})}catch(e){}})();</script></head>
+<body>
+  <div style="background:#0f172a;color:#e2e8f0;padding:10px 16px;text-align:center;font-size:13px"><strong style="color:#eab308">LAUNCH25</strong> · <a href="/go/invoice.html" style="color:#22c55e;margin:0 8px">Invoice $3</a><a href="/go/lease.html" style="color:#22c55e;margin:0 8px">Lease check</a><a href="/go/uptime.html" style="color:#22c55e;margin:0 8px">Uptime $5/mo</a></div>
+  <div class="wrap">
+    <h1>BillSnap</h1>
+    <p class="sub">Send a client-ready invoice PDF in 30 seconds — preview free, pay $3 only when you export. No signup wall, no subscription trap. Built for 1099 contractors and freelancers who invoice weekly.</p>
+
+    <div class="row">
+      <div><label>From (you)</label><input id="from" placeholder="Jane Doe LLC"></div>
+      <div><label>To (client)</label><input id="to" placeholder="Acme Corp"></div>
+    </div>
+    <div class="row">
+      <div><label>Invoice #</label><input id="num" value="INV-001"></div>
+      <div><label>Date</label><input id="date" type="date"></div>
+    </div>
+    <label>Line items (description | qty | rate — one per line)</label>
+    <textarea id="items" rows="4" placeholder="Web design | 1 | 500&#10;Hosting setup | 1 | 150">Consulting | 8 | 125</textarea>
+    <label>License code (after purchase)</label>
+    <input id="license" placeholder="WE-XXXXXXXX">
+
+    <button type="button" id="preview">Preview (free)</button>
+    <button type="button" class="secondary" id="pro">Export Pro PDF</button>
+
+    <div class="pricing">
+      <strong>Pricing:</strong> $3 per PDF · <a href="https://buy.stripe.com/00wdR821g9C94bHfFD1Nu02" id="buy-pro">Buy 1 export</a> ·
+      <a href="https://buy.stripe.com/7sY9ASaxM01z6jPeBz1Nu0j">$29/mo unlimited</a>
+      <p style="margin-top:8px;font-size:13px;color:#64748b">Cheaper than QuickBooks for weekly invoicers. BillSnap Pro unlimited — print-ready PDFs, your logo, line items.</p>
+      <p style="margin-top:8px;font-size:13px;color:#64748b">Use code <strong style="color:#eab308">LAUNCH25</strong> at checkout for 25% off</p>
+    </div>
+    <div style="position:fixed;bottom:0;left:0;right:0;background:#0f172a;color:#fff;padding:12px;text-align:center;font-size:14px;z-index:99">
+      Ready to export? <a href="https://buy.stripe.com/00wdR821g9C94bHfFD1Nu02" style="color:#22c55e;font-weight:700" onclick="fetch('/api/funnel/checkout_click',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({sku:'pro-pdf',path:'/billsnap'})})">Pro PDF $3 →</a>
+    </div>
+  </div>
+  <script>
+    document.getElementById("date").valueAsDate = new Date();
+    (function(){
+      var num=document.getElementById("num");
+      try{var saved=localStorage.getItem("billsnap_last_invoice");if(saved&&num)num.value=saved}catch(e){}
+      if(num)num.addEventListener("input",function(){try{localStorage.setItem("billsnap_last_invoice",num.value)}catch(e){}});
+    })();
+    function payload() {
+      const items = document.getElementById("items").value.split("\n").filter(Boolean).map(line => {
+        const [desc, qty, rate] = line.split("|").map(s => s.trim());
+        return { desc, qty: parseFloat(qty)||1, rate: parseFloat(rate)||0 };
+      });
+      return {
+        invoice: {
+          from: document.getElementById("from").value,
+          to: document.getElementById("to").value,
+          number: document.getElementById("num").value,
+          date: document.getElementById("date").value,
+          items
+        },
+        license: document.getElementById("license").value || undefined
+      };
+    }
+    document.getElementById("preview").onclick = async () => {
+      const r = await fetch("/api/billsnap/preview", { method:"POST", headers:{"Content-Type":"application/json"}, body: JSON.stringify(payload()) });
+      const html = await r.text();
+      const w = window.open(); w.document.write(html); w.document.close();
+    };
+    document.getElementById("pro").onclick = async () => {
+      const r = await fetch("/api/billsnap/pdf", { method:"POST", headers:{"Content-Type":"application/json"}, body: JSON.stringify(payload()) });
+      if (!r.ok) { alert("Purchase a license first — $3 link in pricing section"); return; }
+      const html = await r.text();
+      const w = window.open(); w.document.write(html); w.document.close();
+    };
+  </script>
+</body>
+</html>

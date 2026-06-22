@@ -37,6 +37,7 @@
 | **Quarterly Tax Deadline Pro** | `com.wealthengine.quarterlytaxdeadlinepro` | **TestFlight prep** | 17 PASS, 0 FAIL | `3b0414c` pushed | **READY** (Mac upload) |
 | **Profit Margin Calculator Pro** | `com.wealthengine.profitmargincalculatorpro` | **TestFlight prep** | 17 PASS, 0 FAIL | `fd65368` pushed | **READY** (Mac upload) |
 | **Break-Even Calculator Pro** | `com.wealthengine.breakevencalculatorpro` | **TestFlight prep** | 17 PASS, 0 FAIL | `d7fc23d` pushed | **READY** (Mac upload) |
+| **Freelancer Revenue Stack** | `com.wealthengine.freelancerstack` | **TestFlight prep** | 21 PASS, 0 FAIL | TBD | **READY** (Mac upload) |
 
 ## App 1 — Horseshoe Games Hub
 
@@ -760,9 +761,35 @@ npx cap sync ios && npx cap open ios
 # Or: bundle exec fastlane ios beta_break_even_calculator_pro
 ```
 
+## App 30 — Freelancer Revenue Stack (hub)
+
+| Field | Value |
+|-------|-------|
+| Version | 1.0.0 |
+| Tools | BillSnap + TemplateForge + NDAGen |
+| Capacitor | `mobile/freelancer-stack/` → loads `/bundles/freelancer-stack.html` from prod |
+| Store metadata | `mobile/store-metadata/freelancer-stack/` |
+| Preflight | `npm run mobile:preflight:freelancer-stack` |
+
+### Features (shipped this session)
+
+1. **Native launcher** — 3-tool grid with recently used tracking
+2. **Bundle page** — local copy of `/bundles/freelancer-stack.html` with $29/mo + $49 options
+3. **LAUNCH25 checkout** — promo banner deep link to `/go/freelancer.html`
+4. **Offline banner** — same pattern as Freelancer Tools hub
+
+### TestFlight upload (user Mac)
+
+```bash
+npm run build && cd mobile && node sync-www.mjs freelancer-stack
+cd freelancer-stack && npm install && npx cap add ios  # if missing
+npx cap sync ios && npx cap open ios
+# Or: bundle exec fastlane ios beta_freelancer_stack
+```
+
 ## Master checklist
 
-See `mobile/TESTFLIGHT_ALL_APPS.md` for all 29 apps — bundle IDs, Fastlane lanes, versions.
+See `mobile/TESTFLIGHT_ALL_APPS.md` for all 30 apps — bundle IDs, Fastlane lanes, versions.
 
 ## GitHub policy
 

@@ -216,6 +216,11 @@ platform :ios do
     mini_app_ios_beta("break-even-calculator-pro", "Break-Even Calculator Pro")
   end
 
+  desc "TestFlight upload for Freelancer Revenue Stack hub app"
+  lane :beta_freelancer_stack do
+    mini_app_ios_beta("freelancer-stack", "Freelancer Revenue Stack")
+  end
+
   desc "TestFlight upload + App Store metadata (does not auto-submit for review)"
   lane :release do
     beta

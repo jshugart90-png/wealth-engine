@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 /**
  * App Store preflight QC — 15-item checklist before mobile submission.
- * Run: node scripts/app-store-preflight.mjs [--app games|tools|receipt-rush|webhook-whack|invoice-stack|horseshoe-toss|uptime-defender|freelancer-memory|color-switch-snake|word-scramble-biz|net-30-ninja|ssl-shield|nda-speed-sign|billsnap|statusping-lite|leaselens|ndagen|hookrelay|pipekit|meetingcost|templateforge|comparestack|tip-calculator-pro|hourly-rate-calculator-pro|freelancer-tax-estimator|1099-threshold-tracker-pro|quarterly-tax-deadline-pro|profit-margin-calculator-pro|break-even-calculator-pro]
+ * Run: node scripts/app-store-preflight.mjs [--app games|tools|freelancer-stack|receipt-rush|webhook-whack|invoice-stack|horseshoe-toss|uptime-defender|freelancer-memory|color-switch-snake|word-scramble-biz|net-30-ninja|ssl-shield|nda-speed-sign|billsnap|statusping-lite|leaselens|ndagen|hookrelay|pipekit|meetingcost|templateforge|comparestack|tip-calculator-pro|hourly-rate-calculator-pro|freelancer-tax-estimator|1099-threshold-tracker-pro|quarterly-tax-deadline-pro|profit-margin-calculator-pro|break-even-calculator-pro]
  */
 import { readFileSync, existsSync, readdirSync } from "fs";
 import { join } from "path";
@@ -11,11 +11,13 @@ const root = getRoot();
 const app = process.argv.includes("--app")
   ? process.argv[process.argv.indexOf("--app") + 1]
   : "games";
+const HUB_APPS = ["tools", "freelancer-stack"];
 const MINI_GAMES = ["receipt-rush", "webhook-whack", "invoice-stack", "horseshoe-toss", "uptime-defender", "freelancer-memory", "color-switch-snake", "word-scramble-biz", "net-30-ninja", "ssl-shield", "nda-speed-sign"];
 const UTIL_APPS = ["billsnap", "statusping-lite", "leaselens", "ndagen", "hookrelay", "pipekit", "meetingcost", "templateforge", "comparestack", "tip-calculator-pro", "hourly-rate-calculator-pro", "freelancer-tax-estimator", "1099-threshold-tracker-pro", "quarterly-tax-deadline-pro", "profit-margin-calculator-pro", "break-even-calculator-pro"];
 const UTIL_DIST = { "statusping-lite": "statusping", pipekit: "pipekit", templateforge: "templateforge", comparestack: "comparestack", "tip-calculator-pro": "tip-calculator-pro", "hourly-rate-calculator-pro": "hourly-rate-calculator-pro", "freelancer-tax-estimator": "freelancer-tax-estimator", "1099-threshold-tracker-pro": "1099-threshold-tracker-pro", "quarterly-tax-deadline-pro": "quarterly-tax-deadline-pro", "profit-margin-calculator-pro": "profit-margin-calculator-pro", "break-even-calculator-pro": "break-even-calculator-pro" };
 const isMiniGame = MINI_GAMES.includes(app);
 const isUtilApp = UTIL_APPS.includes(app);
+const isHubApp = HUB_APPS.includes(app);
 const miniGameSlug = isMiniGame ? app : null;
 const utilSlug = isUtilApp ? app : null;
 const mobileRoot = join(root, "mobile");
@@ -60,9 +62,22 @@ const capConfig = join(mobileRoot, app, "capacitor.config.ts");
 if (existsSync(capConfig) && readFileSync(capConfig, "utf8").includes("SplashScreen")) pass(4, "Splash screen configured");
 else warn(4, "Splash screen configured", "Add SplashScreen plugin config");
 
-// 5. Games hub links OR mini-game/utility entry
+// 5. Games hub links OR mini-game/utility/hub entry
 const gamesHub = join(dist, "games", "index.html");
-if (isUtilApp) {
+if (isHubApp) {
+  const hubWww = join(mobileRoot, app, "www", "index.html");
+  if (existsSync(hubWww)) pass(5, "Hub app synced", app);
+  else fail(5, "Hub app synced", `Run node mobile/sync-www.mjs ${app}`);
+  if (app === "freelancer-stack") {
+    const bundle = join(dist, "bundles", "freelancer-stack.html");
+    if (existsSync(bundle)) pass("5b", "Freelancer stack bundle built");
+    else fail("5b", "Freelancer stack bundle built", "Missing dist/bundles/freelancer-stack.html");
+    for (const tool of ["billsnap", "templateforge", "ndagen"]) {
+      if (existsSync(join(dist, tool, "index.html"))) pass(`5c-${tool}`, `${tool} built in dist`);
+      else fail(`5c-${tool}`, `${tool} built in dist`, `Missing dist/${tool}/index.html`);
+    }
+  }
+} else if (isUtilApp) {
   const utilDist = UTIL_DIST[utilSlug] ?? utilSlug;
   const utilApp = join(dist, utilDist, "index.html");
   if (existsSync(utilApp)) pass(5, "Utility app built", utilDist);
@@ -93,8 +108,12 @@ if (isUtilApp) {
   fail(5, "Games hub links intact", "No dist/games/index.html");
 }
 
-// 6. All games in dist OR mini-game/utility synced to mobile www
-if (isUtilApp) {
+// 6. All games in dist OR mini-game/utility/hub synced to mobile www
+if (isHubApp) {
+  const mobileWww = join(mobileRoot, app, "www", "index.html");
+  if (existsSync(mobileWww)) pass(6, "Hub synced to mobile", mobileWww);
+  else fail(6, "Hub synced to mobile", `Run node mobile/sync-www.mjs ${app}`);
+} else if (isUtilApp) {
   const mobileWww = join(mobileRoot, app, "www", "index.html");
   if (existsSync(mobileWww)) pass(6, "Utility synced to mobile", mobileWww);
   else fail(6, "Utility synced to mobile", `Run node mobile/sync-www.mjs ${app}`);
@@ -111,8 +130,12 @@ if (!missingGames.length) pass(6, "All games in dist", `${gameSlugs.length} game
 else fail(6, "All games in dist", `Missing: ${missingGames.join(", ")}`);
 }
 
-// 6b. (mini-game / utility — placeholder to keep check IDs stable)
-if (isUtilApp && existsSync(join(dist, (UTIL_DIST[utilSlug] ?? utilSlug), "index.html"))) {
+// 6b. (mini-game / utility / hub — placeholder to keep check IDs stable)
+if (isHubApp && app === "freelancer-stack" && existsSync(join(mobileRoot, app, "www", "bundles", "freelancer-stack.html"))) {
+  pass("6b", "Freelancer stack bundle synced");
+} else if (isHubApp) {
+  pass("6b", "Hub bundle sync", app);
+} else if (isUtilApp && existsSync(join(dist, (UTIL_DIST[utilSlug] ?? utilSlug), "index.html"))) {
   pass("6b", "Utility source in dist", UTIL_DIST[utilSlug] ?? utilSlug);
 } else if (isMiniGame && existsSync(join(dist, "games", miniGameSlug, "index.html"))) {
   pass("6b", "Mini-game source in dist", miniGameSlug);
@@ -128,9 +151,13 @@ const sampleGamePath = isUtilApp
   ? join(dist, UTIL_DIST[utilSlug] ?? utilSlug, "index.html")
   : isMiniGame
   ? join(dist, "games", miniGameSlug, "index.html")
+  : isHubApp
+  ? join(mobileRoot, app, "www", "index.html")
   : join(dist, "games", "horseshoe-toss", "index.html");
 if (isUtilApp && existsSync(sampleGamePath)) {
   pass(8, "AdMob production mode", "N/A — utility app, no in-app ads");
+} else if (isHubApp && existsSync(sampleGamePath)) {
+  pass(8, "AdMob production mode", "N/A — hub app, no in-app ads");
 } else if (existsSync(sampleGamePath)) {
   const g = readFileSync(sampleGamePath, "utf8");
   if (g.includes("testMode:true") || g.includes("3940256099942544")) {
@@ -183,8 +210,8 @@ if (existsSync(join(dist, "manifest.json"))) {
 
 // 13b. Games PWA manifest (hub only)
 const gamesManifest = join(dist, "games", "manifest.json");
-if (isMiniGame || isUtilApp) {
-  pass("13b", "Games PWA manifest", isUtilApp ? "N/A — standalone utility app" : "N/A — single-game mini-app");
+if (isMiniGame || isUtilApp || isHubApp) {
+  pass("13b", "Games PWA manifest", isHubApp ? "N/A — standalone hub app" : isUtilApp ? "N/A — standalone utility app" : "N/A — single-game mini-app");
 } else if (existsSync(gamesManifest)) {
   const gm = JSON.parse(readFileSync(gamesManifest, "utf8"));
   if (gm.start_url === "/games/") pass("13b", "Games PWA manifest", `${baseUrl}/games/manifest.json`);

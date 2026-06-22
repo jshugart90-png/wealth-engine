@@ -1,0 +1,22 @@
+{
+  "appName": "Freelancer Revenue Stack",
+  "subtitle": "Invoice, templates & NDAs",
+  "bundleId": "com.wealthengine.freelancerstack",
+  "version": "1.0.0",
+  "privacyPolicyUrl": "https://wealth-engine-0qlj.onrender.com/privacy.html",
+  "supportUrl": "https://wealth-engine-0qlj.onrender.com/",
+  "marketingUrl": "https://wealth-engine-0qlj.onrender.com/bundles/freelancer-stack.html",
+  "category": {
+    "apple": "Business",
+    "appleSub": "Productivity",
+    "google": "BUSINESS"
+  },
+  "contentRating": {
+    "ageRating": "4+",
+    "googleQuestionnaire": "Everyone — business utility hub, Stripe checkout opens in browser",
+    "adsPresent": false,
+    "inAppPurchases": true,
+    "dataCollected": ["email on checkout only via Stripe"]
+  },
+  "keywords": ["freelancer", "invoice", "nda", "contract", "template", "billsnap", "revenue", "stack", "freelancerstack"]
+}
