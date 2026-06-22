@@ -1,0 +1,37 @@
+{
+  "appName": "Markup Calculator Pro",
+  "subtitle": "Selling price & profit margin",
+  "bundleId": "com.wealthengine.markupcalculatorpro",
+  "version": "1.0.0",
+  "privacyPolicyUrl": "https://wealth-engine-0qlj.onrender.com/privacy.html",
+  "supportUrl": "https://wealth-engine-0qlj.onrender.com/",
+  "marketingUrl": "https://wealth-engine-0qlj.onrender.com/markup-calculator-pro/",
+  "category": {
+    "apple": "Finance",
+    "appleSub": "Utilities",
+    "google": "FINANCE"
+  },
+  "contentRating": {
+    "ageRating": "4+",
+    "googleQuestionnaire": "Everyone — markup calculator, no network required for core features",
+    "adsPresent": false,
+    "inAppPurchases": true,
+    "dataCollected": [
+      "calculation history stored locally only"
+    ]
+  },
+  "keywords": [
+    "markup",
+    "calculator",
+    "selling",
+    "price",
+    "profit",
+    "margin",
+    "cost",
+    "pricing",
+    "freelance",
+    "retail",
+    "wholesale",
+    "markupcalculatorpro"
+  ]
+}

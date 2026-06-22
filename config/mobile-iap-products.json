@@ -402,6 +402,40 @@
         }
       ]
     },
+    "markup-calculator-pro": {
+      "appName": "Markup Calculator Pro",
+      "bundleId": "com.wealthengine.markupcalculatorpro",
+      "type": "utility",
+      "version": "1.0.0",
+      "products": [
+        {
+          "key": "pro_unlock",
+          "storeKitId": "com.wealthengine.markupcalculatorpro.pro_unlock",
+          "type": "non_consumable",
+          "price": 4.99,
+          "title": "Pro Unlock",
+          "description": "Unlock Pro features (reverse pricing, bulk totals)",
+          "stripeSku": null
+        }
+      ]
+    },
+    "markup-calculator-pro": {
+      "appName": "Markup Calculator Pro",
+      "bundleId": "com.wealthengine.markupcalculatorpro",
+      "type": "utility",
+      "version": "1.0.0",
+      "products": [
+        {
+          "key": "pro_unlock",
+          "storeKitId": "com.wealthengine.markupcalculatorpro.pro_unlock",
+          "type": "non_consumable",
+          "price": 4.99,
+          "title": "Pro Unlock",
+          "description": "Unlock Pro features (reverse markup, tier pricing)",
+          "stripeSku": null
+        }
+      ]
+    },
     "leaselens": {
       "appName": "LeaseLens",
       "bundleId": "com.wealthengine.leaselens",

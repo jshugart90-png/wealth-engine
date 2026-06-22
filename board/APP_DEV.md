@@ -42,6 +42,7 @@
 | **HookRelay DLQ Pro** | `com.wealthengine.hookrelaydlqpro` | **TestFlight prep** | 21 PASS, 0 FAIL | `5ddaf84` pushed | **READY** (Mac upload) |
 | **Late Fee Calculator Pro** | `com.wealthengine.latefeecalculatorpro` | **TestFlight prep** | 20 PASS, 0 FAIL | `5575eed` pushed | **READY** (Mac upload) |
 | **Invoice Number Rush** | `com.wealthengine.invoicenumberrush` | **TestFlight prep** | 19 PASS, 0 FAIL, 1 WARN | `8ed057d` pushed | **READY** (Mac upload) |
+| **Markup Calculator Pro** | `com.wealthengine.markupcalculatorpro` | **TestFlight prep** | TBD | TBD | **READY** (Mac upload) |
 
 ## App 1 — Horseshoe Games Hub
 
@@ -897,9 +898,38 @@ npx cap sync ios && npx cap open ios
 # Or: bundle exec fastlane ios beta_invoice_number_rush
 ```
 
+## App 35 — Markup Calculator Pro
+
+| Field | Value |
+|-------|-------|
+| Version | 1.0.0 |
+| Type | Utility — selling price, markup, margin & multi-unit pricing |
+| Capacitor | `mobile/markup-calculator-pro/` → loads `/markup-calculator-pro/` from prod |
+| Store metadata | `mobile/store-metadata/markup-calculator-pro/` |
+| Preflight | `npm run mobile:preflight:markup-calculator-pro` |
+
+### Features (shipped this session)
+
+1. **Cost → price** — markup % presets with optional sales tax
+2. **Profit breakdown** — per-unit profit, margin %, total revenue
+3. **Quantity totals** — multi-unit revenue and profit
+4. **Pro reverse markup** — target price → required markup %
+5. **Pro tier table** — 1/5/10/25/50/100 unit pricing grid
+6. **Last calculation** — localStorage `markuppro_last` with launcher display
+7. **IAP wired** — pro_unlock via build-all.mjs VENTURE_TO_MOBILE injection
+
+### TestFlight upload (user Mac)
+
+```bash
+npm run build && cd mobile && node sync-www.mjs markup-calculator-pro
+cd markup-calculator-pro && npm install && npx cap add ios  # if missing
+npx cap sync ios && npx cap open ios
+# Or: bundle exec fastlane ios beta_markup_calculator_pro
+```
+
 ## Master checklist
 
-See `mobile/TESTFLIGHT_ALL_APPS.md` for all 34 apps — bundle IDs, Fastlane lanes, versions.
+See `mobile/TESTFLIGHT_ALL_APPS.md` for all 35 apps — bundle IDs, Fastlane lanes, versions.
 
 ## GitHub policy
 

@@ -181,6 +181,26 @@
       "deployPath": "dist/late-fee-calculator-pro",
       "channels": ["seo", "app-store", "freelancer-forums"],
       "autonomous": ["shareable-summaries", "local-history"]
+    },
+    {
+      "id": "markup-calculator-pro",
+      "name": "Markup Calculator Pro",
+      "type": "utility",
+      "model": "free",
+      "path": "ventures/markup-calculator-pro",
+      "deployPath": "dist/markup-calculator-pro",
+      "channels": ["seo", "app-store", "freelancer-forums"],
+      "autonomous": ["shareable-summaries", "local-history"]
+    },
+    {
+      "id": "markup-calculator-pro",
+      "name": "Markup Calculator Pro",
+      "type": "utility",
+      "model": "free",
+      "path": "ventures/markup-calculator-pro",
+      "deployPath": "dist/markup-calculator-pro",
+      "channels": ["seo", "app-store", "freelancer-forums"],
+      "autonomous": ["shareable-summaries", "local-history"]
     }
   ],
   "stripeProducts": [

@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Markup Calculator Pro — Selling price &amp; profit</title>
+  <meta name="description" content="Calculate selling price from cost and markup. See profit, margin %, and tax-inclusive pricing for freelancers and retailers.">
+  <meta name="theme-color" content="#064e3b">
+  <style>
+    :root {
+      --bg: #022c22;
+      --card: #064e3b;
+      --border: #047857;
+      --text: #ecfdf5;
+      --muted: #6ee7b7;
+      --accent: #fbbf24;
+      --accent-dim: #f59e0b;
+      --success: #34d399;
+      --danger: #f87171;
+      --warn: #fb923c;
+    }
+    * { box-sizing: border-box; }
+    body {
+      font-family: system-ui, -apple-system, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      margin: 0;
+      min-height: 100vh;
+      padding: max(16px, env(safe-area-inset-top)) 16px max(32px, env(safe-area-inset-bottom));
+    }
+    .wrap { max-width: 420px; margin: 0 auto; }
+    h1 { font-size: 1.5rem; margin: 8px 0 4px; font-weight: 700; }
+    .tagline { color: var(--muted); font-size: 0.9rem; margin-bottom: 20px; }
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 20px;
+      margin-bottom: 16px;
+    }
+    label {
+      display: block;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--muted);
+      margin-bottom: 6px;
+    }
+    input[type="number"], select {
+      width: 100%;
+      font-size: 1.25rem;
+      font-weight: 600;
+      padding: 12px 14px;
+      border: 2px solid var(--border);
+      border-radius: 12px;
+      background: var(--bg);
+      color: var(--text);
+      -webkit-appearance: none;
+      appearance: none;
+    }
+    input:focus, select:focus {
+      outline: none;
+      border-color: var(--accent);
+    }
+    .field { margin-bottom: 16px; }
+    .field:last-child { margin-bottom: 0; }
+    .preset-row {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 8px;
+      margin: 12px 0 4px;
+    }
+    .preset-btn {
+      padding: 10px 4px;
+      border: 2px solid var(--border);
+      border-radius: 10px;
+      background: var(--bg);
+      color: var(--text);
+      font-size: 0.8rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: 0.15s;
+    }
+    .preset-btn.active {
+      border-color: var(--accent);
+      background: rgba(251, 191, 36, 0.15);
+      color: var(--accent);
+    }
+    .hint { font-size: 0.75rem; color: var(--muted); margin-top: 4px; }
+    .mode-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+    }
+    .mode-btn {
+      padding: 12px;
+      border: 2px solid var(--border);
+      border-radius: 10px;
+      background: var(--bg);
+      color: var(--text);
+      font-size: 0.85rem;
+      font-weight: 600;
+      cursor: pointer;
+      text-align: center;
+    }
+    .mode-btn.active {
+      border-color: var(--accent);
+      background: rgba(251, 191, 36, 0.12);
+      color: var(--accent);
+    }
+    .result-card { text-align: center; padding: 24px 16px; }
+    .result-main {
+      font-size: 2.5rem;
+      font-weight: 800;
+      color: var(--accent);
+      line-height: 1.1;
+      margin-bottom: 4px;
+    }
+    .result-sub {
+      font-size: 1.05rem;
+      color: var(--muted);
+      margin-bottom: 16px;
+    }
+    .result-sub strong { color: var(--text); }
+    .health {
+      display: inline-block;
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      padding: 6px 12px;
+      border-radius: 8px;
+      margin-bottom: 16px;
+    }
+    .health.ok { background: rgba(52, 211, 153, 0.15); color: var(--success); }
+    .health.warn { background: rgba(251, 146, 60, 0.15); color: var(--warn); }
+    .health.low { background: rgba(248, 113, 113, 0.15); color: var(--danger); }
+    .breakdown {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-top: 8px;
+    }
+    .breakdown-item {
+      background: var(--bg);
+      border-radius: 10px;
+      padding: 12px;
+      text-align: center;
+    }
+    .breakdown-item .val { font-size: 1.15rem; font-weight: 700; color: var(--accent); }
+    .breakdown-item .val.danger { color: var(--danger); }
+    .breakdown-item .lbl { font-size: 0.7rem; color: var(--muted); text-transform: uppercase; margin-top: 4px; }
+    .timeline {
+      margin-top: 16px;
+      text-align: left;
+      font-size: 0.85rem;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+    .timeline strong { color: var(--text); }
+    .actions {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-top: 16px;
+    }
+    .btn {
+      padding: 14px;
+      border: none;
+      border-radius: 12px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      cursor: pointer;
+    }
+    .btn-primary { background: var(--accent-dim); color: #451a03; }
+    .btn-secondary { background: var(--card); color: var(--text); border: 2px solid var(--border); }
+    .btn:active { opacity: 0.85; }
+    .toast {
+      position: fixed;
+      bottom: 24px;
+      left: 50%;
+      transform: translateX(-50%) translateY(80px);
+      background: var(--success);
+      color: #064e3b;
+      padding: 12px 20px;
+      border-radius: 10px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      transition: transform 0.25s;
+      z-index: 100;
+    }
+    .toast.show { transform: translateX(-50%) translateY(0); }
+    .disclaimer {
+      font-size: 0.7rem;
+      color: var(--muted);
+      text-align: center;
+      margin-top: 12px;
+      line-height: 1.4;
+    }
+    body.we-iap-premium .pro-only { display: block; }
+    .pro-only { display: none; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <h1>Markup Calculator Pro</h1>
+    <p class="tagline">Selling price, profit &amp; margin from cost</p>
+
+    <div class="card">
+      <div class="field">
+        <label>Calculation mode</label>
+        <div class="mode-row" id="mode-row">
+          <button type="button" class="mode-btn active" data-mode="markup">Cost + markup</button>
+          <button type="button" class="mode-btn pro-only" data-mode="reverse">Target price</button>
+        </div>
+        <p class="hint pro-only">Pro: enter target selling price to see required markup</p>
+      </div>
+
+      <div class="field" id="cost-field">
+        <label for="cost">Cost ($)</label>
+        <input type="number" id="cost" value="50" step="0.01" min="0" inputmode="decimal">
+        <div class="preset-row" id="cost-presets">
+          <button type="button" class="preset-btn" data-val="25">$25</button>
+          <button type="button" class="preset-btn active" data-val="50">$50</button>
+          <button type="button" class="preset-btn" data-val="100">$100</button>
+          <button type="button" class="preset-btn" data-val="500">$500</button>
+        </div>
+      </div>
+
+      <div class="field" id="markup-field">
+        <label for="markup" id="markup-label">Desired markup (%)</label>
+        <input type="number" id="markup" value="40" step="0.01" min="0" inputmode="decimal">
+        <div class="preset-row" id="markup-presets">
+          <button type="button" class="preset-btn" data-val="20">20%</button>
+          <button type="button" class="preset-btn active" data-val="40">40%</button>
+          <button type="button" class="preset-btn" data-val="60">60%</button>
+          <button type="button" class="preset-btn" data-val="100">100%</button>
+        </div>
+      </div>
+
+      <div class="field pro-only" id="price-field" style="display:none">
+        <label for="target-price">Target selling price ($)</label>
+        <input type="number" id="target-price" value="70" step="0.01" min="0" inputmode="decimal">
+      </div>
+
+      <div class="field">
+        <label for="tax">Tax / VAT % (optional)</label>
+        <input type="number" id="tax" value="0" step="0.01" min="0" inputmode="decimal">
+        <p class="hint">Added on top of marked-up price</p>
+      </div>
+
+      <div class="field pro-only">
+        <label for="qty">Quantity (bulk pricing)</label>
+        <input type="number" id="qty" value="1" min="1" step="1" inputmode="numeric">
+      </div>
+    </div>
+
+    <div class="card result-card">
+      <div class="result-main" id="sell-price">$70.00</div>
+      <div class="result-sub" id="summary">Sell at <strong>$70.00</strong> · <strong>$20.00</strong> profit</div>
+      <div class="health ok" id="health">Healthy margin — room for discounts</div>
+
+      <div class="breakdown">
+        <div class="breakdown-item">
+          <div class="val" id="profit">$20.00</div>
+          <div class="lbl">Profit per unit</div>
+        </div>
+        <div class="breakdown-item">
+          <div class="val" id="margin-pct">28.6%</div>
+          <div class="lbl">Profit margin</div>
+        </div>
+        <div class="breakdown-item">
+          <div class="val" id="markup-pct">40.0%</div>
+          <div class="lbl">Markup on cost</div>
+        </div>
+        <div class="breakdown-item">
+          <div class="val" id="pre-tax">$70.00</div>
+          <div class="lbl">Pre-tax price</div>
+        </div>
+        <div class="breakdown-item pro-only">
+          <div class="val" id="bulk-profit">$20.00</div>
+          <div class="lbl">Total profit (qty)</div>
+        </div>
+        <div class="breakdown-item pro-only">
+          <div class="val" id="bulk-revenue">$70.00</div>
+          <div class="lbl">Total revenue (qty)</div>
+        </div>
+      </div>
+
+      <div class="timeline" id="timeline">
+        <strong>$50 cost</strong> + 40% markup → <strong>$70.00</strong> selling price (28.6% margin)
+      </div>
+
+      <div class="actions">
+        <button type="button" class="btn btn-secondary" id="reset">Reset</button>
+        <button type="button" class="btn btn-primary" id="share">Share result</button>
+      </div>
+      <p class="disclaimer">Estimates only — confirm tax rules and rounding for your jurisdiction.</p>
+    </div>
+  </div>
+
+  <div class="toast" id="toast" role="status"></div>
+
+  <script>
+    (function () {
+      var costEl = document.getElementById("cost");
+      var markupEl = document.getElementById("markup");
+      var taxEl = document.getElementById("tax");
+      var targetPriceEl = document.getElementById("target-price");
+      var qtyEl = document.getElementById("qty");
+      var mode = "markup";
+      var sellPriceEl = document.getElementById("sell-price");
+      var summaryEl = document.getElementById("summary");
+      var healthEl = document.getElementById("health");
+      var profitEl = document.getElementById("profit");
+      var marginPctEl = document.getElementById("margin-pct");
+      var markupPctEl = document.getElementById("markup-pct");
+      var preTaxEl = document.getElementById("pre-tax");
+      var bulkProfitEl = document.getElementById("bulk-profit");
+      var bulkRevenueEl = document.getElementById("bulk-revenue");
+      var timelineEl = document.getElementById("timeline");
+      var markupField = document.getElementById("markup-field");
+      var priceField = document.getElementById("price-field");
+      var toastEl = document.getElementById("toast");
+      var STORAGE_KEY = "markuppro_last";
+
+      function fmt(n) {
+        return "$" + n.toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+      }
+
+      function pct(n) {
+        return n.toFixed(1) + "%";
+      }
+
+      function showToast(msg) {
+        toastEl.textContent = msg;
+        toastEl.classList.add("show");
+        setTimeout(function () { toastEl.classList.remove("show"); }, 2000);
+      }
+
+      function setActivePreset(container, val) {
+        document.querySelectorAll("#" + container + " .preset-btn").forEach(function (btn) {
+          btn.classList.toggle("active", +btn.dataset.val === val);
+        });
+      }
+
+      function healthInfo(margin) {
+        if (margin >= 30) return { cls: "ok", label: "Healthy margin — room for discounts" };
+        if (margin >= 15) return { cls: "warn", label: "Moderate margin — watch costs" };
+        return { cls: "low", label: "Thin margin — raise price or cut cost" };
+      }
+
+      function updateModeUI() {
+        document.querySelectorAll("#mode-row .mode-btn").forEach(function (btn) {
+          btn.classList.toggle("active", btn.dataset.mode === mode);
+        });
+        var isReverse = mode === "reverse";
+        markupField.style.display = isReverse ? "none" : "block";
+        priceField.style.display = isReverse ? "block" : "none";
+      }
+
+      function calc() {
+        var cost = Math.max(0, +costEl.value || 0);
+        var tax = Math.max(0, +taxEl.value || 0);
+        var qty = Math.max(1, +qtyEl.value || 1);
+        var markup = Math.max(0, +markupEl.value || 0);
+        var preTax, sell, profit, margin, markupOnCost;
+
+        if (mode === "reverse") {
+          sell = Math.max(0, +targetPriceEl.value || 0);
+          preTax = tax > 0 ? sell / (1 + tax / 100) : sell;
+          profit = preTax - cost;
+          markupOnCost = cost > 0 ? (profit / cost) * 100 : 0;
+          margin = preTax > 0 ? (profit / preTax) * 100 : 0;
+        } else {
+          preTax = cost * (1 + markup / 100);
+          sell = preTax * (1 + tax / 100);
+          profit = preTax - cost;
+          markupOnCost = markup;
+          margin = preTax > 0 ? (profit / preTax) * 100 : 0;
+        }
+
+        var bulkProfit = profit * qty;
+        var bulkRevenue = sell * qty;
+
+        sellPriceEl.textContent = fmt(sell);
+        summaryEl.innerHTML = "Sell at <strong>" + fmt(sell) + "</strong> · <strong>" + fmt(profit) + "</strong> profit";
+        var health = healthInfo(margin);
+        healthEl.className = "health " + health.cls;
+        healthEl.textContent = health.label;
+        profitEl.textContent = fmt(profit);
+        marginPctEl.textContent = pct(margin);
+        markupPctEl.textContent = pct(markupOnCost);
+        preTaxEl.textContent = fmt(preTax);
+        if (bulkProfitEl) bulkProfitEl.textContent = fmt(bulkProfit);
+        if (bulkRevenueEl) bulkRevenueEl.textContent = fmt(bulkRevenue);
+
+        if (mode === "reverse") {
+          timelineEl.innerHTML = "<strong>" + fmt(cost) + " cost</strong> → " + fmt(sell) + " target → <strong>" + pct(markupOnCost) + " markup</strong> (" + pct(margin) + " margin)";
+        } else {
+          timelineEl.innerHTML = "<strong>" + fmt(cost) + " cost</strong> + " + pct(markupOnCost) + " markup → <strong>" + fmt(sell) + "</strong> selling price (" + pct(margin) + " margin)";
+        }
+
+        var summary = fmt(sell) + " sell · " + pct(margin) + " margin";
+        try { localStorage.setItem(STORAGE_KEY, summary); } catch (e) {}
+      }
+
+      document.querySelectorAll("#cost-presets .preset-btn").forEach(function (btn) {
+        btn.addEventListener("click", function () {
+          costEl.value = btn.dataset.val;
+          setActivePreset("cost-presets", +btn.dataset.val);
+          calc();
+        });
+      });
+
+      document.querySelectorAll("#markup-presets .preset-btn").forEach(function (btn) {
+        btn.addEventListener("click", function () {
+          markupEl.value = btn.dataset.val;
+          setActivePreset("markup-presets", +btn.dataset.val);
+          calc();
+        });
+      });
+
+      document.querySelectorAll("#mode-row .mode-btn").forEach(function (btn) {
+        btn.addEventListener("click", function () {
+          mode = btn.dataset.mode;
+          updateModeUI();
+          calc();
+        });
+      });
+
+      [costEl, markupEl, taxEl, targetPriceEl, qtyEl].forEach(function (el) {
+        if (el) el.addEventListener("input", calc);
+      });
+
+      document.getElementById("reset").addEventListener("click", function () {
+        costEl.value = "50";
+        markupEl.value = "40";
+        taxEl.value = "0";
+        targetPriceEl.value = "70";
+        qtyEl.value = "1";
+        mode = "markup";
+        setActivePreset("cost-presets", 50);
+        setActivePreset("markup-presets", 40);
+        updateModeUI();
+        calc();
+        showToast("Reset to defaults");
+      });
+
+      document.getElementById("share").addEventListener("click", function () {
+        var cost = Math.max(0, +costEl.value || 0);
+        var sell = sellPriceEl.textContent;
+        var text = "Markup: " + sell + " selling price from " + fmt(cost) + " cost — Markup Calculator Pro";
+        if (navigator.share) {
+          navigator.share({ title: "Markup Calculator Pro", text: text }).catch(function () {});
+        } else if (navigator.clipboard) {
+          navigator.clipboard.writeText(text).then(function () { showToast("Copied to clipboard"); });
+        } else {
+          showToast(text);
+        }
+      });
+
+      updateModeUI();
+      calc();
+    })();
+  </script>
+</body>
+</html>

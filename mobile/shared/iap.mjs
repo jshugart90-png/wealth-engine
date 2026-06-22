@@ -276,6 +276,7 @@ export const VENTURE_TO_MOBILE = {
   "profit-margin-calculator-pro": "profit-margin-calculator-pro",
   "break-even-calculator-pro": "break-even-calculator-pro",
   "late-fee-calculator-pro": "late-fee-calculator-pro",
+  "markup-calculator-pro": "markup-calculator-pro",
 };
 
 export function generateStoreKitConfig() {

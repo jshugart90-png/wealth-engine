@@ -1,0 +1,15 @@
+Markup Calculator Pro helps freelancers, retailers, and small business owners set profitable prices instantly — from cost and markup to selling price, profit dollars, and margin percentage.
+
+Enter your cost, desired markup, and optional tax to see the selling price, profit per unit, and margin health. Pro unlock adds reverse pricing (target price → required markup), bulk quantity totals, and margin alerts.
+
+Features:
+• Cost + markup → selling price with tax
+• Profit dollars and margin % breakdown
+• Markup presets (20%, 40%, 60%, 100%)
+• Margin health indicators for pricing decisions
+• Pro: reverse mode — target price to required markup
+• Pro: bulk quantity profit and revenue totals
+• Last calculation saved locally on your device
+• Works offline — no account required
+
+Perfect for Etsy sellers, freelancers, contractors, and anyone pricing products or services without spreadsheet headaches.

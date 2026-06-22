@@ -1,6 +1,6 @@
 /**
  * Sync dist/ assets into Capacitor www folders.
- * Usage: node sync-www.mjs [games|tools|freelancer-stack|devwatch|hookrelay-dlq|receipt-rush|webhook-whack|invoice-stack|horseshoe-toss|uptime-defender|freelancer-memory|color-switch-snake|word-scramble-biz|net-30-ninja|ssl-shield|nda-speed-sign|invoice-number-rush|billsnap|statusping-lite|leaselens|ndagen|hookrelay|pipekit|meetingcost|templateforge|comparestack|tip-calculator-pro|hourly-rate-calculator-pro|freelancer-tax-estimator|1099-threshold-tracker-pro|quarterly-tax-deadline-pro|profit-margin-calculator-pro|break-even-calculator-pro|late-fee-calculator-pro|all]
+ * Usage: node sync-www.mjs [games|tools|freelancer-stack|devwatch|hookrelay-dlq|receipt-rush|webhook-whack|invoice-stack|horseshoe-toss|uptime-defender|freelancer-memory|color-switch-snake|word-scramble-biz|net-30-ninja|ssl-shield|nda-speed-sign|invoice-number-rush|billsnap|statusping-lite|leaselens|ndagen|hookrelay|pipekit|meetingcost|templateforge|comparestack|tip-calculator-pro|hourly-rate-calculator-pro|freelancer-tax-estimator|1099-threshold-tracker-pro|quarterly-tax-deadline-pro|profit-margin-calculator-pro|break-even-calculator-pro|late-fee-calculator-pro|markup-calculator-pro|all]
  */
 import { cpSync, existsSync, mkdirSync, readFileSync, writeFileSync, readdirSync } from "fs";
 import { join, dirname } from "path";
@@ -1221,6 +1221,32 @@ const UTILITY_SHELLS = {
       "60-day projection for escalation planning",
     ],
   },
+  "markup-calculator-pro": {
+    title: "Markup Calculator Pro",
+    emoji: "🏷️",
+    tagline: "Selling price, profit margin & multi-unit pricing",
+    themeColor: "#312e81",
+    bg: "#1e1b4b",
+    text: "#eef2ff",
+    sub: "#a5b4fc",
+    accent: "#fbbf24",
+    btnBg: "#4338ca",
+    btnHover: "#3730a3",
+    statBg: "#312e81",
+    statBorder: "#4338ca",
+    statKey: "markuppro_last",
+    statLabel: "Last calculation",
+    statEmpty: "—",
+    cta: "Calculate Markup",
+    moreLink: "https://wealth-engine-0qlj.onrender.com/profit-margin-calculator-pro/",
+    moreLabel: "Profit Margin Pro",
+    offlineMsg: "You're offline — open Markup Calculator Pro if you've used it before",
+    features: [
+      "Cost → price with markup & tax",
+      "Profit per unit and margin breakdown",
+      "Pro: reverse markup & tier pricing table",
+    ],
+  },
 };
 
 function syncUtility(slug) {
@@ -1386,6 +1412,7 @@ if (target === "quarterly-tax-deadline-pro" || target === "all") syncUtility("qu
 if (target === "profit-margin-calculator-pro" || target === "all") syncUtility("profit-margin-calculator-pro");
 if (target === "break-even-calculator-pro" || target === "all") syncUtility("break-even-calculator-pro");
 if (target === "late-fee-calculator-pro" || target === "all") syncUtility("late-fee-calculator-pro");
+if (target === "markup-calculator-pro" || target === "all") syncUtility("markup-calculator-pro");
 if (target === "receipt-rush" || target === "all") syncMiniGame("receipt-rush");
 if (target === "webhook-whack" || target === "all") syncMiniGame("webhook-whack");
 if (target === "invoice-stack" || target === "all") syncMiniGame("invoice-stack");

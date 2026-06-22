@@ -43,8 +43,9 @@
 | 32 | HookRelay DLQ Pro | `com.wealthengine.hookrelaydlqpro` | 1.0.0 | 1 | `beta_hookrelay_dlq_pro` | `mobile:preflight:hookrelay-dlq` | READY |
 | 33 | Late Fee Calculator Pro | `com.wealthengine.latefeecalculatorpro` | 1.0.0 | 1 | `beta_late_fee_calculator_pro` | `mobile:preflight:late-fee-calculator-pro` | READY |
 | 34 | Invoice Number Rush | `com.wealthengine.invoicenumberrush` | 1.0.0 | 3 | `beta_invoice_number_rush` | `mobile:preflight:invoice-number-rush` | READY |
+| 35 | Markup Calculator Pro | `com.wealthengine.markupcalculatorpro` | 1.0.0 | 1 | `beta_markup_calculator_pro` | `mobile:preflight:markup-calculator-pro` | READY |
 
-**IAP totals:** 60 products (13 games × 3 + Games Hub × 3 + 21 utilities × 1) · Catalog: `config/mobile-iap-products.json` · Setup: `mobile/APP_STORE_CONNECT_IAP_SETUP.md`
+**IAP totals:** 61 products (13 games × 3 + Games Hub × 3 + 22 utilities × 1) · Catalog: `config/mobile-iap-products.json` · Setup: `mobile/APP_STORE_CONNECT_IAP_SETUP.md`
 
 **Validation:** `npm run mobile:ios-checklist` (all apps) · `npm run mobile:storekit:generate` (Xcode local testing)
 
@@ -100,6 +101,7 @@ cd .. && bundle exec fastlane ios beta_<lane>
 | profit-margin-calculator-pro | `mobile/profit-margin-calculator-pro/` | `/profit-margin-calculator-pro/` |
 | break-even-calculator-pro | `mobile/break-even-calculator-pro/` | `/break-even-calculator-pro/` |
 | late-fee-calculator-pro | `mobile/late-fee-calculator-pro/` | `/late-fee-calculator-pro/` |
+| markup-calculator-pro | `mobile/markup-calculator-pro/` | `/markup-calculator-pro/` |
 | invoice-number-rush | `mobile/invoice-number-rush/` | `/games/invoice-number-rush/` |
 | freelancer-stack | `mobile/freelancer-stack/` | `/bundles/freelancer-stack.html` |
 | devwatch | `mobile/devwatch/` | `/bundles/devwatch.html` |
@@ -125,6 +127,7 @@ npm run mobile:preflight:quarterly-tax-deadline-pro  # expect 17 PASS, 0 FAIL
 npm run mobile:preflight:profit-margin-calculator-pro  # expect 17 PASS, 0 FAIL
 npm run mobile:preflight:break-even-calculator-pro  # expect 17 PASS, 0 FAIL
 npm run mobile:preflight:late-fee-calculator-pro  # expect 17 PASS, 0 FAIL
+npm run mobile:preflight:markup-calculator-pro  # expect 17 PASS, 0 FAIL
 npm run mobile:preflight:invoice-number-rush  # expect 16 PASS, 0 FAIL, 1 WARN
 npm run mobile:preflight:freelancer-stack  # expect 21 PASS, 0 FAIL
 npm run mobile:preflight:devwatch  # expect 21 PASS, 0 FAIL
