@@ -17,8 +17,8 @@
 | **Uptime Defender** | `com.wealthengine.uptimedefender` | **TestFlight prep** | 16 PASS, 0 FAIL, 1 WARN | `3c407bf` pushed | **READY** (Mac upload) |
 | **Freelancer Memory** | `com.wealthengine.freelancermemory` | **TestFlight prep** | 16 PASS, 0 FAIL, 1 WARN | `f435f91` pushed | **READY** (Mac upload) |
 | **Color Switch Snake** | `com.wealthengine.colorswitchsnake` | **TestFlight prep** | 16 PASS, 0 FAIL, 1 WARN | `5280938` pushed | **READY** (Mac upload) |
-| **Word Scramble Biz** | `com.wealthengine.wordscramblebiz` | **TestFlight prep** | 16 PASS, 0 FAIL, 1 WARN | pending | **READY** (Mac upload) |
-| **Net-30 Ninja** | `com.wealthengine.net30ninja` | **TestFlight prep** | 16 PASS, 0 FAIL, 1 WARN | pending | **READY** (Mac upload) |
+| **Word Scramble Biz** | `com.wealthengine.wordscramblebiz` | **TestFlight prep** | 16 PASS, 0 FAIL, 1 WARN | `bbb87ca` pushed | **READY** (Mac upload) |
+| **Net-30 Ninja** | `com.wealthengine.net30ninja` | **TestFlight prep** | 16 PASS, 0 FAIL, 1 WARN | `aea2139` pushed | **READY** (Mac upload) |
 | App 12+ | TBD | Queued | — | — | — |
 
 ## App 1 — Horseshoe Games Hub
