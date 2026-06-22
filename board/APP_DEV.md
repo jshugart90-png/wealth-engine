@@ -36,7 +36,7 @@
 | **1099 Threshold Tracker Pro** | `com.wealthengine.thresholdtrackerpro` | **TestFlight prep** | 17 PASS, 0 FAIL | `882fecb` pushed | **READY** (Mac upload) |
 | **Quarterly Tax Deadline Pro** | `com.wealthengine.quarterlytaxdeadlinepro` | **TestFlight prep** | 17 PASS, 0 FAIL | `3b0414c` pushed | **READY** (Mac upload) |
 | **Profit Margin Calculator Pro** | `com.wealthengine.profitmargincalculatorpro` | **TestFlight prep** | 17 PASS, 0 FAIL | `fd65368` pushed | **READY** (Mac upload) |
-| **Break-Even Calculator Pro** | `com.wealthengine.breakevencalculatorpro` | **TestFlight prep** | 17 PASS, 0 FAIL | TBD pushed | **READY** (Mac upload) |
+| **Break-Even Calculator Pro** | `com.wealthengine.breakevencalculatorpro` | **TestFlight prep** | 17 PASS, 0 FAIL | `d7fc23d` pushed | **READY** (Mac upload) |
 
 ## App 1 — Horseshoe Games Hub
 

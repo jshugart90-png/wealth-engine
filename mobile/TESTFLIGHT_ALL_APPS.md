@@ -89,7 +89,6 @@ cd .. && bundle exec fastlane ios beta_<lane>
 | quarterly-tax-deadline-pro | `mobile/quarterly-tax-deadline-pro/` | `/quarterly-tax-deadline-pro/` |
 | profit-margin-calculator-pro | `mobile/profit-margin-calculator-pro/` | `/profit-margin-calculator-pro/` |
 | break-even-calculator-pro | `mobile/break-even-calculator-pro/` | `/break-even-calculator-pro/` |
-| break-even-calculator-pro | `mobile/break-even-calculator-pro/` | `/break-even-calculator-pro/` |
 
 ## Global blockers
 
