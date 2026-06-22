@@ -50,7 +50,7 @@
 | **1099 Deadline Suite** | `com.wealthengine.1099suite` | **TestFlight prep** | 25 PASS, 0 FAIL | `72b1aae` | **READY** (Mac upload) |
 | **StatusPing Agency** | `com.wealthengine.statuspingagency` | **TestFlight prep** | 25 PASS, 0 FAIL | `d0b9ca6` | **READY** (Mac upload) |
 | **NDAGen Team** | `com.wealthengine.ndagenteam` | **TestFlight prep** | 25 PASS, 0 FAIL | `347732a` | **READY** (Mac upload) |
-| **MeetingCost Team** | `com.wealthengine.meetingcostteam` | **TestFlight prep** | 25 PASS, 0 FAIL | TBD | **READY** (Mac upload) |
+| **MeetingCost Team** | `com.wealthengine.meetingcostteam` | **TestFlight prep** | 25 PASS, 0 FAIL | `4333812` | **READY** (Mac upload) |
 
 ## App 1 — Horseshoe Games Hub
 
