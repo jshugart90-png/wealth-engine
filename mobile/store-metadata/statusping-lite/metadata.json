@@ -1,0 +1,22 @@
+{
+  "appName": "StatusPing Lite",
+  "subtitle": "Uptime alerts from $5/mo",
+  "bundleId": "com.wealthengine.statuspinglite",
+  "version": "1.0.0",
+  "privacyPolicyUrl": "https://wealth-engine-0qlj.onrender.com/privacy.html",
+  "supportUrl": "https://wealth-engine-0qlj.onrender.com/",
+  "marketingUrl": "https://wealth-engine-0qlj.onrender.com/statusping/",
+  "category": {
+    "apple": "Developer Tools",
+    "appleSub": "Utilities",
+    "google": "TOOLS"
+  },
+  "contentRating": {
+    "ageRating": "4+",
+    "googleQuestionnaire": "Everyone — monitoring utility, Stripe checkout opens in browser",
+    "adsPresent": false,
+    "inAppPurchases": true,
+    "dataCollected": ["monitor URL and alert email submitted after checkout; no local account"]
+  },
+  "keywords": ["uptime", "monitoring", "alerts", "ssl", "website", "server", "status", "ping", "devops", "statusping"]
+}

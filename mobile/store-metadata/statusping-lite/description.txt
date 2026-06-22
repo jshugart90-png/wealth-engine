@@ -1,0 +1,15 @@
+StatusPing Lite keeps your sites online — email alerts within 5 minutes when downtime hits.
+
+Subscribe from $5/mo, add your URLs, and get instant notifications before customers notice. Simpler than Datadog, cheaper than Pingdom.
+
+Features:
+• 5-minute uptime checks with email alerts
+• SSL expiry warnings on Basic tier
+• Add monitors after secure Stripe checkout
+• Team tier for 50 monitors and SLA reports
+• Works offline after first load
+• No complex dashboard or DevOps setup
+
+Perfect for indie developers, SaaS founders, and freelancers who need reliable uptime monitoring without enterprise overhead.
+
+Privacy: Monitor details submitted after purchase. Alerts sent via email only.

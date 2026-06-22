@@ -1,6 +1,6 @@
 /**
  * Sync dist/ assets into Capacitor www folders.
- * Usage: node sync-www.mjs [games|tools|receipt-rush|webhook-whack|invoice-stack|horseshoe-toss|uptime-defender|freelancer-memory|color-switch-snake|word-scramble-biz|net-30-ninja|ssl-shield|nda-speed-sign|billsnap|all]
+ * Usage: node sync-www.mjs [games|tools|receipt-rush|webhook-whack|invoice-stack|horseshoe-toss|uptime-defender|freelancer-memory|color-switch-snake|word-scramble-biz|net-30-ninja|ssl-shield|nda-speed-sign|billsnap|statusping-lite|all]
  */
 import { cpSync, existsSync, mkdirSync, readFileSync, writeFileSync, readdirSync } from "fs";
 import { join, dirname } from "path";
@@ -328,6 +328,38 @@ const UTILITY_SHELLS = {
     moreLink: "https://wealth-engine-0qlj.onrender.com/tools/",
     moreLabel: "More tools",
     offlineMsg: "You're offline — open BillSnap if you've used it before",
+    features: [
+      "Free preview — pay $3 only to export PDF",
+      "No subscription or signup wall",
+      "Draft saved locally on your device",
+    ],
+  },
+  "statusping-lite": {
+    title: "StatusPing Lite",
+    emoji: "📡",
+    tagline: "Uptime alerts from $5/mo — know before customers do",
+    themeColor: "#0f172a",
+    bg: "#0f172a",
+    text: "#e2e8f0",
+    sub: "#94a3b8",
+    accent: "#38bdf8",
+    btnBg: "#0284c7",
+    btnHover: "#0369a1",
+    statBorder: "#334155",
+    statKey: "statusping_last_url",
+    statLabel: "Last monitor URL",
+    statEmpty: "—",
+    cta: "Open Monitors",
+    moreLink: "https://wealth-engine-0qlj.onrender.com/go/uptime.html",
+    moreLabel: "Pricing & plans",
+    offlineMsg: "You're offline — open StatusPing if you've used it before",
+    distSlug: "statusping",
+    wwwSlug: "statusping",
+    features: [
+      "5-minute checks with instant email alerts",
+      "SSL expiry warnings on Basic tier",
+      "Subscribe from $5/mo — cancel anytime",
+    ],
   },
 };
 
@@ -337,17 +369,19 @@ function syncUtility(slug) {
     console.error(`Unknown utility slug: ${slug}`);
     process.exit(1);
   }
+  const distSlug = shell.distSlug ?? slug;
+  const wwwSlug = shell.wwwSlug ?? slug;
   const www = join(mobileRoot, slug, "www");
-  const utilSrc = join(dist, slug);
+  const utilSrc = join(dist, distSlug);
   if (!existsSync(join(utilSrc, "index.html"))) {
-    console.error(`Missing dist/${slug} — run npm run build first`);
+    console.error(`Missing dist/${distSlug} — run npm run build first`);
     process.exit(1);
   }
   mkdirSync(www, { recursive: true });
-  mkdirSync(join(www, slug), { recursive: true });
-  cpSync(join(utilSrc, "index.html"), join(www, slug, "index.html"));
+  mkdirSync(join(www, wwwSlug), { recursive: true });
+  cpSync(join(utilSrc, "index.html"), join(www, wwwSlug, "index.html"));
   if (existsSync(join(utilSrc, "handlers.mjs"))) {
-    cpSync(join(utilSrc, "handlers.mjs"), join(www, slug, "handlers.mjs"));
+    cpSync(join(utilSrc, "handlers.mjs"), join(www, wwwSlug, "handlers.mjs"));
   }
 
   const indexHtml = `<!DOCTYPE html>
@@ -364,7 +398,7 @@ body{font-family:system-ui,sans-serif;background:${shell.bg};color:${shell.text}
 .offline.show{display:block}
 h1{margin:32px 0 8px;font-size:1.6rem}
 .sub{color:${shell.sub};text-align:center;margin-bottom:20px;max-width:340px;line-height:1.5}
-.stat{background:#fff;border:2px solid ${shell.statBorder};border-radius:12px;padding:16px 28px;margin-bottom:16px;text-align:center;box-shadow:0 1px 3px rgba(15,23,42,.06)}
+.stat{background:${shell.statBg ?? "#fff"};border:2px solid ${shell.statBorder};border-radius:12px;padding:16px 28px;margin-bottom:16px;text-align:center;box-shadow:0 1px 3px rgba(15,23,42,.06)}
 .stat span{font-size:1.4rem;font-weight:700;color:${shell.accent}}
 .features{max-width:320px;margin-bottom:24px;font-size:14px;color:${shell.sub};line-height:1.6}
 .features li{margin-bottom:6px}
@@ -378,11 +412,9 @@ h1{margin:32px 0 8px;font-size:1.6rem}
 <p class="sub">${shell.tagline}</p>
 <div class="stat">${shell.statLabel}<br><span id="last-stat">${shell.statEmpty}</span></div>
 <ul class="features">
-  <li>Free preview — pay $3 only to export PDF</li>
-  <li>No subscription or signup wall</li>
-  <li>Draft saved locally on your device</li>
+${(shell.features ?? []).map((f) => `  <li>${f}</li>`).join("\n")}
 </ul>
-<a class="cta" href="${slug}/index.html">${shell.cta}</a>
+<a class="cta" href="${wwwSlug}/index.html">${shell.cta}</a>
 <p class="links"><a href="privacy.html">Privacy</a> · <a href="${shell.moreLink}">${shell.moreLabel}</a></p>
 <script>(function(){
   var KEY='${shell.statKey}';
@@ -471,6 +503,7 @@ ensureBuild();
 if (target === "games" || target === "all") syncGames();
 if (target === "tools" || target === "all") syncTools();
 if (target === "billsnap" || target === "all") syncUtility("billsnap");
+if (target === "statusping-lite" || target === "all") syncUtility("statusping-lite");
 if (target === "receipt-rush" || target === "all") syncMiniGame("receipt-rush");
 if (target === "webhook-whack" || target === "all") syncMiniGame("webhook-whack");
 if (target === "invoice-stack" || target === "all") syncMiniGame("invoice-stack");
