@@ -24,10 +24,10 @@
 | **BillSnap** | `com.wealthengine.billsnap` | **TestFlight prep** | 17 PASS, 0 FAIL | `2f614f4` pushed | **READY** (Mac upload) |
 | **StatusPing Lite** | `com.wealthengine.statuspinglite` | **TestFlight prep** | 17 PASS, 0 FAIL | `fed3955` pushed | **READY** (Mac upload) |
 | **LeaseLens** | `com.wealthengine.leaselens` | **TestFlight prep** | 17 PASS, 0 FAIL | `1814727` pushed | **READY** (Mac upload) |
-| **NDAGen** | `com.wealthengine.ndagen` | **TestFlight prep** | 17 PASS, 0 FAIL | TBD pushed | **READY** (Mac upload) |
-| **HookRelay** | `com.wealthengine.hookrelay` | **TestFlight prep** | 17 PASS, 0 FAIL | TBD pushed | **READY** (Mac upload) |
-| **PipeKit** | `com.wealthengine.pipekit` | **TestFlight prep** | 17 PASS, 0 FAIL | TBD pushed | **READY** (Mac upload) |
-| **MeetingCost** | `com.wealthengine.meetingcost` | **TestFlight prep** | 17 PASS, 0 FAIL | TBD pushed | **READY** (Mac upload) |
+| **NDAGen** | `com.wealthengine.ndagen` | **TestFlight prep** | 17 PASS, 0 FAIL | `c26a038` pushed | **READY** (Mac upload) |
+| **HookRelay** | `com.wealthengine.hookrelay` | **TestFlight prep** | 17 PASS, 0 FAIL | `c26a038` pushed | **READY** (Mac upload) |
+| **PipeKit** | `com.wealthengine.pipekit` | **TestFlight prep** | 17 PASS, 0 FAIL | `c26a038` pushed | **READY** (Mac upload) |
+| **MeetingCost** | `com.wealthengine.meetingcost` | **TestFlight prep** | 17 PASS, 0 FAIL | `c26a038` pushed | **READY** (Mac upload) |
 | App 21+ | TBD | Queued | — | — | — |
 
 ## App 1 — Horseshoe Games Hub
