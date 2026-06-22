@@ -43,6 +43,7 @@
 | **Late Fee Calculator Pro** | `com.wealthengine.latefeecalculatorpro` | **TestFlight prep** | 20 PASS, 0 FAIL | `5575eed` pushed | **READY** (Mac upload) |
 | **Invoice Number Rush** | `com.wealthengine.invoicenumberrush` | **TestFlight prep** | 19 PASS, 0 FAIL, 1 WARN | `8ed057d` pushed | **READY** (Mac upload) |
 | **Markup Calculator Pro** | `com.wealthengine.markupcalculatorpro` | **TestFlight prep** | 20 PASS, 0 FAIL | `6f71e2d` pushed | **READY** (Mac upload) |
+| **Day Rate to Hourly Calculator Pro** | `com.wealthengine.dayratecalculatorpro` | **TestFlight prep** | TBD | TBD | **READY** (Mac upload) |
 
 ## App 1 — Horseshoe Games Hub
 
@@ -929,7 +930,7 @@ npx cap sync ios && npx cap open ios
 
 ## Master checklist
 
-See `mobile/TESTFLIGHT_ALL_APPS.md` for all 35 apps — bundle IDs, Fastlane lanes, versions.
+See `mobile/TESTFLIGHT_ALL_APPS.md` for all 36 apps — bundle IDs, Fastlane lanes, versions.
 
 ## GitHub policy
 

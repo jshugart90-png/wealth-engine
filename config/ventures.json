@@ -191,6 +191,16 @@
       "deployPath": "dist/markup-calculator-pro",
       "channels": ["seo", "app-store", "freelancer-forums"],
       "autonomous": ["shareable-summaries", "local-history"]
+    },
+    {
+      "id": "day-rate-calculator-pro",
+      "name": "Day Rate to Hourly Calculator Pro",
+      "type": "utility",
+      "model": "free",
+      "path": "ventures/day-rate-calculator-pro",
+      "deployPath": "dist/day-rate-calculator-pro",
+      "channels": ["seo", "app-store", "freelancer-forums"],
+      "autonomous": ["shareable-summaries", "local-history"]
     }
   ],
   "stripeProducts": [

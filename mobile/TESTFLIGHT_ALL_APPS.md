@@ -1,4 +1,4 @@
-# TestFlight Master Checklist — All 34 Apps
+# TestFlight Master Checklist — All 36 Apps
 
 **Updated:** 2026-06-22  
 **Repo:** github.com/jshugart90-png/wealth-engine  
@@ -44,8 +44,9 @@
 | 33 | Late Fee Calculator Pro | `com.wealthengine.latefeecalculatorpro` | 1.0.0 | 1 | `beta_late_fee_calculator_pro` | `mobile:preflight:late-fee-calculator-pro` | READY |
 | 34 | Invoice Number Rush | `com.wealthengine.invoicenumberrush` | 1.0.0 | 3 | `beta_invoice_number_rush` | `mobile:preflight:invoice-number-rush` | READY |
 | 35 | Markup Calculator Pro | `com.wealthengine.markupcalculatorpro` | 1.0.0 | 1 | `beta_markup_calculator_pro` | `mobile:preflight:markup-calculator-pro` | READY |
+| 36 | Day Rate to Hourly Calculator Pro | `com.wealthengine.dayratecalculatorpro` | 1.0.0 | 1 | `beta_day_rate_calculator_pro` | `mobile:preflight:day-rate-calculator-pro` | READY |
 
-**IAP totals:** 61 products (13 games × 3 + Games Hub × 3 + 22 utilities × 1) · Catalog: `config/mobile-iap-products.json` · Setup: `mobile/APP_STORE_CONNECT_IAP_SETUP.md`
+**IAP totals:** 62 products (13 games × 3 + Games Hub × 3 + 23 utilities × 1) · Catalog: `config/mobile-iap-products.json` · Setup: `mobile/APP_STORE_CONNECT_IAP_SETUP.md`
 
 **Validation:** `npm run mobile:ios-checklist` (all apps) · `npm run mobile:storekit:generate` (Xcode local testing)
 

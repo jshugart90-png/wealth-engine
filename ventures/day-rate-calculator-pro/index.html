@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Day Rate to Hourly Calculator Pro — Freelance pricing</title>
+  <meta name="description" content="Convert freelance day rate to hourly rate, monthly income, and annual revenue. Compare project vs retainer pricing.">
+  <meta name="theme-color" content="#78350f">
+  <style>
+    :root {
+      --bg: #451a03;
+      --card: #78350f;
+      --border: #92400e;
+      --text: #fffbeb;
+      --muted: #fcd34d;
+      --accent: #fbbf24;
+      --accent-dim: #f59e0b;
+      --success: #34d399;
+      --danger: #f87171;
+      --warn: #fb923c;
+    }
+    * { box-sizing: border-box; }
+    body {
+      font-family: system-ui, -apple-system, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      margin: 0;
+      min-height: 100vh;
+      padding: max(16px, env(safe-area-inset-top)) 16px max(32px, env(safe-area-inset-bottom));
+    }
+    .wrap { max-width: 420px; margin: 0 auto; }
+    h1 { font-size: 1.5rem; margin: 8px 0 4px; font-weight: 700; }
+    .tagline { color: var(--muted); font-size: 0.9rem; margin-bottom: 20px; }
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 20px;
+      margin-bottom: 16px;
+    }
+    label {
+      display: block;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--muted);
+      margin-bottom: 6px;
+    }
+    input[type="number"], select {
+      width: 100%;
+      font-size: 1.25rem;
+      font-weight: 600;
+      padding: 12px 14px;
+      border: 2px solid var(--border);
+      border-radius: 12px;
+      background: var(--bg);
+      color: var(--text);
+      -webkit-appearance: none;
+      appearance: none;
+    }
+    input:focus, select:focus {
+      outline: none;
+      border-color: var(--accent);
+    }
+    .field { margin-bottom: 16px; }
+    .field:last-child { margin-bottom: 0; }
+    .preset-row {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 8px;
+      margin: 12px 0 4px;
+    }
+    .preset-btn {
+      padding: 10px 4px;
+      border: 2px solid var(--border);
+      border-radius: 10px;
+      background: var(--bg);
+      color: var(--text);
+      font-size: 0.8rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: 0.15s;
+    }
+    .preset-btn.active {
+      border-color: var(--accent);
+      background: rgba(251, 191, 36, 0.15);
+      color: var(--accent);
+    }
+    .hint { font-size: 0.75rem; color: var(--muted); margin-top: 4px; }
+    .mode-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+    }
+    .mode-btn {
+      padding: 12px;
+      border: 2px solid var(--border);
+      border-radius: 10px;
+      background: var(--bg);
+      color: var(--text);
+      font-size: 0.85rem;
+      font-weight: 600;
+      cursor: pointer;
+      text-align: center;
+    }
+    .mode-btn.active {
+      border-color: var(--accent);
+      background: rgba(251, 191, 36, 0.12);
+      color: var(--accent);
+    }
+    .result-card { text-align: center; padding: 24px 16px; }
+    .result-main {
+      font-size: 2.5rem;
+      font-weight: 800;
+      color: var(--accent);
+      line-height: 1.1;
+      margin-bottom: 4px;
+    }
+    .result-sub {
+      font-size: 1.05rem;
+      color: var(--muted);
+      margin-bottom: 16px;
+    }
+    .result-sub strong { color: var(--text); }
+    .health {
+      display: inline-block;
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      padding: 6px 12px;
+      border-radius: 8px;
+      margin-bottom: 16px;
+    }
+    .health.ok { background: rgba(52, 211, 153, 0.15); color: var(--success); }
+    .health.warn { background: rgba(251, 146, 60, 0.15); color: var(--warn); }
+    .health.low { background: rgba(248, 113, 113, 0.15); color: var(--danger); }
+    .breakdown {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-top: 8px;
+    }
+    .breakdown-item {
+      background: var(--bg);
+      border-radius: 10px;
+      padding: 12px;
+      text-align: center;
+    }
+    .breakdown-item .val { font-size: 1.15rem; font-weight: 700; color: var(--accent); }
+    .breakdown-item .lbl { font-size: 0.7rem; color: var(--muted); text-transform: uppercase; margin-top: 4px; }
+    .compare-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-top: 16px;
+      text-align: left;
+    }
+    .compare-box {
+      background: var(--bg);
+      border-radius: 10px;
+      padding: 12px;
+      font-size: 0.85rem;
+      line-height: 1.5;
+    }
+    .compare-box h3 {
+      margin: 0 0 8px;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .compare-box strong { color: var(--accent); }
+    .timeline {
+      margin-top: 16px;
+      text-align: left;
+      font-size: 0.85rem;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+    .timeline strong { color: var(--text); }
+    .actions {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-top: 16px;
+    }
+    .btn {
+      padding: 14px;
+      border: none;
+      border-radius: 12px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      cursor: pointer;
+    }
+    .btn-primary { background: var(--accent-dim); color: #451a03; }
+    .btn-secondary { background: var(--card); color: var(--text); border: 2px solid var(--border); }
+    .btn:active { opacity: 0.85; }
+    .toast {
+      position: fixed;
+      bottom: 24px;
+      left: 50%;
+      transform: translateX(-50%) translateY(80px);
+      background: var(--success);
+      color: #064e3b;
+      padding: 12px 20px;
+      border-radius: 10px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      transition: transform 0.25s;
+      z-index: 100;
+    }
+    .toast.show { transform: translateX(-50%) translateY(0); }
+    .disclaimer {
+      font-size: 0.7rem;
+      color: var(--muted);
+      text-align: center;
+      margin-top: 12px;
+      line-height: 1.4;
+    }
+    body.we-iap-premium .pro-only { display: block; }
+    .pro-only { display: none; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <h1>Day Rate to Hourly Calculator Pro</h1>
+    <p class="tagline">Convert day rate to hourly, monthly &amp; annual income</p>
+
+    <div class="card">
+      <div class="field">
+        <label>Calculation mode</label>
+        <div class="mode-row" id="mode-row">
+          <button type="button" class="mode-btn active" data-mode="forward">Day → hourly</button>
+          <button type="button" class="mode-btn pro-only" data-mode="reverse">Hourly → day</button>
+        </div>
+        <p class="hint pro-only">Pro: enter target hourly rate to see required day rate</p>
+      </div>
+
+      <div class="field" id="dayrate-field">
+        <label for="dayrate">Day rate ($)</label>
+        <input type="number" id="dayrate" value="800" step="0.01" min="0" inputmode="decimal">
+        <div class="preset-row" id="dayrate-presets">
+          <button type="button" class="preset-btn" data-val="500">$500</button>
+          <button type="button" class="preset-btn active" data-val="800">$800</button>
+          <button type="button" class="preset-btn" data-val="1000">$1k</button>
+          <button type="button" class="preset-btn" data-val="1500">$1.5k</button>
+        </div>
+      </div>
+
+      <div class="field pro-only" id="hourly-field" style="display:none">
+        <label for="target-hourly">Target hourly rate ($)</label>
+        <input type="number" id="target-hourly" value="100" step="0.01" min="0" inputmode="decimal">
+      </div>
+
+      <div class="field">
+        <label for="hours">Billable hours per day</label>
+        <input type="number" id="hours" value="8" step="0.5" min="0.5" max="16" inputmode="decimal">
+        <div class="preset-row" id="hours-presets">
+          <button type="button" class="preset-btn" data-val="6">6h</button>
+          <button type="button" class="preset-btn active" data-val="8">8h</button>
+          <button type="button" class="preset-btn" data-val="7">7h</button>
+          <button type="button" class="preset-btn" data-val="10">10h</button>
+        </div>
+      </div>
+
+      <div class="field">
+        <label for="days">Working days per month</label>
+        <input type="number" id="days" value="18" step="1" min="1" max="31" inputmode="numeric">
+        <div class="preset-row" id="days-presets">
+          <button type="button" class="preset-btn" data-val="15">15</button>
+          <button type="button" class="preset-btn active" data-val="18">18</button>
+          <button type="button" class="preset-btn" data-val="20">20</button>
+          <button type="button" class="preset-btn" data-val="22">22</button>
+        </div>
+        <p class="hint">Typical freelance: 15–22 billable days/month</p>
+      </div>
+    </div>
+
+    <div class="card result-card">
+      <div class="result-main" id="hourly-rate">$100.00</div>
+      <div class="result-sub" id="summary"><strong>$800</strong>/day · <strong>$14,400</strong>/mo</div>
+      <div class="health ok" id="health">Strong rate — above typical W-2 equivalent</div>
+
+      <div class="breakdown">
+        <div class="breakdown-item">
+          <div class="val" id="monthly">$14,400</div>
+          <div class="lbl">Monthly revenue</div>
+        </div>
+        <div class="breakdown-item">
+          <div class="val" id="weekly">$3,600</div>
+          <div class="lbl">Weekly (4 wks)</div>
+        </div>
+        <div class="breakdown-item pro-only">
+          <div class="val" id="annual">$172,800</div>
+          <div class="lbl">Annual (12 mo)</div>
+        </div>
+        <div class="breakdown-item pro-only">
+          <div class="val" id="day-needed">$800</div>
+          <div class="lbl">Day rate needed</div>
+        </div>
+        <div class="breakdown-item">
+          <div class="val" id="effective-day">$800</div>
+          <div class="lbl">Effective day rate</div>
+        </div>
+        <div class="breakdown-item">
+          <div class="val" id="hours-month">144</div>
+          <div class="lbl">Billable hrs/mo</div>
+        </div>
+      </div>
+
+      <div class="compare-grid pro-only">
+        <div class="compare-box">
+          <h3>Project (10 days)</h3>
+          <div id="compare-project">$8,000 total · $100/hr</div>
+        </div>
+        <div class="compare-box">
+          <h3>Retainer (18 days)</h3>
+          <div id="compare-retainer">$14,400/mo · $100/hr</div>
+        </div>
+      </div>
+
+      <div class="timeline" id="timeline">
+        <strong>$800/day</strong> ÷ 8 hrs = <strong>$100.00/hr</strong> · $14,400/mo at 18 days
+      </div>
+
+      <div class="actions">
+        <button type="button" class="btn btn-secondary" id="reset">Reset</button>
+        <button type="button" class="btn btn-primary" id="share">Share result</button>
+      </div>
+      <p class="disclaimer">Estimates only — adjust for taxes, expenses, and non-billable time.</p>
+    </div>
+  </div>
+
+  <div class="toast" id="toast" role="status"></div>
+
+  <script>
+    (function () {
+      var dayrateEl = document.getElementById("dayrate");
+      var hoursEl = document.getElementById("hours");
+      var daysEl = document.getElementById("days");
+      var targetHourlyEl = document.getElementById("target-hourly");
+      var mode = "forward";
+      var hourlyEl = document.getElementById("hourly-rate");
+      var summaryEl = document.getElementById("summary");
+      var healthEl = document.getElementById("health");
+      var monthlyEl = document.getElementById("monthly");
+      var weeklyEl = document.getElementById("weekly");
+      var annualEl = document.getElementById("annual");
+      var dayNeededEl = document.getElementById("day-needed");
+      var effectiveDayEl = document.getElementById("effective-day");
+      var hoursMonthEl = document.getElementById("hours-month");
+      var compareProjectEl = document.getElementById("compare-project");
+      var compareRetainerEl = document.getElementById("compare-retainer");
+      var timelineEl = document.getElementById("timeline");
+      var dayrateField = document.getElementById("dayrate-field");
+      var hourlyField = document.getElementById("hourly-field");
+      var toastEl = document.getElementById("toast");
+      var STORAGE_KEY = "dayratepro_last";
+
+      function fmt(n) {
+        return "$" + n.toLocaleString("en-US", { minimumFractionDigits: 0, maximumFractionDigits: 0 });
+      }
+
+      function fmtDec(n) {
+        return "$" + n.toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+      }
+
+      function showToast(msg) {
+        toastEl.textContent = msg;
+        toastEl.classList.add("show");
+        setTimeout(function () { toastEl.classList.remove("show"); }, 2000);
+      }
+
+      function setActivePreset(container, val) {
+        document.querySelectorAll("#" + container + " .preset-btn").forEach(function (btn) {
+          btn.classList.toggle("active", +btn.dataset.val === val);
+        });
+      }
+
+      function healthInfo(hourly) {
+        if (hourly >= 100) return { cls: "ok", label: "Strong rate — above typical W-2 equivalent" };
+        if (hourly >= 60) return { cls: "warn", label: "Moderate rate — check expenses & taxes" };
+        return { cls: "low", label: "Low hourly — raise day rate or bill more hours" };
+      }
+
+      function updateModeUI() {
+        document.querySelectorAll("#mode-row .mode-btn").forEach(function (btn) {
+          btn.classList.toggle("active", btn.dataset.mode === mode);
+        });
+        var isReverse = mode === "reverse";
+        dayrateField.style.display = isReverse ? "none" : "block";
+        hourlyField.style.display = isReverse ? "block" : "none";
+      }
+
+      function calc() {
+        var hours = Math.max(0.5, +hoursEl.value || 8);
+        var days = Math.max(1, +daysEl.value || 18);
+        var dayrate, hourly;
+
+        if (mode === "reverse") {
+          hourly = Math.max(0, +targetHourlyEl.value || 0);
+          dayrate = hourly * hours;
+        } else {
+          dayrate = Math.max(0, +dayrateEl.value || 0);
+          hourly = dayrate / hours;
+        }
+
+        var monthly = dayrate * days;
+        var weekly = monthly / 4;
+        var annual = monthly * 12;
+        var hoursMonth = hours * days;
+        var projectTotal = dayrate * 10;
+        var retainerMonthly = dayrate * 18;
+
+        hourlyEl.textContent = fmtDec(hourly);
+        summaryEl.innerHTML = "<strong>" + fmt(dayrate) + "</strong>/day · <strong>" + fmt(monthly) + "</strong>/mo";
+        var health = healthInfo(hourly);
+        healthEl.className = "health " + health.cls;
+        healthEl.textContent = health.label;
+        monthlyEl.textContent = fmt(monthly);
+        weeklyEl.textContent = fmt(weekly);
+        if (annualEl) annualEl.textContent = fmt(annual);
+        if (dayNeededEl) dayNeededEl.textContent = fmt(dayrate);
+        effectiveDayEl.textContent = fmt(dayrate);
+        hoursMonthEl.textContent = Math.round(hoursMonth).toLocaleString("en-US");
+
+        if (compareProjectEl) {
+          compareProjectEl.innerHTML = "<strong>" + fmt(projectTotal) + "</strong> total · " + fmtDec(hourly) + "/hr";
+        }
+        if (compareRetainerEl) {
+          compareRetainerEl.innerHTML = "<strong>" + fmt(retainerMonthly) + "</strong>/mo · " + fmtDec(hourly) + "/hr";
+        }
+
+        if (mode === "reverse") {
+          timelineEl.innerHTML = "Target <strong>" + fmtDec(hourly) + "/hr</strong> × " + hours + " hrs = <strong>" + fmt(dayrate) + "/day</strong> needed";
+        } else {
+          timelineEl.innerHTML = "<strong>" + fmt(dayrate) + "/day</strong> ÷ " + hours + " hrs = <strong>" + fmtDec(hourly) + "/hr</strong> · " + fmt(monthly) + "/mo at " + days + " days";
+        }
+
+        var summary = fmtDec(hourly) + "/hr · " + fmt(monthly) + "/mo";
+        try { localStorage.setItem(STORAGE_KEY, summary); } catch (e) {}
+      }
+
+      document.querySelectorAll("#dayrate-presets .preset-btn").forEach(function (btn) {
+        btn.addEventListener("click", function () {
+          dayrateEl.value = btn.dataset.val;
+          setActivePreset("dayrate-presets", +btn.dataset.val);
+          calc();
+        });
+      });
+
+      document.querySelectorAll("#hours-presets .preset-btn").forEach(function (btn) {
+        btn.addEventListener("click", function () {
+          hoursEl.value = btn.dataset.val;
+          setActivePreset("hours-presets", +btn.dataset.val);
+          calc();
+        });
+      });
+
+      document.querySelectorAll("#days-presets .preset-btn").forEach(function (btn) {
+        btn.addEventListener("click", function () {
+          daysEl.value = btn.dataset.val;
+          setActivePreset("days-presets", +btn.dataset.val);
+          calc();
+        });
+      });
+
+      document.querySelectorAll("#mode-row .mode-btn").forEach(function (btn) {
+        btn.addEventListener("click", function () {
+          mode = btn.dataset.mode;
+          updateModeUI();
+          calc();
+        });
+      });
+
+      [dayrateEl, hoursEl, daysEl, targetHourlyEl].forEach(function (el) {
+        if (el) el.addEventListener("input", calc);
+      });
+
+      document.getElementById("reset").addEventListener("click", function () {
+        dayrateEl.value = "800";
+        hoursEl.value = "8";
+        daysEl.value = "18";
+        targetHourlyEl.value = "100";
+        mode = "forward";
+        setActivePreset("dayrate-presets", 800);
+        setActivePreset("hours-presets", 8);
+        setActivePreset("days-presets", 18);
+        updateModeUI();
+        calc();
+        showToast("Reset to defaults");
+      });
+
+      document.getElementById("share").addEventListener("click", function () {
+        var text = "Day rate: " + hourlyEl.textContent + "/hr · " + summaryEl.textContent.replace(/<[^>]+>/g, "") + " — Day Rate to Hourly Calculator Pro";
+        if (navigator.share) {
+          navigator.share({ title: "Day Rate to Hourly Calculator Pro", text: text }).catch(function () {});
+        } else if (navigator.clipboard) {
+          navigator.clipboard.writeText(text).then(function () { showToast("Copied to clipboard"); });
+        } else {
+          showToast(text);
+        }
+      });
+
+      updateModeUI();
+      calc();
+    })();
+  </script>
+</body>
+</html>

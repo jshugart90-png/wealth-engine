@@ -277,6 +277,7 @@ export const VENTURE_TO_MOBILE = {
   "break-even-calculator-pro": "break-even-calculator-pro",
   "late-fee-calculator-pro": "late-fee-calculator-pro",
   "markup-calculator-pro": "markup-calculator-pro",
+  "day-rate-calculator-pro": "day-rate-calculator-pro",
 };
 
 export function generateStoreKitConfig() {

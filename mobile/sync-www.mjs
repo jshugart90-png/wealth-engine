@@ -1,6 +1,6 @@
 /**
  * Sync dist/ assets into Capacitor www folders.
- * Usage: node sync-www.mjs [games|tools|freelancer-stack|devwatch|hookrelay-dlq|receipt-rush|webhook-whack|invoice-stack|horseshoe-toss|uptime-defender|freelancer-memory|color-switch-snake|word-scramble-biz|net-30-ninja|ssl-shield|nda-speed-sign|invoice-number-rush|billsnap|statusping-lite|leaselens|ndagen|hookrelay|pipekit|meetingcost|templateforge|comparestack|tip-calculator-pro|hourly-rate-calculator-pro|freelancer-tax-estimator|1099-threshold-tracker-pro|quarterly-tax-deadline-pro|profit-margin-calculator-pro|break-even-calculator-pro|late-fee-calculator-pro|markup-calculator-pro|all]
+ * Usage: node sync-www.mjs [games|tools|freelancer-stack|devwatch|hookrelay-dlq|receipt-rush|webhook-whack|invoice-stack|horseshoe-toss|uptime-defender|freelancer-memory|color-switch-snake|word-scramble-biz|net-30-ninja|ssl-shield|nda-speed-sign|invoice-number-rush|billsnap|statusping-lite|leaselens|ndagen|hookrelay|pipekit|meetingcost|templateforge|comparestack|tip-calculator-pro|hourly-rate-calculator-pro|freelancer-tax-estimator|1099-threshold-tracker-pro|quarterly-tax-deadline-pro|profit-margin-calculator-pro|break-even-calculator-pro|late-fee-calculator-pro|markup-calculator-pro|day-rate-calculator-pro|all]
  */
 import { cpSync, existsSync, mkdirSync, readFileSync, writeFileSync, readdirSync } from "fs";
 import { join, dirname } from "path";
@@ -1247,6 +1247,32 @@ const UTILITY_SHELLS = {
       "Pro: reverse markup & tier pricing table",
     ],
   },
+  "day-rate-calculator-pro": {
+    title: "Day Rate to Hourly Calculator Pro",
+    emoji: "📅",
+    tagline: "Day rate, hourly rate & monthly freelance income",
+    themeColor: "#78350f",
+    bg: "#451a03",
+    text: "#fffbeb",
+    sub: "#fcd34d",
+    accent: "#fbbf24",
+    btnBg: "#92400e",
+    btnHover: "#78350f",
+    statBg: "#78350f",
+    statBorder: "#92400e",
+    statKey: "dayratepro_last",
+    statLabel: "Last calculation",
+    statEmpty: "—",
+    cta: "Calculate Day Rate",
+    moreLink: "https://wealth-engine-0qlj.onrender.com/hourly-rate-calculator-pro/",
+    moreLabel: "Hourly Rate Pro",
+    offlineMsg: "You're offline — open Day Rate Calculator Pro if you've used it before",
+    features: [
+      "Day rate → hourly & monthly revenue",
+      "Billable hours and working days presets",
+      "Pro: reverse pricing & project vs retainer",
+    ],
+  },
 };
 
 function syncUtility(slug) {
@@ -1413,6 +1439,7 @@ if (target === "profit-margin-calculator-pro" || target === "all") syncUtility("
 if (target === "break-even-calculator-pro" || target === "all") syncUtility("break-even-calculator-pro");
 if (target === "late-fee-calculator-pro" || target === "all") syncUtility("late-fee-calculator-pro");
 if (target === "markup-calculator-pro" || target === "all") syncUtility("markup-calculator-pro");
+if (target === "day-rate-calculator-pro" || target === "all") syncUtility("day-rate-calculator-pro");
 if (target === "receipt-rush" || target === "all") syncMiniGame("receipt-rush");
 if (target === "webhook-whack" || target === "all") syncMiniGame("webhook-whack");
 if (target === "invoice-stack" || target === "all") syncMiniGame("invoice-stack");

@@ -1,0 +1,17 @@
+Day Rate to Hourly Calculator Pro helps freelancers, consultants, and contractors convert day rates into hourly rates, monthly income, and annual revenue — instantly.
+
+Enter your day rate, billable hours per day, and working days per month to see your effective hourly rate, monthly revenue, and weekly income. Pro unlock adds reverse pricing (target hourly → required day rate), annual projections, and project vs retainer comparison.
+
+Features:
+• Day rate → hourly rate conversion
+• Monthly and weekly revenue breakdown
+• Billable hours per month calculator
+• Day rate presets ($500, $800, $1k, $1.5k)
+• Rate health indicators for pricing decisions
+• Pro: reverse mode — target hourly to required day rate
+• Pro: annual income projection (12 months)
+• Pro: project (10 days) vs retainer (18 days) comparison
+• Last calculation saved locally on your device
+• Works offline — no account required
+
+Perfect for freelance developers, designers, consultants, and anyone pricing day-rate projects without spreadsheet headaches.

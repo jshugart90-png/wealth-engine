@@ -226,6 +226,11 @@ platform :ios do
     mini_app_ios_beta("markup-calculator-pro", "Markup Calculator Pro")
   end
 
+  desc "TestFlight upload for Day Rate to Hourly Calculator Pro utility app"
+  lane :beta_day_rate_calculator_pro do
+    mini_app_ios_beta("day-rate-calculator-pro", "Day Rate to Hourly Calculator Pro")
+  end
+
   desc "TestFlight upload for Invoice Number Rush mini-app"
   lane :beta_invoice_number_rush do
     mini_app_ios_beta("invoice-number-rush", "Invoice Number Rush")

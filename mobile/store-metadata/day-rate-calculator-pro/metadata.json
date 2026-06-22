@@ -1,0 +1,36 @@
+{
+  "appName": "Day Rate to Hourly Calculator Pro",
+  "subtitle": "Freelance day rate & hourly income",
+  "bundleId": "com.wealthengine.dayratecalculatorpro",
+  "version": "1.0.0",
+  "privacyPolicyUrl": "https://wealth-engine-0qlj.onrender.com/privacy.html",
+  "supportUrl": "https://wealth-engine-0qlj.onrender.com/",
+  "marketingUrl": "https://wealth-engine-0qlj.onrender.com/day-rate-calculator-pro/",
+  "category": {
+    "apple": "Finance",
+    "appleSub": "Utilities",
+    "google": "FINANCE"
+  },
+  "contentRating": {
+    "ageRating": "4+",
+    "googleQuestionnaire": "Everyone — day rate calculator, no network required for core features",
+    "adsPresent": false,
+    "inAppPurchases": true,
+    "dataCollected": [
+      "calculation history stored locally only"
+    ]
+  },
+  "keywords": [
+    "day rate",
+    "hourly",
+    "calculator",
+    "freelance",
+    "contractor",
+    "consulting",
+    "pricing",
+    "income",
+    "retainer",
+    "project",
+    "dayratecalculatorpro"
+  ]
+}

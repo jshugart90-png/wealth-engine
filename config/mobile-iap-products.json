@@ -419,6 +419,23 @@
         }
       ]
     },
+    "day-rate-calculator-pro": {
+      "appName": "Day Rate to Hourly Calculator Pro",
+      "bundleId": "com.wealthengine.dayratecalculatorpro",
+      "type": "utility",
+      "version": "1.0.0",
+      "products": [
+        {
+          "key": "pro_unlock",
+          "storeKitId": "com.wealthengine.dayratecalculatorpro.pro_unlock",
+          "type": "non_consumable",
+          "price": 4.99,
+          "title": "Pro Unlock",
+          "description": "Unlock Pro features (reverse pricing, annual & compare)",
+          "stripeSku": null
+        }
+      ]
+    },
     "leaselens": {
       "appName": "LeaseLens",
       "bundleId": "com.wealthengine.leaselens",
