@@ -13,6 +13,7 @@ import { expandCompareStack } from "../ventures/comparestack/generator.mjs";
 import { buildEmbedWidgets } from "./marketing/embeds.mjs";
 import { buildProductFeeds } from "./marketing/feeds.mjs";
 import { buildReferralPages } from "./marketing/referral-page.mjs";
+import { buildWealthHubPage } from "./marketing/wealth-hub-page.mjs";
 import { buildIndexNowKey } from "./marketing/indexnow.mjs";
 import {
   admobPlaceholderScript,
@@ -122,6 +123,7 @@ export function buildAll() {
   const embeds = buildEmbedWidgets();
   const feeds = buildProductFeeds();
   const referral = buildReferralPages();
+  const wealthHub = buildWealthHubPage();
   const indexNow = buildIndexNowKey();
   const bingSiteAuth = buildBingSiteAuth();
   const games = buildGames();
@@ -142,6 +144,7 @@ export function buildAll() {
     embeds,
     feeds,
     referral,
+    wealthHub,
     indexNow,
     bingSiteAuth,
     games,
@@ -411,6 +414,7 @@ ${pwaHeadTags()}
   <a href="/tools/1099-tax-estimator.html">1099 tax calc</a>
   <a href="/join.html">📬 LAUNCH25 list</a>
   <a href="/partners/index.html">🤝 Partner program</a>
+  <a href="/wealth-hub/">⚡ Wealth Engine Hub</a>
   <a href="/comparestack/index.html">Compare tools</a>
   <a href="/games/">🎮 Free games</a>
 </div>

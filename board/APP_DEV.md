@@ -1103,9 +1103,36 @@ npx cap sync ios && npx cap open ios
 # Or: bundle exec fastlane ios beta_partners
 ```
 
+## App 45 — Wealth Engine Hub (master portfolio)
+
+| Field | Value |
+|-------|-------|
+| Version | 1.0.0 |
+| Tools | Master portfolio index — 45 apps with deep links |
+| Capacitor | `mobile/wealth-hub/` → loads `/wealth-hub/` from prod |
+| Store metadata | `mobile/store-metadata/wealth-hub/` |
+| Preflight | `npm run mobile:preflight:wealth-hub` |
+
+### Features (shipped this session)
+
+1. **Native launcher** — full portfolio grid with recently used tracking
+2. **Portfolio index** — local copy at `/wealth-hub/` with deep links to all 45 apps
+3. **Hub push** — local notifications for weekly portfolio check, monthly catalog review
+4. **Portfolio CSV export** — Excel-compatible catalog with bundle IDs (Pro unlock)
+5. **Pro unlock IAP** — search, filters, and full export columns (`com.wealthengine.wealthhub.pro_unlock`)
+
+### TestFlight upload (user Mac)
+
+```bash
+npm run build && cd mobile && node sync-www.mjs wealth-hub
+cd wealth-hub && npm install && npx cap add ios  # if missing
+npx cap sync ios && npx cap open ios
+# Or: bundle exec fastlane ios beta_wealth_hub
+```
+
 ## Master checklist
 
-See `mobile/TESTFLIGHT_ALL_APPS.md` for all 44 apps — bundle IDs, Fastlane lanes, versions.
+See `mobile/TESTFLIGHT_ALL_APPS.md` for all 45 apps — bundle IDs, Fastlane lanes, versions.
 
 ## GitHub policy
 

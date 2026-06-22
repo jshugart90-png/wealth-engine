@@ -1,0 +1,43 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Renter Toolkit — lease review bundle</title>
+<meta name="description" content="Lease review + compliance templates for tenants and small landlords. Use code LAUNCH25 at checkout.">
+<style>
+body{font-family:system-ui;max-width:720px;margin:40px auto;padding:20px;line-height:1.5;color:#14532d;background:#f0fdf4}
+h1{color:#15803d;font-size:clamp(28px,5vw,36px);margin-bottom:8px}
+.lead{color:#166534;font-size:18px;margin-bottom:24px}
+.badge{background:#eab308;color:#000;font-size:11px;padding:4px 10px;border-radius:20px;display:inline-block;margin-bottom:12px;font-weight:700}
+.plans{display:grid;gap:16px;margin:24px 0}
+.plan{border:2px solid #bbf7d0;border-radius:12px;padding:20px;background:#fff}
+.plan.featured{border-color:#22c55e;background:#f0fdf4}
+.plan h2{margin:0 0 6px;font-size:20px;color:#14532d}
+.plan p{margin:0 0 14px;color:#166534;font-size:14px}
+.btn{display:block;background:#22c55e;color:#fff;text-align:center;padding:14px;text-decoration:none;border-radius:8px;font-weight:600}
+.btn.secondary{background:#fff;color:#15803d;border:2px solid #22c55e}
+.tools{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px;margin:28px 0}
+.tool{display:block;border:1px solid #bbf7d0;border-radius:8px;padding:14px;text-decoration:none;color:inherit;background:#fff}
+.tool:hover{border-color:#22c55e}
+.tool strong{display:block;color:#15803d;margin-bottom:4px}
+.tool span{font-size:13px;color:#166534}
+.footer{margin-top:32px;font-size:14px;color:#166534}
+.footer a{color:#15803d}
+</style></head><body>
+<span class="badge">LAUNCH25 — 25% off at checkout</span>
+<h1>Renter Toolkit</h1>
+<p class="lead">Lease review + compliance templates for tenants and small landlords.</p>
+<div class="plans">
+  <div class="plan featured">
+    <h2>LeaseLens 3-Pack — $15</h2>
+    <p>Three full lease risk reports — analyze before you sign or renew.</p>
+    <a class="btn" href="https://buy.stripe.com/dRm8wObBQbKh4bH9hf1Nu05" onclick="fetch('/api/funnel/checkout_click',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({sku:'report-bundle',path:'/bundles/landlord-tenant-stack'})})">Get 3 reports →</a>
+  </div>
+  <div class="plan">
+    <h2>Compliance Templates — $19</h2>
+    <p>Employee handbook, vendor checklist, and incident log templates.</p>
+    <a class="btn secondary" href="https://buy.stripe.com/00w14maxMbKh0Zvdxv1Nu06" onclick="fetch('/api/funnel/checkout_click',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({sku:'smb-compliance-pack',path:'/bundles/landlord-tenant-stack'})})">Get templates →</a>
+  </div>
+</div>
+<h2>Included tools — try free first</h2>
+<div class="tools"><a class="tool" href="https://wealth-engine-0qlj.onrender.com/leaselens/index.html"><strong>LeaseLens</strong><span>Lease risk score & red flags</span></a><a class="tool" href="https://wealth-engine-0qlj.onrender.com/templateforge/index.html"><strong>TemplateForge</strong><span>Compliance & rental templates</span></a></div>
+<p class="footer"><a href="https://wealth-engine-0qlj.onrender.com/go/lease.html">Ad landing →</a> · <a href="https://wealth-engine-0qlj.onrender.com/go/lease.html">Single report $7</a> · <a href="https://wealth-engine-0qlj.onrender.com/">← All products</a></p>
+<p style="font-size:12px;color:#86efac">Not legal advice. Instant delivery after Stripe checkout.</p>
+</body></html>

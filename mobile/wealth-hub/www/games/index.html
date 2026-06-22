@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="google-site-verification" content="X8W5bw-fSJ0pTZiA0LesNi2vZ_-bUdLqVokR5uJZlI4" />
+<title>Free Games — Wealth Engine</title>
+<meta name="description" content="Simple free browser games for all ages. Play Horseshoe Toss, Invoice Stack, and more.">
+<link rel="manifest" href="/games/manifest.json">
+<meta name="theme-color" content="#6366f1">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<link rel="apple-touch-icon" href="/assets/pwa/icon-192.png">
+<script>if('serviceWorker' in navigator){navigator.serviceWorker.register('/sw.js').catch(function(){})}</script>
+<style>
+  body{font-family:system-ui,sans-serif;background:#0a0a0f;color:#e8e8ef;margin:0;padding:0 20px 40px}
+  .promo{background:#0f172a;color:#e2e8f0;padding:12px 16px;text-align:center;font-size:13px;border-bottom:1px solid #1e293b}
+  .promo a{color:#22c55e;font-weight:700;margin:0 10px;text-decoration:none}
+  h1{text-align:center;margin:32px 0 8px}
+  .sub{text-align:center;color:#888;margin-bottom:32px}
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:20px;max-width:1000px;margin:0 auto}
+  .card{background:#14141c;border:1px solid #2a2a38;border-radius:12px;padding:24px;text-decoration:none;color:inherit;transition:.2s;display:block}
+  .card:hover{border-color:#6366f1;transform:translateY(-2px)}
+  h2{margin:0 0 8px;font-size:20px}
+  p{color:#888;font-size:14px;margin:0 0 12px}
+  .play{color:#6366f1;font-size:13px;font-weight:600}
+  .ad{max-width:728px;margin:24px auto;background:#1a1a24;border:1px dashed #444;border-radius:8px;padding:16px;text-align:center;color:#666;font-size:12px}
+  .offline{display:none;background:#7f1d1d;color:#fecaca;text-align:center;padding:10px 16px;font-size:13px}
+  .offline.show{display:block}
+  .recent{max-width:1000px;margin:0 auto 24px}
+  .recent h3{font-size:14px;color:#888;margin:0 0 12px;text-transform:uppercase;letter-spacing:.05em}
+  .recent-row{display:flex;gap:12px;flex-wrap:wrap}
+  .recent a{background:#1a1a28;border:1px solid #333;border-radius:8px;padding:10px 14px;font-size:13px;color:#c4c4d4;text-decoration:none}
+  .recent a:hover{border-color:#6366f1;color:#fff}
+</style></head><body>
+<div id="offline-banner" class="offline" role="status">You're offline — games work after first load</div>
+<div class="promo"><a href="/">← Wealth Engine</a>
+  <a href="/go/invoice.html">BillSnap Invoices</a>
+  <a href="/go/uptime.html">StatusPing Uptime</a>
+  <a href="/tools/index.html">Free Tools</a>
+</div>
+<h1>🎮 Free Games</h1>
+<p class="sub">Simple, fun, all ages — 12 games, no download required</p>
+<div class="ad">AdSense placeholder — 728×90 leaderboard</div>
+<div id="recent-section" class="recent" hidden>
+  <h3>Recently played</h3>
+  <div id="recent-row" class="recent-row"></div>
+</div>
+<div class="grid">
+    <a class="card" href="/games/color-switch-snake/">
+      <h2>Color Switch Snake — Wealth Engine Games</h2>
+      <p>Guide the snake through matching color gates! Simple arcade game for all ages.</p>
+      <span class="play">Play →</span>
+    </a>
+    <a class="card" href="/games/freelancer-memory/">
+      <h2>Freelancer Memory Match — Wealth Engine Games</h2>
+      <p>Match freelancer tool pairs! Memory game for all ages featuring BillSnap, NDAGen, and more.</p>
+      <span class="play">Play →</span>
+    </a>
+    <a class="card" href="/games/horseshoe-toss/">
+      <h2>Horseshoe Toss — Wealth Engine Games</h2>
+      <p>Tap to toss horseshoes at the stake! Simple timing game for all ages.</p>
+      <span class="play">Play →</span>
+    </a>
+    <a class="card" href="/games/invoice-number-rush/">
+      <h2>Invoice Number Rush — Wealth Engine Games</h2>
+      <p>Tap the matching invoice number before it vanishes! Fast reflex game for freelancers and bookkeepers.</p>
+      <span class="play">Play →</span>
+    </a>
+    <a class="card" href="/games/invoice-stack/">
+      <h2>Invoice Stack — Wealth Engine Games</h2>
+      <p>Stack falling invoice blocks! Don't let them topple. Free arcade game tied to BillSnap.</p>
+      <span class="play">Play →</span>
+    </a>
+    <a class="card" href="/games/nda-speed-sign/">
+      <h2>📄 NDA Speed Sign — Wealth Engine Games</h2>
+      <p>Match NDA clause pairs before time runs out! NDAGen arcade memory game.</p>
+      <span class="play">Play →</span>
+    </a>
+    <a class="card" href="/games/net-30-ninja/">
+      <h2>🥷 Net-30 Ninja — Wealth Engine Games</h2>
+      <p>Jump over late invoices and net-30 traps!</p>
+      <span class="play">Play →</span>
+    </a>
+    <a class="card" href="/games/receipt-rush/">
+      <h2>Receipt Rush — Wealth Engine Games</h2>
+      <p>Catch falling receipts before they hit the ground! Arcade game for all ages.</p>
+      <span class="play">Play →</span>
+    </a>
+    <a class="card" href="/games/ssl-shield/">
+      <h2>🔒 SSL Shield — Wealth Engine Games</h2>
+      <p>Tap expiring SSL certs before they hit your server! StatusPing arcade game.</p>
+      <span class="play">Play →</span>
+    </a>
+    <a class="card" href="/games/uptime-defender/">
+      <h2>Uptime Defender — Wealth Engine Games</h2>
+      <p>Defend your servers from downtime bugs! Simple tower defense for all ages.</p>
+      <span class="play">Play →</span>
+    </a>
+    <a class="card" href="/games/webhook-whack/">
+      <h2>Webhook Whack-a-Mole — Wealth Engine Games</h2>
+      <p>Whack failed webhooks before they escape! Fast reflex game tied to HookRelay.</p>
+      <span class="play">Play →</span>
+    </a>
+    <a class="card" href="/games/word-scramble-biz/">
+      <h2>Word Scramble: Business Terms — Wealth Engine Games</h2>
+      <p>Unscramble business words! Fun word puzzle for all ages with freelancer vocabulary.</p>
+      <span class="play">Play →</span>
+    </a></div>
+<div class="we-iap-bar" id="we-iap-bar" role="region" aria-label="In-app purchases">
+<style>
+.we-iap-bar{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;align-items:center;margin:8px 0;padding:8px;background:rgba(0,0,0,.15);border-radius:8px;max-width:360px;width:100%}
+.we-iap-bar button{background:#6366f1;color:#fff;border:none;padding:6px 12px;border-radius:6px;font-size:11px;font-weight:600;cursor:pointer}
+.we-iap-bar button:active{transform:scale(.97)}
+#we-iap-premium-badge{display:none;background:#eab308;color:#1c1917;padding:4px 10px;border-radius:999px;font-size:11px;font-weight:700}
+body.we-iap-premium .we-iap-bar{border-color:#eab308}
+body.we-iap-no-ads .ad{display:none!important}
+</style>
+<button type="button" id="we-iap-remove-ads">Remove Ads · $2.99</button>
+<button type="button" id="we-iap-premium">Premium Unlock · $4.99</button>
+<button type="button" id="we-iap-tip">Tip · $0.99</button>
+<button type="button" id="we-iap-restore">Restore</button>
+<span id="we-iap-premium-badge">★ Premium</span>
+</div>
+<div class="ad" style="margin-top:32px">AdSense placeholder — 300×250 rectangle</div>
+<script>(function(){
+  var WE_ADMOB={appId:'ca-app-pub-3940256099942544~3347511713',banner:'ca-app-pub-3940256099942544/6300978111',rewarded:'ca-app-pub-3940256099942544/5224354917',testMode:true};
+  window.WE_ADMOB=WE_ADMOB;
+  function showBanner(el){
+    if(!el)return;
+    if(window.WE_IAP&&window.WE_IAP.shouldShowAds&&!window.WE_IAP.shouldShowAds()){el.style.display='none';return;}
+    el.setAttribute('data-admob','banner');
+    el.innerHTML='<div style="font-size:10px;color:#666;padding:4px">'+(WE_ADMOB.testMode?'AdMob TEST banner · ':'AdMob banner · ')+WE_ADMOB.banner+'</div>';
+  }
+  function refreshAds(){
+    document.querySelectorAll('.ad,[data-ad-slot]').forEach(showBanner);
+  }
+  window.WE_refreshAds=refreshAds;
+  refreshAds();
+  window.WE_showRewardedAd=function(onReward){
+    if(WE_ADMOB.testMode){
+      var code='LAUNCH25-'+Math.random().toString(36).slice(2,8).toUpperCase();
+      try{localStorage.setItem('we_game_reward',code)}catch(e){}
+      if(onReward)onReward(code);
+      return;
+    }
+    /* Native Capacitor AdMob plugin: @capacitor-community/admob — wire in mobile/ after Play Console setup */
+    if(window.Capacitor&&window.Capacitor.Plugins&&window.Capacitor.Plugins.AdMob){
+      window.Capacitor.Plugins.AdMob.showRewardVideoAd({adId:WE_ADMOB.rewarded}).then(function(){if(onReward)onReward('LAUNCH25')});
+    }else if(onReward){onReward('LAUNCH25');}
+  };
+})();</script>
+<script>(function(){
+  var APP="games";
+  var PRODUCTS=[{"key":"remove_ads","id":"com.wealthengine.gameshub.remove_ads","price":2.99,"title":"Remove Ads"},{"key":"premium_unlock","id":"com.wealthengine.gameshub.premium_unlock","price":4.99,"title":"Premium Unlock"},{"key":"tip_jar","id":"com.wealthengine.gameshub.tip_jar","price":0.99,"title":"Tip Jar"}];
+  var PREFIX='we_iap_'+APP+'_';
+
+  function owned(key){
+    try{return localStorage.getItem(PREFIX+key)==='1'}catch(e){return false}
+  }
+  function setOwned(key){
+    try{localStorage.setItem(PREFIX+key,'1')}catch(e){}
+    refreshUI();
+  }
+
+  function shouldShowAds(){
+    return !owned('remove_ads');
+  }
+
+  function hideAdSlots(){
+    if(shouldShowAds())return;
+    document.querySelectorAll('.ad,[data-ad-slot]').forEach(function(el){
+      el.style.display='none';
+    });
+  }
+
+  function refreshUI(){
+    var badge=document.getElementById('we-iap-premium-badge');
+    var removeBtn=document.getElementById('we-iap-remove-ads');
+    var hasPremium=owned('premium_unlock')||owned('pro_unlock');
+    var noAds=!shouldShowAds();
+    if(badge)badge.style.display=(hasPremium||noAds)?'inline-block':'none';
+    if(removeBtn)removeBtn.style.display=noAds?'none':'inline-block';
+    hideAdSlots();
+    document.body.classList.toggle('we-iap-premium',hasPremium);
+    document.body.classList.toggle('we-iap-no-ads',noAds);
+  }
+
+  function purchase(key){
+    var prod=PRODUCTS.find(function(p){return p.key===key});
+    if(!prod)return Promise.reject(new Error('Unknown product'));
+    if(owned(key))return Promise.resolve({key:key,restored:true});
+
+    /* Native: @revenuecat/purchases-capacitor or StoreKit 2 via Capacitor plugin */
+    if(window.Capacitor&&window.Capacitor.Plugins&&window.Capacitor.Plugins.Purchases){
+      return window.Capacitor.Plugins.Purchases.purchaseProduct({productIdentifier:prod.id})
+        .then(function(){setOwned(key);return{key:key,purchased:true};});
+    }
+
+    /* Sandbox / pre-App-Store-Connect: simulate success (replace after products live) */
+    if(confirm('Purchase '+prod.title+' ($'+prod.price.toFixed(2)+')?\n\nSandbox mode — receipt verify placeholder until App Store Connect products are live.')){
+      setOwned(key);
+      return Promise.resolve({key:key,purchased:true,sandbox:true});
+    }
+    return Promise.reject(new Error('Cancelled'));
+  }
+
+  function restore(){
+    if(window.Capacitor&&window.Capacitor.Plugins&&window.Capacitor.Plugins.Purchases){
+      return window.Capacitor.Plugins.Purchases.restorePurchases().then(function(res){
+        (res&&res.customerInfo&&res.customerInfo.entitlements&&res.customerInfo.entitlements.active||{}).forEach(function(){});
+        refreshUI();
+        return{restored:true};
+      });
+    }
+    refreshUI();
+    alert('Restore complete — checked local purchases. Connect RevenueCat for cross-device restore.');
+    return Promise.resolve({restored:true,local:true});
+  }
+
+  window.WE_IAP={
+    app:APP,
+    products:PRODUCTS,
+    owns:owned,
+    shouldShowAds:shouldShowAds,
+    purchase:purchase,
+    restore:restore,
+    refresh:refreshUI
+  };
+
+  function wireUI(){
+    var bar=document.getElementById('we-iap-bar');
+    if(!bar)return;
+    var removeBtn=document.getElementById('we-iap-remove-ads');
+    var premiumBtn=document.getElementById('we-iap-premium');
+    var restoreBtn=document.getElementById('we-iap-restore');
+    var tipBtn=document.getElementById('we-iap-tip');
+    if(removeBtn)removeBtn.addEventListener('click',function(){WE_IAP.purchase('remove_ads').catch(function(){})});
+    if(premiumBtn)premiumBtn.addEventListener('click',function(){
+      WE_IAP.purchase('premium_unlock').catch(function(){});
+    });
+    if(restoreBtn)restoreBtn.addEventListener('click',function(){WE_IAP.restore()});
+    if(tipBtn)tipBtn.addEventListener('click',function(){WE_IAP.purchase('tip_jar').catch(function(){})});
+    refreshUI();
+  }
+
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',wireUI);
+  else wireUI();
+})();</script>
+<script>(function(){
+  var KEY='we_recent_games';
+  var titles={"color-switch-snake":"Color Switch Snake — Wealth Engine Games","freelancer-memory":"Freelancer Memory Match — Wealth Engine Games","horseshoe-toss":"Horseshoe Toss — Wealth Engine Games","invoice-number-rush":"Invoice Number Rush — Wealth Engine Games","invoice-stack":"Invoice Stack — Wealth Engine Games","nda-speed-sign":"📄 NDA Speed Sign — Wealth Engine Games","net-30-ninja":"🥷 Net-30 Ninja — Wealth Engine Games","receipt-rush":"Receipt Rush — Wealth Engine Games","ssl-shield":"🔒 SSL Shield — Wealth Engine Games","uptime-defender":"Uptime Defender — Wealth Engine Games","webhook-whack":"Webhook Whack-a-Mole — Wealth Engine Games","word-scramble-biz":"Word Scramble: Business Terms — Wealth Engine Games"};
+  function trackRecent(slug){
+    try{
+      var list=JSON.parse(localStorage.getItem(KEY)||'[]').filter(function(s){return s!==slug});
+      list.unshift(slug);
+      localStorage.setItem(KEY,JSON.stringify(list.slice(0,5)));
+    }catch(e){}
+  }
+  document.querySelectorAll('.grid .card').forEach(function(card){
+    var m=card.getAttribute('href')&&card.getAttribute('href').match(/\/games\/([^/]+)\//);
+    if(m)card.addEventListener('click',function(){trackRecent(m[1])});
+  });
+  function renderRecent(){
+    var row=document.getElementById('recent-row');
+    var section=document.getElementById('recent-section');
+    if(!row||!section)return;
+    var slugs=[];
+    try{slugs=JSON.parse(localStorage.getItem(KEY)||'[]')}catch(e){}
+    slugs=slugs.filter(function(s){return titles[s]}).slice(0,3);
+    if(!slugs.length){section.hidden=true;return;}
+    section.hidden=false;
+    row.innerHTML=slugs.map(function(s){
+      return '<a href="/games/'+s+'/">'+titles[s]+'</a>';
+    }).join('');
+  }
+  renderRecent();
+  var banner=document.getElementById('offline-banner');
+  function setOffline(){if(banner)banner.classList.toggle('show',!navigator.onLine)}
+  window.addEventListener('online',setOffline);
+  window.addEventListener('offline',setOffline);
+  setOffline();
+})();</script>
+<script>(function(){try{var r=localStorage.getItem('we_ref')||new URLSearchParams(location.search).get('ref');fetch('/api/funnel/visit',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({path:"/games/",refCode:r,source:new URLSearchParams(location.search).get('utm_source')||'direct'})}).catch(function(){})}catch(e){}})();</script>
+</body></html>

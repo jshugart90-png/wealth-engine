@@ -1,4 +1,4 @@
-# TestFlight Master Checklist — All 44 Apps
+# TestFlight Master Checklist — All 45 Apps
 
 **Updated:** 2026-06-22  
 **Repo:** github.com/jshugart90-png/wealth-engine  
@@ -53,8 +53,9 @@
 | 42 | NDAGen Team | `com.wealthengine.ndagenteam` | 1.0.0 | 1 | `beta_ndagen_team` | `mobile:preflight:ndagen-team` | READY |
 | 43 | MeetingCost Team | `com.wealthengine.meetingcostteam` | 1.0.0 | 1 | `beta_meetingcost_team` | `mobile:preflight:meetingcost-team` | READY |
 | 44 | Wealth Engine Partners | `com.wealthengine.partners` | 1.0.0 | opt | `beta_partners` | `mobile:preflight:partners` | READY |
+| 45 | Wealth Engine Hub | `com.wealthengine.wealthhub` | 1.0.0 | 1 | `beta_wealth_hub` | `mobile:preflight:wealth-hub` | READY |
 
-**IAP totals:** 70 products (13 games × 3 + Games Hub × 3 + 30 utilities × 1 + 1 optional tip) · Catalog: `config/mobile-iap-products.json` · Setup: `mobile/APP_STORE_CONNECT_IAP_SETUP.md`
+**IAP totals:** 71 products (13 games × 3 + Games Hub × 3 + 31 utilities × 1 + 1 optional tip) · Catalog: `config/mobile-iap-products.json` · Setup: `mobile/APP_STORE_CONNECT_IAP_SETUP.md`
 
 **Validation:** `npm run mobile:ios-checklist` (all apps) · `npm run mobile:storekit:generate` (Xcode local testing)
 
@@ -121,6 +122,7 @@ cd .. && bundle exec fastlane ios beta_<lane>
 | ndagen-team | `mobile/ndagen-team/` | `/go/nda-team.html` |
 | meetingcost-team | `mobile/meetingcost-team/` | `/go/meeting-cost-team.html` |
 | partners | `mobile/partners/` | `/partners/` |
+| wealth-hub | `mobile/wealth-hub/` | `/wealth-hub/` |
 
 ## Global blockers
 

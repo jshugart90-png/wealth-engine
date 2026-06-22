@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
+<title>📄 NDA Speed Sign — Wealth Engine Games</title>
+<meta name="description" content="Match NDA clause pairs before time runs out! NDAGen arcade memory game.">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#1a1625;color:#f5f3ff;font-family:system-ui,sans-serif;min-height:100vh;padding:12px;touch-action:manipulation;user-select:none}
+.offline{display:none;background:#7f1d1d;color:#fecaca;text-align:center;padding:8px 12px;font-size:12px;margin:-12px -12px 8px}
+.offline.show{display:block}
+h1{font-size:1.15rem;text-align:center;margin-bottom:4px;color:#c4b5fd}
+.sub{font-size:.72rem;color:#a78bfa;text-align:center;margin-bottom:10px}
+#hud{display:flex;justify-content:center;gap:16px;font-size:.85rem;margin-bottom:10px;flex-wrap:wrap}
+#hud span{color:#fbbf24;font-weight:700}
+#timer{font-size:1.1rem;text-align:center;margin-bottom:8px;color:#e9d5ff}
+#grid{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;max-width:360px;margin:0 auto}
+.card{aspect-ratio:1;background:#2e2640;border:2px solid #4c3d6e;border-radius:8px;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:.15s;padding:4px;text-align:center}
+.card:hover:not(.matched){border-color:#a78bfa}
+.card.flipped,.card.matched{background:#3b2f5c;border-color:#a78bfa}
+.card.matched{opacity:.55;cursor:default}
+.card .label{font-size:.55rem;line-height:1.2;font-weight:600;color:#e9d5ff}
+.card .back{color:#6b5b95;font-size:.65rem;font-weight:700}
+#msg{text-align:center;font-size:.82rem;color:#c4b5fd;margin:10px 0;min-height:1.2em}
+.btn{background:#7c3aed;color:#fff;border:none;padding:10px 20px;border-radius:8px;font-weight:600;cursor:pointer;display:block;margin:8px auto}
+.ad{max-width:320px;margin:8px auto;background:#2e2640;border:1px dashed #4c3d6e;border-radius:6px;padding:8px;text-align:center;font-size:10px;color:#8b7cb8}
+.cta{font-size:11px;color:#a78bfa;text-align:center;margin-top:6px}
+.cta a{color:#c4b5fd;text-decoration:none}
+</style>
+<meta name="google-site-verification" content="X8W5bw-fSJ0pTZiA0LesNi2vZ_-bUdLqVokR5uJZlI4" />
+</head>
+<body>
+<div id="offline-banner" class="offline" role="status">You're offline — game works after first load</div>
+<h1>📄 NDA Speed Sign</h1>
+<p class="sub">Match clause pairs fast — sign the deal!</p>
+<div id="hud">Pairs: <span id="pairs">0</span>/8 · Moves: <span id="moves">0</span> · Best: <span id="best">—</span></div>
+<div id="timer">⏱ <span id="secs">0.0</span>s</div>
+<div id="grid"></div>
+<p id="msg">Tap two cards to match NDA clauses</p>
+<button class="btn" id="restart" style="display:none">Sign Again</button>
+<div class="ad">AdSense placeholder — 320×50</div>
+<p class="cta">Draft NDAs for real: <a href="/go/freelancer.html">NDAGen</a> · <a href="/tools/index.html">Free Tools</a></p>
+<script>
+(function(){
+const CLAUSES=[
+  ['Confidentiality','Shall not disclose confidential information'],
+  ['Non-Compete','No competing work during agreement term'],
+  ['Term','Agreement expires after stated period'],
+  ['Governing Law','Disputes resolved per chosen jurisdiction'],
+  ['Return of Materials','Return all confidential docs on exit'],
+  ['Injunctive Relief','Breach may seek equitable injunction'],
+  ['No License','No IP or ownership rights granted'],
+  ['Survivability','Obligations survive after termination']
+];
+const BEST_KEY='nda_speed_sign_best';
+let cards=[],flipped=[],moves=0,matched=0,lock=false,best=0,t0=0,timerId=null,running=false;
+try{best=parseInt(localStorage.getItem(BEST_KEY)||'0',10)||0}catch(e){}
+function showBest(){document.getElementById('best').textContent=best?best+'s':'—'}
+function saveBest(sec){
+  if(!best||sec<best){best=sec;try{localStorage.setItem(BEST_KEY,String(best))}catch(e){}showBest()}
+}
+showBest();
+
+function shuffle(a){for(let i=a.length-1;i>0;i--){const j=Math.random()*(i+1)|0;[a[i],a[j]]=[a[j],a[i]];}return a;}
+
+function stopTimer(){
+  if(timerId){clearInterval(timerId);timerId=null}
+  running=false;
+}
+
+function startTimer(){
+  t0=performance.now();
+  running=true;
+  timerId=setInterval(()=>{
+    if(running)document.getElementById('secs').textContent=((performance.now()-t0)/1000).toFixed(1);
+  },100);
+}
+
+function elapsed(){return Math.round((performance.now()-t0)/100)/10}
+
+function build(){
+  stopTimer();
+  const pairs=CLAUSES.flatMap((p,i)=>[
+    {id:i,label:p[0],side:'title'},
+    {id:i,label:p[1],side:'body'}
+  ]);
+  cards=shuffle(pairs);flipped=[];moves=0;matched=0;lock=false;
+  document.getElementById('moves').textContent=0;
+  document.getElementById('pairs').textContent=0;
+  document.getElementById('secs').textContent='0.0';
+  document.getElementById('msg').textContent='Tap two cards to match NDA clauses';
+  document.getElementById('restart').style.display='none';
+  render();
+  startTimer();
+}
+
+function render(){
+  const g=document.getElementById('grid');g.innerHTML='';
+  cards.forEach((card,i)=>{
+    const el=document.createElement('div');
+    const open=flipped.includes(i)||card.done;
+    el.className='card'+(open?' flipped':'')+(card.done?' matched':'');
+    el.innerHTML=open?'<span class="label">'+card.label+'</span>':'<span class="back">?</span>';
+    el.onclick=()=>tap(i);
+    g.appendChild(el);
+  });
+}
+
+function tap(i){
+  if(lock||flipped.includes(i)||cards[i].done)return;
+  flipped.push(i);render();
+  if(flipped.length===2){
+    lock=true;moves++;
+    document.getElementById('moves').textContent=moves;
+    const[a,b]=flipped;
+    if(cards[a].id===cards[b].id&&cards[a].side!==cards[b].side){
+      cards[a].done=cards[b].done=true;matched++;
+      document.getElementById('pairs').textContent=matched;
+      document.getElementById('msg').textContent='✓ '+CLAUSES[cards[a].id][0]+' matched!';
+      flipped=[];lock=false;render();
+      if(matched===8){
+        stopTimer();
+        const sec=elapsed();
+        saveBest(sec);
+        document.getElementById('msg').textContent='🏆 Signed in '+sec+'s ('+moves+' moves)!';
+        document.getElementById('restart').style.display='block';
+      }
+    }else{
+      document.getElementById('msg').textContent='Clause mismatch — try again';
+      setTimeout(()=>{flipped=[];lock=false;render();},650);
+    }
+  }
+}
+
+document.getElementById('restart').onclick=build;
+var banner=document.getElementById('offline-banner');
+function setOffline(){if(banner)banner.classList.toggle('show',!navigator.onLine)}
+window.addEventListener('online',setOffline);
+window.addEventListener('offline',setOffline);
+setOffline();
+build();
+})();
+</script>
+<div class="we-iap-bar" id="we-iap-bar" role="region" aria-label="In-app purchases">
+<style>
+.we-iap-bar{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;align-items:center;margin:8px 0;padding:8px;background:rgba(0,0,0,.15);border-radius:8px;max-width:360px;width:100%}
+.we-iap-bar button{background:#6366f1;color:#fff;border:none;padding:6px 12px;border-radius:6px;font-size:11px;font-weight:600;cursor:pointer}
+.we-iap-bar button:active{transform:scale(.97)}
+#we-iap-premium-badge{display:none;background:#eab308;color:#1c1917;padding:4px 10px;border-radius:999px;font-size:11px;font-weight:700}
+body.we-iap-premium .we-iap-bar{border-color:#eab308}
+body.we-iap-no-ads .ad{display:none!important}
+</style>
+<button type="button" id="we-iap-remove-ads">Remove Ads · $2.99</button>
+<button type="button" id="we-iap-premium">Premium Unlock · $4.99</button>
+<button type="button" id="we-iap-tip">Tip · $0.99</button>
+<button type="button" id="we-iap-restore">Restore</button>
+<span id="we-iap-premium-badge">★ Premium</span>
+</div><script>(function(){
+  var APP="nda-speed-sign";
+  var PRODUCTS=[{"key":"remove_ads","id":"com.wealthengine.ndaspeedsign.remove_ads","price":2.99,"title":"Remove Ads"},{"key":"premium_unlock","id":"com.wealthengine.ndaspeedsign.premium_unlock","price":4.99,"title":"Premium Unlock"},{"key":"tip_jar","id":"com.wealthengine.ndaspeedsign.tip_jar","price":0.99,"title":"Tip Jar"}];
+  var PREFIX='we_iap_'+APP+'_';
+
+  function owned(key){
+    try{return localStorage.getItem(PREFIX+key)==='1'}catch(e){return false}
+  }
+  function setOwned(key){
+    try{localStorage.setItem(PREFIX+key,'1')}catch(e){}
+    refreshUI();
+  }
+
+  function shouldShowAds(){
+    return !owned('remove_ads');
+  }
+
+  function hideAdSlots(){
+    if(shouldShowAds())return;
+    document.querySelectorAll('.ad,[data-ad-slot]').forEach(function(el){
+      el.style.display='none';
+    });
+  }
+
+  function refreshUI(){
+    var badge=document.getElementById('we-iap-premium-badge');
+    var removeBtn=document.getElementById('we-iap-remove-ads');
+    var hasPremium=owned('premium_unlock')||owned('pro_unlock');
+    var noAds=!shouldShowAds();
+    if(badge)badge.style.display=(hasPremium||noAds)?'inline-block':'none';
+    if(removeBtn)removeBtn.style.display=noAds?'none':'inline-block';
+    hideAdSlots();
+    document.body.classList.toggle('we-iap-premium',hasPremium);
+    document.body.classList.toggle('we-iap-no-ads',noAds);
+  }
+
+  function purchase(key){
+    var prod=PRODUCTS.find(function(p){return p.key===key});
+    if(!prod)return Promise.reject(new Error('Unknown product'));
+    if(owned(key))return Promise.resolve({key:key,restored:true});
+
+    /* Native: @revenuecat/purchases-capacitor or StoreKit 2 via Capacitor plugin */
+    if(window.Capacitor&&window.Capacitor.Plugins&&window.Capacitor.Plugins.Purchases){
+      return window.Capacitor.Plugins.Purchases.purchaseProduct({productIdentifier:prod.id})
+        .then(function(){setOwned(key);return{key:key,purchased:true};});
+    }
+
+    /* Sandbox / pre-App-Store-Connect: simulate success (replace after products live) */
+    if(confirm('Purchase '+prod.title+' (
+</html>
++prod.price.toFixed(2)+')?\n\nSandbox mode — receipt verify placeholder until App Store Connect products are live.')){
+      setOwned(key);
+      return Promise.resolve({key:key,purchased:true,sandbox:true});
+    }
+    return Promise.reject(new Error('Cancelled'));
+  }
+
+  function restore(){
+    if(window.Capacitor&&window.Capacitor.Plugins&&window.Capacitor.Plugins.Purchases){
+      return window.Capacitor.Plugins.Purchases.restorePurchases().then(function(res){
+        (res&&res.customerInfo&&res.customerInfo.entitlements&&res.customerInfo.entitlements.active||{}).forEach(function(){});
+        refreshUI();
+        return{restored:true};
+      });
+    }
+    refreshUI();
+    alert('Restore complete — checked local purchases. Connect RevenueCat for cross-device restore.');
+    return Promise.resolve({restored:true,local:true});
+  }
+
+  window.WE_IAP={
+    app:APP,
+    products:PRODUCTS,
+    owns:owned,
+    shouldShowAds:shouldShowAds,
+    purchase:purchase,
+    restore:restore,
+    refresh:refreshUI
+  };
+
+  function wireUI(){
+    var bar=document.getElementById('we-iap-bar');
+    if(!bar)return;
+    var removeBtn=document.getElementById('we-iap-remove-ads');
+    var premiumBtn=document.getElementById('we-iap-premium');
+    var restoreBtn=document.getElementById('we-iap-restore');
+    var tipBtn=document.getElementById('we-iap-tip');
+    if(removeBtn)removeBtn.addEventListener('click',function(){WE_IAP.purchase('remove_ads').catch(function(){})});
+    if(premiumBtn)premiumBtn.addEventListener('click',function(){
+      WE_IAP.purchase('premium_unlock').catch(function(){});
+    });
+    if(restoreBtn)restoreBtn.addEventListener('click',function(){WE_IAP.restore()});
+    if(tipBtn)tipBtn.addEventListener('click',function(){WE_IAP.purchase('tip_jar').catch(function(){})});
+    refreshUI();
+  }
+
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',wireUI);
+  else wireUI();
+})();</script><script>(function(){
+  var WE_ADMOB={appId:'ca-app-pub-3940256099942544~3347511713',banner:'ca-app-pub-3940256099942544/6300978111',rewarded:'ca-app-pub-3940256099942544/5224354917',testMode:true};
+  window.WE_ADMOB=WE_ADMOB;
+  function showBanner(el){
+    if(!el)return;
+    if(window.WE_IAP&&window.WE_IAP.shouldShowAds&&!window.WE_IAP.shouldShowAds()){el.style.display='none';return;}
+    el.setAttribute('data-admob','banner');
+    el.innerHTML='<div style="font-size:10px;color:#666;padding:4px">'+(WE_ADMOB.testMode?'AdMob TEST banner · ':'AdMob banner · ')+WE_ADMOB.banner+'</div>';
+  }
+  function refreshAds(){
+    document.querySelectorAll('.ad,[data-ad-slot]').forEach(showBanner);
+  }
+  window.WE_refreshAds=refreshAds;
+  refreshAds();
+  window.WE_showRewardedAd=function(onReward){
+    if(WE_ADMOB.testMode){
+      var code='LAUNCH25-'+Math.random().toString(36).slice(2,8).toUpperCase();
+      try{localStorage.setItem('we_game_reward',code)}catch(e){}
+      if(onReward)onReward(code);
+      return;
+    }
+    /* Native Capacitor AdMob plugin: @capacitor-community/admob — wire in mobile/ after Play Console setup */
+    if(window.Capacitor&&window.Capacitor.Plugins&&window.Capacitor.Plugins.AdMob){
+      window.Capacitor.Plugins.AdMob.showRewardVideoAd({adId:WE_ADMOB.rewarded}).then(function(){if(onReward)onReward('LAUNCH25')});
+    }else if(onReward){onReward('LAUNCH25');}
+  };
+})();</script><script>(function(){try{var r=localStorage.getItem('we_ref')||new URLSearchParams(location.search).get('ref');fetch('/api/funnel/visit',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({path:"/games/nda-speed-sign/",refCode:r,source:new URLSearchParams(location.search).get('utm_source')||'direct'})}).catch(function(){})}catch(e){}})();</script></body>
+</html>

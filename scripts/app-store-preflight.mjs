@@ -11,7 +11,7 @@ const root = getRoot();
 const app = process.argv.includes("--app")
   ? process.argv[process.argv.indexOf("--app") + 1]
   : "games";
-const HUB_APPS = ["tools", "freelancer-stack", "devwatch", "renter-toolkit", "hookrelay-dlq", "1099-suite", "statusping-agency", "ndagen-team", "meetingcost-team", "partners"];
+const HUB_APPS = ["tools", "freelancer-stack", "devwatch", "renter-toolkit", "hookrelay-dlq", "1099-suite", "statusping-agency", "ndagen-team", "meetingcost-team", "partners", "wealth-hub"];
 const OPTIONAL_IAP_APPS = ["partners"];
 const MINI_GAMES = ["receipt-rush", "webhook-whack", "invoice-stack", "horseshoe-toss", "uptime-defender", "freelancer-memory", "color-switch-snake", "word-scramble-biz", "net-30-ninja", "ssl-shield", "nda-speed-sign", "invoice-number-rush"];
 const UTIL_APPS = ["billsnap", "statusping-lite", "leaselens", "ndagen", "hookrelay", "pipekit", "meetingcost", "templateforge", "comparestack", "tip-calculator-pro", "hourly-rate-calculator-pro", "freelancer-tax-estimator", "1099-threshold-tracker-pro", "quarterly-tax-deadline-pro", "profit-margin-calculator-pro", "break-even-calculator-pro", "late-fee-calculator-pro", "markup-calculator-pro", "day-rate-calculator-pro", "bill-splitter-pro", "percentage-calculator-pro"];
@@ -164,6 +164,20 @@ if (isHubApp) {
     else fail("5c-compare", "CompareStack hub built", "Missing dist/comparestack/index.html");
     if (existsSync(join(dist, "go", "billsnap-pro.html"))) pass("5c-billsnap", "Top converter landing built");
     else fail("5c-billsnap", "Top converter landing built", "Missing dist/go/billsnap-pro.html");
+  } else if (app === "wealth-hub") {
+    if (existsSync(join(dist, "wealth-hub", "index.html"))) pass("5b", "Portfolio index built");
+    else fail("5b", "Portfolio index built", "Missing dist/wealth-hub/index.html — run node mobile/sync-www.mjs wealth-hub");
+    if (existsSync(join(dist, "games", "index.html"))) pass("5c-games", "Games hub built");
+    else fail("5c-games", "Games hub built", "Missing dist/games/index.html");
+    if (existsSync(join(dist, "index.html"))) pass("5c-root", "Main portfolio built");
+    else fail("5c-root", "Main portfolio built", "Missing dist/index.html");
+    if (existsSync(join(dist, "comparestack", "index.html"))) pass("5c-compare", "CompareStack hub built");
+    else fail("5c-compare", "CompareStack hub built", "Missing dist/comparestack/index.html");
+    const metaSlugs = readdirSync(join(mobileRoot, "store-metadata"), { withFileTypes: true })
+      .filter((d) => d.isDirectory())
+      .length;
+    if (metaSlugs >= 45) pass("5c-count", "Portfolio catalog complete", `${metaSlugs} apps`);
+    else fail("5c-count", "Portfolio catalog complete", `Expected 45 apps, found ${metaSlugs}`);
   }
 } else if (isUtilApp) {
   const utilDist = UTIL_DIST[utilSlug] ?? utilSlug;
@@ -238,6 +252,8 @@ if (isHubApp && app === "freelancer-stack" && existsSync(join(mobileRoot, app, "
   pass("6b", "Team landing synced");
 } else if (isHubApp && app === "partners" && existsSync(join(mobileRoot, app, "www", "partners", "index.html"))) {
   pass("6b", "Partner portal synced");
+} else if (isHubApp && app === "wealth-hub" && existsSync(join(mobileRoot, app, "www", "games", "index.html"))) {
+  pass("6b", "Portfolio offline bundle synced");
 } else if (isHubApp) {
   pass("6b", "Hub bundle sync", app);
 } else if (isUtilApp && existsSync(join(dist, (UTIL_DIST[utilSlug] ?? utilSlug), "index.html"))) {

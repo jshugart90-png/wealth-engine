@@ -69,6 +69,7 @@ const STATIC_PATHS = [
   "/join.html",
   "/refer.html",
   "/partners/index.html",
+  "/wealth-hub/index.html",
   "/tools/hourly-rate.html",
   "/feed.xml",
   "/comparestack/index.html",

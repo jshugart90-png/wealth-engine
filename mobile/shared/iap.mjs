@@ -60,6 +60,7 @@ export const STRIPE_IAP_MAP = {
   "meetingcost-team": { pro_unlock: "meetingcost-team-monthly" },
   partners: { tip_jar: null },
   tools: { pro_unlock: null },
+  "wealth-hub": { pro_unlock: "portfolio-pro" },
 };
 
 const UTILITY_PRODUCT_DEFS = [

@@ -1,0 +1,21 @@
+{
+  "name": "wealth-hub",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Wealth Engine Hub — master portfolio app with deep links to all tools and games",
+  "scripts": {
+    "sync": "node ../sync-www.mjs wealth-hub && npx cap sync",
+    "ios": "npx cap open ios",
+    "android": "npx cap open android"
+  },
+  "dependencies": {
+    "@capacitor/android": "^7.2.0",
+    "@capacitor/core": "^7.2.0",
+    "@capacitor/ios": "^7.2.0",
+    "@capacitor/local-notifications": "^7.0.1",
+    "@capacitor/splash-screen": "^7.0.1"
+  },
+  "devDependencies": {
+    "@capacitor/cli": "^7.2.0"
+  }
+}

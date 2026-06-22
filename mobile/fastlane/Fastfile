@@ -291,6 +291,11 @@ platform :ios do
     mini_app_ios_beta("partners", "Wealth Engine Partners")
   end
 
+  desc "TestFlight upload for Wealth Engine Hub master portfolio app"
+  lane :beta_wealth_hub do
+    mini_app_ios_beta("wealth-hub", "Wealth Engine Hub")
+  end
+
   desc "TestFlight upload + App Store metadata (does not auto-submit for review)"
   lane :release do
     beta

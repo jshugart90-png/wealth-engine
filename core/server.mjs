@@ -60,6 +60,7 @@ function tryExtensionlessRedirect(pathname, res, root) {
     path === "/join" ||
     path === "/refer" ||
     path.startsWith("/partners") ||
+    path.startsWith("/wealth-hub") ||
     EXTENSIONLESS_PREFIXES.some((prefix) => path.startsWith(prefix));
 
   if (!shouldTry) return false;
@@ -68,6 +69,24 @@ function tryExtensionlessRedirect(pathname, res, root) {
     const partnersIndex = join(root, "dist", "partners", "index.html");
     if (existsSync(partnersIndex)) {
       res.writeHead(301, { Location: "/partners/index.html" });
+      res.end();
+      return true;
+    }
+  }
+
+  if (path.startsWith("/wealth-hub")) {
+    const hubIndex = join(root, "dist", "wealth-hub", "index.html");
+    if (existsSync(hubIndex)) {
+      res.writeHead(301, { Location: "/wealth-hub/index.html" });
+      res.end();
+      return true;
+    }
+  }
+
+  if (path.startsWith("/wealth-hub")) {
+    const hubIndex = join(root, "dist", "wealth-hub", "index.html");
+    if (existsSync(hubIndex)) {
+      res.writeHead(301, { Location: "/wealth-hub/index.html" });
       res.end();
       return true;
     }

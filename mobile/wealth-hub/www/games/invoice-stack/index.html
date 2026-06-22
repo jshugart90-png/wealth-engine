@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
+<title>Invoice Stack — Wealth Engine Games</title>
+<meta name="description" content="Stack falling invoice blocks! Don't let them topple. Free arcade game tied to BillSnap.">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#0f172a;color:#e2e8f0;font-family:system-ui,sans-serif;overflow:hidden;touch-action:none;user-select:none}
+.offline{display:none;background:#7f1d1d;color:#fecaca;text-align:center;padding:8px 12px;font-size:12px}
+.offline.show{display:block}
+#wrap{display:flex;flex-direction:column;align-items:center;min-height:100vh;padding:8px}
+h1{font-size:1.2rem;text-align:center;margin:4px 0}
+.sub{font-size:.72rem;color:#94a3b8;text-align:center;margin-bottom:6px}
+#hud{display:flex;gap:16px;font-size:.85rem;margin-bottom:4px}
+#hud span{color:#38bdf8;font-weight:700}
+canvas{border-radius:10px;background:#1e293b;max-width:100%;touch-action:none}
+#msg{font-size:.85rem;margin:6px;color:#94a3b8;min-height:1.2em}
+.btn{background:#2563eb;color:#fff;border:none;padding:10px 20px;border-radius:8px;font-weight:600;cursor:pointer;margin:4px}
+.ad{width:100%;max-width:320px;background:#1e293b;border:1px dashed #334155;border-radius:6px;padding:8px;text-align:center;font-size:10px;color:#64748b;margin:6px 0}
+.cta{font-size:11px;color:#94a3b8;text-align:center;margin-top:4px}
+.cta a{color:#38bdf8;text-decoration:none}
+</style>
+<meta name="google-site-verification" content="X8W5bw-fSJ0pTZiA0LesNi2vZ_-bUdLqVokR5uJZlI4" />
+</head>
+<body>
+<div id="offline-banner" class="offline" role="status">You're offline — game works after first load</div>
+<div id="wrap">
+<h1>🧾 Invoice Stack</h1>
+<p class="sub">Tap left/right to move — stack invoices before they fall!</p>
+<div id="hud">Score: <span id="score">0</span> · Best: <span id="best">0</span> · Level: <span id="level">1</span> · Lives: <span id="lives">3</span></div>
+<canvas id="c" width="360" height="520"></canvas>
+<p id="msg">Tap sides to move the falling invoice</p>
+<button class="btn" id="restart" style="display:none">Stack Again</button>
+<div class="ad">AdSense placeholder — 320×50</div>
+<p class="cta">Real invoices? <a href="/go/invoice.html">BillSnap</a> — PDF invoices in seconds · Code <strong>LAUNCH25</strong></p>
+</div>
+<script>
+(function(){
+const c=document.getElementById('c'),ctx=c.getContext('2d');
+const W=360,H=520,BW=80,BH=28;
+const BEST_KEY='invoice_stack_best';
+let score=0,best=0,level=1,lives=3,blocks=[],falling=null,dir=0,speed=2,gameOver=false;
+try{best=parseInt(localStorage.getItem(BEST_KEY)||'0',10)||0}catch(e){}
+document.getElementById('best').textContent=best;
+const colors=['#3b82f6','#6366f1','#8b5cf6','#0ea5e9','#14b8a6'];
+const labels=['INV-001','NET30','PAID','$500','1099','W-9','DUE','SENT'];
+
+function saveBest(){
+  if(score>best){
+    best=score;
+    document.getElementById('best').textContent=best;
+    try{localStorage.setItem(BEST_KEY,String(best))}catch(e){}
+  }
+}
+
+function newBlock(x,y,w,h,fixed){
+  return{x,y,w:w||BW+(Math.random()*20|0),h:h||BH,color:colors[Math.random()*colors.length|0],label:labels[Math.random()*labels.length|0],fixed:!!fixed,vx:0,vy:0};
+}
+
+function spawn(){
+  const w=BW+(level*2);falling=newBlock(W/2-w/2,0,w,BH,false);
+  speed=1.5+level*0.3;
+}
+
+function init(){
+  blocks=[newBlock(W/2-BW/2,H-BH-10,BW,BH,true)];
+  spawn();score=0;level=1;lives=3;gameOver=false;
+  document.getElementById('score').textContent=0;
+  document.getElementById('level').textContent=1;
+  document.getElementById('lives').textContent=3;
+  document.getElementById('restart').style.display='none';
+  document.getElementById('msg').textContent='Tap sides to move the falling invoice';
+}
+
+function land(){
+  const top=blocks[blocks.length-1];
+  const overlap=Math.min(falling.x+falling.w,top.x+top.w)-Math.max(falling.x,top.x);
+  const minOverlap=falling.w*0.35;
+  if(overlap<minOverlap){
+    lives--;document.getElementById('lives').textContent=lives;
+    document.getElementById('msg').textContent='💥 Toppled! '+(lives>0?lives+' lives left':'Game Over');
+    if(lives<=0){endGame();return;}
+    falling.y=top.y-falling.h;falling.fixed=true;blocks.push(falling);spawn();return;
+  }
+  const trimL=Math.max(falling.x,top.x),trimR=Math.min(falling.x+falling.w,top.x+top.w);
+  falling.x=trimL;falling.w=trimR-trimL;falling.y=top.y-falling.h;falling.fixed=true;
+  blocks.push(falling);
+  const pts=Math.round(10+overlap);score+=pts;document.getElementById('score').textContent=score;
+  if(blocks.length%5===0){level++;document.getElementById('level').textContent=level;document.getElementById('msg').textContent='Level '+level+'! Faster drops.';}
+  else document.getElementById('msg').textContent='Stacked! +'+pts;
+  if(blocks.length>18){endGame(true);return;}
+  spawn();
+}
+
+function endGame(win){
+  gameOver=true;
+  saveBest();
+  const newBest=score>=best&&score>0;
+  document.getElementById('msg').textContent=win?'🏆 Tower complete! Score: '+score+(newBest?' — New best!':''):'Game Over — Score: '+score+(newBest?' — New best!':'');
+  document.getElementById('restart').style.display='inline-block';
+}
+
+function update(){
+  if(gameOver||!falling)return;
+  falling.x+=dir*5;
+  falling.x=Math.max(0,Math.min(W-falling.w,falling.x));
+  falling.y+=speed;
+  const top=blocks[blocks.length-1];
+  if(falling.y+falling.h>=top.y)land();
+}
+
+function drawBlock(b){
+  ctx.fillStyle=b.color;ctx.fillRect(b.x,b.y,b.w,b.h);
+  ctx.strokeStyle='rgba(255,255,255,.3)';ctx.strokeRect(b.x,b.y,b.w,b.h);
+  ctx.fillStyle='#fff';ctx.font='bold 11px system-ui';ctx.fillText(b.label,b.x+6,b.y+b.h/2+4);
+  ctx.fillStyle='rgba(255,255,255,.15)';ctx.fillRect(b.x,b.y,b.w,4);
+}
+
+function draw(){
+  ctx.fillStyle='#1e293b';ctx.fillRect(0,0,W,H);
+  ctx.fillStyle='#334155';ctx.fillRect(0,H-10,W,10);
+  blocks.forEach(drawBlock);
+  if(falling)drawBlock(falling);
+  ctx.fillStyle='rgba(56,189,248,.08)';ctx.fillRect(0,0,W/2,H);ctx.fillRect(W/2,0,W/2,H);
+}
+
+function loop(){update();draw();requestAnimationFrame(loop);}
+init();loop();
+
+function setDir(d){dir=d;}
+c.addEventListener('mousedown',e=>{const r=c.getBoundingClientRect();setDir((e.clientX-r.left)<r.width/2?-1:1);});
+c.addEventListener('mouseup',()=>setDir(0));
+c.addEventListener('mouseleave',()=>setDir(0));
+c.addEventListener('touchstart',e=>{e.preventDefault();const t=e.touches[0],r=c.getBoundingClientRect();setDir((t.clientX-r.left)<r.width/2?-1:1);},{passive:false});
+c.addEventListener('touchend',()=>setDir(0));
+document.getElementById('restart').onclick=init;
+var banner=document.getElementById('offline-banner');
+function setOffline(){if(banner)banner.classList.toggle('show',!navigator.onLine)}
+window.addEventListener('online',setOffline);
+window.addEventListener('offline',setOffline);
+setOffline();
+})();
+</script>
+<div class="we-iap-bar" id="we-iap-bar" role="region" aria-label="In-app purchases">
+<style>
+.we-iap-bar{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;align-items:center;margin:8px 0;padding:8px;background:rgba(0,0,0,.15);border-radius:8px;max-width:360px;width:100%}
+.we-iap-bar button{background:#6366f1;color:#fff;border:none;padding:6px 12px;border-radius:6px;font-size:11px;font-weight:600;cursor:pointer}
+.we-iap-bar button:active{transform:scale(.97)}
+#we-iap-premium-badge{display:none;background:#eab308;color:#1c1917;padding:4px 10px;border-radius:999px;font-size:11px;font-weight:700}
+body.we-iap-premium .we-iap-bar{border-color:#eab308}
+body.we-iap-no-ads .ad{display:none!important}
+</style>
+<button type="button" id="we-iap-remove-ads">Remove Ads · $2.99</button>
+<button type="button" id="we-iap-premium">Premium Unlock · $4.99</button>
+<button type="button" id="we-iap-tip">Tip · $0.99</button>
+<button type="button" id="we-iap-restore">Restore</button>
+<span id="we-iap-premium-badge">★ Premium</span>
+</div><script>(function(){
+  var APP="invoice-stack";
+  var PRODUCTS=[{"key":"remove_ads","id":"com.wealthengine.invoicestack.remove_ads","price":2.99,"title":"Remove Ads"},{"key":"premium_unlock","id":"com.wealthengine.invoicestack.premium_unlock","price":4.99,"title":"Premium Unlock"},{"key":"tip_jar","id":"com.wealthengine.invoicestack.tip_jar","price":0.99,"title":"Tip Jar"}];
+  var PREFIX='we_iap_'+APP+'_';
+
+  function owned(key){
+    try{return localStorage.getItem(PREFIX+key)==='1'}catch(e){return false}
+  }
+  function setOwned(key){
+    try{localStorage.setItem(PREFIX+key,'1')}catch(e){}
+    refreshUI();
+  }
+
+  function shouldShowAds(){
+    return !owned('remove_ads');
+  }
+
+  function hideAdSlots(){
+    if(shouldShowAds())return;
+    document.querySelectorAll('.ad,[data-ad-slot]').forEach(function(el){
+      el.style.display='none';
+    });
+  }
+
+  function refreshUI(){
+    var badge=document.getElementById('we-iap-premium-badge');
+    var removeBtn=document.getElementById('we-iap-remove-ads');
+    var hasPremium=owned('premium_unlock')||owned('pro_unlock');
+    var noAds=!shouldShowAds();
+    if(badge)badge.style.display=(hasPremium||noAds)?'inline-block':'none';
+    if(removeBtn)removeBtn.style.display=noAds?'none':'inline-block';
+    hideAdSlots();
+    document.body.classList.toggle('we-iap-premium',hasPremium);
+    document.body.classList.toggle('we-iap-no-ads',noAds);
+  }
+
+  function purchase(key){
+    var prod=PRODUCTS.find(function(p){return p.key===key});
+    if(!prod)return Promise.reject(new Error('Unknown product'));
+    if(owned(key))return Promise.resolve({key:key,restored:true});
+
+    /* Native: @revenuecat/purchases-capacitor or StoreKit 2 via Capacitor plugin */
+    if(window.Capacitor&&window.Capacitor.Plugins&&window.Capacitor.Plugins.Purchases){
+      return window.Capacitor.Plugins.Purchases.purchaseProduct({productIdentifier:prod.id})
+        .then(function(){setOwned(key);return{key:key,purchased:true};});
+    }
+
+    /* Sandbox / pre-App-Store-Connect: simulate success (replace after products live) */
+    if(confirm('Purchase '+prod.title+' (
+</html>
++prod.price.toFixed(2)+')?\n\nSandbox mode — receipt verify placeholder until App Store Connect products are live.')){
+      setOwned(key);
+      return Promise.resolve({key:key,purchased:true,sandbox:true});
+    }
+    return Promise.reject(new Error('Cancelled'));
+  }
+
+  function restore(){
+    if(window.Capacitor&&window.Capacitor.Plugins&&window.Capacitor.Plugins.Purchases){
+      return window.Capacitor.Plugins.Purchases.restorePurchases().then(function(res){
+        (res&&res.customerInfo&&res.customerInfo.entitlements&&res.customerInfo.entitlements.active||{}).forEach(function(){});
+        refreshUI();
+        return{restored:true};
+      });
+    }
+    refreshUI();
+    alert('Restore complete — checked local purchases. Connect RevenueCat for cross-device restore.');
+    return Promise.resolve({restored:true,local:true});
+  }
+
+  window.WE_IAP={
+    app:APP,
+    products:PRODUCTS,
+    owns:owned,
+    shouldShowAds:shouldShowAds,
+    purchase:purchase,
+    restore:restore,
+    refresh:refreshUI
+  };
+
+  function wireUI(){
+    var bar=document.getElementById('we-iap-bar');
+    if(!bar)return;
+    var removeBtn=document.getElementById('we-iap-remove-ads');
+    var premiumBtn=document.getElementById('we-iap-premium');
+    var restoreBtn=document.getElementById('we-iap-restore');
+    var tipBtn=document.getElementById('we-iap-tip');
+    if(removeBtn)removeBtn.addEventListener('click',function(){WE_IAP.purchase('remove_ads').catch(function(){})});
+    if(premiumBtn)premiumBtn.addEventListener('click',function(){
+      WE_IAP.purchase('premium_unlock').catch(function(){});
+    });
+    if(restoreBtn)restoreBtn.addEventListener('click',function(){WE_IAP.restore()});
+    if(tipBtn)tipBtn.addEventListener('click',function(){WE_IAP.purchase('tip_jar').catch(function(){})});
+    refreshUI();
+  }
+
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',wireUI);
+  else wireUI();
+})();</script><script>(function(){
+  var WE_ADMOB={appId:'ca-app-pub-3940256099942544~3347511713',banner:'ca-app-pub-3940256099942544/6300978111',rewarded:'ca-app-pub-3940256099942544/5224354917',testMode:true};
+  window.WE_ADMOB=WE_ADMOB;
+  function showBanner(el){
+    if(!el)return;
+    if(window.WE_IAP&&window.WE_IAP.shouldShowAds&&!window.WE_IAP.shouldShowAds()){el.style.display='none';return;}
+    el.setAttribute('data-admob','banner');
+    el.innerHTML='<div style="font-size:10px;color:#666;padding:4px">'+(WE_ADMOB.testMode?'AdMob TEST banner · ':'AdMob banner · ')+WE_ADMOB.banner+'</div>';
+  }
+  function refreshAds(){
+    document.querySelectorAll('.ad,[data-ad-slot]').forEach(showBanner);
+  }
+  window.WE_refreshAds=refreshAds;
+  refreshAds();
+  window.WE_showRewardedAd=function(onReward){
+    if(WE_ADMOB.testMode){
+      var code='LAUNCH25-'+Math.random().toString(36).slice(2,8).toUpperCase();
+      try{localStorage.setItem('we_game_reward',code)}catch(e){}
+      if(onReward)onReward(code);
+      return;
+    }
+    /* Native Capacitor AdMob plugin: @capacitor-community/admob — wire in mobile/ after Play Console setup */
+    if(window.Capacitor&&window.Capacitor.Plugins&&window.Capacitor.Plugins.AdMob){
+      window.Capacitor.Plugins.AdMob.showRewardVideoAd({adId:WE_ADMOB.rewarded}).then(function(){if(onReward)onReward('LAUNCH25')});
+    }else if(onReward){onReward('LAUNCH25');}
+  };
+})();</script><script>(function(){try{var r=localStorage.getItem('we_ref')||new URLSearchParams(location.search).get('ref');fetch('/api/funnel/visit',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({path:"/games/invoice-stack/",refCode:r,source:new URLSearchParams(location.search).get('utm_source')||'direct'})}).catch(function(){})}catch(e){}})();</script></body>
+</html>

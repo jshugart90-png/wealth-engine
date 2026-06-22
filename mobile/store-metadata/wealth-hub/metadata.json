@@ -1,0 +1,35 @@
+{
+  "appName": "Wealth Engine Hub",
+  "subtitle": "Master portfolio — 45 apps, deep links & export",
+  "bundleId": "com.wealthengine.wealthhub",
+  "version": "1.0.0",
+  "privacyPolicyUrl": "https://wealth-engine-0qlj.onrender.com/privacy.html",
+  "supportUrl": "https://wealth-engine-0qlj.onrender.com/",
+  "marketingUrl": "https://wealth-engine-0qlj.onrender.com/wealth-hub/",
+  "category": {
+    "apple": "Business",
+    "appleSub": "Productivity",
+    "google": "BUSINESS"
+  },
+  "contentRating": {
+    "ageRating": "4+",
+    "googleQuestionnaire": "Everyone — portfolio directory, Stripe checkout opens in browser",
+    "adsPresent": false,
+    "inAppPurchases": true,
+    "dataCollected": [
+      "Recently used app slugs cached locally; optional Pro unlock via IAP"
+    ]
+  },
+  "keywords": [
+    "portfolio",
+    "freelancer",
+    "tools",
+    "games",
+    "saas",
+    "devtools",
+    "invoice",
+    "deep links",
+    "wealth engine",
+    "catalog"
+  ]
+}

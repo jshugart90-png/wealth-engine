@@ -1,0 +1,13 @@
+Wealth Engine Hub — your phone-side index to all 45 portfolio apps.
+
+One launcher for every Wealth Engine tool, game, and bundle — with deep links, offline favorites, and Excel export.
+
+Features:
+• Master grid of 45 apps — games, utilities, and hub bundles
+• Deep links to BillSnap, HookRelay, CompareStack, NDAGen, StatusPing, and every mini-game
+• Recently used tracking — jump back to your last three tools instantly
+• Weekly portfolio check and monthly catalog review reminders (enable notifications on first launch)
+• Export full portfolio catalog to CSV for Excel — Pro unlock adds Bundle ID and IAP columns
+• Pro unlock IAP — unlock advanced export columns and premium badge
+
+Privacy: Recently used slugs stored on device. Checkout via Stripe in browser.

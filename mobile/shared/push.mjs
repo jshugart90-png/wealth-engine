@@ -380,3 +380,77 @@ export function contractorCsvExportScript(storageKey = "thresholdpro_contractors
   });
 })();`;
 }
+
+/** Inline script: schedule weekly portfolio check + monthly catalog review on native platforms. */
+export function wealthHubPushInlineScript(storageKey = "wealth_hub_push_scheduled") {
+  return `(function(){
+  if(!window.Capacitor||!window.Capacitor.isNativePlatform())return;
+  try{
+    if(localStorage.getItem("${storageKey}"))return;
+    var LN=window.Capacitor.Plugins&&window.Capacitor.Plugins.LocalNotifications;
+    if(!LN)return;
+    LN.requestPermissions().then(function(perm){
+      if(!perm||perm.display!=="granted")return;
+      var now=new Date();
+      var year=now.getFullYear();
+      var month=now.getMonth();
+      var reminders=[
+        {id:451001,weekday:1,title:"Weekly portfolio check",body:"Wealth Engine Hub: review recently used tools and games"},
+        {id:451015,monthDay:1,title:"Monthly catalog review",body:"Export portfolio CSV — 45 apps with deep links for Excel"},
+        {id:451025,monthDay:15,title:"Mid-month deep link refresh",body:"Open Wealth Engine Hub to sync offline copies of your favorites"}
+      ];
+      var notifications=reminders.map(function(d){
+        var at;
+        if(d.weekday!=null){
+          at=new Date(now);
+          var diff=(d.weekday-at.getDay()+7)%7;
+          if(!diff)diff=7;
+          at.setDate(at.getDate()+diff);
+        }else{
+          at=new Date(year,month,d.monthDay,9,0,0);
+          if(at<=now)at=new Date(year,month+1,d.monthDay,9,0,0);
+        }
+        at.setHours(9,0,0,0);
+        return {id:d.id,title:d.title,body:d.body,schedule:{at:at.toISOString()}};
+      });
+      return LN.schedule({notifications:notifications}).then(function(){
+        localStorage.setItem("${storageKey}","1");
+      });
+    }).catch(function(){});
+  }catch(e){}
+})();`;
+}
+
+/** Inline script: export full portfolio catalog (45 apps) to CSV for Excel. */
+export function wealthHubPortfolioCsvExportScript(portfolioJsonVar = "WE_PORTFOLIO") {
+  return `(function(){
+  var btn=document.getElementById("export-portfolio");
+  if(!btn)return;
+  btn.addEventListener("click",function(){
+    try{
+      var apps=window.${portfolioJsonVar}||[];
+      var pro=false;
+      try{pro=localStorage.getItem("we_iap_wealth-hub_pro_unlock")==="1"}catch(e){}
+      var header=pro
+        ?["#","App Name","Slug","Type","Bundle ID","Deep Link","Prod URL","IAP Products"]
+        :["#","App Name","Slug","Type","Deep Link","Prod URL"];
+      var lines=[header.join(",")].concat(apps.map(function(a){
+        var row=pro
+          ?[a.num,a.title,a.slug,a.type,a.bundleId||"",a.href,a.prodUrl,String(a.iapProducts||0)]
+          :[a.num,a.title,a.slug,a.type,a.href,a.prodUrl];
+        return row.map(function(v){
+          return '"'+String(v).replace(/"/g,'""')+'"';
+        }).join(",");
+      }));
+      var blob=new Blob([lines.join("\\n")],{type:"text/csv"});
+      var url=URL.createObjectURL(blob);
+      var a=document.createElement("a");
+      a.href=url;
+      a.download="wealth-engine-portfolio-"+apps.length+"-apps-"+new Date().toISOString().slice(0,10)+".csv";
+      a.click();
+      URL.revokeObjectURL(url);
+      if(!pro)alert("Pro unlock adds Bundle ID and IAP columns to the export.");
+    }catch(e){alert("Export failed — try again.");}
+  });
+})();`;
+}

@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
+<title>Color Switch Snake — Wealth Engine Games</title>
+<meta name="description" content="Guide the snake through matching color gates! Simple arcade game for all ages.">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#0c0c0c;color:#fff;font-family:system-ui,sans-serif;overflow:hidden;touch-action:none;user-select:none}
+.offline{display:none;background:#7f1d1d;color:#fecaca;text-align:center;padding:8px 12px;font-size:12px;width:100%}
+.offline.show{display:block}
+#wrap{display:flex;flex-direction:column;align-items:center;min-height:100vh;padding:8px}
+h1{font-size:1.15rem;margin:4px 0}
+.sub{font-size:.72rem;color:#888;text-align:center;margin-bottom:4px}
+#hud{font-size:.85rem;margin-bottom:4px}
+#hud span{color:#f472b6;font-weight:700}
+canvas{border-radius:10px;background:#111;max-width:100%;touch-action:none}
+#msg{font-size:.82rem;color:#888;margin:4px;min-height:1.2em}
+.btn{background:#ec4899;color:#fff;border:none;padding:9px 18px;border-radius:8px;font-weight:600;cursor:pointer;margin:4px}
+.ad{width:100%;max-width:320px;background:#111;border:1px dashed #333;border-radius:6px;padding:8px;text-align:center;font-size:10px;color:#555;margin:6px 0}
+.cta{font-size:11px;color:#888;text-align:center;margin-top:4px}
+.cta a{color:#f472b6;text-decoration:none}
+</style>
+<meta name="google-site-verification" content="X8W5bw-fSJ0pTZiA0LesNi2vZ_-bUdLqVokR5uJZlI4" />
+</head>
+<body>
+<div id="offline-banner" class="offline" role="status">You're offline — game works after first load</div>
+<div id="wrap">
+<h1>🐍 Color Switch Snake</h1>
+<p class="sub">Swipe or tap sides to turn — match gate colors!</p>
+<div id="hud">Score: <span id="score">0</span> · Best: <span id="best">0</span></div>
+<canvas id="c" width="360" height="480"></canvas>
+<p id="msg">Tap left/right to turn the snake</p>
+<button class="btn" id="restart" style="display:none">Play Again</button>
+<div class="ad">AdSense placeholder — 320×50</div>
+<p class="cta">More free fun at <a href="/games/">Wealth Engine Games</a></p>
+</div>
+<script>
+(function(){
+const c=document.getElementById('c'),ctx=c.getContext('2d');
+const W=360,H=480,CS=12;
+const COLORS=['#ef4444','#3b82f6','#22c55e','#eab308'];
+const names=['red','blue','green','yellow'];
+const BEST_KEY='color_switch_snake_best';
+let snake=[],dir={x:1,y:0},nextDir={x:1,y:0},colorIdx=0,score=0,best=0;
+try{best=parseInt(localStorage.getItem(BEST_KEY)||'0',10)||0}catch(e){}
+let gates=[],food=null,gameOver=false,tick=0,speed=8;
+document.getElementById('best').textContent=best;
+
+function reset(){
+  snake=[{x:6,y:20},{x:5,y:20},{x:4,y:20}];
+  dir={x:1,y:0};nextDir={x:1,y:0};colorIdx=0;score=0;tick=0;gameOver=false;gates=[];food=null;
+  document.getElementById('score').textContent=0;
+  document.getElementById('restart').style.display='none';
+  document.getElementById('msg').textContent='Tap left/right to turn';
+  spawnGate();spawnFood();
+}
+
+function spawnGate(){
+  const ci=Math.random()*4|0;
+  gates.push({x:W/2+(Math.random()*80-40)|0,y:-20,w:60+Math.random()*40|0,h:14,color:COLORS[ci],ci,gapX:30+Math.random()*(W-80)|0,gapW:50});
+}
+
+function spawnFood(){
+  food={x:(Math.random()*(W/CS-2)|0)+1,y:(Math.random()*(H/CS-4)|0)+2,color:COLORS[Math.random()*4|0]};
+}
+
+function turn(left){
+  if(gameOver)return;
+  const d=dir;
+  if(left){if(d.x===1)nextDir={x:0,y:-1};else if(d.x===-1)nextDir={x:0,y:1};else if(d.y===1)nextDir={x:1,y:0};else nextDir={x:-1,y:0};}
+  else{if(d.x===1)nextDir={x:0,y:1};else if(d.x===-1)nextDir={x:0,y:-1};else if(d.y===1)nextDir={x:-1,y:0};else nextDir={x:1,y:0};}
+}
+
+function die(msg){
+  gameOver=true;
+  if(score>best){best=score;try{localStorage.setItem(BEST_KEY,String(best))}catch(e){}document.getElementById('best').textContent=best;}
+  document.getElementById('msg').textContent=msg+' Score: '+score;
+  document.getElementById('restart').style.display='inline-block';
+}
+
+function update(){
+  if(gameOver)return;
+  tick++;
+  if(tick%speed!==0)return;
+  dir=nextDir;
+  const head={x:snake[0].x+dir.x,y:snake[0].y+dir.y};
+  if(head.x<0||head.y<0||head.x>=W/CS||head.y>=H/CS){die('💥 Wall hit!');return;}
+  if(snake.some(s=>s.x===head.x&&s.y===head.y)){die('💥 Bit yourself!');return;}
+  snake.unshift(head);
+  // food
+  if(food&&head.x===food.x&&head.y===food.y){
+    score+=15;colorIdx=COLORS.indexOf(food.color);
+    document.getElementById('score').textContent=score;spawnFood();
+  }else snake.pop();
+  // gates
+  gates.forEach((g,i)=>{
+    g.y+=3;
+    const hx=head.x*CS+CS/2,hy=head.y*CS+CS/2;
+    if(g.y>0&&g.y<H&&Math.abs(hy-g.y)<CS){
+      const inGap=hx>g.gapX&&hx<g.gapX+g.gapW;
+      if(!inGap&&g.color!==COLORS[colorIdx]){die('Wrong color gate!');return;}
+      if(inGap&&g.y>H-40){score+=25;document.getElementById('score').textContent=score;gates.splice(i,1);spawnGate();}
+    }
+    if(g.y>H+30)gates.splice(i,1);
+  });
+  if(tick%60===0)spawnGate();
+}
+
+function draw(){
+  ctx.fillStyle='#111';ctx.fillRect(0,0,W,H);
+  gates.forEach(g=>{
+    ctx.fillStyle=g.color;
+    ctx.fillRect(0,g.y,g.gapX,g.h);
+    ctx.fillRect(g.gapX+g.gapW,g.y,W-g.gapX-g.gapW,g.h);
+  });
+  if(food){ctx.fillStyle=food.color;ctx.beginPath();ctx.arc(food.x*CS+CS/2,food.y*CS+CS/2,CS/2-1,0,Math.PI*2);ctx.fill();}
+  snake.forEach((s,i)=>{
+    ctx.fillStyle=i===0?COLORS[colorIdx]:COLORS[colorIdx]+'99';
+    ctx.fillRect(s.x*CS+1,s.y*CS+1,CS-2,CS-2);
+  });
+  ctx.fillStyle='#fff';ctx.font='11px system-ui';ctx.fillText('Snake: '+names[colorIdx],8,H-8);
+}
+
+function loop(){update();draw();requestAnimationFrame(loop);}
+reset();loop();
+
+function tap(e){
+  e.preventDefault();const r=c.getBoundingClientRect();
+  const x=(e.clientX||e.touches[0].clientX)-r.left;
+  turn(x<r.width/2);
+}
+c.addEventListener('click',tap);
+c.addEventListener('touchstart',tap,{passive:false});
+document.getElementById('restart').onclick=reset;
+(function(){
+  var banner=document.getElementById('offline-banner');
+  function setOffline(){if(banner)banner.classList.toggle('show',!navigator.onLine)}
+  window.addEventListener('online',setOffline);
+  window.addEventListener('offline',setOffline);
+  setOffline();
+})();
+})();
+</script>
+<div class="we-iap-bar" id="we-iap-bar" role="region" aria-label="In-app purchases">
+<style>
+.we-iap-bar{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;align-items:center;margin:8px 0;padding:8px;background:rgba(0,0,0,.15);border-radius:8px;max-width:360px;width:100%}
+.we-iap-bar button{background:#6366f1;color:#fff;border:none;padding:6px 12px;border-radius:6px;font-size:11px;font-weight:600;cursor:pointer}
+.we-iap-bar button:active{transform:scale(.97)}
+#we-iap-premium-badge{display:none;background:#eab308;color:#1c1917;padding:4px 10px;border-radius:999px;font-size:11px;font-weight:700}
+body.we-iap-premium .we-iap-bar{border-color:#eab308}
+body.we-iap-no-ads .ad{display:none!important}
+</style>
+<button type="button" id="we-iap-remove-ads">Remove Ads · $2.99</button>
+<button type="button" id="we-iap-premium">Premium Unlock · $4.99</button>
+<button type="button" id="we-iap-tip">Tip · $0.99</button>
+<button type="button" id="we-iap-restore">Restore</button>
+<span id="we-iap-premium-badge">★ Premium</span>
+</div><script>(function(){
+  var APP="color-switch-snake";
+  var PRODUCTS=[{"key":"remove_ads","id":"com.wealthengine.colorswitchsnake.remove_ads","price":2.99,"title":"Remove Ads"},{"key":"premium_unlock","id":"com.wealthengine.colorswitchsnake.premium_unlock","price":4.99,"title":"Premium Unlock"},{"key":"tip_jar","id":"com.wealthengine.colorswitchsnake.tip_jar","price":0.99,"title":"Tip Jar"}];
+  var PREFIX='we_iap_'+APP+'_';
+
+  function owned(key){
+    try{return localStorage.getItem(PREFIX+key)==='1'}catch(e){return false}
+  }
+  function setOwned(key){
+    try{localStorage.setItem(PREFIX+key,'1')}catch(e){}
+    refreshUI();
+  }
+
+  function shouldShowAds(){
+    return !owned('remove_ads');
+  }
+
+  function hideAdSlots(){
+    if(shouldShowAds())return;
+    document.querySelectorAll('.ad,[data-ad-slot]').forEach(function(el){
+      el.style.display='none';
+    });
+  }
+
+  function refreshUI(){
+    var badge=document.getElementById('we-iap-premium-badge');
+    var removeBtn=document.getElementById('we-iap-remove-ads');
+    var hasPremium=owned('premium_unlock')||owned('pro_unlock');
+    var noAds=!shouldShowAds();
+    if(badge)badge.style.display=(hasPremium||noAds)?'inline-block':'none';
+    if(removeBtn)removeBtn.style.display=noAds?'none':'inline-block';
+    hideAdSlots();
+    document.body.classList.toggle('we-iap-premium',hasPremium);
+    document.body.classList.toggle('we-iap-no-ads',noAds);
+  }
+
+  function purchase(key){
+    var prod=PRODUCTS.find(function(p){return p.key===key});
+    if(!prod)return Promise.reject(new Error('Unknown product'));
+    if(owned(key))return Promise.resolve({key:key,restored:true});
+
+    /* Native: @revenuecat/purchases-capacitor or StoreKit 2 via Capacitor plugin */
+    if(window.Capacitor&&window.Capacitor.Plugins&&window.Capacitor.Plugins.Purchases){
+      return window.Capacitor.Plugins.Purchases.purchaseProduct({productIdentifier:prod.id})
+        .then(function(){setOwned(key);return{key:key,purchased:true};});
+    }
+
+    /* Sandbox / pre-App-Store-Connect: simulate success (replace after products live) */
+    if(confirm('Purchase '+prod.title+' (
+</html>
++prod.price.toFixed(2)+')?\n\nSandbox mode — receipt verify placeholder until App Store Connect products are live.')){
+      setOwned(key);
+      return Promise.resolve({key:key,purchased:true,sandbox:true});
+    }
+    return Promise.reject(new Error('Cancelled'));
+  }
+
+  function restore(){
+    if(window.Capacitor&&window.Capacitor.Plugins&&window.Capacitor.Plugins.Purchases){
+      return window.Capacitor.Plugins.Purchases.restorePurchases().then(function(res){
+        (res&&res.customerInfo&&res.customerInfo.entitlements&&res.customerInfo.entitlements.active||{}).forEach(function(){});
+        refreshUI();
+        return{restored:true};
+      });
+    }
+    refreshUI();
+    alert('Restore complete — checked local purchases. Connect RevenueCat for cross-device restore.');
+    return Promise.resolve({restored:true,local:true});
+  }
+
+  window.WE_IAP={
+    app:APP,
+    products:PRODUCTS,
+    owns:owned,
+    shouldShowAds:shouldShowAds,
+    purchase:purchase,
+    restore:restore,
+    refresh:refreshUI
+  };
+
+  function wireUI(){
+    var bar=document.getElementById('we-iap-bar');
+    if(!bar)return;
+    var removeBtn=document.getElementById('we-iap-remove-ads');
+    var premiumBtn=document.getElementById('we-iap-premium');
+    var restoreBtn=document.getElementById('we-iap-restore');
+    var tipBtn=document.getElementById('we-iap-tip');
+    if(removeBtn)removeBtn.addEventListener('click',function(){WE_IAP.purchase('remove_ads').catch(function(){})});
+    if(premiumBtn)premiumBtn.addEventListener('click',function(){
+      WE_IAP.purchase('premium_unlock').catch(function(){});
+    });
+    if(restoreBtn)restoreBtn.addEventListener('click',function(){WE_IAP.restore()});
+    if(tipBtn)tipBtn.addEventListener('click',function(){WE_IAP.purchase('tip_jar').catch(function(){})});
+    refreshUI();
+  }
+
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',wireUI);
+  else wireUI();
+})();</script><script>(function(){
+  var WE_ADMOB={appId:'ca-app-pub-3940256099942544~3347511713',banner:'ca-app-pub-3940256099942544/6300978111',rewarded:'ca-app-pub-3940256099942544/5224354917',testMode:true};
+  window.WE_ADMOB=WE_ADMOB;
+  function showBanner(el){
+    if(!el)return;
+    if(window.WE_IAP&&window.WE_IAP.shouldShowAds&&!window.WE_IAP.shouldShowAds()){el.style.display='none';return;}
+    el.setAttribute('data-admob','banner');
+    el.innerHTML='<div style="font-size:10px;color:#666;padding:4px">'+(WE_ADMOB.testMode?'AdMob TEST banner · ':'AdMob banner · ')+WE_ADMOB.banner+'</div>';
+  }
+  function refreshAds(){
+    document.querySelectorAll('.ad,[data-ad-slot]').forEach(showBanner);
+  }
+  window.WE_refreshAds=refreshAds;
+  refreshAds();
+  window.WE_showRewardedAd=function(onReward){
+    if(WE_ADMOB.testMode){
+      var code='LAUNCH25-'+Math.random().toString(36).slice(2,8).toUpperCase();
+      try{localStorage.setItem('we_game_reward',code)}catch(e){}
+      if(onReward)onReward(code);
+      return;
+    }
+    /* Native Capacitor AdMob plugin: @capacitor-community/admob — wire in mobile/ after Play Console setup */
+    if(window.Capacitor&&window.Capacitor.Plugins&&window.Capacitor.Plugins.AdMob){
+      window.Capacitor.Plugins.AdMob.showRewardVideoAd({adId:WE_ADMOB.rewarded}).then(function(){if(onReward)onReward('LAUNCH25')});
+    }else if(onReward){onReward('LAUNCH25');}
+  };
+})();</script><script>(function(){try{var r=localStorage.getItem('we_ref')||new URLSearchParams(location.search).get('ref');fetch('/api/funnel/visit',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({path:"/games/color-switch-snake/",refCode:r,source:new URLSearchParams(location.search).get('utm_source')||'direct'})}).catch(function(){})}catch(e){}})();</script></body>
+</html>

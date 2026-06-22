@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Wealth Engine Hub</title>
+<meta name="description" content="Master portfolio index — 45 apps with deep links to every tool and game.">
+<link rel="manifest" href="/manifest.json">
+<meta name="theme-color" content="#0a0a0f">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<link rel="apple-touch-icon" href="/assets/pwa/icon-192.png">
+<style>
+body{font-family:system-ui,sans-serif;background:#0a0a0f;color:#e8e8ef;margin:0;padding:0 20px 40px}
+.promo{background:#6366f1;color:#fff;text-align:center;padding:10px 16px;font-size:13px;font-weight:700;margin:0 -20px 16px}
+.promo a{color:#fff;text-decoration:underline}
+.offline{display:none;background:#312e81;color:#c7d2fe;text-align:center;padding:10px 16px;font-size:13px}
+.offline.show{display:block}
+h1{text-align:center;margin:28px 0 8px;font-size:1.6rem;color:#fff}
+.sub{text-align:center;max-width:420px;margin:0 auto 20px;color:#888;line-height:1.5}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:14px;max-width:1100px;margin:0 auto}
+.card{display:block;background:#14141c;border:1px solid #2a2a38;border-radius:12px;padding:16px;color:inherit;text-decoration:none;transition:.2s}
+.card:hover{border-color:#6366f1;transform:translateY(-2px)}
+.card.featured{border-color:#22c55e;background:linear-gradient(135deg,#14141c,#0f1a14)}
+.tag{font-size:10px;text-transform:uppercase;color:#6366f1;letter-spacing:.06em}
+h2{margin:8px 0 6px;font-size:16px;color:#fff}
+p{margin:0 0 8px;color:#888;font-size:13px;line-height:1.4}
+.open{color:#6366f1;font-size:12px;font-weight:600}
+.stat{display:block;max-width:1100px;margin:0 auto 20px;background:#1e1b4b;border:2px solid #6366f1;border-radius:12px;padding:16px 20px;text-align:center}
+.stat span{font-size:1.1rem;font-weight:700;color:#c7d2fe}
+.iap{display:block;max-width:1100px;margin:16px auto 0;text-align:center}
+.iap button{background:#6366f1;color:#fff;border:none;border-radius:8px;padding:10px 16px;font-weight:700;cursor:pointer;font-size:14px;margin:4px}
+.iap #we-iap-premium-badge{display:none;background:#22c55e;color:#052e16;padding:4px 10px;border-radius:999px;font-size:12px;font-weight:700;margin-left:8px}
+.export{display:block;max-width:1100px;margin:16px auto 0;background:#14141c;border:1px solid #2a2a38;border-radius:12px;padding:14px 20px;text-align:center}
+.export button{background:#6366f1;color:#fff;border:none;border-radius:8px;padding:10px 16px;font-weight:700;cursor:pointer;font-size:14px}
+.export p{margin:8px 0 0;font-size:12px;color:#64748b}
+.recent{max-width:1100px;margin:0 auto 20px}
+.recent h3{font-size:13px;color:#64748b;margin:0 0 10px;text-transform:uppercase;letter-spacing:.05em}
+.recent-row{display:flex;gap:10px;flex-wrap:wrap}
+.recent a{background:#14141c;border:1px solid #2a2a38;border-radius:8px;padding:8px 12px;font-size:13px;color:#c4c4d4;text-decoration:none}
+.footer{text-align:center;margin-top:32px;font-size:13px;color:#64748b}
+.footer a{color:#6366f1}
+</style></head><body>
+<div class="promo"><strong>45 apps</strong> · deep links to every tool & game · <a href="games/index.html">Games hub →</a></div>
+<div id="offline-banner" class="offline" role="status">You're offline — open apps you've used before</div>
+<h1>⚡ Wealth Engine Hub</h1>
+<p class="sub">Master portfolio index — 45 mobile apps, utilities, games & bundles</p>
+<div class="stat">Portfolio catalog<br><span id="portfolio-count">45 apps indexed</span></div>
+<div id="recent-section" class="recent" hidden>
+  <h3>Recently used</h3>
+  <div id="recent-row" class="recent-row"></div>
+</div>
+<div class="grid">
+    <a class="card" href="games/index.html" data-slug="games">
+      <span class="tag">game</span>
+      <h2>Horseshoe Games Hub</h2>
+      <p>Free fun games for all ages</p>
+      <span class="open">Open →</span>
+    </a>
+    <a class="card" href="tools/index.html" data-slug="tools">
+      <span class="tag">hub</span>
+      <h2>Freelancer Tools</h2>
+      <p>Invoices & calculators for freelancers</p>
+      <span class="open">Open →</span>
+    </a>
+    <a class="card" href="games/receipt-rush/index.html" data-slug="receipt-rush">
+      <span class="tag">game</span>
+      <h2>Receipt Rush</h2>
+      <p>Catch receipts arcade game</p>
+      <span class="open">Open →</span>
+    </a>
+    <a class="card" href="games/webhook-whack/index.html" data-slug="webhook-whack">
+      <span class="tag">game</span>
+      <h2>Webhook Whack</h2>
+      <p>Whack failed webhooks arcade</p>
+      <span class="open">Open →</span>
+    </a>
+    <a class="card" href="games/invoice-stack/index.html" data-slug="invoice-stack">
+      <span class="tag">game</span>
+      <h2>Invoice Stack</h2>
+      <p>Stack invoices arcade game</p>
+      <span class="open">Open →</span>
+    </a>
+    <a class="card" href="games/horseshoe-toss/index.html" data-slug="horseshoe-toss">
+      <span class="tag">game</span>
+      <h2>Horseshoe Toss</h2>
+      <p>Ring the stake timing game</p>
+      <span class="open">Open →</span>
+    </a>
+    <a class="card" href="games/uptime-defender/index.html" data-slug="uptime-defender">
+      <span class="tag">game</span>
+      <h2>Uptime Defender</h2>
+      <p>Tower defense for uptime nerds</p>
+      <span class="open">Open →</span>
+    </a>
+    <a class="card" href="games/freelancer-memory/index.html" data-slug="freelancer-memory">
+      <span class="tag">game</span>
+      <h2>Freelancer Memory</h2>
+      <p>Match freelancer tool pairs</p>
+      <span class="open">Open →</span>
+    </a>
+    <a class="card" href="games/color-switch-snake/index.html" data-slug="color-switch-snake">
+      <span class="tag">game</span>
+      <h2>Color Switch Snake</h2>
+      <p>Match colors through the gates</p>
+      <span class="open">Open →</span>
+    </a>
+    <a class="card" href="games/word-scramble-biz/index.html" data-slug="word-scramble-biz">
+      <span class="tag">game</span>
+      <h2>Word Scramble Biz</h2>
+      <p>Unscramble business terms</p>
+      <span class="open">Open →</span>
+    </a>
+    <a class="card" href="games/net-30-ninja/index.html" data-slug="net-30-ninja">
+      <span class="tag">game</span>
+      <h2>Net-30 Ninja</h2>
+      <p>Jump over late invoices</p>
+      <span class="open">Open →</span>
+    </a>
+    <a class="card" href="games/ssl-shield/index.html" data-slug="ssl-shield">
+      <span class="tag">game</span>
+      <h2>SSL Shield</h2>
+      <p>Block cert expiry bombs</p>
+      <span class="open">Open →</span>
+    </a>
+    <a class="card" href="games/nda-speed-sign/index.html" data-slug="nda-speed-sign">
+      <span class="tag">game</span>
+      <h2>NDA Speed Sign</h2>
+      <p>Match NDA clause pairs fast</p>
+      <span class="open">Open →</span>
+    </a>
+    <a class="card" href="games/invoice-number-rush/index.html" data-slug="invoice-number-rush">
+      <span class="tag">game</span>
+      <h2>Invoice Number Rush</h2>
+      <p>Match invoice numbers fast</p>
+      <span class="open">Open →</span>
+    </a>
+    <a class="card featured" href="billsnap/index.html" data-slug="billsnap">
+      <span class="tag">utility</span>
+      <h2>BillSnap</h2>
+      <p>Invoice PDF in 30 seconds</p>
+      <span class="open">Open →</span>
+    </a>
+    <a class="card" href="statusping/index.html" data-slug="statusping-lite">
+      <span class="tag">utility</span>
+      <h2>StatusPing Lite</h2>
+      <p>Uptime alerts from $5/mo</p>
+      <span class="open">Open →</span>
+    </a>
+    <a class="card" href="leaselens/index.html" data-slug="leaselens">
+      <span class="tag">utility</span>
+      <h2>LeaseLens</h2>
+      <p>Lease red-flag analyzer</p>
+      <span class="open">Open →</span>
+    </a>
+    <a class="card" href="ndagen/index.html" data-slug="ndagen">
+      <span class="tag">utility</span>
+      <h2>NDAGen</h2>
+      <p>Free NDA generator</p>
+      <span class="open">Open →</span>
+    </a>
+    <a class="card" href="hookrelay/index.html" data-slug="hookrelay">
+      <span class="tag">utility</span>
+      <h2>HookRelay</h2>
+      <p>Webhook DLQ & retry</p>
+      <span class="open">Open →</span>
+    </a>
+    <a class="card" href="pipekit/index.html" data-slug="pipekit">
+      <span class="tag">utility</span>
+      <h2>PipeKit</h2>
+      <p>Developer API utilities</p>
+      <span class="open">Open →</span>
+    </a>
+    <a class="card" href="meetingcost/index.html" data-slug="meetingcost">
+      <span class="tag">utility</span>
+      <h2>MeetingCost</h2>
+      <p>Meeting cost calculator</p>
+      <span class="open">Open →</span>
+    </a>
+    <a class="card" href="templateforge/index.html" data-slug="templateforge">
+      <span class="tag">utility</span>
+      <h2>TemplateForge</h2>
+      <p>Business document kits</p>
+      <span class="open">Open →</span>
+    </a>
+    <a class="card" href="comparestack/index.html" data-slug="comparestack">
+      <span class="tag">utility</span>
+      <h2>CompareStack</h2>
+      <p>Honest tool comparisons</p>
+      <span class="open">Open →</span>
+    </a>
+    <a class="card" href="tip-calculator-pro/index.html" data-slug="tip-calculator-pro">
+      <span class="tag">utility</span>
+      <h2>Tip Calculator Pro</h2>
+      <p>Split bills & calculate tips</p>
+      <span class="open">Open →</span>
+    </a>
+    <a class="card" href="hourly-rate-calculator-pro/index.html" data-slug="hourly-rate-calculator-pro">
+      <span class="tag">utility</span>
+      <h2>Hourly Rate Calculator Pro</h2>
+      <p>Freelancer hourly rate pricing</p>
+      <span class="open">Open →</span>
+    </a>
+    <a class="card" href="freelancer-tax-estimator/index.html" data-slug="freelancer-tax-estimator">
+      <span class="tag">utility</span>
+      <h2>Freelancer Tax Estimator Pro</h2>
+      <p>1099 quarterly tax estimates</p>
+      <span class="open">Open →</span>
+    </a>
+    <a class="card" href="1099-threshold-tracker-pro/index.html" data-slug="1099-threshold-tracker-pro">
+      <span class="tag">utility</span>
+      <h2>1099 Threshold Tracker Pro</h2>
+      <p>Track $600 1099-NEC threshold</p>
+      <span class="open">Open →</span>
+    </a>
+    <a class="card" href="quarterly-tax-deadline-pro/index.html" data-slug="quarterly-tax-deadline-pro">
+      <span class="tag">utility</span>
+      <h2>Quarterly Tax Deadline Pro</h2>
+      <p>Federal estimated tax calendar</p>
+      <span class="open">Open →</span>
+    </a>
+    <a class="card" href="profit-margin-calculator-pro/index.html" data-slug="profit-margin-calculator-pro">
+      <span class="tag">utility</span>
+      <h2>Profit Margin Calculator Pro</h2>
+      <p>Gross & net profit margins</p>
+      <span class="open">Open →</span>
+    </a>
+    <a class="card" href="break-even-calculator-pro/index.html" data-slug="break-even-calculator-pro">
+      <span class="tag">utility</span>
+      <h2>Break-Even Calculator Pro</h2>
+      <p>Units & revenue to break even</p>
+      <span class="open">Open →</span>
+    </a>
+    <a class="card" href="late-fee-calculator-pro/index.html" data-slug="late-fee-calculator-pro">
+      <span class="tag">utility</span>
+      <h2>Late Fee Calculator Pro</h2>
+      <p>Invoice late fees & totals</p>
+      <span class="open">Open →</span>
+    </a>
+    <a class="card" href="markup-calculator-pro/index.html" data-slug="markup-calculator-pro">
+      <span class="tag">utility</span>
+      <h2>Markup Calculator Pro</h2>
+      <p>Selling price & profit margin</p>
+      <span class="open">Open →</span>
+    </a>
+    <a class="card" href="day-rate-calculator-pro/index.html" data-slug="day-rate-calculator-pro">
+      <span class="tag">utility</span>
+      <h2>Day Rate to Hourly Calculator Pro</h2>
+      <p>Freelance day rate & hourly income</p>
+      <span class="open">Open →</span>
+    </a>
+    <a class="card" href="bill-splitter-pro/index.html" data-slug="bill-splitter-pro">
+      <span class="tag">utility</span>
+      <h2>Bill Splitter Pro</h2>
+      <p>Split bills with tip, tax & breakdown</p>
+      <span class="open">Open →</span>
+    </a>
+    <a class="card" href="percentage-calculator-pro/index.html" data-slug="percentage-calculator-pro">
+      <span class="tag">utility</span>
+      <h2>Percentage Calculator Pro</h2>
+      <p>Percent of, change & difference</p>
+      <span class="open">Open →</span>
+    </a>
+    <a class="card" href="bundles/freelancer-stack.html" data-slug="freelancer-stack">
+      <span class="tag">hub</span>
+      <h2>Freelancer Revenue Stack</h2>
+      <p>Invoice, templates & NDAs</p>
+      <span class="open">Open →</span>
+    </a>
+    <a class="card" href="bundles/devwatch.html" data-slug="devwatch">
+      <span class="tag">hub</span>
+      <h2>DevWatch</h2>
+      <p>Uptime, SSL & cron monitoring</p>
+      <span class="open">Open →</span>
+    </a>
+    <a class="card" href="bundles/landlord-tenant-stack.html" data-slug="renter-toolkit">
+      <span class="tag">hub</span>
+      <h2>Renter Toolkit</h2>
+      <p>Lease review & compliance</p>
+      <span class="open">Open →</span>
+    </a>
+    <a class="card" href="go/hookrelay-dlq.html" data-slug="hookrelay-dlq">
+      <span class="tag">hub</span>
+      <h2>HookRelay DLQ Pro</h2>
+      <p>Webhook dead letter queue & retry</p>
+      <span class="open">Open →</span>
+    </a>
+    <a class="card" href="go/1099-deadline.html" data-slug="1099-suite">
+      <span class="tag">hub</span>
+      <h2>1099 Deadline Suite</h2>
+      <p>1099-NEC deadline tracker & PDFs</p>
+      <span class="open">Open →</span>
+    </a>
+    <a class="card" href="go/statusping-agency.html" data-slug="statusping-agency">
+      <span class="tag">hub</span>
+      <h2>StatusPing Agency</h2>
+      <p>White-label uptime monitoring for agencies</p>
+      <span class="open">Open →</span>
+    </a>
+    <a class="card" href="go/nda-team.html" data-slug="ndagen-team">
+      <span class="tag">hub</span>
+      <h2>NDAGen Team</h2>
+      <p>Team NDA generator for agencies</p>
+      <span class="open">Open →</span>
+    </a>
+    <a class="card" href="go/meeting-cost-team.html" data-slug="meetingcost-team">
+      <span class="tag">hub</span>
+      <h2>MeetingCost Team</h2>
+      <p>Team meeting cost dashboard</p>
+      <span class="open">Open →</span>
+    </a>
+    <a class="card" href="partners/index.html" data-slug="partners">
+      <span class="tag">hub</span>
+      <h2>Wealth Engine Partners</h2>
+      <p>Affiliate portal & referral dashboard</p>
+      <span class="open">Open →</span>
+    </a>
+    <a class="card" href="index.html" data-slug="wealth-hub">
+      <span class="tag">hub</span>
+      <h2>Wealth Engine Hub</h2>
+      <p>Master portfolio — 45 apps, deep links & export</p>
+      <span class="open">Open →</span>
+    </a></div>
+<div class="iap"><div class="we-iap-bar" id="we-iap-bar" role="region" aria-label="In-app purchases">
+<style>
+.we-iap-bar{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;align-items:center;margin:8px 0;padding:8px;background:rgba(0,0,0,.15);border-radius:8px;max-width:360px;width:100%}
+.we-iap-bar button{background:#6366f1;color:#fff;border:none;padding:6px 12px;border-radius:6px;font-size:11px;font-weight:600;cursor:pointer}
+.we-iap-bar button:active{transform:scale(.97)}
+#we-iap-premium-badge{display:none;background:#eab308;color:#1c1917;padding:4px 10px;border-radius:999px;font-size:11px;font-weight:700}
+body.we-iap-premium .we-iap-bar{border-color:#eab308}
+body.we-iap-no-ads .ad{display:none!important}
+</style>
+
+<button type="button" id="we-iap-premium">Pro Unlock · $4.99</button>
+
+<button type="button" id="we-iap-restore">Restore</button>
+<span id="we-iap-premium-badge">★ Premium</span>
+</div></div>
+<div class="export"><button type="button" id="export-portfolio">Export portfolio CSV (45 apps)</button><p>Opens in Excel · Pro adds Bundle ID & IAP columns</p></div>
+<p class="footer"><a href="privacy.html">Privacy</a> · <a href="https://wealth-engine-0qlj.onrender.com/">View portfolio online</a></p>
+<script>window.WE_PORTFOLIO=[{"num":1,"slug":"games","title":"Horseshoe Games Hub","desc":"Free fun games for all ages","href":"games/index.html","prodUrl":"https://wealth-engine-0qlj.onrender.com/games/index.html","bundleId":"com.wealthengine.gameshub","type":"game","iapProducts":3},{"num":2,"slug":"tools","title":"Freelancer Tools","desc":"Invoices & calculators for freelancers","href":"tools/index.html","prodUrl":"https://wealth-engine-0qlj.onrender.com/tools/index.html","bundleId":"com.wealthengine.freelancertools","type":"hub","iapProducts":1},{"num":3,"slug":"receipt-rush","title":"Receipt Rush","desc":"Catch receipts arcade game","href":"games/receipt-rush/index.html","prodUrl":"https://wealth-engine-0qlj.onrender.com/games/receipt-rush/index.html","bundleId":"com.wealthengine.receiptrush","type":"game","iapProducts":3},{"num":4,"slug":"webhook-whack","title":"Webhook Whack","desc":"Whack failed webhooks arcade","href":"games/webhook-whack/index.html","prodUrl":"https://wealth-engine-0qlj.onrender.com/games/webhook-whack/index.html","bundleId":"com.wealthengine.webhookwhack","type":"game","iapProducts":3},{"num":5,"slug":"invoice-stack","title":"Invoice Stack","desc":"Stack invoices arcade game","href":"games/invoice-stack/index.html","prodUrl":"https://wealth-engine-0qlj.onrender.com/games/invoice-stack/index.html","bundleId":"com.wealthengine.invoicestack","type":"game","iapProducts":3},{"num":6,"slug":"horseshoe-toss","title":"Horseshoe Toss","desc":"Ring the stake timing game","href":"games/horseshoe-toss/index.html","prodUrl":"https://wealth-engine-0qlj.onrender.com/games/horseshoe-toss/index.html","bundleId":"com.wealthengine.horseshoetoss","type":"game","iapProducts":3},{"num":7,"slug":"uptime-defender","title":"Uptime Defender","desc":"Tower defense for uptime nerds","href":"games/uptime-defender/index.html","prodUrl":"https://wealth-engine-0qlj.onrender.com/games/uptime-defender/index.html","bundleId":"com.wealthengine.uptimedefender","type":"game","iapProducts":3},{"num":8,"slug":"freelancer-memory","title":"Freelancer Memory","desc":"Match freelancer tool pairs","href":"games/freelancer-memory/index.html","prodUrl":"https://wealth-engine-0qlj.onrender.com/games/freelancer-memory/index.html","bundleId":"com.wealthengine.freelancermemory","type":"game","iapProducts":3},{"num":9,"slug":"color-switch-snake","title":"Color Switch Snake","desc":"Match colors through the gates","href":"games/color-switch-snake/index.html","prodUrl":"https://wealth-engine-0qlj.onrender.com/games/color-switch-snake/index.html","bundleId":"com.wealthengine.colorswitchsnake","type":"game","iapProducts":3},{"num":10,"slug":"word-scramble-biz","title":"Word Scramble Biz","desc":"Unscramble business terms","href":"games/word-scramble-biz/index.html","prodUrl":"https://wealth-engine-0qlj.onrender.com/games/word-scramble-biz/index.html","bundleId":"com.wealthengine.wordscramblebiz","type":"game","iapProducts":3},{"num":11,"slug":"net-30-ninja","title":"Net-30 Ninja","desc":"Jump over late invoices","href":"games/net-30-ninja/index.html","prodUrl":"https://wealth-engine-0qlj.onrender.com/games/net-30-ninja/index.html","bundleId":"com.wealthengine.net30ninja","type":"game","iapProducts":3},{"num":12,"slug":"ssl-shield","title":"SSL Shield","desc":"Block cert expiry bombs","href":"games/ssl-shield/index.html","prodUrl":"https://wealth-engine-0qlj.onrender.com/games/ssl-shield/index.html","bundleId":"com.wealthengine.sslshield","type":"game","iapProducts":3},{"num":13,"slug":"nda-speed-sign","title":"NDA Speed Sign","desc":"Match NDA clause pairs fast","href":"games/nda-speed-sign/index.html","prodUrl":"https://wealth-engine-0qlj.onrender.com/games/nda-speed-sign/index.html","bundleId":"com.wealthengine.ndaspeedsign","type":"game","iapProducts":3},{"num":14,"slug":"invoice-number-rush","title":"Invoice Number Rush","desc":"Match invoice numbers fast","href":"games/invoice-number-rush/index.html","prodUrl":"https://wealth-engine-0qlj.onrender.com/games/invoice-number-rush/index.html","bundleId":"com.wealthengine.invoicenumberrush","type":"game","iapProducts":3},{"num":15,"slug":"billsnap","title":"BillSnap","desc":"Invoice PDF in 30 seconds","href":"billsnap/index.html","prodUrl":"https://wealth-engine-0qlj.onrender.com/billsnap/index.html","bundleId":"com.wealthengine.billsnap","type":"utility","iapProducts":1},{"num":16,"slug":"statusping-lite","title":"StatusPing Lite","desc":"Uptime alerts from $5/mo","href":"statusping/index.html","prodUrl":"https://wealth-engine-0qlj.onrender.com/statusping/index.html","bundleId":"com.wealthengine.statuspinglite","type":"utility","iapProducts":1},{"num":17,"slug":"leaselens","title":"LeaseLens","desc":"Lease red-flag analyzer","href":"leaselens/index.html","prodUrl":"https://wealth-engine-0qlj.onrender.com/leaselens/index.html","bundleId":"com.wealthengine.leaselens","type":"utility","iapProducts":1},{"num":18,"slug":"ndagen","title":"NDAGen","desc":"Free NDA generator","href":"ndagen/index.html","prodUrl":"https://wealth-engine-0qlj.onrender.com/ndagen/index.html","bundleId":"com.wealthengine.ndagen","type":"utility","iapProducts":1},{"num":19,"slug":"hookrelay","title":"HookRelay","desc":"Webhook DLQ & retry","href":"hookrelay/index.html","prodUrl":"https://wealth-engine-0qlj.onrender.com/hookrelay/index.html","bundleId":"com.wealthengine.hookrelay","type":"utility","iapProducts":1},{"num":20,"slug":"pipekit","title":"PipeKit","desc":"Developer API utilities","href":"pipekit/index.html","prodUrl":"https://wealth-engine-0qlj.onrender.com/pipekit/index.html","bundleId":"com.wealthengine.pipekit","type":"utility","iapProducts":1},{"num":21,"slug":"meetingcost","title":"MeetingCost","desc":"Meeting cost calculator","href":"meetingcost/index.html","prodUrl":"https://wealth-engine-0qlj.onrender.com/meetingcost/index.html","bundleId":"com.wealthengine.meetingcost","type":"utility","iapProducts":1},{"num":22,"slug":"templateforge","title":"TemplateForge","desc":"Business document kits","href":"templateforge/index.html","prodUrl":"https://wealth-engine-0qlj.onrender.com/templateforge/index.html","bundleId":"com.wealthengine.templateforge","type":"utility","iapProducts":1},{"num":23,"slug":"comparestack","title":"CompareStack","desc":"Honest tool comparisons","href":"comparestack/index.html","prodUrl":"https://wealth-engine-0qlj.onrender.com/comparestack/index.html","bundleId":"com.wealthengine.comparestack","type":"utility","iapProducts":1},{"num":24,"slug":"tip-calculator-pro","title":"Tip Calculator Pro","desc":"Split bills & calculate tips","href":"tip-calculator-pro/index.html","prodUrl":"https://wealth-engine-0qlj.onrender.com/tip-calculator-pro/index.html","bundleId":"com.wealthengine.tipcalculatorpro","type":"utility","iapProducts":1},{"num":25,"slug":"hourly-rate-calculator-pro","title":"Hourly Rate Calculator Pro","desc":"Freelancer hourly rate pricing","href":"hourly-rate-calculator-pro/index.html","prodUrl":"https://wealth-engine-0qlj.onrender.com/hourly-rate-calculator-pro/index.html","bundleId":"com.wealthengine.hourlyratecalculatorpro","type":"utility","iapProducts":1},{"num":26,"slug":"freelancer-tax-estimator","title":"Freelancer Tax Estimator Pro","desc":"1099 quarterly tax estimates","href":"freelancer-tax-estimator/index.html","prodUrl":"https://wealth-engine-0qlj.onrender.com/freelancer-tax-estimator/index.html","bundleId":"com.wealthengine.freelancertaxestimatorpro","type":"utility","iapProducts":1},{"num":27,"slug":"1099-threshold-tracker-pro","title":"1099 Threshold Tracker Pro","desc":"Track $600 1099-NEC threshold","href":"1099-threshold-tracker-pro/index.html","prodUrl":"https://wealth-engine-0qlj.onrender.com/1099-threshold-tracker-pro/index.html","bundleId":"com.wealthengine.thresholdtrackerpro","type":"utility","iapProducts":1},{"num":28,"slug":"quarterly-tax-deadline-pro","title":"Quarterly Tax Deadline Pro","desc":"Federal estimated tax calendar","href":"quarterly-tax-deadline-pro/index.html","prodUrl":"https://wealth-engine-0qlj.onrender.com/quarterly-tax-deadline-pro/index.html","bundleId":"com.wealthengine.quarterlytaxdeadlinepro","type":"utility","iapProducts":1},{"num":29,"slug":"profit-margin-calculator-pro","title":"Profit Margin Calculator Pro","desc":"Gross & net profit margins","href":"profit-margin-calculator-pro/index.html","prodUrl":"https://wealth-engine-0qlj.onrender.com/profit-margin-calculator-pro/index.html","bundleId":"com.wealthengine.profitmargincalculatorpro","type":"utility","iapProducts":1},{"num":30,"slug":"break-even-calculator-pro","title":"Break-Even Calculator Pro","desc":"Units & revenue to break even","href":"break-even-calculator-pro/index.html","prodUrl":"https://wealth-engine-0qlj.onrender.com/break-even-calculator-pro/index.html","bundleId":"com.wealthengine.breakevencalculatorpro","type":"utility","iapProducts":1},{"num":31,"slug":"late-fee-calculator-pro","title":"Late Fee Calculator Pro","desc":"Invoice late fees & totals","href":"late-fee-calculator-pro/index.html","prodUrl":"https://wealth-engine-0qlj.onrender.com/late-fee-calculator-pro/index.html","bundleId":"com.wealthengine.latefeecalculatorpro","type":"utility","iapProducts":1},{"num":32,"slug":"markup-calculator-pro","title":"Markup Calculator Pro","desc":"Selling price & profit margin","href":"markup-calculator-pro/index.html","prodUrl":"https://wealth-engine-0qlj.onrender.com/markup-calculator-pro/index.html","bundleId":"com.wealthengine.markupcalculatorpro","type":"utility","iapProducts":1},{"num":33,"slug":"day-rate-calculator-pro","title":"Day Rate to Hourly Calculator Pro","desc":"Freelance day rate & hourly income","href":"day-rate-calculator-pro/index.html","prodUrl":"https://wealth-engine-0qlj.onrender.com/day-rate-calculator-pro/index.html","bundleId":"com.wealthengine.dayratecalculatorpro","type":"utility","iapProducts":1},{"num":34,"slug":"bill-splitter-pro","title":"Bill Splitter Pro","desc":"Split bills with tip, tax & breakdown","href":"bill-splitter-pro/index.html","prodUrl":"https://wealth-engine-0qlj.onrender.com/bill-splitter-pro/index.html","bundleId":"com.wealthengine.billsplitterpro","type":"utility","iapProducts":1},{"num":35,"slug":"percentage-calculator-pro","title":"Percentage Calculator Pro","desc":"Percent of, change & difference","href":"percentage-calculator-pro/index.html","prodUrl":"https://wealth-engine-0qlj.onrender.com/percentage-calculator-pro/index.html","bundleId":"com.wealthengine.percentagecalculatorpro","type":"utility","iapProducts":1},{"num":36,"slug":"freelancer-stack","title":"Freelancer Revenue Stack","desc":"Invoice, templates & NDAs","href":"bundles/freelancer-stack.html","prodUrl":"https://wealth-engine-0qlj.onrender.com/bundles/freelancer-stack.html","bundleId":"com.wealthengine.freelancerstack","type":"hub","iapProducts":1},{"num":37,"slug":"devwatch","title":"DevWatch","desc":"Uptime, SSL & cron monitoring","href":"bundles/devwatch.html","prodUrl":"https://wealth-engine-0qlj.onrender.com/bundles/devwatch.html","bundleId":"com.wealthengine.devwatch","type":"hub","iapProducts":1},{"num":38,"slug":"renter-toolkit","title":"Renter Toolkit","desc":"Lease review & compliance","href":"bundles/landlord-tenant-stack.html","prodUrl":"https://wealth-engine-0qlj.onrender.com/bundles/landlord-tenant-stack.html","bundleId":"com.wealthengine.rentertoolkit","type":"hub","iapProducts":1},{"num":39,"slug":"hookrelay-dlq","title":"HookRelay DLQ Pro","desc":"Webhook dead letter queue & retry","href":"go/hookrelay-dlq.html","prodUrl":"https://wealth-engine-0qlj.onrender.com/go/hookrelay-dlq.html","bundleId":"com.wealthengine.hookrelaydlqpro","type":"hub","iapProducts":1},{"num":40,"slug":"1099-suite","title":"1099 Deadline Suite","desc":"1099-NEC deadline tracker & PDFs","href":"go/1099-deadline.html","prodUrl":"https://wealth-engine-0qlj.onrender.com/go/1099-deadline.html","bundleId":"com.wealthengine.1099suite","type":"hub","iapProducts":1},{"num":41,"slug":"statusping-agency","title":"StatusPing Agency","desc":"White-label uptime monitoring for agencies","href":"go/statusping-agency.html","prodUrl":"https://wealth-engine-0qlj.onrender.com/go/statusping-agency.html","bundleId":"com.wealthengine.statuspingagency","type":"hub","iapProducts":1},{"num":42,"slug":"ndagen-team","title":"NDAGen Team","desc":"Team NDA generator for agencies","href":"go/nda-team.html","prodUrl":"https://wealth-engine-0qlj.onrender.com/go/nda-team.html","bundleId":"com.wealthengine.ndagenteam","type":"hub","iapProducts":1},{"num":43,"slug":"meetingcost-team","title":"MeetingCost Team","desc":"Team meeting cost dashboard","href":"go/meeting-cost-team.html","prodUrl":"https://wealth-engine-0qlj.onrender.com/go/meeting-cost-team.html","bundleId":"com.wealthengine.meetingcostteam","type":"hub","iapProducts":1},{"num":44,"slug":"partners","title":"Wealth Engine Partners","desc":"Affiliate portal & referral dashboard","href":"partners/index.html","prodUrl":"https://wealth-engine-0qlj.onrender.com/partners/index.html","bundleId":"com.wealthengine.partners","type":"hub","iapProducts":1},{"num":45,"slug":"wealth-hub","title":"Wealth Engine Hub","desc":"Master portfolio — 45 apps, deep links & export","href":"index.html","prodUrl":"https://wealth-engine-0qlj.onrender.com/index.html","bundleId":"com.wealthengine.wealthhub","type":"hub","iapProducts":1}];</script>
+<script>(function(){
+  var KEY='wealth_hub_recent';
+  var titles={"games":"Horseshoe Games Hub","tools":"Freelancer Tools","receipt-rush":"Receipt Rush","webhook-whack":"Webhook Whack","invoice-stack":"Invoice Stack","horseshoe-toss":"Horseshoe Toss","uptime-defender":"Uptime Defender","freelancer-memory":"Freelancer Memory","color-switch-snake":"Color Switch Snake","word-scramble-biz":"Word Scramble Biz","net-30-ninja":"Net-30 Ninja","ssl-shield":"SSL Shield","nda-speed-sign":"NDA Speed Sign","invoice-number-rush":"Invoice Number Rush","billsnap":"BillSnap","statusping-lite":"StatusPing Lite","leaselens":"LeaseLens","ndagen":"NDAGen","hookrelay":"HookRelay","pipekit":"PipeKit","meetingcost":"MeetingCost","templateforge":"TemplateForge","comparestack":"CompareStack","tip-calculator-pro":"Tip Calculator Pro","hourly-rate-calculator-pro":"Hourly Rate Calculator Pro","freelancer-tax-estimator":"Freelancer Tax Estimator Pro","1099-threshold-tracker-pro":"1099 Threshold Tracker Pro","quarterly-tax-deadline-pro":"Quarterly Tax Deadline Pro","profit-margin-calculator-pro":"Profit Margin Calculator Pro","break-even-calculator-pro":"Break-Even Calculator Pro","late-fee-calculator-pro":"Late Fee Calculator Pro","markup-calculator-pro":"Markup Calculator Pro","day-rate-calculator-pro":"Day Rate to Hourly Calculator Pro","bill-splitter-pro":"Bill Splitter Pro","percentage-calculator-pro":"Percentage Calculator Pro","freelancer-stack":"Freelancer Revenue Stack","devwatch":"DevWatch","renter-toolkit":"Renter Toolkit","hookrelay-dlq":"HookRelay DLQ Pro","1099-suite":"1099 Deadline Suite","statusping-agency":"StatusPing Agency","ndagen-team":"NDAGen Team","meetingcost-team":"MeetingCost Team","partners":"Wealth Engine Partners","wealth-hub":"Wealth Engine Hub"};
+  var hrefs={"games":"games/index.html","tools":"tools/index.html","receipt-rush":"games/receipt-rush/index.html","webhook-whack":"games/webhook-whack/index.html","invoice-stack":"games/invoice-stack/index.html","horseshoe-toss":"games/horseshoe-toss/index.html","uptime-defender":"games/uptime-defender/index.html","freelancer-memory":"games/freelancer-memory/index.html","color-switch-snake":"games/color-switch-snake/index.html","word-scramble-biz":"games/word-scramble-biz/index.html","net-30-ninja":"games/net-30-ninja/index.html","ssl-shield":"games/ssl-shield/index.html","nda-speed-sign":"games/nda-speed-sign/index.html","invoice-number-rush":"games/invoice-number-rush/index.html","billsnap":"billsnap/index.html","statusping-lite":"statusping/index.html","leaselens":"leaselens/index.html","ndagen":"ndagen/index.html","hookrelay":"hookrelay/index.html","pipekit":"pipekit/index.html","meetingcost":"meetingcost/index.html","templateforge":"templateforge/index.html","comparestack":"comparestack/index.html","tip-calculator-pro":"tip-calculator-pro/index.html","hourly-rate-calculator-pro":"hourly-rate-calculator-pro/index.html","freelancer-tax-estimator":"freelancer-tax-estimator/index.html","1099-threshold-tracker-pro":"1099-threshold-tracker-pro/index.html","quarterly-tax-deadline-pro":"quarterly-tax-deadline-pro/index.html","profit-margin-calculator-pro":"profit-margin-calculator-pro/index.html","break-even-calculator-pro":"break-even-calculator-pro/index.html","late-fee-calculator-pro":"late-fee-calculator-pro/index.html","markup-calculator-pro":"markup-calculator-pro/index.html","day-rate-calculator-pro":"day-rate-calculator-pro/index.html","bill-splitter-pro":"bill-splitter-pro/index.html","percentage-calculator-pro":"percentage-calculator-pro/index.html","freelancer-stack":"bundles/freelancer-stack.html","devwatch":"bundles/devwatch.html","renter-toolkit":"bundles/landlord-tenant-stack.html","hookrelay-dlq":"go/hookrelay-dlq.html","1099-suite":"go/1099-deadline.html","statusping-agency":"go/statusping-agency.html","ndagen-team":"go/nda-team.html","meetingcost-team":"go/meeting-cost-team.html","partners":"partners/index.html","wealth-hub":"index.html"};
+  function trackRecent(slug){
+    try{
+      var list=JSON.parse(localStorage.getItem(KEY)||'[]').filter(function(s){return s!==slug});
+      list.unshift(slug);
+      localStorage.setItem(KEY,JSON.stringify(list.slice(0,5)));
+    }catch(e){}
+  }
+  document.querySelectorAll('.card').forEach(function(card){
+    var slug=card.getAttribute('data-slug');
+    if(slug)card.addEventListener('click',function(){trackRecent(slug)});
+  });
+  function renderRecent(){
+    var row=document.getElementById('recent-row');
+    var section=document.getElementById('recent-section');
+    if(!row||!section)return;
+    var slugs=[];
+    try{slugs=JSON.parse(localStorage.getItem(KEY)||'[]')}catch(e){}
+    slugs=slugs.filter(function(s){return titles[s]&&hrefs[s]}).slice(0,3);
+    if(!slugs.length){section.hidden=true;return;}
+    section.hidden=false;
+    row.innerHTML=slugs.map(function(s){
+      return '<a href="'+hrefs[s]+'">'+titles[s]+'</a>';
+    }).join('');
+  }
+  renderRecent();
+  var banner=document.getElementById('offline-banner');
+  function setOffline(){if(banner)banner.classList.toggle('show',!navigator.onLine)}
+  window.addEventListener('online',setOffline);
+  window.addEventListener('offline',setOffline);
+  setOffline();
+})();</script>
+<script>(function(){
+  if(!window.Capacitor||!window.Capacitor.isNativePlatform())return;
+  try{
+    if(localStorage.getItem("wealth_hub_push_scheduled"))return;
+    var LN=window.Capacitor.Plugins&&window.Capacitor.Plugins.LocalNotifications;
+    if(!LN)return;
+    LN.requestPermissions().then(function(perm){
+      if(!perm||perm.display!=="granted")return;
+      var now=new Date();
+      var year=now.getFullYear();
+      var month=now.getMonth();
+      var reminders=[
+        {id:451001,weekday:1,title:"Weekly portfolio check",body:"Wealth Engine Hub: review recently used tools and games"},
+        {id:451015,monthDay:1,title:"Monthly catalog review",body:"Export portfolio CSV — 45 apps with deep links for Excel"},
+        {id:451025,monthDay:15,title:"Mid-month deep link refresh",body:"Open Wealth Engine Hub to sync offline copies of your favorites"}
+      ];
+      var notifications=reminders.map(function(d){
+        var at;
+        if(d.weekday!=null){
+          at=new Date(now);
+          var diff=(d.weekday-at.getDay()+7)%7;
+          if(!diff)diff=7;
+          at.setDate(at.getDate()+diff);
+        }else{
+          at=new Date(year,month,d.monthDay,9,0,0);
+          if(at<=now)at=new Date(year,month+1,d.monthDay,9,0,0);
+        }
+        at.setHours(9,0,0,0);
+        return {id:d.id,title:d.title,body:d.body,schedule:{at:at.toISOString()}};
+      });
+      return LN.schedule({notifications:notifications}).then(function(){
+        localStorage.setItem("wealth_hub_push_scheduled","1");
+      });
+    }).catch(function(){});
+  }catch(e){}
+})();</script>
+<script>(function(){
+  var btn=document.getElementById("export-portfolio");
+  if(!btn)return;
+  btn.addEventListener("click",function(){
+    try{
+      var apps=window.WE_PORTFOLIO||[];
+      var pro=false;
+      try{pro=localStorage.getItem("we_iap_wealth-hub_pro_unlock")==="1"}catch(e){}
+      var header=pro
+        ?["#","App Name","Slug","Type","Bundle ID","Deep Link","Prod URL","IAP Products"]
+        :["#","App Name","Slug","Type","Deep Link","Prod URL"];
+      var lines=[header.join(",")].concat(apps.map(function(a){
+        var row=pro
+          ?[a.num,a.title,a.slug,a.type,a.bundleId||"",a.href,a.prodUrl,String(a.iapProducts||0)]
+          :[a.num,a.title,a.slug,a.type,a.href,a.prodUrl];
+        return row.map(function(v){
+          return '"'+String(v).replace(/"/g,'""')+'"';
+        }).join(",");
+      }));
+      var blob=new Blob([lines.join("\n")],{type:"text/csv"});
+      var url=URL.createObjectURL(blob);
+      var a=document.createElement("a");
+      a.href=url;
+      a.download="wealth-engine-portfolio-"+apps.length+"-apps-"+new Date().toISOString().slice(0,10)+".csv";
+      a.click();
+      URL.revokeObjectURL(url);
+      if(!pro)alert("Pro unlock adds Bundle ID and IAP columns to the export.");
+    }catch(e){alert("Export failed — try again.");}
+  });
+})();</script>
+<script>(function(){
+  var APP="wealth-hub";
+  var PRODUCTS=[{"key":"pro_unlock","id":"com.wealthengine.wealthhub.pro_unlock","price":4.99,"title":"Pro Unlock"}];
+  var PREFIX='we_iap_'+APP+'_';
+
+  function owned(key){
+    try{return localStorage.getItem(PREFIX+key)==='1'}catch(e){return false}
+  }
+  function setOwned(key){
+    try{localStorage.setItem(PREFIX+key,'1')}catch(e){}
+    refreshUI();
+  }
+
+  function shouldShowAds(){
+    return true;
+  }
+
+  function hideAdSlots(){
+    if(shouldShowAds())return;
+    document.querySelectorAll('.ad,[data-ad-slot]').forEach(function(el){
+      el.style.display='none';
+    });
+  }
+
+  function refreshUI(){
+    var badge=document.getElementById('we-iap-premium-badge');
+    var removeBtn=document.getElementById('we-iap-remove-ads');
+    var hasPremium=owned('premium_unlock')||owned('pro_unlock');
+    var noAds=!shouldShowAds();
+    if(badge)badge.style.display=(hasPremium||noAds)?'inline-block':'none';
+    if(removeBtn)removeBtn.style.display=noAds?'none':'inline-block';
+    hideAdSlots();
+    document.body.classList.toggle('we-iap-premium',hasPremium);
+    document.body.classList.toggle('we-iap-no-ads',noAds);
+  }
+
+  function purchase(key){
+    var prod=PRODUCTS.find(function(p){return p.key===key});
+    if(!prod)return Promise.reject(new Error('Unknown product'));
+    if(owned(key))return Promise.resolve({key:key,restored:true});
+
+    /* Native: @revenuecat/purchases-capacitor or StoreKit 2 via Capacitor plugin */
+    if(window.Capacitor&&window.Capacitor.Plugins&&window.Capacitor.Plugins.Purchases){
+      return window.Capacitor.Plugins.Purchases.purchaseProduct({productIdentifier:prod.id})
+        .then(function(){setOwned(key);return{key:key,purchased:true};});
+    }
+
+    /* Sandbox / pre-App-Store-Connect: simulate success (replace after products live) */
+    if(confirm('Purchase '+prod.title+' ($'+prod.price.toFixed(2)+')?\n\nSandbox mode — receipt verify placeholder until App Store Connect products are live.')){
+      setOwned(key);
+      return Promise.resolve({key:key,purchased:true,sandbox:true});
+    }
+    return Promise.reject(new Error('Cancelled'));
+  }
+
+  function restore(){
+    if(window.Capacitor&&window.Capacitor.Plugins&&window.Capacitor.Plugins.Purchases){
+      return window.Capacitor.Plugins.Purchases.restorePurchases().then(function(res){
+        (res&&res.customerInfo&&res.customerInfo.entitlements&&res.customerInfo.entitlements.active||{}).forEach(function(){});
+        refreshUI();
+        return{restored:true};
+      });
+    }
+    refreshUI();
+    alert('Restore complete — checked local purchases. Connect RevenueCat for cross-device restore.');
+    return Promise.resolve({restored:true,local:true});
+  }
+
+  window.WE_IAP={
+    app:APP,
+    products:PRODUCTS,
+    owns:owned,
+    shouldShowAds:shouldShowAds,
+    purchase:purchase,
+    restore:restore,
+    refresh:refreshUI
+  };
+
+  function wireUI(){
+    var bar=document.getElementById('we-iap-bar');
+    if(!bar)return;
+    var removeBtn=document.getElementById('we-iap-remove-ads');
+    var premiumBtn=document.getElementById('we-iap-premium');
+    var restoreBtn=document.getElementById('we-iap-restore');
+    var tipBtn=document.getElementById('we-iap-tip');
+    if(removeBtn)removeBtn.addEventListener('click',function(){WE_IAP.purchase('remove_ads').catch(function(){})});
+    if(premiumBtn)premiumBtn.addEventListener('click',function(){
+      WE_IAP.purchase('pro_unlock').catch(function(){});
+    });
+    if(restoreBtn)restoreBtn.addEventListener('click',function(){WE_IAP.restore()});
+    if(tipBtn)tipBtn.addEventListener('click',function(){WE_IAP.purchase('tip_jar').catch(function(){})});
+    refreshUI();
+  }
+
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',wireUI);
+  else wireUI();
+})();</script>
+</body></html>
