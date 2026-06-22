@@ -140,9 +140,9 @@ if (isHubApp) {
     if (existsSync(bundle)) pass("5c-stack", "Freelancer stack bundle built");
     else fail("5c-stack", "Freelancer stack bundle built", "Missing dist/bundles/freelancer-stack.html");
   } else if (app === "meetingcost-team") {
-    const landing = join(dist, "go", "meeting-team.html");
+    const landing = join(dist, "go", "meeting-cost-team.html");
     if (existsSync(landing)) pass("5b", "Team landing built");
-    else fail("5b", "Team landing built", "Missing dist/go/meeting-team.html");
+    else fail("5b", "Team landing built", "Missing dist/go/meeting-cost-team.html");
     if (existsSync(join(dist, "meetingcost", "index.html"))) pass("5c-meetingcost", "meetingcost built in dist");
     else fail("5c-meetingcost", "meetingcost built in dist", "Missing dist/meetingcost/index.html");
     if (existsSync(join(dist, "tools", "meeting-cost-free.html"))) pass("5c-embed", "Embed widget built");
@@ -223,7 +223,6 @@ if (isHubApp && app === "freelancer-stack" && existsSync(join(mobileRoot, app, "
 } else if (isHubApp && app === "ndagen-team" && existsSync(join(mobileRoot, app, "www", "go", "nda-team.html"))) {
   pass("6b", "Team landing synced");
 } else if (isHubApp && app === "meetingcost-team" && existsSync(join(mobileRoot, app, "www", "go", "meeting-cost-team.html"))) {
-  pass("6b", "Team landing synced");
   pass("6b", "Team landing synced");
 } else if (isHubApp) {
   pass("6b", "Hub bundle sync", app);

@@ -118,7 +118,7 @@ cd .. && bundle exec fastlane ios beta_<lane>
 | 1099-suite | `mobile/1099-suite/` | `/go/1099-deadline.html` |
 | statusping-agency | `mobile/statusping-agency/` | `/go/statusping-agency.html` |
 | ndagen-team | `mobile/ndagen-team/` | `/go/nda-team.html` |
-| meetingcost-team | `mobile/meetingcost-team/` | `/go/meeting-team.html` |
+| meetingcost-team | `mobile/meetingcost-team/` | `/go/meeting-cost-team.html` |
 
 ## Global blockers
 

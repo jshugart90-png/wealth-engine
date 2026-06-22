@@ -49,6 +49,8 @@
 | **Renter Toolkit** | `com.wealthengine.rentertoolkit` | **TestFlight prep** | 23 PASS, 0 FAIL | `84613de` pushed | **READY** (Mac upload) |
 | **1099 Deadline Suite** | `com.wealthengine.1099suite` | **TestFlight prep** | 25 PASS, 0 FAIL | `72b1aae` | **READY** (Mac upload) |
 | **StatusPing Agency** | `com.wealthengine.statuspingagency` | **TestFlight prep** | 25 PASS, 0 FAIL | `d0b9ca6` | **READY** (Mac upload) |
+| **NDAGen Team** | `com.wealthengine.ndagenteam` | **TestFlight prep** | 25 PASS, 0 FAIL | `347732a` | **READY** (Mac upload) |
+| **MeetingCost Team** | `com.wealthengine.meetingcostteam` | **TestFlight prep** | 25 PASS, 0 FAIL | TBD | **READY** (Mac upload) |
 
 ## App 1 — Horseshoe Games Hub
 
@@ -1050,14 +1052,14 @@ npx cap sync ios && npx cap open ios
 |-------|-------|
 | Version | 1.0.0 |
 | Tools | MeetingCost + Embed Widget + Meeting Compare + Hourly Rate Pro |
-| Capacitor | `mobile/meetingcost-team/` → loads `/go/meeting-team.html` from prod |
+| Capacitor | `mobile/meetingcost-team/` → loads `/go/meeting-cost-team.html` from prod |
 | Store metadata | `mobile/store-metadata/meetingcost-team/` |
 | Preflight | `npm run mobile:preflight:meetingcost-team` |
 
 ### Features (shipped this session)
 
 1. **Native launcher** — 5-tool grid with recently used tracking
-2. **Team landing** — local copy of `/go/meeting-team.html` with $29/mo checkout
+2. **Team landing** — local copy of `/go/meeting-cost-team.html` with $29/mo checkout
 3. **Team push** — local notifications for weekly waste review, monthly quota reset, report check
 4. **History CSV export** — Excel-compatible export from MeetingCost activity localStorage
 5. **Report quota stat** — monthly report count vs 50 limit on launcher

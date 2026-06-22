@@ -1362,7 +1362,7 @@ function syncMeetingcostTeam() {
 
   const tools = [
     {
-      href: "go/meeting-team.html",
+      href: "go/meeting-cost-team.html",
       slug: "landing",
       title: "Team Landing",
       desc: "$29/mo — 50 reports, 25 seats, embed widget",
@@ -1448,7 +1448,7 @@ p{margin:0 0 10px;color:#fca5a5;font-size:14px}
 .footer{text-align:center;margin-top:32px;font-size:13px;color:#fca5a5}
 .footer a{color:#fecaca}
 </style></head><body>
-<div class="promo"><strong>LAUNCH25</strong> — 25% off first month · <a href="go/meeting-team.html">Team $29/mo →</a></div>
+<div class="promo"><strong>LAUNCH25</strong> — 25% off first month · <a href="go/meeting-cost-team.html">Team $29/mo →</a></div>
 <div id="offline-banner" class="offline" role="status">You're offline — open tools you've used before</div>
 <h1>💸 MeetingCost Team</h1>
 <p class="sub">50 shareable reports/mo — beats Calwise at €30</p>
@@ -1459,11 +1459,11 @@ p{margin:0 0 10px;color:#fca5a5;font-size:14px}
 </div>
 <div class="grid">${cards}</div>
 <div class="export"><button type="button" id="export-history">Export meeting history CSV</button><p>Opens in Excel · from MeetingCost activity</p></div>
-<a class="tier" href="go/meeting-team.html">
+<a class="tier" href="go/meeting-cost-team.html">
   <strong>Team — $29/mo</strong>
   <span>50 shareable reports · 25 seats · embed widget · history dashboard</span>
 </a>
-<p class="footer"><a href="privacy.html">Privacy</a> · <a href="https://wealth-engine-0qlj.onrender.com/go/meeting-team.html">View landing online</a></p>
+<p class="footer"><a href="privacy.html">Privacy</a> · <a href="https://wealth-engine-0qlj.onrender.com/go/meeting-cost-team.html">View landing online</a></p>
 <script>(function(){
   var KEY='meetingcost_team_recent';
   var USAGE_KEY='meetingcost_reports_mo';
@@ -1514,13 +1514,13 @@ p{margin:0 0 10px;color:#fca5a5;font-size:14px}
 
   writeFileSync(join(www, "index.html"), indexHtml);
 
-  const landingSrc = join(dist, "go", "meeting-team.html");
+  const landingSrc = join(dist, "go", "meeting-cost-team.html");
   if (!existsSync(landingSrc)) {
-    console.error("Missing dist/go/meeting-team.html — run npm run build first");
+    console.error("Missing dist/go/meeting-cost-team.html — run npm run build first");
     process.exit(1);
   }
   mkdirSync(join(www, "go"), { recursive: true });
-  cpSync(landingSrc, join(www, "go", "meeting-team.html"));
+  cpSync(landingSrc, join(www, "go", "meeting-cost-team.html"));
 
   const meetingcostSrc = join(dist, "meetingcost");
   if (!existsSync(join(meetingcostSrc, "index.html"))) {
