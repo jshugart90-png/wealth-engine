@@ -1,0 +1,22 @@
+{
+  "appName": "Quarterly Tax Deadline Pro",
+  "subtitle": "Federal estimated tax calendar",
+  "bundleId": "com.wealthengine.quarterlytaxdeadlinepro",
+  "version": "1.0.0",
+  "privacyPolicyUrl": "https://wealth-engine-0qlj.onrender.com/privacy.html",
+  "supportUrl": "https://wealth-engine-0qlj.onrender.com/",
+  "marketingUrl": "https://wealth-engine-0qlj.onrender.com/quarterly-tax-deadline-pro/",
+  "category": {
+    "apple": "Finance",
+    "appleSub": "Utilities",
+    "google": "FINANCE"
+  },
+  "contentRating": {
+    "ageRating": "4+",
+    "googleQuestionnaire": "Everyone — quarterly tax deadline calendar, no network required for core features",
+    "adsPresent": false,
+    "inAppPurchases": false,
+    "dataCollected": ["payment checklist stored locally only"]
+  },
+  "keywords": ["quarterly", "tax", "deadline", "estimated", "1099", "freelance", "IRS", "calendar", "contractor", "quarterlytaxdeadlinepro"]
+}

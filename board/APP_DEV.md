@@ -34,6 +34,7 @@
 | **Hourly Rate Calculator Pro** | `com.wealthengine.hourlyratecalculatorpro` | **TestFlight prep** | 17 PASS, 0 FAIL | `3c9b224` pushed | **READY** (Mac upload) |
 | **Freelancer Tax Estimator Pro** | `com.wealthengine.freelancertaxestimatorpro` | **TestFlight prep** | 17 PASS, 0 FAIL | `ff2a04c` pushed | **READY** (Mac upload) |
 | **1099 Threshold Tracker Pro** | `com.wealthengine.thresholdtrackerpro` | **TestFlight prep** | 17 PASS, 0 FAIL | `882fecb` pushed | **READY** (Mac upload) |
+| **Quarterly Tax Deadline Pro** | `com.wealthengine.quarterlytaxdeadlinepro` | **TestFlight prep** | — | — | **BUILDING** |
 
 ## App 1 — Horseshoe Games Hub
 
@@ -682,9 +683,34 @@ npx cap sync ios && npx cap open ios
 # Or: bundle exec fastlane ios beta_1099_threshold_tracker_pro
 ```
 
+## App 27 — Quarterly Tax Deadline Pro (utility)
+
+| Field | Value |
+|-------|-------|
+| Version | 1.0.0 |
+| Tool | Quarterly Tax Deadline Pro — federal estimated tax due dates & payment calendar (standalone Capacitor shell) |
+| Capacitor | `mobile/quarterly-tax-deadline-pro/` → loads `/quarterly-tax-deadline-pro/` from prod |
+| Store metadata | `mobile/store-metadata/quarterly-tax-deadline-pro/` |
+| Preflight | `npm run mobile:preflight:quarterly-tax-deadline-pro` |
+
+### Features (shipped this session)
+
+1. **Next deadline** — localStorage `quarterlytaxpro_last` with launcher display
+2. **Native UI** — year calendar, countdown, mark-quarters-paid checklist
+3. **Offline banner** — native launcher with feature highlights and offline message
+
+### TestFlight upload (user Mac)
+
+```bash
+npm run build && cd mobile && node sync-www.mjs quarterly-tax-deadline-pro
+cd quarterly-tax-deadline-pro && npm install && npx cap add ios  # if missing
+npx cap sync ios && npx cap open ios
+# Or: bundle exec fastlane ios beta_quarterly_tax_deadline_pro
+```
+
 ## Master checklist
 
-See `mobile/TESTFLIGHT_ALL_APPS.md` for all 26 apps — bundle IDs, Fastlane lanes, versions.
+See `mobile/TESTFLIGHT_ALL_APPS.md` for all 27 apps — bundle IDs, Fastlane lanes, versions.
 
 ## GitHub policy
 

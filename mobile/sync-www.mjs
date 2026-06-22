@@ -1,6 +1,6 @@
 /**
  * Sync dist/ assets into Capacitor www folders.
- * Usage: node sync-www.mjs [games|tools|receipt-rush|webhook-whack|invoice-stack|horseshoe-toss|uptime-defender|freelancer-memory|color-switch-snake|word-scramble-biz|net-30-ninja|ssl-shield|nda-speed-sign|billsnap|statusping-lite|leaselens|ndagen|hookrelay|pipekit|meetingcost|templateforge|comparestack|tip-calculator-pro|hourly-rate-calculator-pro|freelancer-tax-estimator|1099-threshold-tracker-pro|all]
+ * Usage: node sync-www.mjs [games|tools|receipt-rush|webhook-whack|invoice-stack|horseshoe-toss|uptime-defender|freelancer-memory|color-switch-snake|word-scramble-biz|net-30-ninja|ssl-shield|nda-speed-sign|billsnap|statusping-lite|leaselens|ndagen|hookrelay|pipekit|meetingcost|templateforge|comparestack|tip-calculator-pro|hourly-rate-calculator-pro|freelancer-tax-estimator|1099-threshold-tracker-pro|quarterly-tax-deadline-pro|all]
  */
 import { cpSync, existsSync, mkdirSync, readFileSync, writeFileSync, readdirSync } from "fs";
 import { join, dirname } from "path";
@@ -644,6 +644,32 @@ const UTILITY_SHELLS = {
       "1099-NEC threshold alerts & progress bars",
     ],
   },
+  "quarterly-tax-deadline-pro": {
+    title: "Quarterly Tax Deadline Pro",
+    emoji: "📅",
+    tagline: "Federal estimated tax due dates for freelancers",
+    themeColor: "#0c4a6e",
+    bg: "#0c4a6e",
+    text: "#f0f9ff",
+    sub: "#7dd3fc",
+    accent: "#fbbf24",
+    btnBg: "#f59e0b",
+    btnHover: "#d97706",
+    statBg: "#075985",
+    statBorder: "#0284c7",
+    statKey: "quarterlytaxpro_last",
+    statLabel: "Next deadline",
+    statEmpty: "—",
+    cta: "View Calendar",
+    moreLink: "https://wealth-engine-0qlj.onrender.com/go/freelancer-stack.html",
+    moreLabel: "Freelancer Stack $49",
+    offlineMsg: "You're offline — open Quarterly Tax Deadline Pro if you've used it before",
+    features: [
+      "Next-deadline countdown with days remaining",
+      "Full quarterly calendar by tax year",
+      "Mark quarters paid — saved locally",
+    ],
+  },
 };
 
 function syncUtility(slug) {
@@ -802,6 +828,8 @@ if (target === "tip-calculator-pro" || target === "all") syncUtility("tip-calcul
 if (target === "hourly-rate-calculator-pro" || target === "all") syncUtility("hourly-rate-calculator-pro");
 if (target === "freelancer-tax-estimator" || target === "all") syncUtility("freelancer-tax-estimator");
 if (target === "1099-threshold-tracker-pro" || target === "all") syncUtility("1099-threshold-tracker-pro");
+if (target === "quarterly-tax-deadline-pro" || target === "all") syncUtility("quarterly-tax-deadline-pro");
+if (target === "quarterly-tax-deadline-pro" || target === "all") syncUtility("quarterly-tax-deadline-pro");
 if (target === "receipt-rush" || target === "all") syncMiniGame("receipt-rush");
 if (target === "webhook-whack" || target === "all") syncMiniGame("webhook-whack");
 if (target === "invoice-stack" || target === "all") syncMiniGame("invoice-stack");

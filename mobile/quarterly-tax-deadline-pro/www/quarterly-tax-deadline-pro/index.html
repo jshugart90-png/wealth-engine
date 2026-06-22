@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Quarterly Tax Deadline Pro — estimated tax calendar</title>
+  <meta name="description" content="Federal quarterly estimated tax due dates for freelancers and 1099 contractors. Countdown, payment checklist, and 1099-NEC reminders — free, no ads.">
+  <meta name="theme-color" content="#0c4a6e">
+  <style>
+    :root {
+      --bg: #0c4a6e;
+      --card: #075985;
+      --border: #0284c7;
+      --text: #f0f9ff;
+      --muted: #7dd3fc;
+      --accent: #fbbf24;
+      --accent-dim: #f59e0b;
+      --success: #34d399;
+      --danger: #f87171;
+      --paid-bg: rgba(52, 211, 153, 0.12);
+    }
+    * { box-sizing: border-box; }
+    body {
+      font-family: system-ui, -apple-system, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      margin: 0;
+      min-height: 100vh;
+      padding: max(16px, env(safe-area-inset-top)) 16px max(32px, env(safe-area-inset-bottom));
+    }
+    .wrap { max-width: 420px; margin: 0 auto; }
+    h1 { font-size: 1.5rem; margin: 8px 0 4px; font-weight: 700; }
+    .tagline { color: var(--muted); font-size: 0.9rem; margin-bottom: 16px; }
+    .hero {
+      background: linear-gradient(135deg, var(--card), #0369a1);
+      border: 2px solid var(--border);
+      border-radius: 16px;
+      padding: 20px;
+      margin-bottom: 16px;
+      text-align: center;
+    }
+    .hero-label { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); margin-bottom: 6px; }
+    .hero-days { font-size: 2.5rem; font-weight: 800; color: var(--accent); line-height: 1; }
+    .hero-days.urgent { color: var(--danger); }
+    .hero-days.past { color: var(--success); font-size: 1.5rem; }
+    .hero-sub { font-size: 0.95rem; margin-top: 8px; color: var(--text); }
+    .hero-date { font-size: 0.85rem; color: var(--muted); margin-top: 4px; }
+    .year-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 12px;
+    }
+    .year-row label { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--muted); margin: 0; }
+    .year-row select {
+      background: var(--card);
+      color: var(--text);
+      border: 2px solid var(--border);
+      border-radius: 8px;
+      padding: 8px 12px;
+      font-size: 0.95rem;
+      font-weight: 600;
+    }
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 16px;
+      margin-bottom: 16px;
+    }
+    .card h2 {
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--muted);
+      margin: 0 0 12px;
+    }
+    .quarter {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 14px;
+      background: var(--bg);
+      border: 2px solid var(--border);
+      border-radius: 12px;
+      margin-bottom: 8px;
+      transition: border-color 0.2s;
+    }
+    .quarter:last-child { margin-bottom: 0; }
+    .quarter.next { border-color: var(--accent); box-shadow: 0 0 0 1px rgba(251, 191, 36, 0.3); }
+    .quarter.paid { border-color: var(--success); background: var(--paid-bg); }
+    .quarter.past:not(.paid) { opacity: 0.75; }
+    .quarter-check {
+      width: 24px;
+      height: 24px;
+      accent-color: var(--success);
+      flex-shrink: 0;
+      cursor: pointer;
+    }
+    .quarter-body { flex: 1; min-width: 0; }
+    .quarter-title { font-weight: 700; font-size: 1rem; }
+    .quarter-meta { font-size: 0.8rem; color: var(--muted); margin-top: 2px; line-height: 1.4; }
+    .quarter-meta strong { color: var(--text); }
+    .quarter-badge {
+      font-size: 0.65rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      padding: 4px 8px;
+      border-radius: 6px;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+    .quarter-badge.next { background: rgba(251, 191, 36, 0.15); color: var(--accent); }
+    .quarter-badge.paid { background: rgba(52, 211, 153, 0.15); color: var(--success); }
+    .quarter-badge.past { background: rgba(248, 113, 113, 0.15); color: var(--danger); }
+    .annual {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 14px;
+      background: var(--bg);
+      border: 2px dashed var(--border);
+      border-radius: 12px;
+    }
+    .annual-icon { font-size: 1.5rem; line-height: 1; }
+    .annual-body { flex: 1; }
+    .annual-title { font-weight: 700; font-size: 0.95rem; }
+    .annual-meta { font-size: 0.8rem; color: var(--muted); margin-top: 4px; line-height: 1.4; }
+    .actions { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 16px; }
+    .btn {
+      padding: 14px;
+      border: none;
+      border-radius: 12px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      cursor: pointer;
+      text-align: center;
+    }
+    .btn-primary { background: var(--accent-dim); color: #0c4a6e; }
+    .btn-secondary { background: var(--card); color: var(--text); border: 2px solid var(--border); }
+    .btn:active { opacity: 0.85; }
+    .progress-row {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 6px;
+      margin-bottom: 16px;
+    }
+    .progress-dot {
+      text-align: center;
+      padding: 10px 4px;
+      background: var(--card);
+      border: 2px solid var(--border);
+      border-radius: 10px;
+      font-size: 0.7rem;
+      font-weight: 700;
+      color: var(--muted);
+    }
+    .progress-dot.paid { border-color: var(--success); color: var(--success); background: var(--paid-bg); }
+    .progress-dot.next { border-color: var(--accent); color: var(--accent); }
+    .toast {
+      position: fixed;
+      bottom: 24px;
+      left: 50%;
+      transform: translateX(-50%) translateY(80px);
+      background: var(--success);
+      color: #0c4a6e;
+      padding: 12px 20px;
+      border-radius: 10px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      transition: transform 0.25s;
+      z-index: 100;
+    }
+    .toast.show { transform: translateX(-50%) translateY(0); }
+    .disclaimer {
+      font-size: 0.7rem;
+      color: var(--muted);
+      text-align: center;
+      margin-top: 12px;
+      line-height: 1.4;
+    }
+  </style>
+<meta name="google-site-verification" content="X8W5bw-fSJ0pTZiA0LesNi2vZ_-bUdLqVokR5uJZlI4" />
+<script>(function(){try{var r=localStorage.getItem('we_ref')||new URLSearchParams(location.search).get('ref');fetch('/api/funnel/visit',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({path:"/quarterly-tax-deadline-pro",refCode:r,source:new URLSearchParams(location.search).get('utm_source')||'direct'})}).catch(function(){})}catch(e){}})();</script></head>
+<body>
+  <div class="wrap">
+    <h1>Quarterly Tax Deadline Pro</h1>
+    <p class="tagline">Federal estimated tax due dates for freelancers &amp; 1099 contractors</p>
+
+    <div class="hero" id="hero">
+      <div class="hero-label">Next estimated payment</div>
+      <div class="hero-days" id="hero-days">—</div>
+      <div class="hero-sub" id="hero-sub">Loading…</div>
+      <div class="hero-date" id="hero-date"></div>
+    </div>
+
+    <div class="progress-row" id="progress-row"></div>
+
+    <div class="year-row">
+      <label for="tax-year">Tax year</label>
+      <select id="tax-year" aria-label="Tax year"></select>
+    </div>
+
+    <div class="card">
+      <h2>Quarterly deadlines</h2>
+      <div id="quarters"></div>
+    </div>
+
+    <div class="card">
+      <h2>Annual filing</h2>
+      <div class="annual">
+        <div class="annual-icon">📋</div>
+        <div class="annual-body">
+          <div class="annual-title">1099-NEC recipient copies</div>
+          <div class="annual-meta" id="nec-deadline">Due January 31 — furnish copies to contractors and file with IRS</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="actions">
+      <button type="button" class="btn btn-secondary" id="reset-paid">Clear paid</button>
+      <button type="button" class="btn btn-primary" id="share">Share deadline</button>
+    </div>
+
+    <p class="disclaimer">Calendar helper only — confirm dates with IRS.gov and your CPA. Weekends/holidays may shift due dates.</p>
+  </div>
+
+  <div class="toast" id="toast" role="status"></div>
+
+  <script>
+    (function () {
+      var PAID_KEY = "quarterlytaxpro_paid";
+      var SUMMARY_KEY = "quarterlytaxpro_last";
+      var QUARTERS = [
+        { id: "q1", label: "Q1", period: "Jan–Mar income", month: 3, day: 15 },
+        { id: "q2", label: "Q2", period: "Apr–Jun income", month: 5, day: 15 },
+        { id: "q3", label: "Q3", period: "Jul–Sep income", month: 8, day: 15 },
+        { id: "q4", label: "Q4", period: "Oct–Dec income", month: 0, day: 15, nextYear: true }
+      ];
+
+      var yearEl = document.getElementById("tax-year");
+      var quartersEl = document.getElementById("quarters");
+      var progressEl = document.getElementById("progress-row");
+      var heroDaysEl = document.getElementById("hero-days");
+      var heroSubEl = document.getElementById("hero-sub");
+      var heroDateEl = document.getElementById("hero-date");
+      var necEl = document.getElementById("nec-deadline");
+      var toastEl = document.getElementById("toast");
+      var paid = {};
+
+      function loadPaid() {
+        try {
+          paid = JSON.parse(localStorage.getItem(PAID_KEY) || "{}");
+          if (typeof paid !== "object" || !paid) paid = {};
+        } catch (e) {
+          paid = {};
+        }
+      }
+
+      function savePaid() {
+        try {
+          localStorage.setItem(PAID_KEY, JSON.stringify(paid));
+        } catch (e) {}
+        updateSummary();
+      }
+
+      function paidKey(year, qid) {
+        return year + "_" + qid;
+      }
+
+      function isPaid(year, qid) {
+        return !!paid[paidKey(year, qid)];
+      }
+
+      function dueDate(year, q) {
+        var y = q.nextYear ? year + 1 : year;
+        return new Date(y, q.month, q.day);
+      }
+
+      function fmtDate(d) {
+        return d.toLocaleDateString("en-US", { weekday: "short", month: "short", day: "numeric", year: "numeric" });
+      }
+
+      function fmtShort(d) {
+        return d.toLocaleDateString("en-US", { month: "short", day: "numeric" });
+      }
+
+      function daysUntil(d) {
+        var now = new Date();
+        now.setHours(0, 0, 0, 0);
+        var target = new Date(d);
+        target.setHours(0, 0, 0, 0);
+        return Math.ceil((target - now) / 86400000);
+      }
+
+      function currentTaxYear() {
+        var now = new Date();
+        return now.getMonth() >= 0 ? now.getFullYear() : now.getFullYear() - 1;
+      }
+
+      function populateYears() {
+        var cy = currentTaxYear();
+        yearEl.innerHTML = "";
+        for (var y = cy - 1; y <= cy + 1; y++) {
+          var opt = document.createElement("option");
+          opt.value = String(y);
+          opt.textContent = String(y);
+          if (y === cy) opt.selected = true;
+          yearEl.appendChild(opt);
+        }
+      }
+
+      function nextUpcoming(year) {
+        var now = new Date();
+        var items = QUARTERS.map(function (q) {
+          return { q: q, date: dueDate(year, q) };
+        }).filter(function (x) {
+          return x.date >= now || !isPaid(year, x.q.id);
+        });
+        for (var i = 0; i < items.length; i++) {
+          if (!isPaid(year, items[i].q.id) && items[i].date >= now) return items[i];
+        }
+        for (var j = 0; j < items.length; j++) {
+          if (!isPaid(year, items[j].q.id)) return items[j];
+        }
+        return items[0] || null;
+      }
+
+      function updateHero(year) {
+        var next = nextUpcoming(year);
+        if (!next) {
+          heroDaysEl.textContent = "✓";
+          heroDaysEl.className = "hero-days past";
+          heroSubEl.textContent = "All quarters marked paid for " + year;
+          heroDateEl.textContent = "";
+          return;
+        }
+        var days = daysUntil(next.date);
+        var paidFlag = isPaid(year, next.q.id);
+        heroDaysEl.className = "hero-days" + (days <= 7 && days >= 0 ? " urgent" : days < 0 ? " past" : "");
+        if (paidFlag) {
+          heroDaysEl.textContent = "✓";
+          heroDaysEl.className = "hero-days past";
+          heroSubEl.textContent = next.q.label + " marked paid — next due " + fmtShort(next.date);
+        } else if (days < 0) {
+          heroDaysEl.textContent = Math.abs(days) + "d late";
+          heroSubEl.textContent = next.q.label + " was due " + fmtShort(next.date);
+        } else if (days === 0) {
+          heroDaysEl.textContent = "Today";
+          heroSubEl.textContent = next.q.label + " estimated tax due today";
+        } else {
+          heroDaysEl.textContent = String(days);
+          heroSubEl.textContent = "days until " + next.q.label + " payment";
+        }
+        heroDateEl.textContent = fmtDate(next.date) + " · " + next.q.period;
+      }
+
+      function updateSummary() {
+        var year = +yearEl.value;
+        var paidCount = QUARTERS.filter(function (q) { return isPaid(year, q.id); }).length;
+        var next = nextUpcoming(year);
+        var summary = paidCount + "/4 paid";
+        if (next && !isPaid(year, next.q.id)) {
+          var days = daysUntil(next.date);
+          summary += " · " + next.q.label + (days >= 0 ? " in " + days + "d" : " overdue");
+        }
+        try { localStorage.setItem(SUMMARY_KEY, summary); } catch (e) {}
+      }
+
+      function renderProgress(year) {
+        var now = new Date();
+        progressEl.innerHTML = QUARTERS.map(function (q) {
+          var d = dueDate(year, q);
+          var cls = "progress-dot";
+          if (isPaid(year, q.id)) cls += " paid";
+          else if (d >= now && nextUpcoming(year) && nextUpcoming(year).q.id === q.id) cls += " next";
+          return '<div class="' + cls + '">' + q.label + '</div>';
+        }).join("");
+      }
+
+      function renderQuarters(year) {
+        var now = new Date();
+        var upcoming = nextUpcoming(year);
+        quartersEl.innerHTML = QUARTERS.map(function (q) {
+          var d = dueDate(year, q);
+          var days = daysUntil(d);
+          var paidFlag = isPaid(year, q.id);
+          var isNext = upcoming && upcoming.q.id === q.id && !paidFlag;
+          var cls = "quarter";
+          if (paidFlag) cls += " paid";
+          else if (isNext) cls += " next";
+          else if (d < now) cls += " past";
+
+          var badge = "";
+          if (paidFlag) badge = '<span class="quarter-badge paid">Paid</span>';
+          else if (isNext) badge = '<span class="quarter-badge next">Next</span>';
+          else if (d < now) badge = '<span class="quarter-badge past">Past due</span>';
+
+          var statusText = paidFlag
+            ? "Marked paid"
+            : days < 0
+              ? "<strong>" + Math.abs(days) + " days overdue</strong>"
+              : days === 0
+                ? "<strong>Due today</strong>"
+                : "<strong>" + days + " days</strong> remaining";
+
+          return (
+            '<div class="' + cls + '" data-qid="' + q.id + '">' +
+              '<input type="checkbox" class="quarter-check" aria-label="Mark ' + q.label + ' paid" ' + (paidFlag ? "checked" : "") + ' data-qid="' + q.id + '">' +
+              '<div class="quarter-body">' +
+                '<div class="quarter-title">' + q.label + ' · ' + q.period + '</div>' +
+                '<div class="quarter-meta">Due <strong>' + fmtDate(d) + '</strong> · ' + statusText + '</div>' +
+              '</div>' +
+              badge +
+            '</div>'
+          );
+        }).join("");
+      }
+
+      function updateNec(year) {
+        var necDate = new Date(year + 1, 0, 31);
+        var days = daysUntil(necDate);
+        var extra = days >= 0 ? " (" + days + " days)" : "";
+        necEl.textContent = "Due " + fmtDate(necDate) + extra + " — furnish 1099-NEC copies to contractors and file with IRS";
+      }
+
+      function render() {
+        var year = +yearEl.value;
+        renderProgress(year);
+        renderQuarters(year);
+        updateHero(year);
+        updateNec(year);
+        updateSummary();
+      }
+
+      function showToast(msg) {
+        toastEl.textContent = msg;
+        toastEl.classList.add("show");
+        setTimeout(function () { toastEl.classList.remove("show"); }, 2000);
+      }
+
+      quartersEl.addEventListener("change", function (e) {
+        if (!e.target.classList.contains("quarter-check")) return;
+        var year = +yearEl.value;
+        var qid = e.target.dataset.qid;
+        if (e.target.checked) paid[paidKey(year, qid)] = true;
+        else delete paid[paidKey(year, qid)];
+        savePaid();
+        render();
+      });
+
+      yearEl.addEventListener("change", render);
+
+      document.getElementById("reset-paid").addEventListener("click", function () {
+        var year = +yearEl.value;
+        QUARTERS.forEach(function (q) { delete paid[paidKey(year, q.id)]; });
+        savePaid();
+        render();
+        showToast("Cleared paid status for " + year);
+      });
+
+      document.getElementById("share").addEventListener("click", function () {
+        var year = +yearEl.value;
+        var next = nextUpcoming(year);
+        if (!next) {
+          showToast("All quarters paid for " + year);
+          return;
+        }
+        var days = daysUntil(next.date);
+        var text = "Quarterly tax: " + next.q.label + " due " + fmtShort(next.date) + (days >= 0 ? " (" + days + " days)" : " — overdue") + " — Quarterly Tax Deadline Pro";
+        if (navigator.share) {
+          navigator.share({ title: "Quarterly Tax Deadline Pro", text: text }).catch(function () {});
+        } else if (navigator.clipboard) {
+          navigator.clipboard.writeText(text).then(function () { showToast("Copied to clipboard"); });
+        } else {
+          showToast(text);
+        }
+      });
+
+      loadPaid();
+      populateYears();
+      render();
+    })();
+  </script>
+</body>
+</html>

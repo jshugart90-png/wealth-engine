@@ -1,4 +1,4 @@
-# TestFlight Master Checklist — All 26 Apps
+# TestFlight Master Checklist — All 27 Apps
 
 **Updated:** 2026-06-22  
 **Repo:** github.com/jshugart90-png/wealth-engine  
@@ -35,6 +35,7 @@
 | 24 | Hourly Rate Calculator Pro | `com.wealthengine.hourlyratecalculatorpro` | 1.0.0 | `beta_hourly_rate_calculator_pro` | `mobile:preflight:hourly-rate-calculator-pro` | READY |
 | 25 | Freelancer Tax Estimator Pro | `com.wealthengine.freelancertaxestimatorpro` | 1.0.0 | `beta_freelancer_tax_estimator_pro` | `mobile:preflight:freelancer-tax-estimator` | READY |
 | 26 | 1099 Threshold Tracker Pro | `com.wealthengine.thresholdtrackerpro` | 1.0.0 | `beta_1099_threshold_tracker_pro` | `mobile:preflight:1099-threshold-tracker-pro` | READY |
+| 27 | Quarterly Tax Deadline Pro | `com.wealthengine.quarterlytaxdeadlinepro` | 1.0.0 | `beta_quarterly_tax_deadline_pro` | `mobile:preflight:quarterly-tax-deadline-pro` | READY |
 
 ## Per-app upload commands (Mac)
 
@@ -83,6 +84,7 @@ cd .. && bundle exec fastlane ios beta_<lane>
 | hourly-rate-calculator-pro | `mobile/hourly-rate-calculator-pro/` | `/hourly-rate-calculator-pro/` |
 | freelancer-tax-estimator | `mobile/freelancer-tax-estimator/` | `/freelancer-tax-estimator/` |
 | 1099-threshold-tracker-pro | `mobile/1099-threshold-tracker-pro/` | `/1099-threshold-tracker-pro/` |
+| quarterly-tax-deadline-pro | `mobile/quarterly-tax-deadline-pro/` | `/quarterly-tax-deadline-pro/` |
 
 ## Global blockers
 
@@ -100,6 +102,7 @@ npm run mobile:preflight:tip-calculator-pro  # expect 17 PASS, 0 FAIL
 npm run mobile:preflight:hourly-rate-calculator-pro  # expect 17 PASS, 0 FAIL
 npm run mobile:preflight:freelancer-tax-estimator  # expect 17 PASS, 0 FAIL
 npm run mobile:preflight:1099-threshold-tracker-pro  # expect 17 PASS, 0 FAIL
+npm run mobile:preflight:quarterly-tax-deadline-pro  # expect 17 PASS, 0 FAIL
 ```
 
 See `board/APP_DEV.md` for per-app features and device checklist (`mobile/DEVICE_TEST_CHECKLIST.md`).

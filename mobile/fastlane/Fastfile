@@ -201,6 +201,11 @@ platform :ios do
     mini_app_ios_beta("1099-threshold-tracker-pro", "1099 Threshold Tracker Pro")
   end
 
+  desc "TestFlight upload for Quarterly Tax Deadline Pro utility app"
+  lane :beta_quarterly_tax_deadline_pro do
+    mini_app_ios_beta("quarterly-tax-deadline-pro", "Quarterly Tax Deadline Pro")
+  end
+
   desc "TestFlight upload + App Store metadata (does not auto-submit for review)"
   lane :release do
     beta

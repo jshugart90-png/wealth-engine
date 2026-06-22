@@ -141,6 +141,16 @@
       "deployPath": "dist/1099-threshold-tracker-pro",
       "channels": ["seo", "app-store", "freelancer-forums"],
       "autonomous": ["shareable-summaries", "local-history"]
+    },
+    {
+      "id": "quarterly-tax-deadline-pro",
+      "name": "Quarterly Tax Deadline Pro",
+      "type": "utility",
+      "model": "free",
+      "path": "ventures/quarterly-tax-deadline-pro",
+      "deployPath": "dist/quarterly-tax-deadline-pro",
+      "channels": ["seo", "app-store", "freelancer-forums"],
+      "autonomous": ["shareable-summaries", "local-history"]
     }
   ],
   "stripeProducts": [
