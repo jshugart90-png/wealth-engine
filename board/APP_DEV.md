@@ -10,7 +10,7 @@
 |-----|-----------|-------|-------|--------|------------|
 | **Horseshoe Games Hub** | `com.wealthengine.gameshub` | **TestFlight prep** | 15 PASS, 0 FAIL, 1 WARN | `99180a7` pushed | **READY** (Mac upload) |
 | **Freelancer Tools** | `com.wealthengine.freelancertools` | **TestFlight prep** | 15 PASS, 0 FAIL | `c9a03f6` pushed | **READY** (Mac upload) |
-| **Receipt Rush** | `com.wealthengine.receiptrush` | **TestFlight prep** | 16 PASS, 0 FAIL, 1 WARN | `1f8a97f` pushed | **READY** (Mac upload) |
+| **Receipt Rush** | `com.wealthengine.receiptrush` | **TestFlight prep** | 16 PASS, 0 FAIL, 1 WARN | `b730bb9` pushed | **READY** (Mac upload) |
 | App 4+ | TBD | Queued | — | — | — |
 
 ## App 1 — Horseshoe Games Hub
@@ -88,8 +88,8 @@ npx cap sync ios && npx cap open ios
 
 ### Features (shipped this session)
 
-1. **Best score** — localStorage persistence with HUD display
-2. **Offline banner** — same pattern as Games Hub / Freelancer Tools
+1. **Launcher with best score** — hub shows `receipt_rush_best` from localStorage before Play
+2. **Offline banner** — launcher + in-game `navigator.onLine` indicator
 
 ### TestFlight upload (user Mac)
 
