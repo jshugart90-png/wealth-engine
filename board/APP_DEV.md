@@ -44,7 +44,7 @@
 | **Invoice Number Rush** | `com.wealthengine.invoicenumberrush` | **TestFlight prep** | 19 PASS, 0 FAIL, 1 WARN | `8ed057d` pushed | **READY** (Mac upload) |
 | **Markup Calculator Pro** | `com.wealthengine.markupcalculatorpro` | **TestFlight prep** | 20 PASS, 0 FAIL | `6f71e2d` pushed | **READY** (Mac upload) |
 | **Day Rate to Hourly Calculator Pro** | `com.wealthengine.dayratecalculatorpro` | **TestFlight prep** | 20 PASS, 0 FAIL | `a5062d9` pushed | **READY** (Mac upload) |
-| **Bill Splitter Pro** | `com.wealthengine.billsplitterpro` | **TestFlight prep** | TBD | TBD | **READY** (Mac upload) |
+| **Bill Splitter Pro** | `com.wealthengine.billsplitterpro` | **TestFlight prep** | 20 PASS, 0 FAIL | `33c8396` pushed | **READY** (Mac upload) |
 
 ## App 1 — Horseshoe Games Hub
 
