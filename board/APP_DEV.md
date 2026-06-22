@@ -22,7 +22,7 @@
 | **SSL Shield** | `com.wealthengine.sslshield` | **TestFlight prep** | 16 PASS, 0 FAIL, 1 WARN | `c09b780` pushed | **READY** (Mac upload) |
 | **NDA Speed Sign** | `com.wealthengine.ndaspeedsign` | **TestFlight prep** | 16 PASS, 0 FAIL, 1 WARN | `94567c8` pushed | **READY** (Mac upload) |
 | **BillSnap** | `com.wealthengine.billsnap` | **TestFlight prep** | 17 PASS, 0 FAIL | `2f614f4` pushed | **READY** (Mac upload) |
-| **StatusPing Lite** | `com.wealthengine.statuspinglite` | **TestFlight prep** | 17 PASS, 0 FAIL | TBD | **READY** (Mac upload) |
+| **StatusPing Lite** | `com.wealthengine.statuspinglite` | **TestFlight prep** | 17 PASS, 0 FAIL | `fed3955` pushed | **READY** (Mac upload) |
 | App 16+ | TBD | Queued | — | — | — |
 
 ## App 1 — Horseshoe Games Hub
