@@ -1,6 +1,6 @@
 /**
  * Sync dist/ assets into Capacitor www folders.
- * Usage: node sync-www.mjs [games|tools|receipt-rush|webhook-whack|invoice-stack|horseshoe-toss|uptime-defender|freelancer-memory|color-switch-snake|all]
+ * Usage: node sync-www.mjs [games|tools|receipt-rush|webhook-whack|invoice-stack|horseshoe-toss|uptime-defender|freelancer-memory|color-switch-snake|word-scramble-biz|net-30-ninja|all]
  */
 import { cpSync, existsSync, mkdirSync, readFileSync, writeFileSync, readdirSync } from "fs";
 import { join, dirname } from "path";
@@ -248,6 +248,34 @@ const MINI_GAME_SHELLS = {
     bestBorder: "#333",
     bestKey: "color_switch_snake_best",
   },
+  "word-scramble-biz": {
+    title: "Word Scramble Biz",
+    emoji: "📝",
+    tagline: "Tap letters to spell business terms!",
+    themeColor: "#fefce8",
+    bg: "#fefce8",
+    text: "#1c1917",
+    sub: "#78716c",
+    accent: "#ca8a04",
+    btnBg: "#ca8a04",
+    btnHover: "#b45309",
+    bestBorder: "#fcd34d",
+    bestKey: "word_scramble_biz_best",
+  },
+  "net-30-ninja": {
+    title: "Net-30 Ninja",
+    emoji: "🥷",
+    tagline: "Jump over late invoices and net-30 traps!",
+    themeColor: "#0f172a",
+    bg: "#0f172a",
+    text: "#e2e8f0",
+    sub: "#94a3b8",
+    accent: "#38bdf8",
+    btnBg: "#2563eb",
+    btnHover: "#1d4ed8",
+    bestBorder: "#334155",
+    bestKey: "net_30_ninja_best",
+  },
 };
 
 function syncMiniGame(slug) {
@@ -323,3 +351,5 @@ if (target === "uptime-defender" || target === "all") syncMiniGame("uptime-defen
 if (target === "freelancer-memory" || target === "all") syncMiniGame("freelancer-memory");
 if (target === "color-switch-snake" || target === "all") syncMiniGame("color-switch-snake");
 if (target === "horseshoe-toss" || target === "all") syncMiniGame("horseshoe-toss");
+if (target === "word-scramble-biz" || target === "all") syncMiniGame("word-scramble-biz");
+if (target === "net-30-ninja" || target === "all") syncMiniGame("net-30-ninja");

@@ -17,7 +17,9 @@
 | **Uptime Defender** | `com.wealthengine.uptimedefender` | **TestFlight prep** | 16 PASS, 0 FAIL, 1 WARN | `3c407bf` pushed | **READY** (Mac upload) |
 | **Freelancer Memory** | `com.wealthengine.freelancermemory` | **TestFlight prep** | 16 PASS, 0 FAIL, 1 WARN | `f435f91` pushed | **READY** (Mac upload) |
 | **Color Switch Snake** | `com.wealthengine.colorswitchsnake` | **TestFlight prep** | 16 PASS, 0 FAIL, 1 WARN | `5280938` pushed | **READY** (Mac upload) |
-| App 10+ | TBD | Queued | — | — | — |
+| **Word Scramble Biz** | `com.wealthengine.wordscramblebiz` | **TestFlight prep** | 16 PASS, 0 FAIL, 1 WARN | pending | **READY** (Mac upload) |
+| **Net-30 Ninja** | `com.wealthengine.net30ninja` | **TestFlight prep** | 16 PASS, 0 FAIL, 1 WARN | pending | **READY** (Mac upload) |
+| App 12+ | TBD | Queued | — | — | — |
 
 ## App 1 — Horseshoe Games Hub
 
@@ -251,7 +253,55 @@ npx cap sync ios && npx cap open ios
 # Or: bundle exec fastlane ios beta_color_switch_snake
 ```
 
-## App 10+ queue
+## App 10 — Word Scramble Biz (mini-app)
+
+| Field | Value |
+|-------|-------|
+| Version | 1.0.0 |
+| Game | Word Scramble Biz (single-game Capacitor shell) |
+| Capacitor | `mobile/word-scramble-biz/` → loads `/games/word-scramble-biz/` from prod |
+| Store metadata | `mobile/store-metadata/word-scramble-biz/` |
+| Preflight | `npm run mobile:preflight:word-scramble-biz` |
+
+### Features (shipped this session)
+
+1. **Best score** — localStorage `word_scramble_biz_best` with launcher + in-game HUD
+2. **Offline banner** — same pattern as Games Hub / Receipt Rush
+
+### TestFlight upload (user Mac)
+
+```bash
+npm run build && cd mobile && node sync-www.mjs word-scramble-biz
+cd word-scramble-biz && npm install && npx cap add ios  # if missing
+npx cap sync ios && npx cap open ios
+# Or: bundle exec fastlane ios beta_word_scramble_biz
+```
+
+## App 11 — Net-30 Ninja (mini-app)
+
+| Field | Value |
+|-------|-------|
+| Version | 1.0.0 |
+| Game | Net-30 Ninja (single-game Capacitor shell) |
+| Capacitor | `mobile/net-30-ninja/` → loads `/games/net-30-ninja/` from prod |
+| Store metadata | `mobile/store-metadata/net-30-ninja/` |
+| Preflight | `npm run mobile:preflight:net-30-ninja` |
+
+### Features (shipped this session)
+
+1. **Best score** — localStorage `net_30_ninja_best` with launcher + in-game HUD
+2. **Offline banner** — same pattern as Games Hub / Receipt Rush
+
+### TestFlight upload (user Mac)
+
+```bash
+npm run build && cd mobile && node sync-www.mjs net-30-ninja
+cd net-30-ninja && npm install && npx cap add ios  # if missing
+npx cap sync ios && npx cap open ios
+# Or: bundle exec fastlane ios beta_net_30_ninja
+```
+
+## App 12+ queue
 
 From `board/GAMES.md` or new simple utilities (calculators, timers) as standalone Capacitor shells.
 

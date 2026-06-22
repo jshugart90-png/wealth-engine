@@ -111,6 +111,16 @@ platform :ios do
     mini_app_ios_beta("color-switch-snake", "Color Switch Snake")
   end
 
+  desc "TestFlight upload for Word Scramble Biz mini-app"
+  lane :beta_word_scramble_biz do
+    mini_app_ios_beta("word-scramble-biz", "Word Scramble Biz")
+  end
+
+  desc "TestFlight upload for Net-30 Ninja mini-app"
+  lane :beta_net_30_ninja do
+    mini_app_ios_beta("net-30-ninja", "Net-30 Ninja")
+  end
+
   desc "TestFlight upload + App Store metadata (does not auto-submit for review)"
   lane :release do
     beta

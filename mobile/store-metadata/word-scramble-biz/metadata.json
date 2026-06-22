@@ -1,0 +1,22 @@
+{
+  "appName": "Word Scramble Biz",
+  "subtitle": "Unscramble business terms",
+  "bundleId": "com.wealthengine.wordscramblebiz",
+  "version": "1.0.0",
+  "privacyPolicyUrl": "https://wealth-engine-0qlj.onrender.com/privacy.html",
+  "supportUrl": "https://wealth-engine-0qlj.onrender.com/",
+  "marketingUrl": "https://wealth-engine-0qlj.onrender.com/games/word-scramble-biz/",
+  "category": {
+    "apple": "Games",
+    "appleSub": "Word",
+    "google": "GAME_WORD"
+  },
+  "contentRating": {
+    "ageRating": "4+",
+    "googleQuestionnaire": "Everyone — no violence, no user-generated content, optional ads",
+    "adsPresent": true,
+    "inAppPurchases": false,
+    "dataCollected": ["best score stored locally only"]
+  },
+  "keywords": ["word", "scramble", "puzzle", "business", "vocabulary", "spelling", "freelancer", "free", "game", "education"]
+}
