@@ -10,7 +10,7 @@
 | # | App | Bundle ID | Version | Fastlane lane | Preflight | Status |
 |---|-----|-----------|---------|---------------|-----------|--------|
 | 1 | Horseshoe Games Hub | `com.wealthengine.gameshub` | 1.0.1 | `beta` | `mobile:preflight` | READY |
-| 2 | Freelancer Tools | `com.wealthengine.freelancertools` | 1.0.0 | manual¹ | `mobile:preflight:tools` | READY |
+| 2 | Freelancer Tools | `com.wealthengine.freelancertools` | 1.0.0 | `beta_freelancer_tools` | `mobile:preflight:tools` | READY |
 | 3 | Receipt Rush | `com.wealthengine.receiptrush` | 1.0.0 | `beta_receipt_rush` | `mobile:preflight:receipt-rush` | READY |
 | 4 | Webhook Whack | `com.wealthengine.webhookwhack` | 1.0.0 | `beta_webhook_whack` | `mobile:preflight:webhook-whack` | READY |
 | 5 | Invoice Stack | `com.wealthengine.invoicestack` | 1.0.0 | `beta_invoice_stack` | `mobile:preflight:invoice-stack` | READY |
@@ -31,8 +31,6 @@
 | 20 | MeetingCost | `com.wealthengine.meetingcost` | 1.0.0 | `beta_meetingcost` | `mobile:preflight:meetingcost` | READY |
 | 21 | TemplateForge | `com.wealthengine.templateforge` | 1.0.0 | `beta_templateforge` | `mobile:preflight:templateforge` | READY |
 | 22 | CompareStack | `com.wealthengine.comparestack` | 1.0.0 | `beta_comparestack` | `mobile:preflight:comparestack` | READY |
-
-¹ Freelancer Tools has no dedicated Fastlane lane yet — use `mobile/APP_STORE_MANUAL_STEPS.md` or add `beta_tools` lane.
 
 ## Per-app upload commands (Mac)
 
@@ -90,6 +88,7 @@ cd .. && bundle exec fastlane ios beta_<lane>
 ```bash
 npm run mobile:preflight:templateforge   # expect 17 PASS, 0 FAIL
 npm run mobile:preflight:comparestack    # expect 17 PASS, 0 FAIL
+npm run mobile:preflight:tip-calculator-pro  # expect 17 PASS, 0 FAIL
 ```
 
 See `board/APP_DEV.md` for per-app features and device checklist (`mobile/DEVICE_TEST_CHECKLIST.md`).
