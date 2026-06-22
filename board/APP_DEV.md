@@ -20,7 +20,7 @@
 | **Word Scramble Biz** | `com.wealthengine.wordscramblebiz` | **TestFlight prep** | 16 PASS, 0 FAIL, 1 WARN | `bbb87ca` pushed | **READY** (Mac upload) |
 | **Net-30 Ninja** | `com.wealthengine.net30ninja` | **TestFlight prep** | 16 PASS, 0 FAIL, 1 WARN | `aea2139` pushed | **READY** (Mac upload) |
 | **SSL Shield** | `com.wealthengine.sslshield` | **TestFlight prep** | 16 PASS, 0 FAIL, 1 WARN | `c09b780` pushed | **READY** (Mac upload) |
-| **NDA Speed Sign** | `com.wealthengine.ndaspeedsign` | **TestFlight prep** | 16 PASS, 0 FAIL, 1 WARN | TBD pushed | **READY** (Mac upload) |
+| **NDA Speed Sign** | `com.wealthengine.ndaspeedsign` | **TestFlight prep** | 16 PASS, 0 FAIL, 1 WARN | `94567c8` pushed | **READY** (Mac upload) |
 | App 14+ | TBD | Queued | — | — | — |
 
 ## App 1 — Horseshoe Games Hub
