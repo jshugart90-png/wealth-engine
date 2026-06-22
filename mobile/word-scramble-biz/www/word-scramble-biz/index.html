@@ -115,13 +115,9 @@ function check(){
   }
 }
 
-const BEST_KEY='word_scramble_biz_best';
-function saveBest(){
-  try{var b=parseInt(localStorage.getItem(BEST_KEY)||'0',10);if(score>b)localStorage.setItem(BEST_KEY,String(score))}catch(e){}
-}
 function endGame(){
   gameOver=true;
-  saveBest();
+  if(score>best){best=score;try{localStorage.setItem(BEST_KEY,String(best))}catch(e){}document.getElementById('best').textContent=best;}
   document.getElementById('msg').textContent='🏆 Done! Final score: '+score+'/100+';
   document.getElementById('restart').style.display='block';
   document.getElementById('letters').innerHTML='';
