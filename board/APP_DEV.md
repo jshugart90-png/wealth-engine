@@ -30,6 +30,7 @@
 | **MeetingCost** | `com.wealthengine.meetingcost` | **TestFlight prep** | 17 PASS, 0 FAIL | `c26a038` pushed | **READY** (Mac upload) |
 | **TemplateForge** | `com.wealthengine.templateforge` | **TestFlight prep** | 17 PASS, 0 FAIL | `0dc927a` pushed | **READY** (Mac upload) |
 | **CompareStack** | `com.wealthengine.comparestack` | **TestFlight prep** | 17 PASS, 0 FAIL | `0dc927a` pushed | **READY** (Mac upload) |
+| **Tip Calculator Pro** | `com.wealthengine.tipcalculatorpro` | **TestFlight prep** | 17 PASS, 0 FAIL | pending | **READY** (Mac upload) |
 
 ## App 1 — Horseshoe Games Hub
 
@@ -91,7 +92,7 @@ See `mobile/DEVICE_TEST_CHECKLIST.md`
 npm run build && cd mobile && node sync-www.mjs tools
 cd tools && npm install && npx cap add ios  # if missing
 npx cap sync ios && npx cap open ios
-# Or extend Fastlane — see mobile/APP_STORE_MANUAL_STEPS.md
+# Or: bundle exec fastlane ios beta_freelancer_tools
 ```
 
 ## App 3 — Receipt Rush (mini-app)
@@ -578,9 +579,34 @@ npx cap sync ios && npx cap open ios
 # Or: bundle exec fastlane ios beta_comparestack
 ```
 
+## App 23 — Tip Calculator Pro (utility)
+
+| Field | Value |
+|-------|-------|
+| Version | 1.0.0 |
+| Tool | Tip Calculator Pro — split bills, tip presets, round-up (standalone Capacitor shell) |
+| Capacitor | `mobile/tip-calculator-pro/` → loads `/tip-calculator-pro/` from prod |
+| Store metadata | `mobile/store-metadata/tip-calculator-pro/` |
+| Preflight | `npm run mobile:preflight:tip-calculator-pro` |
+
+### Features (shipped this session)
+
+1. **Last total** — localStorage `tipcalcpro_last` with launcher + calc save
+2. **Native UI** — dark theme, tip presets, per-person breakdown, round-up toggle
+3. **Offline banner** — native launcher with feature highlights and offline message
+
+### TestFlight upload (user Mac)
+
+```bash
+npm run build && cd mobile && node sync-www.mjs tip-calculator-pro
+cd tip-calculator-pro && npm install && npx cap add ios  # if missing
+npx cap sync ios && npx cap open ios
+# Or: bundle exec fastlane ios beta_tip_calculator_pro
+```
+
 ## Master checklist
 
-See `mobile/TESTFLIGHT_ALL_APPS.md` for all 22 apps — bundle IDs, Fastlane lanes, versions.
+See `mobile/TESTFLIGHT_ALL_APPS.md` for all 23 apps — bundle IDs, Fastlane lanes, versions.
 
 ## GitHub policy
 

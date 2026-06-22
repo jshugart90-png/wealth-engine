@@ -1,0 +1,16 @@
+Tip Calculator Pro makes splitting restaurant bills effortless — calculate gratuity, divide totals, and share per-person amounts in seconds.
+
+Built for diners, groups, and anyone who wants a clean, fast tip calculator without ads or signup walls.
+
+Features:
+• One-tap tip presets (15%, 18%, 20%, 25%) plus custom percentage
+• Split between 1–99 people with +/- controls
+• Round total up to the nearest dollar
+• Per-person breakdown with tip, total, and subtotal
+• Share split summary via system share sheet
+• Dark native-style UI optimized for one-handed use
+• Works offline after first load
+
+Free forever — no in-app purchases, no ads.
+
+Privacy: All calculations stay on your device. Last result saved locally only.

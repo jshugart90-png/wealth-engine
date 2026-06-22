@@ -101,6 +101,16 @@
       "deployPath": "dist/hookrelay",
       "channels": ["dev-communities", "seo", "api-directories"],
       "autonomous": ["stripe-billing", "webhook-forward"]
+    },
+    {
+      "id": "tip-calculator-pro",
+      "name": "Tip Calculator Pro",
+      "type": "utility",
+      "model": "free",
+      "path": "ventures/tip-calculator-pro",
+      "deployPath": "dist/tip-calculator-pro",
+      "channels": ["seo", "app-store", "restaurant-travel"],
+      "autonomous": ["shareable-summaries", "local-history"]
     }
   ],
   "stripeProducts": [

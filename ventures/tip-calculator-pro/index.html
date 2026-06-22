@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Tip Calculator Pro — Split bills & gratuity</title>
+  <meta name="description" content="Fast tip calculator with split bills, round-up, and per-person breakdown. Free — no ads.">
+  <meta name="theme-color" content="#0f172a">
+  <style>
+    :root {
+      --bg: #0f172a;
+      --card: #1e293b;
+      --border: #334155;
+      --text: #f1f5f9;
+      --muted: #94a3b8;
+      --accent: #38bdf8;
+      --accent-dim: #0ea5e9;
+      --success: #34d399;
+      --danger: #f87171;
+    }
+    * { box-sizing: border-box; }
+    body {
+      font-family: system-ui, -apple-system, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      margin: 0;
+      min-height: 100vh;
+      padding: max(16px, env(safe-area-inset-top)) 16px max(32px, env(safe-area-inset-bottom));
+    }
+    .wrap { max-width: 420px; margin: 0 auto; }
+    h1 { font-size: 1.5rem; margin: 8px 0 4px; font-weight: 700; }
+    .tagline { color: var(--muted); font-size: 0.9rem; margin-bottom: 20px; }
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 20px;
+      margin-bottom: 16px;
+    }
+    label {
+      display: block;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--muted);
+      margin-bottom: 6px;
+    }
+    input[type="number"] {
+      width: 100%;
+      font-size: 1.75rem;
+      font-weight: 600;
+      padding: 14px 16px;
+      border: 2px solid var(--border);
+      border-radius: 12px;
+      background: var(--bg);
+      color: var(--text);
+      -webkit-appearance: none;
+      appearance: none;
+    }
+    input[type="number"]:focus {
+      outline: none;
+      border-color: var(--accent);
+    }
+    .tip-row {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 8px;
+      margin: 12px 0 16px;
+    }
+    .tip-btn {
+      padding: 12px 8px;
+      border: 2px solid var(--border);
+      border-radius: 10px;
+      background: var(--bg);
+      color: var(--text);
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: 0.15s;
+    }
+    .tip-btn.active {
+      border-color: var(--accent);
+      background: rgba(56, 189, 248, 0.15);
+      color: var(--accent);
+    }
+    .split-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .split-btn {
+      width: 48px;
+      height: 48px;
+      border: 2px solid var(--border);
+      border-radius: 12px;
+      background: var(--bg);
+      color: var(--text);
+      font-size: 1.4rem;
+      font-weight: 700;
+      cursor: pointer;
+    }
+    .split-btn:active { background: var(--border); }
+    #split { flex: 1; text-align: center; font-size: 1.5rem; }
+    .toggle-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 0 0;
+      border-top: 1px solid var(--border);
+      margin-top: 16px;
+    }
+    .toggle-row span { font-size: 0.95rem; }
+    .switch {
+      position: relative;
+      width: 52px;
+      height: 30px;
+    }
+    .switch input { opacity: 0; width: 0; height: 0; }
+    .slider {
+      position: absolute;
+      inset: 0;
+      background: var(--border);
+      border-radius: 30px;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+    .slider::before {
+      content: "";
+      position: absolute;
+      width: 24px;
+      height: 24px;
+      left: 3px;
+      bottom: 3px;
+      background: #fff;
+      border-radius: 50%;
+      transition: 0.2s;
+    }
+    .switch input:checked + .slider { background: var(--accent-dim); }
+    .switch input:checked + .slider::before { transform: translateX(22px); }
+    .result-card {
+      text-align: center;
+      padding: 24px 16px;
+    }
+    .result-main {
+      font-size: 2.5rem;
+      font-weight: 800;
+      color: var(--success);
+      line-height: 1.1;
+      margin-bottom: 8px;
+    }
+    .result-sub { color: var(--muted); font-size: 1rem; line-height: 1.5; }
+    .result-sub strong { color: var(--text); }
+    .breakdown {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-top: 16px;
+    }
+    .breakdown-item {
+      background: var(--bg);
+      border-radius: 10px;
+      padding: 12px;
+      text-align: center;
+    }
+    .breakdown-item .val { font-size: 1.2rem; font-weight: 700; color: var(--accent); }
+    .breakdown-item .lbl { font-size: 0.7rem; color: var(--muted); text-transform: uppercase; margin-top: 4px; }
+    .actions {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-top: 16px;
+    }
+    .btn {
+      padding: 14px;
+      border: none;
+      border-radius: 12px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      cursor: pointer;
+    }
+    .btn-primary { background: var(--accent-dim); color: #fff; }
+    .btn-secondary { background: var(--card); color: var(--text); border: 2px solid var(--border); }
+    .btn:active { opacity: 0.85; }
+    .toast {
+      position: fixed;
+      bottom: 24px;
+      left: 50%;
+      transform: translateX(-50%) translateY(80px);
+      background: var(--success);
+      color: #064e3b;
+      padding: 12px 20px;
+      border-radius: 10px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      transition: transform 0.25s;
+      z-index: 100;
+    }
+    .toast.show { transform: translateX(-50%) translateY(0); }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <h1>Tip Calculator Pro</h1>
+    <p class="tagline">Split bills, calculate gratuity, round up totals</p>
+
+    <div class="card">
+      <label for="bill">Bill amount</label>
+      <input type="number" id="bill" value="50" step="0.01" min="0" inputmode="decimal">
+
+      <label style="margin-top:16px">Tip percentage</label>
+      <div class="tip-row" id="tip-presets">
+        <button type="button" class="tip-btn" data-pct="15">15%</button>
+        <button type="button" class="tip-btn active" data-pct="18">18%</button>
+        <button type="button" class="tip-btn" data-pct="20">20%</button>
+        <button type="button" class="tip-btn" data-pct="25">25%</button>
+      </div>
+      <input type="number" id="pct" value="18" min="0" max="100" step="0.5" inputmode="decimal" style="font-size:1.1rem;padding:10px 14px">
+
+      <label style="margin-top:16px">Split between</label>
+      <div class="split-row">
+        <button type="button" class="split-btn" id="split-minus" aria-label="Decrease split">−</button>
+        <input type="number" id="split" value="2" min="1" max="99" inputmode="numeric">
+        <button type="button" class="split-btn" id="split-plus" aria-label="Increase split">+</button>
+      </div>
+
+      <div class="toggle-row">
+        <span>Round total up to nearest dollar</span>
+        <label class="switch">
+          <input type="checkbox" id="round-up">
+          <span class="slider"></span>
+        </label>
+      </div>
+    </div>
+
+    <div class="card result-card">
+      <div class="result-main" id="per-person">$29.50</div>
+      <div class="result-sub" id="summary">$9.00 tip · $59.00 total · 2 people</div>
+      <div class="breakdown">
+        <div class="breakdown-item">
+          <div class="val" id="tip-amt">$9.00</div>
+          <div class="lbl">Tip</div>
+        </div>
+        <div class="breakdown-item">
+          <div class="val" id="total-amt">$59.00</div>
+          <div class="lbl">Total</div>
+        </div>
+        <div class="breakdown-item">
+          <div class="val" id="bill-amt">$50.00</div>
+          <div class="lbl">Subtotal</div>
+        </div>
+        <div class="breakdown-item">
+          <div class="val" id="each-bill">$25.00</div>
+          <div class="lbl">Bill / person</div>
+        </div>
+      </div>
+      <div class="actions">
+        <button type="button" class="btn btn-secondary" id="reset">Reset</button>
+        <button type="button" class="btn btn-primary" id="share">Share split</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="toast" id="toast" role="status"></div>
+
+  <script>
+    (function () {
+      var billEl = document.getElementById("bill");
+      var pctEl = document.getElementById("pct");
+      var splitEl = document.getElementById("split");
+      var roundEl = document.getElementById("round-up");
+      var perPersonEl = document.getElementById("per-person");
+      var summaryEl = document.getElementById("summary");
+      var tipAmtEl = document.getElementById("tip-amt");
+      var totalAmtEl = document.getElementById("total-amt");
+      var billAmtEl = document.getElementById("bill-amt");
+      var eachBillEl = document.getElementById("each-bill");
+      var toastEl = document.getElementById("toast");
+      var STORAGE_KEY = "tipcalcpro_last";
+
+      function fmt(n) {
+        return "$" + n.toFixed(2);
+      }
+
+      function showToast(msg) {
+        toastEl.textContent = msg;
+        toastEl.classList.add("show");
+        setTimeout(function () { toastEl.classList.remove("show"); }, 2000);
+      }
+
+      function setActivePreset(pct) {
+        document.querySelectorAll(".tip-btn").forEach(function (btn) {
+          btn.classList.toggle("active", +btn.dataset.pct === pct);
+        });
+      }
+
+      function calc() {
+        var bill = Math.max(0, +billEl.value || 0);
+        var pct = Math.max(0, +pctEl.value || 0);
+        var split = Math.max(1, Math.min(99, Math.round(+splitEl.value || 1)));
+        splitEl.value = split;
+
+        var tip = bill * pct / 100;
+        var total = bill + tip;
+        if (roundEl.checked) {
+          total = Math.ceil(total);
+          tip = total - bill;
+        }
+
+        var perPerson = total / split;
+        var billPer = bill / split;
+
+        perPersonEl.textContent = fmt(perPerson);
+        summaryEl.innerHTML = "<strong>" + fmt(tip) + "</strong> tip · <strong>" + fmt(total) + "</strong> total · " + split + " " + (split === 1 ? "person" : "people");
+        tipAmtEl.textContent = fmt(tip);
+        totalAmtEl.textContent = fmt(total);
+        billAmtEl.textContent = fmt(bill);
+        eachBillEl.textContent = fmt(billPer);
+
+        var summary = fmt(perPerson) + "/person · " + fmt(total) + " total";
+        try { localStorage.setItem(STORAGE_KEY, summary); } catch (e) {}
+      }
+
+      document.querySelectorAll(".tip-btn").forEach(function (btn) {
+        btn.addEventListener("click", function () {
+          pctEl.value = btn.dataset.pct;
+          setActivePreset(+btn.dataset.pct);
+          calc();
+        });
+      });
+
+      document.getElementById("split-minus").addEventListener("click", function () {
+        splitEl.value = Math.max(1, (+splitEl.value || 1) - 1);
+        calc();
+      });
+      document.getElementById("split-plus").addEventListener("click", function () {
+        splitEl.value = Math.min(99, (+splitEl.value || 1) + 1);
+        calc();
+      });
+
+      [billEl, pctEl, splitEl].forEach(function (el) {
+        el.addEventListener("input", function () {
+          setActivePreset(+pctEl.value);
+          calc();
+        });
+      });
+      roundEl.addEventListener("change", calc);
+
+      document.getElementById("reset").addEventListener("click", function () {
+        billEl.value = "50";
+        pctEl.value = "18";
+        splitEl.value = "2";
+        roundEl.checked = false;
+        setActivePreset(18);
+        calc();
+      });
+
+      document.getElementById("share").addEventListener("click", function () {
+        var bill = +billEl.value || 0;
+        var pct = +pctEl.value || 0;
+        var split = +splitEl.value || 1;
+        var text = "Bill split: " + perPersonEl.textContent + " per person (" + split + " people, " + pct + "% tip on " + fmt(bill) + ")";
+        if (navigator.share) {
+          navigator.share({ title: "Tip Calculator Pro", text: text }).catch(function () {});
+        } else if (navigator.clipboard) {
+          navigator.clipboard.writeText(text).then(function () { showToast("Copied to clipboard"); });
+        } else {
+          showToast(text);
+        }
+      });
+
+      var params = new URLSearchParams(location.search);
+      if (params.has("b")) billEl.value = params.get("b");
+      if (params.has("p")) { pctEl.value = params.get("p"); setActivePreset(+params.get("p")); }
+      if (params.has("s")) splitEl.value = params.get("s");
+      if (params.has("r")) roundEl.checked = params.get("r") === "1";
+
+      setActivePreset(+pctEl.value);
+      calc();
+    })();
+  </script>
+</body>
+</html>

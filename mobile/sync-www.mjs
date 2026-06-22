@@ -1,6 +1,6 @@
 /**
  * Sync dist/ assets into Capacitor www folders.
- * Usage: node sync-www.mjs [games|tools|receipt-rush|webhook-whack|invoice-stack|horseshoe-toss|uptime-defender|freelancer-memory|color-switch-snake|word-scramble-biz|net-30-ninja|ssl-shield|nda-speed-sign|billsnap|statusping-lite|leaselens|ndagen|hookrelay|pipekit|meetingcost|templateforge|comparestack|all]
+ * Usage: node sync-www.mjs [games|tools|receipt-rush|webhook-whack|invoice-stack|horseshoe-toss|uptime-defender|freelancer-memory|color-switch-snake|word-scramble-biz|net-30-ninja|ssl-shield|nda-speed-sign|billsnap|statusping-lite|leaselens|ndagen|hookrelay|pipekit|meetingcost|templateforge|comparestack|tip-calculator-pro|all]
  */
 import { cpSync, existsSync, mkdirSync, readFileSync, writeFileSync, readdirSync } from "fs";
 import { join, dirname } from "path";
@@ -540,6 +540,32 @@ const UTILITY_SHELLS = {
       "Recently viewed saved on your device",
     ],
   },
+  "tip-calculator-pro": {
+    title: "Tip Calculator Pro",
+    emoji: "🧾",
+    tagline: "Split bills, calculate tips, per-person breakdown",
+    themeColor: "#0f172a",
+    bg: "#0f172a",
+    text: "#f8fafc",
+    sub: "#94a3b8",
+    accent: "#22c55e",
+    btnBg: "#22c55e",
+    btnHover: "#16a34a",
+    statBg: "#1e293b",
+    statBorder: "#334155",
+    statKey: "tipcalcpro_last",
+    statLabel: "Last total",
+    statEmpty: "—",
+    cta: "Calculate Tip",
+    moreLink: "https://wealth-engine-0qlj.onrender.com/go/invoice.html",
+    moreLabel: "Invoice PDF $3",
+    offlineMsg: "You're offline — open Tip Calculator Pro if you've used it before",
+    features: [
+      "One-tap tip presets — 15%, 18%, 20%, 25%",
+      "Split between any number of people",
+      "Round up and copy summary to share",
+    ],
+  },
 };
 
 function syncUtility(slug) {
@@ -694,6 +720,7 @@ if (target === "pipekit" || target === "all") syncUtility("pipekit");
 if (target === "meetingcost" || target === "all") syncUtility("meetingcost");
 if (target === "templateforge" || target === "all") syncUtility("templateforge");
 if (target === "comparestack" || target === "all") syncUtility("comparestack");
+if (target === "tip-calculator-pro" || target === "all") syncUtility("tip-calculator-pro");
 if (target === "receipt-rush" || target === "all") syncMiniGame("receipt-rush");
 if (target === "webhook-whack" || target === "all") syncMiniGame("webhook-whack");
 if (target === "invoice-stack" || target === "all") syncMiniGame("invoice-stack");

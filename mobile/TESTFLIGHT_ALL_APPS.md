@@ -1,4 +1,4 @@
-# TestFlight Master Checklist — All 22 Apps
+# TestFlight Master Checklist — All 23 Apps
 
 **Updated:** 2026-06-22  
 **Repo:** github.com/jshugart90-png/wealth-engine  
@@ -31,6 +31,7 @@
 | 20 | MeetingCost | `com.wealthengine.meetingcost` | 1.0.0 | `beta_meetingcost` | `mobile:preflight:meetingcost` | READY |
 | 21 | TemplateForge | `com.wealthengine.templateforge` | 1.0.0 | `beta_templateforge` | `mobile:preflight:templateforge` | READY |
 | 22 | CompareStack | `com.wealthengine.comparestack` | 1.0.0 | `beta_comparestack` | `mobile:preflight:comparestack` | READY |
+| 23 | Tip Calculator Pro | `com.wealthengine.tipcalculatorpro` | 1.0.0 | `beta_tip_calculator_pro` | `mobile:preflight:tip-calculator-pro` | READY |
 
 ## Per-app upload commands (Mac)
 
@@ -75,6 +76,7 @@ cd .. && bundle exec fastlane ios beta_<lane>
 | meetingcost | `mobile/meetingcost/` | `/meetingcost/` |
 | templateforge | `mobile/templateforge/` | `/templateforge/` |
 | comparestack | `mobile/comparestack/` | `/comparestack/` |
+| tip-calculator-pro | `mobile/tip-calculator-pro/` | `/tip-calculator-pro/` |
 
 ## Global blockers
 
