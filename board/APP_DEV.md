@@ -48,6 +48,7 @@
 | **Percentage Calculator Pro** | `com.wealthengine.percentagecalculatorpro` | **TestFlight prep** | 20 PASS, 0 FAIL | `9b4ef56` pushed | **READY** (Mac upload) |
 | **Renter Toolkit** | `com.wealthengine.rentertoolkit` | **TestFlight prep** | 23 PASS, 0 FAIL | `84613de` pushed | **READY** (Mac upload) |
 | **1099 Deadline Suite** | `com.wealthengine.1099suite` | **TestFlight prep** | 25 PASS, 0 FAIL | `72b1aae` | **READY** (Mac upload) |
+| **StatusPing Agency** | `com.wealthengine.statuspingagency` | **TestFlight prep** | 25 PASS, 0 FAIL | pending | **READY** (Mac upload) |
 
 ## App 1 — Horseshoe Games Hub
 
@@ -987,9 +988,37 @@ npx cap sync ios && npx cap open ios
 # Or: bundle exec fastlane ios beta_1099_suite
 ```
 
+## App 41 — StatusPing Agency (hub)
+
+| Field | Value |
+|-------|-------|
+| Version | 1.0.0 |
+| Tools | StatusPing + SSL Expiry + Cron Helper + Agency Compare |
+| Capacitor | `mobile/statusping-agency/` → loads `/go/statusping-agency.html` from prod |
+| Store metadata | `mobile/store-metadata/statusping-agency/` |
+| Preflight | `npm run mobile:preflight:statusping-agency` |
+
+### Features (shipped this session)
+
+1. **Native launcher** — 5-tool grid with recently used tracking
+2. **Agency landing** — local copy of `/go/statusping-agency.html` with $49/mo checkout
+3. **Agency push** — local notifications for weekly client review, SSL review, monthly billing
+4. **Client CSV export** — Excel-compatible export from agency client roster localStorage
+5. **Workspace count stat** — client count vs 10-workspace limit on launcher
+6. **IAP wired** — pro_unlock linked to Stripe SKU `agency-monthly`
+
+### TestFlight upload (user Mac)
+
+```bash
+npm run build && cd mobile && node sync-www.mjs statusping-agency
+cd statusping-agency && npm install && npx cap add ios  # if missing
+npx cap sync ios && npx cap open ios
+# Or: bundle exec fastlane ios beta_statusping_agency
+```
+
 ## Master checklist
 
-See `mobile/TESTFLIGHT_ALL_APPS.md` for all 40 apps — bundle IDs, Fastlane lanes, versions.
+See `mobile/TESTFLIGHT_ALL_APPS.md` for all 41 apps — bundle IDs, Fastlane lanes, versions.
 
 ## GitHub policy
 

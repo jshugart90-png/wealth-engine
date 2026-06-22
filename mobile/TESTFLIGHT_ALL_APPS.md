@@ -1,4 +1,4 @@
-# TestFlight Master Checklist — All 40 Apps
+# TestFlight Master Checklist — All 41 Apps
 
 **Updated:** 2026-06-22  
 **Repo:** github.com/jshugart90-png/wealth-engine  
@@ -49,8 +49,9 @@
 | 38 | Percentage Calculator Pro | `com.wealthengine.percentagecalculatorpro` | 1.0.0 | 1 | `beta_percentage_calculator_pro` | `mobile:preflight:percentage-calculator-pro` | READY |
 | 39 | Renter Toolkit | `com.wealthengine.rentertoolkit` | 1.0.0 | 1 | `beta_renter_toolkit` | `mobile:preflight:renter-toolkit` | READY |
 | 40 | 1099 Deadline Suite | `com.wealthengine.1099suite` | 1.0.0 | 1 | `beta_1099_suite` | `mobile:preflight:1099-suite` | READY |
+| 41 | StatusPing Agency | `com.wealthengine.statuspingagency` | 1.0.0 | 1 | `beta_statusping_agency` | `mobile:preflight:statusping-agency` | READY |
 
-**IAP totals:** 66 products (13 games × 3 + Games Hub × 3 + 27 utilities × 1) · Catalog: `config/mobile-iap-products.json` · Setup: `mobile/APP_STORE_CONNECT_IAP_SETUP.md`
+**IAP totals:** 67 products (13 games × 3 + Games Hub × 3 + 28 utilities × 1) · Catalog: `config/mobile-iap-products.json` · Setup: `mobile/APP_STORE_CONNECT_IAP_SETUP.md`
 
 **Validation:** `npm run mobile:ios-checklist` (all apps) · `npm run mobile:storekit:generate` (Xcode local testing)
 
@@ -113,6 +114,7 @@ cd .. && bundle exec fastlane ios beta_<lane>
 | renter-toolkit | `mobile/renter-toolkit/` | `/bundles/landlord-tenant-stack.html` |
 | hookrelay-dlq | `mobile/hookrelay-dlq/` | `/go/hookrelay-dlq.html` |
 | 1099-suite | `mobile/1099-suite/` | `/go/1099-deadline.html` |
+| statusping-agency | `mobile/statusping-agency/` | `/go/statusping-agency.html` |
 
 ## Global blockers
 

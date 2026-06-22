@@ -32,6 +32,8 @@
     "sync:renter-toolkit": "node sync-www.mjs renter-toolkit && cd renter-toolkit && npx cap sync",
     "sync:hookrelay-dlq": "node sync-www.mjs hookrelay-dlq && cd hookrelay-dlq && npx cap sync",
     "sync:1099-suite": "node sync-www.mjs 1099-suite && cd 1099-suite && npx cap sync",
+    "sync:statusping-agency": "node sync-www.mjs statusping-agency && cd statusping-agency && npx cap sync",
+    "sync:statusping-agency": "node sync-www.mjs statusping-agency && cd statusping-agency && npx cap sync",
     "android:games": "cd games && npx cap sync android && cd android && ./gradlew assembleDebug",
     "android:tools": "cd tools && npx cap sync android && cd android && ./gradlew assembleDebug",
     "android:receipt-rush": "cd receipt-rush && npx cap sync android && cd android && ./gradlew assembleDebug",

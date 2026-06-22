@@ -6,7 +6,12 @@ import { cpSync, existsSync, mkdirSync, readFileSync, writeFileSync, readdirSync
 import { join, dirname } from "path";
 import { fileURLToPath } from "url";
 import { execSync } from "child_process";
-import { deadlinePushInlineScript, contractorCsvExportScript } from "./shared/push.mjs";
+import {
+  deadlinePushInlineScript,
+  contractorCsvExportScript,
+  agencyPushInlineScript,
+  agencyClientCsvExportScript,
+} from "./shared/push.mjs";
 
 const mobileRoot = join(dirname(fileURLToPath(import.meta.url)));
 const repoRoot = join(mobileRoot, "..");
@@ -947,6 +952,202 @@ p{margin:0 0 10px;color:#94a3b8;font-size:14px}
   console.log("Synced 1099-suite → mobile/1099-suite/www");
 }
 
+function syncStatuspingAgency() {
+  const www = join(mobileRoot, "statusping-agency", "www");
+  mkdirSync(www, { recursive: true });
+
+  const tools = [
+    {
+      href: "go/statusping-agency.html",
+      slug: "landing",
+      title: "Agency Landing",
+      desc: "$49/mo — 10 workspaces, white-label status pages",
+      featured: true,
+    },
+    {
+      href: "statusping/index.html",
+      slug: "statusping",
+      title: "StatusPing",
+      desc: "Uptime monitors & email alerts per client",
+    },
+    {
+      href: "tools/ssl-expiry-checker.html",
+      slug: "ssl",
+      title: "SSL Expiry Checker",
+      desc: "Certificate expiry alerts for client domains",
+    },
+    {
+      href: "tools/cron-schedule-helper.html",
+      slug: "cron",
+      title: "Cron Schedule Helper",
+      desc: "Heartbeat monitoring for scheduled jobs",
+    },
+    {
+      href: "comparestack/pages/white-label-monitoring-agency.html",
+      slug: "compare",
+      title: "Agency Compare",
+      desc: "White-label monitoring pricing vs competitors",
+    },
+  ];
+
+  const cards = tools
+    .map(
+      (t) => `
+    <a class="card${t.featured ? " featured" : ""}" href="${t.href}" data-slug="${t.slug}">
+      <h2>${t.title}</h2>
+      <p>${t.desc}</p>
+      <span class="open">Open →</span>
+    </a>`
+    )
+    .join("");
+
+  const titlesJson = JSON.stringify(Object.fromEntries(tools.map((t) => [t.slug, t.title])));
+  const hrefsJson = JSON.stringify(Object.fromEntries(tools.map((t) => [t.slug, t.href])));
+  const pushScript = agencyPushInlineScript();
+  const csvScript = agencyClientCsvExportScript();
+
+  const indexHtml = `<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>StatusPing Agency</title>
+<meta name="description" content="White-label uptime monitoring for agencies — 10 client workspaces, 100 monitors, branded status pages.">
+<link rel="manifest" href="/manifest.json">
+<meta name="theme-color" content="#0f172a">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<link rel="apple-touch-icon" href="/assets/pwa/icon-192.png">
+<style>
+body{font-family:system-ui,sans-serif;background:#0f172a;color:#e2e8f0;margin:0;padding:0 20px 40px}
+.promo{background:#0284c7;color:#fff;text-align:center;padding:10px 16px;font-size:13px;font-weight:700;margin:0 -20px 16px}
+.promo a{color:#fff;text-decoration:underline}
+.offline{display:none;background:#7f1d1d;color:#fecaca;text-align:center;padding:10px 16px;font-size:13px}
+.offline.show{display:block}
+h1{text-align:center;margin:28px 0 8px;font-size:1.6rem}
+.sub{text-align:center;max-width:360px;margin:0 auto 20px;color:#94a3b8;line-height:1.5}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:16px;max-width:900px;margin:0 auto}
+.card{display:block;background:#1e293b;border:1px solid #334155;border-radius:12px;padding:20px;color:inherit;text-decoration:none;transition:.2s}
+.card:hover{border-color:#38bdf8;transform:translateY(-2px)}
+.card.featured{border-color:#0284c7;background:linear-gradient(135deg,#1e293b,#0c4a6e)}
+h2{margin:0 0 8px;font-size:18px}
+p{margin:0 0 10px;color:#94a3b8;font-size:14px}
+.open{color:#38bdf8;font-size:13px;font-weight:600}
+.stat{display:block;max-width:900px;margin:0 auto 20px;background:#0c4a6e;border:2px solid #0284c7;border-radius:12px;padding:16px 20px;text-align:center}
+.stat span{font-size:1.2rem;font-weight:700;color:#7dd3fc}
+.tier{display:block;max-width:900px;margin:24px auto 0;background:#0c4a6e;border:2px solid #0284c7;border-radius:12px;padding:20px;text-align:center;color:inherit;text-decoration:none}
+.tier strong{display:block;font-size:18px;margin-bottom:6px;color:#fff}
+.tier span{font-size:14px;color:#bae6fd}
+.export{display:block;max-width:900px;margin:16px auto 0;background:#1e293b;border:1px solid #334155;border-radius:12px;padding:14px 20px;text-align:center}
+.export button{background:#0284c7;color:#fff;border:none;border-radius:8px;padding:10px 16px;font-weight:700;cursor:pointer;font-size:14px}
+.export p{margin:8px 0 0;font-size:12px;color:#64748b}
+.recent{max-width:900px;margin:0 auto 20px}
+.recent h3{font-size:13px;color:#64748b;margin:0 0 10px;text-transform:uppercase;letter-spacing:.05em}
+.recent-row{display:flex;gap:10px;flex-wrap:wrap}
+.recent a{background:#1e293b;border:1px solid #334155;border-radius:8px;padding:8px 12px;font-size:13px;color:#cbd5e1;text-decoration:none}
+.footer{text-align:center;margin-top:32px;font-size:13px;color:#64748b}
+.footer a{color:#38bdf8}
+</style></head><body>
+<div class="promo"><strong>LAUNCH25</strong> — 25% off first month · <a href="go/statusping-agency.html">Agency $49/mo →</a></div>
+<div id="offline-banner" class="offline" role="status">You're offline — open tools you've used before</div>
+<h1>📡 StatusPing Agency</h1>
+<p class="sub">White-label uptime monitoring — resell at $20–30/client</p>
+<div class="stat">Client workspaces<br><span id="client-count">—</span></div>
+<div id="recent-section" class="recent" hidden>
+  <h3>Recently used</h3>
+  <div id="recent-row" class="recent-row"></div>
+</div>
+<div class="grid">${cards}</div>
+<div class="export"><button type="button" id="export-clients">Export clients CSV</button><p>Opens in Excel · from agency client roster</p></div>
+<a class="tier" href="go/statusping-agency.html">
+  <strong>Agency — $49/mo</strong>
+  <span>10 client workspaces · 100 monitors · branded status pages · reseller kit</span>
+</a>
+<p class="footer"><a href="privacy.html">Privacy</a> · <a href="https://wealth-engine-0qlj.onrender.com/go/statusping-agency.html">View landing online</a></p>
+<script>(function(){
+  var KEY='statusping_agency_recent';
+  var STORAGE_KEY='statusping_agency_clients';
+  var titles=${titlesJson};
+  var hrefs=${hrefsJson};
+  var countEl=document.getElementById('client-count');
+  try{
+    var rows=JSON.parse(localStorage.getItem(STORAGE_KEY)||'[]');
+    if(countEl)countEl.textContent=rows.length?rows.length+' of 10 workspaces':'0 saved';
+  }catch(e){}
+  function trackRecent(slug){
+    try{
+      var list=JSON.parse(localStorage.getItem(KEY)||'[]').filter(function(s){return s!==slug});
+      list.unshift(slug);
+      localStorage.setItem(KEY,JSON.stringify(list.slice(0,5)));
+    }catch(e){}
+  }
+  document.querySelectorAll('.card').forEach(function(card){
+    var slug=card.getAttribute('data-slug');
+    if(slug)card.addEventListener('click',function(){trackRecent(slug)});
+  });
+  function renderRecent(){
+    var row=document.getElementById('recent-row');
+    var section=document.getElementById('recent-section');
+    if(!row||!section)return;
+    var slugs=[];
+    try{slugs=JSON.parse(localStorage.getItem(KEY)||'[]')}catch(e){}
+    slugs=slugs.filter(function(s){return titles[s]&&hrefs[s]}).slice(0,3);
+    if(!slugs.length){section.hidden=true;return;}
+    section.hidden=false;
+    row.innerHTML=slugs.map(function(s){
+      return '<a href="'+hrefs[s]+'">'+titles[s]+'</a>';
+    }).join('');
+  }
+  renderRecent();
+  var banner=document.getElementById('offline-banner');
+  function setOffline(){if(banner)banner.classList.toggle('show',!navigator.onLine)}
+  window.addEventListener('online',setOffline);
+  window.addEventListener('offline',setOffline);
+  setOffline();
+})();</script>
+<script>${pushScript}</script>
+<script>${csvScript}</script>
+</body></html>`;
+
+  writeFileSync(join(www, "index.html"), indexHtml);
+
+  const landingSrc = join(dist, "go", "statusping-agency.html");
+  if (!existsSync(landingSrc)) {
+    console.error("Missing dist/go/statusping-agency.html — run npm run build first");
+    process.exit(1);
+  }
+  mkdirSync(join(www, "go"), { recursive: true });
+  cpSync(landingSrc, join(www, "go", "statusping-agency.html"));
+
+  const statuspingSrc = join(dist, "statusping");
+  if (!existsSync(join(statuspingSrc, "index.html"))) {
+    console.error("Missing dist/statusping — run npm run build first");
+    process.exit(1);
+  }
+  cpSync(statuspingSrc, join(www, "statusping"), { recursive: true });
+
+  mkdirSync(join(www, "tools"), { recursive: true });
+  for (const toolFile of ["ssl-expiry-checker.html", "cron-schedule-helper.html"]) {
+    const src = join(dist, "tools", toolFile);
+    if (!existsSync(src)) {
+      console.error(`Missing dist/tools/${toolFile} — run npm run build first`);
+      process.exit(1);
+    }
+    cpSync(src, join(www, "tools", toolFile));
+  }
+
+  const compareSrc = join(dist, "comparestack", "pages", "white-label-monitoring-agency.html");
+  if (!existsSync(compareSrc)) {
+    console.error("Missing dist/comparestack/pages/white-label-monitoring-agency.html — run npm run build first");
+    process.exit(1);
+  }
+  mkdirSync(join(www, "comparestack", "pages"), { recursive: true });
+  cpSync(compareSrc, join(www, "comparestack", "pages", "white-label-monitoring-agency.html"));
+
+  if (existsSync(join(dist, "privacy.html"))) cpSync(join(dist, "privacy.html"), join(www, "privacy.html"));
+  if (existsSync(join(dist, "manifest.json"))) cpSync(join(dist, "manifest.json"), join(www, "manifest.json"));
+  if (existsSync(join(dist, "sw.js"))) cpSync(join(dist, "sw.js"), join(www, "sw.js"));
+  if (existsSync(join(dist, "assets"))) cpSync(join(dist, "assets"), join(www, "assets"), { recursive: true });
+
+  console.log("Synced statusping-agency → mobile/statusping-agency/www");
+}
+
 const MINI_GAME_SHELLS = {
   "receipt-rush": {
     title: "Receipt Rush",
@@ -1816,6 +2017,7 @@ if (target === "devwatch" || target === "all") syncDevWatch();
 if (target === "renter-toolkit" || target === "all") syncRenterToolkit();
 if (target === "hookrelay-dlq" || target === "all") syncHookRelayDlq();
 if (target === "1099-suite" || target === "all") sync1099Suite();
+if (target === "statusping-agency" || target === "all") syncStatuspingAgency();
 if (target === "billsnap" || target === "all") syncUtility("billsnap");
 if (target === "statusping-lite" || target === "all") syncUtility("statusping-lite");
 if (target === "leaselens" || target === "all") syncUtility("leaselens");

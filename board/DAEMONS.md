@@ -1,14 +1,19 @@
-# Overnight Daemons (until 08:00 US Central)
+﻿# Overnight Daemons
 
-**Checked:** 6/21/2026, 8:00:20 AM CT  
-**Deadline:** 2026-06-21 08:00:00 CT  
-**Action:** Production Orchestrator health check
+**STATUS:** **STOPPED** per user directive 2026-06-21 — **app-dev-only mode**
 
-| Daemon | PID(s) | Status | Notes |
-|--------|--------|--------|-------|
-| `scripts/overnight-build-sprint.mjs` | 32824 | **RUNNING** | Deduped — killed 1 duplicate(s) |
-| `scripts/money-machine-daemon.mjs` | 23828, 29404, 34360, 34996, 13804, 34072 | **RUNNING** | OK |
-| `deploy/marketing-director-loop.ps1` | 20428 | **RUNNING** | Deduped — killed 1 duplicate(s) |
+**Stopped at:** 2026-06-22 (user pivot)  
+**Action:** All non-app background daemons terminated; **do not** restart until user lifts app-dev-only mode.
+
+| Daemon | PID(s) stopped | Status | Notes |
+|--------|----------------|--------|-------|
+| `scripts/overnight-build-sprint.mjs` | — | **STOPPED** | Not running at stop time |
+| `scripts/money-machine-daemon.mjs` | 23828, 29404, 34360, 34996 | **STOPPED** | All instances killed |
+| `deploy/marketing-director-loop.ps1` | — | **STOPPED** | Not running at stop time |
+| `deploy/production-orchestrator-loop.ps1` | — | **STOPPED** | Not running at stop time |
+| GitHub Pro cycle loops | — | **STOPPED** | Not running at stop time |
+
+**Preserved:** `core/server` (prod) — not stopped per directive.
 
 ---
-_Auto-updated by Production Orchestrator._
+_Manually updated for app-dev-only pivot._

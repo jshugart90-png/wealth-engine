@@ -1,6 +1,6 @@
 # My Next Steps — Personal Assistant
 
-**Updated:** 2026-06-21 · **Mode:** $0 budget only · **Revenue:** $0 / $500  
+**Updated:** 2026-06-21 (browser session) · **Mode:** $0 budget only · **Revenue:** $0 / $500  
 **Prod:** https://wealth-engine-0qlj.onrender.com · **Coupon:** LAUNCH25 (25% off)
 
 > Personal Assistant reads this file first on every chat. Say **"done with [task]"** to mark complete and get the next priority.
@@ -9,9 +9,9 @@
 
 ## Today's briefing — path to first dollar ($0)
 
-Overnight work shipped **298 sitemap URLs**, **14 Stripe products**, **8 games**, affiliate portal, and **13 Reddit drafts** (10 `READY_FOR_REVIEW`). Reddit account **u/WealthEngineDev** is live. Apple Developer is **ACTIVE** — TestFlight waits on Mac access. GSC is **verified** with sitemap submitted. **BingSiteAuth.xml** is deployed on prod — finish Bing verify in Webmaster, then IndexNow.
+Overnight work shipped **298 sitemap URLs**, **14 Stripe products**, **9 games**, affiliate portal, and **16 Reddit drafts** (13 `READY_FOR_REVIEW`). Reddit account **u/WealthEngineDev** is live with **professional profile** (display name + bio). Apple Developer is **ACTIVE** — TestFlight waits on Mac access. GSC is **verified** with sitemap submitted. **Bing Webmaster verified** + sitemap submitted (Processing) — 2026-06-21 browser session.
 
-**Best 30-minute path today (no Mac):** Bing Webmaster **Verify** (2 min) → submit sitemap (2 min) → IndexNow (1 min) → one Reddit post (10 min). Optional: itch.io upload (15 min). That unlocks search discovery for 298 URLs plus direct traffic to Stripe checkout.
+**Best 30-minute path today (no Mac):** **You:** Review prefilled r/freelance draft in browser → click **Post** → stay in comments 30+ min. Agent re-ran IndexNow post-Bing — still **HTTP 429** (retry in 24h). Reddit social link: **blocked** — Reddit toast *"Looks like this isn't a valid URL"* on Save (onrender.com); needs manual retry or custom domain. Optional: itch.io upload (15 min).
 
 **If you have a Mac today:** swap step 3 for TestFlight upload first (`mobile/fastlane/README.md`, 30–45 min) — iOS distribution at $0 marginal cost.
 
@@ -21,51 +21,44 @@ Overnight work shipped **298 sitemap URLs**, **14 Stripe products**, **8 games**
 
 Top 3 actions (~15 min each, $0 budget). Do in order. (GSC verify + sitemap: **done** 2026-06-21.)
 
-### 1. Verify site in Bing Webmaster Tools
+### 1. ~~Verify site in Bing Webmaster Tools~~ ✅ **DONE 2026-06-21**
 
 | | |
 |---|---|
 | **Time** | ~5 min |
 | **Cost** | $0 |
-| **Guide** | `C:\Users\jshug\wealth-engine\deploy\SEARCH_CONSOLE_BING_FREE_SETUP.md` § step 2 |
-| **Verify file (LIVE)** | https://wealth-engine-0qlj.onrender.com/BingSiteAuth.xml |
+| **Site** | https://wealth-engine-0qlj.onrender.com/ |
+| **Verify method** | XML file at `/BingSiteAuth.xml` |
+| **Sitemap** | https://wealth-engine-0qlj.onrender.com/sitemap.xml — **Submitted, Status: Processing** |
+| **Dashboard** | https://www.bing.com/webmasters/sitemaps?siteUrl=https://wealth-engine-0qlj.onrender.com |
 
-**Steps:**
+**Note:** Delete stray unverified entry `https://wealth-engine-0qlj.onrender.com/sitemap.xml` (wrong URL — site root was added separately and verified).
 
-1. Open https://www.bing.com/webmasters
-2. Add or open site `wealth-engine-0qlj.onrender.com` (or **Import from Google Search Console** if not added yet)
-3. Choose **XML file** verification → confirm file is live at `/BingSiteAuth.xml` (deployed via `core/build-all.mjs`)
-4. Click **Verify** in Bing Webmaster
-5. Go to **Sitemaps** → submit: `https://wealth-engine-0qlj.onrender.com/sitemap.xml`
-6. Confirm site shows as **Verified**
-
-**Expected outcome:** Bing Webmaster shows verified site with sitemap submitted.
-
-**Unlocks:** IndexNow re-run (Do today #4) — currently returns **403** until verify completes. Pings ~291 URLs to Bing/Yandex instantly.
+**Unlocks:** IndexNow re-run attempted post-verify — still **HTTP 429** (2026-06-21 agent). Retry step 4 in ~24h.
 
 ---
 
-### 2. Post first Reddit thread (BillSnap Pro — r/freelance)
+### 2. Post first Reddit thread (BillSnap Pro — r/freelance) ⚠️ **PREFILLED — click Post**
 
 | | |
 |---|---|
 | **Time** | ~10 min |
 | **Cost** | $0 |
-| **Account** | https://reddit.com/user/WealthEngineDev (live) |
+| **Account** | https://reddit.com/user/WealthEngineDev (profile updated ✅) |
+| **Submit page** | https://reddit.com/r/freelance/submit — **title + body prefilled in browser** |
 | **Draft** | `D:\wealth-engine-data\marketing\reddit-drafts\2026-06-21-2-freelance.md` |
 | **Workflow** | `C:\Users\jshug\wealth-engine\board\REDDIT_WORKFLOW.md` |
 
+**Profile updated (2026-06-21):** Display name **Wealth Engine**, bio with LAUNCH25, followers visible, content set to Show all. **Social link blocked (2026-06-21 agent):** Settings → Social links → Custom → `Wealth Engine` / `https://wealth-engine-0qlj.onrender.com` → Save returns Reddit error *invalid URL*; profile still shows **Add Social Link**. Retry after custom domain (`tools.horseshoeroundme.com`) or manual save.
+
 **Steps:**
 
-1. Open the draft file above — status is `READY_FOR_REVIEW`
-2. Read title and body; edit if you want (optional)
-3. Log in to Reddit as **u/WealthEngineDev**
-4. Go to https://reddit.com/r/freelance/submit
-5. Paste **Title** and **Body** from the draft (lines under `# Title` and `# Body`)
-6. Submit the post
-7. Stay in comments **30+ min** — reply to questions honestly
-8. Copy the post URL → update draft frontmatter: `status: PUBLISHED` and `published_url: https://reddit.com/r/freelance/comments/...`
-9. Say **"done with Reddit freelance post"** in chat so assistant marks it complete
+1. Switch to browser tab **r/freelance/submit** — review prefilled title + body
+2. Edit if you want (optional)
+3. Click **Post** (agent did NOT submit)
+4. Stay in comments **30+ min** — reply to questions honestly
+5. Copy the post URL → update draft frontmatter: `status: PUBLISHED` and `published_url: https://reddit.com/r/freelance/comments/...`
+6. Say **"done with Reddit freelance post"** in chat so assistant marks it complete
 
 **Expected outcome:** Live Reddit post driving traffic to `https://wealth-engine-0qlj.onrender.com/go/billsnap-pro.html` with LAUNCH25 coupon.
 
@@ -101,14 +94,15 @@ Top 3 actions (~15 min each, $0 budget). Do in order. (GSC verify + sitemap: **d
 
 30–60 min total beyond the top 3.
 
-### 4. Re-run IndexNow (after Bing verified)
+### 4. Re-run IndexNow (after Bing verified) — **STILL 429**
 
 | | |
 |---|---|
 | **Time** | ~1 min |
 | **Cost** | $0 |
-| **Prerequisite** | GSC done; Bing verify (Do right now #1) complete |
-| **Key file (already LIVE)** | https://wealth-engine-0qlj.onrender.com/wealth-engine-0qlj-onrender-com-indexnow.txt |
+| **Prerequisite** | GSC done; Bing verify (Do right now #1) complete ✅ |
+| **Key file (LIVE ✅)** | https://wealth-engine-0qlj.onrender.com/wealth-engine-0qlj-onrender-com-indexnow.txt |
+| **Last run (agent 2026-06-21 post-Bing)** | `{ submitted: 298, ok: false, status: 429 }` — log at `D:\wealth-engine-data\marketing\indexnow-log.json` |
 
 IndexNow key file is built on every `npm run build` (`core/marketing/indexnow.mjs`). No redeploy needed for the key — only re-run submit after Bing shows **Verified**.
 
@@ -119,9 +113,9 @@ cd C:\Users\jshug\wealth-engine
 node -e "import('./core/marketing/indexnow.mjs').then(m => m.submitIndexNow().then(console.log))"
 ```
 
-**Check log:** `D:\wealth-engine-data\marketing\indexnow-log.json` — expect `ok: true`, not HTTP 403.
+**Check log:** `D:\wealth-engine-data\marketing\indexnow-log.json` — expect `ok: true`, not HTTP 403/429. **Current:** still 429 after Bing verified — wait ~24h and re-run.
 
-**Unlocks:** Instant ping of ~291 URLs to Bing/Yandex search indexes.
+**Unlocks:** Instant ping of ~298 URLs to Bing/Yandex search indexes.
 
 ---
 
@@ -187,6 +181,8 @@ node -e "import('./core/marketing/indexnow.mjs').then(m => m.submitIndexNow().th
 
 | Blocker | What you need | Workaround ($0) |
 |---------|---------------|-----------------|
+| **Reddit social link** | Reddit rejects onrender.com URL on Save (*invalid URL* toast) | Retry with custom domain or manual save in Settings → Profile → Social links |
+| **Reddit publish** | Click **Post** on prefilled r/freelance submit page | 13 drafts `READY_FOR_REVIEW` in `D:\wealth-engine-data\marketing\reddit-drafts\` |
 | **TestFlight upload** | Mac with Xcode + App Store Connect API key | PWA at `/games/` + itch.io uploads |
 | **Google Play** | $25 one-time Play Console fee | Web Stripe checkout + PWA |
 | **Google Ads** | Ad budget approval | Organic + Reddit + directories |
@@ -220,7 +216,17 @@ node -e "import('./core/marketing/indexnow.mjs').then(m => m.submitIndexNow().th
 - [x] Horseshoe promo bar coded in `C:\Users\jshug\Website\index.html` — pending GoDaddy upload
 - [x] GSC HTML verification meta tag deployed to Render prod — 2026-06-21
 - [x] Google Search Console verify + sitemap submit (298 URLs) — 2026-06-21
-- [x] BingSiteAuth.xml deployed to prod (`/BingSiteAuth.xml`) — pending user **Verify** click in Bing Webmaster — 2026-06-21
+- [x] BingSiteAuth.xml deployed to prod (`/BingSiteAuth.xml`) — key verified HTTP 200 on prod — 2026-06-21
+- [x] GSC meta tag verified on prod homepage (`X8W5bw-fSJ0pTZiA0LesNi2vZ_-bUdLqVokR5uJZlI4`) — 2026-06-21
+- [x] Agent: `npm run build` + `npm run health` — all checks pass — 2026-06-21
+- [x] Agent: IndexNow submitted (298 URLs, POST 429) — 2026-06-21
+- [x] Agent: IndexNow re-run post-Bing verify — **still POST 429** (`ok: false`) — 2026-06-21
+- [x] Agent: 9 itch.io zips repackaged → `D:\wealth-engine-data\mobile\itch\` — 2026-06-21
+- [x] Agent: +3 Reddit drafts (2026-06-24: startups, SideProject, smallbusiness) — 2026-06-21
+- [x] Bing Webmaster verify + sitemap submit — **verified + Processing** — 2026-06-21
+- [x] Reddit profile professional update (display name, bio, followers) — 2026-06-21
+- [ ] Reddit social link — **blocked** (Reddit *invalid URL* on Save for onrender.com; profile still **Add Social Link**)
+- [ ] First Reddit post publish — **prefilled, needs user Post click** (u/WealthEngineDev)
 
 ---
 

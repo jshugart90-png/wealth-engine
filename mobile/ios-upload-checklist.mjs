@@ -61,6 +61,7 @@ const FASTLANE_LANES = {
   devwatch: "beta_devwatch",
   "hookrelay-dlq": "beta_hookrelay_dlq_pro",
   "1099-suite": "beta_1099_suite",
+  "statusping-agency": "beta_statusping_agency",
 };
 
 function getAppSlugs() {

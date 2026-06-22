@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>StatusPing Agency</title>
+<meta name="description" content="White-label uptime monitoring for agencies — 10 client workspaces, 100 monitors, branded status pages.">
+<link rel="manifest" href="/manifest.json">
+<meta name="theme-color" content="#0f172a">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<link rel="apple-touch-icon" href="/assets/pwa/icon-192.png">
+<style>
+body{font-family:system-ui,sans-serif;background:#0f172a;color:#e2e8f0;margin:0;padding:0 20px 40px}
+.promo{background:#0284c7;color:#fff;text-align:center;padding:10px 16px;font-size:13px;font-weight:700;margin:0 -20px 16px}
+.promo a{color:#fff;text-decoration:underline}
+.offline{display:none;background:#7f1d1d;color:#fecaca;text-align:center;padding:10px 16px;font-size:13px}
+.offline.show{display:block}
+h1{text-align:center;margin:28px 0 8px;font-size:1.6rem}
+.sub{text-align:center;max-width:360px;margin:0 auto 20px;color:#94a3b8;line-height:1.5}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:16px;max-width:900px;margin:0 auto}
+.card{display:block;background:#1e293b;border:1px solid #334155;border-radius:12px;padding:20px;color:inherit;text-decoration:none;transition:.2s}
+.card:hover{border-color:#38bdf8;transform:translateY(-2px)}
+.card.featured{border-color:#0284c7;background:linear-gradient(135deg,#1e293b,#0c4a6e)}
+h2{margin:0 0 8px;font-size:18px}
+p{margin:0 0 10px;color:#94a3b8;font-size:14px}
+.open{color:#38bdf8;font-size:13px;font-weight:600}
+.stat{display:block;max-width:900px;margin:0 auto 20px;background:#0c4a6e;border:2px solid #0284c7;border-radius:12px;padding:16px 20px;text-align:center}
+.stat span{font-size:1.2rem;font-weight:700;color:#7dd3fc}
+.tier{display:block;max-width:900px;margin:24px auto 0;background:#0c4a6e;border:2px solid #0284c7;border-radius:12px;padding:20px;text-align:center;color:inherit;text-decoration:none}
+.tier strong{display:block;font-size:18px;margin-bottom:6px;color:#fff}
+.tier span{font-size:14px;color:#bae6fd}
+.export{display:block;max-width:900px;margin:16px auto 0;background:#1e293b;border:1px solid #334155;border-radius:12px;padding:14px 20px;text-align:center}
+.export button{background:#0284c7;color:#fff;border:none;border-radius:8px;padding:10px 16px;font-weight:700;cursor:pointer;font-size:14px}
+.export p{margin:8px 0 0;font-size:12px;color:#64748b}
+.recent{max-width:900px;margin:0 auto 20px}
+.recent h3{font-size:13px;color:#64748b;margin:0 0 10px;text-transform:uppercase;letter-spacing:.05em}
+.recent-row{display:flex;gap:10px;flex-wrap:wrap}
+.recent a{background:#1e293b;border:1px solid #334155;border-radius:8px;padding:8px 12px;font-size:13px;color:#cbd5e1;text-decoration:none}
+.footer{text-align:center;margin-top:32px;font-size:13px;color:#64748b}
+.footer a{color:#38bdf8}
+</style></head><body>
+<div class="promo"><strong>LAUNCH25</strong> — 25% off first month · <a href="go/statusping-agency.html">Agency $49/mo →</a></div>
+<div id="offline-banner" class="offline" role="status">You're offline — open tools you've used before</div>
+<h1>📡 StatusPing Agency</h1>
+<p class="sub">White-label uptime monitoring — resell at $20–30/client</p>
+<div class="stat">Client workspaces<br><span id="client-count">—</span></div>
+<div id="recent-section" class="recent" hidden>
+  <h3>Recently used</h3>
+  <div id="recent-row" class="recent-row"></div>
+</div>
+<div class="grid">
+    <a class="card featured" href="go/statusping-agency.html" data-slug="landing">
+      <h2>Agency Landing</h2>
+      <p>$49/mo — 10 workspaces, white-label status pages</p>
+      <span class="open">Open →</span>
+    </a>
+    <a class="card" href="statusping/index.html" data-slug="statusping">
+      <h2>StatusPing</h2>
+      <p>Uptime monitors & email alerts per client</p>
+      <span class="open">Open →</span>
+    </a>
+    <a class="card" href="tools/ssl-expiry-checker.html" data-slug="ssl">
+      <h2>SSL Expiry Checker</h2>
+      <p>Certificate expiry alerts for client domains</p>
+      <span class="open">Open →</span>
+    </a>
+    <a class="card" href="tools/cron-schedule-helper.html" data-slug="cron">
+      <h2>Cron Schedule Helper</h2>
+      <p>Heartbeat monitoring for scheduled jobs</p>
+      <span class="open">Open →</span>
+    </a>
+    <a class="card" href="comparestack/pages/white-label-monitoring-agency.html" data-slug="compare">
+      <h2>Agency Compare</h2>
+      <p>White-label monitoring pricing vs competitors</p>
+      <span class="open">Open →</span>
+    </a></div>
+<div class="export"><button type="button" id="export-clients">Export clients CSV</button><p>Opens in Excel · from agency client roster</p></div>
+<a class="tier" href="go/statusping-agency.html">
+  <strong>Agency — $49/mo</strong>
+  <span>10 client workspaces · 100 monitors · branded status pages · reseller kit</span>
+</a>
+<p class="footer"><a href="privacy.html">Privacy</a> · <a href="https://wealth-engine-0qlj.onrender.com/go/statusping-agency.html">View landing online</a></p>
+<script>(function(){
+  var KEY='statusping_agency_recent';
+  var STORAGE_KEY='statusping_agency_clients';
+  var titles={"landing":"Agency Landing","statusping":"StatusPing","ssl":"SSL Expiry Checker","cron":"Cron Schedule Helper","compare":"Agency Compare"};
+  var hrefs={"landing":"go/statusping-agency.html","statusping":"statusping/index.html","ssl":"tools/ssl-expiry-checker.html","cron":"tools/cron-schedule-helper.html","compare":"comparestack/pages/white-label-monitoring-agency.html"};
+  var countEl=document.getElementById('client-count');
+  try{
+    var rows=JSON.parse(localStorage.getItem(STORAGE_KEY)||'[]');
+    if(countEl)countEl.textContent=rows.length?rows.length+' of 10 workspaces':'0 saved';
+  }catch(e){}
+  function trackRecent(slug){
+    try{
+      var list=JSON.parse(localStorage.getItem(KEY)||'[]').filter(function(s){return s!==slug});
+      list.unshift(slug);
+      localStorage.setItem(KEY,JSON.stringify(list.slice(0,5)));
+    }catch(e){}
+  }
+  document.querySelectorAll('.card').forEach(function(card){
+    var slug=card.getAttribute('data-slug');
+    if(slug)card.addEventListener('click',function(){trackRecent(slug)});
+  });
+  function renderRecent(){
+    var row=document.getElementById('recent-row');
+    var section=document.getElementById('recent-section');
+    if(!row||!section)return;
+    var slugs=[];
+    try{slugs=JSON.parse(localStorage.getItem(KEY)||'[]')}catch(e){}
+    slugs=slugs.filter(function(s){return titles[s]&&hrefs[s]}).slice(0,3);
+    if(!slugs.length){section.hidden=true;return;}
+    section.hidden=false;
+    row.innerHTML=slugs.map(function(s){
+      return '<a href="'+hrefs[s]+'">'+titles[s]+'</a>';
+    }).join('');
+  }
+  renderRecent();
+  var banner=document.getElementById('offline-banner');
+  function setOffline(){if(banner)banner.classList.toggle('show',!navigator.onLine)}
+  window.addEventListener('online',setOffline);
+  window.addEventListener('offline',setOffline);
+  setOffline();
+})();</script>
+<script>(function(){
+  if(!window.Capacitor||!window.Capacitor.isNativePlatform())return;
+  try{
+    if(localStorage.getItem("statusping_agency_push_scheduled"))return;
+    var LN=window.Capacitor.Plugins&&window.Capacitor.Plugins.LocalNotifications;
+    if(!LN)return;
+    LN.requestPermissions().then(function(perm){
+      if(!perm||perm.display!=="granted")return;
+      var now=new Date();
+      var year=now.getFullYear();
+      var month=now.getMonth();
+      var reminders=[
+        {id:891001,weekday:1,title:"Weekly client check",body:"Review StatusPing monitors and status pages for all client workspaces"},
+        {id:891015,monthDay:15,title:"SSL cert review",body:"Check SSL expiry dates across client domains this week"},
+        {id:891101,monthDay:1,title:"Agency billing day",body:"Reconcile client MRR and send monitoring invoices"}
+      ];
+      var notifications=reminders.map(function(d){
+        var at;
+        if(d.weekday!=null){
+          at=new Date(now);
+          var diff=(d.weekday-at.getDay()+7)%7;
+          if(!diff)diff=7;
+          at.setDate(at.getDate()+diff);
+        }else{
+          at=new Date(year,month,d.monthDay,9,0,0);
+          if(at<=now)at=new Date(year,month+1,d.monthDay,9,0,0);
+        }
+        at.setHours(9,0,0,0);
+        return {id:d.id,title:d.title,body:d.body,schedule:{at:at.toISOString()}};
+      });
+      return LN.schedule({notifications:notifications}).then(function(){
+        localStorage.setItem("statusping_agency_push_scheduled","1");
+      });
+    }).catch(function(){});
+  }catch(e){}
+})();</script>
+<script>(function(){
+  var btn=document.getElementById("export-clients");
+  if(!btn)return;
+  btn.addEventListener("click",function(){
+    try{
+      var rows=JSON.parse(localStorage.getItem("statusping_agency_clients")||"[]");
+      if(!rows.length){alert("No clients saved yet — add workspaces in StatusPing first.");return;}
+      var header=["Client","Domain","Monitors","Bill Rate","Notes"];
+      var lines=[header.join(",")].concat(rows.map(function(r){
+        return [r.name||"",r.domain||"",r.monitors||0,r.rate||"",r.notes||""].map(function(v){
+          return '"'+String(v).replace(/"/g,'""')+'"';
+        }).join(",");
+      }));
+      var blob=new Blob([lines.join("\n")],{type:"text/csv"});
+      var url=URL.createObjectURL(blob);
+      var a=document.createElement("a");
+      a.href=url;
+      a.download="agency-clients-"+new Date().toISOString().slice(0,10)+".csv";
+      a.click();
+      URL.revokeObjectURL(url);
+    }catch(e){alert("Export failed — try again after saving clients.");}
+  });
+})();</script>
+</body></html>

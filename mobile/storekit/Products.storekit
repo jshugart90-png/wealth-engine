@@ -808,6 +808,21 @@
           "locale": "en_US"
         }
       ],
+      "productID": "com.wealthengine.statuspingagency.pro_unlock",
+      "referenceName": "StatusPing Agency Pro Unlock",
+      "type": "NonConsumable"
+    },
+    {
+      "displayPrice": "4.99",
+      "familyShareable": false,
+      "internalID": "1055",
+      "localizations": [
+        {
+          "description": "Unlock Pro features (matches Stripe tier where applicable)",
+          "displayName": "Pro Unlock",
+          "locale": "en_US"
+        }
+      ],
       "productID": "com.wealthengine.statuspinglite.pro_unlock",
       "referenceName": "StatusPing Lite Pro Unlock",
       "type": "NonConsumable"
@@ -815,7 +830,7 @@
     {
       "displayPrice": "4.99",
       "familyShareable": false,
-      "internalID": "1055",
+      "internalID": "1056",
       "localizations": [
         {
           "description": "Unlock Pro features (matches Stripe tier where applicable)",
@@ -830,7 +845,7 @@
     {
       "displayPrice": "4.99",
       "familyShareable": false,
-      "internalID": "1056",
+      "internalID": "1057",
       "localizations": [
         {
           "description": "Unlock Pro features (matches Stripe tier where applicable)",
@@ -845,7 +860,7 @@
     {
       "displayPrice": "4.99",
       "familyShareable": false,
-      "internalID": "1057",
+      "internalID": "1058",
       "localizations": [
         {
           "description": "Unlock Pro features (matches Stripe tier where applicable)",
@@ -860,7 +875,7 @@
     {
       "displayPrice": "2.99",
       "familyShareable": false,
-      "internalID": "1058",
+      "internalID": "1059",
       "localizations": [
         {
           "description": "Hide AdMob banners permanently",
@@ -875,7 +890,7 @@
     {
       "displayPrice": "4.99",
       "familyShareable": false,
-      "internalID": "1059",
+      "internalID": "1060",
       "localizations": [
         {
           "description": "Unlock premium features and badges",
@@ -890,7 +905,7 @@
     {
       "displayPrice": "0.99",
       "familyShareable": false,
-      "internalID": "1060",
+      "internalID": "1061",
       "localizations": [
         {
           "description": "Support the developer",
@@ -905,7 +920,7 @@
     {
       "displayPrice": "2.99",
       "familyShareable": false,
-      "internalID": "1061",
+      "internalID": "1062",
       "localizations": [
         {
           "description": "Hide AdMob banners permanently",
@@ -920,7 +935,7 @@
     {
       "displayPrice": "4.99",
       "familyShareable": false,
-      "internalID": "1062",
+      "internalID": "1063",
       "localizations": [
         {
           "description": "Unlock premium features and badges",
@@ -935,7 +950,7 @@
     {
       "displayPrice": "0.99",
       "familyShareable": false,
-      "internalID": "1063",
+      "internalID": "1064",
       "localizations": [
         {
           "description": "Support the developer",
@@ -950,7 +965,7 @@
     {
       "displayPrice": "2.99",
       "familyShareable": false,
-      "internalID": "1064",
+      "internalID": "1065",
       "localizations": [
         {
           "description": "Hide AdMob banners permanently",
@@ -965,7 +980,7 @@
     {
       "displayPrice": "4.99",
       "familyShareable": false,
-      "internalID": "1065",
+      "internalID": "1066",
       "localizations": [
         {
           "description": "Unlock premium features and badges",
@@ -980,7 +995,7 @@
     {
       "displayPrice": "0.99",
       "familyShareable": false,
-      "internalID": "1066",
+      "internalID": "1067",
       "localizations": [
         {
           "description": "Support the developer",

@@ -42,6 +42,7 @@ export const STRIPE_IAP_MAP = {
   "freelancer-stack": { pro_unlock: "bundle" },
   "renter-toolkit": { pro_unlock: "report-bundle" },
   "1099-suite": { pro_unlock: "1099-suite-pro" },
+  "statusping-agency": { pro_unlock: "agency-monthly" },
   tools: { pro_unlock: null },
 };
 

@@ -271,6 +271,11 @@ platform :ios do
     mini_app_ios_beta("1099-suite", "1099 Deadline Suite")
   end
 
+  desc "TestFlight upload for StatusPing Agency hub app"
+  lane :beta_statusping_agency do
+    mini_app_ios_beta("statusping-agency", "StatusPing Agency")
+  end
+
   desc "TestFlight upload + App Store metadata (does not auto-submit for review)"
   lane :release do
     beta

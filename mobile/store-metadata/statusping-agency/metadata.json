@@ -1,0 +1,35 @@
+{
+  "appName": "StatusPing Agency",
+  "subtitle": "White-label uptime monitoring for agencies",
+  "bundleId": "com.wealthengine.statuspingagency",
+  "version": "1.0.0",
+  "privacyPolicyUrl": "https://wealth-engine-0qlj.onrender.com/privacy.html",
+  "supportUrl": "https://wealth-engine-0qlj.onrender.com/",
+  "marketingUrl": "https://wealth-engine-0qlj.onrender.com/go/statusping-agency.html",
+  "category": {
+    "apple": "Developer Tools",
+    "appleSub": "Productivity",
+    "google": "TOOLS"
+  },
+  "contentRating": {
+    "ageRating": "4+",
+    "googleQuestionnaire": "Everyone — agency monitoring utility, Stripe checkout opens in browser",
+    "adsPresent": false,
+    "inAppPurchases": true,
+    "dataCollected": [
+      "client workspace data stored locally; email on checkout only via Stripe"
+    ]
+  },
+  "keywords": [
+    "uptime",
+    "monitoring",
+    "agency",
+    "statuspage",
+    "whitelabel",
+    "ssl",
+    "cron",
+    "devops",
+    "saas",
+    "statusping"
+  ]
+}

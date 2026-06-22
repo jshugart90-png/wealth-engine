@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-06-21T08:52:25.873Z",
+  "generatedAt": "2026-06-22T20:52:20.008Z",
   "ventures": [
     {
       "id": "devtools-api",
@@ -106,7 +106,7 @@
       {
         "stripe": {
           "ok": true,
-          "created": 10,
+          "created": 0,
           "total": 21
         }
       },

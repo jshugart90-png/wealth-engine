@@ -1,0 +1,15 @@
+StatusPing Agency helps web dev shops and MSPs resell white-label uptime monitoring under their own brand.
+
+Manage client workspaces, SSL expiry alerts, and cron heartbeats — all from one agency hub on your phone.
+
+Features:
+• Weekly client review & monthly billing reminders (enable notifications on first launch)
+• StatusPing monitors — 5-minute checks with email alerts
+• SSL Expiry Checker — certificate deadline warnings per client
+• Cron Schedule Helper — heartbeat monitoring for scheduled jobs
+• Agency tier $49/mo — 10 workspaces, 100 monitors, branded status pages
+• Export client workspace list to CSV for Excel and invoicing
+
+Perfect for agencies reselling monitoring at $20–30/client/month.
+
+Privacy: Client data stored on device. Checkout via Stripe in browser.
