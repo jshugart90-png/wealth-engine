@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
+<title>🔒 SSL Shield — Wealth Engine Games</title>
+<meta name="description" content="Tap expiring SSL certs before they hit your server! StatusPing arcade game.">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#0c1222;color:#e2e8f0;font-family:system-ui,sans-serif;overflow:hidden;touch-action:none;user-select:none}
+.offline{display:none;background:#7f1d1d;color:#fecaca;text-align:center;padding:8px 12px;font-size:12px;width:100%}
+.offline.show{display:block}
+#wrap{display:flex;flex-direction:column;align-items:center;min-height:100vh;padding:8px}
+h1{font-size:1.15rem;margin:4px 0;color:#22d3ee}
+.sub{font-size:.72rem;color:#94a3b8;text-align:center;margin-bottom:4px}
+#hud{font-size:.85rem;margin-bottom:4px}
+#hud span{color:#34d399;font-weight:700}
+canvas{border-radius:10px;background:#111827;max-width:100%;touch-action:none;border:2px solid #1e3a5f}
+#msg{font-size:.82rem;color:#94a3b8;margin:4px;min-height:1.2em;text-align:center}
+.btn{background:#0891b2;color:#fff;border:none;padding:9px 18px;border-radius:8px;font-weight:600;cursor:pointer;margin:4px}
+.ad{width:100%;max-width:320px;background:#111827;border:1px dashed #1e3a5f;border-radius:6px;padding:8px;text-align:center;font-size:10px;color:#64748b;margin:6px 0}
+.cta{font-size:11px;color:#64748b;text-align:center;margin-top:4px}
+.cta a{color:#22d3ee;text-decoration:none}
+</style>
+</head>
+<body>
+<div id="offline-banner" class="offline" role="status">You're offline — game works after first load</div>
+<div id="wrap">
+<h1>🔒 SSL Shield</h1>
+<p class="sub">Tap expiry bombs before they hit your server!</p>
+<div id="hud">Score: <span id="score">0</span> · Best: <span id="best">0</span> · Uptime: <span id="uptime">100</span>%</div>
+<canvas id="c" width="360" height="480"></canvas>
+<p id="msg">Tap red certs to renew — green ones are healthy!</p>
+<button class="btn" id="restart" style="display:none">Shield Again</button>
+<div class="ad">AdSense placeholder — 320×50</div>
+<p class="cta">Monitor certs for real: <a href="/go/uptime.html">StatusPing Uptime</a> · <a href="/tools/index.html">Free Tools</a></p>
+</div>
+<script>
+(function(){
+const c=document.getElementById('c'),ctx=c.getContext('2d');
+const W=360,H=480;
+const BEST_KEY='ssl_shield_best';
+let bombs=[],spawnT=0,score=0,best=0,uptime=100,gameOver=false,wave=1;
+try{best=parseInt(localStorage.getItem(BEST_KEY)||'0',10)||0}catch(e){}
+document.getElementById('best').textContent=best;
+
+const LABELS=['30d','14d','7d','3d','1d','EXP!'];
+
+function reset(){
+  bombs=[];spawnT=0;score=0;uptime=100;gameOver=false;wave=1;
+  document.getElementById('score').textContent=0;
+  document.getElementById('uptime').textContent=100;
+  document.getElementById('restart').style.display='none';
+  document.getElementById('msg').textContent='Tap red certs to renew — green ones are healthy!';
+}
+
+function saveBest(){
+  if(score>best){
+    best=score;
+    document.getElementById('best').textContent=best;
+    try{localStorage.setItem(BEST_KEY,String(best))}catch(e){}
+  }
+}
+
+function spawn(){
+  const danger=Math.random()<(0.55+wave*0.03);
+  const labelIdx=danger?Math.min(LABELS.length-1,Math.floor(Math.random()*LABELS.length)):0;
+  bombs.push({
+    x:30+Math.random()*(W-60),y:-30,vy:1.8+wave*0.15+Math.random()*0.8,
+    r:22,danger,label:LABELS[labelIdx],wobble:Math.random()*6.28
+  });
+}
+
+function hitBomb(b,i){
+  if(b.danger){
+    const pts=10+(LABELS.indexOf(b.label)+1)*5;
+    score+=pts;
+    document.getElementById('score').textContent=score;
+    document.getElementById('msg').textContent='Renewed '+b.label+'! +'+pts;
+    uptime=Math.min(100,uptime+2);
+    document.getElementById('uptime').textContent=uptime;
+  }else{
+    score=Math.max(0,score-8);
+    document.getElementById('score').textContent=score;
+    document.getElementById('msg').textContent='That cert is fine! -8';
+  }
+  bombs.splice(i,1);
+}
+
+function endGame(){
+  gameOver=true;
+  saveBest();
+  document.getElementById('msg').textContent='Server down! Score: '+score+(score>=best&&score>0?' — New best!':'');
+  document.getElementById('restart').style.display='inline-block';
+}
+
+function update(){
+  if(gameOver)return;
+  spawnT++;
+  if(spawnT>Math.max(22,40-wave*2)){spawnT=0;spawn();}
+  if(score>0&&score%100===0&&spawnT===1){wave++;document.getElementById('msg').textContent='Wave '+wave+' — faster certs!';}
+  bombs.forEach((b,i)=>{
+    b.y+=b.vy;b.wobble+=0.08;
+    if(b.y+b.r>H-55){
+      bombs.splice(i,1);
+      if(b.danger){
+        uptime-=12;
+        document.getElementById('uptime').textContent=Math.max(0,uptime);
+        document.getElementById('msg').textContent='Expiry hit server! -12% uptime';
+        if(uptime<=0)endGame();
+      }
+    }
+  });
+}
+
+function drawBomb(b){
+  ctx.save();
+  ctx.translate(b.x+Math.sin(b.wobble)*3,b.y);
+  const grad=ctx.createRadialGradient(0,0,4,0,0,b.r);
+  if(b.danger){
+    grad.addColorStop(0,'#fca5a5');grad.addColorStop(1,'#b91c1c');
+  }else{
+    grad.addColorStop(0,'#6ee7b7');grad.addColorStop(1,'#059669');
+  }
+  ctx.fillStyle=grad;
+  ctx.beginPath();ctx.arc(0,0,b.r,0,Math.PI*2);ctx.fill();
+  ctx.fillStyle='#fff';ctx.font='bold 11px system-ui';ctx.textAlign='center';
+  ctx.fillText('🔒',0,4);
+  ctx.font='bold 9px system-ui';
+  ctx.fillStyle=b.danger?'#fef2f2':'#ecfdf5';
+  ctx.fillText(b.label,0,b.r-6);
+  ctx.restore();
+}
+
+function draw(){
+  ctx.fillStyle='#111827';ctx.fillRect(0,0,W,H);
+  ctx.fillStyle='#1e293b';ctx.fillRect(0,H-50,W,50);
+  ctx.fillStyle='#334155';ctx.fillRect(W/2-40,H-45,80,35);
+  ctx.fillStyle='#22d3ee';ctx.font='20px system-ui';ctx.textAlign='center';
+  ctx.fillText('🖥️',W/2,H-22);
+  ctx.fillStyle=uptime>50?'#34d399':'#f87171';ctx.font='10px system-ui';
+  ctx.fillText('SERVER',W/2,H-8);
+  bombs.forEach(drawBomb);
+}
+
+function loop(){update();draw();requestAnimationFrame(loop);}
+
+function tapAt(px,py){
+  if(gameOver)return;
+  const rect=c.getBoundingClientRect();
+  const sx=W/rect.width,sy=H/rect.height;
+  const x=(px-rect.left)*sx,y=(py-rect.top)*sy;
+  for(let i=bombs.length-1;i>=0;i--){
+    const b=bombs[i];
+    const dx=x-b.x,dy=y-b.y;
+    if(dx*dx+dy*dy<(b.r+8)*(b.r+8)){hitBomb(b,i);return;}
+  }
+}
+
+c.addEventListener('click',e=>tapAt(e.clientX,e.clientY));
+c.addEventListener('touchstart',e=>{e.preventDefault();tapAt(e.touches[0].clientX,e.touches[0].clientY);},{passive:false});
+
+document.getElementById('restart').onclick=()=>{reset();loop();};
+reset();loop();
+
+var banner=document.getElementById('offline-banner');
+function setOffline(){if(banner)banner.classList.toggle('show',!navigator.onLine)}
+window.addEventListener('online',setOffline);
+window.addEventListener('offline',setOffline);
+setOffline();
+})();
+</script>
+</body>
+</html>

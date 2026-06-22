@@ -1,0 +1,22 @@
+{
+  "appName": "SSL Shield",
+  "subtitle": "Block cert expiry bombs",
+  "bundleId": "com.wealthengine.sslshield",
+  "version": "1.0.0",
+  "privacyPolicyUrl": "https://wealth-engine-0qlj.onrender.com/privacy.html",
+  "supportUrl": "https://wealth-engine-0qlj.onrender.com/",
+  "marketingUrl": "https://wealth-engine-0qlj.onrender.com/games/ssl-shield/",
+  "category": {
+    "apple": "Games",
+    "appleSub": "Arcade",
+    "google": "GAME_ARCADE"
+  },
+  "contentRating": {
+    "ageRating": "4+",
+    "googleQuestionnaire": "Everyone — no violence, no user-generated content, optional ads",
+    "adsPresent": true,
+    "inAppPurchases": false,
+    "dataCollected": ["best score stored locally only"]
+  },
+  "keywords": ["ssl", "certificate", "expiry", "uptime", "server", "arcade", "tap", "casual", "free", "game"]
+}

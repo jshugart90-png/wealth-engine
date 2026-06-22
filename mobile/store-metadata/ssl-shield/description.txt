@@ -1,0 +1,15 @@
+SSL Shield is a fast arcade game where you protect your server from expiring SSL certificates!
+
+Tap red expiry bombs to renew them before they hit your server. Avoid tapping healthy green certs — keep uptime above zero as waves get faster.
+
+Features:
+• Simple tap-to-shield controls
+• Best score saved on your device
+• Works offline after first load
+• Family-friendly, all ages
+• No account or signup required
+• More free games in the Horseshoe collection
+
+Perfect for quick breaks. Part of the Horseshoe Games collection by Wealth Engine.
+
+Privacy: Scores stay on your device. See our privacy policy for details.

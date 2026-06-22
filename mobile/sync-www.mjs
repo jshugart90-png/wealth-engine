@@ -1,6 +1,6 @@
 /**
  * Sync dist/ assets into Capacitor www folders.
- * Usage: node sync-www.mjs [games|tools|receipt-rush|webhook-whack|invoice-stack|horseshoe-toss|uptime-defender|freelancer-memory|color-switch-snake|word-scramble-biz|net-30-ninja|all]
+ * Usage: node sync-www.mjs [games|tools|receipt-rush|webhook-whack|invoice-stack|horseshoe-toss|uptime-defender|freelancer-memory|color-switch-snake|word-scramble-biz|net-30-ninja|ssl-shield|all]
  */
 import { cpSync, existsSync, mkdirSync, readFileSync, writeFileSync, readdirSync } from "fs";
 import { join, dirname } from "path";
@@ -276,6 +276,20 @@ const MINI_GAME_SHELLS = {
     bestBorder: "#334155",
     bestKey: "net_30_ninja_best",
   },
+  "ssl-shield": {
+    title: "SSL Shield",
+    emoji: "🔒",
+    tagline: "Tap expiring certs — ignore healthy ones!",
+    themeColor: "#0c1222",
+    bg: "#0c1222",
+    text: "#e2e8f0",
+    sub: "#64748b",
+    accent: "#22d3ee",
+    btnBg: "#0891b2",
+    btnHover: "#0e7490",
+    bestBorder: "#1e293b",
+    bestKey: "ssl_shield_best",
+  },
 };
 
 function syncMiniGame(slug) {
@@ -353,3 +367,4 @@ if (target === "color-switch-snake" || target === "all") syncMiniGame("color-swi
 if (target === "horseshoe-toss" || target === "all") syncMiniGame("horseshoe-toss");
 if (target === "word-scramble-biz" || target === "all") syncMiniGame("word-scramble-biz");
 if (target === "net-30-ninja" || target === "all") syncMiniGame("net-30-ninja");
+if (target === "ssl-shield" || target === "all") syncMiniGame("ssl-shield");

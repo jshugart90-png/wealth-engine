@@ -17,11 +17,11 @@
 **Games hub:** https://wealth-engine-0qlj.onrender.com/games/
 
 | net-30-ninja | Net-30 Ninja | **Shipped** | 5/5 PASS | https://wealth-engine-0qlj.onrender.com/games/net-30-ninja/ | **PROMO_READY** |
+| ssl-shield | SSL Shield | **Shipped** | 5/5 PASS | https://wealth-engine-0qlj.onrender.com/games/ssl-shield/ | **PROMO_READY** |
 ## Queue (future ideas)
 
 - Receipt Rush — catch falling receipts (BillSnap)
 - Webhook Whack-a-Mole — tap failed webhooks (HookRelay)
-- SSL Shield — block expiry bombs (StatusPing)
 - NDA Speed Sign — match clause pairs (NDAGen)
 
 ---

@@ -19,7 +19,8 @@
 | **Color Switch Snake** | `com.wealthengine.colorswitchsnake` | **TestFlight prep** | 16 PASS, 0 FAIL, 1 WARN | `5280938` pushed | **READY** (Mac upload) |
 | **Word Scramble Biz** | `com.wealthengine.wordscramblebiz` | **TestFlight prep** | 16 PASS, 0 FAIL, 1 WARN | `bbb87ca` pushed | **READY** (Mac upload) |
 | **Net-30 Ninja** | `com.wealthengine.net30ninja` | **TestFlight prep** | 16 PASS, 0 FAIL, 1 WARN | `aea2139` pushed | **READY** (Mac upload) |
-| App 12+ | TBD | Queued | — | — | — |
+| **SSL Shield** | `com.wealthengine.sslshield` | **TestFlight prep** | 16 PASS, 0 FAIL, 1 WARN | TBD pushed | **READY** (Mac upload) |
+| App 13+ | TBD | Queued | — | — | — |
 
 ## App 1 — Horseshoe Games Hub
 
@@ -301,7 +302,31 @@ npx cap sync ios && npx cap open ios
 # Or: bundle exec fastlane ios beta_net_30_ninja
 ```
 
-## App 12+ queue
+## App 12 — SSL Shield (mini-app)
+
+| Field | Value |
+|-------|-------|
+| Version | 1.0.0 |
+| Game | SSL Shield (single-game Capacitor shell) |
+| Capacitor | `mobile/ssl-shield/` → loads `/games/ssl-shield/` from prod |
+| Store metadata | `mobile/store-metadata/ssl-shield/` |
+| Preflight | `npm run mobile:preflight:ssl-shield` |
+
+### Features (shipped this session)
+
+1. **Best score** — localStorage `ssl_shield_best` with launcher + in-game HUD
+2. **Offline banner** — same pattern as Games Hub / Receipt Rush
+
+### TestFlight upload (user Mac)
+
+```bash
+npm run build && cd mobile && node sync-www.mjs ssl-shield
+cd ssl-shield && npm install && npx cap add ios  # if missing
+npx cap sync ios && npx cap open ios
+# Or: bundle exec fastlane ios beta_ssl_shield
+```
+
+## App 13+ queue
 
 From `board/GAMES.md` or new simple utilities (calculators, timers) as standalone Capacitor shells.
 

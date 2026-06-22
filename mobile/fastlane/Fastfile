@@ -121,6 +121,11 @@ platform :ios do
     mini_app_ios_beta("net-30-ninja", "Net-30 Ninja")
   end
 
+  desc "TestFlight upload for SSL Shield mini-app"
+  lane :beta_ssl_shield do
+    mini_app_ios_beta("ssl-shield", "SSL Shield")
+  end
+
   desc "TestFlight upload + App Store metadata (does not auto-submit for review)"
   lane :release do
     beta
