@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-06-22T22:21:55.506Z",
+  "generatedAt": "2026-06-22T22:22:17.782Z",
   "revenueCat": {
     "plugin": "@revenuecat/purchases-capacitor",
     "note": "Configure API key in App Store Connect + RevenueCat dashboard after IAP products are live"
