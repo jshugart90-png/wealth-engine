@@ -257,18 +257,64 @@ ${googleSiteVerificationMeta()}
   p{color:#888;font-size:14px;margin:0 0 12px}
   .play{color:#6366f1;font-size:13px;font-weight:600}
   .ad{max-width:728px;margin:24px auto;background:#1a1a24;border:1px dashed #444;border-radius:8px;padding:16px;text-align:center;color:#666;font-size:12px}
+  .offline{display:none;background:#7f1d1d;color:#fecaca;text-align:center;padding:10px 16px;font-size:13px}
+  .offline.show{display:block}
+  .recent{max-width:1000px;margin:0 auto 24px}
+  .recent h3{font-size:14px;color:#888;margin:0 0 12px;text-transform:uppercase;letter-spacing:.05em}
+  .recent-row{display:flex;gap:12px;flex-wrap:wrap}
+  .recent a{background:#1a1a28;border:1px solid #333;border-radius:8px;padding:10px 14px;font-size:13px;color:#c4c4d4;text-decoration:none}
+  .recent a:hover{border-color:#6366f1;color:#fff}
 </style></head><body>
+<div id="offline-banner" class="offline" role="status">You're offline — games work after first load</div>
 <div class="promo"><a href="/">← Wealth Engine</a>
   <a href="/go/invoice.html">BillSnap Invoices</a>
   <a href="/go/uptime.html">StatusPing Uptime</a>
   <a href="/tools/index.html">Free Tools</a>
 </div>
 <h1>🎮 Free Games</h1>
-<p class="sub">Simple, fun, all ages — no download required</p>
+<p class="sub">Simple, fun, all ages — ${meta.length} games, no download required</p>
 <div class="ad">AdSense placeholder — 728×90 leaderboard</div>
+<div id="recent-section" class="recent" hidden>
+  <h3>Recently played</h3>
+  <div id="recent-row" class="recent-row"></div>
+</div>
 <div class="grid">${cards || "<p style='text-align:center;color:#888'>Games coming soon…</p>"}</div>
 <div class="ad" style="margin-top:32px">AdSense placeholder — 300×250 rectangle</div>
 <script>${admobScript}</script>
+<script>(function(){
+  var KEY='we_recent_games';
+  var titles=${JSON.stringify(Object.fromEntries(meta.map((g) => [g.slug, g.title.replace(/🥷\\s*/, "")])))};
+  function trackRecent(slug){
+    try{
+      var list=JSON.parse(localStorage.getItem(KEY)||'[]').filter(function(s){return s!==slug});
+      list.unshift(slug);
+      localStorage.setItem(KEY,JSON.stringify(list.slice(0,5)));
+    }catch(e){}
+  }
+  document.querySelectorAll('.grid .card').forEach(function(card){
+    var m=card.getAttribute('href')&&card.getAttribute('href').match(/\\/games\\/([^/]+)\\//);
+    if(m)card.addEventListener('click',function(){trackRecent(m[1])});
+  });
+  function renderRecent(){
+    var row=document.getElementById('recent-row');
+    var section=document.getElementById('recent-section');
+    if(!row||!section)return;
+    var slugs=[];
+    try{slugs=JSON.parse(localStorage.getItem(KEY)||'[]')}catch(e){}
+    slugs=slugs.filter(function(s){return titles[s]}).slice(0,3);
+    if(!slugs.length){section.hidden=true;return;}
+    section.hidden=false;
+    row.innerHTML=slugs.map(function(s){
+      return '<a href="/games/'+s+'/">'+titles[s]+'</a>';
+    }).join('');
+  }
+  renderRecent();
+  var banner=document.getElementById('offline-banner');
+  function setOffline(){if(banner)banner.classList.toggle('show',!navigator.onLine)}
+  window.addEventListener('online',setOffline);
+  window.addEventListener('offline',setOffline);
+  setOffline();
+})();</script>
 <script>${visitTrackerScript("/games/")}</script>
 </body></html>`;
 

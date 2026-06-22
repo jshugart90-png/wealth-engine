@@ -1,6 +1,6 @@
 {
   "name": "horseshoe-games-hub",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "private": true,
   "description": "Capacitor shell for Horseshoe Games Hub",
   "scripts": {

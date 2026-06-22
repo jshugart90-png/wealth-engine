@@ -1,6 +1,6 @@
 # Mobile & PWA Apps Tracker
 
-**Agent:** App Store Pipeline · **Updated:** 2026-06-21  
+**Agent:** App Store Pipeline · **Updated:** 2026-06-22  
 **Prod base:** https://wealth-engine-0qlj.onrender.com  
 **Budget:** $0 for new fees — **Apple Developer: ACTIVE** (user confirmed 2026-06-21); Play $25 pending
 
@@ -19,11 +19,11 @@
 |-----|-----------|---------|--------|---------------------|---------|
 | **Wealth Engine PWA** | — (web) | PWA | **LIVE verified** | [manifest](https://wealth-engine-0qlj.onrender.com/manifest.json) · [sw.js](https://wealth-engine-0qlj.onrender.com/sw.js) · prod **200/200** (2026-06-21) | None |
 | **Games Hub PWA** | — (web) | PWA shortcut | **LIVE verified** | https://wealth-engine-0qlj.onrender.com/games/ · prod **200** (2026-06-21) | None |
-| **Horseshoe Games Hub** | `com.wealthengine.gameshub` | Capacitor → Play/App | **READY (preflight)** | `mobile/games/` · CI AAB artifact | **iOS:** Mac + Fastlane only (Apple Dev ACTIVE) · **Play:** $25 |
+| **Horseshoe Games Hub** | `com.wealthengine.gameshub` | Capacitor → Play/App | **TestFlight READY** v1.0.1 | `mobile/games/` · 9 games · CI AAB artifact | **iOS:** Mac + Fastlane upload · **Play:** $25 |
 | **Freelancer Tools** | `com.wealthengine.freelancertools` | Capacitor → Play/App | **SCaffold** | `mobile/tools/` | Play $25 · iOS TestFlight after games ship |
 | **itch.io packs** | — | HTML zip | **PACKAGED** | `D:\wealth-engine-data\mobile\itch\*.zip` | Manual upload (free) |
 
-## Shipped games (8) — in all channels
+## Shipped games (9) — in all channels
 
 | Slug | Live | itch zip |
 |------|------|----------|
@@ -35,8 +35,9 @@
 | word-scramble-biz | `/games/word-scramble-biz/` | `word-scramble-biz.zip` |
 | receipt-rush | `/games/receipt-rush/` | `receipt-rush.zip` |
 | webhook-whack | `/games/webhook-whack/` | `webhook-whack.zip` |
+| net-30-ninja | `/games/net-30-ninja/` | `net-30-ninja.zip` |
 
-Hub bundle: `horseshoe-games-hub.zip` (all 8 + index)
+Hub bundle: `horseshoe-games-hub.zip` (all 9 + index)
 
 ## Pipeline checklist
 
@@ -57,7 +58,7 @@ Hub bundle: `horseshoe-games-hub.zip` (all 8 + index)
 
 Run: `node scripts/app-store-preflight.mjs --app games`
 
-Expected: **14–15 PASS**, **0 FAIL**, **1–2 WARN** (AdMob test IDs until production).
+Expected: **16 PASS**, **0 FAIL**, **1 WARN** (AdMob test IDs until production).
 
 ## Next actions (user / Tier-2)
 

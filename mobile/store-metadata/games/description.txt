@@ -1,11 +1,12 @@
-Horseshoe Games Hub brings six free, family-friendly browser games to your phone — no account required.
+Horseshoe Games Hub brings nine free, family-friendly games to your phone — no account required.
 
-Play Horseshoe Toss, Invoice Stack, Uptime Defender, Memory Match, Color Switch Snake, and Word Scramble. Simple controls, quick sessions, and fun for all ages.
+Play Horseshoe Toss, Invoice Stack, Uptime Defender, Memory Match, Color Switch Snake, Word Scramble, Receipt Rush, Webhook Whack-a-Mole, and Net-30 Ninja. Simple controls, quick sessions, and fun for all ages.
 
 Features:
-• Six original mini-games
+• Nine original mini-games
+• Recently played — jump back to your favorites
 • Touch-optimized controls
-• Works offline after first load (bundled mode)
+• Works offline after first load
 • No signup or personal data required
 • Optional rewarded ads unlock discount codes for business tools
 

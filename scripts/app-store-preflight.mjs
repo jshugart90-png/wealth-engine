@@ -57,9 +57,19 @@ else warn(4, "Splash screen configured", "Add SplashScreen plugin config");
 const gamesHub = join(dist, "games", "index.html");
 if (existsSync(gamesHub)) {
   const hub = readFileSync(gamesHub, "utf8");
-  const slugs = ["horseshoe-toss", "invoice-stack", "uptime-defender", "freelancer-memory", "color-switch-snake", "word-scramble-biz"];
+  const slugs = [
+    "horseshoe-toss",
+    "invoice-stack",
+    "uptime-defender",
+    "freelancer-memory",
+    "color-switch-snake",
+    "word-scramble-biz",
+    "receipt-rush",
+    "webhook-whack",
+    "net-30-ninja",
+  ];
   const missing = slugs.filter((s) => !hub.includes(`/games/${s}/`));
-  if (!missing.length) pass(5, "Games hub links intact");
+  if (!missing.length) pass(5, "Games hub links intact", `${slugs.length} games`);
   else fail(5, "Games hub links intact", `Missing: ${missing.join(", ")}`);
 } else {
   fail(5, "Games hub links intact", "No dist/games/index.html");
@@ -70,7 +80,7 @@ const gameSlugs = readdirSync(join(root, "games"), { withFileTypes: true })
   .filter((d) => d.isDirectory())
   .map((d) => d.name);
 const missingGames = gameSlugs.filter((s) => !existsSync(join(dist, "games", s, "index.html")));
-if (!missingGames.length) pass(6, "All games in dist");
+if (!missingGames.length) pass(6, "All games in dist", `${gameSlugs.length} games`);
 else fail(6, "All games in dist", `Missing: ${missingGames.join(", ")}`);
 
 // 7. AdMob test mode documented (should be ON until production IDs)

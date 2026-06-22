@@ -43,7 +43,7 @@ Everything else is automated (Capacitor project, metadata, Fastlane lanes, CI AA
    cd android && ./gradlew bundleRelease
    ```
 3. Upload `app-release.aab` to **Internal testing** track first
-4. Add yourself as tester → install → verify all 8 games load
+4. Add yourself as tester → install → verify all 9 games load
 
 ### 5. AdMob link (after app created)
 
@@ -170,7 +170,7 @@ In Xcode:
 
 1. App Store Connect → **TestFlight** tab → select build (processing ~5–30 min)
 2. **Internal Testing** → add yourself → install **TestFlight** app on iPhone/iPad
-3. Verify all **8 games** load in the hub WebView
+3. Verify all **9 games** load in the hub WebView
 4. When ready for public beta: **External Testing** (optional Apple review of beta info)
 5. **App Store release:** swap AdMob test IDs → production (see `docs/MONETIZATION_MATRIX.md`) → Submit for Review
 
