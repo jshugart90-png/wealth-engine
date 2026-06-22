@@ -1,0 +1,15 @@
+HookRelay DLQ Pro is the indie SaaS webhook reliability stack — durable receive, exponential backoff retry, dead letter queue, and one-click replay.
+
+Cheaper than Hookdeck at $39/mo. Built for solo devs on Render, Fly, and Vercel.
+
+Features:
+• DLQ Pro — 10 endpoints, 25K events/mo at $29/mo
+• One-click DLQ replay dashboard
+• Slack + email failure alerts after 3 retries
+• Stripe, GitHub, Shopify preset connectors
+• Payload inspector for fast debugging
+• Starter relay from $7/mo via Stripe checkout
+
+Perfect for developers who need production-grade webhook delivery without enterprise sales calls.
+
+Privacy: Webhook payloads processed on server per your relay configuration. Subscription via Stripe.

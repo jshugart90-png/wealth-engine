@@ -226,6 +226,11 @@ platform :ios do
     mini_app_ios_beta("devwatch", "DevWatch")
   end
 
+  desc "TestFlight upload for HookRelay DLQ Pro hub app"
+  lane :beta_hookrelay_dlq_pro do
+    mini_app_ios_beta("hookrelay-dlq", "HookRelay DLQ Pro")
+  end
+
   desc "TestFlight upload + App Store metadata (does not auto-submit for review)"
   lane :release do
     beta

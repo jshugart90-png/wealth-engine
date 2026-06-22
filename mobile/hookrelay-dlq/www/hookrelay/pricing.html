@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>HookRelay Pricing — Webhook DLQ & Retry</title>
+  <meta name="description" content="Webhook dead letter queue and retry for indie SaaS. Free tier 1K events. Pro $29/mo with 25K events and DLQ replay.">
+  <style>
+    body{font-family:ui-monospace,monospace;background:#0d1117;color:#c9d1d9;padding:40px 20px 80px;max-width:800px;margin:0 auto}
+    a{color:#58a6ff}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;margin:28px 0}
+    .plan{border:1px solid #30363d;padding:20px;border-radius:8px}
+    .plan.featured{border-color:#238636}
+    h1{font-size:clamp(24px,4vw,32px)}.price{font-size:28px;font-weight:700;margin:8px 0}
+    ul{font-family:system-ui,sans-serif;color:#8b949e;line-height:1.8;font-size:14px;padding-left:18px}
+    .btn{display:inline-block;background:#238636;color:#fff;padding:12px 20px;text-decoration:none;border-radius:6px;font-weight:600;margin-top:12px;font-family:system-ui,sans-serif}
+    .btn.secondary{background:#21262d}
+    .badge{background:#161b22;border:1px solid #30363d;padding:10px 16px;border-radius:6px;font-family:system-ui,sans-serif;font-size:13px;margin-bottom:20px}
+  </style>
+<meta name="google-site-verification" content="X8W5bw-fSJ0pTZiA0LesNi2vZ_-bUdLqVokR5uJZlI4" />
+<script>(function(){try{var r=localStorage.getItem('we_ref')||new URLSearchParams(location.search).get('ref');fetch('/api/funnel/visit',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({path:"/hookrelay",refCode:r,source:new URLSearchParams(location.search).get('utm_source')||'direct'})}).catch(function(){})}catch(e){}})();</script></head>
+<body>
+  <div class="badge"><strong style="color:#3fb950">LAUNCH25</strong> — 25% off first month · <a href="/go/hookrelay-dlq.html">Ad landing →</a></div>
+  <h1>HookRelay Pricing</h1>
+  <p style="font-family:system-ui,sans-serif;color:#8b949e">Inbound webhook reliability — receive, retry with exponential backoff, dead letter queue, one-click replay. Built for indie SaaS, not enterprise sales cycles.</p>
+  <div class="grid">
+    <div class="plan">
+      <div>Free</div>
+      <div class="price">$0</div>
+      <ul>
+        <li>1 endpoint</li>
+        <li>1K events/mo</li>
+        <li>Email alerts on failure</li>
+        <li>Payload inspector</li>
+      </ul>
+      <a class="btn secondary" href="/hookrelay/index.html">Start free →</a>
+    </div>
+    <div class="plan">
+      <div>Starter</div>
+      <div class="price">$7<span style="font-size:14px;color:#8b949e">/mo</span></div>
+      <ul>
+        <li>3 endpoints</li>
+        <li>10K events/mo</li>
+        <li>Retry + dead-letter email</li>
+        <li>Stripe/GitHub/Shopify presets</li>
+      </ul>
+      <a class="btn secondary" href="https://buy.stripe.com/bJe5kC0XcaGd23zdxv1Nu0d">Get Starter →</a>
+    </div>
+    <div class="plan featured">
+      <div>DLQ Pro</div>
+      <div class="price">$29<span style="font-size:14px;color:#8b949e">/mo</span></div>
+      <ul>
+        <li>10 endpoints</li>
+        <li>25K events/mo</li>
+        <li>Full DLQ dashboard + replay</li>
+        <li>Slack + email alerts</li>
+        <li>Exponential backoff retries</li>
+      </ul>
+      <a class="btn" href="https://buy.stripe.com/6oU9AScFUcOl8rX8db1Nu0g">Get DLQ Pro →</a>
+    </div>
+  </div>
+  <p style="font-family:system-ui,sans-serif;font-size:13px;color:#8b949e">Compare: Hookdeck from $39/mo · Svix from $490/mo · HookRelay Pro at $29/mo for receive-only indie stacks.</p>
+  <p style="font-family:system-ui,sans-serif"><a href="/go/webhook.html">Webhook landing</a> · <a href="/p/webhook-retry-service.html">Retry service guide</a> · <a href="/p/webhook-dead-letter-queue-tool.html">DLQ explainer</a></p>
+</body>
+</html>

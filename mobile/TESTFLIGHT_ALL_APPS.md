@@ -1,4 +1,4 @@
-# TestFlight Master Checklist — All 31 Apps
+# TestFlight Master Checklist — All 32 Apps
 
 **Updated:** 2026-06-22  
 **Repo:** github.com/jshugart90-png/wealth-engine  
@@ -40,6 +40,7 @@
 | 29 | Break-Even Calculator Pro | `com.wealthengine.breakevencalculatorpro` | 1.0.0 | `beta_break_even_calculator_pro` | `mobile:preflight:break-even-calculator-pro` | READY |
 | 30 | Freelancer Revenue Stack | `com.wealthengine.freelancerstack` | 1.0.0 | `beta_freelancer_stack` | `mobile:preflight:freelancer-stack` | READY |
 | 31 | DevWatch | `com.wealthengine.devwatch` | 1.0.0 | `beta_devwatch` | `mobile:preflight:devwatch` | READY |
+| 32 | HookRelay DLQ Pro | `com.wealthengine.hookrelaydlqpro` | 1.0.0 | `beta_hookrelay_dlq_pro` | `mobile:preflight:hookrelay-dlq` | READY |
 
 ## Per-app upload commands (Mac)
 
@@ -93,6 +94,7 @@ cd .. && bundle exec fastlane ios beta_<lane>
 | break-even-calculator-pro | `mobile/break-even-calculator-pro/` | `/break-even-calculator-pro/` |
 | freelancer-stack | `mobile/freelancer-stack/` | `/bundles/freelancer-stack.html` |
 | devwatch | `mobile/devwatch/` | `/bundles/devwatch.html` |
+| hookrelay-dlq | `mobile/hookrelay-dlq/` | `/go/hookrelay-dlq.html` |
 
 ## Global blockers
 

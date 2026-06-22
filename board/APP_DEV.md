@@ -39,6 +39,7 @@
 | **Break-Even Calculator Pro** | `com.wealthengine.breakevencalculatorpro` | **TestFlight prep** | 17 PASS, 0 FAIL | `d7fc23d` pushed | **READY** (Mac upload) |
 | **Freelancer Revenue Stack** | `com.wealthengine.freelancerstack` | **TestFlight prep** | 21 PASS, 0 FAIL | `face453` pushed | **READY** (Mac upload) |
 | **DevWatch** | `com.wealthengine.devwatch` | **TestFlight prep** | 21 PASS, 0 FAIL | `bd278f1` pushed | **READY** (Mac upload) |
+| **HookRelay DLQ Pro** | `com.wealthengine.hookrelaydlqpro` | **TestFlight prep** | 21 PASS, 0 FAIL | pending | **READY** (Mac upload) |
 
 ## App 1 — Horseshoe Games Hub
 
@@ -814,9 +815,35 @@ npx cap sync ios && npx cap open ios
 # Or: bundle exec fastlane ios beta_devwatch
 ```
 
+## App 32 — HookRelay DLQ Pro (hub)
+
+| Field | Value |
+|-------|-------|
+| Version | 1.0.0 |
+| Tools | DLQ Pro landing + HookRelay dashboard + pricing |
+| Capacitor | `mobile/hookrelay-dlq/` → loads `/go/hookrelay-dlq.html` from prod |
+| Store metadata | `mobile/store-metadata/hookrelay-dlq/` |
+| Preflight | `npm run mobile:preflight:hookrelay-dlq` |
+
+### Features (shipped this session)
+
+1. **Native launcher** — 3-panel grid with recently used tracking
+2. **DLQ Pro landing** — local copy of `/go/hookrelay-dlq.html` with $29/mo tier
+3. **HookRelay dashboard** — relay + retry + DLQ replay UI
+4. **Pricing page** — Free, Pro $29/mo, Team $79/mo with LAUNCH25 checkout
+
+### TestFlight upload (user Mac)
+
+```bash
+npm run build && cd mobile && node sync-www.mjs hookrelay-dlq
+cd hookrelay-dlq && npm install && npx cap add ios  # if missing
+npx cap sync ios && npx cap open ios
+# Or: bundle exec fastlane ios beta_hookrelay_dlq_pro
+```
+
 ## Master checklist
 
-See `mobile/TESTFLIGHT_ALL_APPS.md` for all 31 apps — bundle IDs, Fastlane lanes, versions.
+See `mobile/TESTFLIGHT_ALL_APPS.md` for all 32 apps — bundle IDs, Fastlane lanes, versions.
 
 ## GitHub policy
 

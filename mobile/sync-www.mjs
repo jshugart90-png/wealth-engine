@@ -1,6 +1,6 @@
 /**
  * Sync dist/ assets into Capacitor www folders.
- * Usage: node sync-www.mjs [games|tools|freelancer-stack|devwatch|receipt-rush|webhook-whack|invoice-stack|horseshoe-toss|uptime-defender|freelancer-memory|color-switch-snake|word-scramble-biz|net-30-ninja|ssl-shield|nda-speed-sign|billsnap|statusping-lite|leaselens|ndagen|hookrelay|pipekit|meetingcost|templateforge|comparestack|tip-calculator-pro|hourly-rate-calculator-pro|freelancer-tax-estimator|1099-threshold-tracker-pro|quarterly-tax-deadline-pro|profit-margin-calculator-pro|break-even-calculator-pro|all]
+ * Usage: node sync-www.mjs [games|tools|freelancer-stack|devwatch|hookrelay-dlq|receipt-rush|webhook-whack|invoice-stack|horseshoe-toss|uptime-defender|freelancer-memory|color-switch-snake|word-scramble-biz|net-30-ninja|ssl-shield|nda-speed-sign|billsnap|statusping-lite|leaselens|ndagen|hookrelay|pipekit|meetingcost|templateforge|comparestack|tip-calculator-pro|hourly-rate-calculator-pro|freelancer-tax-estimator|1099-threshold-tracker-pro|quarterly-tax-deadline-pro|profit-margin-calculator-pro|break-even-calculator-pro|all]
  */
 import { cpSync, existsSync, mkdirSync, readFileSync, writeFileSync, readdirSync } from "fs";
 import { join, dirname } from "path";
@@ -455,6 +455,155 @@ p{margin:0 0 10px;color:#94a3b8;font-size:14px}
   if (existsSync(join(dist, "assets"))) cpSync(join(dist, "assets"), join(www, "assets"), { recursive: true });
 
   console.log("Synced devwatch → mobile/devwatch/www");
+}
+
+function syncHookRelayDlq() {
+  const www = join(mobileRoot, "hookrelay-dlq", "www");
+  mkdirSync(www, { recursive: true });
+
+  const tools = [
+    {
+      href: "go/hookrelay-dlq.html",
+      slug: "landing",
+      title: "DLQ Pro Landing",
+      desc: "$29/mo — retry, dead letter queue, replay",
+      featured: true,
+    },
+    {
+      href: "hookrelay/index.html",
+      slug: "relay",
+      title: "HookRelay Dashboard",
+      desc: "Receive, retry, and forward webhooks",
+    },
+    {
+      href: "hookrelay/pricing.html",
+      slug: "pricing",
+      title: "Pricing & Plans",
+      desc: "Free, Pro $29/mo, Team $79/mo",
+    },
+  ];
+
+  const cards = tools
+    .map(
+      (t) => `
+    <a class="card${t.featured ? " featured" : ""}" href="${t.href}" data-slug="${t.slug}">
+      <h2>${t.title}</h2>
+      <p>${t.desc}</p>
+      <span class="open">Open →</span>
+    </a>`
+    )
+    .join("");
+
+  const titlesJson = JSON.stringify(Object.fromEntries(tools.map((t) => [t.slug, t.title])));
+  const hrefsJson = JSON.stringify(Object.fromEntries(tools.map((t) => [t.slug, t.href])));
+
+  const indexHtml = `<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>HookRelay DLQ Pro</title>
+<meta name="description" content="Webhook dead letter queue, exponential backoff retry, and one-click replay for indie SaaS.">
+<link rel="manifest" href="/manifest.json">
+<meta name="theme-color" content="#0d1117">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<link rel="apple-touch-icon" href="/assets/pwa/icon-192.png">
+<style>
+body{font-family:system-ui,sans-serif;background:#0d1117;color:#c9d1d9;margin:0;padding:0 20px 40px}
+.promo{background:#238636;color:#fff;text-align:center;padding:10px 16px;font-size:13px;font-weight:700;margin:0 -20px 16px}
+.promo a{color:#fff;text-decoration:underline}
+.offline{display:none;background:#7f1d1d;color:#fecaca;text-align:center;padding:10px 16px;font-size:13px}
+.offline.show{display:block}
+h1{text-align:center;margin:28px 0 8px;font-size:1.6rem}
+.sub{text-align:center;max-width:360px;margin:0 auto 20px;color:#8b949e;line-height:1.5}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:16px;max-width:900px;margin:0 auto}
+.card{display:block;background:#161b22;border:1px solid #30363d;border-radius:12px;padding:20px;color:inherit;text-decoration:none;transition:.2s}
+.card:hover{border-color:#58a6ff;transform:translateY(-2px)}
+.card.featured{border-color:#238636;background:linear-gradient(135deg,#161b22,#0d2818)}
+h2{margin:0 0 8px;font-size:18px}
+p{margin:0 0 10px;color:#8b949e;font-size:14px}
+.open{color:#58a6ff;font-size:13px;font-weight:600}
+.tier{display:block;max-width:900px;margin:24px auto 0;background:#161b22;border:2px solid #238636;border-radius:12px;padding:20px;text-align:center;color:inherit;text-decoration:none}
+.tier strong{display:block;font-size:18px;margin-bottom:6px;color:#3fb950}
+.tier span{font-size:14px;color:#8b949e}
+.recent{max-width:900px;margin:0 auto 20px}
+.recent h3{font-size:13px;color:#484f58;margin:0 0 10px;text-transform:uppercase;letter-spacing:.05em}
+.recent-row{display:flex;gap:10px;flex-wrap:wrap}
+.recent a{background:#161b22;border:1px solid #30363d;border-radius:8px;padding:8px 12px;font-size:13px;color:#c9d1d9;text-decoration:none}
+.footer{text-align:center;margin-top:32px;font-size:13px;color:#484f58}
+.footer a{color:#58a6ff}
+</style></head><body>
+<div class="promo"><strong>LAUNCH25</strong> — 25% off first month · <a href="go/hookrelay-dlq.html">DLQ Pro $29/mo →</a></div>
+<div id="offline-banner" class="offline" role="status">You're offline — open tools you've used before</div>
+<h1>🔗 HookRelay DLQ Pro</h1>
+<p class="sub">Dead letter queue, retry, and replay for Stripe, GitHub & Shopify webhooks</p>
+<div id="recent-section" class="recent" hidden>
+  <h3>Recently used</h3>
+  <div id="recent-row" class="recent-row"></div>
+</div>
+<div class="grid">${cards}</div>
+<a class="tier" href="go/hookrelay-dlq.html">
+  <strong>DLQ Pro — $29/mo</strong>
+  <span>10 endpoints · 25K events/mo · Slack + email alerts · one-click replay</span>
+</a>
+<p class="footer"><a href="privacy.html">Privacy</a> · <a href="https://wealth-engine-0qlj.onrender.com/go/hookrelay-dlq.html">View landing online</a></p>
+<script>(function(){
+  var KEY='hookrelay_dlq_recent';
+  var titles=${titlesJson};
+  var hrefs=${hrefsJson};
+  function trackRecent(slug){
+    try{
+      var list=JSON.parse(localStorage.getItem(KEY)||'[]').filter(function(s){return s!==slug});
+      list.unshift(slug);
+      localStorage.setItem(KEY,JSON.stringify(list.slice(0,5)));
+    }catch(e){}
+  }
+  document.querySelectorAll('.card').forEach(function(card){
+    var slug=card.getAttribute('data-slug');
+    if(slug)card.addEventListener('click',function(){trackRecent(slug)});
+  });
+  function renderRecent(){
+    var row=document.getElementById('recent-row');
+    var section=document.getElementById('recent-section');
+    if(!row||!section)return;
+    var slugs=[];
+    try{slugs=JSON.parse(localStorage.getItem(KEY)||'[]')}catch(e){}
+    slugs=slugs.filter(function(s){return titles[s]&&hrefs[s]}).slice(0,3);
+    if(!slugs.length){section.hidden=true;return;}
+    section.hidden=false;
+    row.innerHTML=slugs.map(function(s){
+      return '<a href="'+hrefs[s]+'">'+titles[s]+'</a>';
+    }).join('');
+  }
+  renderRecent();
+  var banner=document.getElementById('offline-banner');
+  function setOffline(){if(banner)banner.classList.toggle('show',!navigator.onLine)}
+  window.addEventListener('online',setOffline);
+  window.addEventListener('offline',setOffline);
+  setOffline();
+})();</script>
+</body></html>`;
+
+  writeFileSync(join(www, "index.html"), indexHtml);
+
+  const hookrelaySrc = join(dist, "hookrelay");
+  if (!existsSync(join(hookrelaySrc, "index.html"))) {
+    console.error("Missing dist/hookrelay — run npm run build first");
+    process.exit(1);
+  }
+  cpSync(hookrelaySrc, join(www, "hookrelay"), { recursive: true });
+
+  const landingSrc = join(dist, "go", "hookrelay-dlq.html");
+  if (!existsSync(landingSrc)) {
+    console.error("Missing dist/go/hookrelay-dlq.html — run npm run build first");
+    process.exit(1);
+  }
+  mkdirSync(join(www, "go"), { recursive: true });
+  cpSync(landingSrc, join(www, "go", "hookrelay-dlq.html"));
+
+  if (existsSync(join(dist, "privacy.html"))) cpSync(join(dist, "privacy.html"), join(www, "privacy.html"));
+  if (existsSync(join(dist, "manifest.json"))) cpSync(join(dist, "manifest.json"), join(www, "manifest.json"));
+  if (existsSync(join(dist, "sw.js"))) cpSync(join(dist, "sw.js"), join(www, "sw.js"));
+  if (existsSync(join(dist, "assets"))) cpSync(join(dist, "assets"), join(www, "assets"), { recursive: true });
+
+  console.log("Synced hookrelay-dlq → mobile/hookrelay-dlq/www");
 }
 
 const MINI_GAME_SHELLS = {
@@ -1179,6 +1328,7 @@ if (target === "games" || target === "all") syncGames();
 if (target === "tools" || target === "all") syncTools();
 if (target === "freelancer-stack" || target === "all") syncFreelancerStack();
 if (target === "devwatch" || target === "all") syncDevWatch();
+if (target === "hookrelay-dlq" || target === "all") syncHookRelayDlq();
 if (target === "billsnap" || target === "all") syncUtility("billsnap");
 if (target === "statusping-lite" || target === "all") syncUtility("statusping-lite");
 if (target === "leaselens" || target === "all") syncUtility("leaselens");
