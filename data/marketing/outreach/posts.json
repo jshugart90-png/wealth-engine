@@ -1,0 +1,54 @@
+[
+  {
+    "platform": "reddit",
+    "subreddit": "freelance",
+    "title": "Free invoice PDF generator — no account, $3 for watermark-free export",
+    "body": "Built a simple tool for myself — preview free, one-time $3 for clean PDF. Not trying to spam; genuinely useful for quick client invoices.",
+    "urlPath": "/billsnap/index.html?utm_source=reddit&utm_campaign=freelance",
+    "fullUrl": "https://YOUR_DOMAIN/billsnap/index.html?utm_source=reddit&utm_campaign=freelance",
+    "readyToPost": "Free invoice PDF generator — no account, $3 for watermark-free export\n\nBuilt a simple tool for myself — preview free, one-time $3 for clean PDF. Not trying to spam; genuinely useful for quick client invoices.\n\nhttps://YOUR_DOMAIN/billsnap/index.html?utm_source=reddit&utm_campaign=freelance"
+  },
+  {
+    "platform": "reddit",
+    "subreddit": "Landlord",
+    "title": "Free lease red-flag checker (paste text, get score)",
+    "body": "Rule-based analyzer — not legal advice, but catches common bad clauses. Free preview, full report is a few bucks.",
+    "urlPath": "/leaselens/index.html?utm_source=reddit&utm_campaign=landlord",
+    "fullUrl": "https://YOUR_DOMAIN/leaselens/index.html?utm_source=reddit&utm_campaign=landlord",
+    "readyToPost": "Free lease red-flag checker (paste text, get score)\n\nRule-based analyzer — not legal advice, but catches common bad clauses. Free preview, full report is a few bucks.\n\nhttps://YOUR_DOMAIN/leaselens/index.html?utm_source=reddit&utm_campaign=landlord"
+  },
+  {
+    "platform": "indiehackers",
+    "title": "Launched 9 micro-tools under one Stripe stack — feedback welcome",
+    "body": "PipeKit API, BillSnap, LeaseLens, uptime monitor, etc. All self-serve checkout. Would love feedback on positioning.",
+    "urlPath": "/?utm_source=indiehackers",
+    "fullUrl": "https://YOUR_DOMAIN/?utm_source=indiehackers",
+    "readyToPost": "Launched 9 micro-tools under one Stripe stack — feedback welcome\n\nPipeKit API, BillSnap, LeaseLens, uptime monitor, etc. All self-serve checkout. Would love feedback on positioning.\n\nhttps://YOUR_DOMAIN/?utm_source=indiehackers"
+  },
+  {
+    "platform": "reddit",
+    "subreddit": "webdev",
+    "title": "Simple webhook relay for indie SaaS — $7/mo, no enterprise sales call",
+    "body": "Built HookRelay for my own stack — forward webhooks, replay failed events, dead-letter alerts. Self-serve Stripe.",
+    "urlPath": "/go/webhook.html?utm_source=reddit&utm_campaign=webdev",
+    "fullUrl": "https://YOUR_DOMAIN/go/webhook.html?utm_source=reddit&utm_campaign=webdev",
+    "readyToPost": "Simple webhook relay for indie SaaS — $7/mo, no enterprise sales call\n\nBuilt HookRelay for my own stack — forward webhooks, replay failed events, dead-letter alerts. Self-serve Stripe.\n\nhttps://YOUR_DOMAIN/go/webhook.html?utm_source=reddit&utm_campaign=webdev"
+  },
+  {
+    "platform": "reddit",
+    "subreddit": "startups",
+    "title": "Free NDA generator with $4 PDF export — no Rocket Lawyer subscription",
+    "body": "Quick mutual or one-way NDAs for freelancers. Preview free, clean PDF for a few bucks.",
+    "urlPath": "/go/nda.html?utm_source=reddit&utm_campaign=startups",
+    "fullUrl": "https://YOUR_DOMAIN/go/nda.html?utm_source=reddit&utm_campaign=startups",
+    "readyToPost": "Free NDA generator with $4 PDF export — no Rocket Lawyer subscription\n\nQuick mutual or one-way NDAs for freelancers. Preview free, clean PDF for a few bucks.\n\nhttps://YOUR_DOMAIN/go/nda.html?utm_source=reddit&utm_campaign=startups"
+  },
+  {
+    "platform": "hackernews",
+    "title": "Show HN: PipeKit — micro-APIs (UUID, hash, base64) with self-serve keys",
+    "body": "100 free requests/day unauthenticated. Paid from $9/mo. Built for developers who don't need a full API platform.",
+    "urlPath": "/go/pipekit.html?utm_source=hn&utm_campaign=pipekit",
+    "fullUrl": "https://YOUR_DOMAIN/go/pipekit.html?utm_source=hn&utm_campaign=pipekit",
+    "readyToPost": "Show HN: PipeKit — micro-APIs (UUID, hash, base64) with self-serve keys\n\n100 free requests/day unauthenticated. Paid from $9/mo. Built for developers who don't need a full API platform.\n\nhttps://YOUR_DOMAIN/go/pipekit.html?utm_source=hn&utm_campaign=pipekit"
+  }
+]

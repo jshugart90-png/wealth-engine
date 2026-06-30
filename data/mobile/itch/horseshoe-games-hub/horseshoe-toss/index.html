@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
+<title>Horseshoe Toss — Wealth Engine Games</title>
+<meta name="description" content="Tap to toss horseshoes at the stake! Simple timing game for all ages.">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#1a2f1a;color:#f0f4e8;font-family:system-ui,sans-serif;overflow:hidden;touch-action:none;user-select:none}
+#wrap{display:flex;flex-direction:column;align-items:center;min-height:100vh;padding:8px}
+header{text-align:center;padding:4px 0 8px;width:100%;max-width:480px}
+h1{font-size:1.25rem;font-weight:700}
+.sub{font-size:.75rem;color:#a8c4a0;margin-top:2px}
+#scorebar{display:flex;justify-content:space-between;width:100%;max-width:480px;font-size:.85rem;padding:4px 8px;background:#0f1f0f;border-radius:8px;margin-bottom:4px}
+#scorebar span{color:#ffd54f;font-weight:700}
+canvas{display:block;border-radius:12px;background:#2d5a2d;max-width:100%;cursor:pointer;touch-action:none}
+#msg{text-align:center;font-size:.9rem;min-height:1.4em;margin:6px 0;color:#c8e6c9}
+.btn{background:#4caf50;color:#fff;border:none;padding:10px 24px;border-radius:8px;font-size:1rem;font-weight:600;cursor:pointer;margin:4px}
+.btn:active{transform:scale(.97)}
+.ad{width:100%;max-width:320px;background:#0f1f0f;border:1px dashed #3a5a3a;border-radius:6px;padding:8px;text-align:center;font-size:10px;color:#6a8a6a;margin:6px 0}
+.cta{font-size:11px;color:#a8c4a0;text-align:center;margin-top:4px}
+.cta a{color:#81c784;text-decoration:none}
+.cta a:hover{text-decoration:underline}
+</style>
+<meta name="google-site-verification" content="X8W5bw-fSJ0pTZiA0LesNi2vZ_-bUdLqVokR5uJZlI4" />
+</head>
+<body>
+<div id="wrap">
+<header>
+<h1>🐴 Horseshoe Toss</h1>
+<p class="sub">Tap when the power bar is green — ring the stake!</p>
+</header>
+<div id="scorebar"><div>Score: <span id="score">0</span></div><div>Best: <span id="best">0</span></div><div>Round: <span id="round">1</span>/10</div></div>
+<canvas id="c" width="400" height="500"></canvas>
+<p id="msg">Tap to toss!</p>
+<button class="btn" id="restart" style="display:none">Play Again</button>
+<div class="ad">AdSense placeholder — 320×50 mobile banner</div>
+<p class="cta">Love precision games? Try <a href="https://wealth-engine-0qlj.onrender.com/go/uptime.html">StatusPing</a> — never miss downtime · <a href="https://horseshoeroundme.com" target="_blank" rel="noopener">Horseshoe Round Me</a></p>
+</div>
+<script>
+(function(){
+const canvas=document.getElementById('c'),ctx=canvas.getContext('2d');
+const scoreEl=document.getElementById('score'),bestEl=document.getElementById('best'),roundEl=document.getElementById('round'),msgEl=document.getElementById('msg'),restartBtn=document.getElementById('restart');
+let W=400,H=500,score=0,best=+localStorage.getItem('hsBest')||0,round=1,maxRounds=10,phase='aim',power=0,pDir=1,hsX=200,hsY=420,hsVX=0,hsVY=0,grav=.35,stakeX=200,stakeY=120,ringed=false,animating=false;
+bestEl.textContent=best;
+
+function resize(){
+  const r=Math.min(window.innerWidth-16,480)/W;
+  canvas.style.width=(W*r)+'px';canvas.style.height=(H*r)+'px';
+}
+resize();window.addEventListener('resize',resize);
+
+function resetRound(){
+  hsX=200;hsY=420;hsVX=0;hsVY=0;power=0;pDir=1;phase='aim';ringed=false;animating=false;
+  stakeX=160+Math.random()*80;
+  msgEl.textContent=round>maxRounds?'Game Over!':'Tap to toss!';
+}
+
+function draw(){
+  ctx.fillStyle='#2d5a2d';ctx.fillRect(0,0,W,H);
+  // grass stripes
+  for(let i=0;i<H;i+=30){ctx.fillStyle=i%60?'#285228':'#326832';ctx.fillRect(0,i,W,30);}
+  // stake
+  ctx.fillStyle='#8B4513';ctx.fillRect(stakeX-4,stakeY,8,60);
+  ctx.beginPath();ctx.arc(stakeX,stakeY,14,0,Math.PI*2);ctx.fillStyle='#654321';ctx.fill();
+  ctx.strokeStyle='#aaa';ctx.lineWidth=3;ctx.beginPath();ctx.arc(stakeX,stakeY,22,0,Math.PI*2);ctx.stroke();
+  // horseshoe trail
+  if(phase==='fly'||phase==='land'){
+    ctx.save();ctx.translate(hsX,hsY);ctx.rotate(hsX*0.02);
+    ctx.strokeStyle='#555';ctx.lineWidth=6;ctx.beginPath();
+    ctx.arc(0,0,18,0.3,Math.PI-0.3);ctx.stroke();
+    ctx.lineWidth=4;ctx.strokeStyle='#888';ctx.beginPath();ctx.moveTo(-12,-8);ctx.lineTo(-12,8);ctx.moveTo(12,-8);ctx.lineTo(12,8);ctx.stroke();
+    ctx.restore();
+  }
+  // horseshoe at start
+  if(phase==='aim'){
+    ctx.save();ctx.translate(hsX,hsY);
+    ctx.strokeStyle='#777';ctx.lineWidth=7;ctx.beginPath();ctx.arc(0,0,20,0.4,Math.PI-0.4);ctx.stroke();
+    ctx.lineWidth=5;ctx.strokeStyle='#999';ctx.beginPath();ctx.moveTo(-14,-10);ctx.lineTo(-14,10);ctx.moveTo(14,-10);ctx.lineTo(14,10);ctx.stroke();
+    ctx.restore();
+  }
+  // power bar
+  if(phase==='aim'){
+    const bx=50,by=460,bw=300,bh=16;
+    ctx.fillStyle='#222';ctx.fillRect(bx,by,bw,bh);
+    const gStart=bx+bw*0.35,gEnd=bx+bw*0.55;
+    ctx.fillStyle='#2e7d32';ctx.fillRect(gStart,by,gEnd-gStart,bh);
+    ctx.fillStyle='#ffd54f';ctx.fillRect(bx+power*bw-3,by-2,6,bh+4);
+    ctx.strokeStyle='#fff';ctx.strokeRect(bx,by,bw,bh);
+    ctx.fillStyle='#fff';ctx.font='11px system-ui';ctx.fillText('POWER',bx,by-4);
+  }
+  // ring effect
+  if(ringed){
+    ctx.strokeStyle='rgba(255,215,0,0.8)';ctx.lineWidth=3;
+    for(let i=0;i<3;i++){ctx.beginPath();ctx.arc(stakeX,stakeY,30+i*12,0,Math.PI*2);ctx.stroke();}
+  }
+}
+
+function toss(){
+  if(phase!=='aim'||animating)return;
+  const sweet=power>=0.35&&power<=0.55;
+  const p=power;
+  hsVX=(stakeX-hsX)*0.04+(sweet?0:(Math.random()-0.5)*3);
+  hsVY=-(8+p*10);
+  phase='fly';animating=true;
+}
+
+function update(){
+  if(phase==='aim'){power+=pDir*0.018;if(power>=1||power<=0)pDir*=-1;}
+  if(phase==='fly'){
+    hsVY+=grav;hsX+=hsVX;hsY+=hsVY;
+    if(hsY>=400){
+      phase='land';
+      const dist=Math.hypot(hsX-stakeX,hsY-stakeY-20);
+      if(dist<28){
+        ringed=true;const pts=Math.round(100*(1-dist/28));score+=pts;
+        scoreEl.textContent=score;msgEl.textContent='🎯 Ringer! +'+pts;
+      }else if(dist<50){
+        const pts=Math.round(30*(1-dist/50));score+=pts;
+        scoreEl.textContent=score;msgEl.textContent='Close! +'+pts;
+      }else{msgEl.textContent='Miss! Try again.';}
+      setTimeout(nextRound,1200);
+    }
+  }
+}
+
+function nextRound(){
+  round++;
+  roundEl.textContent=Math.min(round,maxRounds);
+  if(round>maxRounds){
+    phase='over';
+    if(score>best){best=score;localStorage.setItem('hsBest',best);bestEl.textContent=best;}
+    msgEl.textContent='Final score: '+score+'! '+(score>=500?'🏆 Legend!':'Nice tosses!');
+    restartBtn.style.display='inline-block';
+    return;
+  }
+  resetRound();
+}
+
+function loop(){update();draw();requestAnimationFrame(loop);}
+loop();resetRound();
+
+function tap(e){e.preventDefault();if(phase==='over')return;toss();}
+canvas.addEventListener('click',tap);
+canvas.addEventListener('touchstart',tap,{passive:false});
+restartBtn.addEventListener('click',()=>{score=0;round=1;scoreEl.textContent=0;roundEl.textContent=1;restartBtn.style.display='none';resetRound();});
+})();
+</script>
+<script>(function(){
+  var WE_ADMOB={appId:'ca-app-pub-3940256099942544~3347511713',banner:'ca-app-pub-3940256099942544/6300978111',rewarded:'ca-app-pub-3940256099942544/5224354917',testMode:true};
+  window.WE_ADMOB=WE_ADMOB;
+  function showBanner(el){
+    if(!el)return;
+    el.setAttribute('data-admob','banner');
+    el.innerHTML='<div style="font-size:10px;color:#666;padding:4px">'+(WE_ADMOB.testMode?'AdMob TEST banner · ':'AdMob banner · ')+WE_ADMOB.banner+'</div>';
+  }
+  document.querySelectorAll('.ad,[data-ad-slot]').forEach(showBanner);
+  window.WE_showRewardedAd=function(onReward){
+    if(WE_ADMOB.testMode){
+      var code='LAUNCH25-'+Math.random().toString(36).slice(2,8).toUpperCase();
+      try{localStorage.setItem('we_game_reward',code)}catch(e){}
+      if(onReward)onReward(code);
+      return;
+    }
+    /* Native Capacitor AdMob plugin: @capacitor-community/admob — wire in mobile/ after Play Console setup */
+    if(window.Capacitor&&window.Capacitor.Plugins&&window.Capacitor.Plugins.AdMob){
+      window.Capacitor.Plugins.AdMob.showRewardVideoAd({adId:WE_ADMOB.rewarded}).then(function(){if(onReward)onReward('LAUNCH25')});
+    }else if(onReward){onReward('LAUNCH25');}
+  };
+})();</script><script>(function(){try{var r=localStorage.getItem('we_ref')||new URLSearchParams(location.search).get('ref');fetch('https://wealth-engine-0qlj.onrender.com/api/funnel/visit',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({path:"/games/horseshoe-toss/",refCode:r,source:new URLSearchParams(location.search).get('utm_source')||'direct'})}).catch(function(){})}catch(e){}})();</script></body>
+</html>

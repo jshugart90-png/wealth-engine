@@ -1,0 +1,196 @@
+{
+  "campaigns": [
+    {
+      "name": "WE - Invoice Generator",
+      "budgetDailyUsd": 2,
+      "keywords": [
+        {
+          "kw": "free invoice generator pdf",
+          "h1": "Free Invoice PDF",
+          "h2": "No Signup · $3 Pro",
+          "desc": "Preview free. Pro PDF $3. Code LAUNCH25 saves 25%."
+        },
+        {
+          "kw": "invoice generator no signup",
+          "h1": "Invoice — No Signup",
+          "h2": "PDF in 30 Seconds",
+          "desc": "Instant preview. Watermark-free export $3. Secure Stripe."
+        },
+        {
+          "kw": "freelancer invoice template",
+          "h1": "Freelancer Invoice",
+          "h2": "Print-Ready PDF $3",
+          "desc": "Made for contractors. One-time $3 or $29/mo unlimited."
+        },
+        {
+          "kw": "make invoice pdf online",
+          "h1": "Make Invoice PDF",
+          "h2": "Try Free First",
+          "desc": "Online invoice maker. Pro export from $3. LAUNCH25 at checkout."
+        }
+      ],
+      "sku": "pro-pdf",
+      "finalUrlPath": "/go/invoice.html?utm_source=google&utm_campaign=invoice"
+    },
+    {
+      "name": "WE - Lease Analyzer",
+      "budgetDailyUsd": 1,
+      "keywords": [
+        {
+          "kw": "lease red flags checklist",
+          "h1": "Lease Red Flags",
+          "h2": "Free Risk Score",
+          "desc": "Paste lease, get instant flags. Full report $7. Not legal advice."
+        },
+        {
+          "kw": "rental lease analyzer",
+          "h1": "Rental Lease Analyzer",
+          "h2": "Instant Preview",
+          "desc": "Rule-based lease scan. Unlock full report for $7."
+        },
+        {
+          "kw": "tenant lease review tool",
+          "h1": "Tenant Lease Review",
+          "h2": "Know Before You Sign",
+          "desc": "Free preview + paid full analysis. Secure checkout."
+        }
+      ],
+      "sku": "single-report",
+      "finalUrlPath": "/go/lease.html?utm_source=google&utm_campaign=lease"
+    },
+    {
+      "name": "WE - Uptime Monitor",
+      "budgetDailyUsd": 1,
+      "keywords": [
+        {
+          "kw": "cheap uptime monitor",
+          "h1": "Cheap Uptime Monitor",
+          "h2": "From $5/mo",
+          "desc": "Email alerts when site goes down. 5 monitors included."
+        },
+        {
+          "kw": "website down alert email",
+          "h1": "Site Down Alerts",
+          "h2": "Email in 5 Min",
+          "desc": "Simple monitoring. No complex setup. Cancel anytime."
+        },
+        {
+          "kw": "simple uptime monitoring",
+          "h1": "Simple Uptime Tool",
+          "h2": "5 Monitors $5/mo",
+          "desc": "Know before customers do. Self-serve Stripe billing."
+        }
+      ],
+      "sku": "basic-monthly",
+      "finalUrlPath": "/go/uptime.html?utm_source=google&utm_campaign=uptime"
+    },
+    {
+      "name": "WE - NDA Generator",
+      "budgetDailyUsd": 1,
+      "keywords": [
+        {
+          "kw": "free nda generator",
+          "h1": "Free NDA Generator",
+          "h2": "PDF $4",
+          "desc": "Preview free. Clean PDF export. No subscription."
+        },
+        {
+          "kw": "mutual nda template",
+          "h1": "Mutual NDA Template",
+          "h2": "Instant PDF",
+          "desc": "Freelancers & startups. Code LAUNCH25 saves 25%."
+        }
+      ],
+      "sku": "nda-pdf",
+      "finalUrlPath": "/go/nda.html?utm_source=google&utm_campaign=nda"
+    },
+    {
+      "name": "WE - PipeKit API",
+      "budgetDailyUsd": 1,
+      "keywords": [
+        {
+          "kw": "uuid api generator",
+          "h1": "UUID API Generator",
+          "h2": "Free Tier + $9/mo",
+          "desc": "Self-serve API keys. Hash, base64, JSON tools included."
+        },
+        {
+          "kw": "developer api utilities",
+          "h1": "Dev API Utilities",
+          "h2": "No Postman Bloat",
+          "desc": "100 free req/day. Pro from $9/mo. Instant Stripe checkout."
+        }
+      ],
+      "sku": "starter-monthly",
+      "finalUrlPath": "/go/pipekit.html?utm_source=google&utm_campaign=pipekit"
+    },
+    {
+      "name": "WE - Freelancer Stack",
+      "budgetDailyUsd": 2,
+      "keywords": [
+        {
+          "kw": "freelancer invoice contract bundle",
+          "h1": "Freelancer Stack",
+          "h2": "$29/mo Unlimited",
+          "desc": "Invoice + templates + NDA. LAUNCH25 saves 25%."
+        },
+        {
+          "kw": "freelancer business tools bundle",
+          "h1": "Revenue Stack $49",
+          "h2": "One-Time Bundle",
+          "desc": "Replace 3 subscriptions. Instant Stripe checkout."
+        }
+      ],
+      "sku": "stack-unlimited",
+      "finalUrlPath": "/go/freelancer.html?utm_source=google&utm_campaign=stack"
+    },
+    {
+      "name": "WE - HookRelay DLQ",
+      "budgetDailyUsd": 2,
+      "keywords": [
+        {
+          "kw": "webhook dead letter queue",
+          "h1": "Webhook DLQ Pro",
+          "h2": "$29/mo",
+          "desc": "Retry, dead-letter alerts, replay. Indie SaaS pricing."
+        },
+        {
+          "kw": "stripe webhook retry service",
+          "h1": "Stripe Webhook Retry",
+          "h2": "25K Events/mo",
+          "desc": "Production-grade relay. LAUNCH25 at checkout."
+        }
+      ],
+      "sku": "hookrelay-pro",
+      "finalUrlPath": "/go/hookrelay-dlq.html?utm_source=google&utm_campaign=hookrelay-dlq"
+    },
+    {
+      "name": "WE - BillSnap Pro Unlimited",
+      "budgetDailyUsd": 1,
+      "keywords": [
+        {
+          "kw": "contractor invoice template pdf",
+          "h1": "Contractor Invoice PDF",
+          "h2": "$29/mo Unlimited",
+          "desc": "1099-friendly invoices. No signup. LAUNCH25 saves 25%."
+        },
+        {
+          "kw": "consultant invoice template free",
+          "h1": "Consultant Invoice",
+          "h2": "BillSnap Pro $29/mo",
+          "desc": "Unlimited exports for weekly billers. Preview free."
+        },
+        {
+          "kw": "freelancer invoice app unlimited",
+          "h1": "Freelancer Invoice App",
+          "h2": "Unlimited $29/mo",
+          "desc": "Beat QuickBooks pricing. Instant PDF, no account."
+        }
+      ],
+      "sku": "unlimited-month",
+      "finalUrlPath": "/go/billsnap-pro.html?utm_source=google&utm_campaign=billsnap-pro"
+    }
+  ],
+  "baseUrl": "https://wealth-engine-0qlj.onrender.com",
+  "dailyBudgetTotal": 11
+}

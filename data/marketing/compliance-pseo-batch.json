@@ -1,0 +1,513 @@
+{
+  "created": [
+    {
+      "slug": "california-1099-filing-requirements",
+      "url": "/p/california-1099-filing-requirements.html",
+      "state": "CA",
+      "type": "1099-filing-requirements"
+    },
+    {
+      "slug": "california-freelancer-llc-guide",
+      "url": "/p/california-freelancer-llc-guide.html",
+      "state": "CA",
+      "type": "freelancer-llc-guide"
+    },
+    {
+      "slug": "california-contractor-compliance-checklist",
+      "url": "/p/california-contractor-compliance-checklist.html",
+      "state": "CA",
+      "type": "contractor-compliance-checklist"
+    },
+    {
+      "slug": "california-freelancer-tax-deadlines",
+      "url": "/p/california-freelancer-tax-deadlines.html",
+      "state": "CA",
+      "type": "freelancer-tax-deadlines"
+    },
+    {
+      "slug": "texas-1099-filing-requirements",
+      "url": "/p/texas-1099-filing-requirements.html",
+      "state": "TX",
+      "type": "1099-filing-requirements"
+    },
+    {
+      "slug": "texas-freelancer-llc-guide",
+      "url": "/p/texas-freelancer-llc-guide.html",
+      "state": "TX",
+      "type": "freelancer-llc-guide"
+    },
+    {
+      "slug": "texas-contractor-compliance-checklist",
+      "url": "/p/texas-contractor-compliance-checklist.html",
+      "state": "TX",
+      "type": "contractor-compliance-checklist"
+    },
+    {
+      "slug": "texas-freelancer-tax-deadlines",
+      "url": "/p/texas-freelancer-tax-deadlines.html",
+      "state": "TX",
+      "type": "freelancer-tax-deadlines"
+    },
+    {
+      "slug": "florida-1099-filing-requirements",
+      "url": "/p/florida-1099-filing-requirements.html",
+      "state": "FL",
+      "type": "1099-filing-requirements"
+    },
+    {
+      "slug": "florida-freelancer-llc-guide",
+      "url": "/p/florida-freelancer-llc-guide.html",
+      "state": "FL",
+      "type": "freelancer-llc-guide"
+    },
+    {
+      "slug": "florida-contractor-compliance-checklist",
+      "url": "/p/florida-contractor-compliance-checklist.html",
+      "state": "FL",
+      "type": "contractor-compliance-checklist"
+    },
+    {
+      "slug": "florida-freelancer-tax-deadlines",
+      "url": "/p/florida-freelancer-tax-deadlines.html",
+      "state": "FL",
+      "type": "freelancer-tax-deadlines"
+    },
+    {
+      "slug": "new-york-1099-filing-requirements",
+      "url": "/p/new-york-1099-filing-requirements.html",
+      "state": "NY",
+      "type": "1099-filing-requirements"
+    },
+    {
+      "slug": "new-york-freelancer-llc-guide",
+      "url": "/p/new-york-freelancer-llc-guide.html",
+      "state": "NY",
+      "type": "freelancer-llc-guide"
+    },
+    {
+      "slug": "new-york-contractor-compliance-checklist",
+      "url": "/p/new-york-contractor-compliance-checklist.html",
+      "state": "NY",
+      "type": "contractor-compliance-checklist"
+    },
+    {
+      "slug": "new-york-freelancer-tax-deadlines",
+      "url": "/p/new-york-freelancer-tax-deadlines.html",
+      "state": "NY",
+      "type": "freelancer-tax-deadlines"
+    },
+    {
+      "slug": "illinois-1099-filing-requirements",
+      "url": "/p/illinois-1099-filing-requirements.html",
+      "state": "IL",
+      "type": "1099-filing-requirements"
+    },
+    {
+      "slug": "illinois-freelancer-llc-guide",
+      "url": "/p/illinois-freelancer-llc-guide.html",
+      "state": "IL",
+      "type": "freelancer-llc-guide"
+    },
+    {
+      "slug": "illinois-contractor-compliance-checklist",
+      "url": "/p/illinois-contractor-compliance-checklist.html",
+      "state": "IL",
+      "type": "contractor-compliance-checklist"
+    },
+    {
+      "slug": "illinois-freelancer-tax-deadlines",
+      "url": "/p/illinois-freelancer-tax-deadlines.html",
+      "state": "IL",
+      "type": "freelancer-tax-deadlines"
+    },
+    {
+      "slug": "pennsylvania-1099-filing-requirements",
+      "url": "/p/pennsylvania-1099-filing-requirements.html",
+      "state": "PA",
+      "type": "1099-filing-requirements"
+    },
+    {
+      "slug": "pennsylvania-freelancer-llc-guide",
+      "url": "/p/pennsylvania-freelancer-llc-guide.html",
+      "state": "PA",
+      "type": "freelancer-llc-guide"
+    },
+    {
+      "slug": "pennsylvania-contractor-compliance-checklist",
+      "url": "/p/pennsylvania-contractor-compliance-checklist.html",
+      "state": "PA",
+      "type": "contractor-compliance-checklist"
+    },
+    {
+      "slug": "pennsylvania-freelancer-tax-deadlines",
+      "url": "/p/pennsylvania-freelancer-tax-deadlines.html",
+      "state": "PA",
+      "type": "freelancer-tax-deadlines"
+    },
+    {
+      "slug": "ohio-1099-filing-requirements",
+      "url": "/p/ohio-1099-filing-requirements.html",
+      "state": "OH",
+      "type": "1099-filing-requirements"
+    },
+    {
+      "slug": "ohio-freelancer-llc-guide",
+      "url": "/p/ohio-freelancer-llc-guide.html",
+      "state": "OH",
+      "type": "freelancer-llc-guide"
+    },
+    {
+      "slug": "ohio-contractor-compliance-checklist",
+      "url": "/p/ohio-contractor-compliance-checklist.html",
+      "state": "OH",
+      "type": "contractor-compliance-checklist"
+    },
+    {
+      "slug": "ohio-freelancer-tax-deadlines",
+      "url": "/p/ohio-freelancer-tax-deadlines.html",
+      "state": "OH",
+      "type": "freelancer-tax-deadlines"
+    },
+    {
+      "slug": "georgia-1099-filing-requirements",
+      "url": "/p/georgia-1099-filing-requirements.html",
+      "state": "GA",
+      "type": "1099-filing-requirements"
+    },
+    {
+      "slug": "georgia-freelancer-llc-guide",
+      "url": "/p/georgia-freelancer-llc-guide.html",
+      "state": "GA",
+      "type": "freelancer-llc-guide"
+    },
+    {
+      "slug": "georgia-contractor-compliance-checklist",
+      "url": "/p/georgia-contractor-compliance-checklist.html",
+      "state": "GA",
+      "type": "contractor-compliance-checklist"
+    },
+    {
+      "slug": "georgia-freelancer-tax-deadlines",
+      "url": "/p/georgia-freelancer-tax-deadlines.html",
+      "state": "GA",
+      "type": "freelancer-tax-deadlines"
+    },
+    {
+      "slug": "north-carolina-1099-filing-requirements",
+      "url": "/p/north-carolina-1099-filing-requirements.html",
+      "state": "NC",
+      "type": "1099-filing-requirements"
+    },
+    {
+      "slug": "north-carolina-freelancer-llc-guide",
+      "url": "/p/north-carolina-freelancer-llc-guide.html",
+      "state": "NC",
+      "type": "freelancer-llc-guide"
+    },
+    {
+      "slug": "north-carolina-contractor-compliance-checklist",
+      "url": "/p/north-carolina-contractor-compliance-checklist.html",
+      "state": "NC",
+      "type": "contractor-compliance-checklist"
+    },
+    {
+      "slug": "north-carolina-freelancer-tax-deadlines",
+      "url": "/p/north-carolina-freelancer-tax-deadlines.html",
+      "state": "NC",
+      "type": "freelancer-tax-deadlines"
+    },
+    {
+      "slug": "michigan-1099-filing-requirements",
+      "url": "/p/michigan-1099-filing-requirements.html",
+      "state": "MI",
+      "type": "1099-filing-requirements"
+    },
+    {
+      "slug": "michigan-freelancer-llc-guide",
+      "url": "/p/michigan-freelancer-llc-guide.html",
+      "state": "MI",
+      "type": "freelancer-llc-guide"
+    },
+    {
+      "slug": "michigan-contractor-compliance-checklist",
+      "url": "/p/michigan-contractor-compliance-checklist.html",
+      "state": "MI",
+      "type": "contractor-compliance-checklist"
+    },
+    {
+      "slug": "michigan-freelancer-tax-deadlines",
+      "url": "/p/michigan-freelancer-tax-deadlines.html",
+      "state": "MI",
+      "type": "freelancer-tax-deadlines"
+    },
+    {
+      "slug": "new-jersey-1099-filing-requirements",
+      "url": "/p/new-jersey-1099-filing-requirements.html",
+      "state": "NJ",
+      "type": "1099-filing-requirements"
+    },
+    {
+      "slug": "new-jersey-freelancer-llc-guide",
+      "url": "/p/new-jersey-freelancer-llc-guide.html",
+      "state": "NJ",
+      "type": "freelancer-llc-guide"
+    },
+    {
+      "slug": "new-jersey-contractor-compliance-checklist",
+      "url": "/p/new-jersey-contractor-compliance-checklist.html",
+      "state": "NJ",
+      "type": "contractor-compliance-checklist"
+    },
+    {
+      "slug": "new-jersey-freelancer-tax-deadlines",
+      "url": "/p/new-jersey-freelancer-tax-deadlines.html",
+      "state": "NJ",
+      "type": "freelancer-tax-deadlines"
+    },
+    {
+      "slug": "virginia-1099-filing-requirements",
+      "url": "/p/virginia-1099-filing-requirements.html",
+      "state": "VA",
+      "type": "1099-filing-requirements"
+    },
+    {
+      "slug": "virginia-freelancer-llc-guide",
+      "url": "/p/virginia-freelancer-llc-guide.html",
+      "state": "VA",
+      "type": "freelancer-llc-guide"
+    },
+    {
+      "slug": "virginia-contractor-compliance-checklist",
+      "url": "/p/virginia-contractor-compliance-checklist.html",
+      "state": "VA",
+      "type": "contractor-compliance-checklist"
+    },
+    {
+      "slug": "virginia-freelancer-tax-deadlines",
+      "url": "/p/virginia-freelancer-tax-deadlines.html",
+      "state": "VA",
+      "type": "freelancer-tax-deadlines"
+    },
+    {
+      "slug": "washington-1099-filing-requirements",
+      "url": "/p/washington-1099-filing-requirements.html",
+      "state": "WA",
+      "type": "1099-filing-requirements"
+    },
+    {
+      "slug": "washington-freelancer-llc-guide",
+      "url": "/p/washington-freelancer-llc-guide.html",
+      "state": "WA",
+      "type": "freelancer-llc-guide"
+    },
+    {
+      "slug": "washington-contractor-compliance-checklist",
+      "url": "/p/washington-contractor-compliance-checklist.html",
+      "state": "WA",
+      "type": "contractor-compliance-checklist"
+    },
+    {
+      "slug": "washington-freelancer-tax-deadlines",
+      "url": "/p/washington-freelancer-tax-deadlines.html",
+      "state": "WA",
+      "type": "freelancer-tax-deadlines"
+    },
+    {
+      "slug": "arizona-1099-filing-requirements",
+      "url": "/p/arizona-1099-filing-requirements.html",
+      "state": "AZ",
+      "type": "1099-filing-requirements"
+    },
+    {
+      "slug": "arizona-freelancer-llc-guide",
+      "url": "/p/arizona-freelancer-llc-guide.html",
+      "state": "AZ",
+      "type": "freelancer-llc-guide"
+    },
+    {
+      "slug": "arizona-contractor-compliance-checklist",
+      "url": "/p/arizona-contractor-compliance-checklist.html",
+      "state": "AZ",
+      "type": "contractor-compliance-checklist"
+    },
+    {
+      "slug": "arizona-freelancer-tax-deadlines",
+      "url": "/p/arizona-freelancer-tax-deadlines.html",
+      "state": "AZ",
+      "type": "freelancer-tax-deadlines"
+    },
+    {
+      "slug": "massachusetts-1099-filing-requirements",
+      "url": "/p/massachusetts-1099-filing-requirements.html",
+      "state": "MA",
+      "type": "1099-filing-requirements"
+    },
+    {
+      "slug": "massachusetts-freelancer-llc-guide",
+      "url": "/p/massachusetts-freelancer-llc-guide.html",
+      "state": "MA",
+      "type": "freelancer-llc-guide"
+    },
+    {
+      "slug": "massachusetts-contractor-compliance-checklist",
+      "url": "/p/massachusetts-contractor-compliance-checklist.html",
+      "state": "MA",
+      "type": "contractor-compliance-checklist"
+    },
+    {
+      "slug": "massachusetts-freelancer-tax-deadlines",
+      "url": "/p/massachusetts-freelancer-tax-deadlines.html",
+      "state": "MA",
+      "type": "freelancer-tax-deadlines"
+    },
+    {
+      "slug": "tennessee-1099-filing-requirements",
+      "url": "/p/tennessee-1099-filing-requirements.html",
+      "state": "TN",
+      "type": "1099-filing-requirements"
+    },
+    {
+      "slug": "tennessee-freelancer-llc-guide",
+      "url": "/p/tennessee-freelancer-llc-guide.html",
+      "state": "TN",
+      "type": "freelancer-llc-guide"
+    },
+    {
+      "slug": "tennessee-contractor-compliance-checklist",
+      "url": "/p/tennessee-contractor-compliance-checklist.html",
+      "state": "TN",
+      "type": "contractor-compliance-checklist"
+    },
+    {
+      "slug": "tennessee-freelancer-tax-deadlines",
+      "url": "/p/tennessee-freelancer-tax-deadlines.html",
+      "state": "TN",
+      "type": "freelancer-tax-deadlines"
+    },
+    {
+      "slug": "indiana-1099-filing-requirements",
+      "url": "/p/indiana-1099-filing-requirements.html",
+      "state": "IN",
+      "type": "1099-filing-requirements"
+    },
+    {
+      "slug": "indiana-freelancer-llc-guide",
+      "url": "/p/indiana-freelancer-llc-guide.html",
+      "state": "IN",
+      "type": "freelancer-llc-guide"
+    },
+    {
+      "slug": "indiana-contractor-compliance-checklist",
+      "url": "/p/indiana-contractor-compliance-checklist.html",
+      "state": "IN",
+      "type": "contractor-compliance-checklist"
+    },
+    {
+      "slug": "indiana-freelancer-tax-deadlines",
+      "url": "/p/indiana-freelancer-tax-deadlines.html",
+      "state": "IN",
+      "type": "freelancer-tax-deadlines"
+    },
+    {
+      "slug": "missouri-1099-filing-requirements",
+      "url": "/p/missouri-1099-filing-requirements.html",
+      "state": "MO",
+      "type": "1099-filing-requirements"
+    },
+    {
+      "slug": "missouri-freelancer-llc-guide",
+      "url": "/p/missouri-freelancer-llc-guide.html",
+      "state": "MO",
+      "type": "freelancer-llc-guide"
+    },
+    {
+      "slug": "missouri-contractor-compliance-checklist",
+      "url": "/p/missouri-contractor-compliance-checklist.html",
+      "state": "MO",
+      "type": "contractor-compliance-checklist"
+    },
+    {
+      "slug": "missouri-freelancer-tax-deadlines",
+      "url": "/p/missouri-freelancer-tax-deadlines.html",
+      "state": "MO",
+      "type": "freelancer-tax-deadlines"
+    },
+    {
+      "slug": "maryland-1099-filing-requirements",
+      "url": "/p/maryland-1099-filing-requirements.html",
+      "state": "MD",
+      "type": "1099-filing-requirements"
+    },
+    {
+      "slug": "maryland-freelancer-llc-guide",
+      "url": "/p/maryland-freelancer-llc-guide.html",
+      "state": "MD",
+      "type": "freelancer-llc-guide"
+    },
+    {
+      "slug": "maryland-contractor-compliance-checklist",
+      "url": "/p/maryland-contractor-compliance-checklist.html",
+      "state": "MD",
+      "type": "contractor-compliance-checklist"
+    },
+    {
+      "slug": "maryland-freelancer-tax-deadlines",
+      "url": "/p/maryland-freelancer-tax-deadlines.html",
+      "state": "MD",
+      "type": "freelancer-tax-deadlines"
+    },
+    {
+      "slug": "wisconsin-1099-filing-requirements",
+      "url": "/p/wisconsin-1099-filing-requirements.html",
+      "state": "WI",
+      "type": "1099-filing-requirements"
+    },
+    {
+      "slug": "wisconsin-freelancer-llc-guide",
+      "url": "/p/wisconsin-freelancer-llc-guide.html",
+      "state": "WI",
+      "type": "freelancer-llc-guide"
+    },
+    {
+      "slug": "wisconsin-contractor-compliance-checklist",
+      "url": "/p/wisconsin-contractor-compliance-checklist.html",
+      "state": "WI",
+      "type": "contractor-compliance-checklist"
+    },
+    {
+      "slug": "wisconsin-freelancer-tax-deadlines",
+      "url": "/p/wisconsin-freelancer-tax-deadlines.html",
+      "state": "WI",
+      "type": "freelancer-tax-deadlines"
+    },
+    {
+      "slug": "freelancer-compliance-by-state",
+      "url": "/p/freelancer-compliance-by-state.html",
+      "hub": true
+    }
+  ],
+  "states": [
+    "california",
+    "texas",
+    "florida",
+    "new-york",
+    "illinois",
+    "pennsylvania",
+    "ohio",
+    "georgia",
+    "north-carolina",
+    "michigan",
+    "new-jersey",
+    "virginia",
+    "washington",
+    "arizona",
+    "massachusetts",
+    "tennessee",
+    "indiana",
+    "missouri",
+    "maryland",
+    "wisconsin"
+  ],
+  "pageCount": 81,
+  "at": "2026-06-30T01:17:14.138Z"
+}

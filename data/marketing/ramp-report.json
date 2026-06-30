@@ -1,0 +1,364 @@
+{
+  "at": "2026-06-30T01:17:13.863Z",
+  "targetUsd": 500,
+  "metrics": {
+    "days": 30,
+    "visits": 0,
+    "checkoutClicks": 0,
+    "purchases": 0,
+    "revenueUsd": 0,
+    "targetUsd": 500,
+    "pctOfTarget": 0,
+    "projected30dUsd": 0
+  },
+  "nextActions": [
+    "Verify Bing Webmaster and resubmit IndexNow so ~298 URLs can be discovered",
+    "Publish one BillSnap Pro organic post to /go/billsnap-pro.html with LAUNCH25",
+    "Upload the Horseshoe promo bar to GoDaddy to send existing traffic to /go/*",
+    "Submit one free game to itch.io and link back to /games/ plus /go/invoice.html",
+    "Use paid ads only after explicit budget approval; organic distribution remains the default"
+  ],
+  "results": {
+    "coupon": {
+      "ok": false,
+      "reason": "no_stripe"
+    },
+    "landings": {
+      "pages": 22,
+      "base": "https://wealth-engine-0qlj.onrender.com"
+    },
+    "thanks": {
+      "path": "/workspace/dist/thanks.html",
+      "conversionTracking": false
+    },
+    "adTools": {
+      "pages": [
+        "tip-calculator",
+        "meeting-cost-free",
+        "percentage-calculator",
+        "bill-splitter",
+        "hourly-rate-calculator",
+        "hourly-rate",
+        "markup-calculator",
+        "late-fee-calculator",
+        "break-even-calculator",
+        "discount-calculator",
+        "unit-price-calculator",
+        "profit-margin-calculator",
+        "invoice-number-generator",
+        "sales-tax-calculator",
+        "payment-terms-calculator",
+        "compound-interest-calculator",
+        "overtime-pay-calculator",
+        "roi-calculator",
+        "1099-tax-estimator",
+        "rent-affordability-calculator",
+        "ssl-expiry-checker",
+        "cron-schedule-helper",
+        "quarterly-tax-deadline-calendar",
+        "1099-payment-threshold-tracker",
+        "day-rate-to-hourly-calculator",
+        "tools-index",
+        "privacy"
+      ]
+    },
+    "ads": {
+      "path": "/workspace/data/marketing/ads/google-ads-import.csv",
+      "dailyBudgetUsd": 11,
+      "campaigns": 8
+    },
+    "outreach": {
+      "posts": 6,
+      "today": "/workspace/data/marketing/outreach/POST_TODAY.md"
+    },
+    "daily": {
+      "seoPages": {
+        "created": 134,
+        "slugs": [
+          "ssl-certificate-expiry-monitor",
+          "simple-receipt-generator-free",
+          "scope-of-work-template-freelancer",
+          "cron-job-monitor-alerts",
+          "api-rate-limit-checker",
+          "contractor-invoice-app-free",
+          "startup-nda-generator-online",
+          "freelancer-compliance-pdf-pack",
+          "pipekit-webhook-inspector",
+          "interview-scorecard-pdf-template",
+          "free-invoice-generator-pdf",
+          "freelancer-invoice-template",
+          "lease-red-flag-checker",
+          "rental-lease-analyzer",
+          "uuid-api-generator",
+          "json-formatter-api",
+          "cheap-uptime-monitor",
+          "website-down-alert-email",
+          "small-business-compliance-templates",
+          "freelancer-contract-template-pack",
+          "hiring-interview-scorecard-template",
+          "meeting-cost-calculator",
+          "nda-generator-free",
+          "webhook-relay-service",
+          "hash-api-sha256",
+          "base64-encode-api",
+          "invoice-generator-no-signup",
+          "tenant-rights-lease-review",
+          "startup-hiring-checklist",
+          "best-free-dev-api-tools",
+          "stripe-invoice-generator",
+          "webhook-testing-tool-free",
+          "pipekit-api-pricing",
+          "simple-invoice-maker-online",
+          "contract-template-freelancer",
+          "website-uptime-checker-free",
+          "mutual-nda-template-generator",
+          "webhook-debugger-online",
+          "how-much-do-meetings-cost",
+          "rent-increase-clause-checker",
+          "late-fee-invoice-calculator",
+          "api-uptime-sla-monitor",
+          "developer-webhook-replay-tool",
+          "freelance-hourly-rate-calculator",
+          "json-api-validator-online",
+          "profit-margin-calculator-free",
+          "invoice-number-generator-free",
+          "ssl-expiry-alert-tool",
+          "freelancer-proposal-template-pdf",
+          "stripe-webhook-forwarding-tool",
+          "1099-contractor-invoice-template",
+          "nda-template-for-contractors",
+          "cron-job-monitor-free",
+          "one-way-nda-template-free",
+          "meeting-waste-calculator",
+          "webhook-retry-service",
+          "small-business-invoice-app",
+          "freelance-tax-estimator-1099",
+          "payment-terms-calculator-invoice",
+          "webhook-signature-verifier-online",
+          "employee-onboarding-checklist-pdf",
+          "status-page-generator-free",
+          "payment-reminder-email-template",
+          "retainer-invoice-template",
+          "employment-contract-template-pdf",
+          "background-check-policy-template",
+          "incident-response-checklist-pdf",
+          "freelance-proposal-generator-free",
+          "backup-monitor-small-business",
+          "contractor-subcontractor-agreement-template",
+          "saas-pricing-calculator-free",
+          "invoice-follow-up-email-template",
+          "quarterly-tax-estimator-freelancer",
+          "invoice-dispute-letter-template",
+          "vendor-agreement-template-free",
+          "dns-lookup-api-tool",
+          "ping-monitor-api-endpoint",
+          "contractor-1099-tracker",
+          "lease-renewal-checklist",
+          "webhook-log-viewer",
+          "meeting-agenda-cost-template",
+          "nda-expiration-tracker",
+          "invoice-vs-receipt-difference",
+          "best-cheap-uptime-monitor-2026",
+          "freelancer-rate-card-template",
+          "api-health-check-endpoint",
+          "stripe-webhook-test-tool",
+          "freelancer-invoice-template-designer",
+          "freelancer-invoice-template-developer",
+          "freelancer-invoice-template-writer",
+          "freelancer-invoice-template-consultant",
+          "freelancer-invoice-template-photographer",
+          "contractor-invoice-template-plumber",
+          "contractor-invoice-template-electrician",
+          "contractor-invoice-template-hvac",
+          "freelance-contract-template-designer",
+          "freelance-proposal-template-consultant",
+          "webhook-dead-letter-queue-tool",
+          "webhook-retry-exponential-backoff",
+          "freelancer-revenue-stack",
+          "contractor-invoice-template-free",
+          "freelancer-tax-deduction-checklist",
+          "webhook-dead-letter-queue",
+          "rent-vs-buy-calculator-small-business",
+          "meeting-roi-calculator",
+          "devwatch-monitoring-bundle",
+          "nda-vs-non-compete-difference",
+          "ssl-expiry-email-alert",
+          "json-webhook-payload-validator",
+          "freelance-proposal-template-word",
+          "invoice-payment-reminder-template",
+          "general-contractor-invoice-template",
+          "independent-consultant-invoice-template",
+          "freelance-consultant-invoice-format",
+          "subcontractor-invoice-template-free",
+          "handyman-invoice-template-pdf",
+          "freelancer-compliance-by-state",
+          "nda-generator-for-agencies",
+          "mutual-nda-template-small-business",
+          "white-label-uptime-monitoring-agency",
+          "agency-status-page-reseller",
+          "nda-template-freelancer-team",
+          "1099-nec-deadline-2026",
+          "w9-request-template-freelancer",
+          "1099-penalty-calculator",
+          "freelancer-quarterly-tax-dates",
+          "dead-letter-queue-webhook-tool",
+          "freelancer-day-rate-calculator",
+          "agency-webhook-monitoring-stack",
+          "python-json-validator-api",
+          "dns-lookup-api-nodejs",
+          "uuid-generator-api-rest",
+          "sha256-hash-api-endpoint",
+          "base64-encode-decode-api"
+        ],
+        "cycleSlugs": [
+          "subcontractor-invoice-template-free",
+          "handyman-invoice-template-pdf",
+          "freelancer-compliance-by-state",
+          "nda-generator-for-agencies",
+          "mutual-nda-template-small-business",
+          "white-label-uptime-monitoring-agency",
+          "agency-status-page-reseller",
+          "nda-template-freelancer-team",
+          "1099-nec-deadline-2026",
+          "w9-request-template-freelancer"
+        ]
+      },
+      "sitemap": {
+        "urls": 301,
+        "path": "/sitemap.xml"
+      },
+      "robots": {
+        "path": "/robots.txt"
+      },
+      "ping": {
+        "pings": [
+          {
+            "engine": "google",
+            "status": 404
+          },
+          {
+            "engine": "bing",
+            "status": 410
+          }
+        ]
+      },
+      "indexNow": {
+        "submitted": 301,
+        "ok": false,
+        "status": 207,
+        "method": "GET",
+        "accepted": 0,
+        "failed": 20,
+        "fallbackSubmitted": 20
+      },
+      "feeds": {
+        "products": 21,
+        "feeds": [
+          "/feed.xml",
+          "/products.json",
+          "/ai-products.json",
+          "/llms.txt"
+        ]
+      },
+      "referrals": {
+        "links": [
+          {
+            "code": "355a6356",
+            "url": "https://wealth-engine-0qlj.onrender.com/?ref=355a6356"
+          },
+          {
+            "code": "3ff81988",
+            "url": "https://wealth-engine-0qlj.onrender.com/?ref=3ff81988"
+          },
+          {
+            "code": "44db815a",
+            "url": "https://wealth-engine-0qlj.onrender.com/?ref=44db815a"
+          },
+          {
+            "code": "51264fd6",
+            "url": "https://wealth-engine-0qlj.onrender.com/?ref=51264fd6"
+          },
+          {
+            "code": "6f21a814",
+            "url": "https://wealth-engine-0qlj.onrender.com/?ref=6f21a814"
+          },
+          {
+            "code": "8064fb31",
+            "url": "https://wealth-engine-0qlj.onrender.com/?ref=8064fb31"
+          },
+          {
+            "code": "d6072015",
+            "url": "https://wealth-engine-0qlj.onrender.com/?ref=d6072015"
+          },
+          {
+            "code": "fba5b943",
+            "url": "https://wealth-engine-0qlj.onrender.com/?ref=fba5b943"
+          }
+        ],
+        "created": 0
+      },
+      "directories": {
+        "listings": 9
+      },
+      "compareExpand": {
+        "pages": 16
+      },
+      "bundles": {
+        "bundles": 3
+      },
+      "adTools": {
+        "pages": [
+          "tip-calculator",
+          "meeting-cost-free",
+          "percentage-calculator",
+          "bill-splitter",
+          "hourly-rate-calculator",
+          "hourly-rate",
+          "markup-calculator",
+          "late-fee-calculator",
+          "break-even-calculator",
+          "discount-calculator",
+          "unit-price-calculator",
+          "profit-margin-calculator",
+          "invoice-number-generator",
+          "sales-tax-calculator",
+          "payment-terms-calculator",
+          "compound-interest-calculator",
+          "overtime-pay-calculator",
+          "roi-calculator",
+          "1099-tax-estimator",
+          "rent-affordability-calculator",
+          "ssl-expiry-checker",
+          "cron-schedule-helper",
+          "quarterly-tax-deadline-calendar",
+          "1099-payment-threshold-tracker",
+          "day-rate-to-hourly-calculator",
+          "tools-index",
+          "privacy"
+        ]
+      },
+      "thanks": {
+        "path": "/workspace/dist/thanks.html",
+        "conversionTracking": false
+      },
+      "embeds": {
+        "widgets": 2,
+        "embedUrl": "/embed/embed-code.html"
+      },
+      "upsell": {
+        "sent": 0,
+        "eligible": 0
+      }
+    },
+    "metrics": {
+      "days": 30,
+      "visits": 0,
+      "checkoutClicks": 0,
+      "purchases": 0,
+      "revenueUsd": 0,
+      "targetUsd": 500,
+      "pctOfTarget": 0,
+      "projected30dUsd": 0
+    }
+  }
+}

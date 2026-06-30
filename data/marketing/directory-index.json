@@ -1,0 +1,14 @@
+{
+  "pack": [
+    "devtools-api",
+    "billsnap",
+    "leaselens",
+    "pdf-factory",
+    "comparestack",
+    "statusping",
+    "meetingcost",
+    "ndagen",
+    "hookrelay"
+  ],
+  "generated": "2026-06-30T01:17:14.144Z"
+}

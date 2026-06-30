@@ -1,0 +1,13 @@
+{
+  "pings": [
+    {
+      "engine": "google",
+      "status": 404
+    },
+    {
+      "engine": "bing",
+      "status": 410
+    }
+  ],
+  "at": "2026-06-30T01:17:13.520Z"
+}

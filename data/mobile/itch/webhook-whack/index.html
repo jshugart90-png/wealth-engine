@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
+<title>Webhook Whack-a-Mole — Wealth Engine Games</title>
+<meta name="description" content="Whack failed webhooks before they escape! Fast reflex game tied to HookRelay.">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#0f0f1a;color:#e0e7ff;font-family:system-ui,sans-serif;min-height:100vh;padding:12px;touch-action:manipulation;user-select:none}
+h1{font-size:1.15rem;text-align:center;margin-bottom:4px}
+.sub{font-size:.72rem;color:#818cf8;text-align:center;margin-bottom:10px}
+#hud{display:flex;justify-content:center;gap:16px;font-size:.85rem;margin-bottom:10px}
+#hud span{color:#34d399;font-weight:700}
+#grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;max-width:320px;margin:0 auto}
+.hole{aspect-ratio:1;background:#1e1b4b;border:2px solid #312e81;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:2rem;cursor:pointer;position:relative;overflow:hidden}
+.hole:active{transform:scale(.95)}
+.hole .bug{transform:translateY(100%);transition:transform .15s}
+.hole.up .bug{transform:translateY(0)}
+#msg{text-align:center;font-size:.85rem;color:#818cf8;margin:10px 0;min-height:1.2em}
+.btn{background:#6366f1;color:#fff;border:none;padding:10px 20px;border-radius:8px;font-weight:600;cursor:pointer;display:block;margin:8px auto}
+.ad{max-width:320px;margin:8px auto;background:#1e1b4b;border:1px dashed #312e81;border-radius:6px;padding:8px;text-align:center;font-size:10px;color:#6366f1}
+.cta{font-size:11px;color:#818cf8;text-align:center;margin-top:6px}
+.cta a{color:#34d399;text-decoration:none}
+</style>
+<meta name="google-site-verification" content="X8W5bw-fSJ0pTZiA0LesNi2vZ_-bUdLqVokR5uJZlI4" />
+</head>
+<body>
+<h1>🔗 Webhook Whack-a-Mole</h1>
+<p class="sub">Tap failed webhooks (🐛) — ignore healthy ones (✅)!</p>
+<div id="hud">Score: <span id="score">0</span> · Time: <span id="time">30</span>s</div>
+<div id="grid"></div>
+<p id="msg">Tap the bugs before time runs out!</p>
+<button class="btn" id="restart" style="display:none">Whack Again</button>
+<div class="ad">AdSense placeholder — 320×50</div>
+<p class="cta">Real webhook retries? <a href="https://wealth-engine-0qlj.onrender.com/go/webhook.html">HookRelay</a> · <a href="https://wealth-engine-0qlj.onrender.com/go/hookrelay-dlq.html">DLQ Pro</a></p>
+<script>
+(function(){
+const HOLES=9;
+let score=0,timeLeft=30,timer=null,holes=[],active=-1,gameOver=false,spawnT=null;
+
+function buildGrid(){
+  const g=document.getElementById('grid');g.innerHTML='';
+  for(let i=0;i<HOLES;i++){
+    const h=document.createElement('div');h.className='hole';h.dataset.i=i;
+    h.innerHTML='<span class="bug">🐛</span>';
+    h.onclick=()=>whack(i,h);
+    g.appendChild(h);
+  }
+  holes=[...g.children];
+}
+
+function pop(){
+  if(gameOver)return;
+  holes.forEach(h=>{h.classList.remove('up');h.querySelector('.bug').textContent='🐛';});
+  const i=Math.random()*HOLES|0;
+  const bad=Math.random()<0.7;
+  holes[i].querySelector('.bug').textContent=bad?'🐛':'✅';
+  holes[i].dataset.bad=bad?'1':'0';
+  holes[i].classList.add('up');
+  active=i;
+  setTimeout(()=>{holes[i].classList.remove('up');}, bad?900:700);
+}
+
+function whack(i,h){
+  if(gameOver||!h.classList.contains('up'))return;
+  h.classList.remove('up');
+  if(h.dataset.bad==='1'){score+=10;document.getElementById('score').textContent=score;document.getElementById('msg').textContent='Whacked! +10';}
+  else{score=Math.max(0,score-5);document.getElementById('score').textContent=score;document.getElementById('msg').textContent='That was healthy! -5';}
+}
+
+function endGame(){
+  gameOver=true;clearInterval(timer);clearInterval(spawnT);
+  document.getElementById('msg').textContent='Time! Final score: '+score+(score>=150?' 🏆 Webhook hero!':'');
+  document.getElementById('restart').style.display='block';
+}
+
+function start(){
+  score=0;timeLeft=30;gameOver=false;
+  document.getElementById('score').textContent=0;
+  document.getElementById('time').textContent=30;
+  document.getElementById('restart').style.display='none';
+  document.getElementById('msg').textContent='Tap the bugs before time runs out!';
+  buildGrid();
+  timer=setInterval(()=>{timeLeft--;document.getElementById('time').textContent=timeLeft;if(timeLeft<=0)endGame();},1000);
+  spawnT=setInterval(pop,800);
+  pop();
+}
+
+document.getElementById('restart').onclick=start;
+start();
+})();
+</script>
+<script>(function(){
+  var WE_ADMOB={appId:'ca-app-pub-3940256099942544~3347511713',banner:'ca-app-pub-3940256099942544/6300978111',rewarded:'ca-app-pub-3940256099942544/5224354917',testMode:true};
+  window.WE_ADMOB=WE_ADMOB;
+  function showBanner(el){
+    if(!el)return;
+    el.setAttribute('data-admob','banner');
+    el.innerHTML='<div style="font-size:10px;color:#666;padding:4px">'+(WE_ADMOB.testMode?'AdMob TEST banner · ':'AdMob banner · ')+WE_ADMOB.banner+'</div>';
+  }
+  document.querySelectorAll('.ad,[data-ad-slot]').forEach(showBanner);
+  window.WE_showRewardedAd=function(onReward){
+    if(WE_ADMOB.testMode){
+      var code='LAUNCH25-'+Math.random().toString(36).slice(2,8).toUpperCase();
+      try{localStorage.setItem('we_game_reward',code)}catch(e){}
+      if(onReward)onReward(code);
+      return;
+    }
+    /* Native Capacitor AdMob plugin: @capacitor-community/admob — wire in mobile/ after Play Console setup */
+    if(window.Capacitor&&window.Capacitor.Plugins&&window.Capacitor.Plugins.AdMob){
+      window.Capacitor.Plugins.AdMob.showRewardVideoAd({adId:WE_ADMOB.rewarded}).then(function(){if(onReward)onReward('LAUNCH25')});
+    }else if(onReward){onReward('LAUNCH25');}
+  };
+})();</script><script>(function(){try{var r=localStorage.getItem('we_ref')||new URLSearchParams(location.search).get('ref');fetch('https://wealth-engine-0qlj.onrender.com/api/funnel/visit',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({path:"/games/webhook-whack/",refCode:r,source:new URLSearchParams(location.search).get('utm_source')||'direct'})}).catch(function(){})}catch(e){}})();</script></body>
+</html>

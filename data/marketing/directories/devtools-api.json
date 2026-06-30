@@ -1,0 +1,73 @@
+{
+  "productName": "PipeKit API",
+  "tagline": "PipeKit API — subscription tool by Wealth Engine",
+  "website": "https://wealth-engine-0qlj.onrender.com/devtools-api/index.html",
+  "pricing": "9, 29, 99",
+  "category": "api-saas",
+  "checkoutLinks": [
+    "https://buy.stripe.com/dRm8wOcFUg0x9w1gJH1Nu00?prefilled_promo_code=LAUNCH25",
+    "https://buy.stripe.com/fZu9AS8pEbKh6jPgJH1Nu01?prefilled_promo_code=LAUNCH25"
+  ],
+  "directories": [
+    {
+      "name": "AlternativeTo",
+      "url": "https://alternativeto.net/contribute/",
+      "submitUrl": "https://alternativeto.net/contribute/"
+    },
+    {
+      "name": "SaaSHub",
+      "url": "https://www.saashub.com/submit",
+      "submitUrl": "https://www.saashub.com/submit"
+    },
+    {
+      "name": "Product Hunt",
+      "url": "https://www.producthunt.com/posts/new",
+      "submitUrl": "https://www.producthunt.com/posts/new"
+    },
+    {
+      "name": "Indie Hackers",
+      "url": "https://www.indiehackers.com/post/new",
+      "submitUrl": "https://www.indiehackers.com/post/new"
+    },
+    {
+      "name": "BetaList",
+      "url": "https://betalist.com/submit",
+      "submitUrl": "https://betalist.com/submit"
+    },
+    {
+      "name": "API List",
+      "url": "https://apilist.fun/submit",
+      "submitUrl": "https://apilist.fun/submit"
+    },
+    {
+      "name": "StackShare",
+      "url": "https://stackshare.io/submit",
+      "submitUrl": "https://stackshare.io/submit"
+    },
+    {
+      "name": "Capterra",
+      "url": "https://www.capterra.com/vendors/sign-up",
+      "submitUrl": "https://www.capterra.com/vendors/sign-up"
+    },
+    {
+      "name": "G2",
+      "url": "https://www.g2.com/products/new",
+      "submitUrl": "https://www.g2.com/products/new"
+    },
+    {
+      "name": "Slant",
+      "url": "https://www.slant.co/",
+      "submitUrl": "https://www.slant.co/"
+    },
+    {
+      "name": "ToolFinder",
+      "url": "https://toolfinder.co/submit",
+      "submitUrl": "https://toolfinder.co/submit"
+    },
+    {
+      "name": "Launching Next",
+      "url": "https://www.launchingnext.com/submit/",
+      "submitUrl": "https://www.launchingnext.com/submit/"
+    }
+  ]
+}
