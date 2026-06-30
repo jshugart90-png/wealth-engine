@@ -2,6 +2,8 @@ import { readFileSync, writeFileSync, mkdirSync, readdirSync } from "fs";
 import { join } from "path";
 import { getRoot, getDataRoot, getPublicBaseUrl } from "../env.mjs";
 import { getPaymentLink } from "../commerce.mjs";
+import { AFFILIATE_REF_SCRIPT } from "../marketing/affiliates.mjs";
+import { checkoutClickScript, visitTrackerScript } from "../marketing/monetization.mjs";
 
 const PAGE_TYPES = [
   {
@@ -114,6 +116,7 @@ function esc(s) {
 
 function buildPage(state, pageType, config, base) {
   const slug = `${state.slug}-${pageType.suffix}`;
+  const pagePath = `/p/${slug}.html`;
   const title = pageType.title(state);
   const primaryPay = getPaymentLink(pageType.primarySku) ?? "#";
   const secondaryPay = getPaymentLink(pageType.secondarySku) ?? "#";
@@ -126,7 +129,7 @@ function buildPage(state, pageType, config, base) {
 <html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>${esc(title)}</title>
 <meta name="description" content="${esc(pageType.meta(state))}">
-<link rel="canonical" href="${base}/p/${slug}.html">
+<link rel="canonical" href="${base}${pagePath}">
 <script type="application/ld+json">${JSON.stringify({ "@context": "https://schema.org", "@type": "Article", headline: title, dateModified: config.lastUpdated })}</script>
 <style>
 body{font-family:system-ui,sans-serif;max-width:720px;margin:40px auto;padding:0 20px;line-height:1.6;color:#1e293b}
@@ -153,15 +156,18 @@ ${pageType.body(state)}
 <li><a href="/go/compliance.html">SMB Compliance Pack landing</a></li>
 </ul>
 </div>
-<a class="cta" href="${primaryPay}">${esc(pageType.primaryLabel)} →</a>
-<a class="cta outline" href="${secondaryPay}">${esc(pageType.secondaryLabel)} →</a>
+<a class="cta" href="${primaryPay}" onclick="${checkoutClickScript(pageType.primarySku, pagePath)}">${esc(pageType.primaryLabel)} →</a>
+<a class="cta outline" href="${secondaryPay}" onclick="${checkoutClickScript(pageType.secondarySku, pagePath)}">${esc(pageType.secondaryLabel)} →</a>
 <a class="cta green" href="/go/freelancer.html">Freelancer Stack $29/mo</a>
 <nav class="related"><strong>More ${esc(state.name)} guides:</strong><ul>${related}</ul></nav>
 <p class="disclaimer">${esc(config.disclaimer)} Sources: IRS Publication 15-A, ${esc(state.dorName)}. Rates and thresholds change — verify before filing.</p>
+<script>${AFFILIATE_REF_SCRIPT}</script>
+<script>${visitTrackerScript(pagePath)}</script>
 </body></html>`;
 }
 
 function buildHubPage(states, config, base) {
+  const pagePath = "/p/freelancer-compliance-by-state.html";
   const rows = states
     .map(
       (s) => `<tr>
@@ -181,7 +187,7 @@ function buildHubPage(states, config, base) {
 <html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Freelancer Compliance by State — 1099, LLC &amp; Contractor Guides</title>
 <meta name="description" content="State-specific freelancer compliance guides: 1099 filing, LLC formation, contractor checklists, and tax deadlines for CA, TX, FL, NY, and more.">
-<link rel="canonical" href="${base}/p/freelancer-compliance-by-state.html">
+<link rel="canonical" href="${base}${pagePath}">
 <style>
 body{font-family:system-ui,sans-serif;max-width:900px;margin:40px auto;padding:0 20px;line-height:1.6}
 h1{font-size:clamp(26px,4vw,38px)}table{width:100%;border-collapse:collapse;margin:24px 0;font-size:14px}
@@ -192,14 +198,16 @@ th,td{border:1px solid #e2e8f0;padding:10px;text-align:left}th{background:#f8faf
 </style></head><body>
 <h1>Freelancer Compliance by State</h1>
 <p>State-specific guides for 1099-NEC filing, LLC formation, contractor compliance, and quarterly tax deadlines. ${states.length} high-population states (${states.length * 4} pages).</p>
-<a class="cta" href="${compliancePay}">SMB Compliance Pack — $19</a>
-<a class="cta outline" href="${freelancerPay}">Freelancer Kit — $14</a>
+<a class="cta" href="${compliancePay}" onclick="${checkoutClickScript("smb-compliance-pack", pagePath)}">SMB Compliance Pack — $19</a>
+<a class="cta outline" href="${freelancerPay}" onclick="${checkoutClickScript("freelancer-kit", pagePath)}">Freelancer Kit — $14</a>
 <a class="cta outline" href="/tools/1099-tax-estimator.html">1099 tax estimator</a>
 <table>
 <thead><tr><th>State</th><th>1099</th><th>LLC</th><th>Checklist</th><th>Deadlines</th></tr></thead>
 <tbody>${rows}</tbody>
 </table>
 <p class="disclaimer">${esc(config.disclaimer)} Last updated: ${config.lastUpdated}. Expanding to all 50 states.</p>
+<script>${AFFILIATE_REF_SCRIPT}</script>
+<script>${visitTrackerScript(pagePath)}</script>
 </body></html>`;
 }
 

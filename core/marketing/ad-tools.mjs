@@ -1,6 +1,8 @@
 import { writeFileSync, mkdirSync } from "fs";
 import { join } from "path";
 import { getRoot, loadEnv, getPublicBaseUrl } from "../env.mjs";
+import { AFFILIATE_REF_SCRIPT } from "./affiliates.mjs";
+import { visitTrackerScript } from "./monetization.mjs";
 
 const AD_SLOT = (label) =>
   `<div class="ad-slot" data-adsense-placeholder="${label}" style="min-height:90px;background:#1e293b;border:1px dashed #475569;border-radius:8px;display:flex;align-items:center;justify-content:center;color:#64748b;font-size:12px;margin:20px 0">Ad slot — replace after AdSense approval</div>`;
@@ -63,6 +65,8 @@ ${EMAIL_CAPTURE(`/tools/${fileSlug}`)}
 <div class="promo">Need a pro tool? <a href="${base}/go/invoice.html">Invoice PDF $3</a> · <a href="${base}/go/uptime.html">Uptime alerts $5/mo</a> · <a href="${base}/go/compliance.html">Compliance pack $19</a></div>
 ${INTERNAL_LINKS}
 <p style="margin-top:24px;font-size:13px"><a href="${base}/tools/">← All free tools</a> · <a href="${base}/join.html?utm_source=tools-${fileSlug}">Email list</a></p>
+<script>${AFFILIATE_REF_SCRIPT}</script>
+<script>${visitTrackerScript(`/tools/${fileSlug}.html`)}</script>
 </body></html>`;
 }
 
@@ -495,6 +499,8 @@ h1{font-size:clamp(28px,4vw,36px)}ul{padding-left:20px}li{margin:10px 0}a{color:
 </ul>
 <div class="promo">Need pro tools? <a href="${base}/go/invoice.html">Invoice PDF $3</a> · <a href="${base}/go/lease.html">Lease check $7</a> · <a href="${base}/go/uptime.html">Uptime $5/mo</a> · <a href="${base}/go/freelancer.html">Freelancer kit $14</a> · <a href="${base}/p/freelancer-compliance-by-state.html">State compliance guides</a></div>
 <p><a href="/">← Wealth Engine home</a></p>
+<script>${AFFILIATE_REF_SCRIPT}</script>
+<script>${visitTrackerScript("/tools/index.html")}</script>
 </body></html>`;
   writeFileSync(join(dist, "index.html"), toolsIndex);
 

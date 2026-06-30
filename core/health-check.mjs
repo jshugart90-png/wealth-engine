@@ -1,15 +1,24 @@
 import { existsSync, readFileSync } from "fs";
 import { join } from "path";
-import { getRoot, getDataRoot } from "./env.mjs";
+import { getRoot, getDataRoot, loadEnv } from "./env.mjs";
 import { getDb } from "./db.mjs";
 
 const checks = [];
+const env = loadEnv();
+const envPath = join(getRoot(), ".env");
+const hasEnvFile = existsSync(envPath);
+const hasRuntimeEnv = Boolean(env.PUBLIC_BASE_URL || env.STRIPE_SECRET_KEY || env.WEALTH_DATA_ROOT);
+const isCi = process.env.CI === "true";
 
 checks.push({ name: "database", ok: !!getDb() });
-checks.push({ name: "env_file", ok: existsSync(join(getRoot(), ".env")) });
+checks.push({
+  name: "env_file",
+  ok: hasEnvFile || hasRuntimeEnv || isCi,
+  hint: hasEnvFile ? ".env found" : isCi ? "skipped in CI" : hasRuntimeEnv ? "using process env" : "copy .env.example to .env",
+});
 
 const linksPath = join(getDataRoot(), "payment-links.json");
-if (process.env.CI === "true") {
+if (isCi) {
   checks.push({ name: "stripe_links", ok: true, hint: "skipped in CI" });
 } else {
   checks.push({

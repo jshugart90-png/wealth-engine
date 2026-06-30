@@ -35,10 +35,11 @@ export async function runGrowthRamp() {
     targetUsd: growth.targetMonthlyUsd,
     metrics: results.metrics,
     nextActions: [
-      "Import google-ads-import.csv into Google Ads (~$10/day cap — see ADS_IMPORT_CHECKLIST.md)",
-      "Post POST_TODAY.md content to listed platform",
-      "Deploy custom domain: deploy/GODADDY_DNS.md (tools.horseshoeroundme.com)",
-      "Share /go/invoice, /go/lease, /go/uptime links",
+      "Verify Bing Webmaster and resubmit IndexNow so ~298 URLs can be discovered",
+      "Publish one BillSnap Pro organic post to /go/billsnap-pro.html with LAUNCH25",
+      "Upload the Horseshoe promo bar to GoDaddy to send existing traffic to /go/*",
+      "Submit one free game to itch.io and link back to /games/ plus /go/invoice.html",
+      "Use paid ads only after explicit budget approval; organic distribution remains the default",
     ],
     results,
   };

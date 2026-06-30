@@ -3,6 +3,7 @@ import { join } from "path";
 import { getRoot, getDataRoot, getPublicBaseUrl } from "../env.mjs";
 import { getPaymentLink } from "../commerce.mjs";
 import { AFFILIATE_REF_SCRIPT } from "../marketing/affiliates.mjs";
+import { checkoutClickScript, visitTrackerScript } from "../marketing/monetization.mjs";
 
 const PAGES = [
   {
@@ -13,7 +14,7 @@ const PAGES = [
     tool: "/billsnap/index.html",
     bullets: ["Freelancers & contractors", "Print-ready PDF", "One-time $3 or $29/mo unlimited"],
     urgency: "Most freelancers export their first pro PDF in under 2 minutes.",
-    socialProof: "2,400+ preview sessions this month",
+    socialProof: "Built for freelancers who need a PDF today, not accounting software.",
     altSku: "unlimited-month",
     altLabel: "BillSnap Pro Unlimited — $29/mo",
   },
@@ -119,7 +120,7 @@ const PAGES = [
     tool: "/bundles/freelancer-stack.html",
     bullets: ["Unlimited invoice & receipt PDFs", "14 contract & proposal templates", "NDA generator included"],
     urgency: "Ship your client paperwork today — no accounts, instant PDFs.",
-    socialProof: "320K+ monthly searches for freelancer invoice tools",
+    socialProof: "One checkout for invoices, templates, and NDAs.",
     altSku: "freelancer-stack-bundle",
     altLabel: "Stack Bundle — $49 one-time",
   },
@@ -153,7 +154,7 @@ const PAGES = [
     sku: "unlimited-month",
     tool: "/billsnap/index.html",
     bullets: ["Unlimited pro PDF exports", "No signup wall", "Cancel anytime"],
-    urgency: "320K+ monthly searches for freelancer invoice tools.",
+    urgency: "If you invoice weekly, unlimited usually beats one-off exports fast.",
     socialProof: "Built for contractors, consultants, and 1099 freelancers",
     altSku: "pro-pdf",
     altLabel: "Single export — $3 one-time",
@@ -250,6 +251,7 @@ export function buildHighConversionLandings() {
   for (const p of PAGES) {
     const pay = getPaymentLink(p.sku) ?? "#";
     const altPay = p.altSku ? getPaymentLink(p.altSku) ?? "#" : null;
+    const pagePath = `/go/${p.slug}`;
     const html = `<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>${p.headline} — LAUNCH25 Deal</title>
 <meta property="og:title" content="${p.headline}">
@@ -264,20 +266,22 @@ ul{text-align:left;margin:20px 0;color:#cbd5e1;font-size:14px}li{margin:8px 0}
 .btn.secondary{background:transparent;border:2px solid #22c55e;color:#22c55e}
 .btn.tertiary{background:transparent;border:none;color:#94a3b8;font-size:14px;padding:8px}
 .badge{background:#eab308;color:#000;font-size:11px;padding:4px 10px;border-radius:20px;display:inline-block;margin-bottom:16px;font-weight:700}
+.coupon{font-size:12px;color:#bbf7d0;margin:-4px 0 14px}
 .proof{font-size:13px;color:#64748b;margin-bottom:12px}
 .urgency{font-size:14px;color:#fbbf24;margin:16px 0 8px;font-weight:600}
 .email{font-size:13px;margin-top:16px;color:#64748b}.email a{color:#22c55e}
 </style></head><body><div class="card">
-<span class="badge">Use code ${coupon} at checkout</span>
+<span class="badge">${coupon} prefilled at checkout</span>
+<p class="coupon">Secure Stripe checkout · cancel subscriptions anytime</p>
 ${p.socialProof ? `<p class="proof">${p.socialProof}</p>` : ""}
 <h1>${p.headline}</h1><p>${p.sub}</p>
 ${p.urgency ? `<p class="urgency">${p.urgency}</p>` : ""}
 <ul>${p.bullets.map((b) => `<li>✓ ${b}</li>`).join("")}</ul>
-<a class="btn" href="${pay}" onclick="(function(){var r=localStorage.getItem('we_ref')||new URLSearchParams(location.search).get('ref');fetch('/api/funnel/checkout_click',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({sku:'${p.sku}',path:'/go/${p.slug}',refCode:r})})})()">Get pro access →</a>
-${altPay ? `<a class="btn secondary" href="${altPay}" onclick="(function(){var r=localStorage.getItem('we_ref')||new URLSearchParams(location.search).get('ref');fetch('/api/funnel/checkout_click',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({sku:'${p.altSku}',path:'/go/${p.slug}',refCode:r})})})()">${p.altLabel ?? "Upgrade plan"} →</a>` : ""}
+<a class="btn" href="${pay}" onclick="${checkoutClickScript(p.sku, pagePath)}">Get pro access →</a>
+${altPay ? `<a class="btn secondary" href="${altPay}" onclick="${checkoutClickScript(p.altSku, pagePath)}">${p.altLabel ?? "Upgrade plan"} →</a>` : ""}
 <a class="btn secondary" href="${p.tool}?utm_source=landing&utm_campaign=${p.slug}">Try free first</a>
 <p class="email">Get launch deals: <a href="/join.html?utm_source=go-${p.slug}">Join LAUNCH25 list</a> · <a href="/partners/index.html?utm_source=go-${p.slug}">Partner program</a></p>
-</div><script>${AFFILIATE_REF_SCRIPT}</script></body></html>`;
+</div><script>${AFFILIATE_REF_SCRIPT}</script><script>${visitTrackerScript(pagePath)}</script></body></html>`;
     writeFileSync(join(dist, `${p.slug}.html`), html);
   }
   return { pages: PAGES.length, base };
