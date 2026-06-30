@@ -5,7 +5,22 @@ import { getDb, logEvent } from "./db.mjs";
 import { creditAffiliateConversion, clawbackCommission } from "./marketing/affiliates.mjs";
 import { getDataRoot } from "./env.mjs";
 
+const LAUNCH_COUPON_CODE = "LAUNCH25";
 let paymentLinksFileCache;
+
+export function decoratePaymentLink(paymentLink) {
+  if (!paymentLink) return paymentLink;
+  try {
+    const url = new URL(paymentLink);
+    if (url.hostname.endsWith("stripe.com") && !url.searchParams.has("prefilled_promo_code")) {
+      url.searchParams.set("prefilled_promo_code", LAUNCH_COUPON_CODE);
+      return url.toString();
+    }
+  } catch {
+    /* Keep the raw link if a catalog row contains an unexpected URL shape. */
+  }
+  return paymentLink;
+}
 
 function readPaymentLinksFile() {
   if (paymentLinksFileCache) return paymentLinksFileCache;
@@ -26,8 +41,8 @@ function readPaymentLinksFile() {
 
 export function getPaymentLink(sku) {
   const row = getDb().prepare("SELECT payment_link FROM stripe_catalog WHERE sku = ?").get(sku);
-  if (row?.payment_link) return row.payment_link;
-  return readPaymentLinksFile().find((item) => item.sku === sku)?.payment_link ?? null;
+  if (row?.payment_link) return decoratePaymentLink(row.payment_link);
+  return decoratePaymentLink(readPaymentLinksFile().find((item) => item.sku === sku)?.payment_link) ?? null;
 }
 
 export function getAllPaymentLinks() {
@@ -35,7 +50,10 @@ export function getAllPaymentLinks() {
   for (const row of getDb().prepare("SELECT sku, venture_id, payment_link FROM stripe_catalog").all()) {
     if (row.payment_link) bySku.set(row.sku, row);
   }
-  return [...bySku.values()];
+  return [...bySku.values()].map((row) => ({
+    ...row,
+    payment_link: decoratePaymentLink(row.payment_link),
+  }));
 }
 
 export function createLicense(ventureId, sku, opts = {}) {
