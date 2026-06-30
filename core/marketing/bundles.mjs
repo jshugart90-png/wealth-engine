@@ -2,6 +2,8 @@ import { writeFileSync, mkdirSync } from "fs";
 import { join } from "path";
 import { getRoot, getPublicBaseUrl } from "../env.mjs";
 import { getPaymentLink } from "../commerce.mjs";
+import { AFFILIATE_REF_SCRIPT } from "./affiliates.mjs";
+import { checkoutClickScript, visitTrackerScript } from "./monetization.mjs";
 
 const BUNDLES = [
   {
@@ -76,23 +78,26 @@ h1{color:#2563eb;font-size:clamp(28px,5vw,36px);margin-bottom:8px}
   <div class="plan featured">
     <h2>${b.primaryLabel}</h2>
     <p>${b.primarySub}</p>
-    <a class="btn" href="${subLink}" onclick="fetch('/api/funnel/checkout_click',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({sku:'${b.primarySku}',path:'/bundles/freelancer-stack'})})">Start unlimited →</a>
+    <a class="btn" href="${subLink}" onclick="${checkoutClickScript(b.primarySku, "/bundles/freelancer-stack.html")}">Start unlimited →</a>
   </div>
   <div class="plan">
     <h2>${b.bundleLabel}</h2>
     <p>${b.bundleSub}</p>
-    <a class="btn secondary" href="${bundleLink}" onclick="fetch('/api/funnel/checkout_click',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({sku:'${b.bundleSku}',path:'/bundles/freelancer-stack'})})">Get bundle →</a>
+    <a class="btn secondary" href="${bundleLink}" onclick="${checkoutClickScript(b.bundleSku, "/bundles/freelancer-stack.html")}">Get bundle →</a>
   </div>
 </div>
 <h2>Included tools — try free first</h2>
 <div class="tools">${ventureCards}</div>
 <p class="footer"><a href="${base}${b.adLanding}">Ad landing →</a> · <a href="${base}/go/invoice.html">Invoice only $3</a> · <a href="${base}/">← All products</a></p>
 <p style="font-size:12px;color:#94a3b8">Templates are not legal advice. Instant delivery after Stripe checkout.</p>
+<script>${AFFILIATE_REF_SCRIPT}</script>
+<script>${visitTrackerScript("/bundles/freelancer-stack.html")}</script>
 </body></html>`;
 }
 
 function buildSimpleBundleHtml(b, base) {
-  const links = b.skus.map((s) => getPaymentLink(s)).filter(Boolean);
+  const links = b.skus.map((s) => ({ sku: s, link: getPaymentLink(s) })).filter((row) => row.link);
+  const path = `/bundles/${b.slug}.html`;
   return `<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>${b.title} — Bundle</title>
 <meta name="description" content="${b.desc}. Use code LAUNCH25 at checkout.">
@@ -103,9 +108,12 @@ function buildSimpleBundleHtml(b, base) {
 <span class="badge">LAUNCH25 — 25% off at checkout</span>
 <h1>${b.title}</h1><p>${b.desc}</p>
 <p>Buy each product — instant access:</p>
-${links.map((l, i) => `<a class="btn" href="${l}">Get part ${i + 1} →</a>`).join("")}
+${links.map((row, i) => `<a class="btn" href="${row.link}" onclick="${checkoutClickScript(row.sku, path)}">Get part ${i + 1} →</a>`).join("")}
 <a class="btn secondary" href="${base}/go/invoice.html">Or start with Invoice PDF $3 →</a>
-<p style="margin-top:24px"><a href="${base}/">← All products</a></p></body></html>`;
+<p style="margin-top:24px"><a href="${base}/">← All products</a></p>
+<script>${AFFILIATE_REF_SCRIPT}</script>
+<script>${visitTrackerScript(path)}</script>
+</body></html>`;
 }
 
 export function buildBundleLandings() {
