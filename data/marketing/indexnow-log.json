@@ -4,8 +4,8 @@
   "status": 207,
   "method": "GET",
   "accepted": 0,
-  "failed": 20,
-  "fallbackSubmitted": 20,
+  "failed": 301,
+  "fallbackSubmitted": 301,
   "urls": [
     "https://wealth-engine-0qlj.onrender.com/",
     "https://wealth-engine-0qlj.onrender.com/billsnap/",
@@ -309,5 +309,5 @@
     "https://wealth-engine-0qlj.onrender.com/p/wisconsin-freelancer-llc-guide.html",
     "https://wealth-engine-0qlj.onrender.com/p/wisconsin-freelancer-tax-deadlines.html"
   ],
-  "at": "2026-06-30T01:17:13.853Z"
+  "at": "2026-06-30T01:24:20.498Z"
 }

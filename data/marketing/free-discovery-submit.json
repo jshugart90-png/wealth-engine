@@ -1,0 +1,33 @@
+{
+  "at": "2026-06-30T01:24:22.755Z",
+  "base": "https://wealth-engine-0qlj.onrender.com",
+  "feedUrl": "https://wealth-engine-0qlj.onrender.com/feed.xml",
+  "sitemapUrl": "https://wealth-engine-0qlj.onrender.com/sitemap.xml",
+  "results": [
+    {
+      "name": "indexnow",
+      "submitted": 301,
+      "ok": false,
+      "status": 207,
+      "method": "GET",
+      "accepted": 0,
+      "failed": 301,
+      "fallbackSubmitted": 301
+    },
+    {
+      "name": "websub-google-feed",
+      "status": 204,
+      "ok": true
+    },
+    {
+      "name": "websub-google-sitemap",
+      "status": 204,
+      "ok": true
+    },
+    {
+      "name": "pingomatic",
+      "status": 200,
+      "ok": true
+    }
+  ]
+}
