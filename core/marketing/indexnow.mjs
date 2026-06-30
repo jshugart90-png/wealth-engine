@@ -1,26 +1,49 @@
 import { readFileSync, writeFileSync, existsSync } from "fs";
 import { join } from "path";
-import { getRoot, getDataRoot, getPublicBaseUrl } from "../env.mjs";
+import { getRoot, getDataRoot, getPublicBaseUrl, loadEnv } from "../env.mjs";
 
 const INDEXNOW_ENDPOINTS = ["https://www.bing.com/indexnow", "https://api.indexnow.org/indexnow"];
+const PROD_BASE_URL = "https://wealth-engine-0qlj.onrender.com";
+
+function getIndexNowBaseUrl() {
+  const env = loadEnv();
+  const base = (env.INDEXNOW_BASE_URL || getPublicBaseUrl()).replace(/\/$/, "");
+  const host = new URL(base).hostname;
+  if (host === "localhost" || host === "127.0.0.1") return PROD_BASE_URL;
+  return base;
+}
 
 function indexNowKeyForHost(hostname) {
   return hostname.replace(/\./g, "-") + "-indexnow";
 }
 
 export function buildIndexNowKey() {
-  const base = getPublicBaseUrl();
+  const base = getIndexNowBaseUrl();
   const host = new URL(base).hostname;
   const key = indexNowKeyForHost(host);
   writeFileSync(join(getRoot(), "dist", `${key}.txt`), key);
   return { key, keyLocation: `${base}/${key}.txt` };
 }
 
-function listSitemapUrls() {
+function normalizeSitemapUrl(url, base) {
+  try {
+    const parsed = new URL(url);
+    const target = new URL(base);
+    if (parsed.hostname === "localhost" || parsed.hostname === "127.0.0.1") {
+      parsed.protocol = target.protocol;
+      parsed.host = target.host;
+    }
+    return parsed.toString();
+  } catch {
+    return url;
+  }
+}
+
+function listSitemapUrls(base) {
   const sitemapPath = join(getRoot(), "dist", "sitemap.xml");
   if (!existsSync(sitemapPath)) return [];
   const xml = readFileSync(sitemapPath, "utf8");
-  return [...xml.matchAll(/<loc>([^<]+)<\/loc>/g)].map((m) => m[1]);
+  return [...xml.matchAll(/<loc>([^<]+)<\/loc>/g)].map((m) => normalizeSitemapUrl(m[1], base));
 }
 
 async function submitViaGet(urls, key) {
@@ -49,9 +72,9 @@ async function submitViaGet(urls, key) {
 }
 
 export async function submitIndexNow() {
-  const base = getPublicBaseUrl();
+  const base = getIndexNowBaseUrl();
   buildIndexNowKey();
-  let urls = listSitemapUrls();
+  let urls = listSitemapUrls(base);
   if (urls.length === 0) urls = [base.replace(/\/$/, "")];
 
   const host = new URL(base).hostname;
@@ -68,8 +91,9 @@ export async function submitIndexNow() {
       body: JSON.stringify(body),
     });
     result = { ...result, ok: res.ok, status: res.status };
-    if (!res.ok && res.status === 403) {
-      const getResult = await submitViaGet(urls, key);
+    if (!res.ok && (res.status === 403 || res.status === 429)) {
+      const fallbackUrls = res.status === 429 ? urls.slice(0, 20) : urls;
+      const getResult = await submitViaGet(fallbackUrls, key);
       result = {
         submitted: urls.length,
         ok: getResult.accepted > 0,
@@ -77,6 +101,7 @@ export async function submitIndexNow() {
         method: "GET",
         accepted: getResult.accepted,
         failed: getResult.failed,
+        fallbackSubmitted: fallbackUrls.length,
       };
     }
   } catch (e) {
