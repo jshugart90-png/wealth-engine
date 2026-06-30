@@ -23,7 +23,7 @@
 
 | ID | Campaign | Channel | Status | Notes |
 |----|----------|---------|--------|-------|
-| ZB-001 | IndexNow full sitemap | Bing/Yandex API | ATTEMPTED | 298 URLs; key file LIVE on prod; POST 403 — **verify Bing Webmaster first** |
+| ZB-001 | IndexNow full sitemap | Bing/Yandex API | BLOCKED_VERIFY | 298 production URLs normalized; key file LIVE on prod; Bing returns `UserForbiddedToAccessSite` — **verify Bing Webmaster first** |
 | ZB-002 | GSC + Bing Webmaster | Search engines | DOCUMENTED | GoDaddy DNS TXT steps in playbook |
 | ZB-003 | Directory blitz | Peerlist, Uneed, AltTo, SaaSHub, PH Ship | PUBLISH_READY | Copy in FREE_POSTS_batch1 |
 | ZB-004 | Content syndication | dev.to, Hashnode, Medium | PUBLISH_READY | Article ready; manual paste |
@@ -141,7 +141,7 @@
 
 | Metric | Value | Target |
 |--------|-------|--------|
-| Revenue | $0 | $500/mo |
+| Revenue | $0 verified locally | $500/mo |
 | Published posts | 0 (community) | 10+ week 1 |
 | Directory submissions | 0 | 30 |
 | Outreach batches | 10 | Ã¢â‚¬â€ |
@@ -158,7 +158,7 @@
 | RESEND_API_KEY placeholder | 1) Manual Gmail 2) Templates in FREE_POSTS_batch1 | BLOCKED for auto-email |
 | DEVTO_API_KEY missing | 1) Manual dev.to paste 2) Hashnode cross-post | PUBLISH_READY manual |
 | Reddit login | 1) Account live u/WealthEngineDev 2) board/REDDIT_WORKFLOW.md draft→review→publish | **ACTIVE** (manual publish only) |
-| IndexNow 403 | Key file LIVE on prod (200); POST/GET 403 until Bing Webmaster verified | BLOCKED - verify Bing/GSC first |
+| IndexNow 403 | Key file LIVE on prod (200); production URLs normalized 2026-06-30; Bing says `UserForbiddedToAccessSite` until Webmaster verification accepts host/key | BLOCKED - verify Bing Webmaster first |
 | Google Ads AP-001 | Zero-budget policy | **BLOCKED_NO_BUDGET** |
 | Microsoft Ads | Zero-budget policy | **BLOCKED_NO_BUDGET** |
 

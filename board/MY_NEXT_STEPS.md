@@ -1,6 +1,6 @@
 # My Next Steps — Personal Assistant
 
-**Updated:** 2026-06-21 · **Mode:** $0 budget only · **Revenue:** $0 / $500  
+**Updated:** 2026-06-30 · **Mode:** $0 budget only · **Revenue:** $0 / $500 verified locally  
 **Prod:** https://wealth-engine-0qlj.onrender.com · **Coupon:** LAUNCH25 (25% off)
 
 > Personal Assistant reads this file first on every chat. Say **"done with [task]"** to mark complete and get the next priority.
@@ -10,6 +10,8 @@
 ## Today's briefing — path to first dollar ($0)
 
 Overnight work shipped **298 sitemap URLs**, **14 Stripe products**, **8 games**, affiliate portal, and **13 Reddit drafts** (10 `READY_FOR_REVIEW`). Reddit account **u/WealthEngineDev** is live. Apple Developer is **ACTIVE** — TestFlight waits on Mac access. GSC is **verified** with sitemap submitted. **BingSiteAuth.xml** is deployed on prod — finish Bing verify in Webmaster, then IndexNow.
+
+**2026-06-30 agent push:** checkout links now prefill `LAUNCH25`; `/go/*`, `/p/*`, `/tools/*`, and bundle pages track visits + checkout clicks; IndexNow now normalizes local builds to production URLs. Bing still returns `UserForbiddedToAccessSite` until Bing Webmaster verifies the site/key.
 
 **Best 30-minute path today (no Mac):** Bing Webmaster **Verify** (2 min) → submit sitemap (2 min) → IndexNow (1 min) → one Reddit post (10 min). Optional: itch.io upload (15 min). That unlocks search discovery for 298 URLs plus direct traffic to Stripe checkout.
 
@@ -41,7 +43,7 @@ Top 3 actions (~15 min each, $0 budget). Do in order. (GSC verify + sitemap: **d
 
 **Expected outcome:** Bing Webmaster shows verified site with sitemap submitted.
 
-**Unlocks:** IndexNow re-run (Do today #4) — currently returns **403** until verify completes. Pings ~291 URLs to Bing/Yandex instantly.
+**Unlocks:** IndexNow re-run (Do today #4) — currently returns **403 UserForbiddedToAccessSite** until verify completes. Pings ~298 URLs to Bing/Yandex instantly.
 
 ---
 
@@ -221,6 +223,8 @@ node -e "import('./core/marketing/indexnow.mjs').then(m => m.submitIndexNow().th
 - [x] GSC HTML verification meta tag deployed to Render prod — 2026-06-21
 - [x] Google Search Console verify + sitemap submit (298 URLs) — 2026-06-21
 - [x] BingSiteAuth.xml deployed to prod (`/BingSiteAuth.xml`) — pending user **Verify** click in Bing Webmaster — 2026-06-21
+- [x] Checkout conversion hardening — LAUNCH25 prefilled on Stripe Payment Links, SEO/go/tools/bundles visit + checkout tracking — 2026-06-30
+- [x] IndexNow production URL normalization fixed — still blocked by Bing Webmaster authorization — 2026-06-30
 
 ---
 
