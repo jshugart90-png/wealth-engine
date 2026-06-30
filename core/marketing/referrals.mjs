@@ -1,6 +1,6 @@
 import { randomBytes } from "crypto";
 import { getDb, logEvent } from "../db.mjs";
-import { getPublicBaseUrl } from "../env.mjs";
+import { getMarketingBaseUrl } from "../env.mjs";
 
 export function ensureReferralCodes(count = 5) {
   const db = getDb();
@@ -20,7 +20,7 @@ export function ensureReferralCodes(count = 5) {
     created.push(code);
   }
   const all = db.prepare("SELECT code FROM referrals").all();
-  const base = getPublicBaseUrl();
+  const base = getMarketingBaseUrl();
   return {
     links: all.map((r) => ({ code: r.code, url: `${base}/?ref=${r.code}` })),
     created: created.length,

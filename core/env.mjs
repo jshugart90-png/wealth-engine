@@ -45,6 +45,14 @@ export function getPublicBaseUrl() {
   return (env.PUBLIC_BASE_URL ?? fallback).replace(/\/$/, "");
 }
 
+export function getMarketingBaseUrl() {
+  const env = loadEnv();
+  const base = (env.MARKETING_BASE_URL || env.PUBLIC_BASE_URL || getPublicBaseUrl()).replace(/\/$/, "");
+  const host = new URL(base).hostname;
+  if (host === "localhost" || host === "127.0.0.1") return "https://wealth-engine-0qlj.onrender.com";
+  return base;
+}
+
 export function requireEnv(key) {
   const env = loadEnv();
   const val = env[key];

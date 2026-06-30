@@ -1,6 +1,6 @@
 import { readFileSync, writeFileSync, mkdirSync } from "fs";
 import { join } from "path";
-import { getRoot, getDataRoot, getPublicBaseUrl } from "../env.mjs";
+import { getRoot, getDataRoot, getMarketingBaseUrl } from "../env.mjs";
 import { getPaymentLink } from "../commerce.mjs";
 import { AFFILIATE_REF_SCRIPT } from "../marketing/affiliates.mjs";
 import { checkoutClickScript, visitTrackerScript } from "../marketing/monetization.mjs";
@@ -233,7 +233,7 @@ const PAGES = [
 export function buildHighConversionLandings() {
   const dist = join(getRoot(), "dist", "go");
   mkdirSync(dist, { recursive: true });
-  const base = getPublicBaseUrl();
+  const base = getMarketingBaseUrl();
   const coupon = "LAUNCH25";
 
   for (const p of PAGES) {

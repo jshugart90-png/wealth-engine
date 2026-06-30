@@ -12,6 +12,8 @@
     "build": "node core/build-all.mjs",
     "install:task": "powershell -ExecutionPolicy Bypass -File deploy/install-scheduled-task.ps1",
     "health": "node core/health-check.mjs",
+    "ramp": "node core/pipeline/ramp.mjs",
+    "indexnow": "node -e \"import('./core/marketing/indexnow.mjs').then(m => m.submitIndexNow().then((r) => { console.log(JSON.stringify(r, null, 2)); process.exit(r.ok ? 0 : 1); }))\"",
     "launch": "node scripts/launch.mjs",
     "webhook": "node scripts/setup-webhook.mjs",
     "daily": "node core/daily-wealth.mjs",
@@ -35,7 +37,9 @@
     "production:loop": "powershell -ExecutionPolicy Bypass -File deploy/production-orchestrator-loop.ps1",
     "production:report": "node scripts/production-orchestrator.mjs --final-report",
     "install:8am-summary": "powershell -ExecutionPolicy Bypass -File deploy/install-8am-summary-task.ps1",
-    "verify:payments": "npm run build && node scripts/verify-payment-links.mjs"
+    "verify:payments": "npm run build && node scripts/verify-payment-links.mjs",
+    "verify:prod-assets": "npm run build && node scripts/verify-prod-assets.mjs",
+    "verify:prod-build": "MARKETING_BASE_URL=https://wealth-engine-0qlj.onrender.com npm run build && node scripts/verify-prod-assets.mjs && node scripts/verify-payment-links.mjs"
   },
   "engines": { "node": ">=20" },
   "dependencies": {

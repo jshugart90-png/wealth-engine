@@ -1,12 +1,12 @@
 import { writeFileSync, mkdirSync } from "fs";
 import { join } from "path";
-import { getRoot, loadEnv, getPublicBaseUrl } from "../env.mjs";
+import { getRoot, loadEnv, getMarketingBaseUrl } from "../env.mjs";
 
 export function buildThanksPage() {
   const env = loadEnv();
   const dist = join(getRoot(), "dist");
   mkdirSync(dist, { recursive: true });
-  const base = getPublicBaseUrl();
+  const base = getMarketingBaseUrl();
   const conversionId = env.GOOGLE_ADS_CONVERSION_ID ?? "";
   const conversionLabel = env.GOOGLE_ADS_CONVERSION_LABEL ?? "";
 

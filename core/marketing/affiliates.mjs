@@ -2,7 +2,7 @@ import { randomBytes } from "crypto";
 import { readFileSync } from "fs";
 import { join } from "path";
 import { getDb, logEvent } from "../db.mjs";
-import { getRoot, getPublicBaseUrl } from "../env.mjs";
+import { getRoot, getMarketingBaseUrl } from "../env.mjs";
 
 let configCache;
 
@@ -79,7 +79,7 @@ export function signupPartner({ email, name }) {
 }
 
 export function buildPartnerUrl(code, path = "/") {
-  const base = getPublicBaseUrl();
+  const base = getMarketingBaseUrl();
   const sep = path.includes("?") ? "&" : "?";
   return `${base}${path}${sep}ref=${code}`;
 }

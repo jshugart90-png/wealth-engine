@@ -1,6 +1,6 @@
 import { writeFileSync, mkdirSync, existsSync, readFileSync, readdirSync } from "fs";
 import { join } from "path";
-import { getRoot, getDataRoot, getPublicBaseUrl } from "../env.mjs";
+import { getRoot, getDataRoot, getMarketingBaseUrl } from "../env.mjs";
 import { listAllSeoUrls } from "./seo-pages.mjs";
 
 const STATIC_PATHS = [
@@ -68,6 +68,9 @@ const STATIC_PATHS = [
   "/partners/index.html",
   "/tools/hourly-rate.html",
   "/feed.xml",
+  "/products.json",
+  "/ai-products.json",
+  "/llms.txt",
   "/comparestack/index.html",
   "/meetingcost/index.html",
   "/ndagen/index.html",
@@ -83,7 +86,7 @@ function listCompareStackUrls() {
 }
 
 export function buildSitemap() {
-  const base = getPublicBaseUrl();
+  const base = getMarketingBaseUrl();
   const lastmod = new Date().toISOString().slice(0, 10);
   const urls = [...STATIC_PATHS, ...listCompareStackUrls(), ...listAllSeoUrls()];
   const xml = `<?xml version="1.0" encoding="UTF-8"?>
@@ -97,14 +100,14 @@ ${urls.map((u) => `  <url><loc>${base}${u.replace(/\/index\.html$/, "/").replace
 }
 
 export function buildRobotsTxt() {
-  const base = getPublicBaseUrl();
+  const base = getMarketingBaseUrl();
   const txt = `User-agent: *\nAllow: /\nSitemap: ${base}/sitemap.xml\n`;
   writeFileSync(join(getRoot(), "dist", "robots.txt"), txt);
   return { path: "/robots.txt" };
 }
 
 export async function pingSearchEngines() {
-  const base = getPublicBaseUrl();
+  const base = getMarketingBaseUrl();
   const sitemapUrl = encodeURIComponent(`${base}/sitemap.xml`);
   const pings = [];
   try {

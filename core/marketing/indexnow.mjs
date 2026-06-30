@@ -1,13 +1,13 @@
 import { readFileSync, writeFileSync, existsSync } from "fs";
 import { join } from "path";
-import { getRoot, getDataRoot, getPublicBaseUrl, loadEnv } from "../env.mjs";
+import { getRoot, getDataRoot, getMarketingBaseUrl, loadEnv } from "../env.mjs";
 
 const INDEXNOW_ENDPOINTS = ["https://www.bing.com/indexnow", "https://api.indexnow.org/indexnow"];
 const PROD_BASE_URL = "https://wealth-engine-0qlj.onrender.com";
 
 function getIndexNowBaseUrl() {
   const env = loadEnv();
-  const base = (env.INDEXNOW_BASE_URL || getPublicBaseUrl()).replace(/\/$/, "");
+  const base = (env.INDEXNOW_BASE_URL || getMarketingBaseUrl()).replace(/\/$/, "");
   const host = new URL(base).hostname;
   if (host === "localhost" || host === "127.0.0.1") return PROD_BASE_URL;
   return base;

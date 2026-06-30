@@ -1,6 +1,6 @@
 import { readFileSync, writeFileSync, mkdirSync, readdirSync } from "fs";
 import { join } from "path";
-import { getRoot, getDataRoot, getPublicBaseUrl } from "../env.mjs";
+import { getRoot, getDataRoot, getMarketingBaseUrl } from "../env.mjs";
 import { getPaymentLink } from "../commerce.mjs";
 import { AFFILIATE_REF_SCRIPT } from "../marketing/affiliates.mjs";
 import { checkoutClickScript, visitTrackerScript } from "../marketing/monetization.mjs";
@@ -223,7 +223,7 @@ export function generateCompliancePseo() {
   const config = JSON.parse(readFileSync(join(getRoot(), "config", "state-compliance.json"), "utf8"));
   const outDir = join(getDataRoot(), "seo-pages");
   mkdirSync(outDir, { recursive: true });
-  const base = getPublicBaseUrl();
+  const base = getMarketingBaseUrl();
   const created = [];
 
   const states = config.pilotStates

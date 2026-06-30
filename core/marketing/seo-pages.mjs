@@ -1,6 +1,6 @@
 import { readFileSync, writeFileSync, mkdirSync, existsSync, readdirSync } from "fs";
 import { join } from "path";
-import { getRoot, getDataRoot, getPublicBaseUrl } from "../env.mjs";
+import { getRoot, getDataRoot, getMarketingBaseUrl } from "../env.mjs";
 import { getPaymentLink } from "../commerce.mjs";
 import { AFFILIATE_REF_SCRIPT } from "./affiliates.mjs";
 import { checkoutClickScript, visitTrackerScript } from "./monetization.mjs";
@@ -26,7 +26,7 @@ export function generateSeoPages() {
   const dayIndex = Math.floor(Date.now() / 86400000);
   const perCycle = config.pagesPerCycle ?? 3;
   const start = (dayIndex * perCycle) % config.keywords.length;
-  const base = getPublicBaseUrl();
+  const base = getMarketingBaseUrl();
   const created = [];
 
   // Generate all keywords so prod sitemap stays complete (rotation still logged)

@@ -1,6 +1,6 @@
 import { writeFileSync, mkdirSync, readFileSync } from "fs";
 import { join } from "path";
-import { getRoot, getDataRoot, getPublicBaseUrl } from "../env.mjs";
+import { getRoot, getDataRoot, getMarketingBaseUrl } from "../env.mjs";
 import { getAllPaymentLinks } from "../commerce.mjs";
 
 const DIRECTORIES = [
@@ -20,7 +20,7 @@ const DIRECTORIES = [
 
 export function buildDirectoryPack() {
   mkdirSync(join(getDataRoot(), "marketing", "directories"), { recursive: true });
-  const base = getPublicBaseUrl();
+  const base = getMarketingBaseUrl();
   const config = JSON.parse(readFileSync(join(getRoot(), "config", "ventures.json"), "utf8"));
   const links = getAllPaymentLinks();
   const pack = [];

@@ -1,6 +1,6 @@
 import { readFileSync, writeFileSync, mkdirSync, cpSync, existsSync, readdirSync } from "fs";
 import { join } from "path";
-import { getRoot, getPublicBaseUrl, loadEnv } from "./env.mjs";
+import { getRoot, getMarketingBaseUrl, loadEnv } from "./env.mjs";
 import { getAllPaymentLinks } from "./commerce.mjs";
 import { buildHighConversionLandings } from "./pipeline/conversion-landings.mjs";
 import { buildThanksPage } from "./marketing/thanks-page.mjs";
@@ -12,6 +12,7 @@ import { buildSitemap, buildRobotsTxt } from "./marketing/sitemap.mjs";
 import { expandCompareStack } from "../ventures/comparestack/generator.mjs";
 import { buildEmbedWidgets } from "./marketing/embeds.mjs";
 import { buildProductFeeds } from "./marketing/feeds.mjs";
+import { buildDirectoryPack } from "./marketing/directory-pack.mjs";
 import { buildReferralPages } from "./marketing/referral-page.mjs";
 import { buildIndexNowKey } from "./marketing/indexnow.mjs";
 import {
@@ -105,6 +106,7 @@ export function buildAll() {
   const robots = buildRobotsTxt();
   const embeds = buildEmbedWidgets();
   const feeds = buildProductFeeds();
+  const directories = buildDirectoryPack();
   const referral = buildReferralPages();
   const indexNow = buildIndexNowKey();
   const bingSiteAuth = buildBingSiteAuth();
@@ -125,6 +127,7 @@ export function buildAll() {
     robots,
     embeds,
     feeds,
+    directories,
     referral,
     indexNow,
     bingSiteAuth,
@@ -164,7 +167,7 @@ function getAdmobOpts() {
 }
 
 function buildPwaAssets() {
-  const base = getPublicBaseUrl();
+  const base = getMarketingBaseUrl();
   const assetsDir = join(root, "dist", "assets", "pwa");
   mkdirSync(assetsDir, { recursive: true });
 
@@ -274,7 +277,7 @@ ${googleSiteVerificationMeta()}
 
   writeFileSync(join(gamesDest, "index.html"), hubHtml);
 
-  const gamesManifest = buildGamesPwaManifest(getPublicBaseUrl());
+  const gamesManifest = buildGamesPwaManifest(getMarketingBaseUrl());
   writeFileSync(join(gamesDest, "manifest.json"), JSON.stringify(gamesManifest, null, 2));
 
   return { copied: slugs, hub: join(gamesDest, "index.html"), count: meta.length, manifest: join(gamesDest, "manifest.json") };

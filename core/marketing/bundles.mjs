@@ -1,6 +1,6 @@
 import { writeFileSync, mkdirSync } from "fs";
 import { join } from "path";
-import { getRoot, getPublicBaseUrl } from "../env.mjs";
+import { getRoot, getMarketingBaseUrl } from "../env.mjs";
 import { getPaymentLink } from "../commerce.mjs";
 import { AFFILIATE_REF_SCRIPT } from "./affiliates.mjs";
 import { checkoutClickScript, visitTrackerScript } from "./monetization.mjs";
@@ -119,7 +119,7 @@ ${links.map((row, i) => `<a class="btn" href="${row.link}" onclick="${checkoutCl
 export function buildBundleLandings() {
   const dist = join(getRoot(), "dist", "bundles");
   mkdirSync(dist, { recursive: true });
-  const base = getPublicBaseUrl();
+  const base = getMarketingBaseUrl();
 
   for (const b of BUNDLES) {
     const html =

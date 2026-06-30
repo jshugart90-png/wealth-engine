@@ -1,6 +1,6 @@
 import { writeFileSync, mkdirSync } from "fs";
 import { join } from "path";
-import { getRoot, loadEnv, getPublicBaseUrl } from "../env.mjs";
+import { getRoot, loadEnv, getMarketingBaseUrl } from "../env.mjs";
 import { AFFILIATE_REF_SCRIPT } from "./affiliates.mjs";
 import { visitTrackerScript } from "./monetization.mjs";
 
@@ -26,7 +26,7 @@ const INTERNAL_LINKS = `<div style="font-size:14px;margin-top:24px;padding-top:1
 </div>`;
 
 function adToolsShell(title, body, desc, slug) {
-  const base = getPublicBaseUrl();
+  const base = getMarketingBaseUrl();
   const fileSlug = slug ?? title.toLowerCase().replace(/\s+/g, "-");
   const env = loadEnv();
   const adsense = env.GOOGLE_ADSENSE_CLIENT
@@ -461,7 +461,7 @@ const hr=d/h;drout.textContent='$'+hr.toFixed(2)+'/hr · $'+(d*days).toFixed(0)+
   );
   writeFileSync(join(dist, "day-rate-to-hourly-calculator.html"), dayRateCalc);
 
-  const base = getPublicBaseUrl();
+  const base = getMarketingBaseUrl();
   const toolsIndex = `<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Free Business Calculators & Tools</title>
 <meta name="description" content="Free calculators for freelancers and small business — tip, invoice, meeting cost, markup, and more.">

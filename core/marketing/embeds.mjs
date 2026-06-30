@@ -1,11 +1,11 @@
 import { writeFileSync, mkdirSync } from "fs";
 import { join } from "path";
-import { getRoot, getPublicBaseUrl } from "../env.mjs";
+import { getRoot, getMarketingBaseUrl } from "../env.mjs";
 
 export function buildEmbedWidgets() {
   const dist = join(getRoot(), "dist", "embed");
   mkdirSync(dist, { recursive: true });
-  const base = getPublicBaseUrl();
+  const base = getMarketingBaseUrl();
 
   const meetingWidget = `<!DOCTYPE html><html><head><meta charset="UTF-8"><style>body{font-family:system-ui;margin:0;padding:12px;font-size:14px}
 input{width:60px;padding:4px}button{background:#2563eb;color:#fff;border:none;padding:8px 12px;cursor:pointer;border-radius:4px}

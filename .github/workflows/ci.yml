@@ -22,6 +22,11 @@ jobs:
 
       - name: Build ventures
         run: npm run build
+        env:
+          MARKETING_BASE_URL: https://wealth-engine-0qlj.onrender.com
+
+      - name: Verify production asset URLs
+        run: node scripts/verify-prod-assets.mjs
 
       - name: Health check
         run: npm run health
