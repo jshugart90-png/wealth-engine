@@ -31,7 +31,8 @@ function normalizeSitemapUrl(url, base) {
     const target = new URL(base);
     if (parsed.hostname === "localhost" || parsed.hostname === "127.0.0.1") {
       parsed.protocol = target.protocol;
-      parsed.host = target.host;
+      parsed.hostname = target.hostname;
+      parsed.port = target.port;
     }
     return parsed.toString();
   } catch {
